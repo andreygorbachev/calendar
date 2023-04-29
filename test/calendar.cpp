@@ -24,16 +24,16 @@ constexpr auto make_empty_calendar() -> calendar
 }
 
 
-constexpr void calendar_tests()
+constexpr bool calendar_tests()
 {
 	const auto c1 = make_May_calendar();
 	const auto c2 = make_empty_calendar();
 
-//	static_assert(c1 != c2);
+	return c1 != c2;
 }
 
 
 int main()
 {
-	calendar_tests();
+	static_assert(calendar_tests());
 }
