@@ -24,7 +24,7 @@ public:
 
 public:
 
-	constexpr bool operator==(const basic_calendar&) const noexcept = default;
+	constexpr auto operator==(const basic_calendar&) const noexcept -> bool = default;
 
 public:
 
@@ -63,7 +63,7 @@ public:
 
 public:
 
-	constexpr bool operator==(const calendar&) const noexcept = default;
+	constexpr auto operator==(const calendar&) const noexcept -> bool = default;
 
 private:
 
