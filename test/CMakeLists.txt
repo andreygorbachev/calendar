@@ -1,7 +1,7 @@
-add_executable(basic_calendar
-  basic_calendar.cpp
+add_executable(tests
+  tests.cpp
 )
 
-target_link_libraries(basic_calendar PRIVATE
+target_link_libraries(tests PRIVATE
   calendar
 )
