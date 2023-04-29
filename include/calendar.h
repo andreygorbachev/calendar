@@ -61,6 +61,10 @@ public:
 		holiday_storage holidays
 	);
 
+public:
+
+	constexpr bool operator==(const calendar&) const noexcept = default;
+
 private:
 
 	holiday_storage _holidays;

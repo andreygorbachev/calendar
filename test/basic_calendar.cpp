@@ -4,7 +4,7 @@ using namespace std::chrono;
 
 
 
-constexpr auto make_FSS() -> basic_calendar::weekend_storage
+constexpr auto make_FSS_weekend() -> basic_calendar::weekend_storage
 {
 	auto we = basic_calendar{}.get_weekend(); // start with Saturday/Sunday
 	we[std::chrono::Friday.c_encoding()] = true; // add Friday
@@ -12,12 +12,17 @@ constexpr auto make_FSS() -> basic_calendar::weekend_storage
 	return we;
 }
 
+constexpr auto make_empty_weekend() -> basic_calendar::weekend_storage
+{
+	return {};
+}
+
 
 
 constexpr void basic_calendar_tests()
 {
 	constexpr auto c1 = basic_calendar{}; // weekend on Saturday/Sunday
-	constexpr auto c2 = basic_calendar{ basic_calendar::weekend_storage{} }; // no weekend
+	constexpr auto c2 = basic_calendar{ make_empty_weekend() }; // no weekend
 
 	static_assert(c1 != c2);
 
@@ -37,7 +42,7 @@ constexpr void basic_calendar_tests()
 	static_assert(c1.is_business_day({ 2023y/March/27d }));
 	static_assert(c2.is_business_day({ 2023y/March/27d }));
 
-	constexpr auto c3 = basic_calendar{ make_FSS() }; // weekend on Friday/Saturday/Sunday
+	constexpr auto c3 = basic_calendar{ make_FSS_weekend() }; // weekend on Friday/Saturday/Sunday
 
 	static_assert(c1 != c3);
 }
