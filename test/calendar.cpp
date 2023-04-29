@@ -24,7 +24,7 @@ constexpr auto make_empty_calendar() -> calendar
 }
 
 
-constexpr bool calendar_tests()
+constexpr auto calendar_tests() -> bool
 {
 	const auto c1 = make_May_calendar();
 	const auto c2 = make_empty_calendar();
