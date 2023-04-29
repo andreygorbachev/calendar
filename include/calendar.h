@@ -5,6 +5,7 @@
 #include <bitset>
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 
 class basic_calendar
@@ -67,6 +68,8 @@ public:
 
 public:
 
+	constexpr auto is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+
 	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool override;
 
 private:
@@ -123,7 +126,12 @@ constexpr calendar::calendar(
 }
 
 
+constexpr auto calendar::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
+{
+	return std::find(_holidays.cbegin(), _holidays.cend(), ymd) != _holidays.cend();
+}
+
 constexpr auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
-	return !is_weekend(ymd);
+	return !is_weekend(ymd) && !is_holiday(ymd);
 }

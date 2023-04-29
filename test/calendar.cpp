@@ -29,7 +29,12 @@ constexpr auto calendar_tests() -> bool
 	const auto c1 = make_May_calendar();
 	const auto c2 = make_empty_calendar();
 
-	return c1 != c2;
+	return
+		c1 != c2 &&
+		c1.is_holiday(2023y/May/1d) &&
+		!c1.is_weekend(2023y/May/1d) &&
+		!c1.is_business_day(2023y/May/1d) &&
+		c1.is_business_day(2023y/May/2d);
 }
 
 
