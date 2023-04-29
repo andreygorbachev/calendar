@@ -36,6 +36,12 @@ private:
 };
 
 
+class calendar : public basic_calendar
+{
+
+};
+
+
 
 constexpr basic_calendar::basic_calendar() noexcept : _weekend{}
 {
