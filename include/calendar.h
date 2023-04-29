@@ -30,7 +30,7 @@ public:
 
 	constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+	constexpr virtual auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 public:
 
@@ -64,6 +64,10 @@ public:
 public:
 
 	constexpr auto operator==(const calendar&) const noexcept -> bool = default;
+
+public:
+
+	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool override;
 
 private:
 
@@ -116,4 +120,10 @@ constexpr calendar::calendar(
 ) : basic_calendar{ std::move(weekend) },
 	_holidays{ std::move(holidays) }
 {
+}
+
+
+constexpr auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+{
+	return !is_weekend(ymd);
 }
