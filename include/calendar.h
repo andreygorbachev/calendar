@@ -4,6 +4,7 @@
 #include <chrono>
 #include <bitset>
 #include <memory>
+#include <vector>
 
 
 class basic_calendar
@@ -19,6 +20,8 @@ public:
 
 	constexpr explicit basic_calendar(weekend_storage weekend) noexcept;
 
+	constexpr virtual ~basic_calendar() noexcept = default;
+
 public:
 
 	constexpr bool operator==(const basic_calendar&) const noexcept = default;
@@ -29,6 +32,10 @@ public:
 
 	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
+public:
+
+	constexpr auto get_weekend() const noexcept -> const weekend_storage&;
+
 private:
 
 	weekend_storage _weekend;
@@ -38,6 +45,25 @@ private:
 
 class calendar : public basic_calendar
 {
+
+public:
+
+	using holiday_storage = std::vector<std::chrono::year_month_day>;
+
+public:
+
+	constexpr explicit calendar(
+		holiday_storage holidays
+	);
+
+	constexpr explicit calendar(
+		basic_calendar::weekend_storage weekend,
+		holiday_storage holidays
+	);
+
+private:
+
+	holiday_storage _holidays;
 
 };
 
@@ -64,4 +90,26 @@ constexpr auto basic_calendar::is_weekend(const std::chrono::year_month_day& ymd
 constexpr auto basic_calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !is_weekend(ymd);
+}
+
+constexpr auto basic_calendar::get_weekend() const noexcept -> const weekend_storage&
+{
+	return _weekend;
+}
+
+
+
+constexpr calendar::calendar(
+	holiday_storage holidays
+) : basic_calendar{},
+	_holidays{ std::move(holidays) }
+{
+}
+
+constexpr calendar::calendar(
+	basic_calendar::weekend_storage weekend,
+	holiday_storage holidays
+) : basic_calendar{ std::move(weekend) },
+	_holidays{ std::move(holidays) }
+{
 }
