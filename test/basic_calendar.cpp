@@ -6,7 +6,7 @@ using namespace std::chrono;
 
 constexpr auto make_FSS() -> basic_calendar::weekend_storage
 {
-	auto we = basic_calendar{}.get_weekend(); // start with Sarurday/Sunday
+	auto we = basic_calendar{}.get_weekend(); // start with Saturday/Sunday
 	we[std::chrono::Friday.c_encoding()] = true; // add Friday
 
 	return we;
