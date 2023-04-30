@@ -14,3 +14,12 @@ add_executable(calendar_test
 target_link_libraries(calendar_test PRIVATE
   calendar
 )
+
+
+add_executable(Easter_test
+  Easter.cpp
+)
+
+target_link_libraries(Easter_test PRIVATE
+  calendar
+)
