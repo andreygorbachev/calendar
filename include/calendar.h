@@ -8,6 +8,7 @@
 #include <algorithm>
 
 
+
 constexpr auto week_length = std::size_t{ std::chrono::Sunday.iso_encoding() };
 
 
@@ -45,6 +46,7 @@ private:
 	weekend_storage _weekend;
 
 };
+
 
 
 class calendar : public basic_calendar
