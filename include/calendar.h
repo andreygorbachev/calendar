@@ -50,6 +50,7 @@ class calendar : public basic_calendar
 public:
 
 	using holiday_storage = std::vector<std::chrono::year_month_day>;
+	// I wonder if it is better to use std::set here (or some other ordered container), but that messes up constexpr
 
 public:
 
