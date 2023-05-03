@@ -8,12 +8,15 @@
 #include <algorithm>
 
 
+constexpr auto week_length = std::size_t{ std::chrono::Sunday.iso_encoding() };
+
+
 class basic_calendar
 {
 
 public:
 
-	using weekend_storage = std::bitset<std::size_t{ 7 }>;
+	using weekend_storage = std::bitset<week_length>;
 
 public:
 
