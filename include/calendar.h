@@ -54,18 +54,18 @@ class calendar : public basic_calendar
 
 public:
 
-	using holiday_storage = std::vector<std::chrono::year_month_day>;
+	using holidays_storage = std::vector<std::chrono::year_month_day>;
 	// I wonder if it is better to use std::set here (or some other ordered container), but that messes up constexpr
 
 public:
 
 	constexpr explicit calendar(
-		holiday_storage holidays
+		holidays_storage holidays
 	);
 
 	constexpr explicit calendar(
 		basic_calendar::weekend_storage weekend,
-		holiday_storage holidays
+		holidays_storage holidays
 	);
 
 public:
@@ -78,11 +78,25 @@ public:
 
 	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool override;
 
+public:
+
+	constexpr auto get_holidays() const noexcept -> const holidays_storage&;
+
 private:
 
-	holiday_storage _holidays;
+	holidays_storage _holidays;
 
 };
+
+
+
+constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
+{
+	const auto weekend = c1.get_weekend() | c2.get_weekend();
+	const auto holidays = c1.get_holidays(); // finish this
+
+	return calendar{ weekend, holidays };
+}
 
 
 
@@ -117,7 +131,7 @@ constexpr auto basic_calendar::get_weekend() const noexcept -> const weekend_sto
 
 
 constexpr calendar::calendar(
-	holiday_storage holidays
+	holidays_storage holidays
 ) : basic_calendar{},
 	_holidays{ std::move(holidays) }
 {
@@ -125,7 +139,7 @@ constexpr calendar::calendar(
 
 constexpr calendar::calendar(
 	basic_calendar::weekend_storage weekend,
-	holiday_storage holidays
+	holidays_storage holidays
 ) : basic_calendar{ std::move(weekend) },
 	_holidays{ std::move(holidays) }
 {
@@ -140,4 +154,9 @@ constexpr auto calendar::is_holiday(const std::chrono::year_month_day& ymd) cons
 constexpr auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !is_weekend(ymd) && !is_holiday(ymd);
+}
+
+constexpr auto calendar::get_holidays() const noexcept -> const holidays_storage&
+{
+	return _holidays;
 }

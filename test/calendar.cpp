@@ -6,7 +6,7 @@ using namespace std::chrono;
 
 constexpr auto make_May_calendar() -> calendar
 {
-	auto hols = calendar::holiday_storage{
+	auto hols = calendar::holidays_storage{
 		2023y/May/1d,
 		2023y/May/8d,
 		2023y/May/29d,
@@ -17,7 +17,7 @@ constexpr auto make_May_calendar() -> calendar
 
 constexpr auto make_empty_calendar() -> calendar
 {
-	auto hols = calendar::holiday_storage{
+	auto hols = calendar::holidays_storage{
 	};
 
 	return calendar{ move(hols) };
