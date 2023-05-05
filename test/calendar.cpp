@@ -12,16 +12,16 @@ constexpr auto make_May_London_calendar() -> calendar
 		2023y/May/29d,
 	};
 
-	return calendar{ move(hols) };
+	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
 }
 
 constexpr auto make_May_NewYork_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
-		2023y / May / 29d,
+		2023y/May/29d,
 	};
 
-	return calendar{ move(hols) };
+	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
 }
 
 constexpr auto make_empty_calendar() -> calendar
@@ -29,7 +29,7 @@ constexpr auto make_empty_calendar() -> calendar
 	auto hols = calendar::holidays_storage{
 	};
 
-	return calendar{ move(hols) };
+	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
 }
 
 

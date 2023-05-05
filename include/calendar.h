@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <algorithm>
+#include <cassert> // might not be needed in the future
 
 
 
@@ -60,10 +61,14 @@ public:
 public:
 
 	constexpr explicit calendar(
+		std::chrono::year_month_day front,
+		std::chrono::year_month_day back,
 		holidays_storage holidays
 	);
 
 	constexpr explicit calendar(
+		std::chrono::year_month_day front,
+		std::chrono::year_month_day back,
 		basic_calendar::weekend_storage weekend,
 		holidays_storage holidays
 	);
@@ -83,9 +88,15 @@ public:
 
 public:
 
+	constexpr auto get_front() const noexcept -> const std::chrono::year_month_day&;
+	constexpr auto get_back() const noexcept -> const std::chrono::year_month_day&;
+
 	constexpr auto get_holidays() const noexcept -> const holidays_storage&;
 
 private:
+
+	std::chrono::year_month_day _front;
+	std::chrono::year_month_day _back;
 
 	holidays_storage _holidays;
 
@@ -95,6 +106,10 @@ private:
 
 constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
 {
+	// consider better error handling
+	assert(c1.get_front() == c2.get_front());
+	assert(c1.get_back() == c2.get_back());
+
 	const auto weekend = c1.get_weekend() | c2.get_weekend();
 
 	// not efficient for now as we just duplicate the dates (mostly)
@@ -102,11 +117,15 @@ constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
 	auto holidays = c1.get_holidays();
 	holidays.insert(holidays.end(), h2.cbegin(), h2.cend());
 
-	return calendar{ weekend, holidays };
+	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
 }
 
 constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
 {
+	// consider better error handling
+	assert(c1.get_front() == c2.get_front());
+	assert(c1.get_back() == c2.get_back());
+
 	const auto weekend = c1.get_weekend() & c2.get_weekend();
 
 	const auto& h1 = c1.get_holidays();
@@ -115,7 +134,7 @@ constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
 		if (c2.is_holiday(h))
 			holidays.push_back(h);
 
-	return calendar{ weekend, holidays };
+	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
 }
 
 
@@ -151,16 +170,24 @@ constexpr auto basic_calendar::get_weekend() const noexcept -> const weekend_sto
 
 
 constexpr calendar::calendar(
+	std::chrono::year_month_day front,
+	std::chrono::year_month_day back,
 	holidays_storage holidays
 ) : basic_calendar{},
+	_front{ std::move(front) },
+	_back{ std::move(back) },
 	_holidays{ std::move(holidays) }
 {
 }
 
 constexpr calendar::calendar(
+	std::chrono::year_month_day front,
+	std::chrono::year_month_day back,
 	basic_calendar::weekend_storage weekend,
 	holidays_storage holidays
 ) : basic_calendar{ std::move(weekend) },
+	_front{ std::move(front) },
+	_back{ std::move(back) },
 	_holidays{ std::move(holidays) }
 {
 }
@@ -174,6 +201,16 @@ constexpr auto calendar::is_holiday(const std::chrono::year_month_day& ymd) cons
 constexpr auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !is_weekend(ymd) && !is_holiday(ymd);
+}
+
+constexpr auto calendar::get_front() const noexcept -> const std::chrono::year_month_day&
+{
+	return _front;
+}
+
+constexpr auto calendar::get_back() const noexcept -> const std::chrono::year_month_day&
+{
+	return _back;
 }
 
 constexpr auto calendar::get_holidays() const noexcept -> const holidays_storage&
