@@ -71,6 +71,9 @@ public:
 public:
 
 	constexpr auto operator==(const calendar&) const noexcept -> bool = default;
+	// at the moment this probably does not do the right thing:
+	// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
+	// 2) If 2 calendars just differ in the order of holidays they would be different
 
 public:
 
@@ -93,7 +96,10 @@ private:
 constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
 {
 	const auto weekend = c1.get_weekend() | c2.get_weekend();
-	const auto holidays = c1.get_holidays(); // finish this
+
+	// not efficient for now as we just duplicate the dates (mostly)
+	/*const*/ auto holidays = c1.get_holidays();
+	holidays.insert(holidays.end(), c2.get_holidays().cbegin(), c2.get_holidays().cend());
 
 	return calendar{ weekend, holidays };
 }
