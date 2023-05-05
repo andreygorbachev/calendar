@@ -98,8 +98,22 @@ constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
 	const auto weekend = c1.get_weekend() | c2.get_weekend();
 
 	// not efficient for now as we just duplicate the dates (mostly)
-	/*const*/ auto holidays = c1.get_holidays();
-	holidays.insert(holidays.end(), c2.get_holidays().cbegin(), c2.get_holidays().cend());
+	const auto& h2 = c2.get_holidays();
+	auto holidays = c1.get_holidays();
+	holidays.insert(holidays.end(), h2.cbegin(), h2.cend());
+
+	return calendar{ weekend, holidays };
+}
+
+constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
+{
+	const auto weekend = c1.get_weekend() & c2.get_weekend();
+
+	const auto& h1 = c1.get_holidays();
+	auto holidays = calendar::holidays_storage{};
+	for (const auto& h : h1)
+		if (c2.is_holiday(h))
+			holidays.push_back(h);
 
 	return calendar{ weekend, holidays };
 }

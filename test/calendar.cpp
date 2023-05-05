@@ -46,10 +46,15 @@ constexpr auto calendar_tests() -> bool
 		c1.is_business_day(2023y/May/2d);
 
 	const auto c3 = make_May_NewYork_calendar() | c1;
+	const auto c4 = make_May_NewYork_calendar() & c1;
 
 	const auto test2 =
 		c3 != c1 &&
-		c3.is_holiday(2023y/May/1d);
+		c3.is_holiday(2023y/May/1d) &&
+		c4 != c1 &&
+		c4 != c3 &&
+		!c4.is_holiday(2023y/May/1d);
+	// add tests for weekend as well
 
 	return 
 		test1 &&
