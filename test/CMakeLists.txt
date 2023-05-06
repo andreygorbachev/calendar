@@ -16,6 +16,15 @@ target_link_libraries(calendar_test PRIVATE
 )
 
 
+add_executable(business_days_test
+  business_days.cpp
+)
+
+target_link_libraries(business_days_test PRIVATE
+  calendar
+)
+
+
 add_executable(Easter_test
   Easter.cpp
 )
