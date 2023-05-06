@@ -60,6 +60,9 @@ public:
 
 public:
 
+	// or we should use "begin"/"end" instead of "front"/"back"
+	// (or use the same ideas but with different names)
+
 	constexpr explicit calendar(
 		std::chrono::year_month_day front,
 		std::chrono::year_month_day back,
