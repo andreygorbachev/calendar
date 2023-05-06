@@ -4,6 +4,16 @@ using namespace std;
 using namespace std::chrono;
 
 
+constexpr auto make_April_London_calendar() -> calendar
+{
+	auto hols = calendar::holidays_storage{
+		2023y/April/7d,
+		2023y/April/10d,
+	};
+
+	return calendar{ 2023y/April/1d, 2023y/April/31d, move(hols) };
+}
+
 constexpr auto make_May_London_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
@@ -56,9 +66,15 @@ constexpr auto calendar_tests() -> bool
 		!c4.is_holiday(2023y/May/1d);
 	// add tests for weekend as well
 
+	const auto c5 = make_April_London_calendar() + c1;
+
+	const auto test3 =
+		c3.is_holiday(2023y/May/1d);
+
 	return 
 		test1 &&
-		test2;
+		test2 &&
+		test3;
 }
 
 

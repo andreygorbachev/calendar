@@ -80,6 +80,8 @@ public:
 	// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
 	// 2) If 2 calendars just differ in the order of holidays they would be different
 
+	// add operator+=
+
 public:
 
 	constexpr auto is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool;
@@ -135,6 +137,21 @@ constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
 			holidays.push_back(h);
 
 	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
+}
+
+// if c2 before c1 should the function swap them around?
+constexpr auto operator+(const calendar& c1, const calendar& c2) -> calendar
+{
+	// consider better error handling
+	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front());
+	assert(c1.get_weekend() == c2.get_weekend());
+
+	// not efficient for now as we just duplicate the dates (mostly)
+	const auto& h2 = c2.get_holidays();
+	auto holidays = c1.get_holidays();
+	holidays.insert(holidays.end(), h2.cbegin(), h2.cend());
+
+	return calendar{ c1.get_front(), c2.get_back(), c1.get_weekend(), holidays };
 }
 
 
@@ -195,6 +212,8 @@ constexpr calendar::calendar(
 
 constexpr auto calendar::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
+	// check that ymd is inside our calendar
+
 	return std::find(_holidays.cbegin(), _holidays.cend(), ymd) != _holidays.cend();
 }
 
