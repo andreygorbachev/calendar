@@ -3,7 +3,7 @@
 using namespace std::chrono;
 
 
-constexpr auto Easter_tests() -> bool
+consteval auto Easter_tests() -> bool
 {
 //	constexpr auto e_calculated1 = get_Easter(1961y);
 	constexpr auto e_expected1 = 1961y/April/2d;

@@ -7,7 +7,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-constexpr auto make_May_London_calendar() -> calendar
+consteval auto make_May_London_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
 		2023y/May/1d,
@@ -19,7 +19,7 @@ constexpr auto make_May_London_calendar() -> calendar
 }
 
 
-constexpr auto business_days_tests() -> bool
+consteval auto business_days_tests() -> bool
 {
 	const auto c1 = make_May_London_calendar();
 	const auto bd1 = business_days{ &c1 };

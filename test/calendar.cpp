@@ -6,7 +6,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-constexpr auto make_April_London_calendar() -> calendar
+consteval auto make_April_London_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
 		2023y/April/7d,
@@ -16,7 +16,7 @@ constexpr auto make_April_London_calendar() -> calendar
 	return calendar{ 2023y/April/1d, 2023y/April/30d, move(hols) };
 }
 
-constexpr auto make_May_London_calendar() -> calendar
+consteval auto make_May_London_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
 		2023y/May/1d,
@@ -27,7 +27,7 @@ constexpr auto make_May_London_calendar() -> calendar
 	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
 }
 
-constexpr auto make_May_NewYork_calendar() -> calendar
+consteval auto make_May_NewYork_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
 		2023y/May/29d,
@@ -36,7 +36,7 @@ constexpr auto make_May_NewYork_calendar() -> calendar
 	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
 }
 
-constexpr auto make_empty_calendar() -> calendar
+consteval auto make_empty_calendar() -> calendar
 {
 	auto hols = calendar::holidays_storage{
 	};
@@ -45,7 +45,7 @@ constexpr auto make_empty_calendar() -> calendar
 }
 
 
-constexpr auto calendar_tests() -> bool
+consteval auto calendar_tests() -> bool
 {
 	const auto c1 = make_May_London_calendar();
 	const auto c2 = make_empty_calendar();
