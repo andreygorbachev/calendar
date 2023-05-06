@@ -27,20 +27,20 @@ constexpr void basic_calendar_tests()
 	static_assert(c1 != c2);
 
 	// Friday
-	static_assert(c1.is_business_day({ 2023y/March/24d }));
-	static_assert(c2.is_business_day({ 2023y/March/24d }));
+	static_assert(c1.is_business_day(2023y/March/24d));
+	static_assert(c2.is_business_day(2023y/March/24d));
 
 	// Saturday
-	static_assert(!c1.is_business_day({ 2023y/March/25d }));
-	static_assert(c2.is_business_day({ 2023y/March/25d }));
+	static_assert(!c1.is_business_day(2023y/March/25d));
+	static_assert(c2.is_business_day(2023y/March/25d));
 
 	// Sunday
-	static_assert(!c1.is_business_day({ 2023y/March/26d }));
-	static_assert(c2.is_business_day({ 2023y/March/26d }));
+	static_assert(!c1.is_business_day(2023y/March/26d));
+	static_assert(c2.is_business_day(2023y/March/26d));
 
 	// Monday
-	static_assert(c1.is_business_day({ 2023y/March/27d }));
-	static_assert(c2.is_business_day({ 2023y/March/27d }));
+	static_assert(c1.is_business_day(2023y/March/27d));
+	static_assert(c2.is_business_day(2023y/March/27d));
 
 	constexpr auto c3 = basic_calendar{ make_FSS_weekend() }; // weekend on Friday/Saturday/Sunday
 
