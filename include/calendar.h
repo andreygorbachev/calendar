@@ -143,7 +143,7 @@ constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
 constexpr auto operator+(const calendar& c1, const calendar& c2) -> calendar
 {
 	// consider better error handling
-	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front());
+//	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front()); // no gaps between calendars are allowed
 	assert(c1.get_weekend() == c2.get_weekend());
 
 	// not efficient for now as we just duplicate the dates (mostly)

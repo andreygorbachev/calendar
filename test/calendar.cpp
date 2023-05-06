@@ -11,7 +11,7 @@ constexpr auto make_April_London_calendar() -> calendar
 		2023y/April/10d,
 	};
 
-	return calendar{ 2023y/April/1d, 2023y/April/31d, move(hols) };
+	return calendar{ 2023y/April/1d, 2023y/April/30d, move(hols) };
 }
 
 constexpr auto make_May_London_calendar() -> calendar
