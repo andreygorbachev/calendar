@@ -2,6 +2,8 @@
 
 #include "calendar.h"
 
+#include <cstddef>
+#include <memory>
 #include <chrono>
 
 
