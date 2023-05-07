@@ -52,5 +52,12 @@ constexpr auto business_days::count(
 	const std::chrono::year_month_day& end
 ) const -> std::size_t
 {
-	return 0/*uz*/; // temp only
+	auto result = 0/*uz*/;
+
+	// naive implementation to start with
+	for (auto d = start; d <= end; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+		if (is_business_day(d))
+			result++;
+
+	return result;
 }

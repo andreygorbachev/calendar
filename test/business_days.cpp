@@ -37,7 +37,7 @@ namespace
 		const auto c = test_parse_ics_england();
 		const auto bd = business_days{ &c };
 
-		EXPECT_EQ(0/*uz*/, bd.count(2023y/May/1d, 2023y/May/31d));
+		EXPECT_EQ(20/*uz*/, bd.count(2023y/May/1d, 2023y/May/31d));
 	}
 
 }
