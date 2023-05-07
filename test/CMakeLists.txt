@@ -36,12 +36,13 @@ project(calendar_test)
 #)
 
 add_executable(${PROJECT_NAME}
-    business_days.cpp
+  business_days.cpp
+  ics_parser.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    calendar
-    gtest_main
+  calendar
+  gtest_main
 )
 
 include(GoogleTest)
