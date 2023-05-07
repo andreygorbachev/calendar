@@ -30,7 +30,7 @@ public:
 
 public:
 
-	auto operator==(const basic_calendar&) const noexcept -> bool = default;
+	friend auto operator==(const basic_calendar&c1, const basic_calendar& c2) noexcept -> bool = default;
 
 public:
 
@@ -77,7 +77,7 @@ public:
 
 public:
 
-	auto operator==(const calendar&) const noexcept -> bool = default;
+	friend auto operator==(const calendar& c1, const calendar& c2) noexcept -> bool = default;
 	// at the moment this probably does not do the right thing:
 	// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
 	// 2) If 2 calendars just differ in the order of holidays they would be different
