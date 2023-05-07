@@ -1,14 +1,5 @@
 project(calendar_test)
 
-#add_executable(calendar_test
-#  calendar.cpp
-#)
-#
-#target_link_libraries(calendar_test PRIVATE
-#  calendar
-#)
-#
-#
 #add_executable(Easter_test
 #  Easter.cpp
 #)
@@ -19,6 +10,7 @@ project(calendar_test)
 
 add_executable(${PROJECT_NAME}
   basic_calendar.cpp
+  calendar.cpp
   business_days.cpp
   ics_parser.cpp
   setup.h
