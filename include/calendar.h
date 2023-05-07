@@ -4,7 +4,7 @@
 #include <chrono>
 #include <bitset>
 #include <memory>
-#include <vector>
+#include <set>
 #include <algorithm>
 #include <cassert> // might not be needed in the future
 
@@ -55,8 +55,7 @@ class calendar : public basic_calendar
 
 public:
 
-	using holidays_storage = std::vector<std::chrono::year_month_day>;
-	// I wonder if it is better to use std::set here (or some other ordered container), but that messes up constexpr
+	using holidays_storage = std::set<std::chrono::year_month_day>;
 
 public:
 
@@ -117,10 +116,9 @@ inline auto operator|(const calendar& c1, const calendar& c2) -> calendar
 
 	const auto weekend = c1.get_weekend() | c2.get_weekend();
 
-	// not efficient for now as we just duplicate the dates (mostly)
-	const auto& h2 = c2.get_holidays();
+	auto h2 = c2.get_holidays();
 	auto holidays = c1.get_holidays();
-	holidays.insert(holidays.end(), h2.cbegin(), h2.cend());
+	holidays.merge(h2);
 
 	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
 }
@@ -137,7 +135,7 @@ inline auto operator&(const calendar& c1, const calendar& c2) -> calendar
 	auto holidays = calendar::holidays_storage{};
 	for (const auto& h : h1)
 		if (c2.is_holiday(h))
-			holidays.push_back(h);
+			holidays.insert(h);
 
 	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
 }
@@ -149,10 +147,9 @@ inline auto operator+(const calendar& c1, const calendar& c2) -> calendar
 //	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front()); // no gaps between calendars are allowed
 	assert(c1.get_weekend() == c2.get_weekend());
 
-	// not efficient for now as we just duplicate the dates (mostly)
-	const auto& h2 = c2.get_holidays();
+	auto h2 = c2.get_holidays();
 	auto holidays = c1.get_holidays();
-	holidays.insert(holidays.end(), h2.cbegin(), h2.cend());
+	holidays.merge(h2);
 
 	return calendar{ c1.get_front(), c2.get_back(), c1.get_weekend(), holidays };
 }

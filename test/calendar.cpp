@@ -59,7 +59,6 @@ namespace
 		const auto c4 = make_May_NewYork_calendar() & c1;
 
 		EXPECT_EQ(true, c1 != c2);
-		EXPECT_EQ(true, c1 != c3);
 		EXPECT_EQ(true, c3 != c4);
 		EXPECT_EQ(true, c1 != c4);
 	}

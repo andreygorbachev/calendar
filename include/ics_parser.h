@@ -76,7 +76,7 @@ inline auto _parse_ics(std::istream& fs) -> calendar::holidays_storage
 		if (s == "BEGIN")
 		{
 			auto ymd = _parse_event(fs);
-			result.push_back(std::move(ymd));
+			result.insert(std::move(ymd));
 		}
 		else if (s == "END")
 			break;
@@ -93,10 +93,9 @@ inline auto _parse_ics(std::istream& fs) -> calendar::holidays_storage
 }
 
 
-// we assume that holidays are sorted
 inline auto _start(const calendar::holidays_storage& holidays) noexcept -> std::chrono::year_month_day
 {
-	const auto h = holidays.empty() ? std::chrono::year_month_day{} : holidays.front();
+	const auto h = holidays.empty() ? std::chrono::year_month_day{} : *holidays.cbegin();
 	// or should we have smallest possible year_month_day if the holidays are empty?
 
 	return { h.year(), std::chrono::January, std::chrono::day{ 1u } };
@@ -104,7 +103,7 @@ inline auto _start(const calendar::holidays_storage& holidays) noexcept -> std::
 
 inline auto _end(const calendar::holidays_storage& holidays) noexcept -> std::chrono::year_month_day
 {
-	const auto h = holidays.empty() ? std::chrono::year_month_day{} : holidays.back();
+	const auto h = holidays.empty() ? std::chrono::year_month_day{} : *holidays.crbegin();
 	// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
 
 	return { h.year(), std::chrono::December, std::chrono::day{ 31u } };
