@@ -16,12 +16,12 @@ namespace
 
 	TEST(ics_parser, _start)
 	{
-		EXPECT_EQ(2018y/January/1d, _start(test_parse_ics()));
+		EXPECT_EQ(2018y/January/1d, _start(test_parse_ics_holidays()));
 	}
 
 	TEST(ics_parser, _end)
 	{
-		EXPECT_EQ(2025y/December/31d, _end(test_parse_ics()));
+		EXPECT_EQ(2025y/December/31d, _end(test_parse_ics_holidays()));
 	}
 
 }
