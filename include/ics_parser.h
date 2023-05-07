@@ -115,7 +115,7 @@ inline auto parse_ics(const std::string& fileName) -> calendar
 {
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
-	const auto holidays = _parse_ics(fs);
+	auto holidays = _parse_ics(fs);
 
 	// we assume that ics file covers the full number of years
 	return calendar{
