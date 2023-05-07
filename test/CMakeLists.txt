@@ -4,7 +4,7 @@ add_executable(${PROJECT_NAME}
   basic_calendar.cpp
   calendar.cpp
   business_days.cpp
-  easter.cpp
+  Easter.cpp
   ics_parser.cpp
   setup.h
 )
