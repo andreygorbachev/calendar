@@ -110,26 +110,29 @@ private:
 
 inline auto operator|(const calendar& c1, const calendar& c2) -> calendar
 {
-	// consider better error handling
-	assert(c1.get_front() == c2.get_front());
-	assert(c1.get_back() == c2.get_back());
+	auto front = std::max(c1.get_front(), c2.get_front());
+	auto back = std::min(c1.get_back(), c2.get_back());
 
-	const auto weekend = c1.get_weekend() | c2.get_weekend();
+	auto weekend = c1.get_weekend() | c2.get_weekend();
 
 	auto h2 = c2.get_holidays();
 	auto holidays = c1.get_holidays();
 	holidays.merge(h2);
 
-	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
+	return calendar{
+		std::move(front),
+		std::move(back),
+		std::move(weekend),
+		std::move(holidays)
+	};
 }
 
 inline auto operator&(const calendar& c1, const calendar& c2) -> calendar
 {
-	// consider better error handling
-	assert(c1.get_front() == c2.get_front());
-	assert(c1.get_back() == c2.get_back());
+	auto front = std::max(c1.get_front(), c2.get_front());
+	auto back = std::min(c1.get_back(), c2.get_back());
 
-	const auto weekend = c1.get_weekend() & c2.get_weekend();
+	auto weekend = c1.get_weekend() & c2.get_weekend();
 
 	const auto& h1 = c1.get_holidays();
 	auto holidays = calendar::holidays_storage{};
@@ -137,7 +140,12 @@ inline auto operator&(const calendar& c1, const calendar& c2) -> calendar
 		if (c2.is_holiday(h))
 			holidays.insert(h);
 
-	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
+	return calendar{
+		std::move(front),
+		std::move(back),
+		std::move(weekend),
+		std::move(holidays)
+	};
 }
 
 // if c2 before c1 should the function swap them around?
@@ -151,7 +159,12 @@ inline auto operator+(const calendar& c1, const calendar& c2) -> calendar
 	auto holidays = c1.get_holidays();
 	holidays.merge(h2);
 
-	return calendar{ c1.get_front(), c2.get_back(), c1.get_weekend(), holidays };
+	return calendar{
+		c1.get_front(),
+		c2.get_back(),
+		c1.get_weekend(),
+		std::move(holidays)
+	};
 }
 
 
@@ -195,6 +208,8 @@ inline calendar::calendar(
 	_back{ std::move(back) },
 	_holidays{ std::move(holidays) }
 {
+	// should we force that front is not after back
+	// is it ok for holidays before _front or after _back
 }
 
 inline calendar::calendar(
@@ -207,6 +222,8 @@ inline calendar::calendar(
 	_back{ std::move(back) },
 	_holidays{ std::move(holidays) }
 {
+	// should we force that front is not after back
+	// is it ok for holidays before _front or after _back
 }
 
 

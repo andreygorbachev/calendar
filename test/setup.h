@@ -14,4 +14,11 @@ namespace
 		return calendar;
 	}
 
+	auto test_parse_ics_united_states() -> const calendar&
+	{
+		static auto calendar = parse_ics("../../test/data/united-states.ics");
+
+		return calendar;
+	}
+
 }

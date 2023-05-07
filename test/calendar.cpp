@@ -4,6 +4,9 @@
 
 #include <memory>
 #include <chrono>
+#include <algorithm>
+
+#include "setup.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -61,6 +64,28 @@ namespace
 		EXPECT_EQ(true, c1 != c2);
 		EXPECT_EQ(true, c3 != c4);
 		EXPECT_EQ(true, c1 != c4);
+	}
+
+	TEST(calendar, operator_or)
+	{
+		const auto& c1 = test_parse_ics_england();
+		const auto& c2 = test_parse_ics_united_states();
+
+		const auto c = c1 | c2;
+
+		EXPECT_EQ(max(c1.get_front(), c2.get_front()), c.get_front());
+		EXPECT_EQ(min(c1.get_back(), c2.get_back()), c.get_back());
+	}
+
+	TEST(calendar, operator_and)
+	{
+		const auto& c1 = test_parse_ics_england();
+		const auto& c2 = test_parse_ics_united_states();
+
+		const auto c = c1 & c2;
+
+		EXPECT_EQ(max(c1.get_front(), c2.get_front()), c.get_front());
+		EXPECT_EQ(min(c1.get_back(), c2.get_back()), c.get_back());
 	}
 
 	TEST(calendar, is_holiday)
