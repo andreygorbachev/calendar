@@ -1,6 +1,8 @@
 #include <calendar.h>
 #include <business_days.h>
 
+#include <gtest/gtest.h>
+
 #include <cstddef>
 #include <memory>
 #include <chrono>
@@ -9,36 +11,44 @@ using namespace std;
 using namespace std::chrono;
 
 
-
-consteval auto make_May_London_calendar() -> calendar
+namespace
 {
-	auto hols = calendar::holidays_storage{
-		2023y/May/1d,
-		2023y/May/8d,
-		2023y/May/29d,
-	};
 
-	return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
-}
+	auto make_May_London_calendar() -> calendar
+	{
+		auto hols = calendar::holidays_storage{
+			2023y/May/1d,
+			2023y/May/8d,
+			2023y/May/29d,
+		};
 
-
-
-consteval auto business_days_tests() -> bool
-{
-	const auto c1 = make_May_London_calendar();
-	const auto bd1 = business_days{ &c1 };
-
-	const auto test1 =
-//		!bd1.is_business_day(2023y/May/1d) &&
-//		bd1.is_business_day(2023y/May/2d) &&
-		bd1.count(2023y/May/1d, 2023y/May/31d) == 0/*uz*/;
-
-	return
-		test1;
-}
+		return calendar{ 2023y/May/1d, 2023y/May/31d, move(hols) };
+	}
 
 
-int main()
-{
-	static_assert(business_days_tests());
+
+	TEST(business_days, is_business_day_false)
+	{
+		const auto c = make_May_London_calendar();
+		const auto bd = business_days{ &c };
+
+		EXPECT_EQ(false, bd.is_business_day(2023y/May/1d));
+	}
+
+	TEST(business_days, is_business_day_true)
+	{
+		const auto c = make_May_London_calendar();
+		const auto bd = business_days{ &c };
+
+		EXPECT_EQ(true, bd.is_business_day(2023y/May/2d));
+	}
+
+	TEST(business_days, count)
+	{
+		const auto c = make_May_London_calendar();
+		const auto bd = business_days{ &c };
+
+		EXPECT_EQ(0/*uz*/, bd.count(2023y/May/1d, 2023y/May/31d));
+	}
+
 }
