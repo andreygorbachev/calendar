@@ -22,25 +22,25 @@ public:
 
 public:
 
-	constexpr basic_calendar() noexcept;
+	basic_calendar() noexcept;
 
-	constexpr explicit basic_calendar(weekend_storage weekend) noexcept;
+	explicit basic_calendar(weekend_storage weekend) noexcept;
 
-	constexpr virtual ~basic_calendar() noexcept = default;
-
-public:
-
-	constexpr auto operator==(const basic_calendar&) const noexcept -> bool = default;
+	virtual ~basic_calendar() noexcept = default;
 
 public:
 
-	constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
-
-	constexpr virtual auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+	auto operator==(const basic_calendar&) const noexcept -> bool = default;
 
 public:
 
-	constexpr auto get_weekend() const noexcept -> const weekend_storage&;
+	auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+
+	virtual auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+
+public:
+
+	auto get_weekend() const noexcept -> const weekend_storage&;
 
 private:
 
@@ -63,13 +63,13 @@ public:
 	// or we should use "begin"/"end" instead of "front"/"back"
 	// (or use the same ideas but with different names)
 
-	constexpr explicit calendar(
+	explicit calendar(
 		std::chrono::year_month_day front,
 		std::chrono::year_month_day back,
 		holidays_storage holidays
 	);
 
-	constexpr explicit calendar(
+	explicit calendar(
 		std::chrono::year_month_day front,
 		std::chrono::year_month_day back,
 		basic_calendar::weekend_storage weekend,
@@ -78,7 +78,7 @@ public:
 
 public:
 
-	constexpr auto operator==(const calendar&) const noexcept -> bool = default;
+	auto operator==(const calendar&) const noexcept -> bool = default;
 	// at the moment this probably does not do the right thing:
 	// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
 	// 2) If 2 calendars just differ in the order of holidays they would be different
@@ -87,16 +87,16 @@ public:
 
 public:
 
-	constexpr auto is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+	auto is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool override;
+	auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool override;
 
 public:
 
-	constexpr auto get_front() const noexcept -> const std::chrono::year_month_day&;
-	constexpr auto get_back() const noexcept -> const std::chrono::year_month_day&;
+	auto get_front() const noexcept -> const std::chrono::year_month_day&;
+	auto get_back() const noexcept -> const std::chrono::year_month_day&;
 
-	constexpr auto get_holidays() const noexcept -> const holidays_storage&;
+	auto get_holidays() const noexcept -> const holidays_storage&;
 
 private:
 
@@ -109,7 +109,7 @@ private:
 
 
 
-constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
+inline auto operator|(const calendar& c1, const calendar& c2) -> calendar
 {
 	// consider better error handling
 	assert(c1.get_front() == c2.get_front());
@@ -125,7 +125,7 @@ constexpr auto operator|(const calendar& c1, const calendar& c2) -> calendar
 	return calendar{ c1.get_front(), c1.get_back(), weekend, holidays };
 }
 
-constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
+inline auto operator&(const calendar& c1, const calendar& c2) -> calendar
 {
 	// consider better error handling
 	assert(c1.get_front() == c2.get_front());
@@ -143,7 +143,7 @@ constexpr auto operator&(const calendar& c1, const calendar& c2) -> calendar
 }
 
 // if c2 before c1 should the function swap them around?
-constexpr auto operator+(const calendar& c1, const calendar& c2) -> calendar
+inline auto operator+(const calendar& c1, const calendar& c2) -> calendar
 {
 	// consider better error handling
 //	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front()); // no gaps between calendars are allowed
@@ -159,37 +159,37 @@ constexpr auto operator+(const calendar& c1, const calendar& c2) -> calendar
 
 
 
-constexpr basic_calendar::basic_calendar() noexcept : _weekend{}
+inline basic_calendar::basic_calendar() noexcept : _weekend{}
 {
 	_weekend[std::chrono::Saturday.c_encoding()] = true;
 	_weekend[std::chrono::Sunday.c_encoding()] = true;
 }
 
-constexpr basic_calendar::basic_calendar(weekend_storage weekend) noexcept : _weekend{ std::move(weekend) }
+inline basic_calendar::basic_calendar(weekend_storage weekend) noexcept : _weekend{ std::move(weekend) }
 {
 }
 
 
-constexpr auto basic_calendar::is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto basic_calendar::is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	const auto wd = std::chrono::weekday{ ymd };
 
 	return _weekend[wd.c_encoding()];
 }
 
-constexpr auto basic_calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto basic_calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !is_weekend(ymd);
 }
 
-constexpr auto basic_calendar::get_weekend() const noexcept -> const weekend_storage&
+inline auto basic_calendar::get_weekend() const noexcept -> const weekend_storage&
 {
 	return _weekend;
 }
 
 
 
-constexpr calendar::calendar(
+inline calendar::calendar(
 	std::chrono::year_month_day front,
 	std::chrono::year_month_day back,
 	holidays_storage holidays
@@ -200,7 +200,7 @@ constexpr calendar::calendar(
 {
 }
 
-constexpr calendar::calendar(
+inline calendar::calendar(
 	std::chrono::year_month_day front,
 	std::chrono::year_month_day back,
 	basic_calendar::weekend_storage weekend,
@@ -213,29 +213,29 @@ constexpr calendar::calendar(
 }
 
 
-constexpr auto calendar::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto calendar::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	// check that ymd is inside our calendar
 
 	return std::find(_holidays.cbegin(), _holidays.cend(), ymd) != _holidays.cend();
 }
 
-constexpr auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !is_weekend(ymd) && !is_holiday(ymd);
 }
 
-constexpr auto calendar::get_front() const noexcept -> const std::chrono::year_month_day&
+inline auto calendar::get_front() const noexcept -> const std::chrono::year_month_day&
 {
 	return _front;
 }
 
-constexpr auto calendar::get_back() const noexcept -> const std::chrono::year_month_day&
+inline auto calendar::get_back() const noexcept -> const std::chrono::year_month_day&
 {
 	return _back;
 }
 
-constexpr auto calendar::get_holidays() const noexcept -> const holidays_storage&
+inline auto calendar::get_holidays() const noexcept -> const holidays_storage&
 {
 	return _holidays;
 }

@@ -14,7 +14,7 @@ class annual_holiday
 
 // https://en.wikipedia.org/wiki/Date_of_Easter
 
-/*constexpr*/ auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
+inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
 {
 	const auto Y = static_cast<int>(y);
 

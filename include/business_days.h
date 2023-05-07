@@ -13,13 +13,13 @@ class business_days
 
 public:
 
-	constexpr explicit business_days(const calendar* cal) noexcept;
+	explicit business_days(const calendar* cal) noexcept;
 
 public:
 
-	constexpr auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+	auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-	constexpr auto count(
+	auto count(
 		const std::chrono::year_month_day& start,
 		const std::chrono::year_month_day& end
 	) const -> std::size_t;
@@ -36,18 +36,18 @@ private:
 
 
 
-constexpr business_days::business_days(const calendar* cal) noexcept : _calendar{ cal }
+inline business_days::business_days(const calendar* cal) noexcept : _calendar{ cal }
 {
 }
 
 
-constexpr auto business_days::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto business_days::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return _calendar->is_business_day(ymd);
 	// does it mean that is_business_day should be removed from calendar? (and only exist here)
 }
 
-constexpr auto business_days::count(
+inline auto business_days::count(
 	const std::chrono::year_month_day& start,
 	const std::chrono::year_month_day& end
 ) const -> std::size_t
