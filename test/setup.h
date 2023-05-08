@@ -4,7 +4,6 @@
 
 #include <fstream>
 #include <unordered_set>
-#include <memory>
 
 
 namespace
@@ -32,10 +31,10 @@ namespace
 		using namespace std;
 		using namespace std::chrono;
 
-		auto rules = unordered_set<unique_ptr<annual_holiday>>{};
-		rules.insert(make_unique<named_holiday>(NewYearsDay));
-		rules.insert(make_unique<GoodFriday>());
-		rules.insert(make_unique<EasterMonday>());
+		auto rules = unordered_set<const annual_holiday*>{};
+		rules.insert(&NewYearsDay);
+		rules.insert(&GoodFriday);
+		rules.insert(&EasterMonday);
 		// ...
 
 		return make_calendar(

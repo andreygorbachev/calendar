@@ -5,7 +5,6 @@
 #include <chrono>
 #include <cmath>
 #include <unordered_set>
-#include <memory>
 
 
 
@@ -27,7 +26,7 @@ public:
 inline auto make_calendar(
 	const std::chrono::year front_year,
 	const std::chrono::year back_year,
-	const std::unordered_set<std::unique_ptr<annual_holiday>>& rules
+	const std::unordered_set<const annual_holiday*>& rules
 ) noexcept -> calendar
 {
 	// what is back year is before front_year?
@@ -48,7 +47,7 @@ inline auto make_calendar(
 
 
 
-class GoodFriday final : public annual_holiday
+class good_friday_holiday final : public annual_holiday
 {
 
 public:
@@ -58,8 +57,10 @@ public:
 };
 
 
+const auto GoodFriday = good_friday_holiday{};
 
-class EasterMonday final : public annual_holiday
+
+class easter_monday_holiday final : public annual_holiday
 {
 
 public:
@@ -67,6 +68,9 @@ public:
 	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 };
+
+
+const auto EasterMonday = easter_monday_holiday{};
 
 
 
@@ -133,7 +137,7 @@ private:
 
 // https://en.wikipedia.org/wiki/Date_of_Easter
 
-inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
+inline auto make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
 {
 	const auto Y = static_cast<int>(y);
 
@@ -168,17 +172,17 @@ inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::yea
 
 
 
-inline auto GoodFriday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+inline auto good_friday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 {
-	const auto easterSunday = make_Easter(y);
+	const auto easterSunday = make_easter(y);
 
 	return std::chrono::sys_days{ easterSunday } - std::chrono::days{ 2 };
 }
 
 
-inline auto EasterMonday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+inline auto easter_monday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 {
-	const auto easterSunday = make_Easter(y);
+	const auto easterSunday = make_easter(y);
 
 	return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
 }
