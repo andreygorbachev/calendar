@@ -8,6 +8,14 @@
 class annual_holiday
 {
 
+public:
+
+	virtual ~annual_holiday() noexcept = default;
+
+public:
+
+	virtual auto holiday(const std::chrono::year& y) const -> std::chrono::year_month_day = 0;
+
 };
 
 
