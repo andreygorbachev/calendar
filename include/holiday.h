@@ -41,6 +41,28 @@ public:
 };
 
 
+
+class named_holiday final : public annual_holiday
+{
+
+public:
+
+	explicit named_holiday(std::chrono::month_day md) noexcept;
+
+public:
+
+	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+private:
+
+	std::chrono::month_day _md;
+
+};
+
+
+const auto NewYearsDay = named_holiday{ std::chrono::January/std::chrono::day{ 1u } };
+
+
 // https://en.wikipedia.org/wiki/Date_of_Easter
 
 inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
@@ -78,7 +100,7 @@ inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::yea
 
 
 
-auto GoodFriday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+inline auto GoodFriday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 {
 	const auto easterSunday = make_Easter(y);
 
@@ -86,9 +108,21 @@ auto GoodFriday::holiday(const std::chrono::year& y) const noexcept -> std::chro
 }
 
 
-auto EasterMonday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+inline auto EasterMonday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 {
 	const auto easterSunday = make_Easter(y);
 
 	return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
+}
+
+
+
+inline named_holiday::named_holiday(std::chrono::month_day md) noexcept : _md{ std::move(md) }
+{
+}
+
+
+inline auto named_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+{
+	return { y, _md.month(), _md.day() };
 }
