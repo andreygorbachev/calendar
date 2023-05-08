@@ -17,6 +17,7 @@ namespace
 		EXPECT_EQ(2023y / January / 1d, NewYearsDay.holiday(2023y));
 	}
 
+
 	TEST(holiday, good_friday_holiday)
 	{
 		EXPECT_EQ(2023y / April / 7d, GoodFriday.holiday(2023y));
