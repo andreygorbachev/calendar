@@ -10,7 +10,7 @@ using namespace std::chrono;
 namespace
 {
 
-	TEST(holiday, NewYear)
+	TEST(holiday, NewYearsDay)
 	{
 		const auto& h = NewYearsDay;
 
