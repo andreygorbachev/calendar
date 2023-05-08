@@ -1,7 +1,11 @@
 #pragma once
 
+#include "calendar.h"
+
 #include <chrono>
 #include <cmath>
+#include <unordered_set>
+#include <memory>
 
 
 
@@ -17,6 +21,30 @@ public:
 	virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
 };
+
+
+// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
+inline auto make_calendar(
+	const std::chrono::year front_year,
+	const std::chrono::year back_year,
+	const std::unordered_set<std::unique_ptr<annual_holiday>>& rules
+) noexcept -> calendar
+{
+	// what is back year is before front_year?
+
+	auto holidays = calendar::holidays_storage{};
+
+	for (auto y = front_year; y <= back_year; ++y)
+		for (const auto& rule : rules)
+			holidays.insert(rule->holiday(y));
+
+	return calendar{
+		front_year / std::chrono::January / std::chrono::day{ 1u },
+		back_year / std::chrono::December / std::chrono::day{ 31u },
+		std::move(holidays)
+	};
+}
+// add weekend?
 
 
 
