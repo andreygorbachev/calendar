@@ -61,6 +61,8 @@ private:
 
 
 const auto NewYearsDay = named_holiday{ std::chrono::January/std::chrono::day{ 1u } };
+const auto ChristmasDay = named_holiday{ std::chrono::December/std::chrono::day{ 25u } };
+const auto BoxingDay = named_holiday{ std::chrono::December/std::chrono::day{ 26u } };
 
 
 // https://en.wikipedia.org/wiki/Date_of_Easter
