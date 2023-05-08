@@ -35,5 +35,9 @@ const auto Following = following{};
 
 inline auto following::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
 {
-	return ymd; // temp
+	auto result = ymd;
+	while (!c.is_business_day(result))
+		result = std::chrono::sys_days{ result } + std::chrono::days{ 1 };
+
+	return result;
 }
