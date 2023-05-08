@@ -14,10 +14,31 @@ public:
 
 public:
 
-	virtual auto holiday(const std::chrono::year& y) const -> std::chrono::year_month_day = 0;
+	virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
 };
 
+
+
+class GoodFriday final : public annual_holiday
+{
+
+public:
+
+	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+};
+
+
+
+class EasterMonday final : public annual_holiday
+{
+
+public:
+
+	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+};
 
 
 // https://en.wikipedia.org/wiki/Date_of_Easter
@@ -53,4 +74,21 @@ inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::yea
 	const auto p = (h + l - 7 * m + 33 * n + 19) % 32;
 
 	return { y, std::chrono::month{ static_cast<unsigned>(n) }, std::chrono::day{ static_cast<unsigned>(p) } };
+}
+
+
+
+auto GoodFriday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+{
+	const auto easterSunday = make_Easter(y);
+
+	return std::chrono::sys_days{ easterSunday } - std::chrono::days{ 2 };
+}
+
+
+auto EasterMonday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+{
+	const auto easterSunday = make_Easter(y);
+
+	return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
 }
