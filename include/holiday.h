@@ -65,6 +65,44 @@ const auto ChristmasDay = named_holiday{ std::chrono::December/std::chrono::day{
 const auto BoxingDay = named_holiday{ std::chrono::December/std::chrono::day{ 26u } };
 
 
+
+class weekday_indexed_holiday final : public annual_holiday
+{
+
+public:
+
+	explicit weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept;
+
+public:
+
+	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+private:
+
+	std::chrono::month_weekday _mwd;
+
+};
+
+
+class weekday_last_holiday final : public annual_holiday
+{
+
+public:
+
+	explicit weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept;
+
+public:
+
+	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+private:
+
+	std::chrono::month_weekday_last _mwd;
+
+};
+
+
+
 // https://en.wikipedia.org/wiki/Date_of_Easter
 
 inline auto make_Easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
@@ -119,7 +157,8 @@ inline auto EasterMonday::holiday(const std::chrono::year& y) const noexcept -> 
 
 
 
-inline named_holiday::named_holiday(std::chrono::month_day md) noexcept : _md{ std::move(md) }
+inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
+	_md{ std::move(md) }
 {
 }
 
@@ -127,4 +166,30 @@ inline named_holiday::named_holiday(std::chrono::month_day md) noexcept : _md{ s
 inline auto named_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 {
 	return { y, _md.month(), _md.day() };
+}
+
+
+
+inline weekday_indexed_holiday::weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept :
+	_mwd{ std::move(mwd) }
+{
+}
+
+
+inline auto weekday_indexed_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+{
+	return { _mwd.weekday_indexed() / _mwd.month() / y };
+}
+
+
+
+inline weekday_last_holiday::weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept :
+	_mwd{ std::move(mwd) }
+{
+}
+
+
+inline auto weekday_last_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+{
+	return { _mwd.weekday_last() / _mwd.month() / y };
 }

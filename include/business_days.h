@@ -27,6 +27,7 @@ public:
 	// if we need to return a negative number then the return should not be std::size_t (which we might want to change anyway)
 	// should we consider calling start "front" and end "back" to be more consistent with STL
 	// (or should we operate with "begin"/"end" ideas here instead)
+	// there is also std::chrono::last
 
 private:
 
