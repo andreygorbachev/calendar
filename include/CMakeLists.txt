@@ -2,6 +2,7 @@ add_library(calendar INTERFACE
   calendar.h
   holiday.h
   business_days.h
+  business_day_convention.h
   ics_parser.h
 )
 

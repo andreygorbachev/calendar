@@ -14,6 +14,7 @@ add_executable(${PROJECT_NAME}
   business_days.cpp
   Easter.cpp
   holiday.cpp
+  business_day_convention.cpp
   ics_parser.cpp
   setup.h
 )
