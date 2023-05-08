@@ -35,7 +35,7 @@ namespace
 
 	TEST(holiday, EarlyMayBankHoliday)
 	{
-		const auto h = weekday_indexed_holiday{ May/Monday[1] };
+		const auto h = weekday_indexed_holiday{ May / Monday[1] };
 
 		EXPECT_EQ(2023y / May / 1d, h.holiday(2023y));
 	}
