@@ -16,19 +16,12 @@ using namespace std::chrono;
 namespace
 {
 
-	TEST(business_days, is_business_day_false)
-	{
-		const auto& c = test_parse_ics_england();
-		const auto bd = business_days{ &c };
-
-		EXPECT_EQ(false, bd.is_business_day(2023y/May/1d));
-	}
-
-	TEST(business_days, is_business_day_true)
+	TEST(business_days, is_business_day)
 	{
 		const auto c = test_parse_ics_england();
 		const auto bd = business_days{ &c };
 
+		EXPECT_EQ(false, bd.is_business_day(2023y/May/1d));
 		EXPECT_EQ(true, bd.is_business_day(2023y/May/2d));
 	}
 
