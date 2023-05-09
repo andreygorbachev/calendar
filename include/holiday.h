@@ -60,6 +60,7 @@ public:
 const auto GoodFriday = good_friday_holiday{};
 
 
+// or should this be combined with good_friday_holiday (both just an offset from Easter)
 class easter_monday_holiday final : public annual_holiday
 {
 
