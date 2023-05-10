@@ -29,6 +29,10 @@ public:
 	// (or should we operate with "begin"/"end" ideas here instead)
 	// there is also std::chrono::last
 
+	// would "*" and "[]" make soe sence here?
+	// iterators?
+	// serial dates?
+
 private:
 
 	const calendar* _calendar;

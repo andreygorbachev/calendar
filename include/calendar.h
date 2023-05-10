@@ -13,6 +13,7 @@
 constexpr auto week_length = std::size_t{ std::chrono::Sunday.iso_encoding() };
 
 
+// we should think about what to do for dates which are not "ok"
 class basic_calendar
 {
 
@@ -50,6 +51,7 @@ private:
 
 
 
+// considering just a Gregorian calendar - too restrictive?
 class calendar : public basic_calendar
 {
 
@@ -74,6 +76,8 @@ public:
 		basic_calendar::weekend_storage weekend,
 		holidays_storage holidays
 	);
+
+	// should we have a notion of a "wall calendar" - 1 year (for the current year as a default)
 
 public:
 
