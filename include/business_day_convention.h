@@ -5,6 +5,14 @@
 #include <chrono>
 
 
+// what we expect to happen is that all historical holiday are provided as explicit dates
+// current year and maybe 1-2 years in the future are also provided as explicit dates
+// afterwards we have rule based calendar and if we want to be exact there (at least for known holidays)
+// we need to adjusty for a good business day
+// but at the same time there is some uncertainty about additional holidays that far in the future
+// so maybe we do not care for the exactness of the known holidays (hence the below is not yet used)
+
+
 class business_day_convention {
 
 public:
