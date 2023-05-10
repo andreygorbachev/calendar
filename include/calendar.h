@@ -11,6 +11,7 @@
 
 
 constexpr auto week_length = std::size_t{ std::chrono::Sunday.iso_encoding() };
+// is this too restructive? (there used to be 10 in Egypt and 8 for Etruscans
 
 
 // we should think about what to do for dates which are not "ok"
