@@ -20,6 +20,8 @@ public:
 	virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
 };
+// we can add a list of years where an annual holiday should not apply (skip a year)
+// (as rule based holidays at the moment are only directed for the future this is probably not needed)
 
 
 // maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
@@ -44,6 +46,12 @@ inline auto make_calendar(
 	};
 }
 // add weekend?
+
+
+
+// we can add one_off_holiday to capture things like coronation
+// (at the moment it is not clear if we want to do so at all - rule base calendars are expected for the future only
+// where one offs do not exist)
 
 
 
