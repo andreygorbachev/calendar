@@ -69,6 +69,20 @@ const auto Previous = previous{};
 
 
 
+class monday_if_sunday final : business_day_convention
+{
+
+public:
+
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day final;
+
+};
+
+
+const auto MondayIfSunday = monday_if_sunday{};
+
+
+
 inline auto no_adjustment::adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day
 {
 	return ymd;
@@ -94,4 +108,14 @@ inline auto previous::adjust(const std::chrono::year_month_day& ymd, const busin
 		result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
 
 	return result;
+}
+
+
+
+inline auto monday_if_sunday::adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day
+{
+	if (std::chrono::weekday{ ymd } == std::chrono::Sunday)
+		return std::chrono::sys_days{ ymd } + std::chrono::days{ 1 };
+	else
+		return ymd;
 }

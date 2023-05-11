@@ -41,4 +41,19 @@ namespace
 		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, bd));
 	}
 
+	TEST(business_day_convention, monday_if_sunday)
+	{
+		const auto c = test_parse_ics_england();
+		const auto bd = business_days{ &SaturdaySundayWeekend, &c };
+
+		// Saturday
+		EXPECT_EQ(2023y / March / 25d, MondayIfSunday.adjust(2023y / March / 25d, bd));
+
+		// Sunday
+		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 26d, bd));
+
+		// Monday
+		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 27d, bd));
+	}
+
 }
