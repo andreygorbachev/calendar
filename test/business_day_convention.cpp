@@ -20,4 +20,12 @@ namespace
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
 	}
 
+	TEST(business_day_convention, previous)
+	{
+		const auto c = test_parse_ics_england();
+
+		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, c));
+	}
+
 }

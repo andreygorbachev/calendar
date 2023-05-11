@@ -41,11 +41,36 @@ const auto Following = following{};
 
 
 
+class previous final : business_day_convention
+{
+
+public:
+
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day override;
+
+};
+
+
+const auto Previous = previous{};
+
+
+
 inline auto following::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
 {
 	auto result = ymd;
 	while (!c.is_business_day(result))
 		result = std::chrono::sys_days{ result } + std::chrono::days{ 1 };
+
+	return result;
+}
+
+
+
+inline auto previous::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
+{
+	auto result = ymd;
+	while (!c.is_business_day(result))
+		result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
 
 	return result;
 }
