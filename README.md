@@ -1,7 +1,7 @@
 # calendar
 
-Plan:
+What we want to achieve is to calculate a number of business days between 2 days.
 
-1) Just weekends
-2) Add explicitly specified holidays
-3) Add rule based holidays
+For this we need a notion of "weekend" and a notion of "holidays schedule".
+
+Following std::chrono we assume the Gregorian calendar.
