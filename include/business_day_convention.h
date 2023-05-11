@@ -1,6 +1,6 @@
 #pragma once
 
-#include "calendar.h"
+#include "business_days.h"
 
 #include <chrono>
 
@@ -17,11 +17,11 @@ class business_day_convention {
 
 public:
 
-	constexpr virtual ~business_day_convention() noexcept = default;
+	virtual ~business_day_convention() noexcept = default;
 
 public:
 
-	constexpr virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day = 0;
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day = 0;
 
 };
 
@@ -32,7 +32,7 @@ class no_adjustment final : business_day_convention
 
 public:
 
-	constexpr virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day final;
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day final;
 
 };
 
@@ -46,7 +46,7 @@ class following final : business_day_convention
 
 public:
 
-	constexpr virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day final;
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day final;
 
 };
 
@@ -60,7 +60,7 @@ class previous final : business_day_convention
 
 public:
 
-	constexpr virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day final;
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day final;
 
 };
 
@@ -69,17 +69,17 @@ const auto Previous = previous{};
 
 
 
-constexpr auto no_adjustment::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
+inline auto no_adjustment::adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day
 {
 	return ymd;
 }
 
 
 
-constexpr auto following::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
+inline auto following::adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day
 {
 	auto result = ymd;
-	while (!c.is_business_day(result))
+	while (!bd.is_business_day(result))
 		result = std::chrono::sys_days{ result } + std::chrono::days{ 1 };
 
 	return result;
@@ -87,10 +87,10 @@ constexpr auto following::adjust(const std::chrono::year_month_day& ymd, const c
 
 
 
-constexpr auto previous::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
+inline auto previous::adjust(const std::chrono::year_month_day& ymd, const business_days& bd) const noexcept -> std::chrono::year_month_day
 {
 	auto result = ymd;
-	while (!c.is_business_day(result))
+	while (!bd.is_business_day(result))
 		result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
 
 	return result;

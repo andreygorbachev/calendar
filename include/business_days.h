@@ -1,5 +1,6 @@
 #pragma once
 
+#include "weekend.h"
 #include "calendar.h"
 
 #include <cstddef>
@@ -13,7 +14,8 @@ class business_days
 
 public:
 
-	explicit business_days(const calendar* cal) noexcept;
+	explicit business_days(const weekend* we, const calendar* cal) noexcept;
+	// keep a copy?
 
 public:
 
@@ -35,21 +37,27 @@ public:
 
 private:
 
-	const calendar* _calendar;
+	const weekend* _we;
+	const calendar* _cal;
 
 };
 
 
 
-inline business_days::business_days(const calendar* cal) noexcept : _calendar{ cal }
+inline business_days::business_days(
+	const weekend* we,
+	const calendar* cal
+) noexcept :
+	_we{ we },
+	_cal{ cal }
 {
 }
 
 
 inline auto business_days::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
-	return _calendar->is_business_day(ymd);
-	// does it mean that is_business_day should be removed from calendar? (and only exist here)
+	return !_we->is_weekend(ymd) && !_cal->is_holiday(ymd);
+	// we allow a holiday on a weekend
 }
 
 inline auto business_days::count(
