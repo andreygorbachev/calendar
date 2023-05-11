@@ -12,6 +12,13 @@ using namespace std::chrono;
 namespace
 {
 
+	TEST(business_day_convention, no_adjustment)
+	{
+		const auto c = test_parse_ics_england();
+
+		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
+	}
+
 	TEST(business_day_convention, following)
 	{
 		const auto c = test_parse_ics_england();

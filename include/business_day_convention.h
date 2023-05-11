@@ -27,6 +27,20 @@ public:
 
 
 
+class no_adjustment final : business_day_convention
+{
+
+public:
+
+	virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day override;
+
+};
+
+
+const auto NoAdjustment = no_adjustment{};
+
+
+
 class following final : business_day_convention
 {
 
@@ -52,6 +66,13 @@ public:
 
 
 const auto Previous = previous{};
+
+
+
+inline auto no_adjustment::adjust(const std::chrono::year_month_day& ymd, const calendar& c) const noexcept -> std::chrono::year_month_day
+{
+	return ymd;
+}
 
 
 
