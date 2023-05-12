@@ -23,6 +23,8 @@ namespace calendar
 
 		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool = default;
 
+		// should we be thinking about subsets to things? (for example Sunday only we is a subset of Saturday and Sunday we)
+
 	public:
 
 		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;

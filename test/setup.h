@@ -122,4 +122,38 @@ namespace calendar
 		return hs2018_2019 + hs2020 + hs2021 + hs2022 + hs2023 + hs2024_2025;
 	}
 
+	inline auto make_holiday_schedule_united_states() -> holiday_schedule
+	{
+		const auto MartinLutherKing = weekday_indexed_holiday{ std::chrono::January / std::chrono::Monday[3] }; // Birthday Of Martin Luther King, Jr.
+		const auto Washington = weekday_indexed_holiday{ std::chrono::February / std::chrono::Monday[3] }; // Washington's Birthday
+		const auto MemorialDay = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
+		const auto Juneteenth = named_holiday{ std::chrono::June / std::chrono::day{ 19u } }; // Juneteenth National Independence Day
+		const auto IndependenceDay = named_holiday{ std::chrono::July / std::chrono::day{ 4u } };
+		const auto LaborDay = weekday_indexed_holiday{ std::chrono::September / std::chrono::Monday[1] };
+		const auto ColumbusDay = weekday_indexed_holiday{ std::chrono::October / std::chrono::Monday[2] };
+		const auto VeteransDay = named_holiday{ std::chrono::November / std::chrono::day{ 11u } };
+		const auto ThanksgivingDay = weekday_indexed_holiday{ std::chrono::November / std::chrono::Thursday[4] };
+
+		auto rules = std::unordered_set<const annual_holiday*>{};
+		rules.insert(&NewYearsDay);
+		rules.insert(&MartinLutherKing);
+		rules.insert(&Washington);
+		rules.insert(&MemorialDay);
+		rules.insert(&Juneteenth);
+		rules.insert(&IndependenceDay);
+		rules.insert(&LaborDay);
+		rules.insert(&ColumbusDay);
+		rules.insert(&VeteransDay);
+		rules.insert(&ThanksgivingDay);
+		rules.insert(&ChristmasDay);
+
+		const auto hs2023_2026 = make_holiday_schedule(
+			std::chrono::year{ 2023 },
+			std::chrono::year{ 2026 },
+			rules
+		);
+
+		return hs2023_2026;
+	}
+
 }

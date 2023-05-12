@@ -18,12 +18,22 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(calendar, substitute)
+	TEST(calendar, substitute1)
 	{
 		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
 		c.substitute(&Following);
+
+		EXPECT_EQ(expected, c);
+	}
+
+	TEST(calendar, substitute2)
+	{
+		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
+
+		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
+		c.substitute(&MondayIfSunday);
 
 		EXPECT_EQ(expected, c);
 	}
