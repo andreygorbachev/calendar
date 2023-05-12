@@ -11,7 +11,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(${PROJECT_NAME}
   weekend.cpp
   holiday_schedule.cpp
-  business_days.cpp
+  calendar.cpp
   Easter.cpp
   holiday.cpp
   business_day_convention.cpp

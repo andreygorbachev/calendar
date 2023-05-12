@@ -9,19 +9,19 @@
 
 
 
-class business_days
+class calendar
 {
 
 public:
 
-	explicit business_days(const weekend* we, const holiday_schedule* hols) noexcept;
+	explicit calendar(const weekend* we, const holiday_schedule* hols) noexcept;
 	// keep a copy?
 
 public:
 
 	auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-	auto count(
+	auto count_business_days(
 		const std::chrono::year_month_day& start,
 		const std::chrono::year_month_day& end
 	) const -> std::size_t;
@@ -44,7 +44,7 @@ private:
 
 
 
-inline business_days::business_days(
+inline calendar::calendar(
 	const weekend* we,
 	const holiday_schedule* hols
 ) noexcept :
@@ -54,13 +54,13 @@ inline business_days::business_days(
 }
 
 
-inline auto business_days::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
 	return !_we->is_weekend(ymd) && !_hols->is_holiday(ymd);
 	// we allow a holiday on a weekend
 }
 
-inline auto business_days::count(
+inline auto calendar::count_business_days(
 	const std::chrono::year_month_day& start,
 	const std::chrono::year_month_day& end
 ) const -> std::size_t

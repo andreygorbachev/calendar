@@ -1,7 +1,7 @@
 #include <business_day_convention.h>
 #include <weekend.h>
 #include <holiday_schedule.h>
-#include <business_days.h>
+#include <calendar.h>
 
 #include <gtest/gtest.h>
 
@@ -17,43 +17,43 @@ namespace
 
 	TEST(business_day_convention, no_adjustment)
 	{
-		const auto c = test_parse_ics_england();
-		const auto bd = business_days{ &SaturdaySundayWeekend, &c };
+		const auto hs = test_parse_ics_england();
+		const auto c = calendar{ &SaturdaySundayWeekend, &hs };
 
-		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, bd));
+		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
 	}
 
 	TEST(business_day_convention, following)
 	{
-		const auto c = test_parse_ics_england();
-		const auto bd = business_days{ &SaturdaySundayWeekend, &c };
+		const auto hs = test_parse_ics_england();
+		const auto c = calendar{ &SaturdaySundayWeekend, &hs };
 
-		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, bd));
-		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, bd));
+		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
 	}
 
 	TEST(business_day_convention, previous)
 	{
-		const auto c = test_parse_ics_england();
-		const auto bd = business_days{ &SaturdaySundayWeekend, &c };
+		const auto hs = test_parse_ics_england();
+		const auto c = calendar{ &SaturdaySundayWeekend, &hs };
 
-		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2023y / January / 1d, bd));
-		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, bd));
+		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, c));
 	}
 
 	TEST(business_day_convention, monday_if_sunday)
 	{
-		const auto c = test_parse_ics_england();
-		const auto bd = business_days{ &SaturdaySundayWeekend, &c };
+		const auto hs = test_parse_ics_england();
+		const auto c = calendar{ &SaturdaySundayWeekend, &hs };
 
 		// Saturday
-		EXPECT_EQ(2023y / March / 25d, MondayIfSunday.adjust(2023y / March / 25d, bd));
+		EXPECT_EQ(2023y / March / 25d, MondayIfSunday.adjust(2023y / March / 25d, c));
 
 		// Sunday
-		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 26d, bd));
+		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 26d, c));
 
 		// Monday
-		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 27d, bd));
+		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 27d, c));
 	}
 
 }
