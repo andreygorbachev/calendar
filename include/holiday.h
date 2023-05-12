@@ -31,7 +31,7 @@ namespace calendar
 	inline auto make_holiday_schedule(
 		const std::chrono::year front_year,
 		const std::chrono::year back_year,
-		const std::unordered_set<const annual_holiday*>& rules
+		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
 	) noexcept -> holiday_schedule
 	{
 		// what is back year is before front_year?
