@@ -2,6 +2,7 @@
 
 #include "weekend.h"
 #include "holiday_schedule.h"
+#include "business_day_convention_interface.h"
 
 #include <cstddef>
 #include <memory>
@@ -42,6 +43,10 @@ namespace calendar
 
 	public:
 
+		void substitute(const business_day_convention* const bdc);
+
+	public:
+
 		auto get_weekend() const noexcept -> const weekend&;
 		auto get_holiday_schedule() const noexcept -> const holiday_schedule&;
 
@@ -79,6 +84,26 @@ namespace calendar
 		_we{ we },
 		_hols{ hols }
 	{
+	}
+
+
+	inline void calendar::substitute(const business_day_convention* const bdc)
+	{
+		// when we add a business day cache to calendar we should be careful with this function
+		const auto hols = _hols.get_holidays();
+		for (const auto& holiday : hols)
+		{
+			_hols -= holiday;
+			if (!is_business_day(holiday))
+			{
+				const auto substitute_day = bdc->adjust(holiday, *this);
+				_hols += substitute_day;
+			}
+			else
+			{
+				_hols += holiday;
+			}
+		}
 	}
 
 
