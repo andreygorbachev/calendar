@@ -17,14 +17,14 @@ namespace calendar
 
 	TEST(business_day_convention, no_adjustment)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, test_parse_ics_england() };
+		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
 	}
 
 	TEST(business_day_convention, following)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, test_parse_ics_england() };
+		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
@@ -32,7 +32,7 @@ namespace calendar
 
 	TEST(business_day_convention, previous)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, test_parse_ics_england() };
+		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, c));
@@ -40,7 +40,7 @@ namespace calendar
 
 	TEST(business_day_convention, monday_if_sunday)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, test_parse_ics_england() };
+		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		// Saturday
 		EXPECT_EQ(2023y / March / 25d, MondayIfSunday.adjust(2023y / March / 25d, c));

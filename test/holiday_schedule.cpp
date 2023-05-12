@@ -68,8 +68,8 @@ namespace calendar
 
 	TEST(holiday_schedule, operator_or)
 	{
-		const auto& c1 = test_parse_ics_england();
-		const auto& c2 = test_parse_ics_united_states();
+		const auto& c1 = parse_ics_england();
+		const auto& c2 = parse_ics_united_states();
 
 		const auto c = c1 | c2;
 
@@ -79,8 +79,8 @@ namespace calendar
 
 	TEST(holiday_schedule, operator_and)
 	{
-		const auto& c1 = test_parse_ics_england();
-		const auto& c2 = test_parse_ics_united_states();
+		const auto& c1 = parse_ics_england();
+		const auto& c2 = parse_ics_united_states();
 
 		const auto c = c1 & c2;
 
