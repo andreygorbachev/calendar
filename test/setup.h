@@ -32,103 +32,103 @@ namespace calendar
 		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
 		const auto SummerBankHoliday = weekday_last_holiday{ std::chrono::August / std::chrono::Monday[std::chrono::last] };
 
-		auto rules1 = std::unordered_set<const annual_holiday*>{};
-		rules1.insert(&NewYearsDay);
-		rules1.insert(&GoodFriday);
-		rules1.insert(&EasterMonday);
-		rules1.insert(&EarlyMayBankHoliday);
-		rules1.insert(&SpringBankHoliday);
-		rules1.insert(&SummerBankHoliday);
-		rules1.insert(&ChristmasDay);
-		rules1.insert(&BoxingDay);
+		auto rules = std::unordered_set<const annual_holiday*>{};
+		rules.insert(&NewYearsDay);
+		rules.insert(&GoodFriday);
+		rules.insert(&EasterMonday);
+		rules.insert(&EarlyMayBankHoliday);
+		rules.insert(&SpringBankHoliday);
+		rules.insert(&SummerBankHoliday);
+		rules.insert(&ChristmasDay);
+		rules.insert(&BoxingDay);
 
 		const auto hs2018 = make_holiday_schedule(
 			std::chrono::year{ 2018 },
 			std::chrono::year{ 2018 },
-			rules1
+			rules
 		);
 
 		const auto hs2019 = make_holiday_schedule(
 			std::chrono::year{ 2019 },
 			std::chrono::year{ 2019 },
-			rules1
+			rules
 		);
 
 		const auto VictoryInEuropeDay = named_holiday{ std::chrono::May / std::chrono::day{ 8u } };
 
-		auto rules2 = std::unordered_set<const annual_holiday*>{};
-		rules2.insert(&NewYearsDay);
-		rules2.insert(&GoodFriday);
-		rules2.insert(&EasterMonday);
-		rules2.insert(&VictoryInEuropeDay);
-		rules2.insert(&SpringBankHoliday);
-		rules2.insert(&SummerBankHoliday);
-		rules2.insert(&ChristmasDay);
-		rules2.insert(&BoxingDay);
+		auto rules2020 = std::unordered_set<const annual_holiday*>{};
+		rules2020.insert(&NewYearsDay);
+		rules2020.insert(&GoodFriday);
+		rules2020.insert(&EasterMonday);
+		rules2020.insert(&VictoryInEuropeDay);
+		rules2020.insert(&SpringBankHoliday);
+		rules2020.insert(&SummerBankHoliday);
+		rules2020.insert(&ChristmasDay);
+		rules2020.insert(&BoxingDay);
 
 		const auto hs2020 = make_holiday_schedule(
 			std::chrono::year{ 2020 },
 			std::chrono::year{ 2020 },
-			rules2
+			rules2020
 		);
 
 		const auto hs2021 = make_holiday_schedule(
 			std::chrono::year{ 2021 },
 			std::chrono::year{ 2021 },
-			rules1
+			rules
 		);
 
 		const auto SpringBankHoliday2 = named_holiday{ std::chrono::June / std::chrono::day{ 2u } };
 		const auto PlatinumJubileeHoliday = named_holiday{ std::chrono::June / std::chrono::day{ 3u } };
 		const auto StateFuneral = named_holiday{ std::chrono::September / std::chrono::day{ 19u } }; // Bank Holiday for the State Funeral of Queen Elizabeth II
 
-		auto rules3 = std::unordered_set<const annual_holiday*>{};
-		rules3.insert(&NewYearsDay);
-		rules3.insert(&GoodFriday);
-		rules3.insert(&EasterMonday);
-		rules3.insert(&EarlyMayBankHoliday);
-		rules3.insert(&SpringBankHoliday2);
-		rules3.insert(&PlatinumJubileeHoliday);
-		rules3.insert(&SummerBankHoliday);
-		rules3.insert(&StateFuneral);
-		rules3.insert(&ChristmasDay);
-		rules3.insert(&BoxingDay);
+		auto rules2022 = std::unordered_set<const annual_holiday*>{};
+		rules2022.insert(&NewYearsDay);
+		rules2022.insert(&GoodFriday);
+		rules2022.insert(&EasterMonday);
+		rules2022.insert(&EarlyMayBankHoliday);
+		rules2022.insert(&SpringBankHoliday2);
+		rules2022.insert(&PlatinumJubileeHoliday);
+		rules2022.insert(&SummerBankHoliday);
+		rules2022.insert(&StateFuneral);
+		rules2022.insert(&ChristmasDay);
+		rules2022.insert(&BoxingDay);
 
 		const auto hs2022 = make_holiday_schedule(
 			std::chrono::year{ 2022 },
 			std::chrono::year{ 2022 },
-			rules3
+			rules2022
 		);
 
 		const auto Coronation = named_holiday{ std::chrono::May / std::chrono::day{ 8u } }; // Bank holiday for the coronation of King Charles III
 
-		auto rules4 = std::unordered_set<const annual_holiday*>{};
-		rules4.insert(&NewYearsDay);
-		rules4.insert(&GoodFriday);
-		rules4.insert(&EasterMonday);
-		rules4.insert(&EarlyMayBankHoliday);
-		rules4.insert(&Coronation);
-		rules4.insert(&SpringBankHoliday);
-		rules4.insert(&SummerBankHoliday);
-		rules4.insert(&ChristmasDay);
-		rules4.insert(&BoxingDay);
+		auto rules2023 = std::unordered_set<const annual_holiday*>{};
+		rules2023.insert(&NewYearsDay);
+		rules2023.insert(&GoodFriday);
+		rules2023.insert(&EasterMonday);
+		rules2023.insert(&EarlyMayBankHoliday);
+		rules2023.insert(&Coronation);
+		rules2023.insert(&SpringBankHoliday);
+		rules2023.insert(&SummerBankHoliday);
+		rules2023.insert(&ChristmasDay);
+		rules2023.insert(&BoxingDay);
 
 		const auto hs2023 = make_holiday_schedule(
 			std::chrono::year{ 2023 },
 			std::chrono::year{ 2023 },
-			rules4
+			rules2023
 		);
 
 		const auto hs2024 = make_holiday_schedule(
 			std::chrono::year{ 2024 },
 			std::chrono::year{ 2024 },
-			rules1
+			rules
 		);
 
 		const auto hs2025 = make_holiday_schedule(
 			std::chrono::year{ 2025 },
 			std::chrono::year{ 2025 },
-			rules1
+			rules
 		);
 
 		return hs2018 + hs2019 + hs2020 + hs2021 + hs2022 + hs2023 + hs2024 + hs2025;
