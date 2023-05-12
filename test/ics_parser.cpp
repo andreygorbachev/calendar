@@ -17,9 +17,9 @@ namespace
 	auto test_parse_ics_holidays() -> const holiday_schedule::storage&
 	{
 		static auto fs = std::ifstream{ "../../test/data/england-and-wales.ics" };
-		static auto holidays = _parse_ics(fs);
+		static auto hols = _parse_ics(fs);
 
-		return holidays;
+		return hols;
 	}
 
 
