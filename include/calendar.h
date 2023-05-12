@@ -20,6 +20,10 @@ namespace calendar
 
 	public:
 
+		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool = default;
+
+	public:
+
 		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 		auto count_business_days(
