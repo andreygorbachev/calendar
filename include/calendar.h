@@ -54,6 +54,24 @@ namespace calendar
 
 
 
+	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
+	{
+		return calendar{
+			cal1.get_weekend() | cal2.get_weekend(),
+			cal2.get_holiday_schedule() | cal2.get_holiday_schedule()
+		};
+	}
+
+	inline auto operator&(const calendar& cal1, const calendar& cal2) -> calendar
+	{
+		return calendar{
+			cal1.get_weekend() & cal2.get_weekend(),
+			cal2.get_holiday_schedule() & cal2.get_holiday_schedule()
+		}; // is this right?
+	}
+
+
+
 	inline calendar::calendar(
 		weekend we,
 		holiday_schedule hols
@@ -93,7 +111,7 @@ namespace calendar
 
 	inline auto calendar::get_holiday_schedule() const noexcept -> const holiday_schedule&
 	{
-		_hols;
+		return _hols;
 	}
 
 }
