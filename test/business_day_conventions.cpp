@@ -38,18 +38,21 @@ namespace calendar
 		EXPECT_EQ(2022y / December / 30d, Previous.adjust(2022y / December / 30d, c));
 	}
 
-	TEST(business_day_convention, monday_if_sunday)
+	TEST(business_day_convention, friday_if_saturday_and_monday_if_sunday)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
+		// Friday
+		EXPECT_EQ(2023y / March / 24d, FridayIfSaturdayAndMondayIfSunday.adjust(2023y / March / 24d, c));
+
 		// Saturday
-		EXPECT_EQ(2023y / March / 25d, MondayIfSunday.adjust(2023y / March / 25d, c));
+		EXPECT_EQ(2023y / March / 24d, FridayIfSaturdayAndMondayIfSunday.adjust(2023y / March / 25d, c));
 
 		// Sunday
-		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 26d, c));
+		EXPECT_EQ(2023y / March / 27d, FridayIfSaturdayAndMondayIfSunday.adjust(2023y / March / 26d, c));
 
 		// Monday
-		EXPECT_EQ(2023y / March / 27d, MondayIfSunday.adjust(2023y / March / 27d, c));
+		EXPECT_EQ(2023y / March / 27d, FridayIfSaturdayAndMondayIfSunday.adjust(2023y / March / 27d, c));
 	}
 
 }

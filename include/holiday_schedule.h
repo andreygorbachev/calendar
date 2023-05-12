@@ -35,11 +35,6 @@ namespace calendar
 
 	public:
 
-		friend auto operator==(const holiday_schedule& c1, const holiday_schedule& c2) noexcept -> bool = default;
-		// at the moment this probably does not do the right thing:
-		// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
-		// 2) If 2 calendars just differ in the order of holidays they would be different
-
 		// add operator+=(holiday_schedule)
 
 		void operator+=(std::chrono::year_month_day ymd);

@@ -147,13 +147,59 @@ namespace calendar
 		rules.insert(&ThanksgivingDay);
 		rules.insert(&ChristmasDay);
 
-		const auto hs2023_2026 = make_holiday_schedule(
-			std::chrono::year{ 2023 },
-			std::chrono::year{ 2026 },
+		const auto InaugurationDay = named_holiday{ std::chrono::January / std::chrono::day{ 20u } };
+
+		auto rules2 = std::unordered_set<const annual_holiday*>{};
+		rules2.insert(&NewYearsDay);
+		rules2.insert(&MartinLutherKing);
+		rules2.insert(&InaugurationDay); // what if it is the same as MartinLutherKing?
+		rules2.insert(&Washington);
+		rules2.insert(&MemorialDay);
+		rules2.insert(&Juneteenth);
+		rules2.insert(&IndependenceDay);
+		rules2.insert(&LaborDay);
+		rules2.insert(&ColumbusDay);
+		rules2.insert(&VeteransDay);
+		rules2.insert(&ThanksgivingDay);
+		rules2.insert(&ChristmasDay);
+
+		const auto hs2021 = make_holiday_schedule(
+			std::chrono::year{ 2021 },
+			std::chrono::year{ 2021 },
+			rules2
+		);
+
+		const auto hs2022_2024 = make_holiday_schedule(
+			std::chrono::year{ 2022 },
+			std::chrono::year{ 2024 },
 			rules
 		);
 
-		return hs2023_2026;
+		const auto hs2025 = make_holiday_schedule(
+			std::chrono::year{ 2025 },
+			std::chrono::year{ 2025 },
+			rules2
+		);
+
+		const auto hs2026_2028 = make_holiday_schedule(
+			std::chrono::year{ 2026 },
+			std::chrono::year{ 2028 },
+			rules
+		);
+
+		const auto hs2029 = make_holiday_schedule(
+			std::chrono::year{ 2029 },
+			std::chrono::year{ 2029 },
+			rules//rules2
+		);
+
+		const auto hs2030 = make_holiday_schedule(
+			std::chrono::year{ 2030 },
+			std::chrono::year{ 2030 },
+			rules
+		);
+
+		return hs2021 + hs2022_2024 + hs2025 + hs2026_2028 + hs2029 + hs2030;
 	}
 
 }

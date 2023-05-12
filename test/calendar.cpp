@@ -28,16 +28,16 @@ namespace calendar
 		EXPECT_EQ(expected, c);
 	}
 
-/*	TEST(calendar, substitute2)
+	TEST(calendar, substitute2)
 	{
 		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
 
 		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
-		c.substitute(&MondayIfSunday);
+		c.substitute(&FridayIfSaturdayAndMondayIfSunday);
 
 		EXPECT_EQ(expected, c);
 	}
-*/
+
 	TEST(calendar, is_business_day)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };

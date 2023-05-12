@@ -21,12 +21,6 @@ namespace calendar
 
 	public:
 
-		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool = default;
-
-		// should we be thinking about subsets to things? (for example Sunday only we is a subset of Saturday and Sunday we)
-
-	public:
-
 		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 		auto count_business_days(
@@ -45,7 +39,17 @@ namespace calendar
 
 	public:
 
+		// think about better names
+		auto front() const noexcept -> const std::chrono::year_month_day&;
+		auto back() const noexcept -> const std::chrono::year_month_day&;
+
+	public:
+
 		void substitute(const business_day_convention* const bdc);
+
+		// should we be thinking about subsets?
+		// (for example if cal1 is a wider calendar than cal2,
+		// but cal2 matches cal1 over its range)
 
 	public:
 
@@ -59,6 +63,22 @@ namespace calendar
 
 	};
 
+
+
+	inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
+	{
+		if (cal1.front() != cal2.front())
+			return false;
+
+		if (cal1.back() != cal2.back())
+			return false;
+
+		for (auto d = cal1.front(); d <= cal1.back(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+			if (cal1.is_business_day(d) != cal2.is_business_day(d))
+				return false;
+
+		return true;
+	}
 
 
 	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
@@ -128,6 +148,17 @@ namespace calendar
 				result++;
 
 		return result;
+	}
+
+
+	inline auto calendar::front() const noexcept -> const std::chrono::year_month_day&
+	{
+		return _hols.get_front();
+	}
+
+	inline auto calendar::back() const noexcept -> const std::chrono::year_month_day&
+	{
+		return _hols.get_back();
 	}
 
 

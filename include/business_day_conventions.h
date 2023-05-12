@@ -51,7 +51,7 @@ namespace calendar
 
 
 
-	class monday_if_sunday final : public business_day_convention
+	class friday_if_saturday_and_monday_if_sunday final : public business_day_convention
 	{
 
 	public:
@@ -61,7 +61,11 @@ namespace calendar
 	};
 
 
-	const auto MondayIfSunday = monday_if_sunday{};
+	const auto FridayIfSaturdayAndMondayIfSunday = friday_if_saturday_and_monday_if_sunday{};
+
+
+
+	// we might also need monday_if_sunday
 
 
 
@@ -94,10 +98,12 @@ namespace calendar
 
 
 
-	inline auto monday_if_sunday::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto friday_if_saturday_and_monday_if_sunday::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		if (std::chrono::weekday{ ymd } == std::chrono::Sunday)
 			return std::chrono::sys_days{ ymd } + std::chrono::days{ 1 };
+		else if (std::chrono::weekday{ ymd } == std::chrono::Saturday)
+			return std::chrono::sys_days{ ymd } - std::chrono::days{ 1 };
 		else
 			return ymd;
 	}

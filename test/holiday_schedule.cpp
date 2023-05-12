@@ -45,26 +45,6 @@ namespace calendar
 		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
 	}
 
-	auto make_empty_holiday_schedule() -> holiday_schedule
-	{
-		auto hols = holiday_schedule::storage{
-		};
-
-		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
-	}
-
-
-	TEST(holiday_schedule, operator_equal)
-	{
-		const auto c1 = make_May_London_holiday_schedule();
-		const auto c2 = make_empty_holiday_schedule();
-		const auto c3 = make_May_NewYork_holiday_schedule() | c1;
-		const auto c4 = make_May_NewYork_holiday_schedule() & c1;
-
-		EXPECT_EQ(false, c1 == c2);
-		EXPECT_EQ(false, c3 == c4);
-		EXPECT_EQ(false, c1 == c4);
-	}
 
 	TEST(holiday_schedule, operator_or)
 	{

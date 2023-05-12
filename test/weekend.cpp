@@ -10,12 +10,6 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(weekend, operator_equal)
-	{
-		EXPECT_EQ(false, FridaySaturdayWeekend == SaturdaySundayWeekend);
-		EXPECT_EQ(false, SundayWeekend == SaturdaySundayWeekend);
-	}
-
 	TEST(weekend, is_weekend)
 	{
 		// Friday
