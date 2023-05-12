@@ -118,11 +118,13 @@ namespace calendar
 		/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
 		auto hols = _parse_ics(fs);
+		auto start = _start(hols);
+		auto end = _end(hols);
 
 		// we assume that ics file covers the full number of years
 		return holiday_schedule{
-			_start(hols),
-			_end(hols),
+			std::move(start),
+			std::move(end),
 			std::move(hols)
 		};
 		// do we ever have weekend info in the ics files, which we should also process here?
