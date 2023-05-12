@@ -28,18 +28,15 @@ namespace calendar
 
 	inline auto test_rule_england() -> holiday_schedule
 	{
-		using namespace std;
-		using namespace std::chrono;
-
-		auto rules = unordered_set<const annual_holiday*>{};
+		auto rules = std::unordered_set<const annual_holiday*>{};
 		rules.insert(&NewYearsDay);
 		rules.insert(&GoodFriday);
 		rules.insert(&EasterMonday);
 		// ...
 
 		return make_holiday_schedule(
-			2023y,
-			2023y,
+			std::chrono::year{ 2023 },
+			std::chrono::year{ 2023 },
 			rules
 		);
 	}
