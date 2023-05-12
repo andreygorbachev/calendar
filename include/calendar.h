@@ -14,8 +14,7 @@ class calendar
 
 public:
 
-	explicit calendar(const weekend* we, const holiday_schedule* hols) noexcept;
-	// keep a copy?
+	explicit calendar(weekend we, holiday_schedule hols) noexcept;
 
 public:
 
@@ -35,18 +34,23 @@ public:
 	// iterators?
 	// serial dates?
 
+public:
+
+	auto get_weekend() const noexcept -> const weekend&;
+	auto get_holiday_schedule() const noexcept -> const holiday_schedule&;
+
 private:
 
-	const weekend* _we;
-	const holiday_schedule* _hols;
+	weekend _we;
+	holiday_schedule _hols;
 
 };
 
 
 
 inline calendar::calendar(
-	const weekend* we,
-	const holiday_schedule* hols
+	weekend we,
+	holiday_schedule hols
 ) noexcept :
 	_we{ we },
 	_hols{ hols }
@@ -56,7 +60,7 @@ inline calendar::calendar(
 
 inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 {
-	return !_we->is_weekend(ymd) && !_hols->is_holiday(ymd);
+	return !_we.is_weekend(ymd) && !_hols.is_holiday(ymd);
 	// we allow a holiday on a weekend
 }
 
@@ -73,4 +77,15 @@ inline auto calendar::count_business_days(
 			result++;
 
 	return result;
+}
+
+
+inline auto calendar::get_weekend() const noexcept -> const weekend&
+{
+	return _we;
+}
+
+inline auto calendar::get_holiday_schedule() const noexcept -> const holiday_schedule&
+{
+	_hols;
 }
