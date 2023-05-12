@@ -29,7 +29,7 @@ namespace calendar
 		auto count_business_days(
 			const std::chrono::year_month_day& start,
 			const std::chrono::year_month_day& end
-		) const->std::size_t;
+		) const -> std::size_t;
 		// if end is before start should the function swap them around? (or return a negative number? or throw an exception)
 		// if we need to return a negative number then the return should not be std::size_t (which we might want to change anyway)
 		// should we consider calling start "front" and end "back" to be more consistent with STL
@@ -93,7 +93,7 @@ namespace calendar
 		const std::chrono::year_month_day& end
 	) const -> std::size_t
 	{
-		auto result = 0/*uz*/;
+		auto result = std::size_t{ 0 };
 
 		// naive implementation to start with
 		for (auto d = start; d <= end; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
