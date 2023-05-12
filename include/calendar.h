@@ -36,7 +36,7 @@ namespace calendar
 		// (or should we operate with "begin"/"end" ideas here instead)
 		// there is also std::chrono::last
 
-		// would "*" and "[]" make soe sence here?
+		// would "*" and "[]" make some sence here?
 		// iterators?
 		// serial dates?
 
