@@ -9,7 +9,8 @@ namespace calendar
 	class calendar;
 
 
-	class business_day_convention {
+	class business_day_convention
+	{
 
 	public:
 
