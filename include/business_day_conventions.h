@@ -37,7 +37,7 @@ namespace calendar
 
 
 
-	class previous final : public business_day_convention
+	class modified_following final : public business_day_convention
 	{
 
 	public:
@@ -47,7 +47,21 @@ namespace calendar
 	};
 
 
-	const auto Previous = previous{};
+	const auto ModifiedFollowing = modified_following{};
+
+
+
+	class preceding final : public business_day_convention
+	{
+
+	public:
+
+		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+
+	};
+
+
+	const auto Preceding = preceding{};
 
 
 
@@ -87,7 +101,18 @@ namespace calendar
 
 
 
-	inline auto previous::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto modified_following::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	{
+		const auto f = Following.adjust(ymd, cal);
+		if (f.month() == ymd.month())
+			return f;
+		else
+			return Preceding.adjust(ymd, cal);
+	}
+
+
+
+	inline auto preceding::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		auto result = ymd;
 		while (!cal.is_business_day(result))
