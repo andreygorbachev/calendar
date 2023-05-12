@@ -1,6 +1,6 @@
 #include <business_day_convention.h>
 #include <weekend.h>
-#include <calendar.h>
+#include <holiday_schedule.h>
 #include <business_days.h>
 
 #include <gtest/gtest.h>

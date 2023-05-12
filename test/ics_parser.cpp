@@ -1,4 +1,4 @@
-#include <calendar.h>
+#include <holiday_schedule.h>
 #include <ics_parser.h>
 
 #include <gtest/gtest.h>
@@ -14,7 +14,7 @@ using namespace std::chrono;
 namespace
 {
 
-	auto test_parse_ics_holidays() -> const calendar::holidays_storage&
+	auto test_parse_ics_holidays() -> const holiday_schedule::storage&
 	{
 		static auto fs = std::ifstream{ "../../test/data/england-and-wales.ics" };
 		static auto holidays = _parse_ics(fs);

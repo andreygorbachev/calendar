@@ -1,6 +1,6 @@
 #pragma once
 
-#include "calendar.h"
+#include "holiday_schedule.h"
 
 #include <string>
 #include <chrono>
@@ -53,9 +53,9 @@ inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 }
 
 
-inline auto _parse_ics(std::istream& fs) -> calendar::holidays_storage
+inline auto _parse_ics(std::istream& fs) -> holiday_schedule::storage
 {
-	auto result = calendar::holidays_storage{};
+	auto result = holiday_schedule::storage{};
 
 	auto b = std::string{};
 	std::getline(fs, b);
@@ -93,34 +93,34 @@ inline auto _parse_ics(std::istream& fs) -> calendar::holidays_storage
 }
 
 
-inline auto _start(const calendar::holidays_storage& holidays) noexcept -> std::chrono::year_month_day
+inline auto _start(const holiday_schedule::storage& hols) noexcept -> std::chrono::year_month_day
 {
-	const auto h = holidays.empty() ? std::chrono::year_month_day{} : *holidays.cbegin();
+	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
 	// or should we have smallest possible year_month_day if the holidays are empty?
 
 	return { h.year(), std::chrono::January, std::chrono::day{ 1u } };
 }
 
-inline auto _end(const calendar::holidays_storage& holidays) noexcept -> std::chrono::year_month_day
+inline auto _end(const holiday_schedule::storage& hols) noexcept -> std::chrono::year_month_day
 {
-	const auto h = holidays.empty() ? std::chrono::year_month_day{} : *holidays.crbegin();
+	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
 	// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
 
 	return { h.year(), std::chrono::December, std::chrono::day{ 31u } };
 }
 
 
-inline auto parse_ics(const std::string& fileName) -> calendar
+inline auto parse_ics(const std::string& fileName) -> holiday_schedule
 {
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
-	auto holidays = _parse_ics(fs);
+	auto hols = _parse_ics(fs);
 
 	// we assume that ics file covers the full number of years
-	return calendar{
-		_start(holidays),
-		_end(holidays),
-		std::move(holidays)
+	return holiday_schedule{
+		_start(hols),
+		_end(hols),
+		std::move(hols)
 	};
 	// do we ever have weekend info in the ics files, which we should also process here?
 }
