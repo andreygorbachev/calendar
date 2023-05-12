@@ -9,7 +9,7 @@
 namespace calendar
 {
 
-	class no_adjustment final : business_day_convention
+	class no_adjustment final : public business_day_convention
 	{
 
 	public:
@@ -23,7 +23,7 @@ namespace calendar
 
 
 
-	class following final : business_day_convention
+	class following final : public business_day_convention
 	{
 
 	public:
@@ -37,7 +37,7 @@ namespace calendar
 
 
 
-	class previous final : business_day_convention
+	class previous final : public business_day_convention
 	{
 
 	public:
@@ -51,7 +51,7 @@ namespace calendar
 
 
 
-	class monday_if_sunday final : business_day_convention
+	class monday_if_sunday final : public business_day_convention
 	{
 
 	public:

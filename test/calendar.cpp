@@ -1,6 +1,7 @@
 #include <weekend.h>
 #include <holiday_schedule.h>
 #include <calendar.h>
+#include <business_day_conventions.h>
 
 #include <gtest/gtest.h>
 
@@ -16,6 +17,16 @@ using namespace std::chrono;
 
 namespace calendar
 {
+
+	TEST(calendar, substitute)
+	{
+		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+
+		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+		c.substitute(&Following);
+
+		EXPECT_EQ(expected, c);
+	}
 
 	TEST(calendar, is_business_day)
 	{
