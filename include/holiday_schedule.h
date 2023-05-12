@@ -40,7 +40,10 @@ namespace calendar
 		// 1) If we have a duplication of a date in one of them, which is the only difference, they would be different
 		// 2) If 2 calendars just differ in the order of holidays they would be different
 
-		// add operator+=
+		// add operator+=(holiday_schedule)
+
+		void operator+=(std::chrono::year_month_day ymd);
+		void operator-=(const std::chrono::year_month_day& ymd);
 
 	public:
 
@@ -127,6 +130,17 @@ namespace calendar
 	{
 		// should we force that front is not after back
 		// is it ok for holidays before _front or after _back
+	}
+
+
+	inline void holiday_schedule::operator+=(std::chrono::year_month_day ymd)
+	{
+		_hols.insert(std::move(ymd));
+	}
+
+	inline void holiday_schedule::operator-=(const std::chrono::year_month_day& ymd)
+	{
+		_hols.erase(ymd);
 	}
 
 
