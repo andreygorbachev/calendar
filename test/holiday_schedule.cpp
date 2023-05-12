@@ -12,7 +12,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	auto make_April_London_holiday_schedule() -> holiday_schedule

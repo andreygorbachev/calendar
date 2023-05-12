@@ -14,7 +14,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	TEST(calendar, is_business_day)

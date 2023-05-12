@@ -7,7 +7,7 @@
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	TEST(holiday, make_easter)

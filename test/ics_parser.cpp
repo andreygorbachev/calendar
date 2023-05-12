@@ -11,7 +11,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	auto test_parse_ics_holidays() -> const holiday_schedule::storage&

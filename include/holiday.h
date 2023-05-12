@@ -7,231 +7,235 @@
 #include <unordered_set>
 
 
-
-class annual_holiday
+namespace calendar
 {
 
-public:
+	class annual_holiday
+	{
 
-	virtual ~annual_holiday() noexcept = default;
+	public:
 
-public:
+		virtual ~annual_holiday() noexcept = default;
 
-	virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
+	public:
 
-};
-// we can add a list of years where an annual holiday should not apply (skip a year)
-// (as rule based holidays at the moment are only directed for the future this is probably not needed)
-// would that lead us to "first year" and "last year" as well?
+		virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
-
-// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
-inline auto make_holiday_schedule(
-	const std::chrono::year front_year,
-	const std::chrono::year back_year,
-	const std::unordered_set<const annual_holiday*>& rules
-) noexcept -> holiday_schedule
-{
-	// what is back year is before front_year?
-
-	auto hols = holiday_schedule::storage{};
-
-	for (auto y = front_year; y <= back_year; ++y)
-		for (const auto& rule : rules)
-			hols.insert(rule->holiday(y));
-
-	return holiday_schedule{
-		front_year / std::chrono::January / std::chrono::day{ 1u },
-		back_year / std::chrono::December / std::chrono::day{ 31u },
-		std::move(hols)
 	};
-}
-// add weekend?
+	// we can add a list of years where an annual holiday should not apply (skip a year)
+	// (as rule based holidays at the moment are only directed for the future this is probably not needed)
+	// would that lead us to "first year" and "last year" as well?
 
 
+	// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
+	inline auto make_holiday_schedule(
+		const std::chrono::year front_year,
+		const std::chrono::year back_year,
+		const std::unordered_set<const annual_holiday*>& rules
+	) noexcept -> holiday_schedule
+	{
+		// what is back year is before front_year?
 
-// we can add one_off_holiday to capture things like coronation
-// (at the moment it is not clear if we want to do so at all - rule base calendars are expected for the future only
-// where one offs do not exist)
+		auto hols = holiday_schedule::storage{};
 
+		for (auto y = front_year; y <= back_year; ++y)
+			for (const auto& rule : rules)
+				hols.insert(rule->holiday(y));
 
+		return holiday_schedule{
+			front_year / std::chrono::January / std::chrono::day{ 1u },
+			back_year / std::chrono::December / std::chrono::day{ 31u },
+			std::move(hols)
+		};
+	}
+	// add weekend?
 
-class good_friday_holiday final : public annual_holiday
-{
 
-public:
 
-	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+	// we can add one_off_holiday to capture things like coronation
+	// (at the moment it is not clear if we want to do so at all - rule base calendars are expected for the future only
+	// where one offs do not exist)
 
-};
 
 
-const auto GoodFriday = good_friday_holiday{};
+	class good_friday_holiday final : public annual_holiday
+	{
 
+	public:
 
-// or should this be combined with good_friday_holiday (both just an offset from Easter)
-class easter_monday_holiday final : public annual_holiday
-{
+		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-public:
+	};
 
-	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-};
+	const auto GoodFriday = good_friday_holiday{};
 
 
-const auto EasterMonday = easter_monday_holiday{};
+	// or should this be combined with good_friday_holiday (both just an offset from Easter)
+	class easter_monday_holiday final : public annual_holiday
+	{
 
+	public:
 
+		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-class named_holiday final : public annual_holiday
-{
+	};
 
-public:
 
-	explicit named_holiday(std::chrono::month_day md) noexcept;
+	const auto EasterMonday = easter_monday_holiday{};
 
-public:
 
-	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-private:
+	class named_holiday final : public annual_holiday
+	{
 
-	std::chrono::month_day _md;
+	public:
 
-};
+		explicit named_holiday(std::chrono::month_day md) noexcept;
 
+	public:
 
-const auto NewYearsDay = named_holiday{ std::chrono::January/std::chrono::day{ 1u } };
-const auto ChristmasDay = named_holiday{ std::chrono::December/std::chrono::day{ 25u } };
-const auto BoxingDay = named_holiday{ std::chrono::December/std::chrono::day{ 26u } };
+		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
+	private:
 
+		std::chrono::month_day _md;
 
-class weekday_indexed_holiday final : public annual_holiday
-{
+	};
 
-public:
 
-	explicit weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept;
+	const auto NewYearsDay = named_holiday{ std::chrono::January / std::chrono::day{ 1u } };
+	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
+	const auto BoxingDay = named_holiday{ std::chrono::December / std::chrono::day{ 26u } };
 
-public:
 
-	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-private:
+	class weekday_indexed_holiday final : public annual_holiday
+	{
 
-	std::chrono::month_weekday _mwd;
+	public:
 
-};
+		explicit weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept;
 
+	public:
 
-class weekday_last_holiday final : public annual_holiday
-{
+		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-public:
+	private:
 
-	explicit weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept;
+		std::chrono::month_weekday _mwd;
 
-public:
+	};
 
-	auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-private:
+	class weekday_last_holiday final : public annual_holiday
+	{
 
-	std::chrono::month_weekday_last _mwd;
+	public:
 
-};
+		explicit weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept;
 
+	public:
 
+		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-// https://en.wikipedia.org/wiki/Date_of_Easter
+	private:
 
-inline auto make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
-{
-	const auto Y = static_cast<int>(y);
+		std::chrono::month_weekday_last _mwd;
 
-	const auto a = Y % 19;
+	};
 
-	const auto b = static_cast<int>(std::floor(static_cast<double>(Y) / 100.0));
 
-	const auto c = Y % 100;
 
-	const auto d = static_cast<int>(std::floor(static_cast<double>(b) / 4.0));
+	// https://en.wikipedia.org/wiki/Date_of_Easter
 
-	const auto e = b % 4;
+	inline auto make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
+	{
+		const auto Y = static_cast<int>(y);
 
-	const auto g = static_cast<int>(std::floor((8.0 * static_cast<double>(b) + 13.0) / 25.0));
+		const auto a = Y % 19;
 
-	const auto h = (19 * a + b - d - g + 15) % 30;
+		const auto b = static_cast<int>(std::floor(static_cast<double>(Y) / 100.0));
 
-	const auto i = static_cast<int>(std::floor(static_cast<double>(c) / 4.0));
+		const auto c = Y % 100;
 
-	const auto k = c % 4;
+		const auto d = static_cast<int>(std::floor(static_cast<double>(b) / 4.0));
 
-	const auto l = (32 + 2 * e + 2 * i - h - k) % 7;
+		const auto e = b % 4;
 
-	const auto m = static_cast<int>(std::floor((static_cast<double>(a) + 11.0 * static_cast<double>(h) + 19.0 * static_cast<double>(l)) / 433.0));
+		const auto g = static_cast<int>(std::floor((8.0 * static_cast<double>(b) + 13.0) / 25.0));
 
-	const auto n = static_cast<int>(std::floor((static_cast<double>(h) + static_cast<double>(l) - 7.0 * static_cast<double>(m) + 90.0) / 25.0));
+		const auto h = (19 * a + b - d - g + 15) % 30;
 
-	const auto p = (h + l - 7 * m + 33 * n + 19) % 32;
+		const auto i = static_cast<int>(std::floor(static_cast<double>(c) / 4.0));
 
-	return { y, std::chrono::month{ static_cast<unsigned>(n) }, std::chrono::day{ static_cast<unsigned>(p) } };
-}
+		const auto k = c % 4;
 
+		const auto l = (32 + 2 * e + 2 * i - h - k) % 7;
 
+		const auto m = static_cast<int>(std::floor((static_cast<double>(a) + 11.0 * static_cast<double>(h) + 19.0 * static_cast<double>(l)) / 433.0));
 
-inline auto good_friday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-{
-	const auto easterSunday = make_easter(y);
+		const auto n = static_cast<int>(std::floor((static_cast<double>(h) + static_cast<double>(l) - 7.0 * static_cast<double>(m) + 90.0) / 25.0));
 
-	return std::chrono::sys_days{ easterSunday } - std::chrono::days{ 2 };
-}
+		const auto p = (h + l - 7 * m + 33 * n + 19) % 32;
 
+		return { y, std::chrono::month{ static_cast<unsigned>(n) }, std::chrono::day{ static_cast<unsigned>(p) } };
+	}
 
-inline auto easter_monday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-{
-	const auto easterSunday = make_easter(y);
 
-	return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
-}
 
+	inline auto good_friday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		const auto easterSunday = make_easter(y);
 
+		return std::chrono::sys_days{ easterSunday } - std::chrono::days{ 2 };
+	}
 
-inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
-	_md{ std::move(md) }
-{
-}
 
+	inline auto easter_monday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		const auto easterSunday = make_easter(y);
 
-inline auto named_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-{
-	return { y, _md.month(), _md.day() };
-}
+		return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
+	}
 
 
 
-inline weekday_indexed_holiday::weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept :
-	_mwd{ std::move(mwd) }
-{
-}
+	inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
+		_md{ std::move(md) }
+	{
+	}
 
 
-inline auto weekday_indexed_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-{
-	return { _mwd.weekday_indexed() / _mwd.month() / y };
-}
+	inline auto named_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return { y, _md.month(), _md.day() };
+	}
 
 
 
-inline weekday_last_holiday::weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept :
-	_mwd{ std::move(mwd) }
-{
-}
+	inline weekday_indexed_holiday::weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept :
+		_mwd{ std::move(mwd) }
+	{
+	}
 
 
-inline auto weekday_last_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-{
-	return { _mwd.weekday_last() / _mwd.month() / y };
+	inline auto weekday_indexed_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return { _mwd.weekday_indexed() / _mwd.month() / y };
+	}
+
+
+
+	inline weekday_last_holiday::weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept :
+		_mwd{ std::move(mwd) }
+	{
+	}
+
+
+	inline auto weekday_last_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return { _mwd.weekday_last() / _mwd.month() / y };
+	}
+
 }

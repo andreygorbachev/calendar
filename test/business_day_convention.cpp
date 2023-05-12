@@ -12,7 +12,7 @@
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	TEST(business_day_convention, no_adjustment)

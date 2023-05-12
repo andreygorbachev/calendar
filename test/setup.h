@@ -6,10 +6,10 @@
 #include <unordered_set>
 
 
-namespace
+namespace calendar
 {
 
-	auto test_parse_ics_england() -> const holiday_schedule&
+	inline auto test_parse_ics_england() -> const holiday_schedule&
 	{
 		// from https://www.gov.uk/bank-holidays
 		static auto calendar = parse_ics("../../test/data/england-and-wales.ics");
@@ -17,7 +17,7 @@ namespace
 		return calendar;
 	}
 
-	auto test_parse_ics_united_states() -> const holiday_schedule&
+	inline auto test_parse_ics_united_states() -> const holiday_schedule&
 	{
 		// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
 		static auto calendar = parse_ics("../../test/data/united-states.ics");
@@ -26,7 +26,7 @@ namespace
 	}
 
 
-	auto test_rule_england() -> holiday_schedule
+	inline auto test_rule_england() -> holiday_schedule
 	{
 		using namespace std;
 		using namespace std::chrono;

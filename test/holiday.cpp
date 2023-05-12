@@ -9,7 +9,7 @@
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	TEST(holiday, named_holiday)

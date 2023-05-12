@@ -7,7 +7,7 @@
 using namespace std::chrono;
 
 
-namespace
+namespace calendar
 {
 
 	TEST(weekend, operator_equal)
