@@ -28,11 +28,19 @@ namespace calendar
 
 	inline auto make_holiday_schedule_england() -> holiday_schedule
 	{
+		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
+		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
+		const auto SummerBankHoliday = weekday_last_holiday{ std::chrono::August / std::chrono::Monday[std::chrono::last] };
+
 		auto rules = std::unordered_set<const annual_holiday*>{};
 		rules.insert(&NewYearsDay);
 		rules.insert(&GoodFriday);
 		rules.insert(&EasterMonday);
-		// ...
+		rules.insert(&EarlyMayBankHoliday);
+		rules.insert(&SpringBankHoliday);
+		rules.insert(&SummerBankHoliday);
+		rules.insert(&ChristmasDay);
+		rules.insert(&BoxingDay);
 
 		return make_holiday_schedule(
 			std::chrono::year{ 2023 },
