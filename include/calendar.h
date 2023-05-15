@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <memory>
 #include <chrono>
+#include <vector>
 //#include <stdexcept>
 
 
@@ -18,7 +19,7 @@ namespace calendar
 
 	public:
 
-		explicit calendar(weekend we, holiday_schedule hols) noexcept;
+		explicit calendar(weekend we, holiday_schedule hols);
 
 	public:
 
@@ -59,8 +60,18 @@ namespace calendar
 
 	private:
 
+		void _make_bd_cache();
+
+	private:
+
 		weekend _we;
 		holiday_schedule _hols;
+
+	private:
+
+		using _business_day_storage = std::vector<bool>;
+
+		_business_day_storage _bd_cache;
 
 	};
 
@@ -103,10 +114,20 @@ namespace calendar
 	inline calendar::calendar(
 		weekend we,
 		holiday_schedule hols
-	) noexcept :
+	) :
 		_we{ we },
 		_hols{ hols }
 	{
+		_make_bd_cache();
+	}
+
+
+	inline void calendar::_make_bd_cache()
+	{
+		const auto sz = std::chrono::sys_days{ back() } - std::chrono::sys_days{ front() };
+		const auto size = sz.count();
+
+		_bd_cache.resize(size);
 	}
 
 
