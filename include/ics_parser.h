@@ -6,6 +6,7 @@
 #include <chrono>
 #include <istream>
 #include <fstream>
+#include <stdexcept>
 
 
 namespace calendar
@@ -20,7 +21,7 @@ namespace calendar
 		auto b = std::string{};
 		std::getline(fs, b);
 		if (b != "VEVENT") // BEGIN: was already read
-			throw std::exception{}; // what exception do we want here?
+			throw std::domain_error{ "Missing VEVENT" };
 
 		// should we somehow check that only "daily" events are supplied?
 		// (or does the format of parse already does it for us?)
@@ -34,7 +35,7 @@ namespace calendar
 			if (s == "DTSTART;VALUE=DATE")
 			{
 				if (ymd != std::chrono::year_month_day{})
-					throw std::exception{}; // multiple DTSTART
+					throw std::domain_error{ "Multiple DTSTART" };
 
 				std::chrono::from_stream(fs, "%Y%m%d%n", ymd); // %n to read '\n' at the end of the line
 			}
@@ -47,10 +48,10 @@ namespace calendar
 		auto e = std::string{};
 		std::getline(fs, e);
 		if (e != "VEVENT") // END: was already read
-			throw std::exception{}; // what exception do we want here?
+			throw std::domain_error{ "Missing VEVENT" };
 
 		if (ymd == std::chrono::year_month_day{})
-			throw std::exception{}; // no DTSTART
+			throw std::domain_error{ "Missing year_month_day" };
 
 		return ymd;
 	}
@@ -63,7 +64,7 @@ namespace calendar
 		auto b = std::string{};
 		std::getline(fs, b);
 		if (b != "BEGIN:VCALENDAR")
-			throw std::exception{}; // what exception do we want here?
+			throw std::domain_error{ "Badly formed ICS" };
 
 		// handle "PRODID" and "VERSION" - do we just support version 2.0?
 
@@ -90,7 +91,7 @@ namespace calendar
 		auto e = std::string{};
 		std::getline(fs, e);
 		if (e != "VCALENDAR") // END: was already read
-			throw std::exception{}; // what exception do we want here?
+			throw std::domain_error{ "Badly formed ICS" };
 
 		return result;
 	}
