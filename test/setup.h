@@ -1,6 +1,6 @@
 #include <holiday_schedule.h>
 #include <ics_parser.h>
-#include <holiday.h>
+#include <holidays.h>
 
 #include <fstream>
 #include <unordered_set>
