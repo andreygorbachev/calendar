@@ -72,7 +72,13 @@ namespace calendar
 
 	TEST(weekend, operator_equality)
 	{
-		EXPECT_EQ(SaturdaySundayWeekend, SaturdaySundayWeekend);
+		EXPECT_EQ(true, SaturdaySundayWeekend == SaturdaySundayWeekend);
+	}
+
+
+	TEST(weekend, operator_not_equality)
+	{
+		EXPECT_EQ(true, SaturdaySundayWeekend != SundayWeekend);
 	}
 
 
