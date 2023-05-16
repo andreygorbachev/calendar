@@ -88,4 +88,5 @@ namespace calendar
 
 		EXPECT_EQ(SaturdaySundayWeekend, weekend{ we });
 	}
+
 }
