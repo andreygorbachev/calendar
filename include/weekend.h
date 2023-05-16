@@ -43,16 +43,16 @@ namespace calendar
 
 
 
-	constexpr auto operator|(const weekend& we1, const weekend& we2) -> weekend
+	constexpr auto operator|(const weekend& w1, const weekend& w2) -> weekend
 	{
-		auto we = we1.get_we() | we2.get_we();
+		auto we = w1.get_we() | w2.get_we();
 
 		return weekend{ std::move(we) };
 	}
 
-	constexpr auto operator&(const weekend& we1, const weekend& we2) -> weekend
+	constexpr auto operator&(const weekend& w1, const weekend& w2) -> weekend
 	{
-		auto we = we1.get_we() & we2.get_we();
+		auto we = w1.get_we() & w2.get_we();
 
 		return weekend{ std::move(we) };
 	}

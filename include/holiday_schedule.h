@@ -62,14 +62,14 @@ namespace calendar
 
 
 
-	inline auto operator|(const holiday_schedule& c1, const holiday_schedule& c2) -> holiday_schedule
+	inline auto operator|(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
 	{
-		auto front = std::max(c1.get_front(), c2.get_front());
-		auto back = std::min(c1.get_back(), c2.get_back());
+		auto front = std::max(h1.get_front(), h2.get_front());
+		auto back = std::min(h1.get_back(), h2.get_back());
 
-		auto h2 = c2.get_hols();
-		auto hols = c1.get_hols();
-		hols.merge(h2);
+		auto hols2 = h2.get_hols();
+		auto hols = h1.get_hols();
+		hols.merge(std::move(hols2));
 
 		return holiday_schedule{
 			std::move(front),
@@ -78,15 +78,15 @@ namespace calendar
 		};
 	}
 
-	inline auto operator&(const holiday_schedule& c1, const holiday_schedule& c2) -> holiday_schedule
+	inline auto operator&(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
 	{
-		auto front = std::max(c1.get_front(), c2.get_front());
-		auto back = std::min(c1.get_back(), c2.get_back());
+		auto front = std::max(h1.get_front(), h2.get_front());
+		auto back = std::min(h1.get_back(), h2.get_back());
 
-		const auto& h1 = c1.get_hols();
+		const auto& hols1 = h1.get_hols();
 		auto hols = holiday_schedule::storage{};
-		for (const auto& h : h1)
-			if (c2.is_holiday(h))
+		for (const auto& h : hols1)
+			if (h2.is_holiday(h))
 				hols.insert(h);
 
 		return holiday_schedule{
@@ -96,19 +96,19 @@ namespace calendar
 		};
 	}
 
-	// if c2 before c1 should the function swap them around?
-	inline auto operator+(const holiday_schedule& c1, const holiday_schedule& c2) -> holiday_schedule
+	// if h2 before h1 should the function swap them around?
+	inline auto operator+(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
 	{
 		// consider better error handling
-	//	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front()); // no gaps between calendars are allowed
+	//	assert(std::chrono::sys_days{ h1.get_back() }++ == h2.get_front()); // no gaps between calendars are allowed
 
-		auto h2 = c2.get_hols();
-		auto hols = c1.get_hols();
-		hols.merge(h2);
+		auto hols2 = h2.get_hols();
+		auto hols = h1.get_hols();
+		hols.merge(std::move(hols2));
 
 		return holiday_schedule{
-			c1.get_front(),
-			c2.get_back(),
+			h1.get_front(),
+			h2.get_back(),
 			std::move(hols)
 		};
 	}
