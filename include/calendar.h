@@ -70,6 +70,9 @@ namespace calendar
 
 		auto _is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
+		// we can try to factor out the cache as an (inner) class
+		// (to make it clear what is what)
+
 	private:
 
 		weekend _we;
