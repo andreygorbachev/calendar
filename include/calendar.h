@@ -23,6 +23,10 @@ namespace calendar
 
 	public:
 
+		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
+
+	public:
+
 		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 		auto count_business_days(
@@ -62,6 +66,10 @@ namespace calendar
 
 		void _make_bd_cache();
 
+		auto _get_index(const std::chrono::year_month_day& ymd) const noexcept -> std::size_t;
+
+		auto _is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+
 	private:
 
 		weekend _we;
@@ -79,17 +87,7 @@ namespace calendar
 
 	inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
 	{
-		if (cal1.front() != cal2.front())
-			return false;
-
-		if (cal1.back() != cal2.back())
-			return false;
-
-		for (auto d = cal1.front(); d <= cal1.back(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
-			if (cal1.is_business_day(d) != cal2.is_business_day(d))
-				return false;
-
-		return true;
+		return cal1._bd_cache == cal2._bd_cache;
 	}
 
 
@@ -124,30 +122,56 @@ namespace calendar
 
 	inline void calendar::_make_bd_cache()
 	{
-		const auto sz = std::chrono::sys_days{ back() } - std::chrono::sys_days{ front() };
-		const auto size = sz.count();
+		const auto size = _get_index(back()) + 1/*uz*/;
 
 		_bd_cache.resize(size);
+
+		const auto& f = front();
+
+		for (auto i = std::size_t{ 0/*uz*/ }; i < size; ++i)
+		{
+			const auto d = std::chrono::sys_days{ f } + std::chrono::days{ i };
+			_bd_cache[i] = _is_business_day(d);
+		}
+	}
+
+	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const noexcept -> std::size_t
+	{
+		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ front() };
+		return days.count();
+	}
+
+	inline auto calendar::_is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+	{
+//		if (ymd < front() || ymd > back())
+//			throw std::out_of_range{ "" }; // complete the message
+		// we should decide if this is an exception or not
+		// if it is an exception - should it go to holiday_schedule?
+
+		return !_we.is_weekend(ymd) && !_hols.is_holiday(ymd);
+		// we allow a holiday on a weekend
 	}
 
 
 	inline void calendar::substitute(const business_day_convention* const bdc)
 	{
-		// when we add a business day cache to calendar we should be careful with this function
 		const auto hols = _hols.get_holidays();
 		for (const auto& holiday : hols)
 		{
 			_hols -= holiday;
-			if (!is_business_day(holiday))
+			if (!_is_business_day(holiday))
 			{
 				const auto substitute_day = bdc->adjust(holiday, *this);
 				_hols += substitute_day;
+				_make_bd_cache(); // we do not actually need to fully rebuild the cache, so this could be optimised
 			}
 			else
 			{
 				_hols += holiday;
 			}
 		}
+
+		// what happens if we have an exception?
 	}
 
 
@@ -158,8 +182,7 @@ namespace calendar
 		// we should decide if this is an exception or not
 		// if it is an exception - should it go to holiday_schedule?
 
-		return !_we.is_weekend(ymd) && !_hols.is_holiday(ymd);
-		// we allow a holiday on a weekend
+		return _bd_cache[_get_index(ymd)];
 	}
 
 	inline auto calendar::count_business_days(
