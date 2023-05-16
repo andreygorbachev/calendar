@@ -24,6 +24,10 @@ namespace calendar
 
 	public:
 
+		friend auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
+
+	public:
+
 		constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 	public:

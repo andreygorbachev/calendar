@@ -69,4 +69,17 @@ namespace calendar
 		EXPECT_EQ(false, w.is_weekend(2023y / March / 27d));
 	}
 
+
+	TEST(weekend, operator_equality)
+	{
+		EXPECT_EQ(SaturdaySundayWeekend, SaturdaySundayWeekend);
+	}
+
+
+	TEST(weekend, get_we)
+	{
+		const auto we = SaturdaySundayWeekend.get_we();
+
+		EXPECT_EQ(SaturdaySundayWeekend, weekend{ we });
+	}
 }
