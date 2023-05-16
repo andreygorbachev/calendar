@@ -49,7 +49,7 @@ namespace calendar
 		auto get_front() const noexcept -> const std::chrono::year_month_day&;
 		auto get_back() const noexcept -> const std::chrono::year_month_day&;
 
-		auto get_holidays() const noexcept -> const storage&;
+		auto get_hols() const noexcept -> const storage&;
 
 	private:
 
@@ -67,8 +67,8 @@ namespace calendar
 		auto front = std::max(c1.get_front(), c2.get_front());
 		auto back = std::min(c1.get_back(), c2.get_back());
 
-		auto h2 = c2.get_holidays();
-		auto hols = c1.get_holidays();
+		auto h2 = c2.get_hols();
+		auto hols = c1.get_hols();
 		hols.merge(h2);
 
 		return holiday_schedule{
@@ -83,7 +83,7 @@ namespace calendar
 		auto front = std::max(c1.get_front(), c2.get_front());
 		auto back = std::min(c1.get_back(), c2.get_back());
 
-		const auto& h1 = c1.get_holidays();
+		const auto& h1 = c1.get_hols();
 		auto hols = holiday_schedule::storage{};
 		for (const auto& h : h1)
 			if (c2.is_holiday(h))
@@ -102,8 +102,8 @@ namespace calendar
 		// consider better error handling
 	//	assert(std::chrono::sys_days{ c1.get_back() }++ == c2.get_front()); // no gaps between calendars are allowed
 
-		auto h2 = c2.get_holidays();
-		auto hols = c1.get_holidays();
+		auto h2 = c2.get_hols();
+		auto hols = c1.get_hols();
 		hols.merge(h2);
 
 		return holiday_schedule{
@@ -156,7 +156,7 @@ namespace calendar
 		return _back;
 	}
 
-	inline auto holiday_schedule::get_holidays() const noexcept -> const storage&
+	inline auto holiday_schedule::get_hols() const noexcept -> const storage&
 	{
 		return _hols;
 	}

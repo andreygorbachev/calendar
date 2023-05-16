@@ -160,7 +160,7 @@ namespace calendar
 
 	inline void calendar::substitute(const business_day_convention* const bdc)
 	{
-		const auto hols = _hols.get_holidays();
+		const auto hols = _hols.get_hols();
 		for (const auto& holiday : hols)
 		{
 			_hols -= holiday;

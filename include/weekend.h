@@ -28,7 +28,7 @@ namespace calendar
 
 	public:
 
-		constexpr auto get_weekend() const noexcept -> const storage&;
+		constexpr auto get_we() const noexcept -> const storage&;
 
 	private:
 
@@ -45,14 +45,14 @@ namespace calendar
 
 	constexpr auto operator|(const weekend& we1, const weekend& we2) -> weekend
 	{
-		auto we = we1.get_weekend() | we2.get_weekend();
+		auto we = we1.get_we() | we2.get_we();
 
 		return weekend{ std::move(we) };
 	}
 
 	constexpr auto operator&(const weekend& we1, const weekend& we2) -> weekend
 	{
-		auto we = we1.get_weekend() & we2.get_weekend();
+		auto we = we1.get_we() & we2.get_we();
 
 		return weekend{ std::move(we) };
 	}
@@ -71,7 +71,7 @@ namespace calendar
 		return _we[wd.c_encoding()];
 	}
 
-	constexpr auto weekend::get_weekend() const noexcept -> const storage&
+	constexpr auto weekend::get_we() const noexcept -> const storage&
 	{
 		return _we;
 	}
