@@ -78,6 +78,8 @@ namespace calendar
 	private:
 
 		using _business_day_storage = std::vector<bool>;
+		// do we need some notion of a "time series"?
+		// (where we have a value for each day, etc)
 
 		_business_day_storage _bd_cache;
 
