@@ -12,7 +12,7 @@ namespace calendar
 	inline auto parse_ics_england() -> const holiday_schedule&
 	{
 		// from https://www.gov.uk/bank-holidays
-		static auto calendar = parse_ics("../../test/data/england-and-wales.ics");
+		static auto calendar = parser::parse_ics("../../test/data/england-and-wales.ics");
 
 		return calendar;
 	}
@@ -20,7 +20,7 @@ namespace calendar
 	inline auto parse_ics_united_states() -> const holiday_schedule&
 	{
 		// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-		static auto calendar = parse_ics("../../test/data/united-states.ics");
+		static auto calendar = parser::parse_ics("../../test/data/united-states.ics");
 
 		return calendar;
 	}
