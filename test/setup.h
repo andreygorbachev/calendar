@@ -9,18 +9,23 @@
 namespace calendar
 {
 
+	// from https://www.gov.uk/bank-holidays
+	constexpr auto EnglandAndWalesICS = "../../test/data/england-and-wales.ics";
+
+	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
+	constexpr auto UnitedStatesICS = "../../test/data/united-states.ics";
+
+
 	inline auto parse_ics_england() -> const holiday_schedule&
 	{
-		// from https://www.gov.uk/bank-holidays
-		static auto calendar = parser::parse_ics("../../test/data/england-and-wales.ics");
+		static auto calendar = parser::parse_ics(EnglandAndWalesICS);
 
 		return calendar;
 	}
 
 	inline auto parse_ics_united_states() -> const holiday_schedule&
 	{
-		// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-		static auto calendar = parser::parse_ics("../../test/data/united-states.ics");
+		static auto calendar = parser::parse_ics(UnitedStatesICS);
 
 		return calendar;
 	}

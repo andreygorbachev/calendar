@@ -16,7 +16,7 @@ namespace calendar
 
 	auto test_parse_ics_holidays() -> const holiday_schedule::storage&
 	{
-		static auto fs = ifstream{ "../../test/data/england-and-wales.ics" };
+		static auto fs = ifstream{ EnglandAndWalesICS };
 		static auto hols = parser::_parse_ics(fs);
 
 		return hols;
