@@ -102,6 +102,15 @@ namespace calendar
 		EXPECT_EQ(h3.get_back(), h4.get_back());
 	}
 
+	TEST(holiday_schedule, get_hols)
+	{
+		const auto h1 = make_May_London_holiday_schedule();
+		const auto h2 = holiday_schedule{ h1.get_front(), h1.get_back(), h1.get_hols() };
+
+		EXPECT_EQ(h2.get_front(), h1.get_front());
+		EXPECT_EQ(h2.get_back(), h1.get_back());
+	}
+
 	TEST(holiday_schedule, is_holiday)
 	{
 		const auto h1 = make_May_London_holiday_schedule();
