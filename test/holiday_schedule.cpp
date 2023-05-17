@@ -118,7 +118,7 @@ namespace calendar
 		const auto h1 = parse_ics_england();
 		const auto h2 = parse_ics_england();
 
-		EXPECT_EQ(true, h1 == h2);
+		EXPECT_TRUE(h1 == h2);
 	}
 
 	TEST(holiday_schedule, operator_not_equal)
@@ -126,7 +126,7 @@ namespace calendar
 		const auto& h1 = parse_ics_england();
 		const auto& h2 = parse_ics_united_states();
 
-		EXPECT_EQ(true, h1 != h2);
+		EXPECT_TRUE(h1 != h2);
 	}
 
 	TEST(holiday_schedule, operator_plus)
@@ -177,10 +177,10 @@ namespace calendar
 		const auto h4 = make_May_NewYork_holiday_schedule() & h1;
 		const auto h5 = make_April_London_holiday_schedule() + h1;
 
-		EXPECT_EQ(true, h1.is_holiday(2023y / May / 1d));
-		EXPECT_EQ(true, h3.is_holiday(2023y / May / 1d));
-		EXPECT_EQ(false, h4.is_holiday(2023y / May / 1d));
-		EXPECT_EQ(true, h3.is_holiday(2023y / May / 1d));
+		EXPECT_TRUE(h1.is_holiday(2023y / May / 1d));
+		EXPECT_TRUE(h3.is_holiday(2023y / May / 1d));
+		EXPECT_FALSE(h4.is_holiday(2023y / May / 1d));
+		EXPECT_TRUE(h3.is_holiday(2023y / May / 1d));
 	}
 
 }

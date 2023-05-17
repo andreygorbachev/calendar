@@ -35,24 +35,24 @@ namespace calendar
 	TEST(weekend, is_weekend)
 	{
 		// Friday
-		EXPECT_EQ(false, SaturdaySundayWeekend.is_weekend(2023y / March / 24d));
-		EXPECT_EQ(true, FridaySaturdayWeekend.is_weekend(2023y / March / 24d));
-		EXPECT_EQ(false, SundayWeekend.is_weekend(2023y / March / 24d));
+		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 24d));
+		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 24d));
+		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_EQ(true, SaturdaySundayWeekend.is_weekend(2023y / March / 25d));
-		EXPECT_EQ(true, FridaySaturdayWeekend.is_weekend(2023y / March / 25d));
-		EXPECT_EQ(false, SundayWeekend.is_weekend(2023y / March / 25d));
+		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 25d));
+		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 25d));
+		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_EQ(true, SaturdaySundayWeekend.is_weekend(2023y / March / 26d));
-		EXPECT_EQ(false, FridaySaturdayWeekend.is_weekend(2023y / March / 26d));
-		EXPECT_EQ(true, SundayWeekend.is_weekend(2023y / March / 26d));
+		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 26d));
+		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 26d));
+		EXPECT_TRUE(SundayWeekend.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_EQ(false, SaturdaySundayWeekend.is_weekend(2023y / March / 27d));
-		EXPECT_EQ(false, FridaySaturdayWeekend.is_weekend(2023y / March / 27d));
-		EXPECT_EQ(false, SundayWeekend.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 27d));
 	}
 
 
@@ -61,16 +61,16 @@ namespace calendar
 		const auto w = FridaySaturdayWeekend | SaturdaySundayWeekend;
 
 		// Friday
-		EXPECT_EQ(true, w.is_weekend(2023y / March / 24d));
+		EXPECT_TRUE(w.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_EQ(true, w.is_weekend(2023y / March / 25d));
+		EXPECT_TRUE(w.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_EQ(true, w.is_weekend(2023y / March / 26d));
+		EXPECT_TRUE(w.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_EQ(false, w.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(w.is_weekend(2023y / March / 27d));
 	}
 
 
@@ -79,28 +79,28 @@ namespace calendar
 		const auto w = FridaySaturdayWeekend & SaturdaySundayWeekend;
 
 		// Friday
-		EXPECT_EQ(false, w.is_weekend(2023y / March / 24d));
+		EXPECT_FALSE(w.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_EQ(true, w.is_weekend(2023y / March / 25d));
+		EXPECT_TRUE(w.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_EQ(false, w.is_weekend(2023y / March / 26d));
+		EXPECT_FALSE(w.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_EQ(false, w.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(w.is_weekend(2023y / March / 27d));
 	}
 
 
 	TEST(weekend, operator_equal)
 	{
-		EXPECT_EQ(true, SaturdaySundayWeekend == SaturdaySundayWeekend);
+		EXPECT_TRUE(SaturdaySundayWeekend == SaturdaySundayWeekend);
 	}
 
 
 	TEST(weekend, operator_not_equal)
 	{
-		EXPECT_EQ(true, SaturdaySundayWeekend != SundayWeekend);
+		EXPECT_TRUE(SaturdaySundayWeekend != SundayWeekend);
 	}
 
 

@@ -64,8 +64,8 @@ namespace calendar
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
-		EXPECT_EQ(false, c.is_business_day(2023y/May/1d));
-		EXPECT_EQ(true, c.is_business_day(2023y/May/2d));
+		EXPECT_FALSE(c.is_business_day(2023y/May/1d));
+		EXPECT_TRUE(c.is_business_day(2023y/May/2d));
 	}
 
 	TEST(calendar, count_business_days)
