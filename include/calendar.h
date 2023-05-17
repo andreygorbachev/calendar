@@ -52,14 +52,11 @@ namespace calendar
 		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
 		auto count_business_days(
-			const std::chrono::year_month_day& start,
-			const std::chrono::year_month_day& end
+			const std::chrono::year_month_day& f,
+			const std::chrono::year_month_day& b
 		) const -> std::size_t;
 		// if end is before start should the function swap them around? (or return a negative number? or throw an exception)
 		// if we need to return a negative number then the return should not be std::size_t (which we might want to change anyway)
-		// should we consider calling start "front" and end "back" to be more consistent with STL
-		// (or should we operate with "begin"/"end" ideas here instead)
-		// there is also std::chrono::last
 
 		// would "*" and "[]" make some sence here?
 		// iterators?
@@ -69,7 +66,6 @@ namespace calendar
 
 	public:
 
-		// think about better names
 		auto front() const noexcept -> const std::chrono::year_month_day&;
 		auto back() const noexcept -> const std::chrono::year_month_day&;
 
@@ -215,8 +211,8 @@ namespace calendar
 	}
 
 	inline auto calendar::count_business_days(
-		const std::chrono::year_month_day& start,
-		const std::chrono::year_month_day& end
+		const std::chrono::year_month_day& f,
+		const std::chrono::year_month_day& b
 	) const -> std::size_t
 	{
 		// do we need to check that start <= end?
@@ -226,7 +222,7 @@ namespace calendar
 		auto result = std::size_t{ 0 };
 
 		// naive implementation to start with
-		for (auto d = start; d <= end; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+		for (auto d = f; d <= b; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
 			if (is_business_day(d))
 				result++;
 
