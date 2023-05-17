@@ -70,9 +70,10 @@ namespace calendar
 
 	TEST(holiday_schedule, constructor)
 	{
-		auto hols = holiday_schedule::storage{};
+		const auto hols = holiday_schedule::storage{};
 
-		EXPECT_THROW(holiday_schedule(2023y / May / 31d, 2023y / May / 1d, move(hols)), out_of_range);
+		EXPECT_NO_THROW(holiday_schedule(2023y / May / 1d, 2023y / May / 1d, hols), out_of_range); // ok to have a schedule for just 1 day
+		EXPECT_THROW(holiday_schedule(2023y / May / 31d, 2023y / May / 1d, hols), out_of_range);
 	}
 
 
