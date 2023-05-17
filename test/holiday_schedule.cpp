@@ -72,7 +72,7 @@ namespace calendar
 	{
 		const auto hols = holiday_schedule::storage{};
 
-		EXPECT_NO_THROW(holiday_schedule(2023y / May / 1d, 2023y / May / 1d, hols), out_of_range); // ok to have a schedule for just 1 day
+		EXPECT_NO_THROW(holiday_schedule(2023y / May / 1d, 2023y / May / 1d, hols)); // ok to have a schedule for just 1 day
 		EXPECT_THROW(holiday_schedule(2023y / May / 31d, 2023y / May / 1d, hols), out_of_range);
 	}
 
@@ -125,6 +125,26 @@ namespace calendar
 
 		EXPECT_EQ(h3.get_front(), h4.get_front());
 		EXPECT_EQ(h3.get_back(), h4.get_back());
+	}
+
+	TEST(holiday_schedule, operator_plus_equal_1)
+	{
+		const auto& h1 = parse_ics_england();
+		const auto& h2 = parse_ics_united_states();
+
+		auto h3 = h1;
+		h3 += h2;
+
+		EXPECT_EQ(h1 + h2, h3);
+	}
+
+	TEST(holiday_schedule, operator_plus_equal_2)
+	{
+		auto h1 = parse_ics_england();
+		h1 += 2023y / April / 1d;
+		h1 -= 2023y / April / 1d;
+
+		EXPECT_EQ(parse_ics_england(), h1);
 	}
 
 	TEST(holiday_schedule, get_hols)

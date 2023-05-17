@@ -57,9 +57,9 @@ namespace calendar
 
 	public:
 
-		// add operator+=(holiday_schedule)
+		void operator+=(const holiday_schedule& h);
 
-		void operator+=(std::chrono::year_month_day ymd);
+		void operator+=(const std::chrono::year_month_day& ymd);
 		void operator-=(const std::chrono::year_month_day& ymd);
 
 		friend auto operator==(const holiday_schedule& h1, const holiday_schedule& h2) noexcept -> bool = default;
@@ -156,9 +156,14 @@ namespace calendar
 	}
 
 
-	inline void holiday_schedule::operator+=(std::chrono::year_month_day ymd)
+	inline void holiday_schedule::operator+=(const holiday_schedule& h)
 	{
-		_hols.insert(std::move(ymd));
+		*this = *this + h;
+	}
+
+	inline void holiday_schedule::operator+=(const std::chrono::year_month_day& ymd)
+	{
+		_hols.insert(ymd);
 	}
 
 	inline void holiday_schedule::operator-=(const std::chrono::year_month_day& ymd)
