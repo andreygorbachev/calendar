@@ -125,8 +125,8 @@ namespace calendar
 		if (h1.get_front() > h2.get_front())
 			return h2 + h1;
 
-		// consider better error handling
-	//	assert(std::chrono::sys_days{ h1.get_back() }++ == h2.get_front()); // no gaps between calendars are allowed
+		if (std::chrono::sys_days{ h1.get_back() }++ == h2.get_front())
+			throw std::out_of_range{ "Front and back are not consistent" };
 
 		auto hols2 = h2.get_hols();
 		auto hols = h1.get_hols();
@@ -176,7 +176,7 @@ namespace calendar
 
 	inline auto holiday_schedule::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
-		// check that ymd is inside our calendar
+		// if ymd is outside [front, back] it is not a holiday
 
 		return std::find(_hols.cbegin(), _hols.cend(), ymd) != _hols.cend();
 	}
