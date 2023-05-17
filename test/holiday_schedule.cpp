@@ -90,6 +90,22 @@ namespace calendar
 		EXPECT_EQ(min(h1.get_back(), h2.get_back()), h.get_back());
 	}
 
+	TEST(holiday_schedule, operator_equal)
+	{
+		const auto h1 = parse_ics_england();
+		const auto h2 = parse_ics_england();
+
+		EXPECT_EQ(true, h1 == h2);
+	}
+
+	TEST(holiday_schedule, operator_not_equal)
+	{
+		const auto& h1 = parse_ics_england();
+		const auto& h2 = parse_ics_united_states();
+
+		EXPECT_EQ(true, h1 != h2);
+	}
+
 	TEST(holiday_schedule, operator_plus)
 	{
 		const auto& h1 = parse_ics_england();

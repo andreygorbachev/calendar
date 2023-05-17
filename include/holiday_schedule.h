@@ -62,6 +62,8 @@ namespace calendar
 		void operator+=(std::chrono::year_month_day ymd);
 		void operator-=(const std::chrono::year_month_day& ymd);
 
+		friend auto operator==(const holiday_schedule& h1, const holiday_schedule& h2) noexcept -> bool = default;
+
 	public:
 
 		auto is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool;
