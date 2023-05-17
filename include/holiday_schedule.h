@@ -118,9 +118,11 @@ namespace calendar
 		};
 	}
 
-	// if h2 before h1 should the function swap them around?
 	inline auto operator+(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
 	{
+		if (h1.get_front() > h2.get_front())
+			return h2 + h1;
+
 		// consider better error handling
 	//	assert(std::chrono::sys_days{ h1.get_back() }++ == h2.get_front()); // no gaps between calendars are allowed
 

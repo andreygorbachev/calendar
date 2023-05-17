@@ -90,6 +90,18 @@ namespace calendar
 		EXPECT_EQ(min(h1.get_back(), h2.get_back()), h.get_back());
 	}
 
+	TEST(holiday_schedule, operator_plus)
+	{
+		const auto& h1 = parse_ics_england();
+		const auto& h2 = parse_ics_united_states();
+
+		const auto h3 = h1 + h2;
+		const auto h4 = h2 + h1;
+
+		EXPECT_EQ(h3.get_front(), h4.get_front());
+		EXPECT_EQ(h3.get_back(), h4.get_back());
+	}
+
 	TEST(holiday_schedule, is_holiday)
 	{
 		const auto h1 = make_May_London_holiday_schedule();
