@@ -20,4 +20,4 @@ When we combine calendars we expect them to have the same front/back.
 
 When we concatenate the calendars we expect not to have a gap between them.
 
-Front/back of holiday_schedule tells us what range the holiday_schedule actually covers as the first holiday in the schedule is not the same as front (and the same for the last holiday is not the same as back).
+Front/back of holiday_schedule tells us what is the actual range of the holiday_schedule application as the first holiday in the schedule is not the same as front (and the same for the last holiday is not the same as back). It is expected that the front is before the first holiday in the schedule and back is after the last holiday in the schedule. If part of the schedule falls outside the range between the front and back it will be truncated to fit (it is a way to truncate an existing calendar by creating a copy of an existing one with a new front or back or both).
