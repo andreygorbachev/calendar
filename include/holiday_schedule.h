@@ -53,8 +53,6 @@ namespace calendar
 			storage hols
 		);
 
-		// should we have a notion of a "wall calendar" - 1 year (for the current year as a default)
-
 	public:
 
 		void operator+=(const holiday_schedule& h);

@@ -65,6 +65,8 @@ namespace calendar
 		// iterators?
 		// serial dates?
 
+		// should we have a notion of a "wall calendar" - 1 year (for the current year as a default)
+
 	public:
 
 		// think about better names
