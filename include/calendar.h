@@ -217,6 +217,10 @@ namespace calendar
 		const std::chrono::year_month_day& end
 	) const -> std::size_t
 	{
+		// do we need to check that start <= end?
+		// (or swap them around if needed?)
+		// (or allow for a negative result, as int?)
+
 		auto result = std::size_t{ 0 };
 
 		// naive implementation to start with
