@@ -68,6 +68,14 @@ namespace calendar
 	}
 
 
+	TEST(holiday_schedule, constructor)
+	{
+		auto hols = holiday_schedule::storage{};
+
+		EXPECT_THROW(holiday_schedule(2023y / May / 31d, 2023y / May / 1d, move(hols)), out_of_range);
+	}
+
+
 	TEST(holiday_schedule, operator_or)
 	{
 		const auto& h1 = parse_ics_england();

@@ -28,7 +28,7 @@
 #include <memory>
 #include <set>
 #include <algorithm>
-#include <cassert> // might not be needed in the future
+#include <stdexcept>
 
 
 namespace calendar
@@ -149,7 +149,9 @@ namespace calendar
 		_back{ std::move(back) },
 		_hols{ std::move(hols) }
 	{
-		// should we force that front is not after back
+		if (front > back)
+			throw std::out_of_range{ "Front and back are not consistent" };
+
 		// is it ok for holidays before _front or after _back
 	}
 
