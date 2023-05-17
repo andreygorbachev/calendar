@@ -68,12 +68,26 @@ namespace calendar
 	}
 
 
-	TEST(holiday_schedule, constructor)
+	TEST(holiday_schedule, constructor1)
 	{
 		const auto hols = holiday_schedule::storage{};
 
 		EXPECT_NO_THROW(holiday_schedule(2023y / May / 1d, 2023y / May / 1d, hols)); // ok to have a schedule for just 1 day
 		EXPECT_THROW(holiday_schedule(2023y / May / 31d, 2023y / May / 1d, hols), out_of_range);
+	}
+
+
+	TEST(holiday_schedule, constructor2)
+	{
+		const auto h1 = holiday_schedule{ parse_ics_england() };
+		const auto h2 = holiday_schedule{
+			2023y / January / 1d,
+			2023y / December / 31d,
+			h1.get_hols()
+		};
+
+		EXPECT_EQ(parse_ics_england(), h1);
+		EXPECT_NE(parse_ics_england(), h2);
 	}
 
 

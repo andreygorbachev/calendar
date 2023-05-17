@@ -152,7 +152,9 @@ namespace calendar
 		if (front > back)
 			throw std::out_of_range{ "Front and back are not consistent" };
 
-		// is it ok for holidays before _front or after _back
+		// get rid of the part of hols which is outside [front, back]
+		hols.erase(hols.begin(), std::lower_bound(hols.cbegin(), hols.cend(), _front));
+		hols.erase(std::upper_bound(hols.cbegin(), hols.cend(), _back), hols.end());
 	}
 
 
