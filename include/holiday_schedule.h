@@ -34,7 +34,6 @@
 namespace calendar
 {
 
-	// we should think about what to do for dates which are not "ok"
 	class holiday_schedule
 	{
 
@@ -43,9 +42,6 @@ namespace calendar
 		using storage = std::set<std::chrono::year_month_day>;
 
 	public:
-
-		// or we should use "begin"/"end" instead of "front"/"back"
-		// (or use the same ideas but with different names)
 
 		explicit holiday_schedule(
 			std::chrono::year_month_day front,
