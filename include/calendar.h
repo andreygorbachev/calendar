@@ -71,10 +71,6 @@ namespace calendar
 
 		void substitute(const business_day_convention* const bdc);
 
-		// should we be thinking about subsets?
-		// (for example if cal1 is a wider calendar than cal2,
-		// but cal2 matches cal1 over its range)
-
 	public:
 
 		auto get_weekend() const noexcept -> const weekend&;
