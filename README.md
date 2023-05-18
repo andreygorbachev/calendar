@@ -16,7 +16,7 @@ We assume that for the rule based holidays the rules are unique (as in 01-Januar
 
 When we have "front" and "back" of some range of dates we do expect that "front" itself is included in the range and "back" itself is included in the range. If "back" < "front" we throw an exception.
 
-When we combine calendars we expect them to have the same front/back.
+When we combine calendars the results is generated only over the common range of the initial calendars.
 
 When we concatenate the calendars we expect not to have a gap between them.
 
