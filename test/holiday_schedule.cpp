@@ -37,37 +37,6 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	auto make_April_London_holiday_schedule() -> holiday_schedule
-	{
-		auto hols = holiday_schedule::storage{
-			2023y / April / 7d,
-			2023y / April / 10d,
-		};
-
-		return holiday_schedule{ 2023y / April / 1d, 2023y / April / 30d, move(hols) };
-	}
-
-	auto make_May_London_holiday_schedule() -> holiday_schedule
-	{
-		auto hols = holiday_schedule::storage{
-			2023y / May / 1d,
-			2023y / May / 8d,
-			2023y / May / 29d,
-		};
-
-		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
-	}
-
-	auto make_May_NewYork_holiday_schedule() -> holiday_schedule
-	{
-		auto hols = holiday_schedule::storage{
-			2023y / May / 29d,
-		};
-
-		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
-	}
-
-
 	TEST(holiday_schedule, constructor1)
 	{
 		const auto hols = holiday_schedule::storage{};
@@ -163,7 +132,7 @@ namespace calendar
 
 	TEST(holiday_schedule, get_hols)
 	{
-		const auto h1 = make_May_London_holiday_schedule();
+		const auto h1 = make_holiday_schedule_england_may_2023();
 		const auto h2 = holiday_schedule{ h1.get_front(), h1.get_back(), h1.get_hols() };
 
 		EXPECT_EQ(h2.get_front(), h1.get_front());
@@ -172,10 +141,10 @@ namespace calendar
 
 	TEST(holiday_schedule, is_holiday)
 	{
-		const auto h1 = make_May_London_holiday_schedule();
-		const auto h3 = make_May_NewYork_holiday_schedule() | h1;
-		const auto h4 = make_May_NewYork_holiday_schedule() & h1;
-		const auto h5 = make_April_London_holiday_schedule() + h1;
+		const auto h1 = make_holiday_schedule_england_may_2023();
+		const auto h3 = make_holiday_schedule_united_states_may_2023() | h1;
+		const auto h4 = make_holiday_schedule_united_states_may_2023() & h1;
+		const auto h5 = make_holiday_schedule_england_april_2023() + h1;
 
 		EXPECT_TRUE(h1.is_holiday(2023y / May / 1d));
 		EXPECT_TRUE(h3.is_holiday(2023y / May / 1d));

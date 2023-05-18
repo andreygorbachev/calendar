@@ -229,4 +229,43 @@ namespace calendar
 		return hs2021 + hs2022_2024 + hs2025 + hs2026_2028 + hs2029 + hs2030;
 	}
 
+
+
+	inline auto make_holiday_schedule_england_april_2023() -> holiday_schedule
+	{
+		using namespace std::chrono;
+
+		auto hols = holiday_schedule::storage{
+			2023y / April / 7d,
+			2023y / April / 10d,
+		};
+
+		return holiday_schedule{ 2023y / April / 1d, 2023y / April / 30d, move(hols) };
+	}
+
+	inline auto make_holiday_schedule_england_may_2023() -> holiday_schedule
+	{
+		using namespace std::chrono;
+
+		auto hols = holiday_schedule::storage{
+			2023y / May / 1d,
+			2023y / May / 8d,
+			2023y / May / 29d,
+		};
+
+		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+	}
+
+	inline auto make_holiday_schedule_united_states_may_2023() -> holiday_schedule
+	{
+		using namespace std::chrono;
+
+		auto hols = holiday_schedule::storage{
+			2023y / May / 29d,
+		};
+
+		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+	}
+
+
 }
