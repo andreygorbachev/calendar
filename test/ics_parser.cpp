@@ -45,14 +45,14 @@ namespace calendar
 	}
 
 
-	TEST(ics_parser, _start)
+	TEST(ics_parser, _front)
 	{
-		EXPECT_EQ(2018y/January/1d, parser::_start(test_parse_ics_holidays()));
+		EXPECT_EQ(2018y/January/1d, parser::_front(test_parse_ics_holidays()));
 	}
 
-	TEST(ics_parser, _end)
+	TEST(ics_parser, _back)
 	{
-		EXPECT_EQ(2025y/December/31d, parser::_end(test_parse_ics_holidays()));
+		EXPECT_EQ(2025y/December/31d, parser::_back(test_parse_ics_holidays()));
 	}
 
 }
