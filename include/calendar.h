@@ -30,7 +30,7 @@
 #include <memory>
 #include <chrono>
 #include <vector>
-//#include <stdexcept>
+#include <stdexcept>
 
 
 namespace calendar
@@ -55,8 +55,6 @@ namespace calendar
 			const std::chrono::year_month_day& f,
 			const std::chrono::year_month_day& b
 		) const -> std::size_t;
-		// if end is before start should the function swap them around? (or return a negative number? or throw an exception)
-		// if we need to return a negative number then the return should not be std::size_t (which we might want to change anyway)
 
 		// would "*" and "[]" make some sence here?
 		// iterators?
@@ -215,9 +213,8 @@ namespace calendar
 		const std::chrono::year_month_day& b
 	) const -> std::size_t
 	{
-		// do we need to check that start <= end?
-		// (or swap them around if needed?)
-		// (or allow for a negative result, as int?)
+		if (f > b)
+			throw std::out_of_range{ "Front and back are not consistent" };
 
 		auto result = std::size_t{ 0 };
 

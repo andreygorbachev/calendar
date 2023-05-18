@@ -75,6 +75,7 @@ namespace calendar
 		EXPECT_EQ(0/*uz*/, c.count_business_days(2023y/May/1d, 2023y/May/1d));
 		EXPECT_EQ(1/*uz*/, c.count_business_days(2023y/May/31d, 2023y/May/31d));
 		EXPECT_EQ(20/*uz*/, c.count_business_days(2023y/May/1d, 2023y/May/31d));
+		EXPECT_THROW(c.count_business_days(2023y / May / 31d, 2023y / May / 1d), out_of_range);
 	}
 
 }
