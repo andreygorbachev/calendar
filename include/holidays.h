@@ -23,40 +23,13 @@
 #pragma once
 
 #include "holiday_interface.h"
-#include "holiday_schedule.h"
 
 #include <chrono>
 #include <cmath>
-#include <unordered_set>
 
 
 namespace calendar
 {
-
-	// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
-	inline auto make_holiday_schedule(
-		const std::chrono::year front_year,
-		const std::chrono::year back_year,
-		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
-	) noexcept -> holiday_schedule
-	{
-		// what is back year is before front_year?
-
-		auto hols = holiday_schedule::storage{};
-
-		for (auto y = front_year; y <= back_year; ++y)
-			for (const auto& rule : rules)
-				hols.insert(rule->holiday(y));
-
-		return holiday_schedule{
-			front_year / std::chrono::January / std::chrono::day{ 1u },
-			back_year / std::chrono::December / std::chrono::day{ 31u },
-			std::move(hols)
-		};
-	}
-	// add weekend?
-
-
 
 	// we can add one_off_holiday to capture things like coronation
 	// (at the moment it is not clear if we want to do so at all - rule base calendars are expected for the future only

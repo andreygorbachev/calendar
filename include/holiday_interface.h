@@ -22,11 +22,18 @@
 
 #pragma once
 
+#include "holiday_schedule.h"
+
 #include <chrono>
+#include <unordered_set>
 
 
 namespace calendar
 {
+
+	// extend from annual to any other frequency?
+	// (should allow us to generate pseudo coupon schedules for Gilts for example)
+	// (make sure we can do EOM)
 
 	class annual_holiday
 	{
@@ -43,5 +50,30 @@ namespace calendar
 	// we can add a list of years where an annual holiday should not apply (skip a year)
 	// (as rule based holidays at the moment are only directed for the future this is probably not needed)
 	// would that lead us to "first year" and "last year" as well?
+
+
+
+	// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
+	inline auto make_holiday_schedule(
+		const std::chrono::year front_year,
+		const std::chrono::year back_year,
+		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
+	) noexcept -> holiday_schedule
+	{
+		// what is back year is before front_year?
+
+		auto hols = holiday_schedule::storage{};
+
+		for (auto y = front_year; y <= back_year; ++y)
+			for (const auto& rule : rules)
+				hols.insert(rule->holiday(y));
+
+		return holiday_schedule{
+			front_year / std::chrono::January / std::chrono::day{ 1u },
+			back_year / std::chrono::December / std::chrono::day{ 31u },
+			std::move(hols)
+		};
+	}
+	// add weekend?
 
 }

@@ -34,7 +34,7 @@
 namespace calendar
 {
 
-	class holiday_schedule
+	class holiday_schedule // rename to just schedule? (and we might have a regular_schedule as well for things like mortgage payments)
 	{
 
 	public:
