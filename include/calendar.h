@@ -49,7 +49,7 @@ namespace calendar
 
 	public:
 
-		auto is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
 		auto count_business_days(
 			const std::chrono::year_month_day& f,
@@ -80,7 +80,7 @@ namespace calendar
 
 		void _make_bd_cache();
 
-		auto _get_index(const std::chrono::year_month_day& ymd) const noexcept -> std::size_t;
+		auto _get_index(const std::chrono::year_month_day& ymd) const -> std::size_t;
 
 		auto _is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
@@ -154,8 +154,11 @@ namespace calendar
 		}
 	}
 
-	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const noexcept -> std::size_t
+	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const -> std::size_t
 	{
+		if (ymd < front() || ymd > back())
+			throw std::out_of_range{ "Request is not consistent with front or back" };
+
 		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ front() };
 		return days.count();
 	}
@@ -189,13 +192,8 @@ namespace calendar
 	}
 
 
-	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
+	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
-//		if (ymd < front() || ymd > back())
-//			throw std::out_of_range{ "" }; // complete the message
-		// we should decide if this is an exception or not
-		// if it is an exception - should it go to holiday_schedule?
-
 		return _bd_cache[_get_index(ymd)];
 	}
 

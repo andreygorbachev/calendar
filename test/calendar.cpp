@@ -66,6 +66,8 @@ namespace calendar
 
 		EXPECT_FALSE(c.is_business_day(2023y/May/1d));
 		EXPECT_TRUE(c.is_business_day(2023y/May/2d));
+		EXPECT_THROW(c.is_business_day(1y / May / 1d), out_of_range);
+		EXPECT_THROW(c.is_business_day(9999y / May / 1d), out_of_range);
 	}
 
 	TEST(calendar, count_business_days)
