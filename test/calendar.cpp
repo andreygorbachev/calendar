@@ -64,8 +64,8 @@ namespace calendar
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
-		EXPECT_FALSE(c.is_business_day(2023y/May/1d));
-		EXPECT_TRUE(c.is_business_day(2023y/May/2d));
+		EXPECT_FALSE(c.is_business_day(2023y / May / 1d));
+		EXPECT_TRUE(c.is_business_day(2023y / May / 2d));
 		EXPECT_THROW(c.is_business_day(1y / May / 1d), out_of_range);
 		EXPECT_THROW(c.is_business_day(9999y / May / 1d), out_of_range);
 	}
@@ -74,9 +74,9 @@ namespace calendar
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
-		EXPECT_EQ(0/*uz*/, c.count_business_days(2023y/May/1d, 2023y/May/1d));
-		EXPECT_EQ(1/*uz*/, c.count_business_days(2023y/May/31d, 2023y/May/31d));
-		EXPECT_EQ(20/*uz*/, c.count_business_days(2023y/May/1d, 2023y/May/31d));
+		EXPECT_EQ(0/*uz*/, c.count_business_days(2023y / May / 1d, 2023y / May / 1d));
+		EXPECT_EQ(1/*uz*/, c.count_business_days(2023y / May / 31d, 2023y / May / 31d));
+		EXPECT_EQ(20/*uz*/, c.count_business_days(2023y / May / 1d, 2023y / May / 31d));
 		EXPECT_THROW(c.count_business_days(2023y / May / 31d, 2023y / May / 1d), out_of_range);
 	}
 
