@@ -39,7 +39,7 @@ namespace calendar
 
 	public:
 
-		using storage = std::set<std::chrono::year_month_day>;
+		using storage = std::set<std::chrono::year_month_day>; // should we template on this? (so we can build schedules based on vector if needed)
 
 	public:
 
