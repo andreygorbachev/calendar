@@ -162,11 +162,6 @@ namespace calendar
 
 	inline auto calendar::_is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
-//		if (ymd < front() || ymd > back())
-//			throw std::out_of_range{ "" }; // complete the message
-		// we should decide if this is an exception or not
-		// if it is an exception - should it go to holiday_schedule?
-
 		return !_we.is_weekend(ymd) && !_hols.is_holiday(ymd);
 		// we allow a holiday on a weekend
 	}
