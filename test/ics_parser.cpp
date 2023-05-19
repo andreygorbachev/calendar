@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <holiday_schedule.h>
+#include <schedule.h>
 #include <ics_parser.h>
 
 #include <gtest/gtest.h>
@@ -36,7 +36,7 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	auto test_parse_ics_holidays() -> const holiday_schedule::storage&
+	auto test_parse_ics_holidays() -> const schedule::storage&
 	{
 		static auto fs = ifstream{ EnglandAndWalesICS };
 		static auto hols = parser::_parse_ics(fs);

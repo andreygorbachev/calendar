@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #include <weekend.h>
-#include <holiday_schedule.h>
+#include <schedule.h>
 #include <calendar.h>
 #include <business_day_conventions.h>
 

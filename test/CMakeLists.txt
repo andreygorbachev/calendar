@@ -10,7 +10,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(${PROJECT_NAME}
   weekend.cpp
-  holiday_schedule.cpp
+  schedule.cpp
   calendar.cpp
   Easter.cpp
   holiday.cpp

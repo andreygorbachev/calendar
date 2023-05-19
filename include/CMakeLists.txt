@@ -1,6 +1,6 @@
 add_library(calendar INTERFACE
   weekend.h
-  holiday_schedule.h
+  schedule.h
   calendar.h
   holiday_interface.h
   holidays.h

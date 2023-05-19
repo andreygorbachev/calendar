@@ -34,7 +34,7 @@
 namespace calendar
 {
 
-	class holiday_schedule // rename to just schedule? (and we might have a regular_schedule as well for things like mortgage payments)
+	class schedule
 	{
 
 	public:
@@ -46,7 +46,7 @@ namespace calendar
 
 	public:
 
-		explicit holiday_schedule(
+		explicit schedule(
 			std::chrono::year_month_day front,
 			std::chrono::year_month_day back,
 			storage hols
@@ -54,12 +54,12 @@ namespace calendar
 
 	public:
 
-		void operator+=(const holiday_schedule& h);
+		void operator+=(const schedule& h);
 
 		void operator+=(const std::chrono::year_month_day& ymd);
 		void operator-=(const std::chrono::year_month_day& ymd);
 
-		friend auto operator==(const holiday_schedule& h1, const holiday_schedule& h2) noexcept -> bool = default;
+		friend auto operator==(const schedule& h1, const schedule& h2) noexcept -> bool = default;
 
 	public:
 
@@ -83,62 +83,62 @@ namespace calendar
 
 
 
-	inline auto operator|(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
+	inline auto operator|(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto front = std::max(h1.get_front(), h2.get_front());
-		auto back = std::min(h1.get_back(), h2.get_back());
+		auto front = std::max(s1.get_front(), s2.get_front());
+		auto back = std::min(s1.get_back(), s2.get_back());
 
-		auto hols2 = h2.get_hols();
-		auto hols = h1.get_hols();
+		auto hols2 = s2.get_hols();
+		auto hols = s1.get_hols();
 		hols.merge(std::move(hols2));
 
-		return holiday_schedule{
+		return schedule{
 			std::move(front),
 			std::move(back),
 			std::move(hols)
 		};
 	}
 
-	inline auto operator&(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
+	inline auto operator&(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto front = std::max(h1.get_front(), h2.get_front());
-		auto back = std::min(h1.get_back(), h2.get_back());
+		auto front = std::max(s1.get_front(), s2.get_front());
+		auto back = std::min(s1.get_back(), s2.get_back());
 
-		const auto& hols1 = h1.get_hols();
-		auto hols = holiday_schedule::storage{};
+		const auto& hols1 = s1.get_hols();
+		auto hols = schedule::storage{};
 		for (const auto& h : hols1)
-			if (h2.is_holiday(h))
+			if (s2.is_holiday(h))
 				hols.insert(h);
 
-		return holiday_schedule{
+		return schedule{
 			std::move(front),
 			std::move(back),
 			std::move(hols)
 		};
 	}
 
-	inline auto operator+(const holiday_schedule& h1, const holiday_schedule& h2) -> holiday_schedule
+	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule
 	{
-		if (h1.get_front() > h2.get_front())
-			return h2 + h1;
+		if (s1.get_front() > s2.get_front())
+			return s2 + s1;
 
-		if (std::chrono::sys_days{ h1.get_back() }++ == h2.get_front())
+		if (std::chrono::sys_days{ s1.get_back() }++ == s2.get_front())
 			throw std::out_of_range{ "Front and back are not consistent" };
 
-		auto hols2 = h2.get_hols();
-		auto hols = h1.get_hols();
+		auto hols2 = s2.get_hols();
+		auto hols = s1.get_hols();
 		hols.merge(std::move(hols2));
 
-		return holiday_schedule{
-			h1.get_front(),
-			h2.get_back(),
+		return schedule{
+			s1.get_front(),
+			s2.get_back(),
 			std::move(hols)
 		};
 	}
 
 
 
-	inline holiday_schedule::holiday_schedule(
+	inline schedule::schedule(
 		std::chrono::year_month_day front,
 		std::chrono::year_month_day back,
 		storage hols
@@ -155,40 +155,40 @@ namespace calendar
 	}
 
 
-	inline void holiday_schedule::operator+=(const holiday_schedule& h)
+	inline void schedule::operator+=(const schedule& h)
 	{
 		*this = *this + h;
 	}
 
-	inline void holiday_schedule::operator+=(const std::chrono::year_month_day& ymd)
+	inline void schedule::operator+=(const std::chrono::year_month_day& ymd)
 	{
 		_hols.insert(ymd);
 	}
 
-	inline void holiday_schedule::operator-=(const std::chrono::year_month_day& ymd)
+	inline void schedule::operator-=(const std::chrono::year_month_day& ymd)
 	{
 		_hols.erase(ymd);
 	}
 
 
-	inline auto holiday_schedule::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
+	inline auto schedule::is_holiday(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
 		// if ymd is outside [front, back] it is not a holiday
 
 		return std::find(_hols.cbegin(), _hols.cend(), ymd) != _hols.cend();
 	}
 
-	inline auto holiday_schedule::get_front() const noexcept -> const std::chrono::year_month_day&
+	inline auto schedule::get_front() const noexcept -> const std::chrono::year_month_day&
 	{
 		return _front;
 	}
 
-	inline auto holiday_schedule::get_back() const noexcept -> const std::chrono::year_month_day&
+	inline auto schedule::get_back() const noexcept -> const std::chrono::year_month_day&
 	{
 		return _back;
 	}
 
-	inline auto holiday_schedule::get_hols() const noexcept -> const storage&
+	inline auto schedule::get_hols() const noexcept -> const storage&
 	{
 		return _hols;
 	}

@@ -22,7 +22,7 @@
 
 #include <business_day_conventions.h>
 #include <weekend.h>
-#include <holiday_schedule.h>
+#include <schedule.h>
 #include <calendar.h>
 
 #include <gtest/gtest.h>

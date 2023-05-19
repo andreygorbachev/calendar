@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "holiday_schedule.h"
+#include "schedule.h"
 
 #include <string>
 #include <chrono>
@@ -82,9 +82,9 @@ namespace calendar
 		}
 
 
-		inline auto _parse_ics(std::istream& fs) -> holiday_schedule::storage
+		inline auto _parse_ics(std::istream& fs) -> schedule::storage
 		{
-			auto result = holiday_schedule::storage{};
+			auto result = schedule::storage{};
 
 			auto b = std::string{};
 			std::getline(fs, b);
@@ -122,7 +122,7 @@ namespace calendar
 		}
 
 
-		inline auto _front(const holiday_schedule::storage& hols) noexcept -> std::chrono::year_month_day
+		inline auto _front(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 		{
 			const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
 			// or should we have smallest possible year_month_day if the holidays are empty?
@@ -130,7 +130,7 @@ namespace calendar
 			return { h.year(), std::chrono::January, std::chrono::day{ 1u } };
 		}
 
-		inline auto _back(const holiday_schedule::storage& hols) noexcept -> std::chrono::year_month_day
+		inline auto _back(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 		{
 			const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
 			// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
@@ -139,7 +139,7 @@ namespace calendar
 		}
 
 
-		inline auto parse_ics(const std::string& fileName) -> holiday_schedule
+		inline auto parse_ics(const std::string& fileName) -> schedule
 		{
 			/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
@@ -148,7 +148,7 @@ namespace calendar
 			auto back = _back(hols);
 
 			// we assume that ics file covers the full number of years
-			return holiday_schedule{
+			return schedule{
 				std::move(front),
 				std::move(back),
 				std::move(hols)

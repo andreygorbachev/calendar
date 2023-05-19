@@ -23,7 +23,7 @@
 #pragma once
 
 #include "weekend.h"
-#include "holiday_schedule.h"
+#include "schedule.h"
 #include "business_day_convention_interface.h"
 
 #include <cstddef>
@@ -41,7 +41,7 @@ namespace calendar
 
 	public:
 
-		explicit calendar(weekend we, holiday_schedule hols);
+		explicit calendar(weekend we, schedule hols);
 
 	public:
 
@@ -74,7 +74,7 @@ namespace calendar
 	public:
 
 		auto get_weekend() const noexcept -> const weekend&;
-		auto get_holiday_schedule() const noexcept -> const holiday_schedule&;
+		auto get_holiday_schedule() const noexcept -> const schedule&;
 
 	private:
 
@@ -90,7 +90,7 @@ namespace calendar
 	private:
 
 		weekend _we;
-		holiday_schedule _hols;
+		schedule _hols;
 
 	private:
 
@@ -130,7 +130,7 @@ namespace calendar
 
 	inline calendar::calendar(
 		weekend we,
-		holiday_schedule hols
+		schedule hols
 	) :
 		_we{ we },
 		_hols{ hols }
@@ -232,7 +232,7 @@ namespace calendar
 		return _we;
 	}
 
-	inline auto calendar::get_holiday_schedule() const noexcept -> const holiday_schedule&
+	inline auto calendar::get_holiday_schedule() const noexcept -> const schedule&
 	{
 		return _hols;
 	}

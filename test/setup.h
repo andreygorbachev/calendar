@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <holiday_schedule.h>
+#include <schedule.h>
 #include <ics_parser.h>
 #include <holidays.h>
 
@@ -38,22 +38,22 @@ namespace calendar
 	constexpr auto UnitedStatesICS = "../../test/data/united-states.ics";
 
 
-	inline auto parse_ics_england() -> const holiday_schedule&
+	inline auto parse_ics_england() -> const schedule&
 	{
-		static auto calendar = parser::parse_ics(EnglandAndWalesICS);
+		static auto s = parser::parse_ics(EnglandAndWalesICS);
 
-		return calendar;
+		return s;
 	}
 
-	inline auto parse_ics_united_states() -> const holiday_schedule&
+	inline auto parse_ics_united_states() -> const schedule&
 	{
-		static auto calendar = parser::parse_ics(UnitedStatesICS);
+		static auto s = parser::parse_ics(UnitedStatesICS);
 
-		return calendar;
+		return s;
 	}
 
 
-	inline auto make_holiday_schedule_england() -> holiday_schedule
+	inline auto make_holiday_schedule_england() -> schedule
 	{
 		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
 		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
@@ -149,7 +149,7 @@ namespace calendar
 		return hs2018_2019 + hs2020 + hs2021 + hs2022 + hs2023 + hs2024_2025;
 	}
 
-	inline auto make_holiday_schedule_united_states() -> holiday_schedule
+	inline auto make_holiday_schedule_united_states() -> schedule
 	{
 		const auto MartinLutherKing = weekday_indexed_holiday{ std::chrono::January / std::chrono::Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto Washington = weekday_indexed_holiday{ std::chrono::February / std::chrono::Monday[3] }; // Washington's Birthday
@@ -231,41 +231,40 @@ namespace calendar
 
 
 
-	inline auto make_holiday_schedule_england_april_2023() -> holiday_schedule
+	inline auto make_holiday_schedule_england_april_2023() -> schedule
 	{
 		using namespace std::chrono;
 
-		auto hols = holiday_schedule::storage{
+		auto hols = schedule::storage{
 			2023y / April / 7d,
 			2023y / April / 10d,
 		};
 
-		return holiday_schedule{ 2023y / April / 1d, 2023y / April / 30d, move(hols) };
+		return schedule{ 2023y / April / 1d, 2023y / April / 30d, move(hols) };
 	}
 
-	inline auto make_holiday_schedule_england_may_2023() -> holiday_schedule
+	inline auto make_holiday_schedule_england_may_2023() -> schedule
 	{
 		using namespace std::chrono;
 
-		auto hols = holiday_schedule::storage{
+		auto hols = schedule::storage{
 			2023y / May / 1d,
 			2023y / May / 8d,
 			2023y / May / 29d,
 		};
 
-		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+		return schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
 	}
 
-	inline auto make_holiday_schedule_united_states_may_2023() -> holiday_schedule
+	inline auto make_holiday_schedule_united_states_may_2023() -> schedule
 	{
 		using namespace std::chrono;
 
-		auto hols = holiday_schedule::storage{
+		auto hols = schedule::storage{
 			2023y / May / 29d,
 		};
 
-		return holiday_schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+		return schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
 	}
-
 
 }
