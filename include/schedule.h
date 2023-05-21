@@ -34,7 +34,7 @@
 namespace calendar
 {
 
-	class schedule
+	class schedule // need to think carefully about front/back not been part of the schedule - good for hols, not good for coupon schedules
 	{
 
 	public:
