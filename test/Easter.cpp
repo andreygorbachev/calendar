@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <holidays.h>
+#include <annual_holidays.h>
 
 #include <gtest/gtest.h>
 

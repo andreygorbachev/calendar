@@ -22,7 +22,7 @@
 
 #include <schedule.h>
 #include <ics_parser.h>
-#include <holidays.h>
+#include <annual_holidays.h>
 
 #include <fstream>
 #include <unordered_set>

@@ -40,8 +40,19 @@ namespace calendar
 
 	public:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day = 0;
+		auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day;
+
+	private:
+
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day = 0;
 
 	};
+
+
+
+	inline auto business_day_convention::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	{
+		return _adjust(ymd, cal);
+	}
 
 }

@@ -44,7 +44,11 @@ namespace calendar
 
 	public:
 
-		virtual auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
+		auto make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day;
+
+	private:
+
+		virtual auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
 	};
 	// we can add a list of years where an annual holiday should not apply (skip a year)
@@ -66,7 +70,7 @@ namespace calendar
 
 		for (auto y = front_year; y <= back_year; ++y)
 			for (const auto& rule : rules)
-				hols.insert(rule->holiday(y));
+				hols.insert(rule->make_holiday(y));
 
 		return schedule{
 			front_year / std::chrono::January / std::chrono::day{ 1u },
@@ -75,5 +79,12 @@ namespace calendar
 		};
 	}
 	// add weekend?
+
+
+
+	inline 	auto annual_holiday::make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return _make_holiday(y);
+	}
 
 }

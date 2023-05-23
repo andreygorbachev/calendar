@@ -2,8 +2,8 @@ add_library(calendar INTERFACE
   weekend.h
   schedule.h
   calendar.h
-  holiday_interface.h
-  holidays.h
+  annual_holiday_interface.h
+  annual_holidays.h
   business_day_convention_interface.h
   business_day_conventions.h
   ics_parser.h

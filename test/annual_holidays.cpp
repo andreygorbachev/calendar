@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <holidays.h>
+#include <annual_holidays.h>
 
 #include <gtest/gtest.h>
 
@@ -34,41 +34,41 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(holiday, named_holiday)
+	TEST(named_holiday, make_holiday)
 	{
-		EXPECT_EQ(2023y / January / 1d, NewYearsDay.holiday(2023y));
+		EXPECT_EQ(2023y / January / 1d, NewYearsDay.make_holiday(2023y));
 	}
 
 
-	TEST(holiday, good_friday_holiday)
+	TEST(good_friday_holiday, make_holiday)
 	{
-		EXPECT_EQ(2023y / April / 7d, GoodFriday.holiday(2023y));
+		EXPECT_EQ(2023y / April / 7d, GoodFriday.make_holiday(2023y));
 	}
 
 
-	TEST(holiday, easter_monday_holiday)
+	TEST(easter_monday_holiday, make_holiday)
 	{
-		EXPECT_EQ(2023y / April / 10d, EasterMonday.holiday(2023y));
+		EXPECT_EQ(2023y / April / 10d, EasterMonday.make_holiday(2023y));
 	}
 
 
-	TEST(holiday, weekday_indexed_holiday)
+	TEST(weekday_indexed_holiday, make_holiday)
 	{
 		const auto h = weekday_indexed_holiday{ May / Monday[1] }; // Early May Bank Holiday
 
-		EXPECT_EQ(2023y / May / 1d, h.holiday(2023y));
+		EXPECT_EQ(2023y / May / 1d, h.make_holiday(2023y));
 	}
 
 
-	TEST(holiday, weekday_last_holiday)
+	TEST(weekday_last_holiday, make_holiday)
 	{
 		const auto h = weekday_last_holiday{ May / Monday[last]}; // Spring Bank Holiday
 
-		EXPECT_EQ(2023y / May / 29d, h.holiday(2023y));
+		EXPECT_EQ(2023y / May / 29d, h.make_holiday(2023y));
 	}
 
 
-	TEST(holiday, make_calendar)
+	TEST(annual_holiday, make_calendar)
 	{
 		const auto hs = make_holiday_schedule_england();
 

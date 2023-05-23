@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "holiday_interface.h"
+#include "annual_holiday_interface.h"
 
 #include <chrono>
 #include <cmath>
@@ -40,9 +40,9 @@ namespace calendar
 	class good_friday_holiday final : public annual_holiday
 	{
 
-	public:
+	private:
 
-		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -56,9 +56,9 @@ namespace calendar
 	class easter_monday_holiday final : public annual_holiday
 	{
 
-	public:
+	private:
 
-		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -74,9 +74,9 @@ namespace calendar
 
 		explicit named_holiday(std::chrono::month_day md) noexcept;
 
-	public:
+	private:
 
-		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 	private:
 
@@ -98,9 +98,9 @@ namespace calendar
 
 		explicit weekday_indexed_holiday(std::chrono::month_weekday mwd) noexcept;
 
-	public:
+	private:
 
-		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 	private:
 
@@ -116,9 +116,9 @@ namespace calendar
 
 		explicit weekday_last_holiday(std::chrono::month_weekday_last mwd) noexcept;
 
-	public:
+	private:
 
-		auto holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 	private:
 
@@ -165,7 +165,7 @@ namespace calendar
 
 
 
-	inline auto good_friday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto good_friday_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		const auto easterSunday = make_easter(y);
 
@@ -173,7 +173,7 @@ namespace calendar
 	}
 
 
-	inline auto easter_monday_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto easter_monday_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		const auto easterSunday = make_easter(y);
 
@@ -188,7 +188,7 @@ namespace calendar
 	}
 
 
-	inline auto named_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto named_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return { y, _md.month(), _md.day() };
 	}
@@ -201,7 +201,7 @@ namespace calendar
 	}
 
 
-	inline auto weekday_indexed_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto weekday_indexed_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return { _mwd.weekday_indexed() / _mwd.month() / y };
 	}
@@ -214,7 +214,7 @@ namespace calendar
 	}
 
 
-	inline auto weekday_last_holiday::holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto weekday_last_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return { _mwd.weekday_last() / _mwd.month() / y };
 	}

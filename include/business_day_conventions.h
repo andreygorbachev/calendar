@@ -34,9 +34,9 @@ namespace calendar
 	class no_adjustment final : public business_day_convention
 	{
 
-	public:
+	private:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -48,9 +48,9 @@ namespace calendar
 	class following final : public business_day_convention
 	{
 
-	public:
+	private:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -62,9 +62,9 @@ namespace calendar
 	class modified_following final : public business_day_convention
 	{
 
-	public:
+	private:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -76,9 +76,9 @@ namespace calendar
 	class preceding final : public business_day_convention
 	{
 
-	public:
+	private:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -90,9 +90,9 @@ namespace calendar
 	class nearest final : public business_day_convention
 	{
 
-	public:
+	private:
 
-		virtual auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
 
 	};
 
@@ -105,14 +105,14 @@ namespace calendar
 
 
 
-	inline auto no_adjustment::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto no_adjustment::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		return ymd;
 	}
 
 
 
-	inline auto following::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto following::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		auto result = ymd;
 		while (!cal.is_business_day(result))
@@ -123,7 +123,7 @@ namespace calendar
 
 
 
-	inline auto modified_following::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto modified_following::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		const auto f = Following.adjust(ymd, cal);
 		if (f.month() == ymd.month())
@@ -134,7 +134,7 @@ namespace calendar
 
 
 
-	inline auto preceding::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto preceding::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		auto result = ymd;
 		while (!cal.is_business_day(result))
@@ -145,7 +145,7 @@ namespace calendar
 
 
 
-	inline auto nearest::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto nearest::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		if (std::chrono::weekday{ ymd } == std::chrono::Sunday)
 			return std::chrono::sys_days{ ymd } + std::chrono::days{ 1 };

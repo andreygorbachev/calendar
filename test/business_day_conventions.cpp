@@ -37,14 +37,14 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(business_day_convention, no_adjustment)
+	TEST(no_adjustment, adjust)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
 		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
 	}
 
-	TEST(business_day_convention, following)
+	TEST(following, adjust)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
@@ -52,7 +52,7 @@ namespace calendar
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
 	}
 
-	TEST(business_day_convention, modified_following)
+	TEST(modified_following, adjust)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
@@ -61,7 +61,7 @@ namespace calendar
 		// add a test for "modifed"
 	}
 
-	TEST(business_day_convention, preceding)
+	TEST(preceding, adjust)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
@@ -69,7 +69,7 @@ namespace calendar
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2022y / December / 30d, c));
 	}
 
-	TEST(business_day_convention, nearest)
+	TEST(nearest, adjust)
 	{
 		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
 
