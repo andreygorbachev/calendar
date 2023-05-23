@@ -87,7 +87,29 @@ namespace calendar
 
 	const auto NewYearsDay = named_holiday{ std::chrono::January / std::chrono::day{ 1u } };
 	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
-	const auto BoxingDay = named_holiday{ std::chrono::December / std::chrono::day{ 26u } };
+
+
+
+	template<typename H>
+	class offset_holiday final : public annual_holiday
+	{
+
+	public:
+
+		explicit offset_holiday(H holiday, int offset) noexcept;
+
+	private:
+
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+	private:
+
+		H _holiday;
+		int _offset;
+
+	};
+
+	const auto BoxingDay = offset_holiday<named_holiday>{ ChristmasDay, 1 };
 
 
 
@@ -191,6 +213,23 @@ namespace calendar
 	inline auto named_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return { y, _md.month(), _md.day() };
+	}
+
+
+
+	template<typename H>
+	offset_holiday<H>::offset_holiday(H holiday, int offset) noexcept :
+		_holiday{ std::move(holiday) },
+		_offset{ offset }
+	{
+	}
+
+
+	template<typename H>
+	auto offset_holiday<H>::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		const auto d = _holiday.make_holiday(y);
+		return std::chrono::sys_days{ d } + std::chrono::days{ _offset };
 	}
 
 
