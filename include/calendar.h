@@ -53,7 +53,7 @@ namespace calendar
 
 		auto count_business_days(
 			const std::chrono::year_month_day& f,
-			const std::chrono::year_month_day& b
+			const std::chrono::year_month_day& u
 		) const -> std::size_t;
 
 		// would "*" and "[]" make some sence here?
@@ -64,8 +64,8 @@ namespace calendar
 
 	public:
 
-		auto front() const noexcept -> const std::chrono::year_month_day&;
-		auto back() const noexcept -> const std::chrono::year_month_day&;
+		auto from() const noexcept -> const std::chrono::year_month_day&;
+		auto until() const noexcept -> const std::chrono::year_month_day&;
 
 	public:
 
@@ -141,11 +141,11 @@ namespace calendar
 
 	inline void calendar::_make_bd_cache()
 	{
-		const auto size = _get_index(back()) + 1/*uz*/;
+		const auto size = _get_index(until()) + 1/*uz*/;
 
 		_bd_cache.resize(size);
 
-		const auto& f = front();
+		const auto& f = from();
 
 		for (auto i = std::size_t{ 0/*uz*/ }; i < size; ++i)
 		{
@@ -156,23 +156,23 @@ namespace calendar
 
 	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const -> std::size_t
 	{
-		if (ymd < front() || ymd > back())
+		if (ymd < from() || ymd > until())
 			throw std::out_of_range{ "Request is not consistent with front or back" };
 
-		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ front() };
+		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ from() };
 		return days.count();
 	}
 
 	inline auto calendar::_is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
-		return !_we.is_weekend(ymd) && !_hols.is_holiday(ymd);
+		return !_we.is_weekend(ymd) && !_hols.contains(ymd);
 		// we allow a holiday on a weekend
 	}
 
 
 	inline void calendar::substitute(const business_day_convention* const bdc)
 	{
-		const auto hols = _hols.get_hols();
+		const auto hols = _hols.get_dates();
 		for (const auto& holiday : hols)
 		{
 			_hols -= holiday;
@@ -199,16 +199,16 @@ namespace calendar
 
 	inline auto calendar::count_business_days(
 		const std::chrono::year_month_day& f,
-		const std::chrono::year_month_day& b
+		const std::chrono::year_month_day& u
 	) const -> std::size_t
 	{
-		if (f > b)
+		if (f > u)
 			throw std::out_of_range{ "Front and back are not consistent" };
 
 		auto result = std::size_t{ 0 };
 
 		// naive implementation to start with
-		for (auto d = f; d <= b; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+		for (auto d = f; d <= u; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
 			if (is_business_day(d))
 				result++;
 
@@ -216,14 +216,14 @@ namespace calendar
 	}
 
 
-	inline auto calendar::front() const noexcept -> const std::chrono::year_month_day&
+	inline auto calendar::from() const noexcept -> const std::chrono::year_month_day&
 	{
-		return _hols.get_front();
+		return _hols.get_from();
 	}
 
-	inline auto calendar::back() const noexcept -> const std::chrono::year_month_day&
+	inline auto calendar::until() const noexcept -> const std::chrono::year_month_day&
 	{
-		return _hols.get_back();
+		return _hols.get_until();
 	}
 
 

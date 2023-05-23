@@ -240,7 +240,7 @@ namespace calendar
 			2023y / April / 10d,
 		};
 
-		return schedule{ 2023y / April / 1d, 2023y / April / 30d, move(hols) };
+		return schedule{ 2023y / April / 1d, 2023y / April / 30d, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_england_may_2023() -> schedule
@@ -253,7 +253,7 @@ namespace calendar
 			2023y / May / 29d,
 		};
 
-		return schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+		return schedule{ 2023y / May / 1d, 2023y / May / 31d, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_united_states_may_2023() -> schedule
@@ -264,7 +264,7 @@ namespace calendar
 			2023y / May / 29d,
 		};
 
-		return schedule{ 2023y / May / 1d, 2023y / May / 31d, move(hols) };
+		return schedule{ 2023y / May / 1d, 2023y / May / 31d, std::move(hols) };
 	}
 
 }

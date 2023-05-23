@@ -122,7 +122,7 @@ namespace calendar
 		}
 
 
-		inline auto _front(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
+		inline auto _make_from(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 		{
 			const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
 			// or should we have smallest possible year_month_day if the holidays are empty?
@@ -130,7 +130,7 @@ namespace calendar
 			return { h.year(), std::chrono::January, std::chrono::day{ 1u } };
 		}
 
-		inline auto _back(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
+		inline auto _make_until(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 		{
 			const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
 			// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
@@ -144,13 +144,13 @@ namespace calendar
 			/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
 			auto hols = _parse_ics(fs);
-			auto front = _front(hols);
-			auto back = _back(hols);
+			auto from = _make_from(hols);
+			auto until = _make_until(hols);
 
 			// we assume that ics file covers the full number of years
 			return schedule{
-				std::move(front),
-				std::move(back),
+				std::move(from),
+				std::move(until),
 				std::move(hols)
 			};
 			// do we ever have weekend info in the ics files, which we should also process here?

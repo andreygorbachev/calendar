@@ -52,7 +52,7 @@ namespace calendar
 		const auto s2 = schedule{
 			2023y / January / 1d,
 			2023y / December / 31d,
-			s1.get_hols()
+			s1.get_dates()
 		};
 
 		EXPECT_EQ(parse_ics_england(), s1);
@@ -67,8 +67,8 @@ namespace calendar
 
 		const auto s = s1 | s2;
 
-		EXPECT_EQ(max(s1.get_front(), s2.get_front()), s.get_front());
-		EXPECT_EQ(min(s1.get_back(), s2.get_back()), s.get_back());
+		EXPECT_EQ(max(s1.get_from(), s2.get_from()), s.get_from());
+		EXPECT_EQ(min(s1.get_until(), s2.get_until()), s.get_until());
 	}
 
 	TEST(schedule, operator_and)
@@ -78,8 +78,8 @@ namespace calendar
 
 		const auto s = s1 & s2;
 
-		EXPECT_EQ(max(s1.get_front(), s2.get_front()), s.get_front());
-		EXPECT_EQ(min(s1.get_back(), s2.get_back()), s.get_back());
+		EXPECT_EQ(max(s1.get_from(), s2.get_from()), s.get_from());
+		EXPECT_EQ(min(s1.get_until(), s2.get_until()), s.get_until());
 	}
 
 	TEST(schedule, operator_equal)
@@ -106,8 +106,8 @@ namespace calendar
 		const auto s3 = s1 + s2;
 		const auto s4 = s2 + s1;
 
-		EXPECT_EQ(s3.get_front(), s4.get_front());
-		EXPECT_EQ(s3.get_back(), s4.get_back());
+		EXPECT_EQ(s3.get_from(), s4.get_from());
+		EXPECT_EQ(s3.get_until(), s4.get_until());
 	}
 
 	TEST(schedule, operator_plus_equal_1)
@@ -130,26 +130,26 @@ namespace calendar
 		EXPECT_EQ(parse_ics_england(), s1);
 	}
 
-	TEST(schedule, get_hols)
+	TEST(schedule, get_dates)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
-		const auto s2 = schedule{ s1.get_front(), s1.get_back(), s1.get_hols() };
+		const auto s2 = schedule{ s1.get_from(), s1.get_until(), s1.get_dates() };
 
-		EXPECT_EQ(s2.get_front(), s1.get_front());
-		EXPECT_EQ(s2.get_back(), s1.get_back());
+		EXPECT_EQ(s2.get_from(), s1.get_from());
+		EXPECT_EQ(s2.get_until(), s1.get_until());
 	}
 
-	TEST(schedule, is_holiday)
+	TEST(schedule, contains)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
 		const auto s3 = make_holiday_schedule_united_states_may_2023() | s1;
 		const auto s4 = make_holiday_schedule_united_states_may_2023() & s1;
 		const auto s5 = make_holiday_schedule_england_april_2023() + s1;
 
-		EXPECT_TRUE(s1.is_holiday(2023y / May / 1d));
-		EXPECT_TRUE(s3.is_holiday(2023y / May / 1d));
-		EXPECT_FALSE(s4.is_holiday(2023y / May / 1d));
-		EXPECT_TRUE(s3.is_holiday(2023y / May / 1d));
+		EXPECT_TRUE(s1.contains(2023y / May / 1d));
+		EXPECT_TRUE(s3.contains(2023y / May / 1d));
+		EXPECT_FALSE(s4.contains(2023y / May / 1d));
+		EXPECT_TRUE(s3.contains(2023y / May / 1d));
 	}
 
 }
