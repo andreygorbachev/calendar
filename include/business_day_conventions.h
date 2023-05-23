@@ -59,7 +59,7 @@ namespace calendar
 
 
 
-	class modified_following final : public business_day_convention
+	class modified_following final : public business_day_convention // could be moved out if it does not fit here
 	{
 
 	private:
