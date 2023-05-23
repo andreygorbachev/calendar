@@ -37,7 +37,7 @@ namespace calendar
 
 
 
-	class good_friday_holiday final : public annual_holiday
+	class _easter_holiday final : public annual_holiday
 	{
 
 	private:
@@ -46,24 +46,7 @@ namespace calendar
 
 	};
 
-
-	const auto GoodFriday = good_friday_holiday{};
-
-
-	// or should this be combined with good_friday_holiday?
-	// (so we have easter_holiday and some number of days offsetting holidays)
-	// (the same would be helpful for boxing day as well)
-	class easter_monday_holiday final : public annual_holiday
-	{
-
-	private:
-
-		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
-
-	};
-
-
-	const auto EasterMonday = easter_monday_holiday{};
+	const auto _Easter = _easter_holiday{};
 
 
 
@@ -109,6 +92,8 @@ namespace calendar
 
 	};
 
+	const auto GoodFriday = offset_holiday<_easter_holiday>{ _Easter, -2 };
+	const auto EasterMonday = offset_holiday<_easter_holiday>{ _Easter, 1 };
 	const auto BoxingDay = offset_holiday<named_holiday>{ ChristmasDay, 1 };
 
 
@@ -187,19 +172,9 @@ namespace calendar
 
 
 
-	inline auto good_friday_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
-		const auto easterSunday = make_easter(y);
-
-		return std::chrono::sys_days{ easterSunday } - std::chrono::days{ 2 };
-	}
-
-
-	inline auto easter_monday_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-	{
-		const auto easterSunday = make_easter(y);
-
-		return std::chrono::sys_days{ easterSunday } + std::chrono::days{ 1 };
+		return make_easter(y);
 	}
 
 

@@ -40,13 +40,13 @@ namespace calendar
 	}
 
 
-	TEST(good_friday_holiday, make_holiday)
+	TEST(offset_holiday, make_holiday1)
 	{
 		EXPECT_EQ(2023y / April / 7d, GoodFriday.make_holiday(2023y));
 	}
 
 
-	TEST(easter_monday_holiday, make_holiday)
+	TEST(offset_holiday, make_holiday2)
 	{
 		EXPECT_EQ(2023y / April / 10d, EasterMonday.make_holiday(2023y));
 	}
