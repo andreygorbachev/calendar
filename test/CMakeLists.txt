@@ -12,7 +12,6 @@ add_executable(${PROJECT_NAME}
   weekend.cpp
   schedule.cpp
   calendar.cpp
-  Easter.cpp
   annual_holidays.cpp
   business_day_conventions.cpp
   ics_parser.cpp
