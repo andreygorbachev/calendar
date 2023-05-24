@@ -37,19 +37,6 @@ namespace calendar
 
 
 
-	class _easter_holiday final : public annual_holiday
-	{
-
-	private:
-
-		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
-
-	};
-
-	const auto _Easter = _easter_holiday{};
-
-
-
 	class named_holiday final : public annual_holiday
 	{
 
@@ -69,6 +56,19 @@ namespace calendar
 
 	const auto NewYearsDay = named_holiday{ std::chrono::January / std::chrono::day{ 1u } };
 	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
+
+
+
+	class _easter_holiday final : public annual_holiday
+	{
+
+	private:
+
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+	};
+
+	const auto _Easter = _easter_holiday{};
 
 
 
@@ -171,13 +171,6 @@ namespace calendar
 
 
 
-	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-	{
-		return make_easter(y);
-	}
-
-
-
 	inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
 		_md{ std::move(md) }
 	{
@@ -187,6 +180,13 @@ namespace calendar
 	inline auto named_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return { y, _md.month(), _md.day() };
+	}
+
+
+
+	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return make_easter(y);
 	}
 
 

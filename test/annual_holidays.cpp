@@ -76,6 +76,7 @@ namespace calendar
 		EXPECT_EQ(true, hs.contains(2023y / April / 10d));
 	}
 
+
 	TEST(annual_holiday, make_easter)
 	{
 		EXPECT_EQ(1961y / April / 2d, make_easter(1961y));
