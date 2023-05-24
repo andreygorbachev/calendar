@@ -134,9 +134,22 @@ namespace calendar
 
 
 
+	inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
+		_md{ std::move(md) }
+	{
+	}
+
+
+	inline auto named_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return { y, _md.month(), _md.day() };
+	}
+
+
+
 	// https://en.wikipedia.org/wiki/Date_of_Easter
 
-	inline auto _make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
+	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		const auto Y = static_cast<int>(y);
 
@@ -167,26 +180,6 @@ namespace calendar
 		const auto p = (h + l - 7 * m + 33 * n + 19) % 32;
 
 		return { y, std::chrono::month{ static_cast<unsigned>(n) }, std::chrono::day{ static_cast<unsigned>(p) } };
-	}
-
-
-
-	inline named_holiday::named_holiday(std::chrono::month_day md) noexcept :
-		_md{ std::move(md) }
-	{
-	}
-
-
-	inline auto named_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-	{
-		return { y, _md.month(), _md.day() };
-	}
-
-
-
-	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
-	{
-		return _make_easter(y);
 	}
 
 

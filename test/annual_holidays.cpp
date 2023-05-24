@@ -40,6 +40,13 @@ namespace calendar
 	}
 
 
+	TEST(_easter_holiday, _make_easter)
+	{
+		EXPECT_EQ(1961y / April / 2d, _Easter.make_holiday(1961y));
+		EXPECT_EQ(2023y / April / 9d, _Easter.make_holiday(2023y));
+	}
+
+
 	TEST(offset_holiday, make_holiday1)
 	{
 		EXPECT_EQ(2023y / April / 7d, GoodFriday.make_holiday(2023y));
@@ -74,13 +81,6 @@ namespace calendar
 
 		EXPECT_EQ(true, hs.contains(2023y / April / 7d));
 		EXPECT_EQ(true, hs.contains(2023y / April / 10d));
-	}
-
-
-	TEST(annual_holiday, _make_easter)
-	{
-		EXPECT_EQ(1961y / April / 2d, _make_easter(1961y));
-		EXPECT_EQ(2023y / April / 9d, _make_easter(2023y));
 	}
 
 }
