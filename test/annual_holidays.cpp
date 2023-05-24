@@ -62,7 +62,7 @@ namespace calendar
 
 	TEST(weekday_last_holiday, make_holiday)
 	{
-		const auto h = weekday_last_holiday{ May / Monday[last]}; // Spring Bank Holiday
+		const auto h = weekday_last_holiday{ May / Monday[last] }; // Spring Bank Holiday
 
 		EXPECT_EQ(2023y / May / 29d, h.make_holiday(2023y));
 	}
