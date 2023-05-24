@@ -56,7 +56,7 @@ namespace calendar
 			const std::chrono::year_month_day& u
 		) const -> std::size_t;
 
-		// would "*" and "[]" make some sence here?
+		// would "*" and "[]" make some sense here?
 		// iterators?
 		// serial dates?
 
