@@ -77,10 +77,10 @@ namespace calendar
 	}
 
 
-	TEST(annual_holiday, make_easter)
+	TEST(annual_holiday, _make_easter)
 	{
-		EXPECT_EQ(1961y / April / 2d, make_easter(1961y));
-		EXPECT_EQ(2023y / April / 9d, make_easter(2023y));
+		EXPECT_EQ(1961y / April / 2d, _make_easter(1961y));
+		EXPECT_EQ(2023y / April / 9d, _make_easter(2023y));
 	}
 
 }

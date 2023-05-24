@@ -136,7 +136,7 @@ namespace calendar
 
 	// https://en.wikipedia.org/wiki/Date_of_Easter
 
-	inline auto make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
+	inline auto _make_easter(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
 	{
 		const auto Y = static_cast<int>(y);
 
@@ -186,7 +186,7 @@ namespace calendar
 
 	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
-		return make_easter(y);
+		return _make_easter(y);
 	}
 
 
