@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include "period.h"
+
 #include <cstddef>
 #include <chrono>
 #include <bitset>
@@ -47,8 +49,7 @@ namespace calendar
 	public:
 
 		explicit schedule(
-			std::chrono::year_month_day from,
-			std::chrono::year_month_day until,
+			period from_until,
 			storage dates
 		);
 
@@ -67,15 +68,13 @@ namespace calendar
 
 	public:
 
-		auto get_from() const noexcept -> const std::chrono::year_month_day&;
-		auto get_until() const noexcept -> const std::chrono::year_month_day&;
+		auto get_from_until() const noexcept -> const period&;
 
 		auto get_dates() const noexcept -> const storage&;
 
 	private:
 
-		std::chrono::year_month_day _from;
-		std::chrono::year_month_day _until;
+		period _from_until;
 
 		storage _dates;
 
@@ -85,24 +84,21 @@ namespace calendar
 
 	inline auto operator|(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto from = std::max(s1.get_from(), s2.get_from());
-		auto until = std::min(s1.get_until(), s2.get_until());
+		auto from_until = s1.get_from_until() + s2.get_from_until();
 
 		auto dates2 = s2.get_dates();
 		auto dates = s1.get_dates();
 		dates.merge(std::move(dates2));
 
 		return schedule{
-			std::move(from),
-			std::move(until),
+			std::move(from_until),
 			std::move(dates)
 		};
 	}
 
 	inline auto operator&(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto from = std::max(s1.get_from(), s2.get_from());
-		auto until = std::min(s1.get_until(), s2.get_until());
+		auto from_until = s1.get_from_until() + s2.get_from_until();
 
 		const auto& dates1 = s1.get_dates();
 		auto dates = schedule::storage{};
@@ -111,27 +107,25 @@ namespace calendar
 				dates.insert(h);
 
 		return schedule{
-			std::move(from),
-			std::move(until),
+			std::move(from_until),
 			std::move(dates)
 		};
 	}
 
-	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule
+	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule // are + semantics here are different from period's + ?
 	{
-		if (s1.get_from() > s2.get_from())
+		if (s1.get_from_until().get_from() > s2.get_from_until().get_from())
 			return s2 + s1;
 
-		if (std::chrono::sys_days{ s1.get_until() }++ == s2.get_from())
-			throw std::out_of_range{ "Front and back are not consistent" };
+		if (std::chrono::sys_days{ s1.get_from_until().get_until() }++ == s2.get_from_until().get_from())
+			throw std::out_of_range{ "From and until are not consistent" };
 
 		auto dates2 = s2.get_dates();
 		auto dates = s1.get_dates();
 		dates.merge(std::move(dates2));
 
 		return schedule{
-			s1.get_from(),
-			s2.get_until(),
+			{ s1.get_from_until().get_from(), s2.get_from_until().get_until() },
 			std::move(dates)
 		};
 	}
@@ -139,19 +133,14 @@ namespace calendar
 
 
 	inline schedule::schedule(
-		std::chrono::year_month_day from,
-		std::chrono::year_month_day until,
+		period from_until,
 		storage dates
-	) : _from{ std::move(from) },
-		_until{ std::move(until) },
+	) : _from_until{ std::move(from_until) },
 		_dates{ std::move(dates) }
 	{
-		if (_from > _until)
-			throw std::out_of_range{ "Front and back are not consistent" };
-
 		// get rid of the part of hols which is outside [front, back]
-		dates.erase(dates.begin(), std::lower_bound(dates.cbegin(), dates.cend(), _from));
-		dates.erase(std::upper_bound(dates.cbegin(), dates.cend(), _until), dates.end());
+		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
+		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
 	}
 
 
@@ -174,18 +163,12 @@ namespace calendar
 	inline auto schedule::contains(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
 		// if ymd is outside [front, back] it is not a holiday
-
 		return std::find(_dates.cbegin(), _dates.cend(), ymd) != _dates.cend();
 	}
 
-	inline auto schedule::get_from() const noexcept -> const std::chrono::year_month_day&
+	inline auto schedule::get_from_until() const noexcept -> const period&
 	{
-		return _from;
-	}
-
-	inline auto schedule::get_until() const noexcept -> const std::chrono::year_month_day&
-	{
-		return _until;
+		return _from_until;
 	}
 
 	inline auto schedule::get_dates() const noexcept -> const storage&

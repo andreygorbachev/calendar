@@ -73,8 +73,7 @@ namespace calendar
 				hols.insert(rule->make_holiday(y));
 
 		return schedule{
-			front_year / std::chrono::January / std::chrono::day{ 1u },
-			back_year / std::chrono::December / std::chrono::day{ 31u },
+			{ front_year / std::chrono::January / std::chrono::day{ 1u }, back_year / std::chrono::December / std::chrono::day{ 31u } },
 			std::move(hols)
 		};
 	}

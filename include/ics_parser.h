@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include "period.h"
 #include "schedule.h"
 
 #include <string>
@@ -138,19 +139,22 @@ namespace calendar
 			return { h.year(), std::chrono::December, std::chrono::day{ 31u } };
 		}
 
+		inline auto _make_from_until(const schedule::storage& hols) noexcept -> period
+		{
+			return { _make_from(hols), _make_until(hols) };
+		}
+
 
 		inline auto parse_ics(const std::string& fileName) -> schedule
 		{
 			/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
 			auto hols = _parse_ics(fs);
-			auto from = _make_from(hols);
-			auto until = _make_until(hols);
+			auto from_until = _make_from_until(hols);
 
 			// we assume that ics file covers the full number of years
 			return schedule{
-				std::move(from),
-				std::move(until),
+				std::move(from_until),
 				std::move(hols)
 			};
 			// do we ever have weekend info in the ics files, which we should also process here?

@@ -41,8 +41,7 @@ namespace calendar
 	{
 		const auto hols = schedule::storage{};
 
-		EXPECT_NO_THROW(schedule(2023y / May / 1d, 2023y / May / 1d, hols)); // ok to have a schedule for just 1 day
-		EXPECT_THROW(schedule(2023y / May / 31d, 2023y / May / 1d, hols), out_of_range);
+		EXPECT_NO_THROW(schedule({ 2023y / May / 1d, 2023y / May / 1d }, hols)); // ok to have a schedule for just 1 day
 	}
 
 
@@ -50,8 +49,7 @@ namespace calendar
 	{
 		const auto s1 = schedule{ parse_ics_england() };
 		const auto s2 = schedule{
-			2023y / January / 1d,
-			2023y / December / 31d,
+			{ 2023y / January / 1d,	2023y / December / 31d },
 			s1.get_dates()
 		};
 
@@ -67,8 +65,8 @@ namespace calendar
 
 		const auto s = s1 | s2;
 
-		EXPECT_EQ(max(s1.get_from(), s2.get_from()), s.get_from());
-		EXPECT_EQ(min(s1.get_until(), s2.get_until()), s.get_until());
+		EXPECT_EQ(max(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
+		EXPECT_EQ(min(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
 	}
 
 	TEST(schedule, operator_and)
@@ -78,8 +76,8 @@ namespace calendar
 
 		const auto s = s1 & s2;
 
-		EXPECT_EQ(max(s1.get_from(), s2.get_from()), s.get_from());
-		EXPECT_EQ(min(s1.get_until(), s2.get_until()), s.get_until());
+		EXPECT_EQ(max(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
+		EXPECT_EQ(min(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
 	}
 
 	TEST(schedule, operator_equal)
@@ -106,8 +104,8 @@ namespace calendar
 		const auto s3 = s1 + s2;
 		const auto s4 = s2 + s1;
 
-		EXPECT_EQ(s3.get_from(), s4.get_from());
-		EXPECT_EQ(s3.get_until(), s4.get_until());
+		EXPECT_EQ(s3.get_from_until().get_from(), s4.get_from_until().get_from());
+		EXPECT_EQ(s3.get_from_until().get_until(), s4.get_from_until().get_until());
 	}
 
 	TEST(schedule, operator_plus_equal_1)
@@ -133,10 +131,9 @@ namespace calendar
 	TEST(schedule, get_dates)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
-		const auto s2 = schedule{ s1.get_from(), s1.get_until(), s1.get_dates() };
+		const auto s2 = schedule{ s1.get_from_until(), s1.get_dates() };
 
-		EXPECT_EQ(s2.get_from(), s1.get_from());
-		EXPECT_EQ(s2.get_until(), s1.get_until());
+		EXPECT_EQ(s2.get_from_until(), s1.get_from_until());
 	}
 
 	TEST(schedule, contains)

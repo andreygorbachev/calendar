@@ -64,8 +64,7 @@ namespace calendar
 
 	public:
 
-		auto from() const noexcept -> const std::chrono::year_month_day&;
-		auto until() const noexcept -> const std::chrono::year_month_day&;
+		auto from_until() const noexcept -> const period&; // are we duplicating functionality here?
 
 	public:
 
@@ -141,11 +140,12 @@ namespace calendar
 
 	inline void calendar::_make_bd_cache()
 	{
-		const auto size = _get_index(until()) + 1/*uz*/;
+		const auto& fu = from_until();
+		const auto size = _get_index(fu.get_until()) + 1/*uz*/;
 
 		_bd_cache.resize(size);
 
-		const auto& f = from();
+		const auto& f = fu.get_from();
 
 		for (auto i = std::size_t{ 0/*uz*/ }; i < size; ++i)
 		{
@@ -156,10 +156,11 @@ namespace calendar
 
 	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const -> std::size_t
 	{
-		if (ymd < from() || ymd > until())
+		const auto& fu = from_until();
+		if (ymd < fu.get_from() || ymd > fu.get_until())
 			throw std::out_of_range{ "Request is not consistent with front or back" };
 
-		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ from() };
+		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ fu.get_from() };
 		return days.count();
 	}
 
@@ -216,14 +217,9 @@ namespace calendar
 	}
 
 
-	inline auto calendar::from() const noexcept -> const std::chrono::year_month_day&
+	inline auto calendar::from_until() const noexcept -> const period&
 	{
-		return _hols.get_from();
-	}
-
-	inline auto calendar::until() const noexcept -> const std::chrono::year_month_day&
-	{
-		return _hols.get_until();
+		return _hols.get_from_until();
 	}
 
 
