@@ -51,10 +51,7 @@ namespace calendar
 
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto count_business_days(
-			const std::chrono::year_month_day& f,
-			const std::chrono::year_month_day& u
-		) const -> std::size_t;
+		auto count_business_days(const period& from_until) const -> std::size_t;
 
 		// would "*" and "[]" make some sense here?
 		// iterators?
@@ -198,18 +195,16 @@ namespace calendar
 		return _bd_cache[_get_index(ymd)];
 	}
 
-	inline auto calendar::count_business_days(
-		const std::chrono::year_month_day& f,
-		const std::chrono::year_month_day& u
-	) const -> std::size_t
+	inline auto calendar::count_business_days(const period& from_until) const -> std::size_t
 	{
-		if (f > u)
-			throw std::out_of_range{ "Front and back are not consistent" };
-
 		auto result = std::size_t{ 0 };
 
 		// naive implementation to start with
-		for (auto d = f; d <= u; d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
+		)
 			if (is_business_day(d))
 				result++;
 
