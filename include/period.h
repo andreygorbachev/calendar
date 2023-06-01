@@ -66,17 +66,7 @@ namespace calendar
 	};
 
 
-
-	inline auto operator+(const period& p1, const period& p2) -> period
-	{
-		if (p1.get_from() > p2.get_from())
-			return p2 + p1;
-
-		if (p1.get_until() <= p2.get_from()) // for now we assume that until is included
-			throw std::out_of_range{ "Periods are not consistent" };
-
-		return { p1.get_from(), p2.get_until() };
-	}
+	// maybe consider a method for an intersection of 2 periods?
 
 
 
