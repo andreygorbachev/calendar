@@ -32,10 +32,10 @@ namespace calendar
 {
 
 	// from https://www.gov.uk/bank-holidays
-	constexpr auto EnglandAndWalesICS = "../../test/data/england-and-wales.ics";
+	constexpr auto EnglandAndWalesICS = "england-and-wales.ics";
 
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	constexpr auto UnitedStatesICS = "../../test/data/united-states.ics";
+	constexpr auto UnitedStatesICS = "united-states.ics";
 
 
 	inline auto parse_ics_england() -> const schedule&
