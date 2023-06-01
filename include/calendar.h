@@ -155,7 +155,7 @@ namespace calendar
 	{
 		const auto& fu = from_until();
 		if (ymd < fu.get_from() || ymd > fu.get_until())
-			throw std::out_of_range{ "Request is not consistent with front or back" };
+			throw std::out_of_range{ "Request is not consistent with from/until" };
 
 		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ fu.get_from() };
 		return days.count();

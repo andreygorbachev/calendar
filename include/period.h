@@ -77,7 +77,7 @@ namespace calendar
 		_f{ std::move(f) },
 		_u{ std::move(u) }
 	{
-		if (f > u)
+		if (_f > _u)
 			throw std::out_of_range{ "From and until are not consistent" };
 	}
 
