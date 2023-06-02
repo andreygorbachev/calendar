@@ -42,20 +42,20 @@ namespace calendar
 
 	inline auto parse_ics_england() -> const schedule&
 	{
-		static auto s = parser::parse_ics(EnglandAndWalesICS);
+		static const auto s = parser::parse_ics(EnglandAndWalesICS);
 
 		return s;
 	}
 
 	inline auto parse_ics_united_states() -> const schedule&
 	{
-		static auto s = parser::parse_ics(UnitedStatesICS);
+		static const auto s = parser::parse_ics(UnitedStatesICS);
 
 		return s;
 	}
 
 
-	inline auto make_holiday_schedule_england() -> schedule
+	inline auto _make_holiday_schedule_england() -> schedule
 	{
 		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
 		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
@@ -151,7 +151,15 @@ namespace calendar
 		return hs2018_2019 + hs2020 + hs2021 + hs2022 + hs2023 + hs2024_2025;
 	}
 
-	inline auto make_holiday_schedule_united_states() -> schedule
+	inline auto make_holiday_schedule_england() -> const schedule&
+	{
+		static const auto s = _make_holiday_schedule_england();
+
+		return s;
+	}
+
+
+	inline auto _make_holiday_schedule_united_states() -> schedule
 	{
 		const auto MartinLutherKing = weekday_indexed_holiday{ std::chrono::January / std::chrono::Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto Washington = weekday_indexed_holiday{ std::chrono::February / std::chrono::Monday[3] }; // Washington's Birthday
@@ -231,14 +239,45 @@ namespace calendar
 		return hs2021 + hs2022_2024 + hs2025 + hs2026_2028 + hs2029 + hs2030;
 	}
 
+	inline auto make_holiday_schedule_united_states() -> const schedule&
+	{
+		static const auto s = _make_holiday_schedule_united_states();
 
-	inline auto make_calendar_england() -> calendar
+		return s;
+	}
+
+
+	inline auto _make_calendar_england() -> calendar
 	{
 		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
 		c.substitute(&Following);
 
 		return c;
 	}
+
+	inline auto make_calendar_england() -> const calendar&
+	{
+		static const auto c = _make_calendar_england();
+
+		return c;
+	}
+
+
+	inline auto _make_calendar_united_states() -> calendar
+	{
+		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
+		c.substitute(&Nearest);
+
+		return c;
+	}
+
+	inline auto make_calendar_united_states() -> const calendar&
+	{
+		static const auto c = _make_calendar_united_states();
+
+		return c;
+	}
+
 
 
 	inline auto make_holiday_schedule_england_april_2023() -> schedule

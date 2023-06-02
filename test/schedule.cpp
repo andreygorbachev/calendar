@@ -47,21 +47,21 @@ namespace calendar
 
 	TEST(schedule, constructor2)
 	{
-		const auto s1 = schedule{ parse_ics_england() };
+		const auto s1 = schedule{ make_holiday_schedule_england() };
 		const auto s2 = schedule{
 			{ 2023y / January / 1d,	2023y / December / 31d },
 			s1.get_dates()
 		};
 
-		EXPECT_EQ(parse_ics_england(), s1);
-		EXPECT_NE(parse_ics_england(), s2);
+		EXPECT_EQ(make_holiday_schedule_england(), s1);
+		EXPECT_NE(make_holiday_schedule_england(), s2);
 	}
 
 
 	TEST(schedule, operator_or)
 	{
-		const auto& s1 = parse_ics_england();
-		const auto& s2 = parse_ics_united_states();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s = s1 | s2;
 
@@ -71,8 +71,8 @@ namespace calendar
 
 	TEST(schedule, operator_and)
 	{
-		const auto& s1 = parse_ics_england();
-		const auto& s2 = parse_ics_united_states();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s = s1 & s2;
 
@@ -82,24 +82,24 @@ namespace calendar
 
 	TEST(schedule, operator_equal)
 	{
-		const auto s1 = parse_ics_england();
-		const auto s2 = parse_ics_england();
+		const auto s1 = make_holiday_schedule_england();
+		const auto s2 = make_holiday_schedule_england();
 
 		EXPECT_TRUE(s1 == s2);
 	}
 
 	TEST(schedule, operator_not_equal)
 	{
-		const auto& s1 = parse_ics_england();
-		const auto& s2 = parse_ics_united_states();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_united_states();
 
 		EXPECT_TRUE(s1 != s2);
 	}
 
 	TEST(schedule, operator_plus)
 	{
-		const auto& s1 = parse_ics_england();
-		const auto& s2 = parse_ics_united_states();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s3 = s1 + s2;
 		const auto s4 = s2 + s1;
@@ -110,8 +110,8 @@ namespace calendar
 
 	TEST(schedule, operator_plus_equal_1)
 	{
-		const auto& s1 = parse_ics_england();
-		const auto& s2 = parse_ics_united_states();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_united_states();
 
 		auto s3 = s1;
 		s3 += s2;
@@ -121,11 +121,11 @@ namespace calendar
 
 	TEST(schedule, operator_plus_equal_2)
 	{
-		auto s1 = parse_ics_england();
+		auto s1 = make_holiday_schedule_england();
 		s1 += 2023y / April / 1d;
 		s1 -= 2023y / April / 1d;
 
-		EXPECT_EQ(parse_ics_england(), s1);
+		EXPECT_EQ(make_holiday_schedule_england(), s1);
 	}
 
 	TEST(schedule, get_dates)
