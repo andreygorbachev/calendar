@@ -36,23 +36,28 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	auto test_parse_ics_holidays() -> const schedule::storage&
+	namespace parser
 	{
-		static auto fs = ifstream{ EnglandAndWalesICS };
-		static auto hols = parser::_parse_ics(fs);
 
-		return hols;
-	}
+		auto test_parse_ics_holidays() -> const schedule::storage&
+		{
+			static auto fs = ifstream{ EnglandAndWalesICS };
+			static auto hols = _parse_ics(fs);
+
+			return hols;
+		}
 
 
-	TEST(ics_parser, _make_from)
-	{
-		EXPECT_EQ(2018y/January/1d, parser::_make_from(test_parse_ics_holidays()));
-	}
+		TEST(ics_parser, _make_from)
+		{
+			EXPECT_EQ(2018y / January / 1d, _make_from(test_parse_ics_holidays()));
+		}
 
-	TEST(ics_parser, _make_until)
-	{
-		EXPECT_EQ(2025y/December/31d, parser::_make_until(test_parse_ics_holidays()));
+		TEST(ics_parser, _make_until)
+		{
+			EXPECT_EQ(2025y / December / 31d, _make_until(test_parse_ics_holidays()));
+		}
+
 	}
 
 }
