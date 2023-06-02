@@ -7,7 +7,7 @@ add_library(calendar INTERFACE
   annual_holidays.h
   business_day_convention_interface.h
   business_day_conventions.h
-  ics_parser.h
+  parser.h
 )
 
 target_include_directories(calendar INTERFACE .)

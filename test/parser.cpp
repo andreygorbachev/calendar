@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #include <schedule.h>
-#include <ics_parser.h>
+#include <parser.h>
 
 #include <gtest/gtest.h>
 

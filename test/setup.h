@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #include <schedule.h>
-#include <ics_parser.h>
+#include <parser.h>
 #include <annual_holidays.h>
 #include <calendar.h>
 #include <business_day_conventions.h>
