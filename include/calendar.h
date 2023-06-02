@@ -65,7 +65,7 @@ namespace calendar
 
 	public:
 
-		void substitute(const business_day_convention* const bdc);
+		void substitute(const business_day_convention* const bdc); // or should we template calendar on this convention?
 
 	public:
 
