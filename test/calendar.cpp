@@ -40,22 +40,28 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(calendar, substitute1)
+	TEST(calendar, substitute)
 	{
-		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto expected = calendar{
+			SaturdaySundayWeekend,
+			schedule{
+				period{ 2023y / January / 1d, 2023y / January / 31d },
+				schedule::storage{
+					2023y / January / 2d,
+				}
+			}
+		};
 
-		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+		auto c = calendar{
+			SaturdaySundayWeekend,
+			schedule{
+				period{ 2023y / January / 1d, 2023y / January / 31d },
+				schedule::storage{
+					2023y / January / 1d,
+				}
+			}
+		};
 		c.substitute(&Following);
-
-		EXPECT_EQ(expected, c);
-	}
-
-	TEST(calendar, substitute2)
-	{
-		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
-
-		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
-		c.substitute(&Nearest);
 
 		EXPECT_EQ(expected, c);
 	}
