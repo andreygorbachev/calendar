@@ -64,8 +64,6 @@ namespace calendar
 		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
 	) noexcept -> schedule
 	{
-		// what is back year is before front_year?
-
 		auto hols = schedule::storage{};
 
 		for (auto y = front_year; y <= back_year; ++y)

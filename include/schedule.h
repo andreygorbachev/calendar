@@ -140,7 +140,7 @@ namespace calendar
 	) : _from_until{ std::move(from_until) },
 		_dates{ std::move(dates) }
 	{
-		// get rid of the part of hols which is outside [front, back]
+		// get rid of the hols which are outside [from, until]
 		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
 		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
 	}
@@ -164,7 +164,6 @@ namespace calendar
 
 	inline auto schedule::contains(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
-		// if ymd is outside [front, back] it is not a holiday
 		return std::find(_dates.cbegin(), _dates.cend(), ymd) != _dates.cend();
 	}
 
