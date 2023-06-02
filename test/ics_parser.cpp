@@ -48,21 +48,42 @@ namespace calendar
 		}
 
 
-		TEST(ics_parser, _make_from)
+		TEST(parser, _make_from)
 		{
 			EXPECT_EQ(2018y / January / 1d, _make_from(test_parse_ics_holidays()));
 		}
 
-		TEST(ics_parser, _make_until)
+		TEST(parser, _make_until)
 		{
 			EXPECT_EQ(2025y / December / 31d, _make_until(test_parse_ics_holidays()));
 		}
 
-		TEST(ics_parser, _make_from_until)
+		TEST(parser, _make_from_until)
 		{
 			const auto expected = period{ 2018y / January / 1d, 2025y / December / 31d };
 
 			EXPECT_EQ(expected, _make_from_until(test_parse_ics_holidays()));
+		}
+
+
+		TEST(parser, parce_ics1)
+		{
+			const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+
+			auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+			c.substitute(&Following);
+
+			EXPECT_EQ(expected, c);
+		}
+
+		TEST(parser, parse_ics2)
+		{
+			const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
+
+			auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
+			c.substitute(&Nearest);
+
+			EXPECT_EQ(expected, c);
 		}
 
 	}
