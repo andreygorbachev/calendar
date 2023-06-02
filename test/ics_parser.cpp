@@ -58,6 +58,13 @@ namespace calendar
 			EXPECT_EQ(2025y / December / 31d, _make_until(test_parse_ics_holidays()));
 		}
 
+		TEST(ics_parser, _make_from_until)
+		{
+			const auto expected = period{ 2018y / January / 1d, 2025y / December / 31d };
+
+			EXPECT_EQ(expected, _make_from_until(test_parse_ics_holidays()));
+		}
+
 	}
 
 }
