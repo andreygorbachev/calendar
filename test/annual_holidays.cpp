@@ -75,7 +75,7 @@ namespace calendar
 	}
 
 
-	TEST(annual_holiday, make_calendar)
+	TEST(annual_holiday, make_holiday_schedule)
 	{
 		const auto hs = make_holiday_schedule_england();
 

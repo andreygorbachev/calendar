@@ -55,10 +55,9 @@ namespace calendar
 
 
 
-	// maybe have an overload for just 1 year? (most wall calendars are just 1 year long)
 	inline auto make_holiday_schedule(
-		const std::chrono::year front_year,
-		const std::chrono::year back_year,
+		const std::chrono::year& front_year,
+		const std::chrono::year& back_year,
 		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
 	) noexcept -> schedule
 	{
@@ -72,6 +71,14 @@ namespace calendar
 			{ front_year / std::chrono::January / std::chrono::day{ 1u }, back_year / std::chrono::December / std::chrono::day{ 31u } },
 			std::move(hols)
 		};
+	}
+
+	inline auto make_holiday_schedule(
+		const std::chrono::year& front_year,
+		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
+	) noexcept -> schedule
+	{
+		return make_holiday_schedule(front_year, front_year, rules);
 	}
 
 

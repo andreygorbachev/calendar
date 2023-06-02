@@ -91,12 +91,10 @@ namespace calendar
 
 		const auto hs2020 = make_holiday_schedule(
 			std::chrono::year{ 2020 },
-			std::chrono::year{ 2020 },
 			rules2020
 		);
 
 		const auto hs2021 = make_holiday_schedule(
-			std::chrono::year{ 2021 },
 			std::chrono::year{ 2021 },
 			rules
 		);
@@ -119,7 +117,6 @@ namespace calendar
 
 		const auto hs2022 = make_holiday_schedule(
 			std::chrono::year{ 2022 },
-			std::chrono::year{ 2022 },
 			rules2022
 		);
 
@@ -137,7 +134,6 @@ namespace calendar
 		rules2023.insert(&BoxingDay);
 
 		const auto hs2023 = make_holiday_schedule(
-			std::chrono::year{ 2023 },
 			std::chrono::year{ 2023 },
 			rules2023
 		);
@@ -202,7 +198,6 @@ namespace calendar
 
 		const auto hs2021 = make_holiday_schedule(
 			std::chrono::year{ 2021 },
-			std::chrono::year{ 2021 },
 			rules2
 		);
 
@@ -213,7 +208,6 @@ namespace calendar
 		);
 
 		const auto hs2025 = make_holiday_schedule(
-			std::chrono::year{ 2025 },
 			std::chrono::year{ 2025 },
 			rules2
 		);
@@ -226,12 +220,10 @@ namespace calendar
 
 		const auto hs2029 = make_holiday_schedule(
 			std::chrono::year{ 2029 },
-			std::chrono::year{ 2029 },
 			rules//rules2
 		);
 
 		const auto hs2030 = make_holiday_schedule(
-			std::chrono::year{ 2030 },
 			std::chrono::year{ 2030 },
 			rules
 		);

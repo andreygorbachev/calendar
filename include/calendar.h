@@ -57,8 +57,6 @@ namespace calendar
 		// iterators?
 		// serial dates?
 
-		// should we have a notion of a "wall calendar" - 1 year (for the current year as a default)
-
 	public:
 
 		auto from_until() const noexcept -> const period&; // are we duplicating functionality here?
