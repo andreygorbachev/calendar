@@ -32,8 +32,6 @@ namespace calendar
 {
 
 	// extend from annual to any other frequency?
-	// (should allow us to generate pseudo coupon schedules for Gilts for example)
-	// (make sure we can do EOM)
 
 	class annual_holiday
 	{
@@ -75,11 +73,10 @@ namespace calendar
 			std::move(hols)
 		};
 	}
-	// add weekend?
 
 
 
-	inline 	auto annual_holiday::make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto annual_holiday::make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return _make_holiday(y);
 	}
