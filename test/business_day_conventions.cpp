@@ -39,14 +39,14 @@ namespace calendar
 
 	TEST(no_adjustment, adjust)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
 	}
 
 	TEST(following, adjust)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
@@ -54,7 +54,7 @@ namespace calendar
 
 	TEST(modified_following, adjust)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 3d, c));
@@ -63,7 +63,7 @@ namespace calendar
 
 	TEST(preceding, adjust)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2022y / December / 30d, c));
@@ -71,7 +71,7 @@ namespace calendar
 
 	TEST(nearest, adjust)
 	{
-		const auto c = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+		const auto c = make_calendar_england();
 
 		// Friday
 		EXPECT_EQ(2023y / March / 24d, Nearest.adjust(2023y / March / 24d, c));

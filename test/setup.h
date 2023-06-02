@@ -23,6 +23,8 @@
 #include <schedule.h>
 #include <ics_parser.h>
 #include <annual_holidays.h>
+#include <calendar.h>
+#include <business_day_conventions.h>
 
 #include <fstream>
 #include <unordered_set>
@@ -229,6 +231,14 @@ namespace calendar
 		return hs2021 + hs2022_2024 + hs2025 + hs2026_2028 + hs2029 + hs2030;
 	}
 
+
+	inline auto make_calendar_england() -> calendar
+	{
+		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+		c.substitute(&Following);
+
+		return c;
+	}
 
 
 	inline auto make_holiday_schedule_england_april_2023() -> schedule
