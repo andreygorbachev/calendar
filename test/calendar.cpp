@@ -54,7 +54,7 @@ namespace calendar
 	{
 		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
 
-		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
 		c.substitute(&Nearest);
 
 		EXPECT_EQ(expected, c);
