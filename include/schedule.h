@@ -49,7 +49,7 @@ namespace calendar
 	public:
 
 		explicit schedule(
-			period from_until,
+			days_period from_until,
 			storage dates
 		);
 
@@ -68,13 +68,13 @@ namespace calendar
 
 	public:
 
-		auto get_from_until() const noexcept -> const period&;
+		auto get_from_until() const noexcept -> const days_period&;
 
 		auto get_dates() const noexcept -> const storage&;
 
 	private:
 
-		period _from_until;
+		days_period _from_until;
 
 		storage _dates;
 
@@ -135,7 +135,7 @@ namespace calendar
 
 
 	inline schedule::schedule(
-		period from_until,
+		days_period from_until,
 		storage dates
 	) : _from_until{ std::move(from_until) },
 		_dates{ std::move(dates) }
@@ -167,7 +167,7 @@ namespace calendar
 		return std::find(_dates.cbegin(), _dates.cend(), ymd) != _dates.cend();
 	}
 
-	inline auto schedule::get_from_until() const noexcept -> const period&
+	inline auto schedule::get_from_until() const noexcept -> const days_period&
 	{
 		return _from_until;
 	}

@@ -51,7 +51,7 @@ namespace calendar
 
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto count_business_days(const period& from_until) const -> std::size_t;
+		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
 		// would "*" and "[]" make some sense here?
 		// iterators?
@@ -59,7 +59,7 @@ namespace calendar
 
 	public:
 
-		auto from_until() const noexcept -> const period&; // are we duplicating functionality here?
+		auto from_until() const noexcept -> const days_period&; // are we duplicating functionality here?
 
 	public:
 
@@ -193,7 +193,7 @@ namespace calendar
 		return _bd_cache[_get_index(ymd)];
 	}
 
-	inline auto calendar::count_business_days(const period& from_until) const -> std::size_t
+	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
 	{
 		auto result = std::size_t{ 0 };
 
@@ -210,7 +210,7 @@ namespace calendar
 	}
 
 
-	inline auto calendar::from_until() const noexcept -> const period&
+	inline auto calendar::from_until() const noexcept -> const days_period&
 	{
 		return _hols.get_from_until();
 	}

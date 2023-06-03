@@ -139,7 +139,7 @@ namespace calendar
 			return { h.year(), std::chrono::December, std::chrono::day{ 31u } };
 		}
 
-		inline auto _make_from_until(const schedule::storage& hols) noexcept -> period
+		inline auto _make_from_until(const schedule::storage& hols) noexcept -> days_period
 		{
 			return { _make_from(hols), _make_until(hols) };
 		}

@@ -30,7 +30,7 @@
 namespace calendar
 {
 
-	class period
+	template<typename T> class period
 	{
 
 	public:
@@ -40,8 +40,8 @@ namespace calendar
 		period(period&&) noexcept = default;
 
 		period(
-			std::chrono::year_month_day f,
-			std::chrono::year_month_day u
+			T f,
+			T u
 		);
 
 		~period() noexcept = default;
@@ -55,24 +55,29 @@ namespace calendar
 
 	public:
 
-		auto get_from() const noexcept -> const std::chrono::year_month_day&;
-		auto get_until() const noexcept -> const std::chrono::year_month_day&;
+		auto get_from() const noexcept -> const T&;
+		auto get_until() const noexcept -> const T&;
 
 	private:
 
-		std::chrono::year_month_day _f;
-		std::chrono::year_month_day _u;
+		T _f;
+		T _u;
 
 	};
+
+
+	using days_period = period<std::chrono::year_month_day>;
+	using months_period = period<std::chrono::year_month>;
+	using years_period = period<std::chrono::year>;
 
 
 	// maybe consider a method for an intersection of 2 periods?
 
 
-
-	inline period::period(
-		std::chrono::year_month_day f,
-		std::chrono::year_month_day u
+	template<typename T>
+	period<T>::period(
+		T f,
+		T u
 	) :
 		_f{ std::move(f) },
 		_u{ std::move(u) }
@@ -82,12 +87,14 @@ namespace calendar
 	}
 
 
-	inline auto period::get_from() const noexcept -> const std::chrono::year_month_day&
+	template<typename T>
+	auto period<T>::get_from() const noexcept -> const T&
 	{
 		return _f;
 	}
 
-	inline auto period::get_until() const noexcept -> const std::chrono::year_month_day&
+	template<typename T>
+	auto period<T>::get_until() const noexcept -> const T&
 	{
 		return _u;
 	}
