@@ -39,10 +39,7 @@ namespace calendar
 		period(const period&) = default;
 		period(period&&) noexcept = default;
 
-		period(
-			T f,
-			T u
-		);
+		period(T from, T until);
 
 		~period() noexcept = default;
 
@@ -60,8 +57,8 @@ namespace calendar
 
 	private:
 
-		T _f;
-		T _u;
+		T _from;
+		T _until;
 
 	};
 
@@ -75,14 +72,11 @@ namespace calendar
 
 
 	template<typename T>
-	period<T>::period(
-		T f,
-		T u
-	) :
-		_f{ std::move(f) },
-		_u{ std::move(u) }
+	period<T>::period(T from, T until) :
+		_from{ std::move(from) },
+		_until{ std::move(until) }
 	{
-		if (_f > _u)
+		if (_from > _until)
 			throw std::out_of_range{ "From and until are not consistent" };
 	}
 
@@ -90,13 +84,13 @@ namespace calendar
 	template<typename T>
 	auto period<T>::get_from() const noexcept -> const T&
 	{
-		return _f;
+		return _from;
 	}
 
 	template<typename T>
 	auto period<T>::get_until() const noexcept -> const T&
 	{
-		return _u;
+		return _until;
 	}
 
 }
