@@ -56,19 +56,21 @@ namespace calendar
 
 
 	inline auto make_holiday_schedule(
-		const std::chrono::year& front_year,
-		const std::chrono::year& back_year,
+		const years_period& from_until,
 		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
 	) noexcept -> schedule
 	{
 		auto hols = schedule::storage{};
 
-		for (auto y = front_year; y <= back_year; ++y)
+		for (auto y = from_until.get_from(); y <= from_until.get_until(); ++y)
 			for (const auto& rule : rules)
 				hols.insert(rule->make_holiday(y));
 
 		return schedule{
-			{ front_year / std::chrono::January / std::chrono::day{ 1u }, back_year / std::chrono::December / std::chrono::day{ 31u } },
+			{
+				from_until.get_from() / std::chrono::January / std::chrono::day{ 1u },
+				from_until.get_until() / std::chrono::December / std::chrono::day{ 31u }
+			},
 			std::move(hols)
 		};
 	}
@@ -78,7 +80,7 @@ namespace calendar
 		const std::unordered_set<const annual_holiday*>& rules // or should it be a variadic template?
 	) noexcept -> schedule
 	{
-		return make_holiday_schedule(front_year, front_year, rules);
+		return make_holiday_schedule({ front_year, front_year }, rules);
 	}
 
 
