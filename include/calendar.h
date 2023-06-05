@@ -74,7 +74,7 @@ namespace calendar
 
 		void _make_bd_cache();
 
-		auto _get_index(const std::chrono::year_month_day& ymd) const -> std::size_t;
+		auto _index(const std::chrono::year_month_day& ymd) const -> std::size_t;
 
 		auto _is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
@@ -136,7 +136,7 @@ namespace calendar
 	inline void calendar::_make_bd_cache()
 	{
 		const auto& fu = from_until();
-		const auto size = _get_index(fu.get_until()) + 1/*uz*/;
+		const auto size =_index(fu.get_until()) + 1/*uz*/;
 
 		_bd_cache.resize(size);
 
@@ -149,7 +149,7 @@ namespace calendar
 		}
 	}
 
-	inline auto calendar::_get_index(const std::chrono::year_month_day& ymd) const -> std::size_t
+	inline auto calendar::_index(const std::chrono::year_month_day& ymd) const -> std::size_t
 	{
 		const auto& fu = from_until();
 		if (ymd < fu.get_from() || ymd > fu.get_until())
@@ -190,7 +190,7 @@ namespace calendar
 
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
-		return _bd_cache[_get_index(ymd)];
+		return _bd_cache[_index(ymd)];
 	}
 
 	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
