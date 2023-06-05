@@ -1,4 +1,6 @@
-add_library(calendar INTERFACE
+project("calendar")
+
+add_library(${PROJECT_NAME} INTERFACE
   weekend.h
   period.h
   schedule.h
@@ -10,4 +12,4 @@ add_library(calendar INTERFACE
   parser.h
 )
 
-target_include_directories(calendar INTERFACE .)
+target_include_directories(${PROJECT_NAME} INTERFACE .)
