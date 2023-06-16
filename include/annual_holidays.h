@@ -56,6 +56,7 @@ namespace calendar
 
 	const auto NewYearsDay = named_holiday{ std::chrono::January / std::chrono::day{ 1u } };
 	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
+	const auto NewYearsEve = named_holiday{ std::chrono::December / std::chrono::day{ 31u } };
 
 
 
@@ -93,6 +94,9 @@ namespace calendar
 
 	const auto GoodFriday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ -2 } };
 	const auto EasterMonday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 1 } };
+	const auto AscensionDay = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 39 } };
+	const auto Whitmonday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 50 } };
+	const auto ChristmasEve = offset_holiday<named_holiday>{ ChristmasDay, std::chrono::days{ -1 } };
 	const auto BoxingDay = offset_holiday<named_holiday>{ ChristmasDay, std::chrono::days{ 1 } };
 
 

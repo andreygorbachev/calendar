@@ -34,9 +34,14 @@ using namespace std::chrono;
 namespace calendar
 {
 
-	TEST(named_holiday, make_holiday)
+	TEST(named_holiday, make_holiday1)
 	{
 		EXPECT_EQ(2023y / January / 1d, NewYearsDay.make_holiday(2023y));
+	}
+
+	TEST(named_holiday, make_holiday2)
+	{
+		EXPECT_EQ(2023y / December / 31d, NewYearsEve.make_holiday(2023y));
 	}
 
 
@@ -52,10 +57,25 @@ namespace calendar
 		EXPECT_EQ(2023y / April / 7d, GoodFriday.make_holiday(2023y));
 	}
 
-
 	TEST(offset_holiday, make_holiday2)
 	{
 		EXPECT_EQ(2023y / April / 10d, EasterMonday.make_holiday(2023y));
+	}
+
+	TEST(offset_holiday, make_holiday3)
+	{
+		EXPECT_EQ(2022y / May / 26d, AscensionDay.make_holiday(2022y));
+		EXPECT_EQ(2023y / May / 18d, AscensionDay.make_holiday(2023y));
+		EXPECT_EQ(2024y / May / 9d, AscensionDay.make_holiday(2024y));
+		EXPECT_EQ(2025y / May / 29d, AscensionDay.make_holiday(2025y));
+	}
+
+	TEST(offset_holiday, make_holiday4)
+	{
+		EXPECT_EQ(2022y / June / 6d, Whitmonday.make_holiday(2022y));
+		EXPECT_EQ(2023y / May / 29d, Whitmonday.make_holiday(2023y));
+		EXPECT_EQ(2024y / May / 20d, Whitmonday.make_holiday(2024y));
+		EXPECT_EQ(2025y / June / 9d, Whitmonday.make_holiday(2025y));
 	}
 
 
