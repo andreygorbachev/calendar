@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <schedule.h>
+#include <business_day_conventions.h>
 
 #include <gtest/gtest.h>
 
@@ -78,6 +79,14 @@ namespace calendar
 
 		EXPECT_EQ(max(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
 		EXPECT_EQ(min(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
+	}
+
+	TEST(schedule, operator_not)
+	{
+		auto s = make_mpc_holiday_schedule_2023_2024(); // ~ is inside that function
+		const auto cal = calendar{ NoWeekend, std::move(s) };
+
+		EXPECT_EQ(2023y / June / 22d, Following.adjust(2023y / May / 12d, cal));
 	}
 
 	TEST(schedule, operator_equal)

@@ -306,4 +306,39 @@ namespace calendar
 		return schedule{ { 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
 	}
 
+
+	// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
+	inline auto make_mpc_schedule_2023_2024() -> schedule
+	{
+		using namespace std::chrono;
+
+		auto meeting_dates = schedule::storage{
+			// 2023 confirmed dates
+			2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
+			2023y / March / 23d, // March MPC Summary and minutes
+			2023y / May / 11d, // May MPC Summary and minutes and May Monetary Policy Report
+			2023y / June / 22d, // June MPC Summary and minutes
+			2023y / August / 3d, // August MPC Summary and minutes and August Monetary Policy Report
+			2023y / September / 21d, // September MPC Summary and minutes
+			2023y / November / 2d, // November MPC Summary and minutes and November Monetary Policy Report
+			2023y / December / 14d, // December MPC Summary and minutes
+			// 2024 provisional dates
+			2024y / February / 1d, //February MPC Summary and minutes and February Monetary Policy Report
+			2024y / March / 21d, // March MPC Summary and minutes
+			2024y / May	/ 9d, // May MPC Summary and minutes and May Monetary Policy Report
+			2024y / June / 20d, // June MPC Summary and minutes
+			2024y / August / 1d, // August MPC Summary and minutes and August Monetary Policy Report
+			2024y / September / 19d, // September MPC Summary and minutes
+			2024y / November / 7d, // November MPC Summary and minutes and November Monetary Policy Report
+			2024y / December / 19d, // December MPC Summary and minutes
+		};
+
+		return schedule{ { 2023y / January / 1d, 2024y / December / 31d }, std::move(meeting_dates) };
+	}
+
+	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule
+	{
+		return ~make_mpc_schedule_2023_2024();
+	}
+	
 }

@@ -114,6 +114,26 @@ namespace calendar
 		};
 	}
 
+	inline auto operator~(const schedule& s) -> schedule
+	{
+		auto from_until = s.get_from_until();
+		auto dates = schedule::storage{};
+
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
+		)
+			if (!s.contains(d))
+				dates.insert(d);
+
+		return schedule{
+			std::move(from_until),
+			std::move(dates)
+		};
+	}
+
+
 	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule
 	{
 		if (s1.get_from_until().get_from() > s2.get_from_until().get_from())
