@@ -56,7 +56,10 @@ namespace calendar
 
 	const auto NewYearsDay = named_holiday{ std::chrono::January / std::chrono::day{ 1u } };
 	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
+
 	const auto NewYearsEve = named_holiday{ std::chrono::December / std::chrono::day{ 31u } };
+	// NewYearsEve is created as a named_holiday (instead of an offset_holiday like ChrismasEve)
+	// because we do not want to cross a year's boundary, which we would have to do otherwise
 
 
 
