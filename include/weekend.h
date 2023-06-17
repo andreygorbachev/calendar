@@ -66,6 +66,7 @@ namespace calendar
 	const auto SaturdaySundayWeekend = weekend{ weekend::storage{ "1000001" } };
 	const auto FridaySaturdayWeekend = weekend{ weekend::storage{ "1100000" } };
 	const auto SundayWeekend = weekend{ weekend::storage{ "0000001" } };
+	const auto NoWeekend = weekend{ weekend::storage{ "0000000" } };
 
 
 

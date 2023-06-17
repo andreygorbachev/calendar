@@ -38,21 +38,25 @@ namespace calendar
 		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 24d));
 		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 24d));
 		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 24d));
+		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 24d));
 
 		// Saturday
 		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 25d));
 		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 25d));
 		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 25d));
+		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 25d));
 
 		// Sunday
 		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 26d));
 		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 26d));
 		EXPECT_TRUE(SundayWeekend.is_weekend(2023y / March / 26d));
+		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 26d));
 
 		// Monday
 		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 27d));
 		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 27d));
 		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 27d));
+		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 27d));
 	}
 
 
