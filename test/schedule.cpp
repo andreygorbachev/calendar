@@ -91,8 +91,8 @@ namespace calendar
 
 	TEST(schedule, operator_equal)
 	{
-		const auto s1 = make_holiday_schedule_england();
-		const auto s2 = make_holiday_schedule_england();
+		const auto& s1 = make_holiday_schedule_england();
+		const auto& s2 = make_holiday_schedule_england();
 
 		EXPECT_TRUE(s1 == s2);
 	}
