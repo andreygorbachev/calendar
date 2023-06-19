@@ -69,6 +69,14 @@ namespace calendar
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2022y / December / 30d, c));
 	}
 
+	TEST(modified_preceding, adjust)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 30d, c));
+	}
+
 	TEST(nearest, adjust)
 	{
 		const auto c = make_calendar_england();

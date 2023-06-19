@@ -87,6 +87,21 @@ namespace calendar
 
 
 
+	// EuroSTR documentation calls this "the European modified previous business day convention"
+	class modified_preceding final : public business_day_convention // could be moved out if it does not fit here
+	{
+
+	private:
+
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+
+	};
+
+
+	const auto ModifiedPreceding = modified_preceding{};
+
+
+
 	class nearest final : public business_day_convention
 	{
 
@@ -141,6 +156,17 @@ namespace calendar
 			result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
 
 		return result;
+	}
+
+
+
+	inline auto modified_preceding::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	{
+		const auto f = Preceding.adjust(ymd, cal);
+		if (f.month() == ymd.month())
+			return f;
+		else
+			return Following.adjust(ymd, cal);
 	}
 
 
