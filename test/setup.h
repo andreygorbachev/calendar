@@ -29,7 +29,6 @@
 #include <business_day_conventions.h>
 
 #include <fstream>
-#include <unordered_set>
 
 
 namespace calendar
@@ -63,7 +62,7 @@ namespace calendar
 		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
 		const auto SummerBankHoliday = weekday_last_holiday{ std::chrono::August / std::chrono::Monday[std::chrono::last] };
 
-		auto rules = std::unordered_set<const annual_holiday*>{};
+		auto rules = annual_holiday_storage{};
 		rules.insert(&NewYearsDay);
 		rules.insert(&GoodFriday);
 		rules.insert(&EasterMonday);
@@ -80,7 +79,7 @@ namespace calendar
 
 		const auto VictoryInEuropeDay = named_holiday{ std::chrono::May / std::chrono::day{ 8u } };
 
-		auto rules2020 = std::unordered_set<const annual_holiday*>{};
+		auto rules2020 = annual_holiday_storage{};
 		rules2020.insert(&NewYearsDay);
 		rules2020.insert(&GoodFriday);
 		rules2020.insert(&EasterMonday);
@@ -104,7 +103,7 @@ namespace calendar
 		const auto PlatinumJubileeHoliday = named_holiday{ std::chrono::June / std::chrono::day{ 3u } };
 		const auto StateFuneral = named_holiday{ std::chrono::September / std::chrono::day{ 19u } }; // Bank Holiday for the State Funeral of Queen Elizabeth II
 
-		auto rules2022 = std::unordered_set<const annual_holiday*>{};
+		auto rules2022 = annual_holiday_storage{};
 		rules2022.insert(&NewYearsDay);
 		rules2022.insert(&GoodFriday);
 		rules2022.insert(&EasterMonday);
@@ -123,7 +122,7 @@ namespace calendar
 
 		const auto Coronation = named_holiday{ std::chrono::May / std::chrono::day{ 8u } }; // Bank holiday for the coronation of King Charles III
 
-		auto rules2023 = std::unordered_set<const annual_holiday*>{};
+		auto rules2023 = annual_holiday_storage{};
 		rules2023.insert(&NewYearsDay);
 		rules2023.insert(&GoodFriday);
 		rules2023.insert(&EasterMonday);
@@ -167,7 +166,7 @@ namespace calendar
 		const auto VeteransDay = named_holiday{ std::chrono::November / std::chrono::day{ 11u } };
 		const auto ThanksgivingDay = weekday_indexed_holiday{ std::chrono::November / std::chrono::Thursday[4] };
 
-		auto rules = std::unordered_set<const annual_holiday*>{};
+		auto rules = annual_holiday_storage{};
 		rules.insert(&NewYearsDay);
 		rules.insert(&MartinLutherKing);
 		rules.insert(&Washington);
@@ -182,7 +181,7 @@ namespace calendar
 
 		const auto InaugurationDay = named_holiday{ std::chrono::January / std::chrono::day{ 20u } };
 
-		auto rules2 = std::unordered_set<const annual_holiday*>{};
+		auto rules2 = annual_holiday_storage{};
 		rules2.insert(&NewYearsDay);
 		rules2.insert(&MartinLutherKing);
 		rules2.insert(&InaugurationDay); // what if it is the same as MartinLutherKing?
