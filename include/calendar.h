@@ -53,6 +53,7 @@ namespace calendar
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
+		// or should these be free functions?
 		auto last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day;
 		auto last_business_day(const std::chrono::year& y) const -> std::chrono::year_month_day;
 
