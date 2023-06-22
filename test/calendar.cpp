@@ -89,4 +89,11 @@ namespace calendar
 		EXPECT_EQ(20/*uz*/, bd3);
 	}
 
+	TEST(calendar, last_business_day)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_EQ(2023y / April / 28d, c.last_business_day(2023y / April));
+	}
+
 }

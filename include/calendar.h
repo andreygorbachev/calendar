@@ -53,6 +53,8 @@ namespace calendar
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
+		auto last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day;
+
 		// would "*" and "[]" make some sense here?
 		// iterators?
 		// serial dates?
@@ -207,6 +209,19 @@ namespace calendar
 				result++;
 
 		return result;
+	}
+
+	inline auto calendar::last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day
+	{
+		auto d = std::chrono::year_month_day{ std::chrono::year_month_day_last{
+			ym.year(),
+			std::chrono::month_day_last{ ym.month() }
+		} };
+
+		while (!is_business_day(d))
+			d = std::chrono::sys_days{ d } - std::chrono::days{ 1 };
+
+		return d;
 	}
 
 
