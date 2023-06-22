@@ -57,6 +57,8 @@ namespace calendar
 		auto last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day;
 		auto last_business_day(const std::chrono::year& y) const -> std::chrono::year_month_day;
 
+		// do we also need the n-th business day? (even if that takes us over the month end)
+
 		// would "*" and "[]" make some sense here?
 		// iterators?
 		// serial dates?
