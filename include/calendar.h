@@ -33,7 +33,7 @@
 #include <stdexcept>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	class calendar

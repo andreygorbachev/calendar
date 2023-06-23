@@ -28,7 +28,7 @@
 #include <chrono>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	class no_adjustment final : public business_day_convention

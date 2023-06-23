@@ -31,7 +31,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-namespace calendar
+namespace gregorian
 {
 
 	TEST(period, constructor)

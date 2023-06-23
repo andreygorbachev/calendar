@@ -27,7 +27,7 @@
 #include <memory>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	constexpr auto week_length = std::size_t{ std::chrono::Sunday.iso_encoding() };

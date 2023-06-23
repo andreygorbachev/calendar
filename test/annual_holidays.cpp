@@ -31,7 +31,7 @@
 using namespace std::chrono;
 
 
-namespace calendar
+namespace gregorian
 {
 
 	TEST(named_holiday, make_holiday1)

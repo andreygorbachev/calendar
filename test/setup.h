@@ -31,7 +31,7 @@
 #include <fstream>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	// from https://www.gov.uk/bank-holidays

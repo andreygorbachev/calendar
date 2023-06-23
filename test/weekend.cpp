@@ -29,7 +29,7 @@
 using namespace std::chrono;
 
 
-namespace calendar
+namespace gregorian
 {
 
 	TEST(weekend, is_weekend)

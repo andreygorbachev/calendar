@@ -25,7 +25,7 @@
 #include <chrono>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	class calendar;

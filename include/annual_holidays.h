@@ -28,7 +28,7 @@
 #include <cmath>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	// we can add one_off_holiday to capture things like coronation

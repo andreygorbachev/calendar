@@ -27,7 +27,7 @@
 #include <stdexcept>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	template<typename T> class period

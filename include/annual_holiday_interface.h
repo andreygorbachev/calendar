@@ -28,7 +28,7 @@
 #include <unordered_set>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	// extend from annual to any other frequency?

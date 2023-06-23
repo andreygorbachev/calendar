@@ -34,7 +34,7 @@
 using namespace std::chrono;
 
 
-namespace calendar
+namespace gregorian
 {
 
 	TEST(no_adjustment, adjust)

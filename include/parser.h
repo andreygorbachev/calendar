@@ -32,7 +32,7 @@
 #include <stdexcept>
 
 
-namespace calendar
+namespace gregorian
 {
 
 	namespace parser
