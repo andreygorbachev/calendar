@@ -69,6 +69,7 @@ namespace gregorian
 
 
 	// maybe consider a method for an intersection of 2 periods?
+	// should we have make_period from a year? (a specific month? a specific week?)
 
 
 	template<typename T>
