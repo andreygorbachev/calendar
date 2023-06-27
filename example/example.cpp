@@ -37,20 +37,16 @@ using namespace std::chrono;
 
 
 
-inline auto parse_ics_england() -> const schedule&
+inline auto parse_ics_england() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
-	static const auto s = parse_ics("..\\..\\..\\example\\data\\england-and-wales.ics"); // or set a working directory?
-
-	return s;
+	return parse_ics("..\\..\\..\\example\\data\\england-and-wales.ics"); // or set a working directory?
 }
 
-inline auto parse_ics_united_states() -> const schedule&
+inline auto parse_ics_united_states() -> schedule
 {
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	static const auto s = parse_ics("..\\..\\..\\example\\data\\united-states.ics");
-
-	return s;
+	return parse_ics("..\\..\\..\\example\\data\\united-states.ics");
 }
 
 
