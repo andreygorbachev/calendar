@@ -113,7 +113,7 @@ namespace gregorian
 
 	private:
 
-		gregorian::days_period _period; // or should we consider other time steps (rather than just daily)?
+		gregorian::days_period _period;
 
 		std::vector<bool> _observations;
 
