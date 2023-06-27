@@ -23,43 +23,13 @@
 #pragma once
 
 #include <schedule.h>
-#include <parser.h>
 #include <annual_holidays.h>
 #include <calendar.h>
 #include <business_day_conventions.h>
 
-#include <fstream>
-
 
 namespace gregorian
 {
-
-	namespace parser
-	{
-
-		// from https://www.gov.uk/bank-holidays
-		constexpr auto EnglandAndWalesICS = "england-and-wales.ics";
-
-		// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-		constexpr auto UnitedStatesICS = "united-states.ics";
-
-
-		inline auto parse_ics_england() -> const schedule&
-		{
-			static const auto s = parser::parse_ics(EnglandAndWalesICS);
-
-			return s;
-		}
-
-		inline auto parse_ics_united_states() -> const schedule&
-		{
-			static const auto s = parser::parse_ics(UnitedStatesICS);
-
-			return s;
-		}
-
-	}
-
 
 	inline auto _make_holiday_schedule_england() -> schedule
 	{

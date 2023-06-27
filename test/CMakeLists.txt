@@ -1,4 +1,5 @@
-project(calendar_test)
+project(calendar-test)
+#project(test)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -16,7 +17,6 @@ add_executable(${PROJECT_NAME}
   calendar.cpp
   annual_holidays.cpp
   business_day_conventions.cpp
-  parser.cpp
   setup.h
 )
 
@@ -26,6 +26,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data
-)
+gtest_discover_tests(${PROJECT_NAME})

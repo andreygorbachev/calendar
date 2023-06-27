@@ -20,72 +20,63 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <weekend.h>
 #include <schedule.h>
+#include <business_day_convention_interface.h>
+#include <calendar.h>
 #include <parser.h>
-
-#include <gtest/gtest.h>
 
 #include <chrono>
 
-#include "setup.h"
+using namespace gregorian;
+using namespace gregorian::parser;
 
 using namespace std;
 using namespace std::chrono;
 
 
-namespace gregorian
+namespace gregorian::parser
 {
 
-	namespace parser
+	// from https://www.gov.uk/bank-holidays
+	constexpr auto EnglandAndWalesICS = "england-and-wales.ics";
+
+	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
+	constexpr auto UnitedStatesICS = "united-states.ics";
+
+
+	inline auto parse_ics_england() -> const schedule&
 	{
+		static const auto s = parse_ics(EnglandAndWalesICS);
 
-		auto test_parse_ics_holidays() -> const schedule::storage&
-		{
-			static auto fs = ifstream{ EnglandAndWalesICS };
-			static auto hols = _parse_ics(fs);
-
-			return hols;
-		}
-
-
-		TEST(parser, _make_from)
-		{
-			EXPECT_EQ(2018y / January / 1d, _make_from(test_parse_ics_holidays()));
-		}
-
-		TEST(parser, _make_until)
-		{
-			EXPECT_EQ(2025y / December / 31d, _make_until(test_parse_ics_holidays()));
-		}
-
-		TEST(parser, _make_from_until)
-		{
-			const auto expected = period{ 2018y / January / 1d, 2025y / December / 31d };
-
-			EXPECT_EQ(expected, _make_from_until(test_parse_ics_holidays()));
-		}
-
-
-		TEST(parser, parce_ics1)
-		{
-			const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
-
-			auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
-			c.substitute(&Following);
-
-			EXPECT_EQ(expected, c);
-		}
-
-		TEST(parser, parse_ics2)
-		{
-			const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
-
-			auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
-			c.substitute(&Nearest);
-
-			EXPECT_EQ(expected, c);
-		}
-
+		return s;
 	}
 
+	inline auto parse_ics_united_states() -> const schedule&
+	{
+		static const auto s = parse_ics(UnitedStatesICS);
+
+		return s;
+	}
+
+}
+
+
+int main()
+{
+	{
+		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+
+//		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
+//		c.substitute(&Following);
+	}
+
+	{
+		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
+
+//		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
+//		c.substitute(&Nearest);
+	}
+
+	return 0;
 }

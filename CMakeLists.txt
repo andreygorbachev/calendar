@@ -10,6 +10,7 @@ enable_testing()
 
 add_subdirectory(include)
 add_subdirectory(test)
+add_subdirectory(example)
 
 export(TARGETS calendar NAMESPACE Calendar:: FILE CalendarConfig.cmake)
 
