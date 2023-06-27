@@ -28,6 +28,7 @@
 #include <calendar.h>
 
 #include <chrono>
+#include <iostream>
 
 using namespace gregorian;
 
@@ -39,7 +40,7 @@ using namespace std::chrono;
 inline auto parse_ics_england() -> const schedule&
 {
 	// from https://www.gov.uk/bank-holidays
-	static const auto s = parse_ics("england-and-wales.ics");
+	static const auto s = parse_ics("..\\..\\..\\example\\data\\england-and-wales.ics"); // or set a working directory?
 
 	return s;
 }
@@ -47,7 +48,7 @@ inline auto parse_ics_england() -> const schedule&
 inline auto parse_ics_united_states() -> const schedule&
 {
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	static const auto s = parse_ics("united-states.ics");
+	static const auto s = parse_ics("..\\..\\..\\example\\data\\united-states.ics");
 
 	return s;
 }
@@ -56,19 +57,15 @@ inline auto parse_ics_united_states() -> const schedule&
 
 int main()
 {
-	{
-		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+	const auto england = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+	const auto united_states = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
 
-//		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_england() };
-//		c.substitute(&Following);
-	}
+	const auto good_friday = 2023y / April / 7d;
 
-	{
-		const auto expected = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
+	cout << "Good Friday " << good_friday << endl;
 
-//		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
-//		c.substitute(&Nearest);
-	}
+	cout << "Is it a business day in England? " << england.is_business_day(good_friday) << endl;
+	cout << "Is it a business day in United States? " << united_states.is_business_day(good_friday) << endl;
 
 	return 0;
 }
