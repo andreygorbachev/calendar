@@ -43,6 +43,18 @@ inline auto parse_ics_england() -> schedule
 	return parse_ics("..\\..\\..\\example\\data\\england-and-wales.ics"); // or set a working directory?
 }
 
+inline auto parse_ics_scotland() -> schedule
+{
+	// from https://www.gov.uk/bank-holidays
+	return parse_ics("..\\..\\..\\example\\data\\scotland.ics");
+}
+
+inline auto parse_ics_northern_ireland() -> schedule
+{
+	// from https://www.gov.uk/bank-holidays
+	return parse_ics("..\\..\\..\\example\\data\\northern-ireland.ics");
+}
+
 inline auto parse_ics_united_states() -> schedule
 {
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
@@ -54,6 +66,8 @@ inline auto parse_ics_united_states() -> schedule
 int main()
 {
 	const auto england = calendar{ SaturdaySundayWeekend, parse_ics_england() };
+	const auto scotland = calendar{ SaturdaySundayWeekend, parse_ics_scotland() };
+	const auto northern_ireland = calendar{ SaturdaySundayWeekend, parse_ics_northern_ireland() };
 	const auto united_states = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
 
 	const auto good_friday = 2023y / April / 7d;
@@ -61,6 +75,8 @@ int main()
 	cout << "Good Friday " << good_friday << endl;
 
 	cout << "Is it a business day in England? " << england.is_business_day(good_friday) << endl;
+	cout << "Is it a business day in Scotland? " << scotland.is_business_day(good_friday) << endl;
+	cout << "Is it a business day in Northern Ireland? " << northern_ireland.is_business_day(good_friday) << endl;
 	cout << "Is it a business day in United States? " << united_states.is_business_day(good_friday) << endl;
 
 	return 0;
