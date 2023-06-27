@@ -58,7 +58,7 @@ inline auto parse_ics_northern_ireland() -> schedule
 inline auto parse_ics_united_states() -> schedule
 {
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	return parse_ics("..\\..\\..\\example\\data\\united-states.ics");
+	return parse_ics("..\\..\\..\\example\\data\\united-states.ics"); // is it the same as US national hols?
 }
 
 
