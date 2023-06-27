@@ -20,46 +20,43 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include "parser.h"
+
 #include <weekend.h>
 #include <schedule.h>
 #include <business_day_convention_interface.h>
 #include <calendar.h>
-#include <parser.h>
 
 #include <chrono>
 
 using namespace gregorian;
-using namespace gregorian::parser;
 
 using namespace std;
 using namespace std::chrono;
 
 
-namespace gregorian::parser
+
+// from https://www.gov.uk/bank-holidays
+constexpr auto EnglandAndWalesICS = "england-and-wales.ics";
+
+// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
+constexpr auto UnitedStatesICS = "united-states.ics";
+
+
+inline auto parse_ics_england() -> const schedule&
 {
+	static const auto s = parse_ics(EnglandAndWalesICS);
 
-	// from https://www.gov.uk/bank-holidays
-	constexpr auto EnglandAndWalesICS = "england-and-wales.ics";
-
-	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	constexpr auto UnitedStatesICS = "united-states.ics";
-
-
-	inline auto parse_ics_england() -> const schedule&
-	{
-		static const auto s = parse_ics(EnglandAndWalesICS);
-
-		return s;
-	}
-
-	inline auto parse_ics_united_states() -> const schedule&
-	{
-		static const auto s = parse_ics(UnitedStatesICS);
-
-		return s;
-	}
-
+	return s;
 }
+
+inline auto parse_ics_united_states() -> const schedule&
+{
+	static const auto s = parse_ics(UnitedStatesICS);
+
+	return s;
+}
+
 
 
 int main()
