@@ -77,6 +77,50 @@ namespace gregorian
 
 
 
+	template<>
+	class time_series<bool>
+	{
+
+	public:
+
+		time_series() noexcept = delete;
+		time_series(const time_series&) = default;
+		time_series(time_series&&) noexcept = default;
+
+		~time_series() noexcept = default;
+
+		time_series& operator=(const time_series&) = default;
+		time_series& operator=(time_series&&) noexcept = default;
+
+		explicit time_series(gregorian::days_period period) noexcept;
+
+	public:
+
+		friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
+
+	public:
+
+		auto operator[](const std::chrono::year_month_day& ymd) -> std::vector<bool>::reference;
+		auto operator[](const std::chrono::year_month_day& ymd) const -> std::vector<bool>::const_reference;
+
+	public:
+
+		auto get_period() const noexcept -> const gregorian::days_period&;
+
+	private:
+
+		auto _index(const std::chrono::year_month_day& ymd) const->std::size_t;
+
+	private:
+
+		gregorian::days_period _period; // or should we consider other time steps (rather than just daily)?
+
+		std::vector<bool> _observations;
+
+	};
+
+
+
 	template<typename T>
 	time_series<T>::time_series(gregorian::days_period period) noexcept :
 		_period{ std::move(period) },
@@ -107,6 +151,41 @@ namespace gregorian
 
 	template<typename T>
 	auto time_series<T>::_index(const std::chrono::year_month_day& ymd) const -> std::size_t
+	{
+		if (ymd < _period.get_from() || ymd > _period.get_until())
+			throw std::out_of_range{ "Request is not consistent with from/until" };
+
+		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ _period.get_from() };
+		return days.count();
+	}
+
+
+
+	inline time_series<bool>::time_series(gregorian::days_period period) noexcept :
+		_period{ std::move(period) },
+		_observations(_index(_period.get_until()) + 1/*uz*/)
+	{
+	}
+
+
+	inline auto time_series<bool>::operator[](const std::chrono::year_month_day& ymd) -> std::vector<bool>::reference
+	{
+		return _observations[_index(ymd)];
+	}
+
+	inline auto time_series<bool>::operator[](const std::chrono::year_month_day& ymd) const -> std::vector<bool>::const_reference
+	{
+		return _observations[_index(ymd)];
+	}
+
+
+	inline auto time_series<bool>::get_period() const noexcept -> const gregorian::days_period&
+	{
+		return _period;
+	}
+
+
+	inline auto time_series<bool>::_index(const std::chrono::year_month_day& ymd) const -> std::size_t
 	{
 		if (ymd < _period.get_from() || ymd > _period.get_until())
 			throw std::out_of_range{ "Request is not consistent with from/until" };

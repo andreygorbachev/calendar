@@ -93,8 +93,7 @@ namespace gregorian
 
 	private:
 
-//		time_series<bool> _bd_cache;
-		time_series<char> _bd_cache;
+		time_series<bool> _bd_cache;
 
 	};
 
