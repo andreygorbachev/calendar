@@ -37,6 +37,8 @@
 namespace gregorian
 {
 
+	// obviously for future rule based holidays in absence of caching do not need the "until" day,
+	// so current design is not good from that point of view
 	class calendar
 	{
 
