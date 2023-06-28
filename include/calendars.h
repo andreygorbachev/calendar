@@ -43,7 +43,7 @@ namespace gregorian
 
 
 
-	inline auto _England_schedule() -> schedule
+	inline auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 	{
 		auto holidays = schedule::storage{
 			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
