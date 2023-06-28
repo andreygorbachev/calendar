@@ -164,4 +164,129 @@ namespace gregorian
 		return make_England_calendar();
 	}
 
+
+
+	inline auto _Scotland_schedule() -> schedule
+	{
+		auto holidays = schedule::storage{
+			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
+			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 2u },
+			std::chrono::year{ 2018 } / std::chrono::March / std::chrono::day{ 30u },
+			std::chrono::year{ 2018 } / std::chrono::May / std::chrono::day{ 7u },
+			std::chrono::year{ 2018 } / std::chrono::May / std::chrono::day{ 28u },
+			std::chrono::year{ 2018 } / std::chrono::August / std::chrono::day{ 6u },
+			std::chrono::year{ 2018 } / std::chrono::November / std::chrono::day{ 30u },
+			std::chrono::year{ 2018 } / std::chrono::December / std::chrono::day{ 25u },
+			std::chrono::year{ 2018 } / std::chrono::December / std::chrono::day{ 26u },
+
+			std::chrono::year{ 2019 } / std::chrono::January / std::chrono::day{ 1u },
+			std::chrono::year{ 2019 } / std::chrono::January / std::chrono::day{ 2u },
+			std::chrono::year{ 2019 } / std::chrono::April / std::chrono::day{ 19u },
+			std::chrono::year{ 2019 } / std::chrono::May / std::chrono::day{ 6u },
+			std::chrono::year{ 2019 } / std::chrono::May / std::chrono::day{ 27u },
+			std::chrono::year{ 2019 } / std::chrono::August / std::chrono::day{ 5u },
+			std::chrono::year{ 2019 } / std::chrono::December / std::chrono::day{ 2u },
+			std::chrono::year{ 2019 } / std::chrono::December / std::chrono::day{ 25u },
+			std::chrono::year{ 2019 } / std::chrono::December / std::chrono::day{ 26u },
+
+			std::chrono::year{ 2020 } / std::chrono::January / std::chrono::day{ 1u },
+			std::chrono::year{ 2020 } / std::chrono::January / std::chrono::day{ 2u },
+			std::chrono::year{ 2020 } / std::chrono::April / std::chrono::day{ 10u },
+			std::chrono::year{ 2020 } / std::chrono::May / std::chrono::day{ 8u },
+			std::chrono::year{ 2020 } / std::chrono::May / std::chrono::day{ 25u },
+			std::chrono::year{ 2020 } / std::chrono::August / std::chrono::day{ 3u },
+			std::chrono::year{ 2020 } / std::chrono::November / std::chrono::day{ 30u },
+			std::chrono::year{ 2020 } / std::chrono::December / std::chrono::day{ 25u },
+			std::chrono::year{ 2020 } / std::chrono::December / std::chrono::day{ 28u },
+
+			std::chrono::year{ 2021 } / std::chrono::January / std::chrono::day{ 1u },
+			std::chrono::year{ 2021 } / std::chrono::January / std::chrono::day{ 4u },
+			std::chrono::year{ 2021 } / std::chrono::April / std::chrono::day{ 2u },
+			std::chrono::year{ 2021 } / std::chrono::May / std::chrono::day{ 3u },
+			std::chrono::year{ 2021 } / std::chrono::May / std::chrono::day{ 31u },
+			std::chrono::year{ 2021 } / std::chrono::August / std::chrono::day{ 2u },
+			std::chrono::year{ 2021 } / std::chrono::November / std::chrono::day{ 30u },
+			std::chrono::year{ 2021 } / std::chrono::December / std::chrono::day{ 27u },
+			std::chrono::year{ 2021 } / std::chrono::December / std::chrono::day{ 28u },
+
+			std::chrono::year{ 2022 } / std::chrono::January / std::chrono::day{ 3u },
+			std::chrono::year{ 2022 } / std::chrono::January / std::chrono::day{ 4u },
+			std::chrono::year{ 2022 } / std::chrono::April / std::chrono::day{ 15u },
+			std::chrono::year{ 2022 } / std::chrono::May / std::chrono::day{ 2u },
+			std::chrono::year{ 2022 } / std::chrono::June / std::chrono::day{ 2u },
+			std::chrono::year{ 2022 } / std::chrono::June / std::chrono::day{ 3u },
+			std::chrono::year{ 2022 } / std::chrono::August / std::chrono::day{ 1u },
+			std::chrono::year{ 2022 } / std::chrono::September / std::chrono::day{ 19u },
+			std::chrono::year{ 2022 } / std::chrono::November / std::chrono::day{ 30u },
+			std::chrono::year{ 2022 } / std::chrono::December / std::chrono::day{ 26u },
+			std::chrono::year{ 2022 } / std::chrono::December / std::chrono::day{ 27u },
+
+			std::chrono::year{ 2023 } / std::chrono::January / std::chrono::day{ 2u },
+			std::chrono::year{ 2023 } / std::chrono::January / std::chrono::day{ 3u },
+			std::chrono::year{ 2023 } / std::chrono::April / std::chrono::day{ 7u },
+			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 1u },
+			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 8u },
+			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 29u },
+			std::chrono::year{ 2023 } / std::chrono::August / std::chrono::day{ 7u },
+			std::chrono::year{ 2023 } / std::chrono::November / std::chrono::day{ 30u },
+			std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 25u },
+			std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 26u },
+		};
+
+		return schedule{
+			days_period{ Epoch, std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 31u } },
+			std::move(holidays)
+		};
+	}
+
+	inline auto _make_Scotland_calendar() -> calendar
+	{
+		const auto known_part = _Scotland_schedule();
+
+		const auto generated_part_from = known_part.get_from_until().get_until().year();
+		const auto generated_part_until = generated_part_from + std::chrono::years{ 10 }; // factor out this const
+
+		const auto SecondJanuary = offset_holiday<named_holiday>{ NewYearsDay, std::chrono::days{ 1 } };
+		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
+		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
+		const auto SummerBankHoliday = weekday_indexed_holiday{ std::chrono::August / std::chrono::Monday[1] };
+		const auto StAndrewsDay = named_holiday{ std::chrono::November / std::chrono::day{ 30u } };
+
+		const auto rules = annual_holiday_storage{
+			&NewYearsDay,
+			&SecondJanuary,
+			&GoodFriday,
+			&EarlyMayBankHoliday,
+			&SpringBankHoliday,
+			&SummerBankHoliday,
+			&StAndrewsDay,
+			&ChristmasDay,
+			&BoxingDay
+		};
+
+		const auto generated_part = make_holiday_schedule(
+			{ generated_part_from, generated_part_until },
+			rules
+		);
+
+		// setup a calendar for the generated part only (to do substitution for the generated dates)
+		// do we need operator+ for calendar instead?
+		auto cal = calendar{
+			SaturdaySundayWeekend,
+			generated_part
+		};
+		cal.substitute(&Following);
+
+		return calendar{
+			SaturdaySundayWeekend,
+			known_part + cal.get_holiday_schedule()
+		};
+	}
+
+	inline auto make_Scotland_calendar() -> const calendar&
+	{
+		static const auto s = _make_Scotland_calendar();
+		return s;
+	}
+
 }

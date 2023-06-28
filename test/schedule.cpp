@@ -102,7 +102,7 @@ namespace gregorian
 	TEST(schedule, operator_not_equal)
 	{
 		const auto& s1 = _England_schedule();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s2 = _Scotland_schedule();
 
 		EXPECT_TRUE(s1 != s2);
 	}
