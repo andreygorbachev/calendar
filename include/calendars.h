@@ -159,4 +159,11 @@ namespace gregorian
 		return s;
 	}
 
+
+
+	inline auto make_Wales_calendar() -> const calendar&
+	{
+		return make_England_calendar();
+	}
+
 }
