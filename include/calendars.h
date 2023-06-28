@@ -110,14 +110,12 @@ namespace gregorian
 		};
 	}
 
-	inline auto _make_England_calendar(
-		const std::chrono::years& extension = std::chrono::years{ 1 }
-	) -> calendar
+	inline auto _make_England_calendar() -> calendar
 	{
 		const auto known_part = _England_schedule();
 
 		const auto generated_part_from = known_part.get_from_until().get_until().year();
-		const auto generated_part_until = generated_part_from + extension;
+		const auto generated_part_until = generated_part_from + std::chrono::years{ 10 }; // factor out this const
 
 		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
 		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
