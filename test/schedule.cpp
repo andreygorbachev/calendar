@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <calendars.h>
 #include <schedule.h>
 #include <business_day_conventions.h>
 
@@ -40,28 +41,29 @@ namespace gregorian
 
 	TEST(schedule, constructor1)
 	{
-		const auto hols = schedule::storage{};
+		auto from_until = days_period{ 2023y / May / 1d, 2023y / May / 1d };
+		auto hols = schedule::storage{};
 
-		EXPECT_NO_THROW(schedule({ 2023y / May / 1d, 2023y / May / 1d }, hols)); // ok to have a schedule for just 1 day
+		EXPECT_NO_THROW(schedule(move(from_until), move(hols))); // ok to have a schedule for just 1 day
 	}
 
 
 	TEST(schedule, constructor2)
 	{
-		const auto s1 = schedule{ make_holiday_schedule_england() };
+		const auto s1 = _England_schedule();
 		const auto s2 = schedule{
 			{ 2023y / January / 1d,	2023y / December / 31d },
 			s1.get_dates()
 		};
 
-		EXPECT_EQ(make_holiday_schedule_england(), s1);
-		EXPECT_NE(make_holiday_schedule_england(), s2);
+		EXPECT_EQ(_England_schedule(), s1);
+		EXPECT_NE(_England_schedule(), s2);
 	}
 
 
 	TEST(schedule, operator_or)
 	{
-		const auto& s1 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
 		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s = s1 | s2;
@@ -72,7 +74,7 @@ namespace gregorian
 
 	TEST(schedule, operator_and)
 	{
-		const auto& s1 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
 		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s = s1 & s2;
@@ -91,15 +93,15 @@ namespace gregorian
 
 	TEST(schedule, operator_equal)
 	{
-		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
+		const auto& s2 = _England_schedule();
 
 		EXPECT_TRUE(s1 == s2);
 	}
 
 	TEST(schedule, operator_not_equal)
 	{
-		const auto& s1 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
 		const auto& s2 = make_holiday_schedule_united_states();
 
 		EXPECT_TRUE(s1 != s2);
@@ -107,7 +109,7 @@ namespace gregorian
 
 	TEST(schedule, operator_plus)
 	{
-		const auto& s1 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
 		const auto& s2 = make_holiday_schedule_united_states();
 
 		const auto s3 = s1 + s2;
@@ -119,7 +121,7 @@ namespace gregorian
 
 	TEST(schedule, operator_plus_equal_1)
 	{
-		const auto& s1 = make_holiday_schedule_england();
+		const auto& s1 = _England_schedule();
 		const auto& s2 = make_holiday_schedule_united_states();
 
 		auto s3 = s1;
@@ -130,11 +132,11 @@ namespace gregorian
 
 	TEST(schedule, operator_plus_equal_2)
 	{
-		auto s1 = make_holiday_schedule_england();
+		auto s1 = _England_schedule();
 		s1 += 2023y / April / 1d;
 		s1 -= 2023y / April / 1d;
 
-		EXPECT_EQ(make_holiday_schedule_england(), s1);
+		EXPECT_EQ(_England_schedule(), s1);
 	}
 
 	TEST(schedule, get_dates)

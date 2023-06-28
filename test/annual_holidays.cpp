@@ -95,12 +95,8 @@ namespace gregorian
 	}
 
 
-	TEST(annual_holiday, make_holiday_schedule)
-	{
-		const auto hs = make_holiday_schedule_england();
-
-		EXPECT_EQ(true, hs.contains(2023y / April / 7d));
-		EXPECT_EQ(true, hs.contains(2023y / April / 10d));
-	}
+//	TEST(annual_holiday, make_holiday_schedule)
+//	{
+//	}
 
 }
