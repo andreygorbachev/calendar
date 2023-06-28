@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 #pragma once
-// give this file a more distinct name?
+// give this file a more distinct name? separate files per country?
 // separate namespace? namespaces (per country)?
-// separate library?
+// separate library? (maybe not header only?)
 
 #include "calendar.h"
 #include "schedule.h"
