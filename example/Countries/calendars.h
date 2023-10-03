@@ -21,29 +21,23 @@
 // SOFTWARE.
 
 #pragma once
-// give this file a more distinct name? separate files per country?
-// separate namespace? namespaces (per country)?
 
 #include <calendar.h>
 
 #include <chrono>
 
 
-namespace gregorian
-{
 
-	const auto Epoch = std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u };
-	// all calendars should include holidays from at least this day
+const auto Epoch = std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u };
+// all calendars should include holidays from at least this day
 
 
-	// from https://www.gov.uk/bank-holidays
+// from https://www.gov.uk/bank-holidays
 
-	auto make_England_calendar() -> const calendar&;
+auto make_England_calendar() -> const gregorian::calendar&;
 
-	auto make_Wales_calendar() -> const calendar&;
+auto make_Wales_calendar() -> const gregorian::calendar&;
 
-	auto make_Scotland_calendar() -> const calendar&;
+auto make_Scotland_calendar() -> const gregorian::calendar&;
 
-	auto make_Norther_Ireland_calendar() -> const calendar&;
-
-}
+auto make_Norther_Ireland_calendar() -> const gregorian::calendar&;
