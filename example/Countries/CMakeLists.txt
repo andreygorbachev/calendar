@@ -1,7 +1,10 @@
 project("Countries_example")
 
-add_library(${PROJECT_NAME} INTERFACE
+add_library(${PROJECT_NAME}
+  calendars.cpp
   calendars.h
 )
 
-target_include_directories(${PROJECT_NAME} INTERFACE .)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+  calendar
+)
