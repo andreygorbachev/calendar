@@ -38,28 +38,12 @@ namespace gregorian
 
 	// from https://www.gov.uk/bank-holidays
 
-	inline auto make_England_calendar() -> const calendar&
-	{
-		static const auto s = _make_England_calendar();
-		return s;
-	}
+	auto make_England_calendar() -> const calendar&;
 
+	auto make_Wales_calendar() -> const calendar&;
 
-	inline auto make_Wales_calendar() -> const calendar&
-	{
-		return make_England_calendar();
-	}
+	auto make_Scotland_calendar() -> const calendar&;
 
-	inline auto make_Scotland_calendar() -> const calendar&
-	{
-		static const auto s = _make_Scotland_calendar();
-		return s;
-	}
-
-	inline auto make_Norther_Ireland_calendar() -> const calendar&
-	{
-		static const auto s = _make_Northern_Ireland_calendar();
-		return s;
-	}
+	auto make_Norther_Ireland_calendar() -> const calendar&;
 
 }

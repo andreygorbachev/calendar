@@ -33,7 +33,7 @@
 namespace gregorian
 {
 
-	inline auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
+	auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 	{
 		auto holidays = schedule::storage{
 			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
@@ -100,7 +100,7 @@ namespace gregorian
 		};
 	}
 
-	inline auto _make_England_calendar() -> calendar
+	auto _make_England_calendar() -> calendar
 	{
 		const auto known_part = _England_schedule();
 
@@ -143,7 +143,7 @@ namespace gregorian
 
 
 
-	inline auto _Scotland_schedule() -> schedule
+	auto _Scotland_schedule() -> schedule
 	{
 		auto holidays = schedule::storage{
 			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
@@ -216,7 +216,7 @@ namespace gregorian
 		};
 	}
 
-	inline auto _make_Scotland_calendar() -> calendar
+	auto _make_Scotland_calendar() -> calendar
 	{
 		const auto known_part = _Scotland_schedule();
 
@@ -262,7 +262,7 @@ namespace gregorian
 
 
 
-	inline auto _Northern_Ireland_schedule() -> schedule
+	auto _Northern_Ireland_schedule() -> schedule
 	{
 		auto holidays = schedule::storage{
 			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
@@ -341,7 +341,7 @@ namespace gregorian
 		};
 	}
 
-	inline auto _make_Northern_Ireland_calendar() -> calendar
+	auto _make_Northern_Ireland_calendar() -> calendar
 	{
 		const auto known_part = _Northern_Ireland_schedule();
 
@@ -384,6 +384,31 @@ namespace gregorian
 			SaturdaySundayWeekend,
 			known_part + cal.get_holiday_schedule()
 		};
+	}
+
+
+
+	auto make_England_calendar() -> const calendar&
+	{
+		static const auto s = _make_England_calendar();
+		return s;
+	}
+
+	auto make_Wales_calendar() -> const calendar&
+	{
+		return make_England_calendar();
+	}
+
+	auto make_Scotland_calendar() -> const calendar&
+	{
+		static const auto s = _make_Scotland_calendar();
+		return s;
+	}
+
+	auto make_Norther_Ireland_calendar() -> const calendar&
+	{
+		static const auto s = _make_Northern_Ireland_calendar();
+		return s;
 	}
 
 }
