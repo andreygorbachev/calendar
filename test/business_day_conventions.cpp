@@ -24,7 +24,6 @@
 #include <weekend.h>
 #include <schedule.h>
 #include <calendar.h>
-#include <calendars.h>
 
 #include <gtest/gtest.h>
 
@@ -40,14 +39,14 @@ namespace gregorian
 
 	TEST(no_adjustment, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
 	}
 
 	TEST(following, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
@@ -55,7 +54,7 @@ namespace gregorian
 
 	TEST(modified_following, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 3d, c));
@@ -64,7 +63,7 @@ namespace gregorian
 
 	TEST(preceding, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2022y / December / 30d, Preceding.adjust(2022y / December / 30d, c));
@@ -72,7 +71,7 @@ namespace gregorian
 
 	TEST(modified_preceding, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 30d, c));
@@ -80,7 +79,7 @@ namespace gregorian
 
 	TEST(nearest, adjust)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		// Friday
 		EXPECT_EQ(2023y / March / 24d, Nearest.adjust(2023y / March / 24d, c));

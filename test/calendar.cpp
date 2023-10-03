@@ -24,7 +24,6 @@
 #include <schedule.h>
 #include <calendar.h>
 #include <business_day_conventions.h>
-#include <calendars.h>
 
 #include <gtest/gtest.h>
 
@@ -69,7 +68,7 @@ namespace gregorian
 
 	TEST(calendar, is_business_day)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_FALSE(c.is_business_day(2023y / May / 1d));
 		EXPECT_TRUE(c.is_business_day(2023y / May / 2d));
@@ -79,7 +78,7 @@ namespace gregorian
 
 	TEST(calendar, count_business_days)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		const auto bd1 = c.count_business_days({ 2023y / May / 1d, 2023y / May / 1d });
 		const auto bd2 = c.count_business_days({ 2023y / May / 31d, 2023y / May / 31d });
@@ -92,14 +91,14 @@ namespace gregorian
 
 	TEST(calendar, last_business_day_for_year_month)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / April / 28d, c.last_business_day(2023y / April));
 	}
 
 	TEST(calendar, last_business_day_for_year)
 	{
-		const auto c = make_England_calendar();
+		const auto c = make_calendar_england();
 
 		EXPECT_EQ(2023y / December / 29d, c.last_business_day(2023y));
 	}
