@@ -72,10 +72,10 @@ namespace gregorian
 
 	TEST(offset_holiday, make_holiday4)
 	{
-		EXPECT_EQ(2022y / June / 6d, Whitmonday.make_holiday(2022y));
-		EXPECT_EQ(2023y / May / 29d, Whitmonday.make_holiday(2023y));
-		EXPECT_EQ(2024y / May / 20d, Whitmonday.make_holiday(2024y));
-		EXPECT_EQ(2025y / June / 9d, Whitmonday.make_holiday(2025y));
+		EXPECT_EQ(2022y / June / 6d, WhitMonday.make_holiday(2022y));
+		EXPECT_EQ(2023y / May / 29d, WhitMonday.make_holiday(2023y));
+		EXPECT_EQ(2024y / May / 20d, WhitMonday.make_holiday(2024y));
+		EXPECT_EQ(2025y / June / 9d, WhitMonday.make_holiday(2025y));
 	}
 
 
