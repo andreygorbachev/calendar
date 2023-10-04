@@ -1,4 +1,4 @@
 project(example)
 
-add_subdirectory(Countries)
+add_subdirectory(country)
 add_subdirectory(ICS)

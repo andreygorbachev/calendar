@@ -1,4 +1,4 @@
-project(ICS_example)
+project(example-ICS)
 
 add_executable(${PROJECT_NAME}
   example.cpp
