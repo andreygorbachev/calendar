@@ -31,8 +31,6 @@
 namespace gregorian
 {
 
-	// extend from annual to any other frequency?
-
 	class annual_holiday
 	{
 
