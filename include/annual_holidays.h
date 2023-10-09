@@ -156,6 +156,7 @@ namespace gregorian
 
 	// https://en.wikipedia.org/wiki/Date_of_Easter
 
+	// would be nice to make this function constexpr, but we'll have to wait until C++23 for std::floor to become constexpr
 	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		const auto Y = static_cast<int>(y);
