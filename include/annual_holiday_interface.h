@@ -76,11 +76,11 @@ namespace gregorian
 	}
 
 	inline auto make_holiday_schedule(
-		const std::chrono::year& front_year,
+		const std::chrono::year& y,
 		const annual_holiday_storage& rules // or should it be a variadic template?
 	) noexcept -> schedule
 	{
-		return make_holiday_schedule({ front_year, front_year }, rules);
+		return make_holiday_schedule({ y, y }, rules);
 	}
 
 
