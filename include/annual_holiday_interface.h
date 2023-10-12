@@ -52,6 +52,9 @@ namespace gregorian
 
 	using annual_holiday_storage = std::unordered_set<const annual_holiday*>;
 
+	constexpr auto FirstDayOfJanuary = std::chrono::day{ 1u };
+	constexpr auto LastDayOfDecember = std::chrono::day{ 31u };
+
 	inline auto make_holiday_schedule(
 		const years_period& from_until,
 		const annual_holiday_storage& rules // or should it be a variadic template?
@@ -65,8 +68,8 @@ namespace gregorian
 
 		return schedule{
 			{
-				from_until.get_from() / std::chrono::January / std::chrono::day{ 1u },
-				from_until.get_until() / std::chrono::December / std::chrono::day{ 31u }
+				from_until.get_from() / std::chrono::January / FirstDayOfJanuary,
+				from_until.get_until() / std::chrono::December / LastDayOfDecember
 			},
 			std::move(hols)
 		};

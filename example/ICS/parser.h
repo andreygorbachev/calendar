@@ -24,6 +24,7 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <annual_holiday_interface.h>
 
 #include <string>
 #include <chrono>
@@ -122,7 +123,7 @@ inline auto _make_from(const gregorian::schedule::storage& hols) noexcept -> std
 	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
 	// or should we have smallest possible year_month_day if the holidays are empty?
 
-	return { h.year(), std::chrono::January, std::chrono::day{ 1u } };
+	return { h.year(), std::chrono::January, gregorian::FirstDayOfJanuary };
 }
 
 inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
@@ -130,7 +131,7 @@ inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> st
 	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
 	// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
 
-	return { h.year(), std::chrono::December, std::chrono::day{ 31u } };
+	return { h.year(), std::chrono::December, gregorian::LastDayOfDecember };
 }
 
 inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
