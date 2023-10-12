@@ -31,12 +31,6 @@
 namespace gregorian
 {
 
-	// we can add one_off_holiday to capture things like coronation
-	// (at the moment it is not clear if we want to do so at all - rule base calendars are expected for the future only
-	// where one offs do not exist)
-
-
-
 	class named_holiday final : public annual_holiday
 	{
 
