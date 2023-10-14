@@ -70,14 +70,14 @@ namespace gregorian
 
 
 
-	constexpr auto operator|(const weekend& w1, const weekend& w2) -> weekend
+	constexpr auto operator|(const weekend& w1, const weekend& w2) noexcept -> weekend
 	{
 		auto we = w1.get_we() | w2.get_we();
 
 		return weekend{ std::move(we) };
 	}
 
-	constexpr auto operator&(const weekend& w1, const weekend& w2) -> weekend
+	constexpr auto operator&(const weekend& w1, const weekend& w2) noexcept -> weekend
 	{
 		auto we = w1.get_we() & w2.get_we();
 
