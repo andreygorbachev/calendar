@@ -59,7 +59,7 @@ namespace gregorian
 
 
 
-	class modified_following final : public business_day_convention // could be moved out if it does not fit here
+	class modified_following final : public business_day_convention
 	{
 
 	private:
@@ -88,7 +88,7 @@ namespace gregorian
 
 
 	// EuroSTR documentation calls this "the European modified previous business day convention"
-	class modified_preceding final : public business_day_convention // could be moved out if it does not fit here
+	class modified_preceding final : public business_day_convention
 	{
 
 	private:
@@ -169,8 +169,8 @@ namespace gregorian
 
 	inline auto nearest::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
-		const auto f = following{}.adjust(ymd, cal);
-		const auto p = preceding{}.adjust(ymd, cal);
+		const auto f = Following.adjust(ymd, cal);
+		const auto p = Preceding.adjust(ymd, cal);
 		if (std::chrono::sys_days{ f } - std::chrono::sys_days{ ymd } <= std::chrono::sys_days{ ymd } - std::chrono::sys_days{ p })
 			return f;
 		else
