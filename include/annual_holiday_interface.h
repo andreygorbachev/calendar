@@ -25,7 +25,7 @@
 #include "schedule.h"
 
 #include <chrono>
-#include <unordered_set>
+#include <vector>
 
 
 namespace gregorian
@@ -50,14 +50,15 @@ namespace gregorian
 
 
 
-	using annual_holiday_storage = std::unordered_set<const annual_holiday*>;
+	using annual_holiday_storage = std::vector<const annual_holiday*>;
+	// choice here is influenced by a desire to eventualy be able to apply annual_holiday rules at compile time (constexpr)
 
 	constexpr auto FirstDayOfJanuary = std::chrono::day{ 1u };
 	constexpr auto LastDayOfDecember = std::chrono::day{ 31u };
 
 	inline auto make_holiday_schedule(
 		const years_period& from_until,
-		const annual_holiday_storage& rules // or should it be a variadic template?
+		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
 		auto hols = schedule::storage{};
@@ -77,7 +78,7 @@ namespace gregorian
 
 	inline auto make_holiday_schedule(
 		const std::chrono::year& y,
-		const annual_holiday_storage& rules // or should it be a variadic template?
+		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
 		return make_holiday_schedule({ y, y }, rules);

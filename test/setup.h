@@ -43,34 +43,36 @@ namespace gregorian
 		const auto VeteransDay = named_holiday{ std::chrono::November / std::chrono::day{ 11u } };
 		const auto ThanksgivingDay = weekday_indexed_holiday{ std::chrono::November / std::chrono::Thursday[4] };
 
-		auto rules = annual_holiday_storage{};
-		rules.insert(&NewYearsDay);
-		rules.insert(&MartinLutherKing);
-		rules.insert(&Washington);
-		rules.insert(&MemorialDay);
-		rules.insert(&Juneteenth);
-		rules.insert(&IndependenceDay);
-		rules.insert(&LaborDay);
-		rules.insert(&ColumbusDay);
-		rules.insert(&VeteransDay);
-		rules.insert(&ThanksgivingDay);
-		rules.insert(&ChristmasDay);
+		const auto rules = annual_holiday_storage{
+			&NewYearsDay,
+			&MartinLutherKing,
+			&Washington,
+			&MemorialDay,
+			&Juneteenth,
+			&IndependenceDay,
+			&LaborDay,
+			&ColumbusDay,
+			&VeteransDay,
+			&ThanksgivingDay,
+			&ChristmasDay
+		};
 
 		const auto InaugurationDay = named_holiday{ std::chrono::January / std::chrono::day{ 20u } };
 
-		auto rules2 = annual_holiday_storage{};
-		rules2.insert(&NewYearsDay);
-		rules2.insert(&MartinLutherKing);
-		rules2.insert(&InaugurationDay); // what if it is the same as MartinLutherKing?
-		rules2.insert(&Washington);
-		rules2.insert(&MemorialDay);
-		rules2.insert(&Juneteenth);
-		rules2.insert(&IndependenceDay);
-		rules2.insert(&LaborDay);
-		rules2.insert(&ColumbusDay);
-		rules2.insert(&VeteransDay);
-		rules2.insert(&ThanksgivingDay);
-		rules2.insert(&ChristmasDay);
+		const auto rules2 = annual_holiday_storage{
+			&NewYearsDay,
+			&MartinLutherKing,
+			&InaugurationDay, // what if it is the same as MartinLutherKing?
+			&Washington,
+			&MemorialDay,
+			&Juneteenth,
+			&IndependenceDay,
+			&LaborDay,
+			&ColumbusDay,
+			&VeteransDay,
+			&ThanksgivingDay,
+			&ChristmasDay
+		};
 
 		const auto hs2021 = make_holiday_schedule(
 			std::chrono::year{ 2021 },
