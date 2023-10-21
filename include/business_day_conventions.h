@@ -116,10 +116,6 @@ namespace gregorian
 
 
 
-	// we might also need monday_if_sunday
-
-
-
 	inline auto no_adjustment::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		return ymd;
@@ -173,15 +169,12 @@ namespace gregorian
 
 	inline auto nearest::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
-		if (std::chrono::weekday{ ymd } == std::chrono::Sunday)
-			return std::chrono::sys_days{ ymd } + std::chrono::days{ 1 };
-		else if (std::chrono::weekday{ ymd } == std::chrono::Saturday)
-			return std::chrono::sys_days{ ymd } - std::chrono::days{ 1 };
+		const auto f = following{}.adjust(ymd, cal);
+		const auto p = preceding{}.adjust(ymd, cal);
+		if (std::chrono::sys_days{ f } - std::chrono::sys_days{ ymd } <= std::chrono::sys_days{ ymd } - std::chrono::sys_days{ p })
+			return f;
 		else
-			return ymd;
-
-		// I think a more generic definition is to do following if ymd a non-business day and either Sunday or Monday
-		// and previous for all other cases
+			return p;
 	}
 
 }
