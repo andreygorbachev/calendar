@@ -36,17 +36,17 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	TEST(time_series, constructor)
+	TEST(_time_series, constructor)
 	{
-		const auto ts = time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
+		const auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
 
 		const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
 		EXPECT_EQ(expected, ts.get_period());
 	}
 
-	TEST(time_series, operator_square_brackets1)
+	TEST(_time_series, operator_square_brackets1)
 	{
-		const auto ts = time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
+		const auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
 
 		const auto expected = double{};
 		EXPECT_EQ(expected, ts[2023y / January / 1d]);
@@ -55,9 +55,9 @@ namespace gregorian
 		EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
 	}
 
-	TEST(time_series, operator_square_brackets2)
+	TEST(_time_series, operator_square_brackets2)
 	{
-		auto ts = time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
+		auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
 		ts[2023y / January / 3d] = 3.4269;
 
 		EXPECT_EQ(3.4269, ts[2023y / January / 3d]);

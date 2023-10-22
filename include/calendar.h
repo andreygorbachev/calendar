@@ -23,6 +23,7 @@
 #pragma once
 
 #include "time_series.h"
+
 #include "weekend.h"
 #include "schedule.h"
 #include "business_day_convention_interface.h"
@@ -95,7 +96,7 @@ namespace gregorian
 
 	private:
 
-		time_series<bool> _bd_cache;
+		_time_series<bool> _bd_cache;
 
 	};
 
