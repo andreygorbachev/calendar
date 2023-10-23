@@ -26,7 +26,6 @@
 
 #include <cstddef>
 #include <chrono>
-#include <bitset>
 #include <memory>
 #include <set>
 #include <algorithm>
