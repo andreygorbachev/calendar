@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <period.h>
 #include <schedule.h>
 #include <business_day_conventions.h>
 
@@ -109,24 +110,25 @@ namespace gregorian
 	TEST(schedule, operator_addition)
 	{
 		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s2 = schedule{ days_period{ year{ 2024 } / January / day{ 1u }, year{ 2024 } / December / day{ 31u } }, {} };
 
-		const auto s3 = s1 + s2;
-		const auto s4 = s2 + s1;
+		const auto s = s1 + s2;
 
-		EXPECT_EQ(s3.get_from_until().get_from(), s4.get_from_until().get_from());
-		EXPECT_EQ(s3.get_from_until().get_until(), s4.get_from_until().get_until());
+		EXPECT_THROW(s2 + s1, out_of_range);
+
+		EXPECT_EQ(s1.get_from_until().get_from(), s.get_from_until().get_from());
+		EXPECT_EQ(year{ 2024 } / December / day{ 31u }, s.get_from_until().get_until());
 	}
 
 	TEST(schedule, operator_addition_assignment)
 	{
 		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s2 = schedule{ days_period{ year{ 2024 } / January / day{ 1u }, year{ 2024 } / December / day{ 31u } }, {} };
 
-		auto s3 = s1;
-		s3 += s2;
+		auto s = s1;
+		s += s2;
 
-		EXPECT_EQ(s1 + s2, s3);
+		EXPECT_EQ(s1 + s2, s);
 	}
 
 	TEST(schedule, operator_subtraction_assignment)

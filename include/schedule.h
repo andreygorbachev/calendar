@@ -29,7 +29,6 @@
 #include <memory>
 #include <set>
 #include <algorithm>
-#include <stdexcept>
 
 
 namespace gregorian
@@ -135,18 +134,12 @@ namespace gregorian
 
 	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule
 	{
-		if (s1.get_from_until().get_from() > s2.get_from_until().get_from())
-			return s2 + s1;
-
-		if (std::chrono::sys_days{ s1.get_from_until().get_until() }++ == s2.get_from_until().get_from())
-			throw std::out_of_range{ "From and until are not consistent" };
-
 		auto dates2 = s2.get_dates();
 		auto dates = s1.get_dates();
 		dates.merge(std::move(dates2));
 
 		return schedule{
-			{ s1.get_from_until().get_from(), s2.get_from_until().get_until() },
+			s1.get_from_until() + s2.get_from_until(),
 			std::move(dates)
 		};
 	}
