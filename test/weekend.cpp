@@ -60,7 +60,7 @@ namespace gregorian
 	}
 
 
-	TEST(weekend, operator_or)
+	TEST(weekend, operator_bitwise_or)
 	{
 		const auto w = FridaySaturdayWeekend | SaturdaySundayWeekend;
 
@@ -78,7 +78,7 @@ namespace gregorian
 	}
 
 
-	TEST(weekend, operator_and)
+	TEST(weekend, operator_bitwise_and)
 	{
 		const auto w = FridaySaturdayWeekend & SaturdaySundayWeekend;
 
@@ -96,13 +96,13 @@ namespace gregorian
 	}
 
 
-	TEST(weekend, operator_equal)
+	TEST(weekend, operator_equal_to)
 	{
 		EXPECT_TRUE(SaturdaySundayWeekend == SaturdaySundayWeekend);
 	}
 
 
-	TEST(weekend, operator_not_equal)
+	TEST(weekend, operator_not_equal_to)
 	{
 		EXPECT_TRUE(SaturdaySundayWeekend != SundayWeekend);
 	}

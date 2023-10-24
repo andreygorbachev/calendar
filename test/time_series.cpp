@@ -44,7 +44,7 @@ namespace gregorian
 		EXPECT_EQ(expected, ts.get_period());
 	}
 
-	TEST(_time_series, operator_square_brackets1)
+	TEST(_time_series, operator_subscript_1)
 	{
 		const auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
 
@@ -55,7 +55,7 @@ namespace gregorian
 		EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
 	}
 
-	TEST(_time_series, operator_square_brackets2)
+	TEST(_time_series, operator_subscript_2)
 	{
 		auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
 		ts[2023y / January / 3d] = 3.4269;
