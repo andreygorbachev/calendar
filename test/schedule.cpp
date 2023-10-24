@@ -149,9 +149,11 @@ namespace gregorian
 	TEST(schedule, operator_subtraction_assignment_date)
 	{
 		auto s = make_holiday_schedule_england();
-		s += 2023y / April / 1d;
-		s -= 2023y / April / 1d;
 
+		s += 2023y / April / 1d;
+		EXPECT_NE(make_holiday_schedule_england(), s);
+
+		s -= 2023y / April / 1d;
 		EXPECT_EQ(make_holiday_schedule_england(), s);
 	}
 
