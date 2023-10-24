@@ -110,6 +110,7 @@ namespace gregorian
 
 	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
 	{
+		// we should probably shrink the result to the period common to both cal1 and cal2
 		return calendar{
 			cal1.get_weekend() | cal2.get_weekend(),
 			cal2.get_holiday_schedule() | cal2.get_holiday_schedule()

@@ -82,24 +82,18 @@ namespace gregorian
 
 	inline auto operator|(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto from = std::max(s1.get_from_until().get_from(), s2.get_from_until().get_from());
-		auto until = std::min(s1.get_from_until().get_until(), s2.get_from_until().get_until());
-
 		auto dates2 = s2.get_dates();
 		auto dates = s1.get_dates();
 		dates.merge(std::move(dates2));
 
 		return schedule{
-			{ std::move(from), std::move(until) },
+			s1.get_from_until() | s2.get_from_until(),
 			std::move(dates)
 		};
 	}
 
 	inline auto operator&(const schedule& s1, const schedule& s2) -> schedule
 	{
-		auto from = std::max(s1.get_from_until().get_from(), s2.get_from_until().get_from());
-		auto until = std::min(s1.get_from_until().get_until(), s2.get_from_until().get_until());
-
 		const auto& dates1 = s1.get_dates();
 		auto dates = schedule::storage{};
 		for (const auto& h : dates1)
@@ -107,7 +101,7 @@ namespace gregorian
 				dates.insert(h);
 
 		return schedule{
-			{ std::move(from), std::move(until) },
+			s1.get_from_until() & s2.get_from_until(),
 			std::move(dates)
 		};
 	}

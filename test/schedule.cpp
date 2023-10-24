@@ -68,8 +68,8 @@ namespace gregorian
 
 		const auto s = s1 | s2;
 
-		EXPECT_EQ(max(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
-		EXPECT_EQ(min(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
+		EXPECT_EQ(min(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
+		EXPECT_EQ(max(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
 	}
 
 	TEST(schedule, operator_bitwise_and)
