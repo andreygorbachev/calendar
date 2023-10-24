@@ -204,7 +204,7 @@ namespace gregorian
 		} };
 
 		while (!is_business_day(d))
-			d = std::chrono::sys_days{ d } - std::chrono::days{ 1 };
+			d = std::chrono::sys_days{ d } - std::chrono::days{ 1 }; // what if we do not have any business days in a particular months?
 
 		return d;
 	}
