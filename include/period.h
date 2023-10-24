@@ -68,6 +68,31 @@ namespace gregorian
 	using years_period = period<std::chrono::year>;
 
 
+	inline auto operator+(const days_period& p1, const days_period& p2) -> days_period
+	{
+		if (std::chrono::sys_days{ p2.get_from() } - std::chrono::sys_days{ p1.get_until() } != std::chrono::days{ 1 })
+			throw std::out_of_range{ "From and until are not consistent" };
+
+		return { p1.get_from(), p2.get_until() };
+	}
+
+	inline auto operator+(const months_period& p1, const months_period& p2) -> months_period
+	{
+		if (p2.get_from() - p1.get_until() != std::chrono::months{ 1 })
+			throw std::out_of_range{ "From and until are not consistent" };
+
+		return { p1.get_from(), p2.get_until() };
+	}
+
+	inline auto operator+(const years_period& p1, const years_period& p2) -> years_period
+	{
+		if (p2.get_from() - p1.get_until() != std::chrono::years{ 1 })
+			throw std::out_of_range{ "From and until are not consistent" };
+
+		return { p1.get_from(), p2.get_until() };
+	}
+
+
 	// maybe consider a method for an intersection of 2 periods?
 	// should we have make_period from a year? (a specific month? a specific week?)
 

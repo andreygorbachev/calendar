@@ -34,7 +34,7 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	TEST(period, constructor)
+	TEST(period, constructor_1)
 	{
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
 
@@ -44,4 +44,69 @@ namespace gregorian
 		EXPECT_THROW(period(2023y / May / 31d, 2023y / May / 1d), out_of_range);
 	}
 
+	TEST(period, constructor_2)
+	{
+		const auto p = period{ 2023y / April, 2023y / May };
+
+		EXPECT_EQ(2023y / April, p.get_from());
+		EXPECT_EQ(2023y / May, p.get_until());
+
+		EXPECT_THROW(period(2023y / May, 2023y / April), out_of_range);
+	}
+
+	TEST(period, constructor_3)
+	{
+		const auto p = period{ 2023y, 2024y };
+
+		EXPECT_EQ(2023y, p.get_from());
+		EXPECT_EQ(2024y, p.get_until());
+
+		EXPECT_THROW(period(2024y, 2023y), out_of_range);
+	}
+
+
+	TEST(period, operator_addition_1)
+	{
+		const auto p1 = period{ 2023y / April / 1d, 2023y / April / 30d };
+		const auto p2 = period{ 2023y / May / 1d, 2023y / May / 31d };
+
+		const auto p = p1 + p2;
+
+		EXPECT_EQ(2023y / April / 1d, p.get_from());
+		EXPECT_EQ(2023y / May / 31d, p.get_until());
+
+		EXPECT_THROW(p2 + p1, out_of_range);
+
+		EXPECT_THROW(period(2023y / March / 1d, 2023y / March / 31d) + p2, out_of_range);
+	}
+
+	TEST(period, operator_addition_2)
+	{
+		const auto p1 = period{ 2023y / February, 2023y / March };
+		const auto p2 = period{ 2023y / April, 2023y / May };
+
+		const auto p = p1 + p2;
+
+		EXPECT_EQ(2023y / February, p.get_from());
+		EXPECT_EQ(2023y / May, p.get_until());
+
+		EXPECT_THROW(p2 + p1, out_of_range);
+
+		EXPECT_THROW(period(2023y / January, 2023y / February) + p2, out_of_range);
+	}
+
+	TEST(period, operator_addition_3)
+	{
+		const auto p1 = period{ 2021y, 2022y };
+		const auto p2 = period{ 2023y, 2024y };
+
+		const auto p = p1 + p2;
+
+		EXPECT_EQ(2021y, p.get_from());
+		EXPECT_EQ(2024y, p.get_until());
+
+		EXPECT_THROW(p2 + p1, out_of_range);
+
+		EXPECT_THROW(period(2020y, 2021y) + p2, out_of_range);
+	}
 }
