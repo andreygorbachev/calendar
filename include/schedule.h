@@ -53,10 +53,10 @@ namespace gregorian
 
 	public:
 
-		void operator+=(const schedule& h);
+		auto operator+=(const schedule& h) -> schedule&;
 
-		void operator+=(const std::chrono::year_month_day& ymd);
-		void operator-=(const std::chrono::year_month_day& ymd);
+		auto operator+=(const std::chrono::year_month_day& ymd) -> schedule&;
+		auto operator-=(const std::chrono::year_month_day& ymd) -> schedule&;
 
 		friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
 
@@ -158,20 +158,26 @@ namespace gregorian
 	}
 
 
-	inline void schedule::operator+=(const schedule& h)
+	inline auto schedule::operator+=(const schedule& h) -> schedule&
 	{
 		*this = *this + h;
+
+		return *this;
 	}
 
-	inline void schedule::operator+=(const std::chrono::year_month_day& ymd)
+	inline auto schedule::operator+=(const std::chrono::year_month_day& ymd) -> schedule&
 	{
 		if(_from_until.contains(ymd))
 			_dates.insert(ymd);
+
+		return *this;
 	}
 
-	inline void schedule::operator-=(const std::chrono::year_month_day& ymd)
+	inline auto schedule::operator-=(const std::chrono::year_month_day& ymd) -> schedule&
 	{
 		_dates.erase(ymd);
+
+		return *this;
 	}
 
 
