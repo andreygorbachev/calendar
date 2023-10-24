@@ -113,7 +113,7 @@ namespace gregorian
 		// we should probably shrink the result to the period common to both cal1 and cal2
 		return calendar{
 			cal1.get_weekend() | cal2.get_weekend(),
-			cal2.get_holiday_schedule() | cal2.get_holiday_schedule()
+			cal1.get_holiday_schedule() | cal2.get_holiday_schedule()
 		};
 	}
 
@@ -121,7 +121,7 @@ namespace gregorian
 	{
 		return calendar{
 			cal1.get_weekend() & cal2.get_weekend(),
-			cal2.get_holiday_schedule() & cal2.get_holiday_schedule()
+			cal1.get_holiday_schedule() & cal2.get_holiday_schedule()
 		}; // is this right?
 	}
 
