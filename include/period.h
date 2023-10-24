@@ -24,6 +24,7 @@
 
 #include <chrono>
 #include <memory>
+#include <algorithm>
 #include <stdexcept>
 
 
@@ -97,7 +98,26 @@ namespace gregorian
 	}
 
 
-	// maybe consider a method for an intersection of 2 periods?
+	inline auto operator&(const days_period& p1, const days_period& p2) -> days_period
+	{
+		if (p1.get_from() > p2.get_from())
+			return p2 & p1;
+
+		return { std::max(p1.get_from(), p2.get_from()), std::min(p1.get_until(), p2.get_until()) };
+	}
+
+	inline auto operator|(const days_period& p1, const days_period& p2) -> days_period
+	{
+		if (p1.get_from() > p2.get_from())
+			return p2 | p1;
+
+		if (p1.get_until() < p2.get_from())
+			throw std::out_of_range{ "From and until are not consistent" };
+
+		return { std::min(p1.get_from(), p2.get_from()), std::max(p1.get_until(), p2.get_until()) };
+	}
+
+
 	// should we have make_period from a year? (a specific month? a specific week?)
 
 

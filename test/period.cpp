@@ -111,6 +111,37 @@ namespace gregorian
 	}
 
 
+	TEST(period, operator_bitwise_and)
+	{
+		const auto p1 = period{ 2023y / March / 1d, 2023y / April / 30d };
+		const auto p2 = period{ 2023y / April / 1d, 2023y / May / 31d };
+
+		const auto p = p1 & p2;
+
+		EXPECT_EQ(p, p2 & p1);
+
+		EXPECT_EQ(2023y / April / 1d, p.get_from());
+		EXPECT_EQ(2023y / April / 30d, p.get_until());
+
+		EXPECT_THROW(period(2023y / January / 1d, 2023y / February / 28d) & p2, out_of_range);
+	}
+
+	TEST(period, operator_bitwise_or)
+	{
+		const auto p1 = period{ 2023y / March / 1d, 2023y / April / 30d };
+		const auto p2 = period{ 2023y / April / 1d, 2023y / May / 31d };
+
+		const auto p = p1 | p2;
+
+		EXPECT_EQ(p, p2 | p1);
+
+		EXPECT_EQ(2023y / March / 1d, p.get_from());
+		EXPECT_EQ(2023y / May / 31d, p.get_until());
+
+		EXPECT_THROW(period(2023y / January / 1d, 2023y / February / 28d) | p2, out_of_range);
+	}
+
+
 	TEST(period, contains)
 	{
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
