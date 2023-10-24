@@ -165,7 +165,8 @@ namespace gregorian
 
 	inline void schedule::operator+=(const std::chrono::year_month_day& ymd)
 	{
-		_dates.insert(ymd);
+		if(_from_until.contains(ymd))
+			_dates.insert(ymd);
 	}
 
 	inline void schedule::operator-=(const std::chrono::year_month_day& ymd)

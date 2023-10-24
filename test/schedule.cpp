@@ -114,13 +114,13 @@ namespace gregorian
 
 		const auto s = s1 + s2;
 
-		EXPECT_THROW(s2 + s1, out_of_range);
-
 		EXPECT_EQ(s1.get_from_until().get_from(), s.get_from_until().get_from());
 		EXPECT_EQ(year{ 2024 } / December / day{ 31u }, s.get_from_until().get_until());
+
+		EXPECT_THROW(s2 + s1, out_of_range);
 	}
 
-	TEST(schedule, operator_addition_assignment)
+	TEST(schedule, operator_addition_assignment_schedule)
 	{
 		const auto& s1 = make_holiday_schedule_england();
 		const auto& s2 = schedule{ days_period{ year{ 2024 } / January / day{ 1u }, year{ 2024 } / December / day{ 31u } }, {} };
@@ -129,15 +129,30 @@ namespace gregorian
 		s += s2;
 
 		EXPECT_EQ(s1 + s2, s);
+
+		EXPECT_THROW(s = s2; s += s1, out_of_range);
 	}
 
-	TEST(schedule, operator_subtraction_assignment)
+	TEST(schedule, operator_addition_assignment_date)
 	{
-		auto s1 = make_holiday_schedule_england();
-		s1 += 2023y / April / 1d;
-		s1 -= 2023y / April / 1d;
+		auto s = make_holiday_schedule_england();
 
-		EXPECT_EQ(make_holiday_schedule_england(), s1);
+		EXPECT_FALSE(s.contains(2023y / April / 1d));
+		s += 2023y / April / 1d;
+		EXPECT_TRUE(s.contains(2023y / April / 1d));
+
+		EXPECT_FALSE(s.contains(2024y / April / 1d));
+		s += 2024y / April / 1d;
+		EXPECT_FALSE(s.contains(2024y / April / 1d));
+	}
+
+	TEST(schedule, operator_subtraction_assignment_date)
+	{
+		auto s = make_holiday_schedule_england();
+		s += 2023y / April / 1d;
+		s -= 2023y / April / 1d;
+
+		EXPECT_EQ(make_holiday_schedule_england(), s);
 	}
 
 	TEST(schedule, get_dates)

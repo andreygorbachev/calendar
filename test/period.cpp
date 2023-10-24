@@ -109,4 +109,17 @@ namespace gregorian
 
 		EXPECT_THROW(period(2020y, 2021y) + p2, out_of_range);
 	}
+
+
+	TEST(period, contains)
+	{
+		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
+
+		EXPECT_TRUE(p.contains(2023y / May / 1d));
+		EXPECT_TRUE(p.contains(2023y / May / 2d));
+		EXPECT_TRUE(p.contains(2023y / May / 31d));
+
+		EXPECT_FALSE(p.contains(2023y / April / 30d));
+		EXPECT_FALSE(p.contains(2023y / June / 1d));
+	}
 }

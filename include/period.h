@@ -55,6 +55,10 @@ namespace gregorian
 		auto get_from() const noexcept -> const T&;
 		auto get_until() const noexcept -> const T&;
 
+	public:
+
+		auto contains(const T& x) const noexcept -> bool;
+
 	private:
 
 		T _from;
@@ -117,6 +121,13 @@ namespace gregorian
 	auto period<T>::get_until() const noexcept -> const T&
 	{
 		return _until;
+	}
+
+
+	template<typename T>
+	auto period<T>::contains(const T& x) const noexcept -> bool
+	{
+		return _from <= x && x <= _until;
 	}
 
 }
