@@ -118,9 +118,6 @@ namespace gregorian
 	}
 
 
-	// should we have make_period from a year? (a specific month? a specific week?)
-
-
 	template<typename T>
 	period<T>::period(T from, T until) :
 		_from{ std::move(from) },

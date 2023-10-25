@@ -53,9 +53,6 @@ namespace gregorian
 	using annual_holiday_storage = std::vector<const annual_holiday*>;
 	// choice here is influenced by a desire to eventualy be able to apply annual_holiday rules at compile time (constexpr)
 
-	constexpr auto FirstDayOfJanuary = std::chrono::day{ 1u };
-	constexpr auto LastDayOfDecember = std::chrono::day{ 31u };
-
 	inline auto make_holiday_schedule(
 		const years_period& from_until,
 		const annual_holiday_storage& rules

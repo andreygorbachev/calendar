@@ -178,4 +178,25 @@ namespace gregorian
 		EXPECT_TRUE(s3.contains(2023y / May / 1d));
 	}
 
+
+	TEST(make_days_period, multiple_years)
+	{
+		const auto hols = schedule::storage{ 2023y / April / 1d, 2024y / April / 1d };
+
+		const auto period = make_days_period(hols);
+
+		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
+		EXPECT_EQ(2024y / December / LastDayOfDecember, period.get_until());
+	}
+
+	TEST(make_days_period, single_years)
+	{
+		const auto hols = schedule::storage{ 2023y / April / 1d };
+
+		const auto period = make_days_period(hols);
+
+		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
+		EXPECT_EQ(2023y / December / LastDayOfDecember, period.get_until());
+	}
+
 }

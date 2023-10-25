@@ -118,34 +118,12 @@ inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::storage
 }
 
 
-inline auto _make_from(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
-{
-	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
-	// or should we have smallest possible year_month_day if the holidays are empty?
-
-	return { h.year(), std::chrono::January, gregorian::FirstDayOfJanuary };
-}
-
-inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
-{
-	const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
-	// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
-
-	return { h.year(), std::chrono::December, gregorian::LastDayOfDecember };
-}
-
-inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
-{
-	return { _make_from(hols), _make_until(hols) };
-}
-
-
 inline auto parse_ics(const std::string& fileName) -> gregorian::schedule
 {
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
 	auto hols = _parse_ics(fs);
-	auto from_until = _make_from_until(hols);
+	auto from_until = gregorian::make_days_period(hols);
 
 	// we assume that ics file covers the full number of years
 	return gregorian::schedule{
