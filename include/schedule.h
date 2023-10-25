@@ -144,18 +144,26 @@ namespace gregorian
 
 	inline auto _make_from(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
-		const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.cbegin();
-		// or should we have smallest possible year_month_day if the holidays are empty?
+		if (!hols.empty())
+		{
+			const auto h = *hols.cbegin();
 
-		return { h.year(), std::chrono::January, gregorian::FirstDayOfJanuary };
+			return { h.year(), std::chrono::January, gregorian::FirstDayOfJanuary };
+		}
+		else
+			return {};
 	}
 
 	inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
-		const auto h = hols.empty() ? std::chrono::year_month_day{} : *hols.crbegin();
-		// or should we have largest possible year_month_day if the holidays are empty? (or is it ok for it to be the same as _start?)
+		if (!hols.empty())
+		{
+			const auto h = *hols.crbegin();
 
-		return { h.year(), std::chrono::December, gregorian::LastDayOfDecember };
+			return { h.year(), std::chrono::December, gregorian::LastDayOfDecember };
+		}
+		else
+			return {};
 	}
 
 	inline auto make_days_period(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period

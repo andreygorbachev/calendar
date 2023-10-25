@@ -199,4 +199,15 @@ namespace gregorian
 		EXPECT_EQ(2023y / December / LastDayOfDecember, period.get_until());
 	}
 
+	TEST(make_days_period, no_years)
+	{
+		const auto hols = schedule::storage{};
+
+		const auto period = make_days_period(hols);
+
+		// ptobably not right - we are testing uninitialized values
+		EXPECT_EQ(year_month_day{}, period.get_from());
+		EXPECT_EQ(year_month_day{}, period.get_until());
+	}
+
 }
