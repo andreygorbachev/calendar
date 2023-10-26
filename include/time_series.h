@@ -55,6 +55,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
+		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept = delete;
 
 	public:
 
@@ -99,6 +100,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
+		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept = delete;
 
 	public:
 

@@ -50,6 +50,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
+		friend auto operator<=>(const calendar& cal1, const calendar& cal2) noexcept = delete;
 
 	public:
 

@@ -63,6 +63,7 @@ namespace gregorian
 		auto operator-=(const std::chrono::year_month_day& ymd) -> schedule&;
 
 		friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
+		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept = delete;
 
 	public:
 

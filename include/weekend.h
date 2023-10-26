@@ -47,6 +47,7 @@ namespace gregorian
 	public:
 
 		constexpr friend auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
+		constexpr friend auto operator<=>(const weekend& w1, const weekend& w2) noexcept = delete;
 
 	public:
 
