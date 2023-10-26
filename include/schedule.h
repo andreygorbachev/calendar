@@ -172,7 +172,16 @@ namespace gregorian
 
 	inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
 	{
-		return { _make_from(hols), _make_until(hols) };
+		if (!hols.empty())
+		{
+			return { _make_from(hols), _make_until(hols) };
+		}
+		else
+		{
+			const auto any_date = std::chrono::year_month_day{};
+
+			return { any_date, any_date };
+		}
 	}
 
 

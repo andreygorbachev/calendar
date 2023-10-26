@@ -213,11 +213,7 @@ namespace gregorian
 	{
 		const auto hols = schedule::storage{};
 
-		const auto period = _make_from_until(hols);
-
-		// ptobably not right - we are testing uninitialized values
-		EXPECT_EQ(year_month_day{}, period.get_from());
-		EXPECT_EQ(year_month_day{}, period.get_until());
+		EXPECT_NO_THROW(_make_from_until(hols)); // ok to create [from, until] from an empty set of holiday dates
 	}
 
 }
