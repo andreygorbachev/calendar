@@ -123,12 +123,8 @@ inline auto parse_ics(const std::string& fileName) -> gregorian::schedule
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 
 	auto hols = _parse_ics(fs);
-	auto from_until = gregorian::make_days_period(hols);
 
 	// we assume that ics file covers the full number of years
-	return gregorian::schedule{
-		std::move(from_until),
-		std::move(hols)
-	};
+	return gregorian::schedule{	std::move(hols)	};
 	// do we ever have weekend info in the ics files, which we should also process here?
 }

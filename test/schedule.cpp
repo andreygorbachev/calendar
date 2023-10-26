@@ -41,18 +41,28 @@ namespace gregorian
 
 	TEST(schedule, constructor_1)
 	{
-		auto from_until = days_period{ 2023y / May / 1d, 2023y / May / 1d };
+		auto from_until = days_period{ 2023y / April / 1d, 2023y / April / 1d };
 		auto hols = schedule::storage{};
 
 		EXPECT_NO_THROW(schedule(move(from_until), move(hols))); // ok to have a schedule for just 1 day
 	}
 
-
 	TEST(schedule, constructor_2)
 	{
 		const auto s1 = make_holiday_schedule_england();
 		const auto s2 = schedule{
-			{ 2023y / January / 1d,	2023y / December / 31d },
+			{ 2023y / January / FirstDayOfJanuary,	2023y / December / LastDayOfDecember },
+			s1.get_dates()
+		};
+
+		EXPECT_EQ(make_holiday_schedule_england(), s1);
+		EXPECT_NE(make_holiday_schedule_england(), s2);
+	}
+
+	TEST(schedule, constructor_3)
+	{
+		const auto s1 = make_holiday_schedule_england();
+		const auto s2 = schedule{
 			s1.get_dates()
 		};
 
@@ -179,31 +189,31 @@ namespace gregorian
 	}
 
 
-	TEST(make_days_period, multiple_years)
+	TEST(_make_from_until, multiple_years)
 	{
 		const auto hols = schedule::storage{ 2023y / April / 1d, 2024y / April / 1d };
 
-		const auto period = make_days_period(hols);
+		const auto period = _make_from_until(hols);
 
 		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
 		EXPECT_EQ(2024y / December / LastDayOfDecember, period.get_until());
 	}
 
-	TEST(make_days_period, single_years)
+	TEST(_make_from_until, single_years)
 	{
 		const auto hols = schedule::storage{ 2023y / April / 1d };
 
-		const auto period = make_days_period(hols);
+		const auto period = _make_from_until(hols);
 
 		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
 		EXPECT_EQ(2023y / December / LastDayOfDecember, period.get_until());
 	}
 
-	TEST(make_days_period, no_years)
+	TEST(_make_from_until, no_years)
 	{
 		const auto hols = schedule::storage{};
 
-		const auto period = make_days_period(hols);
+		const auto period = _make_from_until(hols);
 
 		// ptobably not right - we are testing uninitialized values
 		EXPECT_EQ(year_month_day{}, period.get_from());

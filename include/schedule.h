@@ -51,6 +51,10 @@ namespace gregorian
 			storage dates
 		);
 
+		explicit schedule(
+			storage dates
+		);
+
 	public:
 
 		auto operator+=(const schedule& h) -> schedule&;
@@ -166,7 +170,7 @@ namespace gregorian
 			return {};
 	}
 
-	inline auto make_days_period(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
+	inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
 	{
 		return { _make_from(hols), _make_until(hols) };
 	}
@@ -181,6 +185,12 @@ namespace gregorian
 		// get rid of the hols which are outside [from, until]
 		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
 		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
+	}
+
+	inline schedule::schedule(
+		storage dates
+	) : schedule{ _make_from_until(dates), std::move(dates) }
+	{
 	}
 
 
