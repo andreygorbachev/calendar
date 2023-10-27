@@ -142,6 +142,23 @@ namespace gregorian
 	}
 
 
+	TEST(period, operator_equal_to)
+	{
+		const auto p1 = period{ 2023y / May / 1d, 2023y / May / 31d };
+		const auto p2 = period{ 2023y / May / 1d, 2023y / May / 31d };
+
+		EXPECT_TRUE(p1 == p2);
+	}
+
+	TEST(period, operator_not_equal_to)
+	{
+		const auto p1 = period{ 2023y / May / 1d, 2023y / May / 31d };
+		const auto p2 = period{ 2024y / May / 1d, 2024y / May / 31d };
+
+		EXPECT_TRUE(p1 != p2);
+	}
+
+
 	TEST(period, contains)
 	{
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
