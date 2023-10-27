@@ -65,6 +65,20 @@ namespace gregorian
 	}
 
 
+	TEST(period, get_from)
+	{
+		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
+
+		EXPECT_EQ(2023y / May / 1d, p.get_from());
+	}
+
+	TEST(period, get_unti)
+	{
+		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
+
+		EXPECT_EQ(2023y / May / 31d, p.get_until());
+	}
+
 	TEST(period, operator_addition_1)
 	{
 		const auto p1 = period{ 2023y / April / 1d, 2023y / April / 30d };
