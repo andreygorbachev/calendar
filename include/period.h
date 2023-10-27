@@ -50,7 +50,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const period& p1, const period& p2) noexcept -> bool = default;
-		friend auto operator<=>(const period& p1, const period& p2) noexcept = default;
+		friend auto operator<=>(const period& p1, const period& p2) noexcept = delete;
 
 	public:
 
