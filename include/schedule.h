@@ -75,6 +75,10 @@ namespace gregorian
 
 	private:
 
+		void _trim();
+
+	private:
+
 		days_period _from_until;
 
 		storage _dates;
@@ -190,15 +194,25 @@ namespace gregorian
 	) : _from_until{ std::move(from_until) },
 		_dates{ std::move(dates) }
 	{
-		// get rid of the hols which are outside [from, until]
-		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
-		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
+		_trim();
 	}
 
 	inline schedule::schedule(
 		storage dates
-	) : schedule{ _make_from_until(dates), /*std::move(*/dates/*)*/}
+	) : _from_until{ {}, {} },
+		_dates{ std::move(dates) }
 	{
+		_from_until = _make_from_until(_dates);
+
+		_trim();
+	}
+
+
+	inline void schedule::_trim()
+	{
+		// get rid of the hols which are outside [from, until]
+		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
+		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
 	}
 
 
