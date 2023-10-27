@@ -33,6 +33,7 @@
 #include <chrono>
 #include <vector>
 #include <stdexcept>
+#include <compare>
 
 
 namespace gregorian
@@ -50,7 +51,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
-		friend auto operator<=>(const calendar& cal1, const calendar& cal2) noexcept = delete;
+		friend auto operator<=>(const calendar& cal1, const calendar& cal2) noexcept -> std::strong_ordering = delete;
 
 	public:
 

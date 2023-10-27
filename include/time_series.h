@@ -30,6 +30,7 @@
 #include <vector>
 #include <memory>
 #include <stdexcept>
+#include <compare>
 
 
 namespace gregorian
@@ -55,7 +56,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
-		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept = delete;
+		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 	public:
 
@@ -100,7 +101,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
-		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept = delete;
+		friend auto operator<=>(const _time_series& ts1, const _time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 	public:
 

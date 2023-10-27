@@ -29,6 +29,7 @@
 #include <memory>
 #include <set>
 #include <algorithm>
+#include <compare>
 
 
 namespace gregorian
@@ -63,7 +64,7 @@ namespace gregorian
 		auto operator-=(const std::chrono::year_month_day& ymd) -> schedule&;
 
 		friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
-		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept = delete;
+		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept -> std::strong_ordering = delete;
 
 	public:
 

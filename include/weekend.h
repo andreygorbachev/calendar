@@ -25,6 +25,7 @@
 #include <chrono>
 #include <bitset>
 #include <memory>
+#include <compare>
 
 
 namespace gregorian
@@ -47,7 +48,7 @@ namespace gregorian
 	public:
 
 		constexpr friend auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
-		constexpr friend auto operator<=>(const weekend& w1, const weekend& w2) noexcept = delete;
+		constexpr friend auto operator<=>(const weekend& w1, const weekend& w2) noexcept -> std::strong_ordering = delete;
 
 	public:
 

@@ -26,6 +26,7 @@
 #include <memory>
 #include <algorithm>
 #include <stdexcept>
+#include <compare>
 
 
 namespace gregorian
@@ -50,7 +51,7 @@ namespace gregorian
 	public:
 
 		friend auto operator==(const period& p1, const period& p2) noexcept -> bool = default;
-		friend auto operator<=>(const period& p1, const period& p2) noexcept = delete;
+		friend auto operator<=>(const period& p1, const period& p2) noexcept -> std::strong_ordering = delete;
 
 	public:
 
