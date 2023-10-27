@@ -41,9 +41,6 @@ namespace gregorian
 	public:
 
 		using storage = std::set<std::chrono::year_month_day>;
-		// should we template on this? (so we can build schedules based on vector if needed)
-		// or should we just work with a sorted vector (without duplicates)
-		// as we build a schedule once and use it many times in a sequential manner
 
 	public:
 
