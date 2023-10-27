@@ -199,7 +199,7 @@ namespace gregorian
 
 	inline schedule::schedule(
 		storage dates
-	) : schedule{ _make_from_until(dates), std::move(dates) }
+	) : schedule{ _make_from_until(dates), /*std::move(*/dates/*)*/}
 	{
 	}
 
