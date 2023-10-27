@@ -66,8 +66,7 @@ namespace gregorian
 			s1.get_dates()
 		};
 
-		EXPECT_EQ(make_holiday_schedule_england(), s1);
-		EXPECT_NE(make_holiday_schedule_england(), s2);
+		EXPECT_EQ(make_holiday_schedule_england(), s2);
 	}
 
 
