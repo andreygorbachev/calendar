@@ -166,12 +166,20 @@ namespace gregorian
 		EXPECT_EQ(make_holiday_schedule_england(), s);
 	}
 
+
+	TEST(schedule, get_from_unit)
+	{
+		const auto s1 = make_holiday_schedule_england_may_2023();
+		const auto s2 = schedule{ s1.get_from_until(), s1.get_dates() };
+
+		EXPECT_EQ(s1, s2);
+	}
 	TEST(schedule, get_dates)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
 		const auto s2 = schedule{ s1.get_from_until(), s1.get_dates() };
 
-		EXPECT_EQ(s2.get_from_until(), s1.get_from_until());
+		EXPECT_EQ(s1, s2);
 	}
 
 	TEST(schedule, contains)
