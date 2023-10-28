@@ -55,13 +55,18 @@ namespace gregorian
 
 	public:
 
-		auto operator+=(const schedule& h) -> schedule&;
+		friend auto operator+(schedule s1, schedule s2) -> schedule;
+			
+		auto operator+=(schedule s) -> schedule&;
 
 		auto operator+=(const std::chrono::year_month_day& ymd) -> schedule&;
 		auto operator-=(const std::chrono::year_month_day& ymd) -> schedule&;
 
 		friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
 		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept -> std::strong_ordering = delete;
+
+		friend auto operator|(schedule s1, schedule s2) -> schedule;
+		friend auto operator&(schedule s1, schedule s2) -> schedule;
 
 	public:
 
@@ -87,11 +92,10 @@ namespace gregorian
 
 
 
-	inline auto operator|(const schedule& s1, const schedule& s2) -> schedule
+	inline auto operator|(schedule s1, schedule s2) -> schedule
 	{
-		auto dates2 = s2.get_dates();
-		auto dates = s1.get_dates();
-		dates.merge(std::move(dates2));
+		auto& dates = s1._dates;
+		dates.merge(s2._dates);
 
 		return schedule{
 			s1.get_from_until() | s2.get_from_until(),
@@ -99,11 +103,10 @@ namespace gregorian
 		};
 	}
 
-	inline auto operator&(const schedule& s1, const schedule& s2) -> schedule
+	inline auto operator&(schedule s1, schedule s2) -> schedule
 	{
-		const auto& dates1 = s1.get_dates();
 		auto dates = schedule::storage{};
-		for (const auto& h : dates1)
+		for (const auto& h : s1._dates)
 			if (s2.contains(h))
 				dates.insert(h);
 
@@ -133,11 +136,10 @@ namespace gregorian
 	}
 
 
-	inline auto operator+(const schedule& s1, const schedule& s2) -> schedule
+	inline auto operator+(schedule s1, schedule s2) -> schedule
 	{
-		auto dates2 = s2.get_dates();
-		auto dates = s1.get_dates();
-		dates.merge(std::move(dates2));
+		auto& dates = s1._dates;
+		dates.merge(s2._dates);
 
 		return schedule{
 			s1.get_from_until() + s2.get_from_until(),
@@ -206,9 +208,9 @@ namespace gregorian
 	}
 
 
-	inline auto schedule::operator+=(const schedule& h) -> schedule&
+	inline auto schedule::operator+=(schedule s) -> schedule&
 	{
-		*this = *this + h;
+		*this = *this + std::move(s);
 
 		return *this;
 	}
