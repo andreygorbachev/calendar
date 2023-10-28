@@ -140,7 +140,7 @@ auto _make_England_calendar() -> calendar
 
 	return calendar{
 		SaturdaySundayWeekend,
-		known_part + cal.get_holiday_schedule()
+		known_part + cal.get_schedule()
 	};
 }
 
@@ -259,7 +259,7 @@ auto _make_Scotland_calendar() -> calendar
 
 	return calendar{
 		SaturdaySundayWeekend,
-		known_part + cal.get_holiday_schedule()
+		known_part + cal.get_schedule()
 	};
 }
 
@@ -385,7 +385,7 @@ auto _make_Northern_Ireland_calendar() -> calendar
 
 	return calendar{
 		SaturdaySundayWeekend,
-		known_part + cal.get_holiday_schedule()
+		known_part + cal.get_schedule()
 	};
 }
 

@@ -242,7 +242,7 @@ namespace gregorian
 
 		return calendar{
 			SaturdaySundayWeekend,
-			known_part + cal.get_holiday_schedule()
+			known_part + cal.get_schedule()
 		};
 	}
 

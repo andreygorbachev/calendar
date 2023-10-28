@@ -71,16 +71,12 @@ namespace gregorian
 
 	public:
 
-		auto from_until() const noexcept -> const days_period&; // are we duplicating functionality here?
-
-	public:
-
 		void substitute(const business_day_convention* const bdc); // or should we template calendar on this convention?
 
 	public:
 
 		auto get_weekend() const noexcept -> const weekend&;
-		auto get_holiday_schedule() const noexcept -> const schedule&;
+		auto get_schedule() const noexcept -> const schedule&;
 
 	private:
 
@@ -115,7 +111,7 @@ namespace gregorian
 		// we should probably shrink the result to the period common to both cal1 and cal2
 		return calendar{
 			cal1.get_weekend() | cal2.get_weekend(),
-			cal1.get_holiday_schedule() | cal2.get_holiday_schedule()
+			cal1.get_schedule() | cal2.get_schedule()
 		};
 	}
 
@@ -123,7 +119,7 @@ namespace gregorian
 	{
 		return calendar{
 			cal1.get_weekend() & cal2.get_weekend(),
-			cal1.get_holiday_schedule() & cal2.get_holiday_schedule()
+			cal1.get_schedule() & cal2.get_schedule()
 		}; // is this right?
 	}
 
@@ -143,7 +139,7 @@ namespace gregorian
 
 	inline void calendar::_make_bd_cache() // call it populate?
 	{
-		const auto& fu = from_until();
+		const auto& fu = _hols.get_from_until();
 		for (auto d = fu.get_from(); d <= fu.get_until(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
 			_bd_cache[d] = _is_business_day(d);
 	}
@@ -217,18 +213,12 @@ namespace gregorian
 	}
 
 
-	inline auto calendar::from_until() const noexcept -> const days_period&
-	{
-		return _hols.get_from_until();
-	}
-
-
 	inline auto calendar::get_weekend() const noexcept -> const weekend&
 	{
 		return _we;
 	}
 
-	inline auto calendar::get_holiday_schedule() const noexcept -> const schedule&
+	inline auto calendar::get_schedule() const noexcept -> const schedule&
 	{
 		return _hols;
 	}
