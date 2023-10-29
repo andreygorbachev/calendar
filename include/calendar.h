@@ -76,12 +76,7 @@ namespace gregorian
 
 	private:
 
-		void _make_bd_cache();
-
 		auto _is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool;
-
-		// we can try to factor out the cache as an (inner) class
-		// (to make it clear what is what)
 
 	private:
 
@@ -90,7 +85,14 @@ namespace gregorian
 
 	private:
 
-		_time_series<bool> _bd_cache;
+		struct cache
+		{
+			explicit cache(const calendar& cal);
+
+			_time_series<bool> _business_days;
+		};
+
+		cache _cache;
 
 	};
 
@@ -98,7 +100,7 @@ namespace gregorian
 
 	inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
 	{
-		return cal1._bd_cache == cal2._bd_cache;
+		return cal1._cache._business_days == cal2._cache._business_days;
 	}
 
 
@@ -126,21 +128,12 @@ namespace gregorian
 	inline calendar::calendar(
 		weekend we,
 		schedule hols
-	) :
-		_we{ we },
-		_hols{ hols },
-		_bd_cache{ _hols.get_from_until() }
+	) :	_we{ std::move(we) },
+		_hols{ std::move(hols) },
+		_cache{ *this }
 	{
-		_make_bd_cache();
 	}
 
-
-	inline void calendar::_make_bd_cache() // call it populate?
-	{
-		const auto& fu = _hols.get_from_until();
-		for (auto d = fu.get_from(); d <= fu.get_until(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
-			_bd_cache[d] = _is_business_day(d);
-	}
 
 	inline auto calendar::_is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
@@ -159,7 +152,7 @@ namespace gregorian
 			{
 				const auto substitute_day = bdc->adjust(holiday, *this);
 				_hols += substitute_day;
-				_make_bd_cache(); // we do not actually need to fully rebuild the cache, so this could be optimised
+				_cache = cache(*this); // we do not actually need to fully rebuild the cache, so this could be optimised
 			}
 			else
 			{
@@ -173,7 +166,7 @@ namespace gregorian
 
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
-		return _bd_cache[ymd];
+		return _cache._business_days[ymd];
 	}
 
 	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
@@ -201,6 +194,15 @@ namespace gregorian
 	inline auto calendar::get_schedule() const noexcept -> const schedule&
 	{
 		return _hols;
+	}
+
+
+	inline calendar::cache::cache(const calendar& cal)
+		: _business_days{ cal.get_schedule().get_from_until()}
+	{
+		const auto& fu = cal.get_schedule().get_from_until();
+		for (auto d = fu.get_from(); d <= fu.get_until(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
+			_business_days[d] = cal._is_business_day(d);
 	}
 
 }
