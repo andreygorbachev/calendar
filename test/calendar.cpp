@@ -84,6 +84,40 @@ namespace gregorian
 		EXPECT_EQ(expected, c);
 	}
 
+	TEST(calendar, get_weekend)
+	{
+		const auto s = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c = calendar{
+			SaturdaySundayWeekend,
+			s
+		};
+
+		EXPECT_EQ(SaturdaySundayWeekend, c.get_weekend());
+	}
+
+	TEST(calendar, get_schedule)
+	{
+		const auto s = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c = calendar{
+			SaturdaySundayWeekend,
+			s
+		};
+
+		EXPECT_EQ(s, c.get_schedule());
+	}
+
 	TEST(calendar, is_business_day)
 	{
 		const auto c = make_calendar_england();
