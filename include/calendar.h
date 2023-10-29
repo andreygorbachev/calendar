@@ -198,7 +198,7 @@ namespace gregorian
 
 
 	inline calendar::cache::cache(const calendar& cal)
-		: _business_days{ cal.get_schedule().get_from_until()}
+		: _business_days{ cal.get_schedule().get_from_until() }
 	{
 		const auto& fu = cal.get_schedule().get_from_until();
 		for (auto d = fu.get_from(); d <= fu.get_until(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })

@@ -61,12 +61,19 @@ inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule
 }
 
 
-inline auto parse_csv_schedule(const std::string& fileName) -> gregorian::schedule
+// there is no info on [from, until] in these CSV files, so we'll have to specify them
+inline auto parse_csv_schedule(
+	const std::string& fileName,
+	std::chrono::year y_from,
+	std::chrono::year y_until
+) -> gregorian::schedule
 {
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .csv file extension?
 
 	auto hols = _parse_csv_schedule_storage(fs);
 
-	// we assume that csv file covers the full number of years
-	return gregorian::schedule{	std::move(hols)	};
+	const auto from = y_from / std::chrono::January / gregorian::FirstDayOfJanuary;
+	const auto until = y_until / std::chrono::December / gregorian::LastDayOfDecember;
+
+	return gregorian::schedule{ gregorian::days_period{ from, until }, std::move(hols) };
 }
