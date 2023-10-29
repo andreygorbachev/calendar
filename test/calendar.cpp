@@ -40,6 +40,24 @@ using namespace std::chrono;
 namespace gregorian
 {
 
+	TEST(calendar, constructor)
+	{
+		const auto s = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c = calendar{
+			SaturdaySundayWeekend,
+			s
+		};
+
+		EXPECT_EQ(SaturdaySundayWeekend, c.get_weekend());
+		EXPECT_EQ(s, c.get_schedule());
+	}
+
 	TEST(calendar, substitute)
 	{
 		const auto expected = calendar{
