@@ -120,7 +120,7 @@ namespace gregorian
 		return calendar{
 			cal1.get_weekend() & cal2.get_weekend(),
 			cal1.get_schedule() & cal2.get_schedule()
-		}; // is this right?
+		};
 	}
 
 

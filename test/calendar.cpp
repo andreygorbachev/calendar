@@ -195,4 +195,117 @@ namespace gregorian
 		EXPECT_TRUE(c1 != c2);
 	}
 
+	TEST(calendar, operator_not_equal_to_3)
+	{
+		const auto s1 = schedule{
+			period{ 2022y / December / 1d, 2023y / February / 28d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c1 = calendar{
+			SaturdaySundayWeekend,
+			s1
+		};
+
+		const auto s2 = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 31d,
+			}
+		};
+
+		const auto c2 = calendar{
+			SaturdaySundayWeekend,
+			s2
+		};
+
+		EXPECT_TRUE(c1 != c2);
+	}
+
+	TEST(calendar, operator_bitwise_and)
+	{
+		const auto s_expected = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto expected = calendar{
+			SaturdaySundayWeekend,
+			s_expected
+		};
+
+		const auto s1 = schedule{
+			period{ 2022y / December / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+				2023y / January / 31d,
+			}
+		};
+
+		const auto c1 = calendar{
+			SaturdaySundayWeekend,
+			s1
+		};
+
+		const auto s2 = schedule{
+			period{ 2023y / January / 1d, 2023y / February / 28d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c2 = calendar{
+			SaturdaySundayWeekend,
+			s2
+		};
+
+		EXPECT_EQ(expected, c1 & c2);
+	}
+
+	TEST(calendar, operator_bitwise_or)
+	{
+		const auto s_expected = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+				2023y / January / 31d,
+			}
+		};
+
+		const auto expected = calendar{
+			SaturdaySundayWeekend,
+			s_expected
+		};
+
+		const auto s1 = schedule{
+			period{ 2022y / December / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c1 = calendar{
+			SaturdaySundayWeekend,
+			s1
+		};
+
+		const auto s2 = schedule{
+			period{ 2023y / January / 1d, 2023y / February / 28d },
+			schedule::storage{
+				2023y / January / 31d,
+			}
+		};
+
+		const auto c2 = calendar{
+			SaturdaySundayWeekend,
+			s2
+		};
+
+		EXPECT_EQ(expected, c1 | c2);
+	}
+
 }
