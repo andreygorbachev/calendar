@@ -16,7 +16,7 @@ We assume that for the rule based holidays the rules are unique (as in 01-Januar
 
 When we have "from" and "until" of some range of dates we do expect that "from" itself is included in the range and "until" itself is included in the range. If "until" < "from" we throw an exception.
 
-When we combine calendars the results is generated only over the common range of the initial calendars.
+When we combine calendars the result is generated only over the common range of the initial calendars.
 
 When we concatenate the calendars we expect not to have a gap between them.
 
