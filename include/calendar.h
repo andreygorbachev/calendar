@@ -59,8 +59,6 @@ namespace gregorian
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
-		// would "*" and "[]" make some sense here?
-		// iterators?
 		// serial dates?
 
 	public:
