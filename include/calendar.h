@@ -109,7 +109,7 @@ namespace gregorian
 
 		return calendar{
 			cal1.get_weekend() | cal2.get_weekend(),
-			schedule{ p, s.get_dates()}
+			schedule{ p, s.get_dates() } // can we do a move here?
 		};
 	}
 
