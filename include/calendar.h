@@ -59,10 +59,6 @@ namespace gregorian
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
-		// or should these be free functions?
-		auto last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day;
-		auto last_business_day(const std::chrono::year& y) const -> std::chrono::year_month_day;
-
 		// do we also need the n-th business day? (even if that takes us over the month end)
 
 		// would "*" and "[]" make some sense here?
@@ -194,24 +190,6 @@ namespace gregorian
 				result++;
 
 		return result;
-	}
-
-	inline auto calendar::last_business_day(const std::chrono::year_month& ym) const -> std::chrono::year_month_day
-	{
-		auto d = std::chrono::year_month_day{ std::chrono::year_month_day_last{
-			ym.year(),
-			std::chrono::month_day_last{ ym.month() }
-		} };
-
-		while (!is_business_day(d))
-			d = std::chrono::sys_days{ d } - std::chrono::days{ 1 }; // what if we do not have any business days in a particular months?
-
-		return d;
-	}
-
-	inline auto calendar::last_business_day(const std::chrono::year& y) const -> std::chrono::year_month_day
-	{
-		return last_business_day({ y, std::chrono::December });
 	}
 
 
