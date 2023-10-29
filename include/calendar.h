@@ -108,10 +108,12 @@ namespace gregorian
 
 	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
 	{
-		// we should probably shrink the result to the period common to both cal1 and cal2
+		const auto p = cal1.get_schedule().get_from_until() & cal2.get_schedule().get_from_until();
+		const auto s = cal1.get_schedule() | cal2.get_schedule();
+
 		return calendar{
 			cal1.get_weekend() | cal2.get_weekend(),
-			cal1.get_schedule() | cal2.get_schedule()
+			schedule{ p, s.get_dates()}
 		};
 	}
 
