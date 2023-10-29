@@ -87,6 +87,12 @@ namespace gregorian
 		{
 			explicit cache(const calendar& cal);
 
+			void substitute(
+				const std::chrono::year_month_day& out,
+				const std::chrono::year_month_day& in,
+				const weekend& we
+			);
+
 			_time_series<bool> _business_days;
 		};
 
@@ -150,7 +156,7 @@ namespace gregorian
 			{
 				const auto substitute_day = bdc->adjust(holiday, *this);
 				_hols += substitute_day;
-				_cache = cache(*this); // we do not actually need to fully rebuild the cache, so this could be optimised
+				_cache.substitute(holiday, substitute_day, _we);
 			}
 			else
 			{
@@ -201,6 +207,17 @@ namespace gregorian
 		const auto& fu = cal.get_schedule().get_from_until();
 		for (auto d = fu.get_from(); d <= fu.get_until(); d = std::chrono::sys_days{ d } + std::chrono::days{ 1 })
 			_business_days[d] = cal._is_business_day(d);
+	}
+
+
+	inline void calendar::cache::substitute(
+		const std::chrono::year_month_day& out,
+		const std::chrono::year_month_day& in,
+		const weekend& we
+	)
+	{
+		_business_days[out] = !we.is_weekend(out);
+		_business_days[in] = false;
 	}
 
 }
