@@ -8,7 +8,7 @@ Following std::chrono we assume the Gregorian calendar.
 
 It is expected that calendars do not change frequently (so the underlying data is quite static), but are used a lot.
 
-We do not capture the history of new holidays been announced.
+We do not capture the history of new holidays been announced. Hence it is expected that the calendars are correct as of today (but might not be correct as of a day in the past).
 
 We can think about holiday schedule as just a set of dates, or as a set of rules: to me the historical holidays are always better as a set of dates and future holidays are always better as a set of rules. Also the holidays for the current year at least (and maybe for the next year or two, as long as they are known with a high degree of certainty) are probably better as a set of dates (like you would see on your wall calendar).
 
