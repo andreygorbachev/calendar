@@ -233,7 +233,6 @@ namespace gregorian
 		);
 
 		// setup a calendar for the generated part only (to do substitution for the generated dates)
-		// do we need operator+ for calendar instead?
 		auto cal = calendar{
 			SaturdaySundayWeekend,
 			generated_part

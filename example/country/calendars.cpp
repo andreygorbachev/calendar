@@ -131,7 +131,6 @@ auto _make_England_calendar() -> calendar
 	);
 
 	// setup a calendar for the generated part only (to do substitution for the generated dates)
-	// do we need operator+ for calendar instead?
 	auto cal = calendar{
 		SaturdaySundayWeekend,
 		generated_part
@@ -250,7 +249,6 @@ auto _make_Scotland_calendar() -> calendar
 	);
 
 	// setup a calendar for the generated part only (to do substitution for the generated dates)
-	// do we need operator+ for calendar instead?
 	auto cal = calendar{
 		SaturdaySundayWeekend,
 		generated_part
@@ -376,7 +374,6 @@ auto _make_Northern_Ireland_calendar() -> calendar
 	);
 
 	// setup a calendar for the generated part only (to do substitution for the generated dates)
-	// do we need operator+ for calendar instead?
 	auto cal = calendar{
 		SaturdaySundayWeekend,
 		generated_part
