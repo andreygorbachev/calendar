@@ -140,7 +140,6 @@ namespace gregorian
 	inline auto calendar::_is_business_day(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
 		return !_we.is_weekend(ymd) && !_hols.contains(ymd);
-		// we allow a holiday on a weekend
 	}
 
 
@@ -214,7 +213,7 @@ namespace gregorian
 		const weekend& we
 	)
 	{
-		_business_days[out] = !we.is_weekend(out);
+		_business_days[out] = !we.is_weekend(out); // we allow a holiday on a weekend
 		_business_days[in] = false;
 	}
 
