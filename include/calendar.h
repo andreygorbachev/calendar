@@ -39,8 +39,6 @@
 namespace gregorian
 {
 
-	// obviously for future rule based holidays in absence of caching do not need the "until" day,
-	// so current design is not good from that point of view
 	class calendar
 	{
 
@@ -58,8 +56,6 @@ namespace gregorian
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
-
-		// serial dates?
 
 	public:
 
