@@ -58,7 +58,9 @@ namespace gregorian
 
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 1d, c));
 		EXPECT_EQ(2023y / January / 3d, ModifiedFollowing.adjust(2023y / January / 3d, c));
-		// add a test for "modifed"
+
+		EXPECT_EQ(2022y / December / 30d, ModifiedFollowing.adjust(2022y / December / 31d, c));
+		EXPECT_EQ(2022y / December / 30d, ModifiedFollowing.adjust(2022y / December / 30d, c));
 	}
 
 	TEST(preceding, adjust)
@@ -73,8 +75,11 @@ namespace gregorian
 	{
 		const auto c = make_calendar_england();
 
-		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 31d, c));
 		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 30d, c));
+
+		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 1d, c));
+		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 3d, c));
 	}
 
 	TEST(nearest, adjust)
