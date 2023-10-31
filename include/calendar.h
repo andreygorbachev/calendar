@@ -141,23 +141,24 @@ namespace gregorian
 
 	inline void calendar::substitute(const business_day_convention* const bdc)
 	{
-		const auto hols = _hols.get_dates();
-		for (const auto& holiday : hols)
+		auto sub_cal = *this;
+
+		for (const auto& holiday : _hols.get_dates())
 		{
-			_hols -= holiday;
-			if (!_is_business_day(holiday))
+			sub_cal._hols -= holiday;
+			if (!sub_cal._is_business_day(holiday))
 			{
 				const auto substitute_day = bdc->adjust(holiday, *this);
-				_hols += substitute_day;
-				_cache.substitute(holiday, substitute_day, _we);
+				sub_cal._hols += substitute_day;
+				sub_cal._cache.substitute(holiday, substitute_day, _we);
 			}
 			else
 			{
-				_hols += holiday;
+				sub_cal._hols += holiday;
 			}
 		}
 
-		// what happens if we have an exception?
+		*this = std::move(sub_cal);
 	}
 
 
