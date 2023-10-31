@@ -59,7 +59,7 @@ namespace gregorian
 
 	public:
 
-		void substitute(const business_day_convention* const bdc); // or should we template calendar on this convention?
+		void substitute(const business_day_convention* const bdc);
 
 	public:
 
