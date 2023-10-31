@@ -33,8 +33,6 @@
 #include <stdexcept>
 
 
-// is it possible that a single event codes multiple (subsequent) days?
-// (if not assert against it)
 inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 {
 	auto ymd = std::chrono::year_month_day{};
@@ -44,9 +42,8 @@ inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 	if (b != "VEVENT") // BEGIN: was already read
 		throw std::domain_error{ "Missing VEVENT" };
 
-	// should we somehow check that only "daily" events are supplied?
-	// (or does the format of parse already does it for us?)
-	// or maybe we do not want that as sometimes we have 1/2 day events
+	// add handling of the events, which are not full day
+	// add handling of the events spanning more than one day
 
 	for (;;)
 	{
@@ -87,11 +84,7 @@ inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::storage
 	if (b != "BEGIN:VCALENDAR")
 		throw std::domain_error{ "Badly formed ICS" };
 
-	// handle "PRODID" and "VERSION" - do we just support version 2.0?
-
-	// should we check that there is at least one event? - no need (empty calendars should be allowed)
-
-	// if the same event is in the file more than once - is it a problem? (should be ok to allow for duplicates)
+	// add handling of "PRODID" and "VERSION" - do we just support version 2.0?
 
 	for (;;)
 	{

@@ -40,7 +40,7 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	TEST(calendar, constructor)
+	TEST(calendar, constructor1)
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
@@ -56,6 +56,56 @@ namespace gregorian
 
 		EXPECT_EQ(SaturdaySundayWeekend, c.get_weekend());
 		EXPECT_EQ(s, c.get_schedule());
+	}
+
+	TEST(calendar, constructor2)
+	{
+		// all good business days
+
+		const auto s = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{}
+		};
+
+		const auto c = calendar{
+			NoWeekend,
+			s
+		};
+
+		EXPECT_EQ(NoWeekend, c.get_weekend());
+		EXPECT_EQ(s, c.get_schedule());
+	}
+
+	TEST(calendar, constructor3)
+	{
+		// duplicate holidays are ok
+
+		const auto s_expected = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+			}
+		};
+
+		const auto s = schedule{
+			period{ 2023y / January / 1d, 2023y / January / 31d },
+			schedule::storage{
+				2023y / January / 1d,
+				2023y / January / 1d,
+			}
+		};
+
+		const auto c_expected = calendar{
+			SaturdaySundayWeekend,
+			s_expected
+		};
+
+		const auto c = calendar{
+			SaturdaySundayWeekend,
+			s
+		};
+
+		EXPECT_EQ(c_expected, c);
 	}
 
 	TEST(calendar, substitute)
