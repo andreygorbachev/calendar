@@ -171,7 +171,7 @@ namespace gregorian
 
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
-		return !_cache._non_business_days[ymd];
+		return !is_non_business_day(ymd);
 	}
 
 	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
