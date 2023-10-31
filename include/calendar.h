@@ -53,6 +53,8 @@ namespace gregorian
 
 	public:
 
+		auto is_weekend_or_holiday(const std::chrono::year_month_day& ymd) const -> bool;
+
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
@@ -161,6 +163,11 @@ namespace gregorian
 		*this = std::move(sub_cal);
 	}
 
+
+	inline auto calendar::is_weekend_or_holiday(const std::chrono::year_month_day& ymd) const -> bool
+	{
+		return !_cache._business_days[ymd];
+	}
 
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
