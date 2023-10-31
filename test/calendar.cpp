@@ -168,14 +168,14 @@ namespace gregorian
 		EXPECT_EQ(s, c.get_schedule());
 	}
 
-	TEST(calendar, is_weekend_or_holiday)
+	TEST(calendar, is_non_business_day)
 	{
 		const auto c = make_calendar_england();
 
-		EXPECT_TRUE(c.is_weekend_or_holiday(2023y / May / 1d));
-		EXPECT_FALSE(c.is_weekend_or_holiday(2023y / May / 2d));
-		EXPECT_THROW(c.is_weekend_or_holiday(1y / May / 1d), out_of_range);
-		EXPECT_THROW(c.is_weekend_or_holiday(9999y / May / 1d), out_of_range);
+		EXPECT_TRUE(c.is_non_business_day(2023y / May / 1d));
+		EXPECT_FALSE(c.is_non_business_day(2023y / May / 2d));
+		EXPECT_THROW(c.is_non_business_day(1y / May / 1d), out_of_range);
+		EXPECT_THROW(c.is_non_business_day(9999y / May / 1d), out_of_range);
 	}
 
 	TEST(calendar, is_business_day)
