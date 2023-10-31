@@ -2,7 +2,7 @@
 
 What we want to achieve is to calculate a number of business days between 2 days.
 
-For this we need a notion of "weekend" and a notion of "holidays schedule".
+For this we need a notion of "weekend" and a notion of "holidays schedule". The library's logic is based around these non-business days (despite the fact that we want to compute the number of business days).
 
 Following std::chrono we assume the Gregorian calendar.
 
