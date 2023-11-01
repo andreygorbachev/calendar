@@ -55,7 +55,7 @@ namespace gregorian
 
 		auto is_non_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
-	private:
+	public:
 
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
