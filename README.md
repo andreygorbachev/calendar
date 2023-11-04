@@ -30,3 +30,4 @@ As we are doing some caching inside calendar we throw an exception if one checks
 1) add handling of serial dates
 2) make count_business_days a lot more efficient (either cache business days per month/year or utilise vector<bool> more)
 3) maybe do better for rule based calendars (until date does not make sense in this case)
+4) consider again how caching should be implemented in a multithread case
