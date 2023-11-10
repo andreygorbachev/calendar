@@ -1,5 +1,4 @@
 project(calendar-test)
-#project(test)
 
 include(FetchContent)
 FetchContent_Declare(
