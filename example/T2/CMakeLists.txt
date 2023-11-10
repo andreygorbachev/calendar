@@ -1,4 +1,4 @@
-project("example-T2")
+project("calendar-example-T2")
 
 add_library(${PROJECT_NAME}
   calendar-T2.cpp
