@@ -36,12 +36,12 @@ namespace gregorian
 
 	TEST(named_holiday, make_holiday_1)
 	{
-		EXPECT_EQ(2023y / January / 1d, NewYearsDay.make_holiday(2023y));
+		EXPECT_EQ(2023y / FirstDayOfJanuary, NewYearsDay.make_holiday(2023y));
 	}
 
 	TEST(named_holiday, make_holiday_2)
 	{
-		EXPECT_EQ(2023y / December / 31d, NewYearsEve.make_holiday(2023y));
+		EXPECT_EQ(2023y / LastDayOfDecember, NewYearsEve.make_holiday(2023y));
 	}
 
 

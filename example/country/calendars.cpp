@@ -98,7 +98,7 @@ auto _England_schedule() -> schedule // or should it be a "proper" function (wit
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / December / day{ 31u } },
+		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -213,7 +213,7 @@ auto _Scotland_schedule() -> schedule
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / December / day{ 31u } },
+		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -337,7 +337,7 @@ auto _Northern_Ireland_schedule() -> schedule
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / December / day{ 31u } },
+		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
 		move(holidays)
 	};
 }

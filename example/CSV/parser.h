@@ -72,8 +72,8 @@ inline auto parse_csv_schedule(
 
 	auto hols = _parse_csv_schedule_storage(fs);
 
-	const auto from = y_from / std::chrono::January / gregorian::FirstDayOfJanuary;
-	const auto until = y_until / std::chrono::December / gregorian::LastDayOfDecember;
+	const auto from = y_from / gregorian::FirstDayOfJanuary;
+	const auto until = y_until / gregorian::LastDayOfDecember;
 
 	return gregorian::schedule{ gregorian::days_period{ from, until }, std::move(hols) };
 }

@@ -193,7 +193,7 @@ namespace gregorian
 		};
 
 		return schedule{
-			days_period{ std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u }, std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 31u } },
+			days_period{ std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary, std::chrono::year{ 2023 } / gregorian::LastDayOfDecember },
 			std::move(holidays)
 		};
 	}
@@ -256,6 +256,7 @@ namespace gregorian
 	inline auto make_mpc_schedule_2023_2024() -> schedule // should this also be an example?
 	{
 		using namespace std::chrono;
+		using namespace gregorian;
 
 		auto meeting_dates = schedule::storage{
 			// 2023 confirmed dates
@@ -278,7 +279,7 @@ namespace gregorian
 			2024y / December / 19d, // December MPC Summary and minutes
 		};
 
-		return schedule{ { 2023y / January / 1d, 2024y / December / 31d }, std::move(meeting_dates) };
+		return schedule{ { 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
 	}
 
 	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule

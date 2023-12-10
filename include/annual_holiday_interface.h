@@ -66,8 +66,8 @@ namespace gregorian
 
 		return schedule{
 			{
-				from_until.get_from() / std::chrono::January / FirstDayOfJanuary,
-				from_until.get_until() / std::chrono::December / LastDayOfDecember
+				from_until.get_from() / FirstDayOfJanuary,
+				from_until.get_until() / LastDayOfDecember
 			},
 			std::move(hols)
 		};

@@ -148,21 +148,21 @@ namespace gregorian
 	}
 
 
-	constexpr auto FirstDayOfJanuary = std::chrono::day{ 1u };
-	constexpr auto LastDayOfDecember = std::chrono::day{ 31u };
+	constexpr auto FirstDayOfJanuary = std::chrono::January / std::chrono::day{ 1u };
+	constexpr auto LastDayOfDecember = std::chrono::December / std::chrono::day{ 31u };
 
 	inline auto _make_from(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
 		const auto h = *hols.cbegin();
 
-		return { h.year(), std::chrono::January, gregorian::FirstDayOfJanuary };
+		return h.year() / gregorian::FirstDayOfJanuary;
 	}
 
 	inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
 		const auto h = *hols.crbegin();
 
-		return { h.year(), std::chrono::December, gregorian::LastDayOfDecember };
+		return h.year() / gregorian::LastDayOfDecember;
 	}
 
 	inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period

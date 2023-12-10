@@ -48,10 +48,10 @@ namespace gregorian
 
 	};
 
-	const auto NewYearsDay = named_holiday{ std::chrono::January / FirstDayOfJanuary };
+	const auto NewYearsDay = named_holiday{ FirstDayOfJanuary };
 	const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
 
-	const auto NewYearsEve = named_holiday{ std::chrono::December / LastDayOfDecember };
+	const auto NewYearsEve = named_holiday{ LastDayOfDecember };
 	// NewYearsEve is created as a named_holiday (instead of an offset_holiday like ChrismasEve)
 	// because we do not want to cross a year's boundary, which we would have to do otherwise
 

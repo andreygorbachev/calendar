@@ -23,12 +23,13 @@
 #pragma once
 
 #include <calendar.h>
+#include <schedule.h>
 
 #include <chrono>
 
 
 
-const auto Epoch = std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u };
+const auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
 // all calendars should include holidays from at least this day
 
 

@@ -51,7 +51,7 @@ namespace gregorian
 	{
 		const auto s1 = make_holiday_schedule_england();
 		const auto s2 = schedule{
-			{ 2023y / January / FirstDayOfJanuary,	2023y / December / LastDayOfDecember },
+			{ 2023y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
 			s1.get_dates()
 		};
 
@@ -119,7 +119,7 @@ namespace gregorian
 	TEST(schedule, operator_addition)
 	{
 		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = schedule{ days_period{ year{ 2024 } / January / day{ 1u }, year{ 2024 } / December / day{ 31u } }, {} };
+		const auto& s2 = schedule{ days_period{ year{ 2024 } / FirstDayOfJanuary, year{ 2024 } / LastDayOfDecember }, {} };
 
 		const auto s = s1 + s2;
 
@@ -132,7 +132,7 @@ namespace gregorian
 	TEST(schedule, operator_addition_assignment_schedule)
 	{
 		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = schedule{ days_period{ year{ 2024 } / January / day{ 1u }, year{ 2024 } / December / day{ 31u } }, {} };
+		const auto& s2 = schedule{ days_period{ year{ 2024 } / FirstDayOfJanuary, year{ 2024 } / LastDayOfDecember }, {} };
 
 		auto s = s1;
 		s += s2;
@@ -202,8 +202,8 @@ namespace gregorian
 
 		const auto period = _make_from_until(hols);
 
-		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
-		EXPECT_EQ(2024y / December / LastDayOfDecember, period.get_until());
+		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
+		EXPECT_EQ(2024y / LastDayOfDecember, period.get_until());
 	}
 
 	TEST(_make_from_until, single_years)
@@ -212,8 +212,8 @@ namespace gregorian
 
 		const auto period = _make_from_until(hols);
 
-		EXPECT_EQ(2023y / January / FirstDayOfJanuary, period.get_from());
-		EXPECT_EQ(2023y / December / LastDayOfDecember, period.get_until());
+		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
+		EXPECT_EQ(2023y / LastDayOfDecember, period.get_until());
 	}
 
 	TEST(_make_from_until, no_years)
