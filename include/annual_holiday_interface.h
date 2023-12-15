@@ -26,6 +26,7 @@
 
 #include <chrono>
 #include <vector>
+#include <memory>
 
 
 namespace gregorian
