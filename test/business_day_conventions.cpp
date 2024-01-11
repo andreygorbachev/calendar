@@ -99,4 +99,18 @@ namespace gregorian
 		EXPECT_EQ(2023y / March / 27d, Nearest.adjust(2023y / March / 27d, c));
 	}
 
+	TEST(make_first_business_day, make_first_business_day)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_EQ(2023y / January / 3d, make_first_business_day(2023y / January, c));
+	}
+
+	TEST(make_last_business_day, make_last_business_day)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_EQ(2022y / December / 30d, make_last_business_day(2022y / December, c));
+	}
+
 }

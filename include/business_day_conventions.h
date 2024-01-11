@@ -116,6 +116,27 @@ namespace gregorian
 
 
 
+	inline auto make_first_business_day(
+		const std::chrono::year_month& ym,
+		const calendar& cal
+	) -> std::chrono::year_month_day
+	{
+		const auto ymd = ym / std::chrono::day{ 1u };
+		return Following.adjust(ymd, cal);
+	}
+
+
+	inline auto make_last_business_day(
+		const std::chrono::year_month& ym,
+		const calendar& cal
+	) -> std::chrono::year_month_day
+	{
+		const auto ymd = ym / std::chrono::last;
+		return Preceding.adjust(ymd, cal);
+	}
+
+
+
 	inline auto no_adjustment::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		return ymd;
