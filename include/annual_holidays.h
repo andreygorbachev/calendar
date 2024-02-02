@@ -89,12 +89,12 @@ namespace gregorian
 
 	};
 
-	const auto GoodFriday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ -2 } };
-	const auto EasterMonday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 1 } };
-	const auto AscensionDay = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 39 } };
-	const auto WhitMonday = offset_holiday<_easter_holiday>{ _Easter, std::chrono::days{ 50 } };
-	const auto ChristmasEve = offset_holiday<named_holiday>{ ChristmasDay, std::chrono::days{ -1 } };
-	const auto BoxingDay = offset_holiday<named_holiday>{ ChristmasDay, std::chrono::days{ 1 } };
+	const auto GoodFriday = offset_holiday{ _Easter, std::chrono::days{ -2 } };
+	const auto EasterMonday = offset_holiday{ _Easter, std::chrono::days{ 1 } };
+	const auto AscensionDay = offset_holiday{ _Easter, std::chrono::days{ 39 } };
+	const auto WhitMonday = offset_holiday{ _Easter, std::chrono::days{ 50 } };
+	const auto ChristmasEve = offset_holiday{ ChristmasDay, std::chrono::days{ -1 } };
+	const auto BoxingDay = offset_holiday{ ChristmasDay, std::chrono::days{ 1 } };
 
 
 
