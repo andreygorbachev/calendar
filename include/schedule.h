@@ -191,11 +191,9 @@ namespace gregorian
 
 	inline schedule::schedule(
 		storage dates
-	) : _from_until{ {}, {} },
+	) : _from_until{ _make_from_until(dates) },
 		_dates{ std::move(dates) }
 	{
-		_from_until = _make_from_until(_dates);
-
 		_trim();
 	}
 
