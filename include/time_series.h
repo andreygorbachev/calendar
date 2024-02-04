@@ -37,7 +37,7 @@ namespace gregorian
 {
 
 	template<typename T>
-	class _time_series
+	class _time_series final
 	{
 
 	public:

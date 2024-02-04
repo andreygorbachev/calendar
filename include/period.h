@@ -32,7 +32,7 @@
 namespace gregorian
 {
 
-	template<typename T> class period
+	template<typename T> class period final
 	{
 
 	public:
