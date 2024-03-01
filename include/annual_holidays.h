@@ -70,13 +70,12 @@ namespace gregorian
 
 
 
-	template<typename H>
 	class offset_holiday final : public annual_holiday
 	{
 
 	public:
 
-		explicit offset_holiday(H holiday, std::chrono::days offset) noexcept;
+		explicit offset_holiday(const annual_holiday* const holiday, std::chrono::days offset) noexcept;
 
 	private:
 
@@ -84,17 +83,17 @@ namespace gregorian
 
 	private:
 
-		H _holiday;
+		const annual_holiday* _holiday;
 		std::chrono::days _offset;
 
 	};
 
-	const auto GoodFriday = offset_holiday{ _Easter, std::chrono::days{ -2 } };
-	const auto EasterMonday = offset_holiday{ _Easter, std::chrono::days{ 1 } };
-	const auto AscensionDay = offset_holiday{ _Easter, std::chrono::days{ 39 } };
-	const auto WhitMonday = offset_holiday{ _Easter, std::chrono::days{ 50 } };
-	const auto ChristmasEve = offset_holiday{ ChristmasDay, std::chrono::days{ -1 } };
-	const auto BoxingDay = offset_holiday{ ChristmasDay, std::chrono::days{ 1 } };
+	const auto GoodFriday = offset_holiday{ &_Easter, std::chrono::days{ -2 } };
+	const auto EasterMonday = offset_holiday{ &_Easter, std::chrono::days{ 1 } };
+	const auto AscensionDay = offset_holiday{ &_Easter, std::chrono::days{ 39 } };
+	const auto WhitMonday = offset_holiday{ &_Easter, std::chrono::days{ 50 } };
+	const auto ChristmasEve = offset_holiday{ &ChristmasDay, std::chrono::days{ -1 } };
+	const auto BoxingDay = offset_holiday{ &ChristmasDay, std::chrono::days{ 1 } };
 
 
 
@@ -186,18 +185,16 @@ namespace gregorian
 
 
 
-	template<typename H>
-	offset_holiday<H>::offset_holiday(H holiday, std::chrono::days offset) noexcept :
-		_holiday{ std::move(holiday) },
+	inline offset_holiday::offset_holiday(const annual_holiday* const holiday, std::chrono::days offset) noexcept :
+		_holiday{ holiday },
 		_offset{ std::move(offset) }
 	{
 	}
 
 
-	template<typename H>
-	auto offset_holiday<H>::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline auto offset_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
-		const auto d = _holiday.make_holiday(y);
+		const auto d = _holiday->make_holiday(y);
 		return std::chrono::sys_days{ d } + _offset;
 	}
 

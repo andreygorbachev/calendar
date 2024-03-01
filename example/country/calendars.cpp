@@ -225,7 +225,7 @@ auto _make_Scotland_calendar() -> calendar
 	const auto generated_part_from = known_part.get_from_until().get_until().year();
 	const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
-	const auto SecondJanuary = offset_holiday<named_holiday>{ NewYearsDay, days{ 1 } };
+	const auto SecondJanuary = offset_holiday{ &NewYearsDay, days{ 1 } };
 	const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
 	const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
 	const auto SummerBankHoliday = weekday_indexed_holiday{ August / Monday[1] };

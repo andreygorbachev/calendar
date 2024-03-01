@@ -40,7 +40,7 @@ namespace gregorian
 		annual_holiday() noexcept = default;
 		virtual ~annual_holiday() noexcept = default;
 
-		annual_holiday(const annual_holiday&) = default; // = delete
+		annual_holiday(const annual_holiday&) = delete;
 		annual_holiday(annual_holiday&&) noexcept = delete;
 
 		annual_holiday& operator=(const annual_holiday&) = delete;
