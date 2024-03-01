@@ -36,7 +36,14 @@ namespace gregorian
 
 	public:
 
+		business_day_convention() noexcept = default;
 		virtual ~business_day_convention() noexcept = default;
+
+		business_day_convention(const business_day_convention&) = delete;
+		business_day_convention(business_day_convention&&) noexcept = delete;
+
+		business_day_convention& operator=(const business_day_convention&) = delete;
+		business_day_convention& operator=(business_day_convention&&) noexcept = delete;
 
 	public:
 
