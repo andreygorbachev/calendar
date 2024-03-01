@@ -75,6 +75,7 @@ namespace gregorian
 
 	public:
 
+		// offset_holiday stores a pointer to holiday - is there a better way to do this?
 		explicit offset_holiday(const annual_holiday* const holiday, std::chrono::days offset) noexcept;
 
 	private:
