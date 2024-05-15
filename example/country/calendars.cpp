@@ -95,10 +95,19 @@ auto _England_schedule() -> schedule // or should it be a "proper" function (wit
 		year{ 2023 } / August / day{ 28u },
 		year{ 2023 } / December / day{ 25u },
 		year{ 2023 } / December / day{ 26u },
+
+		year{ 2024 } / January / day{ 1u },
+		year{ 2024 } / March / day{ 29u },
+		year{ 2024 } / April / day{ 1u },
+		year{ 2024 } / May / day{ 6u },
+		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / August / day{ 26u },
+		year{ 2024 } / December / day{ 25u },
+		year{ 2024 } / December / day{ 26u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -210,10 +219,20 @@ auto _Scotland_schedule() -> schedule
 		year{ 2023 } / November / day{ 30u },
 		year{ 2023 } / December / day{ 25u },
 		year{ 2023 } / December / day{ 26u },
+
+		year{ 2024 } / January / day{ 1u },
+		year{ 2024 } / January / day{ 2u },
+		year{ 2024 } / March / day{ 29u },
+		year{ 2024 } / May / day{ 6u },
+		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / August / day{ 5u },
+		year{ 2024 } / December / day{ 2u },
+		year{ 2024 } / December / day{ 25u },
+		year{ 2024 } / December / day{ 26u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -334,10 +353,21 @@ auto _Northern_Ireland_schedule() -> schedule
 		year{ 2023 } / August / day{ 28u },
 		year{ 2023 } / December / day{ 25u },
 		year{ 2023 } / December / day{ 26u },
+
+		year{ 2024 } / January / day{ 1u },
+		year{ 2024 } / March / day{ 18u },
+		year{ 2024 } / March / day{ 29u },
+		year{ 2024 } / April / day{ 1u },
+		year{ 2024 } / May / day{ 6u },
+		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / July / day{ 12u },
+		year{ 2024 } / August / day{ 26u },
+		year{ 2024 } / December / day{ 25u },
+		year{ 2024 } / December / day{ 26u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2023 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
