@@ -64,6 +64,19 @@ namespace gregorian
 		EXPECT_THROW(period(2024y, 2023y), out_of_range);
 	}
 
+	TEST(period, constructor_4)
+	{
+		const auto f = sys_days{ 2023y / May / 1d };
+		const auto u = sys_days{ 2023y / May / 31d };
+
+		const auto p = period{ f, u };
+
+		EXPECT_EQ(f, p.get_from());
+		EXPECT_EQ(u, p.get_until());
+
+		EXPECT_THROW(period(u, f), out_of_range);
+	}
+
 
 	TEST(period, get_from)
 	{
@@ -173,7 +186,7 @@ namespace gregorian
 	}
 
 
-	TEST(period, contains)
+	TEST(period, contains1)
 	{
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
 
@@ -183,5 +196,22 @@ namespace gregorian
 
 		EXPECT_FALSE(p.contains(2023y / April / 30d));
 		EXPECT_FALSE(p.contains(2023y / June / 1d));
+	}
+
+	TEST(period, contains2)
+	{
+		const auto p = period{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 31d } };
+
+		EXPECT_TRUE(p.contains(2023y / May / 1d));
+		EXPECT_TRUE(p.contains(sys_days{ 2023y / May / 1d }));
+		EXPECT_TRUE(p.contains(2023y / May / 2d));
+		EXPECT_TRUE(p.contains(sys_days{ 2023y / May / 2d }));
+		EXPECT_TRUE(p.contains(2023y / May / 31d));
+		EXPECT_TRUE(p.contains(sys_days{ 2023y / May / 31d }));
+
+		EXPECT_FALSE(p.contains(2023y / April / 30d));
+		EXPECT_FALSE(p.contains(sys_days{ 2023y / April / 30d }));
+		EXPECT_FALSE(p.contains(2023y / June / 1d));
+		EXPECT_FALSE(p.contains(sys_days{ 2023y / June / 1d }));
 	}
 }
