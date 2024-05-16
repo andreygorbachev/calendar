@@ -63,4 +63,26 @@ namespace gregorian
 		EXPECT_EQ(3.4269, ts[2023y / January / 3d]);
 	}
 
+	TEST(_time_series, operator_subscript_3)
+	{
+		const auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto expected = double{};
+		EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
+		EXPECT_EQ(expected, ts[sys_days{ 2023y / June / 5d }]);
+
+		EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
+	}
+
+	TEST(_time_series, operator_subscript_4)
+	{
+		auto ts = _time_series<double>{ { 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto sd = sys_days{ 2023y / January / 3d };
+
+		ts[sd] = 3.4269;
+
+		EXPECT_EQ(3.4269, ts[sd]);
+	}
+
 }

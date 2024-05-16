@@ -51,7 +51,7 @@ namespace gregorian
 		_time_series& operator=(const _time_series&) = default;
 		_time_series& operator=(_time_series&&) noexcept = default;
 
-		explicit _time_series(gregorian::days_period period) noexcept;
+		explicit _time_series(const gregorian::days_period& period) noexcept;
 
 	public:
 
@@ -63,17 +63,20 @@ namespace gregorian
 		auto operator[](const std::chrono::year_month_day& ymd) -> T&;
 		auto operator[](const std::chrono::year_month_day& ymd) const -> const T&;
 
+		auto operator[](const std::chrono::sys_days& sd) -> T&;
+		auto operator[](const std::chrono::sys_days& sd) const -> const T&;
+
 	public:
 
-		auto get_period() const noexcept -> const gregorian::days_period&;
+		auto get_period() const noexcept -> gregorian::days_period;
 
 	private:
 
-		auto _index(const std::chrono::year_month_day& ymd) const -> std::size_t;
+		auto _index(const std::chrono::sys_days& sd) const -> std::size_t;
 
 	private:
 
-		gregorian::days_period _period;
+		gregorian::period<std::chrono::sys_days> _period;
 
 		std::vector<T> _observations;
 
@@ -96,7 +99,7 @@ namespace gregorian
 		_time_series& operator=(const _time_series&) = default;
 		_time_series& operator=(_time_series&&) noexcept = default;
 
-		explicit _time_series(gregorian::days_period period) noexcept;
+		explicit _time_series(const gregorian::days_period& period) noexcept;
 
 	public:
 
@@ -108,17 +111,20 @@ namespace gregorian
 		auto operator[](const std::chrono::year_month_day& ymd) -> std::vector<bool>::reference;
 		auto operator[](const std::chrono::year_month_day& ymd) const -> std::vector<bool>::const_reference;
 
+		auto operator[](const std::chrono::sys_days& sd) -> std::vector<bool>::reference;
+		auto operator[](const std::chrono::sys_days& sd) const -> std::vector<bool>::const_reference;
+
 	public:
 
-		auto get_period() const noexcept -> const gregorian::days_period&;
+		auto get_period() const noexcept -> gregorian::days_period;
 
 	private:
 
-		auto _index(const std::chrono::year_month_day& ymd) const->std::size_t;
+		auto _index(const std::chrono::sys_days& sd) const -> std::size_t;
 
 	private:
 
-		gregorian::days_period _period;
+		gregorian::period<std::chrono::sys_days> _period;
 
 		std::vector<bool> _observations;
 
@@ -127,8 +133,8 @@ namespace gregorian
 
 
 	template<typename T>
-	_time_series<T>::_time_series(gregorian::days_period period) noexcept :
-		_period{ std::move(period) },
+	_time_series<T>::_time_series(const gregorian::days_period& period) noexcept :
+		_period{ period.get_from(), period.get_until() },
 		_observations(_index(_period.get_until()) + 1/*uz*/)
 	{
 	}
@@ -146,28 +152,40 @@ namespace gregorian
 		return _observations[_index(ymd)];
 	}
 
+	template<typename T>
+	auto _time_series<T>::operator[](const std::chrono::sys_days& sd) -> T&
+	{
+		return _observations[_index(sd)];
+	}
 
 	template<typename T>
-	auto _time_series<T>::get_period() const noexcept -> const gregorian::days_period&
+	auto _time_series<T>::operator[](const std::chrono::sys_days& sd) const -> const T&
 	{
-		return _period;
+		return _observations[_index(sd)];
 	}
 
 
 	template<typename T>
-	auto _time_series<T>::_index(const std::chrono::year_month_day& ymd) const -> std::size_t
+	auto _time_series<T>::get_period() const noexcept -> gregorian::days_period
 	{
-		if (ymd < _period.get_from() || ymd > _period.get_until())
+		return gregorian::days_period{ _period.get_from(), _period.get_until() };
+	}
+
+
+	template<typename T>
+	auto _time_series<T>::_index(const std::chrono::sys_days& sd) const -> std::size_t
+	{
+		if (sd < _period.get_from() || sd > _period.get_until())
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
-		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ _period.get_from() };
+		const auto days = sd - _period.get_from();
 		return days.count();
 	}
 
 
 
-	inline _time_series<bool>::_time_series(gregorian::days_period period) noexcept :
-		_period{ std::move(period) },
+	inline _time_series<bool>::_time_series(const gregorian::days_period& period) noexcept :
+		_period{ period.get_from(), period.get_until() },
 		_observations(_index(_period.get_until()) + 1/*uz*/)
 	{
 	}
@@ -183,19 +201,29 @@ namespace gregorian
 		return _observations[_index(ymd)];
 	}
 
-
-	inline auto _time_series<bool>::get_period() const noexcept -> const gregorian::days_period&
+	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) -> std::vector<bool>::reference
 	{
-		return _period;
+		return _observations[_index(sd)];
+	}
+
+	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) const -> std::vector<bool>::const_reference
+	{
+		return _observations[_index(sd)];
 	}
 
 
-	inline auto _time_series<bool>::_index(const std::chrono::year_month_day& ymd) const -> std::size_t
+	inline auto _time_series<bool>::get_period() const noexcept -> gregorian::days_period
 	{
-		if (ymd < _period.get_from() || ymd > _period.get_until())
+		return gregorian::days_period{ _period.get_from(), _period.get_until() };
+	}
+
+
+	inline auto _time_series<bool>::_index(const std::chrono::sys_days& sd) const -> std::size_t
+	{
+		if (sd < _period.get_from() || sd > _period.get_until())
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
-		const auto days = std::chrono::sys_days{ ymd } - std::chrono::sys_days{ _period.get_from() };
+		const auto days = sd - _period.get_from();
 		return days.count();
 	}
 
