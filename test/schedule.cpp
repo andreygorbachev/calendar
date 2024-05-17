@@ -182,7 +182,7 @@ namespace gregorian
 		EXPECT_EQ(s1, s2);
 	}
 
-	TEST(schedule, contains)
+	TEST(schedule, contains1)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
 		const auto s3 = make_holiday_schedule_united_states_may_2023() | s1;
@@ -193,6 +193,19 @@ namespace gregorian
 		EXPECT_TRUE(s3.contains(2023y / May / 1d));
 		EXPECT_FALSE(s4.contains(2023y / May / 1d));
 		EXPECT_TRUE(s3.contains(2023y / May / 1d));
+	}
+
+	TEST(schedule, contains2)
+	{
+		const auto s1 = make_holiday_schedule_england_may_2023();
+		const auto s3 = make_holiday_schedule_united_states_may_2023() | s1;
+		const auto s4 = make_holiday_schedule_united_states_may_2023() & s1;
+		const auto s5 = make_holiday_schedule_england_april_2023() + s1;
+
+		EXPECT_TRUE(s1.contains(sys_days{ 2023y / May / 1d }));
+		EXPECT_TRUE(s3.contains(sys_days{ 2023y / May / 1d }));
+		EXPECT_FALSE(s4.contains(sys_days{ 2023y / May / 1d }));
+		EXPECT_TRUE(s3.contains(sys_days{ 2023y / May / 1d }));
 	}
 
 

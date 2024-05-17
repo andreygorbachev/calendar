@@ -40,7 +40,7 @@ namespace gregorian
 
 	public:
 
-		using storage = std::set<std::chrono::year_month_day>;
+		using storage = std::set<std::chrono::year_month_day>; // should we store sys_days?
 
 	public:
 
@@ -71,6 +71,8 @@ namespace gregorian
 	public:
 
 		auto contains(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+
+		auto contains(const std::chrono::sys_days& sd) const noexcept -> bool;
 
 	public:
 
@@ -232,6 +234,11 @@ namespace gregorian
 	inline auto schedule::contains(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
 		return std::find(_dates.cbegin(), _dates.cend(), ymd) != _dates.cend();
+	}
+
+	inline auto schedule::contains(const std::chrono::sys_days& sd) const noexcept -> bool
+	{
+		return std::find(_dates.cbegin(), _dates.cend(), sd) != _dates.cend();
 	}
 
 	inline auto schedule::get_from_until() const noexcept -> const days_period&
