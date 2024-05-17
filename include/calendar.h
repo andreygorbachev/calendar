@@ -65,7 +65,7 @@ namespace gregorian
 
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
 
-//		auto count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
+		auto count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
 
 	public:
 
@@ -208,21 +208,21 @@ namespace gregorian
 		return result;
 	}
 
-//	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t
-//	{
-//		auto result = std::size_t{ 0 };
-//
-//		// naive implementation to start with
-//		for (
-//			auto d = from_until.get_from();
-//			d <= from_until.get_until();
-//			d = d + std::chrono::days{ 1 }
-//			)
-//			if (is_business_day(d))
-//				result++;
-//
-//		return result;
-//	}
+	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t
+	{
+		auto result = std::size_t{ 0 };
+
+		// naive implementation to start with
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d = d + std::chrono::days{ 1 }
+			)
+			if (is_business_day(d))
+				result++;
+
+		return result;
+	}
 
 
 	inline auto calendar::get_weekend() const noexcept -> const weekend&
