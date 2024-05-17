@@ -54,6 +54,8 @@ namespace gregorian
 
 		constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
+		constexpr auto is_weekend(const std::chrono::sys_days& sd) const noexcept -> bool;
+
 	public:
 
 		constexpr auto get_we() const noexcept -> const storage&;
@@ -94,6 +96,13 @@ namespace gregorian
 
 
 	constexpr auto weekend::is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool
+	{
+		const auto wd = std::chrono::weekday{ ymd };
+
+		return _we[wd.c_encoding()];
+	}
+
+	constexpr auto weekend::is_weekend(const std::chrono::sys_days& ymd) const noexcept -> bool
 	{
 		const auto wd = std::chrono::weekday{ ymd };
 
