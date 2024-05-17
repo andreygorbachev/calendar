@@ -53,7 +53,7 @@ auto _make_T2_calendar() -> calendar
 	};
 
 	const auto s = make_holiday_schedule(
-		{ from, until },
+		years_period{ from, until },
 		rules
 	);
 

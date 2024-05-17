@@ -51,7 +51,7 @@ namespace gregorian
 	{
 		const auto s1 = make_holiday_schedule_england();
 		const auto s2 = schedule{
-			{ 2023y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+			days_period{ 2023y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
 			s1.get_dates()
 		};
 

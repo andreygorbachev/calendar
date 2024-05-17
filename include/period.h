@@ -41,7 +41,7 @@ namespace gregorian
 		period(const period&) = default;
 		period(period&&) noexcept = default;
 
-		period(T from, T until);
+		explicit period(T from, T until);
 
 		~period() noexcept = default;
 
@@ -80,7 +80,7 @@ namespace gregorian
 		if (std::chrono::sys_days{ p2.get_from() } - std::chrono::sys_days{ p1.get_until() } != std::chrono::days{ 1 })
 			throw std::out_of_range{ "From and until are not consistent" };
 
-		return { p1.get_from(), p2.get_until() };
+		return days_period{ p1.get_from(), p2.get_until() };
 	}
 
 	inline auto operator+(const months_period& p1, const months_period& p2) -> months_period
@@ -88,7 +88,7 @@ namespace gregorian
 		if (p2.get_from() - p1.get_until() != std::chrono::months{ 1 })
 			throw std::out_of_range{ "From and until are not consistent" };
 
-		return { p1.get_from(), p2.get_until() };
+		return months_period{ p1.get_from(), p2.get_until() };
 	}
 
 	inline auto operator+(const years_period& p1, const years_period& p2) -> years_period
@@ -96,7 +96,7 @@ namespace gregorian
 		if (p2.get_from() - p1.get_until() != std::chrono::years{ 1 })
 			throw std::out_of_range{ "From and until are not consistent" };
 
-		return { p1.get_from(), p2.get_until() };
+		return years_period{ p1.get_from(), p2.get_until() };
 	}
 
 
@@ -105,7 +105,7 @@ namespace gregorian
 		if (p1.get_from() > p2.get_from())
 			return p2 & p1;
 
-		return { std::max(p1.get_from(), p2.get_from()), std::min(p1.get_until(), p2.get_until()) };
+		return days_period{ std::max(p1.get_from(), p2.get_from()), std::min(p1.get_until(), p2.get_until()) };
 	}
 
 	inline auto operator|(const days_period& p1, const days_period& p2) -> days_period
@@ -116,7 +116,7 @@ namespace gregorian
 		if (p1.get_until() < p2.get_from())
 			throw std::out_of_range{ "From and until are not consistent" };
 
-		return { std::min(p1.get_from(), p2.get_from()), std::max(p1.get_until(), p2.get_until()) };
+		return days_period{ std::min(p1.get_from(), p2.get_from()), std::max(p1.get_until(), p2.get_until()) };
 	}
 
 

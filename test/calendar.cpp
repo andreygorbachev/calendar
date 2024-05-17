@@ -212,9 +212,9 @@ namespace gregorian
 	{
 		const auto c = make_calendar_england();
 
-		const auto bd1 = c.count_business_days({ 2023y / May / 1d, 2023y / May / 1d });
-		const auto bd2 = c.count_business_days({ 2023y / May / 31d, 2023y / May / 31d });
-		const auto bd3 = c.count_business_days({ 2023y / May / 1d, 2023y / May / 31d });
+		const auto bd1 = c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 1d });
+		const auto bd2 = c.count_business_days(days_period{ 2023y / May / 31d, 2023y / May / 31d });
+		const auto bd3 = c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 31d });
 
 		EXPECT_EQ(0/*uz*/, bd1);
 		EXPECT_EQ(1/*uz*/, bd2);

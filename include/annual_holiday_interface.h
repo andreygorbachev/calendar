@@ -73,7 +73,7 @@ namespace gregorian
 				hols.insert(rule->make_holiday(y));
 
 		return schedule{
-			{
+			days_period{
 				from_until.get_from() / FirstDayOfJanuary,
 				from_until.get_until() / LastDayOfDecember
 			},
@@ -86,7 +86,7 @@ namespace gregorian
 		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
-		return make_holiday_schedule({ y, y }, rules);
+		return make_holiday_schedule(years_period{ y, y }, rules);
 	}
 
 

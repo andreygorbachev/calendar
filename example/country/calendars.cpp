@@ -135,7 +135,7 @@ auto _make_England_calendar() -> calendar
 	};
 
 	const auto generated_part = make_holiday_schedule(
-		{ generated_part_from, generated_part_until },
+		years_period{ generated_part_from, generated_part_until },
 		rules
 	);
 
@@ -263,7 +263,7 @@ auto _make_Scotland_calendar() -> calendar
 	};
 
 	const auto generated_part = make_holiday_schedule(
-		{ generated_part_from, generated_part_until },
+		years_period{ generated_part_from, generated_part_until },
 		rules
 	);
 
@@ -399,7 +399,7 @@ auto _make_Northern_Ireland_calendar() -> calendar
 	};
 
 	const auto generated_part = make_holiday_schedule(
-		{ generated_part_from, generated_part_until },
+		years_period{ generated_part_from, generated_part_until },
 		rules
 	);
 

@@ -153,31 +153,31 @@ namespace gregorian
 	constexpr auto FirstDayOfJanuary = std::chrono::January / std::chrono::day{ 1u };
 	constexpr auto LastDayOfDecember = std::chrono::December / std::chrono::day{ 31u };
 
-	inline auto _make_from(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
+	inline auto _make_from(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
 		const auto h = *hols.cbegin();
 
-		return h.year() / gregorian::FirstDayOfJanuary;
+		return h.year() / FirstDayOfJanuary;
 	}
 
-	inline auto _make_until(const gregorian::schedule::storage& hols) noexcept -> std::chrono::year_month_day
+	inline auto _make_until(const schedule::storage& hols) noexcept -> std::chrono::year_month_day
 	{
 		const auto h = *hols.crbegin();
 
-		return h.year() / gregorian::LastDayOfDecember;
+		return h.year() / LastDayOfDecember;
 	}
 
-	inline auto _make_from_until(const gregorian::schedule::storage& hols) noexcept -> gregorian::days_period
+	inline auto _make_from_until(const schedule::storage& hols) noexcept -> days_period
 	{
 		if (!hols.empty())
 		{
-			return { _make_from(hols), _make_until(hols) };
+			return days_period{ _make_from(hols), _make_until(hols) };
 		}
 		else
 		{
 			const auto any_date = std::chrono::year_month_day{};
 
-			return { any_date, any_date };
+			return days_period{ any_date, any_date };
 		}
 	}
 

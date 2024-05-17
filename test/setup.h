@@ -80,7 +80,7 @@ namespace gregorian
 		);
 
 		const auto hs2022_2024 = make_holiday_schedule(
-			{ std::chrono::year{ 2022 }, std::chrono::year{ 2024 } },
+			years_period{ std::chrono::year{ 2022 }, std::chrono::year{ 2024 } },
 			rules
 		);
 
@@ -90,7 +90,7 @@ namespace gregorian
 		);
 
 		const auto hs2026_2028 = make_holiday_schedule(
-			{ std::chrono::year{ 2026 }, std::chrono::year{ 2028 } },
+			years_period{ std::chrono::year{ 2026 }, std::chrono::year{ 2028 } },
 			rules
 		);
 
@@ -228,7 +228,7 @@ namespace gregorian
 		};
 
 		const auto generated_part = make_holiday_schedule(
-			{ generated_part_from, generated_part_until },
+			years_period{ generated_part_from, generated_part_until },
 			rules
 		);
 
@@ -279,7 +279,7 @@ namespace gregorian
 			2024y / December / 19d, // December MPC Summary and minutes
 		};
 
-		return schedule{ { 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
+		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
 	}
 
 	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule
@@ -297,7 +297,7 @@ namespace gregorian
 			2023y / April / 10d,
 		};
 
-		return schedule{ { 2023y / April / 1d, 2023y / April / 30d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / April / 1d, 2023y / April / 30d }, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_england_may_2023() -> schedule
@@ -310,7 +310,7 @@ namespace gregorian
 			2023y / May / 29d,
 		};
 
-		return schedule{ { 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_united_states_may_2023() -> schedule
@@ -321,7 +321,7 @@ namespace gregorian
 			2023y / May / 29d,
 		};
 
-		return schedule{ { 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
 	}
 
 }
