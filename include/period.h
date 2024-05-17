@@ -41,7 +41,7 @@ namespace gregorian
 		period(const period&) = default;
 		period(period&&) noexcept = default;
 
-		period(const T& from, const T& until);
+		period(T from, T until);
 
 		~period() noexcept = default;
 
@@ -121,9 +121,9 @@ namespace gregorian
 
 
 	template<typename T>
-	period<T>::period(const T& from, const T& until) :
-		_from{ from },
-		_until{ until }
+	period<T>::period(T from, T until) :
+		_from{ std::move(from) },
+		_until{ std::move(until) }
 	{
 		if (_from > _until)
 			throw std::out_of_range{ "From and until are not consistent" };
