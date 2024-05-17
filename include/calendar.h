@@ -55,11 +55,17 @@ namespace gregorian
 
 		auto is_non_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
+		auto is_non_business_day(const std::chrono::sys_days& sd) const -> bool;
+
 	public:
 
 		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
+		auto is_business_day(const std::chrono::sys_days& sd) const -> bool;
+
 		auto count_business_days(const days_period& from_until) const -> std::size_t;
+
+//		auto count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
 
 	public:
 
@@ -171,9 +177,19 @@ namespace gregorian
 		return _cache._non_business_days[ymd];
 	}
 
+	inline auto calendar::is_non_business_day(const std::chrono::sys_days& sd) const -> bool
+	{
+		return _cache._non_business_days[sd];
+	}
+
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
 		return !is_non_business_day(ymd);
+	}
+
+	inline auto calendar::is_business_day(const std::chrono::sys_days& sd) const -> bool
+	{
+		return !is_non_business_day(sd);
 	}
 
 	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
@@ -191,6 +207,22 @@ namespace gregorian
 
 		return result;
 	}
+
+//	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t
+//	{
+//		auto result = std::size_t{ 0 };
+//
+//		// naive implementation to start with
+//		for (
+//			auto d = from_until.get_from();
+//			d <= from_until.get_until();
+//			d = d + std::chrono::days{ 1 }
+//			)
+//			if (is_business_day(d))
+//				result++;
+//
+//		return result;
+//	}
 
 
 	inline auto calendar::get_weekend() const noexcept -> const weekend&

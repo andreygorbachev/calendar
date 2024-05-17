@@ -168,7 +168,7 @@ namespace gregorian
 		EXPECT_EQ(s, c.get_schedule());
 	}
 
-	TEST(calendar, is_non_business_day)
+	TEST(calendar, is_non_business_day1)
 	{
 		const auto c = make_calendar_england();
 
@@ -178,7 +178,17 @@ namespace gregorian
 		EXPECT_THROW(c.is_non_business_day(9999y / May / 1d), out_of_range);
 	}
 
-	TEST(calendar, is_business_day)
+	TEST(calendar, is_non_business_day2)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_TRUE(c.is_non_business_day(sys_days{ 2023y / May / 1d }));
+		EXPECT_FALSE(c.is_non_business_day(sys_days{ 2023y / May / 2d }));
+		EXPECT_THROW(c.is_non_business_day(sys_days{ 1y / May / 1d }), out_of_range);
+		EXPECT_THROW(c.is_non_business_day(sys_days{ 9999y / May / 1d }), out_of_range);
+	}
+
+	TEST(calendar, is_business_day1)
 	{
 		const auto c = make_calendar_england();
 
@@ -188,7 +198,17 @@ namespace gregorian
 		EXPECT_THROW(c.is_business_day(9999y / May / 1d), out_of_range);
 	}
 
-	TEST(calendar, count_business_days)
+	TEST(calendar, is_business_day2)
+	{
+		const auto c = make_calendar_england();
+
+		EXPECT_FALSE(c.is_business_day(sys_days{ 2023y / May / 1d }));
+		EXPECT_TRUE(c.is_business_day(sys_days{ 2023y / May / 2d }));
+		EXPECT_THROW(c.is_business_day(sys_days{ 1y / May / 1d }), out_of_range);
+		EXPECT_THROW(c.is_business_day(sys_days{ 9999y / May / 1d }), out_of_range);
+	}
+
+	TEST(calendar, count_business_days1)
 	{
 		const auto c = make_calendar_england();
 
@@ -200,6 +220,19 @@ namespace gregorian
 		EXPECT_EQ(1/*uz*/, bd2);
 		EXPECT_EQ(20/*uz*/, bd3);
 	}
+
+//	TEST(calendar, count_business_days2)
+//	{
+//		const auto c = make_calendar_england();
+//
+//		const auto bd1 = c.count_business_days({ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 1d } });
+//		const auto bd2 = c.count_business_days({ sys_days{ 2023y / May / 31d }, sys_days{ 2023y / May / 31d } });
+//		const auto bd3 = c.count_business_days({ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 31d } });
+//
+//		EXPECT_EQ(0/*uz*/, bd1);
+//		EXPECT_EQ(1/*uz*/, bd2);
+//		EXPECT_EQ(20/*uz*/, bd3);
+//	}
 
 
 	TEST(calendar, operator_equal_to)
