@@ -102,9 +102,9 @@ namespace gregorian
 		return _we[wd.c_encoding()];
 	}
 
-	constexpr auto weekend::is_weekend(const std::chrono::sys_days& ymd) const noexcept -> bool
+	constexpr auto weekend::is_weekend(const std::chrono::sys_days& sd) const noexcept -> bool
 	{
-		const auto wd = std::chrono::weekday{ ymd };
+		const auto wd = std::chrono::weekday{ sd };
 
 		return _we[wd.c_encoding()];
 	}
