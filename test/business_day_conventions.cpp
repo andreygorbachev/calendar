@@ -37,11 +37,22 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	TEST(no_adjustment, adjust)
+	TEST(no_adjustment, adjust1)
 	{
 		const auto c = make_calendar_england();
 
-		EXPECT_EQ(2023y / January / 1d, NoAdjustment.adjust(2023y / January / 1d, c));
+		const auto d = 2023y / January / 1d;
+
+		EXPECT_EQ(d, NoAdjustment.adjust(d, c));
+	}
+
+	TEST(no_adjustment, adjust2)
+	{
+		const auto c = make_calendar_england();
+
+		const auto d = sys_days{ 2023y / January / 1d };
+
+		EXPECT_EQ(d, NoAdjustment.adjust(d, c));
 	}
 
 	TEST(following, adjust)

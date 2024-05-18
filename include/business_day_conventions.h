@@ -131,7 +131,7 @@ namespace gregorian
 		const calendar& cal
 	) -> std::chrono::year_month_day
 	{
-		const auto ymd = ym / std::chrono::last;
+		const auto ymd = std::chrono::year_month_day{ ym / std::chrono::last };
 		return Preceding.adjust(ymd, cal);
 	}
 
