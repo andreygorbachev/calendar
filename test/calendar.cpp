@@ -44,7 +44,7 @@ namespace gregorian
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -64,7 +64,7 @@ namespace gregorian
 
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{}
+			schedule::dates{}
 		};
 
 		const auto c = calendar{
@@ -82,14 +82,14 @@ namespace gregorian
 
 		const auto s_expected = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
 
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 				2023y / January / 1d,
 			}
@@ -114,7 +114,7 @@ namespace gregorian
 			SaturdaySundayWeekend,
 			schedule{
 				period{ 2023y / January / 1d, 2023y / January / 31d },
-				schedule::storage{
+				schedule::dates{
 					2023y / January / 2d,
 				}
 			}
@@ -124,7 +124,7 @@ namespace gregorian
 			SaturdaySundayWeekend,
 			schedule{
 				period{ 2023y / January / 1d, 2023y / January / 31d },
-				schedule::storage{
+				schedule::dates{
 					2023y / January / 1d,
 				}
 			}
@@ -138,7 +138,7 @@ namespace gregorian
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -155,7 +155,7 @@ namespace gregorian
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -239,7 +239,7 @@ namespace gregorian
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -261,7 +261,7 @@ namespace gregorian
 	{
 		const auto s = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -283,7 +283,7 @@ namespace gregorian
 	{
 		const auto s1 = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -295,7 +295,7 @@ namespace gregorian
 
 		const auto s2 = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 31d,
 			}
 		};
@@ -312,7 +312,7 @@ namespace gregorian
 	{
 		const auto s1 = schedule{
 			period{ 2022y / December / 1d, 2023y / February / 28d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -324,7 +324,7 @@ namespace gregorian
 
 		const auto s2 = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 31d,
 			}
 		};
@@ -341,7 +341,7 @@ namespace gregorian
 	{
 		const auto s_expected = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -353,7 +353,7 @@ namespace gregorian
 
 		const auto s1 = schedule{
 			period{ 2022y / December / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 				2023y / January / 31d,
 			}
@@ -366,7 +366,7 @@ namespace gregorian
 
 		const auto s2 = schedule{
 			period{ 2023y / January / 1d, 2023y / February / 28d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -383,7 +383,7 @@ namespace gregorian
 	{
 		const auto s_expected = schedule{
 			period{ 2023y / January / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 				2023y / January / 31d,
 			}
@@ -396,7 +396,7 @@ namespace gregorian
 
 		const auto s1 = schedule{
 			period{ 2022y / December / 1d, 2023y / January / 31d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 1d,
 			}
 		};
@@ -408,7 +408,7 @@ namespace gregorian
 
 		const auto s2 = schedule{
 			period{ 2023y / January / 1d, 2023y / February / 28d },
-			schedule::storage{
+			schedule::dates{
 				2023y / January / 31d,
 			}
 		};

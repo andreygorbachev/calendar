@@ -42,9 +42,9 @@ namespace gregorian
 	TEST(schedule, constructor_1)
 	{
 		auto from_until = days_period{ 2023y / April / 1d, 2023y / April / 1d };
-		auto hols = schedule::storage{};
+		auto ds = schedule::dates{};
 
-		EXPECT_NO_THROW(schedule(move(from_until), move(hols))); // ok to have a schedule for just 1 day
+		EXPECT_NO_THROW(schedule(move(from_until), move(ds))); // ok to have a schedule for just 1 day
 	}
 
 	TEST(schedule, constructor_2)
@@ -211,9 +211,9 @@ namespace gregorian
 
 	TEST(_make_from_until, multiple_years)
 	{
-		const auto hols = schedule::storage{ 2023y / April / 1d, 2024y / April / 1d };
+		const auto ds = schedule::dates{ 2023y / April / 1d, 2024y / April / 1d };
 
-		const auto period = _make_from_until(hols);
+		const auto period = _make_from_until(ds);
 
 		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
 		EXPECT_EQ(2024y / LastDayOfDecember, period.get_until());
@@ -221,9 +221,9 @@ namespace gregorian
 
 	TEST(_make_from_until, single_years)
 	{
-		const auto hols = schedule::storage{ 2023y / April / 1d };
+		const auto ds = schedule::dates{ 2023y / April / 1d };
 
-		const auto period = _make_from_until(hols);
+		const auto period = _make_from_until(ds);
 
 		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
 		EXPECT_EQ(2023y / LastDayOfDecember, period.get_until());
@@ -231,11 +231,11 @@ namespace gregorian
 
 	TEST(_make_from_until, no_years)
 	{
-		const auto hols = schedule::storage{};
+		const auto ds = schedule::dates{};
 
-		EXPECT_NO_THROW(_make_from_until(hols)); // ok to create [from, until] from an empty set of holiday dates
+		EXPECT_NO_THROW(_make_from_until(ds)); // ok to create [from, until] from an empty set of holiday dates
 
-		const auto period = _make_from_until(hols);
+		const auto period = _make_from_until(ds);
 		EXPECT_EQ(period.get_from(), period.get_until());
 	}
 

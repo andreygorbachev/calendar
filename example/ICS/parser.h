@@ -75,9 +75,9 @@ inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 }
 
 
-inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::storage
+inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::dates
 {
-	auto result = gregorian::schedule::storage{};
+	auto result = gregorian::schedule::dates{};
 
 	auto b = std::string{};
 	std::getline(fs, b);

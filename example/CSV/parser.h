@@ -43,9 +43,9 @@ inline auto _parse_date(std::istream& fs) -> std::chrono::year_month_day
 }
 
 
-inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule::storage
+inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule::dates
 {
-	auto result = gregorian::schedule::storage{};
+	auto result = gregorian::schedule::dates{};
 
 	for (;;)
 	{

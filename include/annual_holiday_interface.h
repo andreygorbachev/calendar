@@ -66,7 +66,7 @@ namespace gregorian
 		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
-		auto hols = schedule::storage{};
+		auto hols = schedule::dates{};
 
 		for (auto y = from_until.get_from(); y <= from_until.get_until(); ++y)
 			for (const auto& rule : rules)

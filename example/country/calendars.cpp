@@ -38,7 +38,7 @@ using namespace gregorian;
 
 auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 {
-	auto holidays = schedule::storage{
+	auto holidays = schedule::dates{
 		year{ 2018 } / January / day{ 1u },
 		year{ 2018 } / March / day{ 30u },
 		year{ 2018 } / April / day{ 2u },
@@ -156,7 +156,7 @@ auto _make_England_calendar() -> calendar
 
 auto _Scotland_schedule() -> schedule
 {
-	auto holidays = schedule::storage{
+	auto holidays = schedule::dates{
 		year{ 2018 } / January / day{ 1u },
 		year{ 2018 } / January / day{ 2u },
 		year{ 2018 } / March / day{ 30u },
@@ -284,7 +284,7 @@ auto _make_Scotland_calendar() -> calendar
 
 auto _Northern_Ireland_schedule() -> schedule
 {
-	auto holidays = schedule::storage{
+	auto holidays = schedule::dates{
 		year{ 2018 } / January / day{ 1u },
 		year{ 2018 } / March / day{ 19u },
 		year{ 2018 } / March / day{ 30u },

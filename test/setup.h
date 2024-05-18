@@ -133,7 +133,7 @@ namespace gregorian
 
 	inline auto _make_holiday_schedule_england() -> schedule
 	{
-		auto holidays = schedule::storage{
+		auto holidays = schedule::dates{
 			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
 			std::chrono::year{ 2018 } / std::chrono::March / std::chrono::day{ 30u },
 			std::chrono::year{ 2018 } / std::chrono::April / std::chrono::day{ 2u },
@@ -258,7 +258,7 @@ namespace gregorian
 		using namespace std::chrono;
 		using namespace gregorian;
 
-		auto meeting_dates = schedule::storage{
+		auto meeting_dates = schedule::dates{
 			// 2023 confirmed dates
 			2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
 			2023y / March / 23d, // March MPC Summary and minutes
@@ -292,7 +292,7 @@ namespace gregorian
 	{
 		using namespace std::chrono;
 
-		auto hols = schedule::storage{
+		auto hols = schedule::dates{
 			2023y / April / 7d,
 			2023y / April / 10d,
 		};
@@ -304,7 +304,7 @@ namespace gregorian
 	{
 		using namespace std::chrono;
 
-		auto hols = schedule::storage{
+		auto hols = schedule::dates{
 			2023y / May / 1d,
 			2023y / May / 8d,
 			2023y / May / 29d,
@@ -317,7 +317,7 @@ namespace gregorian
 	{
 		using namespace std::chrono;
 
-		auto hols = schedule::storage{
+		auto hols = schedule::dates{
 			2023y / May / 29d,
 		};
 
