@@ -241,7 +241,7 @@ namespace gregorian
 
 	inline auto schedule::contains(const std::chrono::sys_days& sd) const noexcept -> bool
 	{
-		return std::find(_dates.cbegin(), _dates.cend(), sd) != _dates.cend();
+		return contains(std::chrono::year_month_day{ sd });
 	}
 
 	inline auto schedule::get_from_until() const noexcept -> const days_period&
