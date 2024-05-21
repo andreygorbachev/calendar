@@ -34,6 +34,14 @@ using namespace std::chrono;
 namespace gregorian
 {
 
+	TEST(period, default_constructor)
+	{
+		const auto p = period<year_month_day>{};
+
+		EXPECT_EQ(year_month_day{}, p.get_from());
+		EXPECT_EQ(year_month_day{}, p.get_until());
+	}
+
 	TEST(period, constructor_1)
 	{
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };

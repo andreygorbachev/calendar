@@ -37,7 +37,7 @@ namespace gregorian
 
 	public:
 
-		period() noexcept = delete;
+		period() noexcept = default;
 		period(const period&) = default;
 		period(period&&) noexcept = default;
 
