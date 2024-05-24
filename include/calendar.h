@@ -217,7 +217,7 @@ namespace gregorian
 			auto d = from_until.get_from();
 			d <= from_until.get_until();
 			d = d + std::chrono::days{ 1 }
-			)
+		)
 			if (is_business_day(d))
 				result++;
 
