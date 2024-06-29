@@ -144,7 +144,7 @@ namespace gregorian
 	inline auto operator+(schedule s1, schedule s2) -> schedule
 	{
 		auto& ds = s1._dates;
-		ds.merge(s2._dates);
+		ds.merge(std::move(s2._dates));
 
 		return schedule{
 			s1.get_from_until() + s2.get_from_until(),
