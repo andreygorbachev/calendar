@@ -74,6 +74,8 @@ int main()
 
 	const auto united_states = calendar{ SaturdaySundayWeekend, parse_ics_united_states() };
 
+	cout << boolalpha;
+
 	cout << "Good Friday " << good_friday << endl;
 
 	cout << "Is it a business day in England? " << england.is_business_day(good_friday) << endl;

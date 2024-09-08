@@ -64,6 +64,8 @@ int main()
 
 	const auto NNT = calendar{ SaturdaySundayWeekend, parse_csv_NNT_schedule() };
 
+	cout << boolalpha;
+
 	cout << "Is a joint calendar (NNT) the same as a joint of 2 calendars (NYC and TYO)? " << (NNT == c) << endl;
 
 	return 0;
