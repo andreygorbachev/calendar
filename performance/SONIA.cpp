@@ -35,9 +35,19 @@ using namespace gregorian;
 
 int main()
 {
+	const auto calendar = make_London_calendar();
+
 	const auto start = high_resolution_clock::now();
 
-	const auto calendar = make_London_calendar();
+	// SONIA Compound Index started on 23 April 2018
+	auto result = 0;
+	for (
+		auto d = year{ 2018 } / April / day{ 23u };
+		d <= year{ 2024 } / December / day{ 31u };
+		d = sys_days{ d } + days{ 1 }
+	)
+		if (calendar.is_business_day(d))
+			result++;
 
 	const auto stop = high_resolution_clock::now();
 
