@@ -23,9 +23,11 @@
 #pragma once
 
 #include <calendar.h>
-#include "..\country\calendars.h"
 
 #include <chrono>
 
 
 
+const auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
+
+auto make_London_calendar() -> const gregorian::calendar&;
