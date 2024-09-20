@@ -116,7 +116,7 @@ auto _make_England_calendar() -> calendar
 {
 	const auto known_part = _England_schedule();
 
-	const auto generated_part_from = known_part.get_from_until().get_until().year() + std::chrono::years{ 1 };
+	const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
 	const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
 	const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
@@ -241,7 +241,7 @@ auto _make_Scotland_calendar() -> calendar
 {
 	const auto known_part = _Scotland_schedule();
 
-	const auto generated_part_from = known_part.get_from_until().get_until().year() + std::chrono::years{ 1 };
+	const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
 	const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
 	const auto SecondJanuary = offset_holiday{ &NewYearsDay, days{ 1 } };
@@ -376,7 +376,7 @@ auto _make_Northern_Ireland_calendar() -> calendar
 {
 	const auto known_part = _Northern_Ireland_schedule();
 
-	const auto generated_part_from = known_part.get_from_until().get_until().year() + std::chrono::years{ 1 };
+	const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
 	const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
 	const auto StPatricsDay = named_holiday{ March / day{ 18u } };
