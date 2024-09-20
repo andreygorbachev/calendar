@@ -35,7 +35,7 @@ using namespace gregorian;
 
 int main()
 {
-	const auto calendar = make_London_calendar();
+	const auto& calendar = make_London_calendar();
 
 	const auto start = high_resolution_clock::now();
 
