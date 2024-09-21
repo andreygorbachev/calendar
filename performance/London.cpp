@@ -37,7 +37,7 @@ using namespace gregorian;
 
 
 
-const auto _Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
+const auto _Epoch = year{ 2018 } / FirstDayOfJanuary;
 
 auto _London_schedule() -> schedule
 {
