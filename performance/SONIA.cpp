@@ -40,7 +40,6 @@ int main()
 	const auto number_of_runs = 100;
 	for (auto i = 0; i < number_of_runs; ++i)
 	{
-
 		const auto start = high_resolution_clock::now();
 
 		// SONIA Compound Index started on 23 April 2018
