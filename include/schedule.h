@@ -31,6 +31,10 @@
 #include <algorithm>
 #include <compare>
 
+#define SCHEDULE_YEAR_MONTH_DAY_BASED
+//#undef SCHEDULE_YEAR_MONTH_DAY_BASED
+
+
 
 namespace gregorian
 {
@@ -86,12 +90,15 @@ namespace gregorian
 
 	private:
 
-//		using _storage = std::set<std::chrono::sys_days>;
-
 		days_period _from_until;
 
-//		_storage _dates;
+#ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
 		dates _dates;
+#else
+		using _storage = std::set<std::chrono::sys_days>;
+
+		_storage _dates;
+#endif
 
 	};
 
