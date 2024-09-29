@@ -177,7 +177,7 @@ namespace gregorian
 		const auto d = *dates.crbegin();
 
 #ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
-		return d.year() / FirstDayOfJanuary;
+		return d.year() / LastDayOfDecember;
 #else
 		return std::chrono::year_month_day{ d }.year() / LastDayOfDecember;
 #endif
