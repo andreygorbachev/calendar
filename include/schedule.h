@@ -31,8 +31,8 @@
 #include <algorithm>
 #include <compare>
 
-#define SCHEDULE_YEAR_MONTH_DAY_BASED
-//#undef SCHEDULE_YEAR_MONTH_DAY_BASED
+//#define SCHEDULE_YEAR_MONTH_DAY_BASED
+#undef SCHEDULE_YEAR_MONTH_DAY_BASED
 
 
 
@@ -44,7 +44,11 @@ namespace gregorian
 
 	public:
 
-		using dates = std::set<std::chrono::year_month_day>; // should we store sys_days?
+#ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
+		using dates = std::set<std::chrono::year_month_day>;
+#else
+		using dates = std::set<std::chrono::sys_days>;
+#endif
 
 	public:
 
@@ -92,13 +96,7 @@ namespace gregorian
 
 		days_period _from_until;
 
-#ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
 		dates _dates;
-#else
-		using _storage = std::set<std::chrono::sys_days>;
-
-		_storage _dates;
-#endif
 
 	};
 
@@ -167,14 +165,22 @@ namespace gregorian
 	{
 		const auto d = *dates.cbegin();
 
+#ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
 		return d.year() / FirstDayOfJanuary;
+#else
+		return std::chrono::year_month_day{ d }.year() / FirstDayOfJanuary;
+#endif
 	}
 
 	inline auto _make_until(const schedule::dates& dates) noexcept -> std::chrono::year_month_day
 	{
 		const auto d = *dates.crbegin();
 
-		return d.year() / LastDayOfDecember;
+#ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
+		return d.year() / FirstDayOfJanuary;
+#else
+		return std::chrono::year_month_day{ d }.year() / LastDayOfDecember;
+#endif
 	}
 
 	inline auto _make_from_until(const schedule::dates& ds) noexcept -> days_period
