@@ -48,7 +48,7 @@ int main()
 			auto d = year{ 2018 } / April / day{ 23u };
 			d <= year{ 2024 } / December / day{ 31u };
 			d = sys_days{ d } + days{ 1 }
-			)
+		)
 			if (calendar.is_business_day(d))
 				result++;
 
