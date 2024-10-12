@@ -118,7 +118,7 @@ namespace gregorian
 	inline auto _make_calendar_united_states() -> calendar
 	{
 		auto c = calendar{ SaturdaySundayWeekend, make_holiday_schedule_united_states() };
-		c.substitute(&Nearest);
+		c.substitute(Nearest);
 
 		return c;
 	}
@@ -237,7 +237,7 @@ namespace gregorian
 			SaturdaySundayWeekend,
 			generated_part
 		};
-		cal.substitute(&Following);
+		cal.substitute(Following);
 
 		return calendar{
 			SaturdaySundayWeekend,

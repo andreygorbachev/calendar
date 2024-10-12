@@ -147,7 +147,7 @@ auto _make_London_calendar() -> calendar
 		SaturdaySundayWeekend,
 		generated_part
 	};
-	cal.substitute(&Following);
+	cal.substitute(Following);
 
 	return calendar{
 		SaturdaySundayWeekend,

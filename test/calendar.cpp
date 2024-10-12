@@ -129,7 +129,7 @@ namespace gregorian
 				}
 			}
 		};
-		c.substitute(&Following);
+		c.substitute(Following);
 
 		EXPECT_EQ(expected, c);
 	}

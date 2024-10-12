@@ -144,7 +144,7 @@ auto _make_England_calendar() -> calendar
 		SaturdaySundayWeekend,
 		generated_part
 	};
-	cal.substitute(&Following);
+	cal.substitute(Following);
 
 	return calendar{
 		SaturdaySundayWeekend,
@@ -272,7 +272,7 @@ auto _make_Scotland_calendar() -> calendar
 		SaturdaySundayWeekend,
 		generated_part
 	};
-	cal.substitute(&Following);
+	cal.substitute(Following);
 
 	return calendar{
 		SaturdaySundayWeekend,
@@ -408,7 +408,7 @@ auto _make_Northern_Ireland_calendar() -> calendar
 		SaturdaySundayWeekend,
 		generated_part
 	};
-	cal.substitute(&Following);
+	cal.substitute(Following);
 
 	return calendar{
 		SaturdaySundayWeekend,

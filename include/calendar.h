@@ -69,7 +69,7 @@ namespace gregorian
 
 	public:
 
-		void substitute(const business_day_convention* const bdc);
+		void substitute(const business_day_convention& bdc);
 
 	public:
 
@@ -149,7 +149,7 @@ namespace gregorian
 	}
 
 
-	inline void calendar::substitute(const business_day_convention* const bdc)
+	inline void calendar::substitute(const business_day_convention& bdc)
 	{
 		auto sub_cal = *this;
 
@@ -158,7 +158,7 @@ namespace gregorian
 			sub_cal._hols -= holiday;
 			if (sub_cal._is_non_business_day(holiday))
 			{
-				const auto substitute_day = bdc->adjust(holiday, *this);
+				const auto substitute_day = bdc.adjust(holiday, *this);
 				sub_cal._hols += substitute_day;
 				sub_cal._cache.substitute(holiday, substitute_day, _we);
 			}
