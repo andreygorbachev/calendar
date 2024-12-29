@@ -82,6 +82,7 @@ namespace gregorian
 	private:
 
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days final;
 
 	};
 
@@ -193,6 +194,15 @@ namespace gregorian
 		auto result = ymd;
 		while (!cal.is_business_day(result))
 			result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
+
+		return result;
+	}
+
+	inline auto preceding::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	{
+		auto result = sd;
+		while (!cal.is_business_day(result))
+			result -= std::chrono::days{ 1 };
 
 		return result;
 	}
