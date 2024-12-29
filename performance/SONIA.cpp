@@ -47,14 +47,14 @@ int main()
 		const auto start = high_resolution_clock::now();
 
 		// SONIA Compound Index started on 23 April 2018
-		auto result = 0;
+		auto number_of_business_days = 0;
 		for (
 			auto d = year{ 2018 } / April / day{ 23u };
 			d <= year{ 2024 } / December / day{ 31u };
 			d = sys_days{ d } + days{ 1 }
 		)
 			if (calendar.is_business_day(d))
-				result++;
+				number_of_business_days++;
 
 		const auto stop = high_resolution_clock::now();
 
