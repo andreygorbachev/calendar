@@ -37,6 +37,7 @@ namespace gregorian
 	private:
 
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days final;
 
 	};
 
@@ -140,6 +141,11 @@ namespace gregorian
 	inline auto no_adjustment::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
 	{
 		return ymd;
+	}
+
+	inline auto no_adjustment::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	{
+		return sd;
 	}
 
 
