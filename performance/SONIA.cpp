@@ -25,6 +25,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 using namespace std::chrono;
@@ -66,10 +67,8 @@ int main()
 			<< " microseconds."
 			<< endl;
 
-		if (duration < min_duration)
-			min_duration = duration;
-		if (duration > max_duration)
-			max_duration = duration;
+		min_duration = min(duration, min_duration);
+		max_duration = max(duration, max_duration);
 	}
 
 	cout
