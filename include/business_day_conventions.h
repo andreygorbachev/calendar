@@ -113,6 +113,7 @@ namespace gregorian
 	private:
 
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day final;
+		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days final;
 
 	};
 
@@ -231,6 +232,16 @@ namespace gregorian
 		const auto f = Following.adjust(ymd, cal);
 		const auto p = Preceding.adjust(ymd, cal);
 		if (std::chrono::sys_days{ f } - std::chrono::sys_days{ ymd } <= std::chrono::sys_days{ ymd } - std::chrono::sys_days{ p })
+			return f;
+		else
+			return p;
+	}
+
+	inline auto nearest::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	{
+		const auto f = Following.adjust(sd, cal);
+		const auto p = Preceding.adjust(sd, cal);
+		if (f - sd <= sd - p)
 			return f;
 		else
 			return p;

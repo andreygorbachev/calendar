@@ -179,21 +179,54 @@ namespace gregorian
 		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
 	}
 
-	TEST(nearest, adjust)
+	TEST(nearest, adjust1)
 	{
 		const auto c = make_calendar_england();
 
 		// Friday
-		EXPECT_EQ(2023y / March / 24d, Nearest.adjust(2023y / March / 24d, c));
+		const auto d1 = 2023y / March / 24d;
+		const auto r1 = 2023y / March / 24d;
+		EXPECT_EQ(r1, Nearest.adjust(d1, c));
 
 		// Saturday
-		EXPECT_EQ(2023y / March / 24d, Nearest.adjust(2023y / March / 25d, c));
+		const auto d2 = 2023y / March / 25d;
+		const auto r2 = 2023y / March / 24d;
+		EXPECT_EQ(r2, Nearest.adjust(d2, c));
 
 		// Sunday
-		EXPECT_EQ(2023y / March / 27d, Nearest.adjust(2023y / March / 26d, c));
+		const auto d3 = 2023y / March / 26d;
+		const auto r3 = 2023y / March / 27d;
+		EXPECT_EQ(r3, Nearest.adjust(d3, c));
 
 		// Monday
-		EXPECT_EQ(2023y / March / 27d, Nearest.adjust(2023y / March / 27d, c));
+		const auto d4 = 2023y / March / 27d;
+		const auto r4 = 2023y / March / 27d;
+		EXPECT_EQ(r4, Nearest.adjust(d4, c));
+	}
+
+	TEST(nearest, adjust2)
+	{
+		const auto c = make_calendar_england();
+
+		// Friday
+		const auto d1 = sys_days{ 2023y / March / 24d };
+		const auto r1 = sys_days{ 2023y / March / 24d };
+		EXPECT_EQ(r1, Nearest.adjust(d1, c));
+
+		// Saturday
+		const auto d2 = sys_days{ 2023y / March / 25d };
+		const auto r2 = sys_days{ 2023y / March / 24d };
+		EXPECT_EQ(r2, Nearest.adjust(d2, c));
+
+		// Sunday
+		const auto d3 = sys_days{ 2023y / March / 26d };
+		const auto r3 = sys_days{ 2023y / March / 27d };
+		EXPECT_EQ(r3, Nearest.adjust(d3, c));
+
+		// Monday
+		const auto d4 = sys_days{ 2023y / March / 27d };
+		const auto r4 = sys_days{ 2023y / March / 27d };
+		EXPECT_EQ(r4, Nearest.adjust(d4, c));
 	}
 
 	TEST(make_first_business_day, make_first_business_day)
