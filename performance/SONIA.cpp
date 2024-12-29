@@ -38,7 +38,7 @@ int main()
 	const auto& calendar = make_London_calendar();
 
 	const auto number_of_runs = 100;
-	for (auto i = 0; i < number_of_runs; ++i)
+	for (auto r = 0; r < number_of_runs; ++r)
 	{
 		const auto start = high_resolution_clock::now();
 
@@ -55,7 +55,13 @@ int main()
 		const auto stop = high_resolution_clock::now();
 
 		const auto duration = duration_cast<microseconds>(stop - start);
-		cout << "Duration: "s << duration.count() << " microseconds." << endl;
+		cout
+			<< "Run:"
+			<< r
+			<< " Duration: "s
+			<< duration.count()
+			<< " microseconds."
+			<< endl;
 	}
 
 	return 0;
