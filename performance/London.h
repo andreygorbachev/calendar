@@ -26,4 +26,4 @@
 
 
 
-auto make_London_calendar() -> const gregorian::calendar&;
+[[nodiscard]] auto make_London_calendar() -> const gregorian::calendar&;
