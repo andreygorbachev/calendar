@@ -27,8 +27,7 @@ We do not do anything special for std::chrono::year_month_day, which are not "ok
 As we are doing some caching inside calendar we throw an exception if one checks for a business day before "from" or after "until".
 
 # roadmap
-1) add handling of serial dates
-2) make count_business_days a lot more efficient (either cache business days per month/year or utilise vector<bool> more)
-3) maybe do better for rule based calendars (until date does not make sense in this case)
-4) consider again how caching should be implemented in a multithread case
-5) incorporate the 28 year calendar cycle
+1) make count_business_days a lot more efficient (either cache business days per month/year or utilise vector<bool> more)
+2) maybe do better for rule based calendars (until date does not make sense in this case)
+3) consider again how caching should be implemented in a multithread case
+4) incorporate the 28 year calendar cycle
