@@ -37,6 +37,9 @@ int main()
 {
 	const auto& calendar = make_London_calendar();
 
+	auto min_duration = microseconds::max();
+	auto max_duration = microseconds::min();
+
 	const auto number_of_runs = 100;
 	for (auto r = 0; r < number_of_runs; ++r)
 	{
@@ -62,7 +65,19 @@ int main()
 			<< duration.count()
 			<< " microseconds."
 			<< endl;
+
+		if (duration < min_duration)
+			min_duration = duration;
+		if (duration > max_duration)
+			max_duration = duration;
 	}
+
+	cout
+		<< "Duration range: ["s
+		<< min_duration.count()
+		<< ", "s
+		<< max_duration.count()
+		<< "] microseconds."s;
 
 	return 0;
 }
