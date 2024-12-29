@@ -141,15 +141,42 @@ namespace gregorian
 		EXPECT_EQ(r2, Preceding.adjust(d2, c));
 	}
 
-	TEST(modified_preceding, adjust)
+	TEST(modified_preceding, adjust1)
 	{
 		const auto c = make_calendar_england();
 
-		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 31d, c));
-		EXPECT_EQ(2022y / December / 30d, ModifiedPreceding.adjust(2022y / December / 30d, c));
+		const auto d1 = 2022y / December / 31d;
+		const auto r1 = 2022y / December / 30d;
+		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
+		const auto d2 = 2022y / December / 30d;
+		const auto r2 = 2022y / December / 30d;
+		EXPECT_EQ(r2, ModifiedPreceding.adjust(d2, c));
 
-		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 1d, c));
-		EXPECT_EQ(2023y / January / 3d, ModifiedPreceding.adjust(2023y / January / 3d, c));
+		const auto d3 = 2023y / January / 1d;
+		const auto r3 = 2023y / January / 3d;
+		EXPECT_EQ(r3, ModifiedPreceding.adjust(d3, c));
+		const auto d4 = 2023y / January / 3d;
+		const auto r4 = 2023y / January / 3d;
+		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
+	}
+
+	TEST(modified_preceding, adjust2)
+	{
+		const auto c = make_calendar_england();
+
+		const auto d1 = sys_days{ 2022y / December / 31d };
+		const auto r1 = sys_days{ 2022y / December / 30d };
+		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
+		const auto d2 = sys_days{ 2022y / December / 30d };
+		const auto r2 = sys_days{ 2022y / December / 30d };
+		EXPECT_EQ(r2, ModifiedPreceding.adjust(d2, c));
+
+		const auto d3 = sys_days{ 2023y / January / 1d };
+		const auto r3 = sys_days{ 2023y / January / 3d };
+		EXPECT_EQ(r3, ModifiedPreceding.adjust(d3, c));
+		const auto d4 = sys_days{ 2023y / January / 3d };
+		const auto r4 = sys_days{ 2023y / January / 3d };
+		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
 	}
 
 	TEST(nearest, adjust)
