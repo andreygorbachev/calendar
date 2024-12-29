@@ -33,24 +33,29 @@ using namespace std::chrono;
 using namespace gregorian;
 
 
+constexpr auto number_of_runs = 10;
 
-int main()
+// SONIA Compound Index started on 23 April 2018
+constexpr auto SONIA_compound_index_from = year{ 2018 } / April / day{ 23u };
+constexpr auto until = year{ 2024 } / December / day{ 31u };
+
+
+
+void experiment_year_month_day()
 {
 	const auto& calendar = make_London_calendar();
 
 	auto min_duration = microseconds::max();
 	auto max_duration = microseconds::min();
 
-	const auto number_of_runs = 100;
 	for (auto r = 0; r < number_of_runs; ++r)
 	{
 		const auto start = high_resolution_clock::now();
 
-		// SONIA Compound Index started on 23 April 2018
 		auto number_of_business_days = 0;
 		for (
-			auto d = year{ 2018 } / April / day{ 23u };
-			d <= year{ 2024 } / December / day{ 31u };
+			auto d = SONIA_compound_index_from;
+			d <= until;
 			d = sys_days{ d } + days{ 1 }
 		)
 			if (calendar.is_business_day(d))
@@ -76,7 +81,65 @@ int main()
 		<< min_duration.count()
 		<< ", "s
 		<< max_duration.count()
-		<< "] microseconds."s;
+		<< "] microseconds."s
+		<< endl;
+}
+
+
+void experiment_sys_days()
+{
+	const auto& calendar = make_London_calendar();
+
+	auto min_duration = microseconds::max();
+	auto max_duration = microseconds::min();
+
+	for (auto r = 0; r < number_of_runs; ++r)
+	{
+		const auto start = high_resolution_clock::now();
+
+		auto number_of_business_days = 0;
+		for (
+			auto d = sys_days{ SONIA_compound_index_from };
+			d <= sys_days{ until };
+			d += days{ 1 }
+		)
+			if (calendar.is_business_day(d))
+				number_of_business_days++;
+
+		const auto stop = high_resolution_clock::now();
+
+		const auto duration = duration_cast<microseconds>(stop - start);
+		cout
+			<< "Run:"
+			<< r
+			<< " Duration: "s
+			<< duration.count()
+			<< " microseconds."
+			<< endl;
+
+		min_duration = min(duration, min_duration);
+		max_duration = max(duration, max_duration);
+	}
+
+	cout
+		<< "Duration range: ["s
+		<< min_duration.count()
+		<< ", "s
+		<< max_duration.count()
+		<< "] microseconds."s
+		<< endl;
+}
+
+
+int main()
+{
+	cout << "Experiment with year/month/day:"s << endl;
+	experiment_year_month_day();
+	cout << endl;
+
+	cout << "Experiment with sys_days:"s << endl;
+	experiment_sys_days();
+	cout << endl;
 
 	return 0;
 }
