@@ -48,11 +48,14 @@ namespace gregorian
 	public:
 
 		auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day;
-		auto adjust(const std::chrono::sys_days& ymd, const calendar& cal) const noexcept -> std::chrono::sys_days;
+		auto adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days;
 
 	private:
 
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day = 0;
+
+		// if more efficient, derived classes should also override this method, but it is not mandatory
+		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::year_month_day;
 
 	};
 
@@ -63,9 +66,15 @@ namespace gregorian
 		return _adjust(ymd, cal);
 	}
 
-	inline auto business_day_convention::adjust(const std::chrono::sys_days& ymd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	inline auto business_day_convention::adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
 	{
-		return _adjust(ymd, cal);
+		return _adjust(sd, cal);
+	}
+
+
+	inline auto business_day_convention::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	{
+		return _adjust(std::chrono::year_month_day{ sd }, cal);
 	}
 
 }
