@@ -39,7 +39,7 @@ namespace gregorian
 
 	TEST(no_adjustment, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d = 2023y / January / 1d;
 
@@ -48,19 +48,35 @@ namespace gregorian
 
 	TEST(no_adjustment, adjust2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d = sys_days{ 2023y / January / 1d };
 
 		EXPECT_EQ(d, NoAdjustment.adjust(d, c));
 	}
 
-	TEST(following, adjust)
+	TEST(following, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
-		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 1d, c));
-		EXPECT_EQ(2023y / January / 3d, Following.adjust(2023y / January / 3d, c));
+		const auto d1 = 2023y / January / 1d;
+		const auto r1 = 2023y / January / 3d;
+		EXPECT_EQ(r1, Following.adjust(d1, c));
+		const auto d2 = 2023y / January / 3d;
+		const auto r2 = 2023y / January / 3d;
+		EXPECT_EQ(r2, Following.adjust(d2, c));
+	}
+
+	TEST(following, adjust2)
+	{
+		const auto& c = make_calendar_england();
+
+		const auto d1 = sys_days{ 2023y / January / 1d };
+		const auto r1 = sys_days{ 2023y / January / 3d };
+		EXPECT_EQ(r1, Following.adjust(d1, c));
+		const auto d2= sys_days{ 2023y / January / 3d };
+		const auto r2 = sys_days{ 2023y / January / 3d };
+		EXPECT_EQ(r2, Following.adjust(d2, c));
 	}
 
 	TEST(modified_following, adjust)
