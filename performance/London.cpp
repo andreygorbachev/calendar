@@ -103,7 +103,7 @@ auto _London_schedule() -> schedule
 		year{ 2024 } / March / day{ 29u },
 		year{ 2024 } / April / day{ 1u },
 		year{ 2024 } / May / day{ 6u },
-		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / May / day{ 27u },
 		year{ 2024 } / August / day{ 26u },
 		year{ 2024 } / December / day{ 25u },
 		year{ 2024 } / December / day{ 26u },
