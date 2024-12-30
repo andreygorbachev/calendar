@@ -85,12 +85,43 @@ namespace gregorian
 		EXPECT_EQ(3.4269, ts[sd]);
 	}
 
-	TEST(_time_series_bool, constructor)
+	TEST(_time_series_bool, constructor1)
 	{
-		const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+		const auto f = 2023y / January / 1d;
+		const auto u = f;
+		const auto ts = _time_series<bool>{ days_period{ f, u } };
 
-		const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
+		const auto expected = days_period{ f, u };
 		EXPECT_EQ(expected, ts.get_period());
+
+		EXPECT_EQ(bool{}, ts[f]);
+		EXPECT_EQ(bool{}, ts[u]);
+	}
+
+	TEST(_time_series_bool, constructor2)
+	{
+		const auto f = 2023y / January / 1d;
+		const auto u = sys_days{ f } + days{ _time_series<bool>::_inner_size } - days{ 1 };
+		const auto ts = _time_series<bool>{ days_period{ f, u } };
+
+		const auto expected = days_period{ f, u };
+		EXPECT_EQ(expected, ts.get_period());
+
+		EXPECT_EQ(bool{}, ts[f]);
+		EXPECT_EQ(bool{}, ts[u]);
+	}
+
+	TEST(_time_series_bool, constructor3)
+	{
+		const auto f = 2023y / January / 1d;
+		const auto u = sys_days{ f } + days{ _time_series<bool>::_inner_size } - days{ 1 } + days{ 1 };
+		const auto ts = _time_series<bool>{ days_period{ f, u } };
+
+		const auto expected = days_period{ f, u };
+		EXPECT_EQ(expected, ts.get_period());
+
+		EXPECT_EQ(bool{}, ts[f]);
+		EXPECT_EQ(bool{}, ts[u]);
 	}
 
 	TEST(_time_series_bool, operator_subscript_1)

@@ -232,11 +232,7 @@ namespace gregorian
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
 		const auto days = sd - _period.get_from();
-		const auto dc = days.count();
-		if (dc % _inner_size == 0/*zu*/)
-			return dc / _inner_size;
-		else
-			return dc / _inner_size + 1/*zu*/;
+		return days.count() / _inner_size;
 	}
 
 	inline auto _time_series<bool>::_index_inner(const std::chrono::sys_days& sd) const -> std::size_t
