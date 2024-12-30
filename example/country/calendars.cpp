@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2023 Andrey Gorbachev
+// Copyright (c) 2023-2024 Andrey Gorbachev
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -100,14 +100,41 @@ auto _England_schedule() -> schedule // or should it be a "proper" function (wit
 		year{ 2024 } / March / day{ 29u },
 		year{ 2024 } / April / day{ 1u },
 		year{ 2024 } / May / day{ 6u },
-		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / May / day{ 27u },
 		year{ 2024 } / August / day{ 26u },
 		year{ 2024 } / December / day{ 25u },
 		year{ 2024 } / December / day{ 26u },
+
+		year{ 2025 } / January / day{ 1u },
+		year{ 2025 } / April / day{ 18u },
+		year{ 2025 } / April / day{ 21u },
+		year{ 2025 } / May / day{ 5u },
+		year{ 2025 } / May / day{ 26u },
+		year{ 2025 } / August / day{ 25u },
+		year{ 2025 } / December / day{ 25u },
+		year{ 2025 } / December / day{ 26u },
+
+		year{ 2026 } / January / day{ 1u },
+		year{ 2026 } / April / day{ 3u },
+		year{ 2026 } / April / day{ 6u },
+		year{ 2026 } / May / day{ 4u },
+		year{ 2026 } / May / day{ 25u },
+		year{ 2026 } / August / day{ 31u },
+		year{ 2026 } / December / day{ 25u },
+		year{ 2026 } / December / day{ 28u },
+
+		year{ 2027 } / January / day{ 1u },
+		year{ 2027 } / March / day{ 26u },
+		year{ 2027 } / March / day{ 29u },
+		year{ 2027 } / May / day{ 3u },
+		year{ 2027 } / May / day{ 31u },
+		year{ 2027 } / August / day{ 30u },
+		year{ 2027 } / December / day{ 27u },
+		year{ 2027 } / December / day{ 28u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -224,15 +251,45 @@ auto _Scotland_schedule() -> schedule
 		year{ 2024 } / January / day{ 2u },
 		year{ 2024 } / March / day{ 29u },
 		year{ 2024 } / May / day{ 6u },
-		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / May / day{ 27u },
 		year{ 2024 } / August / day{ 5u },
 		year{ 2024 } / December / day{ 2u },
 		year{ 2024 } / December / day{ 25u },
 		year{ 2024 } / December / day{ 26u },
+
+		year{ 2025 } / January / day{ 1u },
+		year{ 2025 } / January / day{ 2u },
+		year{ 2025 } / April / day{ 18u },
+		year{ 2025 } / May / day{ 5u },
+		year{ 2025 } / May / day{ 26u },
+		year{ 2025 } / August / day{ 4u },
+		year{ 2025 } / December / day{ 1u },
+		year{ 2025 } / December / day{ 25u },
+		year{ 2025 } / December / day{ 26u },
+
+		year{ 2026 } / January / day{ 1u },
+		year{ 2025 } / January / day{ 2u },
+		year{ 2026 } / April / day{ 3u },
+		year{ 2026 } / May / day{ 4u },
+		year{ 2026 } / May / day{ 25u },
+		year{ 2026 } / August / day{ 3u },
+		year{ 2026 } / November / day{ 30u },
+		year{ 2026 } / December / day{ 25u },
+		year{ 2026 } / December / day{ 28u },
+
+		year{ 2027 } / January / day{ 1u },
+		year{ 2025 } / January / day{ 4u },
+		year{ 2027 } / March / day{ 26u },
+		year{ 2027 } / May / day{ 3u },
+		year{ 2027 } / May / day{ 31u },
+		year{ 2027 } / August / day{ 30u }, // is this correct?
+		year{ 2026 } / November / day{ 30u },
+		year{ 2027 } / December / day{ 27u },
+		year{ 2027 } / December / day{ 28u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
@@ -359,15 +416,48 @@ auto _Northern_Ireland_schedule() -> schedule
 		year{ 2024 } / March / day{ 29u },
 		year{ 2024 } / April / day{ 1u },
 		year{ 2024 } / May / day{ 6u },
-		year{ 2027 } / May / day{ 27u },
+		year{ 2024 } / May / day{ 27u },
 		year{ 2024 } / July / day{ 12u },
 		year{ 2024 } / August / day{ 26u },
 		year{ 2024 } / December / day{ 25u },
 		year{ 2024 } / December / day{ 26u },
+
+		year{ 2025 } / January / day{ 1u },
+		year{ 2025 } / March / day{ 17u },
+		year{ 2025 } / April / day{ 18u },
+		year{ 2025 } / April / day{ 21u },
+		year{ 2025 } / May / day{ 5u },
+		year{ 2025 } / May / day{ 26u },
+		year{ 2025 } / July / day{ 14u },
+		year{ 2025 } / August / day{ 25u },
+		year{ 2025 } / December / day{ 25u },
+		year{ 2025 } / December / day{ 26u },
+
+		year{ 2026 } / January / day{ 1u },
+		year{ 2025 } / March / day{ 17u },
+		year{ 2026 } / April / day{ 3u },
+		year{ 2026 } / April / day{ 6u },
+		year{ 2026 } / May / day{ 4u },
+		year{ 2026 } / May / day{ 25u },
+		year{ 2025 } / July / day{ 13u },
+		year{ 2026 } / August / day{ 31u },
+		year{ 2026 } / December / day{ 25u },
+		year{ 2026 } / December / day{ 28u },
+
+		year{ 2027 } / January / day{ 1u },
+		year{ 2025 } / March / day{ 17u },
+		year{ 2027 } / March / day{ 26u },
+		year{ 2027 } / March / day{ 29u },
+		year{ 2027 } / May / day{ 3u },
+		year{ 2027 } / May / day{ 31u },
+		year{ 2025 } / July / day{ 12u },
+		year{ 2027 } / August / day{ 30u },
+		year{ 2027 } / December / day{ 27u },
+		year{ 2027 } / December / day{ 28u },
 	};
 
 	return schedule{
-		days_period{ Epoch, year{ 2024 } / LastDayOfDecember },
+		days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
 		move(holidays)
 	};
 }
