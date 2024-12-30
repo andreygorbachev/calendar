@@ -41,7 +41,7 @@ constexpr auto until = year{ 2024 } / December / day{ 31u };
 
 
 
-void experiment_year_month_day()
+void experiment_is_business_day_year_month_day()
 {
 	const auto& calendar = make_London_calendar();
 
@@ -86,7 +86,7 @@ void experiment_year_month_day()
 }
 
 
-void experiment_sys_days()
+void experiment_is_business_day_sys_days()
 {
 	const auto& calendar = make_London_calendar();
 
@@ -133,12 +133,12 @@ void experiment_sys_days()
 
 int main()
 {
-	cout << "Experiment with year/month/day:"s << endl;
-	experiment_year_month_day();
+	cout << "Experiment is_business_day with year/month/day:"s << endl;
+	experiment_is_business_day_year_month_day();
 	cout << endl;
 
-	cout << "Experiment with sys_days:"s << endl;
-	experiment_sys_days();
+	cout << "Experiment is_business_day with sys_days:"s << endl;
+	experiment_is_business_day_sys_days();
 	cout << endl;
 
 	return 0;
