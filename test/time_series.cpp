@@ -170,4 +170,34 @@ namespace gregorian
 		EXPECT_EQ(true, ts[sd]);
 	}
 
+	TEST(_time_series_bool, count_1)
+	{
+		auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		ts[2023y / January / 1d] = false;
+		ts[2023y / January / 2d] = false;
+		ts[2023y / January / 3d] = true;
+		ts[2023y / January / 4d] = true;
+		ts[2023y / January / 5d] = false;
+
+		const auto p = days_period{ 2023y / January / 1d, 2023y / January / 5d };
+
+		EXPECT_EQ(2, ts.count(p));
+	}
+
+	TEST(_time_series_bool, count_2)
+	{
+		auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		ts[2023y / January / 1d] = false;
+		ts[2023y / January / 2d] = false;
+		ts[2023y / January / 3d] = true;
+		ts[2023y / January / 4d] = true;
+		ts[2023y / January / 5d] = false;
+
+		const auto p = period{ sys_days{ 2023y / January / 1d }, sys_days{ 2023y / January / 5d } };
+
+		EXPECT_EQ(2, ts.count(p));
+	}
+
 }

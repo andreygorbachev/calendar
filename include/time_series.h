@@ -125,6 +125,11 @@ namespace gregorian
 
 		auto get_period() const noexcept -> gregorian::days_period;
 
+	public:
+
+		auto count(const days_period& from_until) const -> std::size_t;
+		auto count(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
+
 	private:
 
 		auto _index_outer(const std::chrono::sys_days& sd) const -> std::size_t;
@@ -242,6 +247,38 @@ namespace gregorian
 
 		const auto days = sd - _period.get_from();
 		return days.count() % _inner_size;
+	}
+
+	inline auto _time_series<bool>::count(const days_period& from_until) const -> std::size_t
+	{
+		auto result = std::size_t{ 0 };
+
+		// naive implementation to start with
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
+		)
+			if (operator[](d))
+				result++;
+
+		return result;
+	}
+
+	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
+	{
+		auto result = std::size_t{ 0 };
+
+		// naive implementation to start with
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d += std::chrono::days{ 1 }
+		)
+			if (operator[](d))
+				result++;
+
+		return result;
 	}
 
 }
