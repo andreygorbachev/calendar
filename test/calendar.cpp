@@ -170,7 +170,7 @@ namespace gregorian
 
 	TEST(calendar, is_non_business_day1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_TRUE(c.is_non_business_day(2023y / May / 1d));
 		EXPECT_FALSE(c.is_non_business_day(2023y / May / 2d));
@@ -180,7 +180,7 @@ namespace gregorian
 
 	TEST(calendar, is_non_business_day2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_TRUE(c.is_non_business_day(sys_days{ 2023y / May / 1d }));
 		EXPECT_FALSE(c.is_non_business_day(sys_days{ 2023y / May / 2d }));
@@ -190,7 +190,7 @@ namespace gregorian
 
 	TEST(calendar, is_business_day1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_FALSE(c.is_business_day(2023y / May / 1d));
 		EXPECT_TRUE(c.is_business_day(2023y / May / 2d));
@@ -200,7 +200,7 @@ namespace gregorian
 
 	TEST(calendar, is_business_day2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_FALSE(c.is_business_day(sys_days{ 2023y / May / 1d }));
 		EXPECT_TRUE(c.is_business_day(sys_days{ 2023y / May / 2d }));
@@ -210,7 +210,7 @@ namespace gregorian
 
 	TEST(calendar, count_business_days1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto bd1 = c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 1d });
 		const auto bd2 = c.count_business_days(days_period{ 2023y / May / 31d, 2023y / May / 31d });
@@ -223,7 +223,7 @@ namespace gregorian
 
 	TEST(calendar, count_business_days2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto bd1 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 1d } });
 		const auto bd2 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / May / 31d }, sys_days{ 2023y / May / 31d } });

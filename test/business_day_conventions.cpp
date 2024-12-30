@@ -81,7 +81,7 @@ namespace gregorian
 
 	TEST(modified_following, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d1 = 2023y / January / 1d;
 		const auto r1 = 2023y / January / 3d;
@@ -100,7 +100,7 @@ namespace gregorian
 
 	TEST(modified_following, adjust2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d1 = sys_days{ 2023y / January / 1d };
 		const auto r1 = sys_days{ 2023y / January / 3d };
@@ -119,7 +119,7 @@ namespace gregorian
 
 	TEST(preceding, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d1 = 2023y / January / 1d;
 		const auto r1 = 2022y / December / 30d;
@@ -131,7 +131,7 @@ namespace gregorian
 
 	TEST(preceding, adjust2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d1 = sys_days{ 2023y / January / 1d };
 		const auto r1 = sys_days{ 2022y / December / 30d };
@@ -143,7 +143,7 @@ namespace gregorian
 
 	TEST(modified_preceding, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		const auto d1 = 2022y / December / 31d;
 		const auto r1 = 2022y / December / 30d;
@@ -164,7 +164,7 @@ namespace gregorian
 	{
 		const auto c = make_calendar_england();
 
-		const auto d1 = sys_days{ 2022y / December / 31d };
+		const auto& d1 = sys_days{ 2022y / December / 31d };
 		const auto r1 = sys_days{ 2022y / December / 30d };
 		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
 		const auto d2 = sys_days{ 2022y / December / 30d };
@@ -181,7 +181,7 @@ namespace gregorian
 
 	TEST(nearest, adjust1)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		// Friday
 		const auto d1 = 2023y / March / 24d;
@@ -206,7 +206,7 @@ namespace gregorian
 
 	TEST(nearest, adjust2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		// Friday
 		const auto d1 = sys_days{ 2023y / March / 24d };
@@ -231,14 +231,14 @@ namespace gregorian
 
 	TEST(make_first_business_day, make_first_business_day)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_EQ(2023y / January / 3d, make_first_business_day(2023y / January, c));
 	}
 
 	TEST(make_last_business_day, make_last_business_day)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
 		EXPECT_EQ(2022y / December / 30d, make_last_business_day(2022y / December, c));
 	}
