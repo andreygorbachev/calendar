@@ -52,7 +52,7 @@ void experiment_is_business_day_year_month_day()
 	{
 		const auto start = high_resolution_clock::now();
 
-		auto number_of_business_days = 0;
+		volatile auto number_of_business_days = 0;
 		for (
 			auto d = SONIA_compound_index_from;
 			d <= until;
@@ -97,7 +97,7 @@ void experiment_is_business_day_sys_days()
 	{
 		const auto start = high_resolution_clock::now();
 
-		auto number_of_business_days = 0;
+		volatile auto number_of_business_days = 0;
 		for (
 			auto d = sys_days{ SONIA_compound_index_from };
 			d <= sys_days{ until };
