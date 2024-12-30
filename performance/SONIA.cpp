@@ -131,6 +131,47 @@ void experiment_is_business_day_sys_days()
 }
 
 
+void experiment_count_business_days_year_month_day()
+{
+	const auto& calendar = make_London_calendar();
+
+	auto min_duration = microseconds::max();
+	auto max_duration = microseconds::min();
+
+	for (auto r = 0; r < number_of_runs; ++r)
+	{
+		const auto start = high_resolution_clock::now();
+
+		const auto period = days_period{ SONIA_compound_index_from, until };
+
+		volatile auto number_of_business_days =
+			calendar.count_business_days(period);
+
+		const auto stop = high_resolution_clock::now();
+
+		const auto duration = duration_cast<microseconds>(stop - start);
+		cout
+			<< "Run:"
+			<< r
+			<< " Duration: "s
+			<< duration.count()
+			<< " microseconds."
+			<< endl;
+
+		min_duration = min(duration, min_duration);
+		max_duration = max(duration, max_duration);
+	}
+
+	cout
+		<< "Duration range: ["s
+		<< min_duration.count()
+		<< ", "s
+		<< max_duration.count()
+		<< "] microseconds."s
+		<< endl;
+}
+
+
 int main()
 {
 	cout << "Experiment is_business_day with year/month/day:"s << endl;
@@ -139,6 +180,10 @@ int main()
 
 	cout << "Experiment is_business_day with sys_days:"s << endl;
 	experiment_is_business_day_sys_days();
+	cout << endl;
+
+	cout << "Experiment count_business_days with year/month/day:"s << endl;
+	experiment_count_business_days_year_month_day();
 	cout << endl;
 
 	return 0;
