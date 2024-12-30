@@ -89,11 +89,14 @@ namespace gregorian
 	class _time_series<bool>
 	{
 
-	public:
+	private:
 
-		// can we hide it?
 		static const auto _inner_size = std::size_t{ 64u }; // uz
 		// we store bools in bitset chunks of this size (such that we can popcount them efficiently)
+
+	public:
+
+		using reference = std::bitset<_inner_size>::reference;
 
 	public:
 
@@ -115,10 +118,10 @@ namespace gregorian
 
 	public:
 
-		auto operator[](const std::chrono::year_month_day& ymd) -> std::bitset<_inner_size>::reference;
+		auto operator[](const std::chrono::year_month_day& ymd) -> reference;
 		auto operator[](const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto operator[](const std::chrono::sys_days& sd) -> std::bitset<_inner_size>::reference;
+		auto operator[](const std::chrono::sys_days& sd) -> reference;
 		auto operator[](const std::chrono::sys_days& sd) const -> bool;
 
 	public:
@@ -204,7 +207,7 @@ namespace gregorian
 	}
 
 
-	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) -> std::bitset<_inner_size>::reference
+	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) -> reference
 	{
 		return _observations[_index_outer(ymd)][_index_inner(ymd)];
 	}
@@ -214,7 +217,7 @@ namespace gregorian
 		return _observations[_index_outer(ymd)][_index_inner(ymd)];
 	}
 
-	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) -> std::bitset<_inner_size>::reference
+	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) -> reference
 	{
 		return _observations[_index_outer(sd)][_index_inner(sd)];
 	}
