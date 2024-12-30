@@ -85,4 +85,58 @@ namespace gregorian
 		EXPECT_EQ(3.4269, ts[sd]);
 	}
 
+	TEST(_time_series_bool, constructor)
+	{
+		const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
+		EXPECT_EQ(expected, ts.get_period());
+	}
+
+	TEST(_time_series_bool, operator_subscript_1)
+	{
+		const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto expected = bool{};
+		EXPECT_EQ(expected, ts[2023y / January / 1d]);
+		EXPECT_EQ(expected, ts[2023y / June / 5d]);
+
+		EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
+	}
+
+	TEST(_time_series_bool, operator_subscript_2)
+	{
+		auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		ts[2023y / January / 3d] = false;
+		EXPECT_EQ(false, ts[2023y / January / 3d]);
+
+		ts[2023y / January / 3d] = true;
+		EXPECT_EQ(true, ts[2023y / January / 3d]);
+	}
+
+	TEST(_time_series_bool, operator_subscript_3)
+	{
+		const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto expected = bool{};
+		EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
+		EXPECT_EQ(expected, ts[sys_days{ 2023y / June / 5d }]);
+
+		EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
+	}
+
+	TEST(_time_series_bool, operator_subscript_4)
+	{
+		auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+
+		const auto sd = sys_days{ 2023y / January / 3d };
+
+		ts[sd] = false;
+		EXPECT_EQ(false, ts[sd]);
+
+		ts[sd] = true;
+		EXPECT_EQ(true, ts[sd]);
+	}
+
 }

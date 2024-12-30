@@ -31,6 +31,7 @@
 #include <memory>
 #include <stdexcept>
 #include <compare>
+#include <bitset>
 
 
 namespace gregorian
@@ -90,6 +91,12 @@ namespace gregorian
 
 	public:
 
+		// can we hide it?
+		static const auto _inner_size = std::size_t{ 64u }; // uz
+		// we store bools in bitset chunks of this size (such that we can popcount them efficiently)
+
+	public:
+
 		_time_series() noexcept = delete;
 		_time_series(const _time_series&) = default;
 		_time_series(_time_series&&) noexcept = default;
@@ -108,11 +115,11 @@ namespace gregorian
 
 	public:
 
-		auto operator[](const std::chrono::year_month_day& ymd) -> std::vector<bool>::reference;
-		auto operator[](const std::chrono::year_month_day& ymd) const -> std::vector<bool>::const_reference;
+		auto operator[](const std::chrono::year_month_day& ymd) -> std::bitset<_inner_size>::reference;
+		auto operator[](const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto operator[](const std::chrono::sys_days& sd) -> std::vector<bool>::reference;
-		auto operator[](const std::chrono::sys_days& sd) const -> std::vector<bool>::const_reference;
+		auto operator[](const std::chrono::sys_days& sd) -> std::bitset<_inner_size>::reference;
+		auto operator[](const std::chrono::sys_days& sd) const -> bool;
 
 	public:
 
@@ -120,13 +127,14 @@ namespace gregorian
 
 	private:
 
-		auto _index(const std::chrono::sys_days& sd) const -> std::size_t;
+		auto _index_outer(const std::chrono::sys_days& sd) const -> std::size_t;
+		auto _index_inner(const std::chrono::sys_days& sd) const -> std::size_t;
 
 	private:
 
 		gregorian::period<std::chrono::sys_days> _period;
 
-		std::vector<bool> _observations;
+		std::vector<std::bitset<_inner_size>> _observations;
 
 	};
 
@@ -186,29 +194,29 @@ namespace gregorian
 
 	inline _time_series<bool>::_time_series(const gregorian::days_period& period) noexcept :
 		_period{ period.get_from(), period.get_until() },
-		_observations(_index(_period.get_until()) + 1/*uz*/)
+		_observations(_index_outer(_period.get_until()) + 1/*zu*/)
 	{
 	}
 
 
-	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) -> std::vector<bool>::reference
+	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) -> std::bitset<_inner_size>::reference
 	{
-		return _observations[_index(ymd)];
+		return _observations[_index_outer(ymd)][_index_inner(ymd)];
 	}
 
-	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) const -> std::vector<bool>::const_reference
+	inline auto _time_series<bool>::operator[](const std::chrono::year_month_day& ymd) const -> bool
 	{
-		return _observations[_index(ymd)];
+		return _observations[_index_outer(ymd)][_index_inner(ymd)];
 	}
 
-	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) -> std::vector<bool>::reference
+	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) -> std::bitset<_inner_size>::reference
 	{
-		return _observations[_index(sd)];
+		return _observations[_index_outer(sd)][_index_inner(sd)];
 	}
 
-	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) const -> std::vector<bool>::const_reference
+	inline auto _time_series<bool>::operator[](const std::chrono::sys_days& sd) const -> bool
 	{
-		return _observations[_index(sd)];
+		return _observations[_index_outer(sd)][_index_inner(sd)];
 	}
 
 
@@ -218,13 +226,26 @@ namespace gregorian
 	}
 
 
-	inline auto _time_series<bool>::_index(const std::chrono::sys_days& sd) const -> std::size_t
+	inline auto _time_series<bool>::_index_outer(const std::chrono::sys_days& sd) const -> std::size_t
 	{
 		if (sd < _period.get_from() || sd > _period.get_until())
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
 		const auto days = sd - _period.get_from();
-		return days.count();
+		const auto dc = days.count();
+		if (dc % _inner_size == 0/*zu*/)
+			return dc / _inner_size;
+		else
+			return dc / _inner_size + 1/*zu*/;
+	}
+
+	inline auto _time_series<bool>::_index_inner(const std::chrono::sys_days& sd) const -> std::size_t
+	{
+		if (sd < _period.get_from() || sd > _period.get_until())
+			throw std::out_of_range{ "Request is not consistent with from/until" };
+
+		const auto days = sd - _period.get_from();
+		return days.count() % _inner_size;
 	}
 
 }
