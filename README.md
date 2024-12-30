@@ -30,4 +30,4 @@ As we are doing some caching inside calendar we throw an exception if one checks
 1) make count_business_days a lot more efficient (either cache business days per month/year or utilise vector<bool> more)
 2) maybe do better for rule based calendars (until date does not make sense in this case)
 3) consider again how caching should be implemented in a multithread case
-4) incorporate the 28 year calendar cycle
+
