@@ -214,11 +214,11 @@ namespace gregorian
 
 		const auto bd1 = c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 1d });
 		const auto bd2 = c.count_business_days(days_period{ 2023y / May / 31d, 2023y / May / 31d });
-		const auto bd3 = c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 31d });
+		const auto bd3 = c.count_business_days(days_period{ 2023y / April / 28d, 2023y / May / 31d });
 
 		EXPECT_EQ(0/*uz*/, bd1);
 		EXPECT_EQ(1/*uz*/, bd2);
-		EXPECT_EQ(20/*uz*/, bd3);
+		EXPECT_EQ(21/*uz*/, bd3);
 	}
 
 	TEST(calendar, count_business_days2)
@@ -227,11 +227,11 @@ namespace gregorian
 
 		const auto bd1 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 1d } });
 		const auto bd2 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / May / 31d }, sys_days{ 2023y / May / 31d } });
-		const auto bd3 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 31d } });
+		const auto bd3 = c.count_business_days(period<sys_days>{ sys_days{ 2023y / April / 28d }, sys_days{ 2023y / May / 31d } });
 
 		EXPECT_EQ(0/*uz*/, bd1);
 		EXPECT_EQ(1/*uz*/, bd2);
-		EXPECT_EQ(20/*uz*/, bd3);
+		EXPECT_EQ(21/*uz*/, bd3);
 	}
 
 
