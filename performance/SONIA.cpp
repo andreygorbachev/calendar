@@ -65,11 +65,11 @@ void experiment_is_business_day_year_month_day()
 
 		const auto duration = duration_cast<microseconds>(stop - start);
 		cout
-			<< "Run:"
+			<< "Run:"s
 			<< r
 			<< " Duration: "s
 			<< duration.count()
-			<< " microseconds."
+			<< " microseconds."s
 			<< endl;
 
 		min_duration = min(duration, min_duration);
@@ -110,11 +110,11 @@ void experiment_is_business_day_sys_days()
 
 		const auto duration = duration_cast<microseconds>(stop - start);
 		cout
-			<< "Run:"
+			<< "Run:"s
 			<< r
 			<< " Duration: "s
 			<< duration.count()
-			<< " microseconds."
+			<< " microseconds."s
 			<< endl;
 
 		min_duration = min(duration, min_duration);
@@ -151,11 +151,11 @@ void experiment_count_business_days_year_month_day()
 
 		const auto duration = duration_cast<microseconds>(stop - start);
 		cout
-			<< "Run:"
+			<< "Run:"s
 			<< r
 			<< " Duration: "s
 			<< duration.count()
-			<< " microseconds."
+			<< " microseconds."s
 			<< endl;
 
 		min_duration = min(duration, min_duration);
