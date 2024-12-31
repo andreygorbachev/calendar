@@ -100,8 +100,10 @@ namespace gregorian
 
 	TEST(_time_series_bool, constructor2)
 	{
+		const auto cs = _time_series<bool>::get_chunk_size();
+
 		const auto f = 2023y / January / 1d;
-		const auto u = sys_days{ f } + days{ 64 } - days{ 1 }; // we assume chunks of 64 bit
+		const auto u = sys_days{ f } + days{ cs } - days{ 1 };
 		const auto ts = _time_series<bool>{ days_period{ f, u } };
 
 		const auto expected = days_period{ f, u };
@@ -113,8 +115,10 @@ namespace gregorian
 
 	TEST(_time_series_bool, constructor3)
 	{
+		const auto cs = _time_series<bool>::get_chunk_size();
+
 		const auto f = 2023y / January / 1d;
-		const auto u = sys_days{ f } + days{ 64 } - days{ 1 } + days{ 1 }; // we assume chunks of 64 bit
+		const auto u = sys_days{ f } + days{ cs } - days{ 1 } + days{ 1 };
 		const auto ts = _time_series<bool>{ days_period{ f, u } };
 
 		const auto expected = days_period{ f, u };

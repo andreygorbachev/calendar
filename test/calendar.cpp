@@ -265,6 +265,8 @@ namespace gregorian
 	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days3)
 	{
+		const auto cs = _time_series<bool>::get_chunk_size();
+
 		const auto& c = make_calendar_england();
 		const auto& cp = c.get_schedule().get_from_until();
 
@@ -272,31 +274,31 @@ namespace gregorian
 		const auto bd1 =
 			c.count_business_days(days_period{
 				cp.get_from(),
-				sys_days{ cp.get_from() } + days{ 63 }
+				sys_days{ cp.get_from() } + days{ cs } - days{ 1 }
 			});
 		// both from and until are inside of the same chunk
 		const auto bd2 =
 			c.count_business_days(days_period{
 				sys_days{ cp.get_from() } + days{ 1 },
-				sys_days{ cp.get_from() } + days{ 63 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 		// from is inside the chunk and until is on the boundary of a different chunk
 		const auto bd3 =
 			c.count_business_days(days_period{
 				sys_days{ cp.get_from() } + days{ 1 },
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 }
 			});
 		// from is on the boundary of a chunk and until is inside the different chunk
 		const auto bd4 =
 			c.count_business_days(days_period{
 				cp.get_from(),
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 		// from is on the boundary of a chunk and until is on the boundary of a different chunk
 		const auto bd5 =
 			c.count_business_days(days_period{
 				cp.get_from(),
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ 64 } - days{ 1 }
 			});
 
 		EXPECT_EQ(45/*uz*/, bd1);
@@ -309,6 +311,8 @@ namespace gregorian
 	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days4)
 	{
+		const auto cs = _time_series<bool>::get_chunk_size();
+
 		const auto& c = make_calendar_england();
 		const auto& cp = c.get_schedule().get_from_until();
 
@@ -316,31 +320,31 @@ namespace gregorian
 		const auto bd1 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() },
-				sys_days{ cp.get_from() } + days{ 63 }
+				sys_days{ cp.get_from() } + days{ cs } - days{ 1 }
 			});
 		// both from and until are inside of the same chunk
 		const auto bd2 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() } + days{ 1 },
-				sys_days{ cp.get_from() } + days{ 63 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ cs } - days{ 1 } - days{ 1 }
 				});
 		// from is inside the chunk and until is on the boundary of a different chunk
 		const auto bd3 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() } + days{ 1 },
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 }
 			});
 		// from is on the boundary of a chunk and until is inside the different chunk
 		const auto bd4 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() },
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ 64 } + days{ 64 } - days{ 1 } - days{ 1 }
 			});
 		// from is on the boundary of a chunk and until is on the boundary of a different chunk
 		const auto bd5 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() },
-				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 }
 			});
 
 		EXPECT_EQ(45/*uz*/, bd1);
