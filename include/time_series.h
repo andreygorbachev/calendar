@@ -96,7 +96,9 @@ namespace gregorian
 
 	public:
 
-		using reference = std::bitset<_inner_size>::reference;
+		using _chunk = std::bitset<_inner_size>;
+
+		using reference = _chunk::reference;
 
 	public:
 
@@ -142,7 +144,9 @@ namespace gregorian
 
 		gregorian::period<std::chrono::sys_days> _period;
 
-		std::vector<std::bitset<_inner_size>> _observations;
+		using _storage = std::vector<_chunk>;
+
+		_storage _observations;
 
 	};
 
