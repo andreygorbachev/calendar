@@ -200,4 +200,9 @@ namespace gregorian
 		EXPECT_EQ(2, ts.count(p));
 	}
 
+	TEST(_time_series_bool, get_chunk_size_1)
+	{
+		EXPECT_EQ(64, _time_series<bool>::get_chunk_size());
+	}
+
 }

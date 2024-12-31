@@ -91,12 +91,12 @@ namespace gregorian
 
 	private:
 
-		static const auto _inner_size = std::size_t{ 64u }; // uz
+		static const auto _chunk_size = std::size_t{ 64u }; // uz
 		// we store bools in bitset chunks of this size (such that we can popcount them efficiently)
 
 	public:
 
-		using _chunk = std::bitset<_inner_size>;
+		using _chunk = std::bitset<_chunk_size>;
 
 		using reference = _chunk::reference;
 
@@ -134,6 +134,11 @@ namespace gregorian
 
 		auto count(const days_period& from_until) const -> std::size_t;
 		auto count(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
+
+	public:
+
+		// to help with testing
+		static auto get_chunk_size() noexcept -> std::size_t;
 
 	private:
 
@@ -244,13 +249,19 @@ namespace gregorian
 	}
 
 
+	inline auto _time_series<bool>::get_chunk_size() noexcept -> std::size_t
+	{
+		return _chunk_size;
+	}
+
+
 	inline auto _time_series<bool>::_index_outer(const std::chrono::sys_days& sd) const -> std::size_t
 	{
 		if (sd < _period.get_from() || sd > _period.get_until())
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
 		const auto days = sd - _period.get_from();
-		return days.count() / _inner_size;
+		return days.count() / _chunk_size;
 	}
 
 	inline auto _time_series<bool>::_index_inner(const std::chrono::sys_days& sd) const -> std::size_t
@@ -259,7 +270,7 @@ namespace gregorian
 			throw std::out_of_range{ "Request is not consistent with from/until" };
 
 		const auto days = sd - _period.get_from();
-		return days.count() % _inner_size;
+		return days.count() % _chunk_size;
 	}
 
 	inline auto _time_series<bool>::count(const days_period& from_until) const -> std::size_t
