@@ -91,7 +91,7 @@ namespace gregorian
 
 	private:
 
-		static const auto _chunk_size = std::size_t{ 64u }; // uz
+		static const auto _chunk_size = std::size_t{ 64u }; // uz // maybe consider 128/256/512 to align with SSE/AVX
 		// we store bools in bitset chunks of this size (such that we can popcount them efficiently)
 
 	public:
