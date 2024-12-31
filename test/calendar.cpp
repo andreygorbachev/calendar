@@ -306,6 +306,7 @@ namespace gregorian
 		EXPECT_EQ(88/*uz*/, bd3);
 		EXPECT_EQ(87/*uz*/, bd4);
 		EXPECT_EQ(88/*uz*/, bd5);
+		// we assume 64 days in a chunk
 	}
 
 	// should this be a _time_series_bool test?
@@ -352,6 +353,7 @@ namespace gregorian
 		EXPECT_EQ(88/*uz*/, bd3);
 		EXPECT_EQ(87/*uz*/, bd4);
 		EXPECT_EQ(88/*uz*/, bd5);
+		// we assume 64 days in a chunk
 	}
 
 
