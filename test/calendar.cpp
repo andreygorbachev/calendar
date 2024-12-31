@@ -262,6 +262,92 @@ namespace gregorian
 		EXPECT_EQ(18/*uz*/, bd6);
 	}
 
+	TEST(calendar, count_business_days3)
+	{
+		const auto& c = make_calendar_england();
+		const auto& cp = c.get_schedule().get_from_until();
+
+		// both from and until are on the boundary of the same chunk
+		const auto bd1 =
+			c.count_business_days(days_period{
+				cp.get_from(),
+				sys_days{ cp.get_from() } + days{ 63 }
+			});
+		// both from and until are inside of the same chunk
+		const auto bd2 =
+			c.count_business_days(days_period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ 63 } - days{ 1 }
+			});
+		// from is inside the chunk and until is on the boundary of a different chunk
+		const auto bd3 =
+			c.count_business_days(days_period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				});
+		// from is on the boundary of a chunk and until is inside the different chunk
+		const auto bd4 =
+			c.count_business_days(days_period{
+				cp.get_from(),
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 } - days{ 1 }
+				});
+		// from is on the boundary of a chunk and until is on the boundary of a different chunk
+		const auto bd5 =
+			c.count_business_days(days_period{
+				cp.get_from(),
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				});
+
+		EXPECT_EQ(45/*uz*/, bd1);
+		EXPECT_EQ(44/*uz*/, bd2);
+		EXPECT_EQ(88/*uz*/, bd3);
+		EXPECT_EQ(87/*uz*/, bd4);
+		EXPECT_EQ(88/*uz*/, bd5);
+	}
+
+	TEST(calendar, count_business_days4)
+	{
+		const auto& c = make_calendar_england();
+		const auto& cp = c.get_schedule().get_from_until();
+
+		// both from and until are on the boundary of the same chunk
+		const auto bd1 =
+			c.count_business_days(period{
+				sys_days{ cp.get_from() },
+				sys_days{ cp.get_from() } + days{ 63 }
+				});
+		// both from and until are inside of the same chunk
+		const auto bd2 =
+			c.count_business_days(period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ 63 } - days{ 1 }
+				});
+		// from is inside the chunk and until is on the boundary of a different chunk
+		const auto bd3 =
+			c.count_business_days(period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				});
+		// from is on the boundary of a chunk and until is inside the different chunk
+		const auto bd4 =
+			c.count_business_days(period{
+				sys_days{ cp.get_from() },
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 } - days{ 1 }
+				});
+		// from is on the boundary of a chunk and until is on the boundary of a different chunk
+		const auto bd5 =
+			c.count_business_days(period{
+				sys_days{ cp.get_from() },
+				sys_days{ cp.get_from() } + days{ 63 } + days{ 64 }
+				});
+
+		EXPECT_EQ(45/*uz*/, bd1);
+		EXPECT_EQ(44/*uz*/, bd2);
+		EXPECT_EQ(88/*uz*/, bd3);
+		EXPECT_EQ(87/*uz*/, bd4);
+		EXPECT_EQ(88/*uz*/, bd5);
+	}
+
 
 	TEST(calendar, operator_equal_to)
 	{
