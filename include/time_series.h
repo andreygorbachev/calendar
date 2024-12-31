@@ -150,12 +150,6 @@ namespace gregorian
 		gregorian::period<std::chrono::sys_days> _period;
 
 		using _storage = std::vector<_chunk>;
-		// we can also use std::vector<bool> here
-		// which is slower for counting the number of business days between 2 days
-		// but faster for looking up individual (consequtive) days
-		//
-		// if both are needed, we'll of course can have 2 caches instead of one in gregorian::calendar
-		// (or we can cache the number of business days per month for counting of business days between 2 days)
 
 		_storage _observations;
 
