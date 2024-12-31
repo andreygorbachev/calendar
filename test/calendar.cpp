@@ -262,6 +262,7 @@ namespace gregorian
 		EXPECT_EQ(18/*uz*/, bd6);
 	}
 
+	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days3)
 	{
 		const auto& c = make_calendar_england();
@@ -305,6 +306,7 @@ namespace gregorian
 		EXPECT_EQ(88/*uz*/, bd5);
 	}
 
+	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days4)
 	{
 		const auto& c = make_calendar_england();
