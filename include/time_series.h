@@ -147,7 +147,7 @@ namespace gregorian
 		using _storage = std::vector<_chunk>;
 		// we can also use std::vector<bool> here
 		// which is slower for counting the number of business days between 2 days
-		// but faster for looking up individual days
+		// but faster for looking up individual (consequtive) days
 
 		_storage _observations;
 
