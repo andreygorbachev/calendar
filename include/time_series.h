@@ -54,6 +54,14 @@ namespace gregorian
 
 		explicit _time_series(const gregorian::days_period& period) noexcept;
 
+	private:
+
+		explicit _time_series(const gregorian::period<std::chrono::sys_days> period) noexcept;
+		// at the moment we have year/month/day interface,
+		// but maybe we should have both year/month/day and sys_days interfaces
+		// (what should get_period return in this case?)
+		// we already have a sys_days interface for operator[]
+
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
@@ -113,6 +121,10 @@ namespace gregorian
 
 		explicit _time_series(const gregorian::days_period& period) noexcept;
 
+	private:
+
+		explicit _time_series(const gregorian::period<std::chrono::sys_days> period) noexcept;
+
 	public:
 
 		friend auto operator==(const _time_series& ts1, const _time_series& ts2) noexcept -> bool = default;
@@ -159,7 +171,13 @@ namespace gregorian
 
 	template<typename T>
 	_time_series<T>::_time_series(const gregorian::days_period& period) noexcept :
-		_period{ period.get_from(), period.get_until() },
+		_time_series{ gregorian::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
+	{
+	}
+
+	template<typename T>
+	_time_series<T>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
+		_period{ std::move(period) },
 		_observations(_index(_period.get_until()) + 1/*uz*/)
 	{
 	}
@@ -210,8 +228,13 @@ namespace gregorian
 
 
 	inline _time_series<bool>::_time_series(const gregorian::days_period& period) noexcept :
-		_period{ period.get_from(), period.get_until() },
-		_observations(_index_outer(_period.get_until()) + 1/*zu*/)
+		_time_series{ gregorian::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
+	{
+	}
+
+	inline _time_series<bool>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
+		_period{ std::move(period) },
+		_observations(_index_outer(_period.get_until()) + 1/*uz*/)
 	{
 	}
 
