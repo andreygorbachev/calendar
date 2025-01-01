@@ -299,14 +299,34 @@ namespace gregorian
 	{
 		auto result = std::size_t{ 0 };
 
-		// naive implementation to start with
-		for (
-			auto d = from_until.get_from();
-			d <= from_until.get_until();
-			d += std::chrono::days{ 1 }
-		)
-			if (operator[](d))
+		const auto from = from_until.get_from();
+		const auto from_chunk_index = _index_outer(from);
+		const auto& from_chunk = _observations[from_chunk_index];
+
+		const auto until = from_until.get_until();
+		const auto until_chunk_index = _index_outer(until);
+		const auto& until_chunk = _observations[until_chunk_index];
+
+		// handle the chunk that contains from
+		for (auto i = _index_inner(from); i < _chunk_size; ++i)
+			if (from_chunk[i])
 				result++;
+		// naive implementation to start with
+
+		// full chunks in the middle (after the from chunk, but including the chunk that contains until)
+		for (
+			auto j = from_chunk_index + std::size_t{ 1u };
+			j <= until_chunk_index;
+			++j
+		)
+			result += _observations[j].count();
+		// naive implementation to start with
+
+		// handle the chunk that contains until
+		for (auto i = _index_inner(until) + std::size_t{ 1u }; i < _chunk_size; ++i)
+			if (until_chunk[i])
+				result--;
+		// naive implementation to start with
 
 		return result;
 	}
