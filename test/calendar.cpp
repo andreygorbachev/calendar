@@ -298,7 +298,13 @@ namespace gregorian
 		const auto bd5 =
 			c.count_business_days(days_period{
 				cp.get_from(),
-				sys_days{ cp.get_from() } + days{ cs } + days{ 64 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 }
+			});
+		// at least 3 chunks involved
+		const auto bd6 =
+			c.count_business_days(days_period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 
 		EXPECT_EQ(45/*uz*/, bd1);
@@ -306,6 +312,7 @@ namespace gregorian
 		EXPECT_EQ(88/*uz*/, bd3);
 		EXPECT_EQ(87/*uz*/, bd4);
 		EXPECT_EQ(88/*uz*/, bd5);
+		EXPECT_EQ(132/*uz*/, bd6);
 		// we assume 64 days in a chunk
 	}
 
@@ -339,7 +346,7 @@ namespace gregorian
 		const auto bd4 =
 			c.count_business_days(period{
 				sys_days{ cp.get_from() },
-				sys_days{ cp.get_from() } + days{ 64 } + days{ 64 } - days{ 1 } - days{ 1 }
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 		// from is on the boundary of a chunk and until is on the boundary of a different chunk
 		const auto bd5 =
@@ -347,12 +354,19 @@ namespace gregorian
 				sys_days{ cp.get_from() },
 				sys_days{ cp.get_from() } + days{ cs } + days{ cs } - days{ 1 }
 			});
+		// at least 3 chunks involved
+		const auto bd6 =
+			c.count_business_days(days_period{
+				sys_days{ cp.get_from() } + days{ 1 },
+				sys_days{ cp.get_from() } + days{ cs } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
+			});
 
 		EXPECT_EQ(45/*uz*/, bd1);
 		EXPECT_EQ(44/*uz*/, bd2);
 		EXPECT_EQ(88/*uz*/, bd3);
 		EXPECT_EQ(87/*uz*/, bd4);
 		EXPECT_EQ(88/*uz*/, bd5);
+		EXPECT_EQ(132/*uz*/, bd6);
 		// we assume 64 days in a chunk
 	}
 
