@@ -292,18 +292,7 @@ namespace gregorian
 
 	inline auto _time_series<bool>::count(const days_period& from_until) const -> std::size_t
 	{
-		auto result = std::size_t{ 0 };
-
-		// naive implementation to start with
-		for (
-			auto d = from_until.get_from();
-			d <= from_until.get_until();
-			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
-		)
-			if (operator[](d))
-				result++;
-
-		return result;
+		return count(period<std::chrono::sys_days>{ from_until.get_from(), from_until.get_until() });
 	}
 
 	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
