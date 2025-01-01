@@ -28,5 +28,3 @@ As we are doing some caching inside calendar we throw an exception if one checks
 
 # roadmap
 1) maybe do better for rule based calendars (until date does not make sense in this case)
-2) consider again how caching should be implemented in a multithread case
-
