@@ -307,13 +307,12 @@ namespace gregorian
 
 		const auto from = from_until.get_from();
 		const auto from_chunk_index = _index_outer(from);
-		const auto& from_chunk = _observations[from_chunk_index];
 
 		const auto until = from_until.get_until();
 		const auto until_chunk_index = _index_outer(until);
-		const auto& until_chunk = _observations[until_chunk_index];
 
 		// handle the chunk that contains from
+		const auto& from_chunk = _observations[from_chunk_index];
 		for (auto i = _index_inner(from); i < _chunk_size; ++i)
 			if (from_chunk[i])
 				result++;
@@ -329,6 +328,7 @@ namespace gregorian
 		// naive implementation to start with
 
 		// handle the chunk that contains until
+		const auto& until_chunk = _observations[until_chunk_index];
 		for (auto i = _index_inner(until) + std::size_t{ 1u }; i < _chunk_size; ++i)
 			if (until_chunk[i])
 				result--;
