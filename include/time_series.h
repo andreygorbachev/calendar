@@ -295,6 +295,12 @@ namespace gregorian
 		return count(period<std::chrono::sys_days>{ from_until.get_from(), from_until.get_until() });
 	}
 
+	// possible faster implementation could be to have another cache of _hols
+	// if we are to have them as a sorted vector and make sure none of them duplicate weekends
+	// we should be able to compute number of full weeks between from and until
+	// (which would give us 5 business days each),
+	// adjust for (possibly) incomplete from and until weeks
+	// and then addjust for a number of _hols that fall into the period
 	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
 	{
 		auto result = std::size_t{ 0 };
