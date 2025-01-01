@@ -41,7 +41,7 @@ constexpr auto until = year{ 2024 } / December / day{ 31u };
 
 
 
-void experiment_is_business_day_year_month_day()
+static void experiment_is_business_day_year_month_day()
 {
 	const auto& calendar = make_London_calendar();
 
@@ -86,7 +86,7 @@ void experiment_is_business_day_year_month_day()
 }
 
 
-void experiment_is_business_day_sys_days()
+static void experiment_is_business_day_sys_days()
 {
 	const auto& calendar = make_London_calendar();
 
@@ -131,7 +131,7 @@ void experiment_is_business_day_sys_days()
 }
 
 
-void experiment_count_business_days_year_month_day()
+static void experiment_count_business_days_year_month_day()
 {
 	const auto& calendar = make_London_calendar();
 
@@ -172,7 +172,7 @@ void experiment_count_business_days_year_month_day()
 }
 
 
-void experiment_count_business_sys_days()
+static void experiment_count_business_sys_days()
 {
 	const auto& calendar = make_London_calendar();
 
