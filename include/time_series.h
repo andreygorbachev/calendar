@@ -60,7 +60,7 @@ namespace gregorian
 		// at the moment we have year/month/day interface,
 		// but maybe we should have both year/month/day and sys_days interfaces
 		// (what should get_period return in this case?)
-		// we already have a sys_days interface for operator[]
+		// we already have a sys_days interface for operator[] and _time_series<bool>::count
 
 	public:
 
