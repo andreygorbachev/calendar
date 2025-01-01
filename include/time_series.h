@@ -328,6 +328,8 @@ namespace gregorian
 				result--;
 		// naive implementation to start with
 
+		// can we factor out some common code for the first and last parts?
+
 		return result;
 	}
 
