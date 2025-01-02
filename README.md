@@ -26,5 +26,3 @@ We do not do anything special for std::chrono::year_month_day, which are not "ok
 
 As we are doing some caching inside calendar we throw an exception if one checks for a business day before "from" or after "until".
 
-# roadmap
-1) maybe do better for rule based calendars (until date does not make sense in this case)
