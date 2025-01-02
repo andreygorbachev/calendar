@@ -301,6 +301,10 @@ namespace gregorian
 	// (which would give us 5 business days each),
 	// adjust for (possibly) incomplete from and until weeks
 	// and then addjust for a number of _hols that fall into the period
+	//
+	// for rule based calendars with adjustments for holidays that fall on weekends
+	// we also know the number of additional holidays per year (which is just the number of rules)
+	// which can further optimise the calculation
 	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
 	{
 		auto result = std::size_t{ 0 };
