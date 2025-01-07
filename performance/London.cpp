@@ -39,7 +39,7 @@ using namespace gregorian;
 
 const auto _Epoch = year{ 2018 } / FirstDayOfJanuary;
 
-auto _London_schedule() -> schedule
+auto _make_London_schedule() -> schedule
 {
 	auto holidays = schedule::dates{
 		year{ 2018 } / January / day{ 1u },
@@ -117,7 +117,7 @@ auto _London_schedule() -> schedule
 
 auto _make_London_calendar() -> calendar
 {
-	const auto known_part = _London_schedule();
+	const auto known_part = _make_London_schedule();
 
 	const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
 	const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
