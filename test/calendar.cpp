@@ -370,6 +370,65 @@ namespace gregorian
 		// we assume 64 days in a chunk
 	}
 
+	TEST(calendar, make_business_days_schedule1)
+	{
+		const auto& c = make_calendar_england();
+
+		const auto s1 =
+			c.make_business_days_schedule(days_period{ 2023y / May / 1d, 2023y / May / 1d });
+		const auto expected_s1 = schedule{
+			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			{
+			}
+		};
+		const auto s2 =
+			c.make_business_days_schedule(days_period{ 2023y / May / 31d, 2023y / May / 31d });
+		const auto expected_s2 = schedule{
+			days_period{ 2023y / May / 31d, 2023y / May / 31d },
+			{
+				2023y / May / 31d
+			}
+		};
+		const auto s3 =
+			c.make_business_days_schedule(days_period{ 2023y / April / 28d, 2023y / May / 31d });
+		const auto expected_s3 = schedule{
+			days_period{ 2023y / April / 28d, 2023y / May / 31d },
+			{
+				2023y / April / 28d,
+			}
+		};
+
+		EXPECT_EQ(expected_s1, s1);
+		EXPECT_EQ(expected_s2, s2);
+		EXPECT_EQ(expected_s3, s3);
+
+		const auto s4 =
+			c.make_business_days_schedule(days_period{ 2023y / May / 1d, 2023y / May / 31d }); // from a non-business day
+		const auto expected_s4 = schedule{
+			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			{
+			}
+		};
+		const auto s5 =
+			c.make_business_days_schedule(days_period{ 2023y / April / 28d, 2023y / May / 29d }); // until a non-business day
+		const auto expected_s5 = schedule{
+			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			{
+			}
+		};
+		const auto s6 =
+			c.make_business_days_schedule(days_period{ 2023y / May / 1d, 2023y / May / 29d }); // from a non-business day, until a non-business day
+		const auto expected_s6 = schedule{
+			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			{
+			}
+		};
+
+		EXPECT_EQ(expected_s4, s4);
+		EXPECT_EQ(expected_s5, s5);
+		EXPECT_EQ(expected_s6, s6);
+	}
+
 
 	TEST(calendar, operator_equal_to)
 	{
