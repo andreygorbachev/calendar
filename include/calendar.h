@@ -67,6 +67,7 @@ namespace gregorian
 
 		auto count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
 
+		// is returning schedule the right thing to do?
 		auto make_business_days_schedule(days_period from_until) const -> schedule;
 
 		auto make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule;
@@ -220,6 +221,7 @@ namespace gregorian
 		return schedule{ std::move(from_until), {} }; // mock up
 	}
 
+	// should we pass this one by const reference? (as we are not moving from it)
 	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule
 	{
 		return schedule{ days_period{ from_until.get_from(), from_until.get_until() }, {} }; // mock up
