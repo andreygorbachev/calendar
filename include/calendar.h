@@ -228,13 +228,23 @@ namespace gregorian
 			if(is_business_day(d))
 				s.emplace_hint(s.cend(), d);
 
-		return schedule{ std::move(from_until), s };
+		return schedule{ std::move(from_until), std::move(s) };
 	}
 
 	// should we pass this one by const reference? (as we are not moving from it)
 	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule
 	{
-		return schedule{ days_period{ from_until.get_from(), from_until.get_until() }, {} }; // mock up
+		// naive implementation to start with - can we use iota and ranges?
+		auto s = schedule::dates();
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d += std::chrono::days{ 1 }
+			)
+			if (is_business_day(d))
+				s.emplace_hint(s.cend(), d);
+
+		return schedule{ days_period{ from_until.get_from(), from_until.get_until() }, std::move(s)};
 	}
 
 
