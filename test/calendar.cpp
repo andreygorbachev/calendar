@@ -219,9 +219,9 @@ namespace gregorian
 		const auto bd3 =
 			c.count_business_days(days_period{ 2023y / April / 28d, 2023y / May / 31d });
 
-		EXPECT_EQ(0/*uz*/, bd1);
-		EXPECT_EQ(1/*uz*/, bd2);
-		EXPECT_EQ(21/*uz*/, bd3);
+		EXPECT_EQ(0uz, bd1);
+		EXPECT_EQ(1uz, bd2);
+		EXPECT_EQ(21uz, bd3);
 
 		const auto bd4 =
 			c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 31d }); // from a non-business day
@@ -230,9 +230,9 @@ namespace gregorian
 		const auto bd6 =
 			c.count_business_days(days_period{ 2023y / May / 1d, 2023y / May / 29d }); // from a non-business day, until a non-business day
 
-		EXPECT_EQ(20/*uz*/, bd4);
-		EXPECT_EQ(19/*uz*/, bd5);
-		EXPECT_EQ(18/*uz*/, bd6);
+		EXPECT_EQ(20uz, bd4);
+		EXPECT_EQ(19uz, bd5);
+		EXPECT_EQ(18uz, bd6);
 	}
 
 	TEST(calendar, count_business_days2)
@@ -246,9 +246,9 @@ namespace gregorian
 		const auto bd3 =
 			c.count_business_days(period{ sys_days{ 2023y / April / 28d }, sys_days{ 2023y / May / 31d } });
 
-		EXPECT_EQ(0/*uz*/, bd1);
-		EXPECT_EQ(1/*uz*/, bd2);
-		EXPECT_EQ(21/*uz*/, bd3);
+		EXPECT_EQ(0uz, bd1);
+		EXPECT_EQ(1uz, bd2);
+		EXPECT_EQ(21uz, bd3);
 
 		const auto bd4 =
 			c.count_business_days(period{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 31d } }); // from a non-business day
@@ -257,9 +257,9 @@ namespace gregorian
 		const auto bd6 =
 			c.count_business_days(period{ sys_days{ 2023y / May / 1d }, sys_days{ 2023y / May / 29d } }); // from a non-business day, until a non-business day
 
-		EXPECT_EQ(20/*uz*/, bd4);
-		EXPECT_EQ(19/*uz*/, bd5);
-		EXPECT_EQ(18/*uz*/, bd6);
+		EXPECT_EQ(20uz, bd4);
+		EXPECT_EQ(19uz, bd5);
+		EXPECT_EQ(18uz, bd6);
 	}
 
 	// should this be a _time_series_bool test?
@@ -307,12 +307,12 @@ namespace gregorian
 				sys_days{ cp.get_from() } + days{ cs } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 
-		EXPECT_EQ(45/*uz*/, bd1);
-		EXPECT_EQ(44/*uz*/, bd2);
-		EXPECT_EQ(88/*uz*/, bd3);
-		EXPECT_EQ(87/*uz*/, bd4);
-		EXPECT_EQ(88/*uz*/, bd5);
-		EXPECT_EQ(132/*uz*/, bd6);
+		EXPECT_EQ(45uz, bd1);
+		EXPECT_EQ(44uz, bd2);
+		EXPECT_EQ(88uz, bd3);
+		EXPECT_EQ(87uz, bd4);
+		EXPECT_EQ(88uz, bd5);
+		EXPECT_EQ(132uz, bd6);
 		// we assume 64 days in a chunk
 	}
 
@@ -361,12 +361,12 @@ namespace gregorian
 				sys_days{ cp.get_from() } + days{ cs } + days{ cs } + days{ cs } - days{ 1 } - days{ 1 }
 			});
 
-		EXPECT_EQ(45/*uz*/, bd1);
-		EXPECT_EQ(44/*uz*/, bd2);
-		EXPECT_EQ(88/*uz*/, bd3);
-		EXPECT_EQ(87/*uz*/, bd4);
-		EXPECT_EQ(88/*uz*/, bd5);
-		EXPECT_EQ(132/*uz*/, bd6);
+		EXPECT_EQ(45uz, bd1);
+		EXPECT_EQ(44uz, bd2);
+		EXPECT_EQ(88uz, bd3);
+		EXPECT_EQ(87uz, bd4);
+		EXPECT_EQ(88uz, bd5);
+		EXPECT_EQ(132uz, bd6);
 		// we assume 64 days in a chunk
 	}
 

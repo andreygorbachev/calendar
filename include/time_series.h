@@ -178,7 +178,7 @@ namespace gregorian
 	template<typename T>
 	_time_series<T>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
-		_observations(_index(_period.get_until()) + 1/*uz*/)
+		_observations(_index(_period.get_until()) + 1uz)
 	{
 	}
 
@@ -234,7 +234,7 @@ namespace gregorian
 
 	inline _time_series<bool>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
-		_observations(_index_outer(_period.get_until()) + 1/*uz*/)
+		_observations(_index_outer(_period.get_until()) + 1uz)
 	{
 	}
 
