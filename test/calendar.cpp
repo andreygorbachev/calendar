@@ -395,6 +395,26 @@ namespace gregorian
 			days_period{ 2023y / April / 28d, 2023y / May / 31d },
 			{
 				2023y / April / 28d,
+				2023y / May / 2d,
+				2023y / May / 3d,
+				2023y / May / 4d,
+				2023y / May / 5d,
+				2023y / May / 9d,
+				2023y / May / 10d,
+				2023y / May / 11d,
+				2023y / May / 12d,
+				2023y / May / 15d,
+				2023y / May / 16d,
+				2023y / May / 17d,
+				2023y / May / 18d,
+				2023y / May / 19d,
+				2023y / May / 22d,
+				2023y / May / 23d,
+				2023y / May / 24d,
+				2023y / May / 25d,
+				2023y / May / 26d,
+				2023y / May / 30d,
+				2023y / May / 31d,
 			}
 		};
 
@@ -405,22 +425,79 @@ namespace gregorian
 		const auto s4 =
 			c.make_business_days_schedule(days_period{ 2023y / May / 1d, 2023y / May / 31d }); // from a non-business day
 		const auto expected_s4 = schedule{
-			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			days_period{ 2023y / May / 1d, 2023y / May / 31d },
 			{
+				2023y / May / 2d,
+				2023y / May / 3d,
+				2023y / May / 4d,
+				2023y / May / 5d,
+				2023y / May / 9d,
+				2023y / May / 10d,
+				2023y / May / 11d,
+				2023y / May / 12d,
+				2023y / May / 15d,
+				2023y / May / 16d,
+				2023y / May / 17d,
+				2023y / May / 18d,
+				2023y / May / 19d,
+				2023y / May / 22d,
+				2023y / May / 23d,
+				2023y / May / 24d,
+				2023y / May / 25d,
+				2023y / May / 26d,
+				2023y / May / 30d,
+				2023y / May / 31d,
 			}
 		};
 		const auto s5 =
 			c.make_business_days_schedule(days_period{ 2023y / April / 28d, 2023y / May / 29d }); // until a non-business day
 		const auto expected_s5 = schedule{
-			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			days_period{ 2023y / April / 28d, 2023y / May / 29d },
 			{
+				2023y / April / 28d,
+				2023y / May / 2d,
+				2023y / May / 3d,
+				2023y / May / 4d,
+				2023y / May / 5d,
+				2023y / May / 9d,
+				2023y / May / 10d,
+				2023y / May / 11d,
+				2023y / May / 12d,
+				2023y / May / 15d,
+				2023y / May / 16d,
+				2023y / May / 17d,
+				2023y / May / 18d,
+				2023y / May / 19d,
+				2023y / May / 22d,
+				2023y / May / 23d,
+				2023y / May / 24d,
+				2023y / May / 25d,
+				2023y / May / 26d,
 			}
 		};
 		const auto s6 =
 			c.make_business_days_schedule(days_period{ 2023y / May / 1d, 2023y / May / 29d }); // from a non-business day, until a non-business day
 		const auto expected_s6 = schedule{
-			days_period{ 2023y / May / 1d, 2023y / May / 1d },
+			days_period{ 2023y / May / 1d, 2023y / May / 29d },
 			{
+				2023y / May / 2d,
+				2023y / May / 3d,
+				2023y / May / 4d,
+				2023y / May / 5d,
+				2023y / May / 9d,
+				2023y / May / 10d,
+				2023y / May / 11d,
+				2023y / May / 12d,
+				2023y / May / 15d,
+				2023y / May / 16d,
+				2023y / May / 17d,
+				2023y / May / 18d,
+				2023y / May / 19d,
+				2023y / May / 22d,
+				2023y / May / 23d,
+				2023y / May / 24d,
+				2023y / May / 25d,
+				2023y / May / 26d,
 			}
 		};
 
