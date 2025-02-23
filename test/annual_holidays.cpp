@@ -48,6 +48,7 @@ namespace gregorian
 	TEST(_easter_holiday, make_holiday)
 	{
 		EXPECT_EQ(1961y / April / 2d, _Easter.make_holiday(1961y));
+		EXPECT_EQ(2023y / April / 9d, _Easter.make_holiday(2023y));
 
 		// Earliest Easter
 		EXPECT_EQ(2285y / March / 22d, _Easter.make_holiday(2285y));
