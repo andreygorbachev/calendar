@@ -162,9 +162,9 @@ namespace gregorian
 
 	TEST(modified_preceding, adjust2)
 	{
-		const auto c = make_calendar_england();
+		const auto& c = make_calendar_england();
 
-		const auto& d1 = sys_days{ 2022y / December / 31d };
+		const auto d1 = sys_days{ 2022y / December / 31d };
 		const auto r1 = sys_days{ 2022y / December / 30d };
 		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
 		const auto d2 = sys_days{ 2022y / December / 30d };
