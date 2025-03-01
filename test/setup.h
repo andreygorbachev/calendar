@@ -279,7 +279,7 @@ namespace gregorian
 			2024y / December / 19d, // December MPC Summary and minutes
 		};
 
-		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
+		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, std::move(meeting_dates) };
 	}
 
 	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule
