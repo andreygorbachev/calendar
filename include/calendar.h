@@ -34,6 +34,7 @@
 #include <vector>
 #include <stdexcept>
 #include <compare>
+//#include <ranges>
 
 
 namespace gregorian
@@ -218,8 +219,12 @@ namespace gregorian
 
 	inline auto calendar::make_business_days_schedule(days_period from_until) const -> schedule
 	{
-		// naive implementation to start with - can we use iota and ranges?
-		auto s = schedule::dates();
+//		const auto s =
+//			std::ranges::iota(from_until.get_from(), from_until.get_until())
+//			| std::views::filter([this](const auto& d) { return is_business_day(d); })
+//			| std::ranges::to<schedule::dates>();
+
+		auto s = schedule::dates{};
 		for (
 			auto d = from_until.get_from();
 			d <= from_until.get_until();
