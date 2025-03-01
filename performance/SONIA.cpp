@@ -28,6 +28,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <atomic>
 
 using namespace std;
 using namespace std::chrono;
@@ -54,7 +55,7 @@ static void experiment_is_business_day_year_month_day()
 	{
 		const auto start = high_resolution_clock::now();
 
-		volatile auto number_of_business_days = 0;
+		auto number_of_business_days = atomic<int>{ 0 }; // maybe it is not fair to use atomic here
 		for (
 			auto d = SONIA_compound_index_from;
 			d <= until;
@@ -97,9 +98,9 @@ static void experiment_is_business_day_sys_days()
 
 	for (auto r = 0; r < number_of_runs; ++r)
 	{
-		const auto start = high_resolution_clock::now();
+		const auto start = high_resolution_clock::now(); // maybe it is not fair to use atomic here
 
-		volatile auto number_of_business_days = 0;
+		auto number_of_business_days = atomic<int>{ 0 };
 		for (
 			auto d = sys_days{ SONIA_compound_index_from };
 			d <= sys_days{ until };
@@ -146,8 +147,7 @@ static void experiment_count_business_days_year_month_day()
 
 		const auto p = days_period{ SONIA_compound_index_from, until };
 
-		volatile auto number_of_business_days =
-			calendar.count_business_days(p);
+		const auto number_of_business_days = calendar.count_business_days(p);
 
 		const auto stop = high_resolution_clock::now();
 
@@ -187,8 +187,7 @@ static void experiment_count_business_sys_days()
 
 		const auto p = period<sys_days>{ SONIA_compound_index_from, until };
 
-		volatile auto number_of_business_days =
-			calendar.count_business_days(p);
+		const auto number_of_business_days = calendar.count_business_days(p);
 
 		const auto stop = high_resolution_clock::now();
 
