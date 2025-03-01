@@ -219,10 +219,16 @@ namespace gregorian
 
 	inline auto calendar::make_business_days_schedule(days_period from_until) const -> schedule
 	{
-//		const auto s =
-//			std::ranges::iota(from_until.get_from(), from_until.get_until())
-//			| std::views::filter([this](const auto& d) { return is_business_day(d); })
-//			| std::ranges::to<schedule::dates>();
+//		const auto value = std::chrono::sys_days{ from_until.get_from() };
+//		const auto bound = ++std::chrono::sys_days{ from_until.get_until() };
+//		const auto is_bd = [this](const auto& d)
+//		{
+//			return is_business_day(d);
+//		};
+//		auto s =
+//			std::views::iota(value, bound) |
+//			std::views::filter(is_bd) |
+//			std::ranges::to<schedule::dates>();
 
 		auto s = schedule::dates{};
 		for (
@@ -239,7 +245,30 @@ namespace gregorian
 	// should we pass this one by const reference? (as we are not moving from it)
 	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule
 	{
-		return make_business_days_schedule( days_period{ from_until.get_from(), from_until.get_until() });
+//		const auto& value = from_until.get_from();
+//		const auto bound = ++from_until.get_until();
+//		const auto is_bd = [this](const auto& d)
+//		{
+//			return is_business_day(d);
+//		};
+//		auto s =
+//			std::views::iota(value, bound) |
+//			std::views::filter(is_bd) |
+//			std::ranges::to<schedule::dates>();
+
+		auto s = schedule::dates{};
+		for (
+			auto d = from_until.get_from();
+			d <= from_until.get_until();
+			d += std::chrono::days{ 1 }
+		)
+			if (is_business_day(d))
+				s.emplace_hint(s.cend(), d);
+
+		return schedule{
+			days_period{ from_until.get_from(), from_until.get_until() },
+			std::move(s)
+		 };
 	}
 
 
