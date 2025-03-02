@@ -55,8 +55,7 @@ inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 			if (ymd != std::chrono::year_month_day{})
 				throw std::domain_error{ "Multiple DTSTART" };
 
-//			std::chrono::from_stream(fs, "%Y%m%d%n", ymd); // %n to read '\n' at the end of the line
-			fs >> std::chrono::parse("%Y%m%d%n", ymd); // %n to read '\n' at the end of the line
+			std::chrono::from_stream(fs, "%Y%m%d%n", ymd); // %n to read '\n' at the end of the line
 		}
 		else if (s == "END")
 			break;
