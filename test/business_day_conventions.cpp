@@ -28,9 +28,12 @@
 #include <gtest/gtest.h>
 
 #include <chrono>
+#include <exception>
+#include <memory>
 
 #include "setup.h"
 
+using namespace std;
 using namespace std::chrono;
 
 
@@ -79,6 +82,20 @@ namespace gregorian
 		EXPECT_EQ(r2, Following.adjust(d2, c));
 	}
 
+	TEST(following, adjust3)
+	{
+		// what if we adjust past the end of the calendar?
+
+		auto hols = schedule::dates{
+			2024y / FirstDayOfJanuary,	
+			2024y / LastDayOfDecember,
+		};
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
+		const auto c = calendar{ NoWeekend, move(s) };
+
+		EXPECT_THROW(Following.adjust(2024y / LastDayOfDecember, c), out_of_range);
+	}
+
 	TEST(modified_following, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -117,6 +134,20 @@ namespace gregorian
 		EXPECT_EQ(r4, ModifiedFollowing.adjust(d4, c));
 	}
 
+	TEST(modified_following, adjust3)
+	{
+		// what if we adjust past the end of the calendar?
+
+		auto hols = schedule::dates{
+			2024y / FirstDayOfJanuary,
+			2024y / LastDayOfDecember,
+		};
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
+		const auto c = calendar{ NoWeekend, move(s) };
+
+		EXPECT_THROW(ModifiedFollowing.adjust(2024y / LastDayOfDecember, c), out_of_range); //?
+	}
+
 	TEST(preceding, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -139,6 +170,20 @@ namespace gregorian
 		const auto d2 = sys_days{ 2022y / December / 30d };
 		const auto r2 = sys_days{ 2022y / December / 30d };
 		EXPECT_EQ(r2, Preceding.adjust(d2, c));
+	}
+
+	TEST(preceding, adjust3)
+	{
+		// what if we adjust past the end of the calendar?
+
+		auto hols = schedule::dates{
+			2024y / FirstDayOfJanuary,
+			2024y / LastDayOfDecember,
+		};
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
+		const auto c = calendar{ NoWeekend, move(s) };
+
+		EXPECT_THROW(Preceding.adjust(2024y / FirstDayOfJanuary, c), out_of_range);
 	}
 
 	TEST(modified_preceding, adjust1)
@@ -177,6 +222,20 @@ namespace gregorian
 		const auto d4 = sys_days{ 2023y / January / 3d };
 		const auto r4 = sys_days{ 2023y / January / 3d };
 		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
+	}
+
+	TEST(modified_preceding, adjust3)
+	{
+		// what if we adjust past the end of the calendar?
+
+		auto hols = schedule::dates{
+			2024y / FirstDayOfJanuary,
+			2024y / LastDayOfDecember,
+		};
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
+		const auto c = calendar{ NoWeekend, move(s) };
+
+		EXPECT_THROW(ModifiedPreceding.adjust(2024y / FirstDayOfJanuary, c), out_of_range); //?
 	}
 
 	TEST(nearest, adjust1)
@@ -228,6 +287,8 @@ namespace gregorian
 		const auto r4 = sys_days{ 2023y / March / 27d };
 		EXPECT_EQ(r4, Nearest.adjust(d4, c));
 	}
+
+	// what about adjusting past the end of the calendar?
 
 	TEST(make_first_business_day, make_first_business_day)
 	{
