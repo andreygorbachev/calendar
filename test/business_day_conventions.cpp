@@ -93,7 +93,7 @@ namespace gregorian
 		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
 		const auto c = calendar{ NoWeekend, move(s) };
 
-		EXPECT_THROW(Following.adjust(2024y / LastDayOfDecember, c), out_of_range);
+		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
 
 	TEST(modified_following, adjust1)
@@ -145,7 +145,7 @@ namespace gregorian
 		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
 		const auto c = calendar{ NoWeekend, move(s) };
 
-		EXPECT_THROW(ModifiedFollowing.adjust(2024y / LastDayOfDecember, c), out_of_range); //?
+		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range); //?
 	}
 
 	TEST(preceding, adjust1)
@@ -183,7 +183,7 @@ namespace gregorian
 		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
 		const auto c = calendar{ NoWeekend, move(s) };
 
-		EXPECT_THROW(Preceding.adjust(2024y / FirstDayOfJanuary, c), out_of_range);
+		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
 
 	TEST(modified_preceding, adjust1)
@@ -235,7 +235,7 @@ namespace gregorian
 		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
 		const auto c = calendar{ NoWeekend, move(s) };
 
-		EXPECT_THROW(ModifiedPreceding.adjust(2024y / FirstDayOfJanuary, c), out_of_range); //?
+		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range); //?
 	}
 
 	TEST(nearest, adjust1)
