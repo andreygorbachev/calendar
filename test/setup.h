@@ -257,6 +257,25 @@ namespace gregorian
 		return s;
 	}
 
+	inline auto _make_calendar_starts_ends_with_holidays() -> calendar
+	{
+		using namespace std;
+		using namespace std::chrono;
+
+		auto hols = schedule::dates{
+			2024y / FirstDayOfJanuary,
+			2024y / LastDayOfDecember,
+		};
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
+		return calendar{ NoWeekend, move(s) };
+	}
+
+	inline auto make_calendar_starts_ends_with_holidays() -> const calendar&
+	{
+		static const auto s = _make_calendar_starts_ends_with_holidays();
+		return s;
+	}
+
 
 	// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
 	inline auto make_mpc_schedule_2023_2024() -> schedule // should this also be an example?

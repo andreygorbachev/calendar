@@ -86,12 +86,7 @@ namespace gregorian
 	{
 		// what if we adjust past the end of the calendar?
 
-		auto hols = schedule::dates{
-			2024y / FirstDayOfJanuary,	
-			2024y / LastDayOfDecember,
-		};
-		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
-		const auto c = calendar{ NoWeekend, move(s) };
+		const auto& c = make_calendar_starts_ends_with_holidays();
 
 		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
@@ -138,12 +133,7 @@ namespace gregorian
 	{
 		// what if we adjust past the end of the calendar?
 
-		auto hols = schedule::dates{
-			2024y / FirstDayOfJanuary,
-			2024y / LastDayOfDecember,
-		};
-		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
-		const auto c = calendar{ NoWeekend, move(s) };
+		const auto& c = make_calendar_starts_ends_with_holidays();
 
 		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range); //?
 	}
@@ -176,12 +166,7 @@ namespace gregorian
 	{
 		// what if we adjust past the end of the calendar?
 
-		auto hols = schedule::dates{
-			2024y / FirstDayOfJanuary,
-			2024y / LastDayOfDecember,
-		};
-		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
-		const auto c = calendar{ NoWeekend, move(s) };
+		const auto& c = make_calendar_starts_ends_with_holidays();
 
 		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
@@ -228,12 +213,7 @@ namespace gregorian
 	{
 		// what if we adjust past the end of the calendar?
 
-		auto hols = schedule::dates{
-			2024y / FirstDayOfJanuary,
-			2024y / LastDayOfDecember,
-		};
-		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
-		const auto c = calendar{ NoWeekend, move(s) };
+		const auto& c = make_calendar_starts_ends_with_holidays();
 
 		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range); //?
 	}
