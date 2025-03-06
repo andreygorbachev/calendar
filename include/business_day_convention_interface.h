@@ -47,32 +47,32 @@ namespace gregorian
 
 	public:
 
-		auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day;
-		auto adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days;
+		auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day;
+		auto adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days;
 
 	private:
 
-		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day = 0;
+		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day = 0;
 
 		// if more efficient, derived classes should also override this method, but it is not mandatory
-		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days;
+		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days;
 
 	};
 
 
 
-	inline auto business_day_convention::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const noexcept -> std::chrono::year_month_day
+	inline auto business_day_convention::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
 	{
 		return _adjust(ymd, cal);
 	}
 
-	inline auto business_day_convention::adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	inline auto business_day_convention::adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
 	{
 		return _adjust(sd, cal);
 	}
 
 
-	inline auto business_day_convention::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const noexcept -> std::chrono::sys_days
+	inline auto business_day_convention::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
 	{
 		return std::chrono::sys_days{ _adjust(std::chrono::year_month_day{ sd }, cal) };
 	}
