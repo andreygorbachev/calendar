@@ -33,15 +33,17 @@ namespace gregorian
 
 	inline auto _make_holiday_schedule_united_states() -> schedule
 	{
-		const auto MartinLutherKing = weekday_indexed_holiday{ std::chrono::January / std::chrono::Monday[3] }; // Birthday Of Martin Luther King, Jr.
-		const auto Washington = weekday_indexed_holiday{ std::chrono::February / std::chrono::Monday[3] }; // Washington's Birthday
-		const auto MemorialDay = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
-		const auto Juneteenth = named_holiday{ std::chrono::June / std::chrono::day{ 19u } }; // Juneteenth National Independence Day
-		const auto IndependenceDay = named_holiday{ std::chrono::July / std::chrono::day{ 4u } };
-		const auto LaborDay = weekday_indexed_holiday{ std::chrono::September / std::chrono::Monday[1] };
-		const auto ColumbusDay = weekday_indexed_holiday{ std::chrono::October / std::chrono::Monday[2] };
-		const auto VeteransDay = named_holiday{ std::chrono::November / std::chrono::day{ 11u } };
-		const auto ThanksgivingDay = weekday_indexed_holiday{ std::chrono::November / std::chrono::Thursday[4] };
+		using namespace std::chrono;
+
+		const auto MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
+		const auto Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
+		const auto MemorialDay = weekday_last_holiday{ May / Monday[last] };
+		const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Juneteenth National Independence Day
+		const auto IndependenceDay = named_holiday{ July / day{ 4u } };
+		const auto LaborDay = weekday_indexed_holiday{ September / Monday[1] };
+		const auto ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
+		const auto VeteransDay = named_holiday{ November / day{ 11u } };
+		const auto ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
 		const auto rules = annual_holiday_storage{
 			&NewYearsDay,
@@ -57,7 +59,7 @@ namespace gregorian
 			&ChristmasDay
 		};
 
-		const auto InaugurationDay = named_holiday{ std::chrono::January / std::chrono::day{ 20u } };
+		const auto InaugurationDay = named_holiday{ January / day{ 20u } };
 
 		const auto rules2 = annual_holiday_storage{
 			&NewYearsDay,
@@ -75,32 +77,32 @@ namespace gregorian
 		};
 
 		const auto hs2021 = make_holiday_schedule(
-			std::chrono::year{ 2021 },
+			year{ 2021 },
 			rules2
 		);
 
 		const auto hs2022_2024 = make_holiday_schedule(
-			years_period{ std::chrono::year{ 2022 }, std::chrono::year{ 2024 } },
+			years_period{ year{ 2022 }, year{ 2024 } },
 			rules
 		);
 
 		const auto hs2025 = make_holiday_schedule(
-			std::chrono::year{ 2025 },
+			year{ 2025 },
 			rules2
 		);
 
 		const auto hs2026_2028 = make_holiday_schedule(
-			years_period{ std::chrono::year{ 2026 }, std::chrono::year{ 2028 } },
+			years_period{ year{ 2026 }, year{ 2028 } },
 			rules
 		);
 
 		const auto hs2029 = make_holiday_schedule(
-			std::chrono::year{ 2029 },
+			year{ 2029 },
 			rules//rules2
 		);
 
 		const auto hs2030 = make_holiday_schedule(
-			std::chrono::year{ 2030 },
+			year{ 2030 },
 			rules
 		);
 
@@ -133,67 +135,69 @@ namespace gregorian
 
 	inline auto _make_holiday_schedule_england() -> schedule
 	{
+		using namespace std::chrono;
+
 		auto holidays = schedule::dates{
-			std::chrono::year{ 2018 } / std::chrono::January / std::chrono::day{ 1u },
-			std::chrono::year{ 2018 } / std::chrono::March / std::chrono::day{ 30u },
-			std::chrono::year{ 2018 } / std::chrono::April / std::chrono::day{ 2u },
-			std::chrono::year{ 2018 } / std::chrono::May / std::chrono::day{ 7u },
-			std::chrono::year{ 2018 } / std::chrono::May / std::chrono::day{ 28u },
-			std::chrono::year{ 2018 } / std::chrono::August / std::chrono::day{ 27u },
-			std::chrono::year{ 2018 } / std::chrono::December / std::chrono::day{ 25u },
-			std::chrono::year{ 2018 } / std::chrono::December / std::chrono::day{ 26u },
+			year{ 2018 } / January / day{ 1u },
+			year{ 2018 } / March / day{ 30u },
+			year{ 2018 } / April / day{ 2u },
+			year{ 2018 } / May / day{ 7u },
+			year{ 2018 } / May / day{ 28u },
+			year{ 2018 } / August / day{ 27u },
+			year{ 2018 } / December / day{ 25u },
+			year{ 2018 } / December / day{ 26u },
 
-			std::chrono::year{ 2019 } / std::chrono::January / std::chrono::day{ 1u },
-			std::chrono::year{ 2019 } / std::chrono::April / std::chrono::day{ 19u },
-			std::chrono::year{ 2019 } / std::chrono::April / std::chrono::day{ 22u },
-			std::chrono::year{ 2019 } / std::chrono::May / std::chrono::day{ 6u },
-			std::chrono::year{ 2019 } / std::chrono::May / std::chrono::day{ 27u },
-			std::chrono::year{ 2019 } / std::chrono::August / std::chrono::day{ 26u },
-			std::chrono::year{ 2019 } / std::chrono::December / std::chrono::day{ 25u },
-			std::chrono::year{ 2019 } / std::chrono::December / std::chrono::day{ 26u },
+			year{ 2019 } / January / day{ 1u },
+			year{ 2019 } / April / day{ 19u },
+			year{ 2019 } / April / day{ 22u },
+			year{ 2019 } / May / day{ 6u },
+			year{ 2019 } / May / day{ 27u },
+			year{ 2019 } / August / day{ 26u },
+			year{ 2019 } / December / day{ 25u },
+			year{ 2019 } / December / day{ 26u },
 
-			std::chrono::year{ 2020 } / std::chrono::January / std::chrono::day{ 1u },
-			std::chrono::year{ 2020 } / std::chrono::April / std::chrono::day{ 10u },
-			std::chrono::year{ 2020 } / std::chrono::April / std::chrono::day{ 13u },
-			std::chrono::year{ 2020 } / std::chrono::May / std::chrono::day{ 8u },
-			std::chrono::year{ 2020 } / std::chrono::May / std::chrono::day{ 25u },
-			std::chrono::year{ 2020 } / std::chrono::August / std::chrono::day{ 31u },
-			std::chrono::year{ 2020 } / std::chrono::December / std::chrono::day{ 25u },
-			std::chrono::year{ 2020 } / std::chrono::December / std::chrono::day{ 28u },
+			year{ 2020 } / January / day{ 1u },
+			year{ 2020 } / April / day{ 10u },
+			year{ 2020 } / April / day{ 13u },
+			year{ 2020 } / May / day{ 8u },
+			year{ 2020 } / May / day{ 25u },
+			year{ 2020 } / August / day{ 31u },
+			year{ 2020 } / December / day{ 25u },
+			year{ 2020 } / December / day{ 28u },
 
-			std::chrono::year{ 2021 } / std::chrono::January / std::chrono::day{ 1u },
-			std::chrono::year{ 2021 } / std::chrono::April / std::chrono::day{ 2u },
-			std::chrono::year{ 2021 } / std::chrono::April / std::chrono::day{ 5u },
-			std::chrono::year{ 2021 } / std::chrono::May / std::chrono::day{ 3u },
-			std::chrono::year{ 2021 } / std::chrono::May / std::chrono::day{ 31u },
-			std::chrono::year{ 2021 } / std::chrono::August / std::chrono::day{ 30u },
-			std::chrono::year{ 2021 } / std::chrono::December / std::chrono::day{ 27u },
-			std::chrono::year{ 2021 } / std::chrono::December / std::chrono::day{ 28u },
+			year{ 2021 } / January / day{ 1u },
+			year{ 2021 } / April / day{ 2u },
+			year{ 2021 } / April / day{ 5u },
+			year{ 2021 } / May / day{ 3u },
+			year{ 2021 } / May / day{ 31u },
+			year{ 2021 } / August / day{ 30u },
+			year{ 2021 } / December / day{ 27u },
+			year{ 2021 } / December / day{ 28u },
 
-			std::chrono::year{ 2022 } / std::chrono::January / std::chrono::day{ 3u },
-			std::chrono::year{ 2022 } / std::chrono::April / std::chrono::day{ 15u },
-			std::chrono::year{ 2022 } / std::chrono::April / std::chrono::day{ 18u },
-			std::chrono::year{ 2022 } / std::chrono::May / std::chrono::day{ 2u },
-			std::chrono::year{ 2022 } / std::chrono::June / std::chrono::day{ 2u },
-			std::chrono::year{ 2022 } / std::chrono::June / std::chrono::day{ 3u },
-			std::chrono::year{ 2022 } / std::chrono::August / std::chrono::day{ 29u },
-			std::chrono::year{ 2022 } / std::chrono::September / std::chrono::day{ 19u },
-			std::chrono::year{ 2022 } / std::chrono::December / std::chrono::day{ 26u },
-			std::chrono::year{ 2022 } / std::chrono::December / std::chrono::day{ 27u },
+			year{ 2022 } / January / day{ 3u },
+			year{ 2022 } / April / day{ 15u },
+			year{ 2022 } / April / day{ 18u },
+			year{ 2022 } / May / day{ 2u },
+			year{ 2022 } / June / day{ 2u },
+			year{ 2022 } / June / day{ 3u },
+			year{ 2022 } / August / day{ 29u },
+			year{ 2022 } / September / day{ 19u },
+			year{ 2022 } / December / day{ 26u },
+			year{ 2022 } / December / day{ 27u },
 
-			std::chrono::year{ 2023 } / std::chrono::January / std::chrono::day{ 2u },
-			std::chrono::year{ 2023 } / std::chrono::April / std::chrono::day{ 7u },
-			std::chrono::year{ 2023 } / std::chrono::April / std::chrono::day{ 10u },
-			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 1u },
-			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 8u },
-			std::chrono::year{ 2023 } / std::chrono::May / std::chrono::day{ 29u },
-			std::chrono::year{ 2023 } / std::chrono::August / std::chrono::day{ 28u },
-			std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 25u },
-			std::chrono::year{ 2023 } / std::chrono::December / std::chrono::day{ 26u },
+			year{ 2023 } / January / day{ 2u },
+			year{ 2023 } / April / day{ 7u },
+			year{ 2023 } / April / day{ 10u },
+			year{ 2023 } / May / day{ 1u },
+			year{ 2023 } / May / day{ 8u },
+			year{ 2023 } / May / day{ 29u },
+			year{ 2023 } / August / day{ 28u },
+			year{ 2023 } / December / day{ 25u },
+			year{ 2023 } / December / day{ 26u },
 		};
 
 		return schedule{
-			days_period{ std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary, std::chrono::year{ 2023 } / gregorian::LastDayOfDecember },
+			days_period{ year{ 2018 } / gregorian::FirstDayOfJanuary, year{ 2023 } / gregorian::LastDayOfDecember },
 			std::move(holidays)
 		};
 	}
@@ -207,14 +211,16 @@ namespace gregorian
 
 	inline auto _make_calendar_england() -> calendar
 	{
+		using namespace std::chrono;
+
 		const auto known_part = _make_holiday_schedule_england();
 
-		const auto generated_part_from = known_part.get_from_until().get_until().year() + std::chrono::years{ 1 };
-		const auto generated_part_until = generated_part_from + std::chrono::years{ 10 }; // factor out this const
+		const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
+		const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
-		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
-		const auto SpringBankHoliday = weekday_last_holiday{ std::chrono::May / std::chrono::Monday[std::chrono::last] };
-		const auto SummerBankHoliday = weekday_last_holiday{ std::chrono::August / std::chrono::Monday[std::chrono::last] };
+		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
+		const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
+		const auto SummerBankHoliday = weekday_last_holiday{ August / Monday[last] };
 
 		const auto rules = annual_holiday_storage{
 			&NewYearsDay,
@@ -255,8 +261,8 @@ namespace gregorian
 	// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
 	inline auto make_mpc_schedule_2023_2024() -> schedule // should this also be an example?
 	{
+		using namespace std;
 		using namespace std::chrono;
-		using namespace gregorian;
 
 		auto meeting_dates = schedule::dates{
 			// 2023 confirmed dates
@@ -279,7 +285,7 @@ namespace gregorian
 			2024y / December / 19d, // December MPC Summary and minutes
 		};
 
-		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, std::move(meeting_dates) };
+		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
 	}
 
 	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule
@@ -290,6 +296,7 @@ namespace gregorian
 
 	inline auto make_holiday_schedule_england_april_2023() -> schedule
 	{
+		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
@@ -297,11 +304,12 @@ namespace gregorian
 			2023y / April / 10d,
 		};
 
-		return schedule{ days_period{ 2023y / April / 1d, 2023y / April / 30d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / April / 1d, 2023y / April / 30d }, move(hols) };
 	}
 
 	inline auto make_holiday_schedule_england_may_2023() -> schedule
 	{
+		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
@@ -310,18 +318,19 @@ namespace gregorian
 			2023y / May / 29d,
 		};
 
-		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, move(hols) };
 	}
 
 	inline auto make_holiday_schedule_united_states_may_2023() -> schedule
 	{
+		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
 			2023y / May / 29d,
 		};
 
-		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, move(hols) };
 	}
 
 }
