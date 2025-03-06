@@ -58,7 +58,7 @@ inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
 #ifdef _MSC_BUILD 
 			std::chrono::from_stream(fs, "%Y%m%d%n", ymd); // %n to read '\n' at the end of the line
 #else
-			throw std::exception{ "Not implemented" };
+			throw std::domain_error{ "Not implemented" };
 #endif
 		}
 		else if (s == "END")
