@@ -91,6 +91,15 @@ namespace gregorian
 		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
 
+	TEST(following, adjust4)
+	{
+		// what if we have a calendar without any business days?
+
+		const auto& c = make_calendar_all_holidays();
+
+		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+	}
+
 	TEST(modified_following, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -138,6 +147,15 @@ namespace gregorian
 		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range); //?
 	}
 
+	TEST(modified_following, adjust4)
+	{
+		// what if we have a calendar without any business days?
+
+		const auto& c = make_calendar_all_holidays();
+
+		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+	}
+
 	TEST(preceding, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -167,6 +185,15 @@ namespace gregorian
 		// what if we adjust past the end of the calendar?
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
+
+		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
+	}
+
+	TEST(preceding, adjust4)
+	{
+		// what if we have a calendar without any business days?
+
+		const auto& c = make_calendar_all_holidays();
 
 		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
@@ -216,6 +243,15 @@ namespace gregorian
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
 		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range); //?
+	}
+
+	TEST(modified_preceding, adjust4)
+	{
+		// what if we have a calendar without any business days?
+
+		const auto& c = make_calendar_all_holidays();
+
+		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
 
 	TEST(nearest, adjust1)
@@ -269,6 +305,7 @@ namespace gregorian
 	}
 
 	// what about adjusting past the end of the calendar?
+	// what about the case where we have a calendar without any business days?
 
 	TEST(make_first_business_day, make_first_business_day)
 	{
