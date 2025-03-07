@@ -156,6 +156,8 @@ namespace gregorian
 		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
 
+	// should we check the case when we move to the same month of the next year?
+
 	TEST(preceding, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -253,6 +255,8 @@ namespace gregorian
 
 		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
+
+	// should we check the case when we move to the same month of the previous year?
 
 	TEST(nearest, adjust1)
 	{
