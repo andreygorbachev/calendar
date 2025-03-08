@@ -177,11 +177,18 @@ namespace gregorian
 
 	inline auto modified_following::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
 	{
-		const auto f = Following.adjust(ymd, cal);
-		if (f.month() == ymd.month() && f.year() == ymd.year())
-			return f;
-		else
-			return Preceding.adjust(ymd, cal);
+		auto result = ymd;
+		while (!cal.is_business_day(result))
+		{
+			if (result.day() == (ymd.year() / ymd.month() / std::chrono::last).day())
+			{
+				// we'll moved to a different month
+				return Preceding.adjust(ymd, cal);
+			}
+
+			result = std::chrono::sys_days{ result } + std::chrono::days{ 1 };
+		}
+		return result;
 	}
 
 	inline auto modified_following::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
@@ -213,11 +220,18 @@ namespace gregorian
 
 	inline auto modified_preceding::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
 	{
-		const auto p = Preceding.adjust(ymd, cal);
-		if (p.month() == ymd.month() && p.year() == ymd.year())
-			return p;
-		else
-			return Following.adjust(ymd, cal);
+		auto result = ymd;
+		while (!cal.is_business_day(result))
+		{
+			if (result.day() == std::chrono::day{ 1 })
+			{
+				// we'll moved to a different month
+				return Following.adjust(ymd, cal);
+			}
+
+			result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
+		}
+		return result;
 	}
 
 	inline auto modified_preceding::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days

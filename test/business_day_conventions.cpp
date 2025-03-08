@@ -144,7 +144,9 @@ namespace gregorian
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
-		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range); //?
+		const auto d = sys_days{ 2024y / December / 31d };
+		const auto r = sys_days{ 2024y / December / 30d };
+		EXPECT_EQ(r, ModifiedFollowing.adjust(d, c));
 	}
 
 	TEST(modified_following, adjust4)
@@ -155,8 +157,6 @@ namespace gregorian
 
 		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
-
-	// should we check the case when we move to the same month of the next year?
 
 	TEST(preceding, adjust1)
 	{
@@ -244,7 +244,9 @@ namespace gregorian
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
-		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range); //?
+		const auto d = sys_days{ 2024y / January / 1d };
+		const auto r = sys_days{ 2024y / January / 2d };
+		EXPECT_EQ(r, ModifiedPreceding.adjust(d, c));
 	}
 
 	TEST(modified_preceding, adjust4)
@@ -255,8 +257,6 @@ namespace gregorian
 
 		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
-
-	// should we check the case when we move to the same month of the previous year?
 
 	TEST(nearest, adjust1)
 	{
@@ -309,7 +309,6 @@ namespace gregorian
 	}
 
 	// what about adjusting past the end of the calendar?
-	// what about the case where we have a calendar without any business days?
 
 	TEST(make_first_business_day, make_first_business_day)
 	{
