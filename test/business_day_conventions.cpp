@@ -308,7 +308,15 @@ namespace gregorian
 		EXPECT_EQ(r4, Nearest.adjust(d4, c));
 	}
 
-	// what about adjusting past the end of the calendar?
+	TEST(nearest, adjust3)
+	{
+		// what if we adjust past the end of the calendar?
+
+		const auto& c = make_calendar_starts_ends_with_holidays();
+
+		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
+		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+	}
 
 	TEST(make_first_business_day, make_first_business_day)
 	{
