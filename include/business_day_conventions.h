@@ -183,7 +183,7 @@ namespace gregorian
 		{
 			if (result.day() == (ymd.year() / ymd.month() / std::chrono::last).day())
 			{
-				// we'll moved to a different month
+				// we'll move to a different month
 				return Preceding.adjust(ymd, cal);
 			}
 
@@ -226,7 +226,7 @@ namespace gregorian
 		{
 			if (result.day() == std::chrono::day{ 1 })
 			{
-				// we'll moved to a different month
+				// we'll move to a different month
 				return Following.adjust(ymd, cal);
 			}
 
