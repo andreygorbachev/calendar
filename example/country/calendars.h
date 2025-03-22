@@ -41,4 +41,4 @@ auto make_Wales_calendar() -> const gregorian::calendar&;
 
 auto make_Scotland_calendar() -> const gregorian::calendar&;
 
-auto make_Norther_Ireland_calendar() -> const gregorian::calendar&;
+auto make_Northern_Ireland_calendar() -> const gregorian::calendar&;

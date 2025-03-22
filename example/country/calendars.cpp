@@ -525,7 +525,7 @@ auto make_Scotland_calendar() -> const calendar&
 	return s;
 }
 
-auto make_Norther_Ireland_calendar() -> const calendar&
+auto make_Northern_Ireland_calendar() -> const calendar&
 {
 	static const auto s = _make_Northern_Ireland_calendar();
 	return s;
