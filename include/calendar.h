@@ -236,7 +236,7 @@ namespace gregorian
 	{
 		const auto value = from_until.get_from().time_since_epoch().count();
 		const auto bound = from_until.get_until().time_since_epoch().count() + 1;
-		const auto conv = [](const int i)
+		const auto to_sd = [](const int i)
 		{
 			return std::chrono::sys_days{} + std::chrono::days{ i };
 		};
@@ -246,7 +246,7 @@ namespace gregorian
 		};
 		auto s =
 			std::views::iota(value, bound) |
-			std::views::transform(conv) | // would be nice if we don't need to do this step
+			std::views::transform(to_sd) | // would be nice if we don't need to do this step
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
 
