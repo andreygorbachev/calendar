@@ -200,6 +200,11 @@ namespace gregorian
 		return !is_non_business_day(sd);
 	}
 
+	// alternative implementation would be to cache the number of business days per month (and possibly per year)
+	// like described in the following article:
+	// https://www.clarusft.com/implementing-bus252-daycount-convention/
+	// or to cache the substituted holidays in an ordered vector, so we know how many holidays are between
+	// from and until, which we'll need to further adjust by the number of weekends between the same 2 dates
 	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
 	{
 		const auto non_business_days = _cache._non_business_days.count(from_until);
