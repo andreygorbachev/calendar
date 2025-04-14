@@ -99,7 +99,7 @@ namespace gregorian
 
 	private:
 
-		static const auto _chunk_size = std::size_t{ 64u }; // uz // maybe consider 128/256/512 to align with SSE/AVX
+		static const auto _chunk_size = std::size_t{ 64u }; // maybe consider 128/256/512 to align with SSE/AVX
 		// we store bools in bitset chunks of this size (such that we can popcount them efficiently)
 
 	public:
@@ -178,7 +178,7 @@ namespace gregorian
 	template<typename T>
 	_time_series<T>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
-		_observations(_index(_period.get_until()) + 1uz)
+		_observations(_index(_period.get_until()) + std::size_t{ 1u })
 	{
 	}
 
@@ -234,7 +234,7 @@ namespace gregorian
 
 	inline _time_series<bool>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
-		_observations(_index_outer(_period.get_until()) + 1uz)
+		_observations(_index_outer(_period.get_until()) + std::size_t{ 1u })
 	{
 	}
 
@@ -307,7 +307,9 @@ namespace gregorian
 	// which can further optimise the calculation
 	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
 	{
-		auto result = std::size_t{ 0 };
+		using namespace std::chrono;
+
+		auto result = 0uz;
 
 		const auto from = from_until.get_from();
 		const auto from_chunk_index = _index_outer(from);
@@ -324,7 +326,7 @@ namespace gregorian
 
 		// full chunks in the middle (after the from chunk, but including the chunk that contains until)
 		for (
-			auto j = from_chunk_index + std::size_t{ 1u };
+			auto j = from_chunk_index + 1uz;
 			j <= until_chunk_index;
 			++j
 		)
@@ -333,7 +335,7 @@ namespace gregorian
 
 		// handle the chunk that contains until
 		const auto& until_chunk = _observations[until_chunk_index];
-		for (auto i = _index_inner(until) + std::size_t{ 1u }; i < _chunk_size; ++i)
+		for (auto i = _index_inner(until) + 1uz; i < _chunk_size; ++i)
 			if (until_chunk[i])
 				result--;
 		// naive implementation to start with
