@@ -26,6 +26,7 @@
 #include <schedule.h>
 #include <calendar.h>
 #include <annual_holidays.h>
+#include <business_day_conventions.h>
 
 #include <chrono>
 #include <iostream>
@@ -103,9 +104,46 @@ inline auto generate_ANBIMA_schedule() -> schedule
 	return s1 + s2;
 	// please note that holidays are not adjusted in this example
 
-	// I think some of the days should be adjusted (but not all of them)
-	// so we should probably generate 2 parts of the claendar separately and then merge them
+	// if some holidays need adjustment, we should probably generate 2 parts of the calendar separately and then merge them
 	// (after adjusting one of them as required)
+}
+
+
+inline auto generate_B3_schedule() -> schedule
+{
+	// from https://www.b3.com.br/en_us/solutions/platforms/puma-trading-system/for-members-and-traders/trading-calendar/holidays/
+
+	const auto SaoPaulosFoundation = named_holiday{ January / 25d };
+	const auto ConstitutionalistRevolution = named_holiday{ July / 9d };
+	const auto BlackConsciousnessDay = named_holiday{ November / 20d };
+
+	const auto rules1 = annual_holiday_storage{
+		&SaoPaulosFoundation,
+		&ConstitutionalistRevolution,
+		&BlackConsciousnessDay,
+		&ChristmasEve
+	};
+
+	const auto s1 = make_holiday_schedule(
+		years_period{ 2001y, 2099y },
+		rules1
+	);
+
+	// finally add last business day of the year as a holiday
+
+	const auto rules2 = annual_holiday_storage{
+		&NewYearsEve
+	};
+
+	const auto s2 = make_holiday_schedule(
+		years_period{ 2001y, 2099y },
+		rules1
+	);
+
+	auto c2 = calendar{ SaturdaySundayWeekend, s2 };
+	c2.substitute(Preceding);
+
+	return generate_ANBIMA_schedule() + s1 + c2.get_schedule();
 }
 
 
