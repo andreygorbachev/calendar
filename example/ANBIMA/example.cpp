@@ -49,8 +49,8 @@ inline auto generate_ANBIMA_schedule() -> schedule
 {
 	const auto TiradentesDay = named_holiday{ April / 21d };
 	const auto LabourDay = named_holiday{ May / 1d };
-	const auto FatTuesday = offset_holiday{ &_Easter, std::chrono::days{ - 47 - 1 } }; // should it be in the actual library?
-	const auto AshWednesday = offset_holiday{ &_Easter, std::chrono::days{ - 46 - 1 } }; // should it be in the actual library?
+	const auto ShroveMonday = offset_holiday{ &_Easter, std::chrono::days{ - 47 - 1 } }; // should it be in the actual library?
+	const auto ShroveTuesday = offset_holiday{ &_Easter, std::chrono::days{ - 46 - 1 } }; // should it be in the actual library?
 	const auto CorpusChristi = offset_holiday{ &_Easter, std::chrono::days{ 60 } }; // should it be in the actual library?
 	const auto IndependenceDay = named_holiday{ September / 7d };
 	const auto OurLadyOfAparecida = named_holiday{ October / 12d };
@@ -59,8 +59,8 @@ inline auto generate_ANBIMA_schedule() -> schedule
 
 	const auto rules1 = annual_holiday_storage{
 		&NewYearsDay,
-		&FatTuesday,
-		&AshWednesday,
+		&ShroveMonday,
+		&ShroveTuesday,
 		&GoodFriday,
 		&TiradentesDay,
 		&LabourDay,
@@ -81,8 +81,8 @@ inline auto generate_ANBIMA_schedule() -> schedule
 
 	const auto rules2 = annual_holiday_storage{
 		&NewYearsDay,
-		&FatTuesday,
-		&AshWednesday,
+		&ShroveMonday,
+		&ShroveTuesday,
 		&GoodFriday,
 		&TiradentesDay,
 		&LabourDay,
