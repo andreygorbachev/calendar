@@ -113,6 +113,8 @@ inline auto generate_B3_schedule() -> schedule
 {
 	// from https://www.b3.com.br/en_us/solutions/platforms/puma-trading-system/for-members-and-traders/trading-calendar/holidays/
 
+	const auto period = years_period{ 2001y, 2099y };
+
 	const auto SaoPaulosFoundation = named_holiday{ January / 25d };
 	const auto ConstitutionalistRevolution = named_holiday{ July / 9d };
 	const auto BlackConsciousnessDay = named_holiday{ November / 20d };
@@ -124,10 +126,7 @@ inline auto generate_B3_schedule() -> schedule
 		&ChristmasEve
 	};
 
-	const auto s1 = make_holiday_schedule(
-		years_period{ 2001y, 2099y },
-		rules1
-	);
+	const auto s1 = make_holiday_schedule(period, rules1);
 
 	// finally add last business day of the year as a holiday
 
@@ -135,10 +134,7 @@ inline auto generate_B3_schedule() -> schedule
 		&NewYearsEve
 	};
 
-	const auto s2 = make_holiday_schedule(
-		years_period{ 2001y, 2099y },
-		rules1
-	);
+	const auto s2 = make_holiday_schedule(period, rules1);
 
 	auto c2 = calendar{ SaturdaySundayWeekend, s2 };
 	c2.substitute(Preceding);
