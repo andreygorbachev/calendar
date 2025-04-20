@@ -31,19 +31,19 @@ namespace gregorian
 	class calendar;
 
 
-	class business_day_convention
+	class business_day_adjuster
 	{
 
 	public:
 
-		business_day_convention() noexcept = default;
-		virtual ~business_day_convention() noexcept = default;
+		business_day_adjuster() noexcept = default;
+		virtual ~business_day_adjuster() noexcept = default;
 
-		business_day_convention(const business_day_convention&) = delete;
-		business_day_convention(business_day_convention&&) noexcept = delete;
+		business_day_adjuster(const business_day_adjuster&) = delete;
+		business_day_adjuster(business_day_adjuster&&) noexcept = delete;
 
-		business_day_convention& operator=(const business_day_convention&) = delete;
-		business_day_convention& operator=(business_day_convention&&) noexcept = delete;
+		business_day_adjuster& operator=(const business_day_adjuster&) = delete;
+		business_day_adjuster& operator=(business_day_adjuster&&) noexcept = delete;
 
 	public:
 
@@ -61,18 +61,18 @@ namespace gregorian
 
 
 
-	inline auto business_day_convention::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
+	inline auto business_day_adjuster::adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
 	{
 		return _adjust(ymd, cal);
 	}
 
-	inline auto business_day_convention::adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
+	inline auto business_day_adjuster::adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
 	{
 		return _adjust(sd, cal);
 	}
 
 
-	inline auto business_day_convention::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
+	inline auto business_day_adjuster::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
 	{
 		return std::chrono::sys_days{ _adjust(std::chrono::year_month_day{ sd }, cal) };
 	}

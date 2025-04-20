@@ -26,7 +26,7 @@
 #include <schedule.h>
 #include <calendar.h>
 #include <annual_holidays.h>
-#include <business_day_conventions.h>
+#include <business_day_adjusters.h>
 
 #include <chrono>
 #include <iostream>

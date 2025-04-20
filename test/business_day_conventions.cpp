@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <business_day_conventions.h>
+#include <business_day_adjusters.h>
 #include <weekend.h>
 #include <schedule.h>
 #include <calendar.h>

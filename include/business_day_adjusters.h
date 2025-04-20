@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "business_day_convention_interface.h"
+#include "business_day_adjuster_interface.h"
 #include "calendar.h"
 
 #include <chrono>
@@ -31,7 +31,7 @@
 namespace gregorian
 {
 
-	class no_adjustment final : public business_day_convention
+	class no_adjustment final : public business_day_adjuster
 	{
 
 	private:
@@ -46,7 +46,7 @@ namespace gregorian
 
 
 
-	class following final : public business_day_convention
+	class following final : public business_day_adjuster
 	{
 
 	private:
@@ -61,7 +61,7 @@ namespace gregorian
 
 
 
-	class preceding final : public business_day_convention
+	class preceding final : public business_day_adjuster
 	{
 
 	private:
@@ -76,7 +76,7 @@ namespace gregorian
 
 
 
-	class nearest final : public business_day_convention
+	class nearest final : public business_day_adjuster
 	{
 
 	private:

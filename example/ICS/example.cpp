@@ -24,7 +24,7 @@
 
 #include <weekend.h>
 #include <schedule.h>
-#include <business_day_convention_interface.h>
+#include <business_day_adjuster_interface.h>
 #include <calendar.h>
 
 #include <chrono>

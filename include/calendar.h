@@ -26,7 +26,7 @@
 
 #include "weekend.h"
 #include "schedule.h"
-#include "business_day_convention_interface.h"
+#include "business_day_adjuster_interface.h"
 
 #include <cstddef>
 #include <memory>
@@ -75,7 +75,7 @@ namespace gregorian
 
 	public:
 
-		void substitute(const business_day_convention& bdc);
+		void substitute(const business_day_adjuster& a);
 
 	public:
 
@@ -157,7 +157,7 @@ namespace gregorian
 	}
 
 
-	inline void calendar::substitute(const business_day_convention& bdc)
+	inline void calendar::substitute(const business_day_adjuster& a)
 	{
 		auto sub_cal = *this;
 
@@ -166,7 +166,7 @@ namespace gregorian
 			sub_cal._hols -= holiday;
 			if (sub_cal._is_non_business_day(holiday))
 			{
-				const auto substitute_day = bdc.adjust(holiday, *this);
+				const auto substitute_day = a.adjust(holiday, *this);
 				sub_cal._hols += substitute_day;
 				sub_cal._cache.substitute(holiday, substitute_day, _we);
 			}

@@ -22,7 +22,7 @@
 
 #include <period.h>
 #include <schedule.h>
-#include <business_day_conventions.h>
+#include <business_day_adjusters.h>
 
 #include <gtest/gtest.h>
 

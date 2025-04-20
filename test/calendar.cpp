@@ -23,7 +23,7 @@
 #include <weekend.h>
 #include <schedule.h>
 #include <calendar.h>
-#include <business_day_conventions.h>
+#include <business_day_adjusters.h>
 
 #include <gtest/gtest.h>
 
