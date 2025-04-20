@@ -61,21 +61,6 @@ namespace gregorian
 
 
 
-	class modified_following final : public business_day_convention
-	{
-
-	private:
-
-		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day final;
-		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days final;
-
-	};
-
-
-	const auto ModifiedFollowing = modified_following{};
-
-
-
 	class preceding final : public business_day_convention
 	{
 
@@ -88,22 +73,6 @@ namespace gregorian
 
 
 	const auto Preceding = preceding{};
-
-
-
-	// EuroSTR documentation calls this "the European modified previous business day convention"
-	class modified_preceding final : public business_day_convention
-	{
-
-	private:
-
-		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day final;
-		virtual auto _adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days final;
-
-	};
-
-
-	const auto ModifiedPreceding = modified_preceding{};
 
 
 
@@ -176,29 +145,6 @@ namespace gregorian
 
 
 
-	inline auto modified_following::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
-	{
-		auto result = ymd;
-		while (!cal.is_business_day(result))
-		{
-			if (result.day() == (ymd.year() / ymd.month() / std::chrono::last).day())
-			{
-				// we'll move to a different month
-				return Preceding.adjust(ymd, cal);
-			}
-
-			result = std::chrono::sys_days{ result } + std::chrono::days{ 1 };
-		}
-		return result;
-	}
-
-	inline auto modified_following::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
-	{
-		return std::chrono::sys_days{ _adjust(std::chrono::year_month_day{ sd }, cal) };
-	}
-
-
-
 	inline auto preceding::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
 	{
 		auto result = ymd;
@@ -215,29 +161,6 @@ namespace gregorian
 //			result--;
 			result -= std::chrono::days{ 1 };
 		return result;
-	}
-
-
-
-	inline auto modified_preceding::_adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day
-	{
-		auto result = ymd;
-		while (!cal.is_business_day(result))
-		{
-			if (result.day() == std::chrono::day{ 1 })
-			{
-				// we'll move to a different month
-				return Following.adjust(ymd, cal);
-			}
-
-			result = std::chrono::sys_days{ result } - std::chrono::days{ 1 };
-		}
-		return result;
-	}
-
-	inline auto modified_preceding::_adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days
-	{
-		return std::chrono::sys_days{ _adjust(std::chrono::year_month_day{ sd }, cal) };
 	}
 
 

@@ -100,64 +100,6 @@ namespace gregorian
 		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
 	}
 
-	TEST(modified_following, adjust1)
-	{
-		const auto& c = make_calendar_england();
-
-		const auto d1 = 2023y / January / 1d;
-		const auto r1 = 2023y / January / 3d;
-		EXPECT_EQ(r1, ModifiedFollowing.adjust(d1, c));
-		const auto d2 = 2023y / January / 3d;
-		const auto r2 = 2023y / January / 3d;
-		EXPECT_EQ(r2, ModifiedFollowing.adjust(d2, c));
-
-		const auto d3 = 2022y / December / 31d;
-		const auto r3 = 2022y / December / 30d;
-		EXPECT_EQ(r3, ModifiedFollowing.adjust(d3, c));
-		const auto d4 = 2022y / December / 30d;
-		const auto r4 = 2022y / December / 30d;
-		EXPECT_EQ(r4, ModifiedFollowing.adjust(d4, c));
-	}
-
-	TEST(modified_following, adjust2)
-	{
-		const auto& c = make_calendar_england();
-
-		const auto d1 = sys_days{ 2023y / January / 1d };
-		const auto r1 = sys_days{ 2023y / January / 3d };
-		EXPECT_EQ(r1, ModifiedFollowing.adjust(d1, c));
-		const auto d2 = sys_days{ 2023y / January / 3d };
-		const auto r2 = sys_days{ 2023y / January / 3d };
-		EXPECT_EQ(r2, ModifiedFollowing.adjust(d2, c));
-
-		const auto d3 = sys_days{ 2022y / December / 31d };
-		const auto r3 = sys_days{ 2022y / December / 30d };
-		EXPECT_EQ(r3, ModifiedFollowing.adjust(d3, c));
-		const auto d4 = sys_days{ 2022y / December / 30d };
-		const auto r4 = sys_days{ 2022y / December / 30d };
-		EXPECT_EQ(r4, ModifiedFollowing.adjust(d4, c));
-	}
-
-	TEST(modified_following, adjust3)
-	{
-		// what if we adjust past the end of the calendar?
-
-		const auto& c = make_calendar_starts_ends_with_holidays();
-
-		const auto d = sys_days{ 2024y / December / 31d };
-		const auto r = sys_days{ 2024y / December / 30d };
-		EXPECT_EQ(r, ModifiedFollowing.adjust(d, c));
-	}
-
-	TEST(modified_following, adjust4)
-	{
-		// what if we have a calendar without any business days?
-
-		const auto& c = make_calendar_all_holidays();
-
-		EXPECT_THROW(ModifiedFollowing.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
-	}
-
 	TEST(preceding, adjust1)
 	{
 		const auto& c = make_calendar_england();
@@ -198,64 +140,6 @@ namespace gregorian
 		const auto& c = make_calendar_all_holidays();
 
 		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
-	}
-
-	TEST(modified_preceding, adjust1)
-	{
-		const auto& c = make_calendar_england();
-
-		const auto d1 = 2022y / December / 31d;
-		const auto r1 = 2022y / December / 30d;
-		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
-		const auto d2 = 2022y / December / 30d;
-		const auto r2 = 2022y / December / 30d;
-		EXPECT_EQ(r2, ModifiedPreceding.adjust(d2, c));
-
-		const auto d3 = 2023y / January / 1d;
-		const auto r3 = 2023y / January / 3d;
-		EXPECT_EQ(r3, ModifiedPreceding.adjust(d3, c));
-		const auto d4 = 2023y / January / 3d;
-		const auto r4 = 2023y / January / 3d;
-		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
-	}
-
-	TEST(modified_preceding, adjust2)
-	{
-		const auto& c = make_calendar_england();
-
-		const auto d1 = sys_days{ 2022y / December / 31d };
-		const auto r1 = sys_days{ 2022y / December / 30d };
-		EXPECT_EQ(r1, ModifiedPreceding.adjust(d1, c));
-		const auto d2 = sys_days{ 2022y / December / 30d };
-		const auto r2 = sys_days{ 2022y / December / 30d };
-		EXPECT_EQ(r2, ModifiedPreceding.adjust(d2, c));
-
-		const auto d3 = sys_days{ 2023y / January / 1d };
-		const auto r3 = sys_days{ 2023y / January / 3d };
-		EXPECT_EQ(r3, ModifiedPreceding.adjust(d3, c));
-		const auto d4 = sys_days{ 2023y / January / 3d };
-		const auto r4 = sys_days{ 2023y / January / 3d };
-		EXPECT_EQ(r4, ModifiedPreceding.adjust(d4, c));
-	}
-
-	TEST(modified_preceding, adjust3)
-	{
-		// what if we adjust past the end of the calendar?
-
-		const auto& c = make_calendar_starts_ends_with_holidays();
-
-		const auto d = sys_days{ 2024y / January / 1d };
-		const auto r = sys_days{ 2024y / January / 2d };
-		EXPECT_EQ(r, ModifiedPreceding.adjust(d, c));
-	}
-
-	TEST(modified_preceding, adjust4)
-	{
-		// what if we have a calendar without any business days?
-
-		const auto& c = make_calendar_all_holidays();
-
-		EXPECT_THROW(ModifiedPreceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
 	}
 
 	TEST(nearest, adjust1)
