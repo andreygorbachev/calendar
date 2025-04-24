@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include <schedule.h>
 #include <annual_holidays.h>
 #include <calendar.h>
@@ -259,15 +261,14 @@ namespace gregorian
 
 	inline auto _make_calendar_starts_ends_with_holidays() -> calendar
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
 			2024y / FirstDayOfJanuary,
 			2024y / LastDayOfDecember,
 		};
-		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(hols) };
-		return calendar{ NoWeekend, move(s) };
+		auto s = schedule{ days_period{ 2024y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, std::move(hols) };
+		return calendar{ NoWeekend, std::move(s) };
 	}
 
 	inline auto make_calendar_starts_ends_with_holidays() -> const calendar&
@@ -278,7 +279,6 @@ namespace gregorian
 
 	inline auto _make_calendar_all_holidays() -> calendar
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto s = schedule{ days_period{
@@ -298,7 +298,6 @@ namespace gregorian
 	// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
 	inline auto make_mpc_schedule_2023_2024() -> schedule // should this also be an example?
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto meeting_dates = schedule::dates{
@@ -322,7 +321,7 @@ namespace gregorian
 			2024y / December / 19d, // December MPC Summary and minutes
 		};
 
-		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, move(meeting_dates) };
+		return schedule{ days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, std::move(meeting_dates) };
 	}
 
 	inline auto make_mpc_holiday_schedule_2023_2024() -> schedule
@@ -333,7 +332,6 @@ namespace gregorian
 
 	inline auto make_holiday_schedule_england_april_2023() -> schedule
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
@@ -341,12 +339,11 @@ namespace gregorian
 			2023y / April / 10d,
 		};
 
-		return schedule{ days_period{ 2023y / April / 1d, 2023y / April / 30d }, move(hols) };
+		return schedule{ days_period{ 2023y / April / 1d, 2023y / April / 30d }, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_england_may_2023() -> schedule
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
@@ -355,19 +352,18 @@ namespace gregorian
 			2023y / May / 29d,
 		};
 
-		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
 	}
 
 	inline auto make_holiday_schedule_united_states_may_2023() -> schedule
 	{
-		using namespace std;
 		using namespace std::chrono;
 
 		auto hols = schedule::dates{
 			2023y / May / 29d,
 		};
 
-		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, move(hols) };
+		return schedule{ days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(hols) };
 	}
 
 }

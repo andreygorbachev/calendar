@@ -29,7 +29,6 @@
 
 #include <chrono>
 #include <exception>
-#include <memory>
 
 #include "setup.h"
 
