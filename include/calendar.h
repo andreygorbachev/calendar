@@ -29,7 +29,7 @@
 #include "business_day_adjuster_interface.h"
 
 #include <cstddef>
-#include <memory>
+#include <utility>
 #include <chrono>
 #include <vector>
 #include <stdexcept>

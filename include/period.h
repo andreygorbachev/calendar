@@ -23,7 +23,7 @@
 #pragma once
 
 #include <chrono>
-#include <memory>
+#include <utility>
 #include <algorithm>
 #include <stdexcept>
 #include <compare>

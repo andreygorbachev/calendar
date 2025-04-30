@@ -26,7 +26,7 @@
 
 #include <cstddef>
 #include <chrono>
-#include <memory>
+#include <utility>
 #include <set>
 #include <algorithm>
 #include <compare>

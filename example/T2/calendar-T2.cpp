@@ -27,8 +27,6 @@
 #include <weekend.h>
 #include <business_day_adjusters.h>
 
-#include <memory>
-
 using namespace std;
 using namespace std::chrono;
 

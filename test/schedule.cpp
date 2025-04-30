@@ -26,7 +26,7 @@
 
 #include <gtest/gtest.h>
 
-#include <memory>
+#include <utility>
 #include <chrono>
 #include <algorithm>
 
