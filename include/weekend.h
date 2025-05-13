@@ -43,6 +43,8 @@ namespace gregorian
 
 	public:
 
+		// should Saturday/Sunday be a default?
+
 		constexpr explicit weekend(storage we) noexcept;
 
 	public:

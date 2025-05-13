@@ -38,15 +38,8 @@ namespace gregorian
 	public:
 
 		period() noexcept = default;
-		period(const period&) = default;
-		period(period&&) noexcept = default;
 
 		explicit period(T from, T until);
-
-		~period() noexcept = default;
-
-		period& operator=(const period&) = default;
-		period& operator=(period&&) noexcept = default;
 
 	public:
 

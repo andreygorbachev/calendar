@@ -43,15 +43,6 @@ namespace gregorian
 
 	public:
 
-		_time_series() noexcept = delete; // or we'll have to figure out what an "empty" _time_series is (especially as there is no default constructor for days_period)
-		_time_series(const _time_series&) = default;
-		_time_series(_time_series&&) noexcept = default;
-
-		~_time_series() noexcept = default;
-
-		_time_series& operator=(const _time_series&) = default;
-		_time_series& operator=(_time_series&&) noexcept = default;
-
 		explicit _time_series(const gregorian::days_period& period) noexcept;
 
 	private:
