@@ -68,7 +68,7 @@ namespace gregorian
 
 	public:
 
-		auto get_period() const noexcept -> gregorian::days_period;
+		auto get_period() const noexcept -> gregorian::days_period; // should it be get_from_until?
 
 	private:
 
