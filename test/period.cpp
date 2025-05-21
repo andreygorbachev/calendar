@@ -85,6 +85,16 @@ namespace gregorian
 		EXPECT_THROW(period(u, f), out_of_range);
 	}
 
+	TEST(period, constructor_5)
+	{
+		const auto p = period{ pair{ 2023y / May / 1d, 2023y / May / 31d } };
+
+		EXPECT_EQ(2023y / May / 1d, p.get_from());
+		EXPECT_EQ(2023y / May / 31d, p.get_until());
+
+		EXPECT_THROW(period(2023y / May / 31d, 2023y / May / 1d), out_of_range);
+	}
+
 
 	TEST(period, get_from)
 	{
@@ -98,6 +108,14 @@ namespace gregorian
 		const auto p = period{ 2023y / May / 1d, 2023y / May / 31d };
 
 		EXPECT_EQ(2023y / May / 31d, p.get_until());
+	}
+
+	TEST(period, from_until)
+	{
+		const auto p = period{ pair{ 2023y / May / 1d, 2023y / May / 31d } };
+
+		const auto expected = pair{ 2023y / May / 1d, 2023y / May / 31d };
+		EXPECT_EQ(expected, p.from_until());
 	}
 
 	TEST(period, operator_addition_1)

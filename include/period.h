@@ -27,12 +27,13 @@
 #include <algorithm>
 #include <stdexcept>
 #include <compare>
+#include <tuple>
 
 
 namespace gregorian
 {
 
-	template<typename T> class period final // is there a way to make syntax auto [from, until] = get_period() work
+	template<typename T> class period final
 	{
 
 	public:
@@ -40,6 +41,7 @@ namespace gregorian
 		period() noexcept = default;
 
 		explicit period(T from, T until);
+		explicit period(std::pair<T, T> from_until);
 
 	public:
 
@@ -52,6 +54,8 @@ namespace gregorian
 		auto get_until() const noexcept -> const T&;
 
 	public:
+
+		auto from_until() const -> std::pair<T, T>;
 
 		auto contains(const T& x) const noexcept -> bool;
 
@@ -122,6 +126,12 @@ namespace gregorian
 			throw std::out_of_range{ "From and until are not consistent" };
 	}
 
+	template<typename T>
+	period<T>::period(std::pair<T, T> from_until) :
+		period<T>(std::move(from_until.first), std::move(from_until.second))
+	{
+	}
+
 
 	template<typename T>
 	auto period<T>::get_from() const noexcept -> const T&
@@ -135,6 +145,12 @@ namespace gregorian
 		return _until;
 	}
 
+
+	template<typename T>
+	auto period<T>::from_until() const -> std::pair<T, T>
+	{
+		return{ _from, _until };
+	}
 
 	template<typename T>
 	auto period<T>::contains(const T& x) const noexcept -> bool
