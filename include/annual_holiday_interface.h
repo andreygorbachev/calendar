@@ -62,20 +62,20 @@ namespace gregorian
 	// choice here is influenced by a desire to eventualy be able to apply annual_holiday rules at compile time (constexpr)
 
 	inline auto make_holiday_schedule(
-		const years_period& from_until,
+		const years_period& p,
 		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
 		auto hols = schedule::dates{};
 
-		for (auto y = from_until.get_from(); y <= from_until.get_until(); ++y)
+		for (auto y = p.get_from(); y <= p.get_until(); ++y)
 			for (const auto& rule : rules)
 				hols.insert(rule->make_holiday(y));
 
 		return schedule{
 			days_period{
-				from_until.get_from() / FirstDayOfJanuary,
-				from_until.get_until() / LastDayOfDecember
+				p.get_from() / FirstDayOfJanuary,
+				p.get_until() / LastDayOfDecember
 			},
 			std::move(hols)
 		};

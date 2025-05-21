@@ -87,7 +87,7 @@ namespace gregorian
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
-		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+		EXPECT_THROW(Following.adjust(c.get_schedule().get_period().get_until(), c), out_of_range);
 	}
 
 	TEST(following, adjust4)
@@ -96,7 +96,7 @@ namespace gregorian
 
 		const auto& c = make_calendar_all_holidays();
 
-		EXPECT_THROW(Following.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+		EXPECT_THROW(Following.adjust(c.get_schedule().get_period().get_until(), c), out_of_range);
 	}
 
 	TEST(preceding, adjust1)
@@ -129,7 +129,7 @@ namespace gregorian
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
-		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
+		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_period().get_from(), c), out_of_range);
 	}
 
 	TEST(preceding, adjust4)
@@ -138,7 +138,7 @@ namespace gregorian
 
 		const auto& c = make_calendar_all_holidays();
 
-		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
+		EXPECT_THROW(Preceding.adjust(c.get_schedule().get_period().get_from(), c), out_of_range);
 	}
 
 	TEST(nearest, adjust1)
@@ -197,8 +197,8 @@ namespace gregorian
 
 		const auto& c = make_calendar_starts_ends_with_holidays();
 
-		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_from_until().get_from(), c), out_of_range);
-		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_from_until().get_until(), c), out_of_range);
+		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_period().get_from(), c), out_of_range);
+		EXPECT_THROW(Nearest.adjust(c.get_schedule().get_period().get_until(), c), out_of_range);
 	}
 
 	TEST(make_first_business_day, make_first_business_day)

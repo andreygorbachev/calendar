@@ -64,14 +64,14 @@ namespace gregorian
 
 		auto is_business_day(const std::chrono::sys_days& sd) const -> bool;
 
-		auto count_business_days(const days_period& from_until) const -> std::size_t;
+		auto count_business_days(const days_period& p) const -> std::size_t;
 
-		auto count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
+		auto count_business_days(const period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// is returning schedule the right thing to do?
-		auto make_business_days_schedule(days_period from_until) const -> schedule;
+		auto make_business_days_schedule(days_period p) const -> schedule;
 
-		auto make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule;
+		auto make_business_days_schedule(period<std::chrono::sys_days> p) const -> schedule;
 
 	public:
 
@@ -122,7 +122,7 @@ namespace gregorian
 
 	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
 	{
-		const auto p = cal1.get_schedule().get_from_until() & cal2.get_schedule().get_from_until();
+		const auto p = cal1.get_schedule().get_period() & cal2.get_schedule().get_period();
 		const auto s = cal1.get_schedule() | cal2.get_schedule();
 
 		return calendar{
@@ -205,39 +205,39 @@ namespace gregorian
 	// https://www.clarusft.com/implementing-bus252-daycount-convention/
 	// or to cache the substituted holidays in an ordered vector, so we know how many holidays are between
 	// from and until, which we'll need to further adjust by the number of weekends between the same 2 dates
-	inline auto calendar::count_business_days(const days_period& from_until) const -> std::size_t
+	inline auto calendar::count_business_days(const days_period& period) const -> std::size_t
 	{
-		const auto non_business_days = _cache._non_business_days.count(from_until);
+		const auto non_business_days = _cache._non_business_days.count(period);
 		const auto calendar_days =
-			std::chrono::sys_days{ from_until.get_until() } - std::chrono::sys_days{ from_until.get_from() };
+			std::chrono::sys_days{ period.get_until() } - std::chrono::sys_days{ period.get_from() };
 
 		using namespace std::chrono;
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& from_until) const -> std::size_t
+	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& p) const -> std::size_t
 	{
-		const auto non_business_days = _cache._non_business_days.count(from_until);
-		const auto calendar_days = from_until.get_until() - from_until.get_from();
+		const auto non_business_days = _cache._non_business_days.count(p);
+		const auto calendar_days = p.get_until() - p.get_from();
 
 		using namespace std::chrono;
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::make_business_days_schedule(days_period from_until) const -> schedule
+	inline auto calendar::make_business_days_schedule(days_period p) const -> schedule
 	{
 		// or implement directly?
 		return make_business_days_schedule(period<std::chrono::sys_days>{
-			from_until.get_from(),
-			from_until.get_until()
+			p.get_from(),
+			p.get_until()
 		});
 	}
 
 	// should we pass this one by const reference? (as we are not moving from it)
-	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> from_until) const -> schedule
+	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> p) const -> schedule
 	{
-		const auto value = from_until.get_from().time_since_epoch().count();
-		const auto bound = from_until.get_until().time_since_epoch().count() + 1;
+		const auto value = p.get_from().time_since_epoch().count();
+		const auto bound = p.get_until().time_since_epoch().count() + 1;
 		const auto to_sd = [](const int i)
 		{
 			return std::chrono::sys_days{} + std::chrono::days{ i };
@@ -253,7 +253,7 @@ namespace gregorian
 			std::ranges::to<schedule::dates>();
 
 		return schedule{
-			days_period{ from_until.get_from(), from_until.get_until() },
+			days_period{ p.get_from(), p.get_until() },
 			std::move(s)
 		 };
 	}
@@ -271,9 +271,9 @@ namespace gregorian
 
 
 	inline calendar::cache::cache(const calendar& cal)
-		: _non_business_days{ cal.get_schedule().get_from_until() }
+		: _non_business_days{ cal.get_schedule().get_period() }
 	{
-		const auto& fu = cal.get_schedule().get_from_until();
+		const auto& fu = cal.get_schedule().get_period();
 		for (
 			auto d = fu.get_from();
 			d <= fu.get_until();

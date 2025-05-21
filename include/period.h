@@ -32,7 +32,7 @@
 namespace gregorian
 {
 
-	template<typename T> class period final // is there a way to make syntax auto [from, until] = get_from_until() work
+	template<typename T> class period final // is there a way to make syntax auto [from, until] = get_period() work
 	{
 
 	public:

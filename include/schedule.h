@@ -53,7 +53,7 @@ namespace gregorian
 	public:
 
 		explicit schedule(
-			days_period from_until,
+			days_period p,
 			dates ds
 		);
 
@@ -84,7 +84,7 @@ namespace gregorian
 
 	public:
 
-		auto get_from_until() const noexcept -> const days_period&;
+		auto get_period() const noexcept -> const days_period&;
 
 		auto get_dates() const noexcept -> const dates&;
 
@@ -94,7 +94,7 @@ namespace gregorian
 
 	private:
 
-		days_period _from_until;
+		days_period _period;
 
 		dates _dates;
 
@@ -108,7 +108,7 @@ namespace gregorian
 		ds.merge(s2._dates);
 
 		return schedule{
-			s1.get_from_until() | s2.get_from_until(),
+			s1.get_period() | s2.get_period(),
 			std::move(ds)
 		};
 	}
@@ -121,26 +121,26 @@ namespace gregorian
 				ds.insert(d);
 
 		return schedule{
-			s1.get_from_until() & s2.get_from_until(),
+			s1.get_period() & s2.get_period(),
 			std::move(ds)
 		};
 	}
 
 	inline auto operator~(const schedule& s) -> schedule
 	{
-		auto from_until = s.get_from_until();
+		auto p = s.get_period();
 		auto ds = schedule::dates{};
 
 		for (
-			auto d = from_until.get_from();
-			d <= from_until.get_until();
+			auto d = p.get_from();
+			d <= p.get_until();
 			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
 		)
 			if (!s.contains(d))
 				ds.insert(d);
 
 		return schedule{
-			std::move(from_until),
+			std::move(p),
 			std::move(ds)
 		};
 	}
@@ -152,7 +152,7 @@ namespace gregorian
 		ds.merge(std::move(s2._dates));
 
 		return schedule{
-			s1.get_from_until() + s2.get_from_until(),
+			s1.get_period() + s2.get_period(),
 			std::move(ds)
 		};
 	}
@@ -183,7 +183,7 @@ namespace gregorian
 #endif
 	}
 
-	inline auto _make_from_until(const schedule::dates& ds) noexcept -> days_period
+	inline auto _make_period(const schedule::dates& ds) noexcept -> days_period
 	{
 		if (!ds.empty())
 		{
@@ -199,9 +199,9 @@ namespace gregorian
 
 
 	inline schedule::schedule(
-		days_period from_until,
+		days_period p,
 		dates ds
-	) : _from_until{ std::move(from_until) },
+	) : _period{ std::move(p) },
 		_dates{ std::move(ds) }
 	{
 		_trim();
@@ -209,7 +209,7 @@ namespace gregorian
 
 	inline schedule::schedule(
 		dates ds
-	) : _from_until{ _make_from_until(ds) },
+	) : _period{ _make_period(ds) },
 		_dates{ std::move(ds) }
 	{
 		_trim();
@@ -219,8 +219,8 @@ namespace gregorian
 	inline void schedule::_trim()
 	{
 		// get rid of the dates which are outside [from, until]
-		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _from_until.get_from()));
-		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _from_until.get_until()), _dates.end());
+		_dates.erase(_dates.begin(), std::lower_bound(_dates.cbegin(), _dates.cend(), _period.get_from()));
+		_dates.erase(std::upper_bound(_dates.cbegin(), _dates.cend(), _period.get_until()), _dates.end());
 	}
 
 
@@ -233,7 +233,7 @@ namespace gregorian
 
 	inline auto schedule::operator+=(const std::chrono::year_month_day& ymd) -> schedule&
 	{
-		if(_from_until.contains(ymd))
+		if(_period.contains(ymd))
 			_dates.insert(ymd);
 
 		return *this;
@@ -257,9 +257,9 @@ namespace gregorian
 		return contains(std::chrono::year_month_day{ sd });
 	}
 
-	inline auto schedule::get_from_until() const noexcept -> const days_period&
+	inline auto schedule::get_period() const noexcept -> const days_period&
 	{
-		return _from_until;
+		return _period;
 	}
 
 	inline auto schedule::get_dates() const noexcept -> const dates&

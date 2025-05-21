@@ -41,10 +41,10 @@ namespace gregorian
 
 	TEST(schedule, constructor_1)
 	{
-		auto from_until = days_period{ 2023y / April / 1d, 2023y / April / 1d };
+		auto p = days_period{ 2023y / April / 1d, 2023y / April / 1d };
 		auto ds = schedule::dates{};
 
-		EXPECT_NO_THROW(schedule(move(from_until), move(ds))); // ok to have a schedule for just 1 day
+		EXPECT_NO_THROW(schedule(move(p), move(ds))); // ok to have a schedule for just 1 day
 	}
 
 	TEST(schedule, constructor_2)
@@ -77,8 +77,8 @@ namespace gregorian
 
 		const auto s = s1 | s2;
 
-		EXPECT_EQ(min(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
-		EXPECT_EQ(max(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
+		EXPECT_EQ(min(s1.get_period().get_from(), s2.get_period().get_from()), s.get_period().get_from());
+		EXPECT_EQ(max(s1.get_period().get_until(), s2.get_period().get_until()), s.get_period().get_until());
 	}
 
 	TEST(schedule, operator_bitwise_and)
@@ -88,8 +88,8 @@ namespace gregorian
 
 		const auto s = s1 & s2;
 
-		EXPECT_EQ(max(s1.get_from_until().get_from(), s2.get_from_until().get_from()), s.get_from_until().get_from());
-		EXPECT_EQ(min(s1.get_from_until().get_until(), s2.get_from_until().get_until()), s.get_from_until().get_until());
+		EXPECT_EQ(max(s1.get_period().get_from(), s2.get_period().get_from()), s.get_period().get_from());
+		EXPECT_EQ(min(s1.get_period().get_until(), s2.get_period().get_until()), s.get_period().get_until());
 	}
 
 	TEST(schedule, operator_bitwise_not)
@@ -123,8 +123,8 @@ namespace gregorian
 
 		const auto s = s1 + s2;
 
-		EXPECT_EQ(s1.get_from_until().get_from(), s.get_from_until().get_from());
-		EXPECT_EQ(year{ 2024 } / December / day{ 31u }, s.get_from_until().get_until());
+		EXPECT_EQ(s1.get_period().get_from(), s.get_period().get_from());
+		EXPECT_EQ(year{ 2024 } / December / day{ 31u }, s.get_period().get_until());
 
 		EXPECT_THROW(s2 + s1, out_of_range);
 	}
@@ -167,17 +167,17 @@ namespace gregorian
 	}
 
 
-	TEST(schedule, get_from_unit)
+	TEST(schedule, get_period)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
-		const auto s2 = schedule{ s1.get_from_until(), s1.get_dates() };
+		const auto s2 = schedule{ s1.get_period(), s1.get_dates() };
 
 		EXPECT_EQ(s1, s2);
 	}
 	TEST(schedule, get_dates)
 	{
 		const auto s1 = make_holiday_schedule_england_may_2023();
-		const auto s2 = schedule{ s1.get_from_until(), s1.get_dates() };
+		const auto s2 = schedule{ s1.get_period(), s1.get_dates() };
 
 		EXPECT_EQ(s1, s2);
 	}
@@ -209,34 +209,34 @@ namespace gregorian
 	}
 
 
-	TEST(_make_from_until, multiple_years)
+	TEST(_make_period, multiple_years)
 	{
 		const auto ds = schedule::dates{ 2023y / April / 1d, 2024y / April / 1d };
 
-		const auto period = _make_from_until(ds);
+		const auto p = _make_period(ds);
 
-		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
-		EXPECT_EQ(2024y / LastDayOfDecember, period.get_until());
+		EXPECT_EQ(2023y / FirstDayOfJanuary, p.get_from());
+		EXPECT_EQ(2024y / LastDayOfDecember, p.get_until());
 	}
 
-	TEST(_make_from_until, single_years)
+	TEST(_make_period, single_years)
 	{
 		const auto ds = schedule::dates{ 2023y / April / 1d };
 
-		const auto period = _make_from_until(ds);
+		const auto p = _make_period(ds);
 
-		EXPECT_EQ(2023y / FirstDayOfJanuary, period.get_from());
-		EXPECT_EQ(2023y / LastDayOfDecember, period.get_until());
+		EXPECT_EQ(2023y / FirstDayOfJanuary, p.get_from());
+		EXPECT_EQ(2023y / LastDayOfDecember, p.get_until());
 	}
 
-	TEST(_make_from_until, no_years)
+	TEST(_make_period, no_years)
 	{
 		const auto ds = schedule::dates{};
 
-		EXPECT_NO_THROW(_make_from_until(ds)); // ok to create [from, until] from an empty set of holiday dates
+		EXPECT_NO_THROW(_make_period(ds)); // ok to create [from, until] from an empty set of holiday dates
 
-		const auto period = _make_from_until(ds);
-		EXPECT_EQ(period.get_from(), period.get_until());
+		const auto p = _make_period(ds);
+		EXPECT_EQ(p.get_from(), p.get_until());
 	}
 
 }

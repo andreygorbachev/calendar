@@ -267,7 +267,7 @@ namespace gregorian
 		const auto cs = _time_series<bool>::get_chunk_size();
 
 		const auto& c = make_calendar_england();
-		const auto& cp = c.get_schedule().get_from_until();
+		const auto& cp = c.get_schedule().get_period();
 
 		// both from and until are on the boundary of the same chunk
 		const auto bd1 =
@@ -321,7 +321,7 @@ namespace gregorian
 		const auto cs = _time_series<bool>::get_chunk_size();
 
 		const auto& c = make_calendar_england();
-		const auto& cp = c.get_schedule().get_from_until();
+		const auto& cp = c.get_schedule().get_period();
 
 		// both from and until are on the boundary of the same chunk
 		const auto bd1 =

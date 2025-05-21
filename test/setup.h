@@ -217,7 +217,7 @@ namespace gregorian
 
 		const auto known_part = _make_holiday_schedule_england();
 
-		const auto generated_part_from = known_part.get_from_until().get_until().year() + years{ 1 };
+		const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 		const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
 
 		const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };

@@ -68,7 +68,7 @@ namespace gregorian
 
 	public:
 
-		auto get_period() const noexcept -> gregorian::days_period; // should it be get_from_until?
+		auto get_period() const noexcept -> gregorian::days_period;
 
 	private:
 
@@ -135,8 +135,8 @@ namespace gregorian
 
 	public:
 
-		auto count(const days_period& from_until) const -> std::size_t;
-		auto count(const period<std::chrono::sys_days>& from_until) const -> std::size_t;
+		auto count(const days_period& p) const -> std::size_t;
+		auto count(const period<std::chrono::sys_days>& p) const -> std::size_t;
 
 	public:
 
@@ -281,9 +281,9 @@ namespace gregorian
 		return days.count() % _chunk_size;
 	}
 
-	inline auto _time_series<bool>::count(const days_period& from_until) const -> std::size_t
+	inline auto _time_series<bool>::count(const days_period& p) const -> std::size_t
 	{
-		return count(period<std::chrono::sys_days>{ from_until.get_from(), from_until.get_until() });
+		return count(period<std::chrono::sys_days>{ p.get_from(), p.get_until() });
 	}
 
 	// possible faster implementation could be to have another cache of _hols
@@ -296,16 +296,16 @@ namespace gregorian
 	// for rule based calendars with adjustments for holidays that fall on weekends
 	// we also know the number of additional holidays per year (which is just the number of rules)
 	// which can further optimise the calculation
-	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& from_until) const -> std::size_t
+	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& p) const -> std::size_t
 	{
 		using namespace std::chrono;
 
 		auto result = 0uz;
 
-		const auto from = from_until.get_from();
+		const auto from = p.get_from();
 		const auto from_chunk_index = _index_outer(from);
 
-		const auto until = from_until.get_until();
+		const auto until = p.get_until();
 		const auto until_chunk_index = _index_outer(until);
 
 		// handle the chunk that contains from
