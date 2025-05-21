@@ -273,10 +273,10 @@ namespace gregorian
 	inline calendar::cache::cache(const calendar& cal)
 		: _non_business_days{ cal.get_schedule().get_period() }
 	{
-		const auto& fu = cal.get_schedule().get_period();
+		const auto [f, u] = cal.get_schedule().get_period().from_until();
 		for (
-			auto d = fu.get_from();
-			d <= fu.get_until();
+			auto d = f;
+			d <= u;
 			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
 		)
 			_non_business_days[d] = cal._is_non_business_day(d);
