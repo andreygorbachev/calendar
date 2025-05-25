@@ -42,7 +42,7 @@ namespace gregorian
 					until.time_since_epoch().count()
 				) |
 				std::views::transform(
-					[](Dur::rep r) { return std::chrono::sys_time<Dur>(Dur(r));	}
+					[](const Dur::rep r) { return std::chrono::sys_time<Dur>{ Dur{ r } }; }
 				);
 		}
 /*
