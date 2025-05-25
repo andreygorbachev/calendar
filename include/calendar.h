@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include "iota.h"
 #include "time_series.h"
 
 #include "weekend.h"
@@ -235,19 +236,16 @@ namespace gregorian
 
 	inline auto calendar::make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule
 	{
-		const auto value = p.get_from().time_since_epoch().count();
-		const auto bound = p.get_until().time_since_epoch().count() + 1;
-		const auto to_sd = [](const int i)
-		{
-			return std::chrono::sys_days{} + std::chrono::days{ i };
-		};
+		const auto& v = p.get_from();
+		const auto& b = p.get_until();
+
 		const auto is_bd = [this](const std::chrono::sys_days& d)
 		{
 			return is_business_day(d);
 		};
+
 		auto s =
-			std::views::iota(value, bound) |
-			std::views::transform(to_sd) | // would be nice if we don't need to do this step
+			iota::iota(v, b) |
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
 
