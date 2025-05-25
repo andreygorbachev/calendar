@@ -24,6 +24,13 @@
 
 #include <gtest/gtest.h>
 
+#include <chrono>
+#include <ranges>
+#include <vector>
+
+using namespace std;
+using namespace std::chrono;
+
 
 namespace gregorian
 {
@@ -31,8 +38,49 @@ namespace gregorian
 	namespace iota
 	{
 
-		TEST(iota, iota)
+		TEST(iota, iota1)
 		{
+			const auto v = 2025y / May / 25d;
+			const auto b = 2025y / May / 30d;
+
+			const auto s =
+				iota::iota(v, b) |
+				std::ranges::to<vector>();
+
+			const auto expected = vector<sys_days>{
+				2025y / May / 25d,
+				2025y / May / 26d,
+				2025y / May / 27d,
+				2025y / May / 28d,
+				2025y / May / 29d,
+				2025y / May / 30d
+			};
+
+			EXPECT_EQ(expected, s);
+		}
+
+		TEST(iota, iota2)
+		{
+			const auto v = 2025y / May / 25d;
+			const auto b = 2025y / May / 25d;
+
+			const auto s =
+				iota::iota(v, b) |
+				std::ranges::to<vector>();
+
+			const auto expected = vector<sys_days>{
+				2025y / May / 25d
+			};
+
+			EXPECT_EQ(expected, s);
+		}
+
+		TEST(iota, iota3)
+		{
+			const auto v = 2025y / May / 30d;
+			const auto b = 2025y / May / 25d;
+
+			// not 100% sure how to test this case
 		}
 
 	}
