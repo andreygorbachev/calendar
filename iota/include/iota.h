@@ -31,7 +31,7 @@ namespace gregorian
 	namespace iota
 	{
 
-		auto iota(const std::chrono::sys_days& v, const std::chrono::sys_days& b)
+		inline auto iota(const std::chrono::sys_days& v, const std::chrono::sys_days& b)
 		{
 			const auto value = v.time_since_epoch().count();
 			const auto bound = b.time_since_epoch().count() + 1;
