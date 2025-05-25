@@ -2,4 +2,11 @@ project(iota)
 
 
 add_subdirectory(include)
-add_subdirectory(test)
+
+if(NOT GREGORIAN_CALENDAR_MINIMAL)
+
+	enable_testing()
+
+	add_subdirectory(test)
+
+endif()
