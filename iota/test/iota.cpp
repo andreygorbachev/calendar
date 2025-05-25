@@ -40,8 +40,8 @@ namespace gregorian
 
 		TEST(iota, iota1)
 		{
-			const auto v = 2025y / May / 25d;
-			const auto b = 2025y / May / 30d;
+			const auto v = sys_days{ 2025y / May / 25d };
+			const auto b = sys_days{ 2025y / May / 30d };
 
 			const auto s =
 				iota::iota(v, b) |
@@ -60,8 +60,8 @@ namespace gregorian
 
 		TEST(iota, iota2)
 		{
-			const auto v = 2025y / May / 25d;
-			const auto b = 2025y / May / 25d;
+			const auto v = sys_days{ 2025y / May / 25d };
+			const auto b = sys_days{ 2025y / May / 25d };
 
 			const auto s =
 				iota::iota(v, b) |

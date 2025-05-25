@@ -24,6 +24,7 @@
 
 #include <chrono>
 #include <ranges>
+#include <iterator>
 
 namespace gregorian
 {
@@ -31,6 +32,20 @@ namespace gregorian
 	namespace iota
 	{
 
+		template<typename Dur> requires std::weakly_incrementable<typename Dur::rep>
+		constexpr auto
+		iota(std::chrono::sys_time<Dur> from, std::chrono::sys_time<Dur> until)
+		{
+			return
+				std::views::iota(
+					from.time_since_epoch().count(),
+					until.time_since_epoch().count()
+				) |
+				std::views::transform(
+					[](Dur::rep r) { return std::chrono::sys_time<Dur>(Dur(r));	}
+				);
+		}
+/*
 		inline auto iota(const std::chrono::sys_days& v, const std::chrono::sys_days& b)
 		{
 			const auto value = v.time_since_epoch().count();
@@ -45,7 +60,7 @@ namespace gregorian
 				std::views::iota(value, bound) |
 				std::views::transform(to_sys_days); // would be nice if we don't need to do this step
 		}
-
+*/
 	}
 
 }
