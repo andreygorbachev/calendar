@@ -237,7 +237,7 @@ namespace gregorian
 	inline auto calendar::make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule
 	{
 		const auto& v = p.get_from();
-		const auto b = p.get_until() + std::chrono::days{ 1 }; // iota::iota "boundary" below (non inclusive) is not the same as "period end" (inclusive)
+		const auto b = p.get_until() + std::chrono::days{ 1 }; // iota::iota "boundary" below (non inclusive) is not the same as "period until" (inclusive)
 
 		const auto is_bd = [this](const std::chrono::sys_days& d)
 		{
