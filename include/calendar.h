@@ -69,9 +69,9 @@ namespace gregorian
 		auto count_business_days(const period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// is returning schedule the right thing to do?
-		auto make_business_days_schedule(days_period p) const -> schedule;
+		auto make_business_days_schedule(const days_period& p) const -> schedule;
 
-		auto make_business_days_schedule(period<std::chrono::sys_days> p) const -> schedule;
+		auto make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule;
 
 	public:
 
@@ -224,7 +224,7 @@ namespace gregorian
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::make_business_days_schedule(days_period p) const -> schedule
+	inline auto calendar::make_business_days_schedule(const days_period& p) const -> schedule
 	{
 		// or implement directly?
 		return make_business_days_schedule(period<std::chrono::sys_days>{
@@ -233,8 +233,7 @@ namespace gregorian
 		});
 	}
 
-	// should we pass this one by const reference? (as we are not moving from it)
-	inline auto calendar::make_business_days_schedule(period<std::chrono::sys_days> p) const -> schedule
+	inline auto calendar::make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule
 	{
 		const auto value = p.get_from().time_since_epoch().count();
 		const auto bound = p.get_until().time_since_epoch().count() + 1;
