@@ -95,7 +95,7 @@ namespace gregorian
 	TEST(schedule, operator_bitwise_not)
 	{
 		auto s = make_mpc_holiday_schedule_2023_2024(); // ~ is inside that function
-		const auto cal = calendar{ NoWeekend, std::move(s) };
+		const auto cal = calendar{ NoWeekend, move(s) };
 
 		EXPECT_EQ(2023y / June / 22d, Following.adjust(2023y / May / 12d, cal));
 	}
