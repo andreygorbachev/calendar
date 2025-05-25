@@ -1,7 +1,7 @@
 project(calendar-test)
 
 include(FetchContent)
-FetchContent_Declare(
+FetchContent_Declare( # as we have also do this in calendar-iota-test - should this be done in one place only?
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        v1.17.0
