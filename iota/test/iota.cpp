@@ -52,8 +52,7 @@ namespace gregorian
 				2025y / May / 26d,
 				2025y / May / 27d,
 				2025y / May / 28d,
-				2025y / May / 29d,
-				2025y / May / 30d
+				2025y / May / 29d
 			};
 
 			EXPECT_EQ(expected, s);
@@ -69,7 +68,6 @@ namespace gregorian
 				std::ranges::to<vector>();
 
 			const auto expected = vector<sys_days>{
-				2025y / May / 25d
 			};
 
 			EXPECT_EQ(expected, s);
