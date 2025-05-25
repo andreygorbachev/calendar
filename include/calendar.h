@@ -228,10 +228,9 @@ namespace gregorian
 	inline auto calendar::make_business_days_schedule(const days_period& p) const -> schedule
 	{
 		// or implement directly?
-		return make_business_days_schedule(period<std::chrono::sys_days>{
-			p.get_from(),
-			p.get_until()
-		});
+		return make_business_days_schedule(
+			period<std::chrono::sys_days>{ p.get_from(), p.get_until() }
+		);
 	}
 
 	inline auto calendar::make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule
@@ -252,7 +251,7 @@ namespace gregorian
 		return schedule{
 			days_period{ p.get_from(), p.get_until() },
 			std::move(s)
-		 };
+		};
 	}
 
 
