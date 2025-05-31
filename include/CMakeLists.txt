@@ -1,5 +1,7 @@
 project("calendar")
 
+add_subdirectory(util)
+
 add_library(${PROJECT_NAME} INTERFACE
   weekend.h
   period.h
@@ -15,7 +17,7 @@ add_library(${PROJECT_NAME} INTERFACE
 target_include_directories(${PROJECT_NAME} INTERFACE .)
 
 target_link_libraries(${PROJECT_NAME} INTERFACE
-  calendar-iota
+  calendar-util
 )
 
 export(TARGETS calendar NAMESPACE Calendar:: FILE CalendarConfig.cmake)

@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
-add_subdirectory(iota)
 add_subdirectory(include)
 
 if(NOT GREGORIAN_CALENDAR_MINIMAL)

@@ -1,7 +1,9 @@
 project(calendar-test)
 
+add_subdirectory(util)
+
 include(FetchContent)
-FetchContent_Declare( # as we have also do this in calendar-iota-test - should this be done in one place only?
+FetchContent_Declare( # as we have also do this in calendar-util-test - should this be done in one place only?
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        v1.17.0

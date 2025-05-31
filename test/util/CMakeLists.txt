@@ -1,4 +1,4 @@
-project(calendar-iota-test)
+project(calendar-util-test)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -13,7 +13,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-  calendar-iota
+  calendar-util
   GTest::gtest_main
 )
 
