@@ -44,26 +44,26 @@ namespace gregorian
 
 		public:
 
-			period() noexcept = default;
+			constexpr period() noexcept = default;
 
-			explicit period(T from, T until);
-			explicit period(std::pair<T, T> from_until);
-
-		public:
-
-			friend auto operator==(const period& p1, const period& p2) noexcept -> bool = default;
-			friend auto operator<=>(const period& p1, const period& p2) noexcept -> std::strong_ordering = delete;
+			constexpr explicit period(T from, T until);
+			constexpr explicit period(std::pair<T, T> from_until);
 
 		public:
 
-			auto get_from() const noexcept -> const T&;
-			auto get_until() const noexcept -> const T&;
+			friend constexpr auto operator==(const period& p1, const period& p2) noexcept -> bool = default;
+			friend constexpr auto operator<=>(const period& p1, const period& p2) noexcept -> std::strong_ordering = delete;
 
 		public:
 
-			auto from_until() const -> std::pair<T, T>;
+			constexpr auto get_from() const noexcept -> const T&;
+			constexpr auto get_until() const noexcept -> const T&;
 
-			auto contains(const T& x) const noexcept -> bool;
+		public:
+
+			constexpr auto from_until() const -> std::pair<T, T>;
+
+			constexpr auto contains(const T& x) const noexcept -> bool;
 
 		private:
 
@@ -79,7 +79,7 @@ namespace gregorian
 		// maybe period<std::chrono::sys_days> should not be used directly, but only through days_period?
 
 
-		inline auto operator+(const days_period& p1, const days_period& p2) -> days_period
+		constexpr auto operator+(const days_period& p1, const days_period& p2) -> days_period
 		{
 			if (std::chrono::sys_days{ p2.get_from() } - std::chrono::sys_days{ p1.get_until() } != std::chrono::days{ 1 })
 				throw std::out_of_range{ "From and until are not consistent" };
@@ -87,7 +87,7 @@ namespace gregorian
 			return days_period{ p1.get_from(), p2.get_until() };
 		}
 
-		inline auto operator+(const months_period& p1, const months_period& p2) -> months_period
+		constexpr auto operator+(const months_period& p1, const months_period& p2) -> months_period
 		{
 			if (p2.get_from() - p1.get_until() != std::chrono::months{ 1 })
 				throw std::out_of_range{ "From and until are not consistent" };
@@ -95,7 +95,7 @@ namespace gregorian
 			return months_period{ p1.get_from(), p2.get_until() };
 		}
 
-		inline auto operator+(const years_period& p1, const years_period& p2) -> years_period
+		constexpr auto operator+(const years_period& p1, const years_period& p2) -> years_period
 		{
 			if (p2.get_from() - p1.get_until() != std::chrono::years{ 1 })
 				throw std::out_of_range{ "From and until are not consistent" };
@@ -104,7 +104,7 @@ namespace gregorian
 		}
 
 
-		inline auto operator&(const days_period& p1, const days_period& p2) -> days_period
+		constexpr auto operator&(const days_period& p1, const days_period& p2) -> days_period
 		{
 			if (p1.get_from() > p2.get_from())
 				return p2 & p1;
@@ -112,7 +112,7 @@ namespace gregorian
 			return days_period{ std::max(p1.get_from(), p2.get_from()), std::min(p1.get_until(), p2.get_until()) };
 		}
 
-		inline auto operator|(const days_period& p1, const days_period& p2) -> days_period
+		constexpr auto operator|(const days_period& p1, const days_period& p2) -> days_period
 		{
 			if (p1.get_from() > p2.get_from())
 				return p2 | p1;
@@ -125,7 +125,7 @@ namespace gregorian
 
 
 		template<typename T>
-		period<T>::period(T from, T until) :
+		constexpr period<T>::period(T from, T until) :
 			_from{ std::move(from) },
 			_until{ std::move(until) }
 		{
@@ -134,33 +134,33 @@ namespace gregorian
 		}
 
 		template<typename T>
-		period<T>::period(std::pair<T, T> from_until) :
+		constexpr period<T>::period(std::pair<T, T> from_until) :
 			period<T>(std::move(from_until.first), std::move(from_until.second))
 		{
 		}
 
 
 		template<typename T>
-		auto period<T>::get_from() const noexcept -> const T&
+		constexpr auto period<T>::get_from() const noexcept -> const T&
 		{
 			return _from;
 		}
 
 		template<typename T>
-		auto period<T>::get_until() const noexcept -> const T&
+		constexpr auto period<T>::get_until() const noexcept -> const T&
 		{
 			return _until;
 		}
 
 
 		template<typename T>
-		auto period<T>::from_until() const -> std::pair<T, T>
+		constexpr auto period<T>::from_until() const -> std::pair<T, T>
 		{
 			return{ _from, _until };
 		}
 
 		template<typename T>
-		auto period<T>::contains(const T& x) const noexcept -> bool
+		constexpr auto period<T>::contains(const T& x) const noexcept -> bool
 		{
 			return _from <= x && x <= _until;
 		}
