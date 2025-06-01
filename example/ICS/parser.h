@@ -22,7 +22,6 @@
 
 #pragma once
 
-#include <period.h>
 #include <schedule.h>
 #include <annual_holiday_interface.h>
 

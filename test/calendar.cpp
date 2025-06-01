@@ -20,6 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <period.h>
+
 #include <weekend.h>
 #include <schedule.h>
 #include <calendar.h>
@@ -34,6 +36,7 @@
 
 using namespace std;
 using namespace std::chrono;
+using namespace gregorian::util;
 
 
 namespace gregorian

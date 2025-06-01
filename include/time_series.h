@@ -24,7 +24,7 @@
 
 // this is an internal header (nothing here is expected to be used directly for now)
 
-#include "period.h"
+#include <period.h>
 
 #include <chrono>
 #include <vector>
@@ -43,11 +43,11 @@ namespace gregorian
 
 	public:
 
-		explicit _time_series(const gregorian::days_period& period) noexcept;
+		explicit _time_series(const util::days_period& period) noexcept;
 
 	private:
 
-		explicit _time_series(const gregorian::period<std::chrono::sys_days> period) noexcept;
+		explicit _time_series(const util::period<std::chrono::sys_days> period) noexcept;
 		// at the moment we have year/month/day interface,
 		// but maybe we should have both year/month/day and sys_days interfaces
 		// (what should get_period return in this case?)
@@ -68,7 +68,7 @@ namespace gregorian
 
 	public:
 
-		auto get_period() const noexcept -> gregorian::days_period;
+		auto get_period() const noexcept -> util::days_period;
 
 	private:
 
@@ -76,7 +76,7 @@ namespace gregorian
 
 	private:
 
-		gregorian::period<std::chrono::sys_days> _period;
+		util::period<std::chrono::sys_days> _period;
 
 		std::vector<T> _observations;
 
@@ -110,11 +110,11 @@ namespace gregorian
 		_time_series& operator=(const _time_series&) = default;
 		_time_series& operator=(_time_series&&) noexcept = default;
 
-		explicit _time_series(const gregorian::days_period& period) noexcept;
+		explicit _time_series(const util::days_period& period) noexcept;
 
 	private:
 
-		explicit _time_series(const gregorian::period<std::chrono::sys_days> period) noexcept;
+		explicit _time_series(const util::period<std::chrono::sys_days> period) noexcept;
 
 	public:
 
@@ -131,12 +131,12 @@ namespace gregorian
 
 	public:
 
-		auto get_period() const noexcept -> gregorian::days_period;
+		auto get_period() const noexcept -> util::days_period;
 
 	public:
 
-		auto count(const days_period& p) const -> std::size_t;
-		auto count(const period<std::chrono::sys_days>& p) const -> std::size_t;
+		auto count(const util::days_period& p) const -> std::size_t;
+		auto count(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 	public:
 
@@ -150,7 +150,7 @@ namespace gregorian
 
 	private:
 
-		gregorian::period<std::chrono::sys_days> _period;
+		util::period<std::chrono::sys_days> _period;
 
 		using _storage = std::vector<_chunk>;
 
@@ -161,13 +161,13 @@ namespace gregorian
 
 
 	template<typename T>
-	_time_series<T>::_time_series(const gregorian::days_period& period) noexcept :
-		_time_series{ gregorian::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
+	_time_series<T>::_time_series(const util::days_period& period) noexcept :
+		_time_series{ util::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
 	{
 	}
 
 	template<typename T>
-	_time_series<T>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
+	_time_series<T>::_time_series(const util::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
 		_observations(_index(_period.get_until()) + std::size_t{ 1u })
 	{
@@ -200,9 +200,9 @@ namespace gregorian
 
 
 	template<typename T>
-	auto _time_series<T>::get_period() const noexcept -> gregorian::days_period
+	auto _time_series<T>::get_period() const noexcept -> util::days_period
 	{
-		return gregorian::days_period{ _period.get_from(), _period.get_until() };
+		return util::days_period{ _period.get_from(), _period.get_until() };
 	}
 
 
@@ -218,12 +218,12 @@ namespace gregorian
 
 
 
-	inline _time_series<bool>::_time_series(const gregorian::days_period& period) noexcept :
-		_time_series{ gregorian::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
+	inline _time_series<bool>::_time_series(const util::days_period& period) noexcept :
+		_time_series{ util::period<std::chrono::sys_days>{ period.get_from(), period.get_until() } }
 	{
 	}
 
-	inline _time_series<bool>::_time_series(const gregorian::period<std::chrono::sys_days> period) noexcept :
+	inline _time_series<bool>::_time_series(const util::period<std::chrono::sys_days> period) noexcept :
 		_period{ std::move(period) },
 		_observations(_index_outer(_period.get_until()) + std::size_t{ 1u })
 	{
@@ -251,9 +251,9 @@ namespace gregorian
 	}
 
 
-	inline auto _time_series<bool>::get_period() const noexcept -> gregorian::days_period
+	inline auto _time_series<bool>::get_period() const noexcept -> util::days_period
 	{
-		return gregorian::days_period{ _period.get_from(), _period.get_until() };
+		return util::days_period{ _period.get_from(), _period.get_until() };
 	}
 
 
@@ -281,9 +281,9 @@ namespace gregorian
 		return days.count() % _chunk_size;
 	}
 
-	inline auto _time_series<bool>::count(const days_period& p) const -> std::size_t
+	inline auto _time_series<bool>::count(const util::days_period& p) const -> std::size_t
 	{
-		return count(period<std::chrono::sys_days>{ p.get_from(), p.get_until() });
+		return count(util::period<std::chrono::sys_days>{ p.get_from(), p.get_until() });
 	}
 
 	// possible faster implementation could be to have another cache of _hols
@@ -296,7 +296,7 @@ namespace gregorian
 	// for rule based calendars with adjustments for holidays that fall on weekends
 	// we also know the number of additional holidays per year (which is just the number of rules)
 	// which can further optimise the calculation
-	inline auto _time_series<bool>::count(const period<std::chrono::sys_days>& p) const -> std::size_t
+	inline auto _time_series<bool>::count(const util::period<std::chrono::sys_days>& p) const -> std::size_t
 	{
 		using namespace std::chrono;
 

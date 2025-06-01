@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "period.h"
+#include <period.h>
 
 #include <cstddef>
 #include <chrono>
@@ -53,7 +53,7 @@ namespace gregorian
 	public:
 
 		explicit schedule(
-			days_period p,
+			util::days_period p,
 			dates ds
 		);
 
@@ -84,7 +84,7 @@ namespace gregorian
 
 	public:
 
-		auto get_period() const noexcept -> const days_period&;
+		auto get_period() const noexcept -> const util::days_period&;
 
 		auto get_dates() const noexcept -> const dates&;
 
@@ -94,7 +94,7 @@ namespace gregorian
 
 	private:
 
-		days_period _period;
+		util::days_period _period;
 
 		dates _dates;
 
@@ -183,23 +183,23 @@ namespace gregorian
 #endif
 	}
 
-	inline auto _make_period(const schedule::dates& ds) noexcept -> days_period
+	inline auto _make_period(const schedule::dates& ds) noexcept -> util::days_period
 	{
 		if (!ds.empty())
 		{
-			return days_period{ _make_from(ds), _make_until(ds) };
+			return util::days_period{ _make_from(ds), _make_until(ds) };
 		}
 		else
 		{
 			const auto any_date = std::chrono::year_month_day{};
 
-			return days_period{ any_date, any_date };
+			return util::days_period{ any_date, any_date };
 		}
 	}
 
 
 	inline schedule::schedule(
-		days_period p,
+		util::days_period p,
 		dates ds
 	) : _period{ std::move(p) },
 		_dates{ std::move(ds) }
@@ -257,7 +257,7 @@ namespace gregorian
 		return contains(std::chrono::year_month_day{ sd });
 	}
 
-	inline auto schedule::get_period() const noexcept -> const days_period&
+	inline auto schedule::get_period() const noexcept -> const util::days_period&
 	{
 		return _period;
 	}

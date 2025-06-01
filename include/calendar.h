@@ -22,7 +22,8 @@
 
 #pragma once
 
-#include "iota.h"
+#include <period.h>
+#include <iota.h>
 #include "time_series.h"
 
 #include "weekend.h"
@@ -65,14 +66,14 @@ namespace gregorian
 
 		auto is_business_day(const std::chrono::sys_days& sd) const -> bool;
 
-		auto count_business_days(const days_period& p) const -> std::size_t;
+		auto count_business_days(const util::days_period& p) const -> std::size_t;
 
-		auto count_business_days(const period<std::chrono::sys_days>& p) const -> std::size_t;
+		auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// is returning schedule the right thing to do?
-		auto make_business_days_schedule(const days_period& p) const -> schedule;
+		auto make_business_days_schedule(const util::days_period& p) const -> schedule;
 
-		auto make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule;
+		auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
 
 	public:
 
@@ -206,7 +207,7 @@ namespace gregorian
 	// https://www.clarusft.com/implementing-bus252-daycount-convention/
 	// or to cache the substituted holidays in an ordered vector, so we know how many holidays are between
 	// from and until, which we'll need to further adjust by the number of weekends between the same 2 dates
-	inline auto calendar::count_business_days(const days_period& period) const -> std::size_t
+	inline auto calendar::count_business_days(const util::days_period& period) const -> std::size_t
 	{
 		const auto non_business_days = _cache._non_business_days.count(period);
 		const auto calendar_days =
@@ -216,7 +217,7 @@ namespace gregorian
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::count_business_days(const period<std::chrono::sys_days>& p) const -> std::size_t
+	inline auto calendar::count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t
 	{
 		const auto non_business_days = _cache._non_business_days.count(p);
 		const auto calendar_days = p.get_until() - p.get_from();
@@ -225,18 +226,18 @@ namespace gregorian
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::make_business_days_schedule(const days_period& p) const -> schedule
+	inline auto calendar::make_business_days_schedule(const util::days_period& p) const -> schedule
 	{
 		// or implement directly?
 		return make_business_days_schedule(
-			period<std::chrono::sys_days>{ p.get_from(), p.get_until() }
+			util::period<std::chrono::sys_days>{ p.get_from(), p.get_until() }
 		);
 	}
 
-	inline auto calendar::make_business_days_schedule(const period<std::chrono::sys_days>& p) const -> schedule
+	inline auto calendar::make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule
 	{
 		const auto& v = p.get_from();
-		const auto b = p.get_until() + std::chrono::days{ 1 }; // iota::iota "boundary" below (non inclusive) is not the same as "period until" (inclusive)
+		const auto b = p.get_until() + std::chrono::days{ 1 }; // util::iota "boundary" below (non inclusive) is not the same as "period until" (inclusive)
 
 		const auto is_bd = [this](const std::chrono::sys_days& d)
 		{
@@ -244,12 +245,12 @@ namespace gregorian
 		};
 
 		auto s =
-			iota::iota(v, b) |
+			util::iota(v, b) |
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
 
 		return schedule{
-			days_period{ p.get_from(), p.get_until() },
+			util::days_period{ p.get_from(), p.get_until() },
 			std::move(s)
 		};
 	}

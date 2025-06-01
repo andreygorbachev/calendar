@@ -35,7 +35,7 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	namespace iota
+	namespace util
 	{
 
 		TEST(iota, iota1)
@@ -44,7 +44,7 @@ namespace gregorian
 			const auto b = sys_days{ 2025y / May / 30d };
 
 			const auto s =
-				iota::iota(v, b) |
+				util::iota(v, b) |
 				std::ranges::to<vector>();
 
 			const auto expected = vector<sys_days>{
@@ -64,7 +64,7 @@ namespace gregorian
 			const auto b = sys_days{ 2025y / May / 25d };
 
 			const auto s =
-				iota::iota(v, b) |
+				util::iota(v, b) |
 				std::ranges::to<vector>();
 
 			const auto expected = vector<sys_days>{

@@ -34,6 +34,7 @@ using namespace std;
 using namespace std::chrono;
 
 using namespace gregorian;
+using namespace gregorian::util;
 
 
 constexpr auto number_of_runs = 10;

@@ -12,7 +12,6 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(${PROJECT_NAME}
   weekend.cpp
-  period.cpp
   time_series.cpp
   schedule.cpp
   calendar.cpp

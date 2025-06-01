@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <period.h>
+
 #include <schedule.h>
 #include <business_day_adjusters.h>
 
@@ -34,6 +35,7 @@
 
 using namespace std;
 using namespace std::chrono;
+using namespace gregorian::util;
 
 
 namespace gregorian

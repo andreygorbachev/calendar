@@ -32,6 +32,7 @@
 #include <iostream>
 
 using namespace gregorian;
+using namespace gregorian::util;
 
 using namespace std;
 using namespace std::chrono;

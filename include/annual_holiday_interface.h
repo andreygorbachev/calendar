@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include <period.h>
+
 #include "schedule.h"
 
 #include <chrono>
@@ -62,7 +64,7 @@ namespace gregorian
 	// choice here is influenced by a desire to eventualy be able to apply annual_holiday rules at compile time (constexpr)
 
 	inline auto make_holiday_schedule(
-		const years_period& p,
+		const util::years_period& p,
 		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
@@ -73,7 +75,7 @@ namespace gregorian
 				hols.insert(rule->make_holiday(y));
 
 		return schedule{
-			days_period{
+			util::days_period{
 				p.get_from() / FirstDayOfJanuary,
 				p.get_until() / LastDayOfDecember
 			},
@@ -86,7 +88,7 @@ namespace gregorian
 		const annual_holiday_storage& rules
 	) noexcept -> schedule
 	{
-		return make_holiday_schedule(years_period{ y, y }, rules);
+		return make_holiday_schedule(util::years_period{ y, y }, rules);
 	}
 
 

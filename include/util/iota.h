@@ -29,7 +29,7 @@
 namespace gregorian
 {
 
-	namespace iota
+	namespace util
 	{
 
 		template<typename Dur> requires std::weakly_incrementable<typename Dur::rep>

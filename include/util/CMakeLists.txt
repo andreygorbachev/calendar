@@ -1,6 +1,7 @@
 project("calendar-util")
 
 add_library(${PROJECT_NAME} INTERFACE
+  period.h
   iota.h
 )
 

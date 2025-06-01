@@ -23,6 +23,7 @@
 #pragma once
 
 #include <period.h>
+
 #include <schedule.h>
 #include <annual_holiday_interface.h>
 
@@ -79,5 +80,5 @@ inline auto parse_csv_schedule(
 	const auto from = y_from / gregorian::FirstDayOfJanuary;
 	const auto until = y_until / gregorian::LastDayOfDecember;
 
-	return gregorian::schedule{ gregorian::days_period{ from, until }, std::move(hols) };
+	return gregorian::schedule{ gregorian::util::days_period{ from, until }, std::move(hols) };
 }
