@@ -76,6 +76,7 @@ namespace gregorian
 		using days_period = period<std::chrono::year_month_day>;
 		using months_period = period<std::chrono::year_month>;
 		using years_period = period<std::chrono::year>;
+		// maybe period<std::chrono::sys_days> should not be used directly, but only through days_period?
 
 
 		inline auto operator+(const days_period& p1, const days_period& p2) -> days_period

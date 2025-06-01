@@ -228,24 +228,13 @@ namespace gregorian
 
 	inline auto calendar::make_business_days_schedule(const util::days_period& p) const -> schedule
 	{
-		// or implement directly?
-		return make_business_days_schedule(
-			util::period<std::chrono::sys_days>{ p.get_from(), p.get_until() }
-		);
-	}
-
-	inline auto calendar::make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule
-	{
-		const auto& v = p.get_from();
-		const auto b = p.get_until() + std::chrono::days{ 1 }; // util::iota "boundary" below (non inclusive) is not the same as "period until" (inclusive)
-
-		const auto is_bd = [this](const std::chrono::sys_days& d)
-		{
-			return is_business_day(d);
-		};
+		const auto is_bd = [this](const std::chrono::year_month_day& ymd)
+			{
+				return is_business_day(ymd);
+			};
 
 		auto s =
-			util::iota(v, b) |
+			util::iota(p) |
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
 
@@ -253,6 +242,14 @@ namespace gregorian
 			util::days_period{ p.get_from(), p.get_until() },
 			std::move(s)
 		};
+	}
+
+	inline auto calendar::make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule
+	{
+		// or implement directly?
+		return make_business_days_schedule(
+			util::days_period{ p.get_from(), p.get_until() }
+		);
 	}
 
 

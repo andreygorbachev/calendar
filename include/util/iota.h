@@ -26,6 +26,8 @@
 #include <ranges>
 #include <iterator>
 
+#include <period.h>
+
 namespace gregorian
 {
 
@@ -34,7 +36,7 @@ namespace gregorian
 
 		template<typename Dur> requires std::weakly_incrementable<typename Dur::rep>
 		constexpr auto
-		iota(std::chrono::sys_time<Dur> from, std::chrono::sys_time<Dur> until)
+		_iota(std::chrono::sys_time<Dur> from, std::chrono::sys_time<Dur> until) // half open period [from, until)
 		{
 			return
 				std::views::iota(
@@ -45,22 +47,17 @@ namespace gregorian
 					[](const Dur::rep r) { return std::chrono::sys_time<Dur>{ Dur{ r } }; }
 				);
 		}
-/*
-		inline auto iota(const std::chrono::sys_days& v, const std::chrono::sys_days& b)
+
+
+		// how can we make this more generic?
+		inline auto iota(const days_period& p) // closed period [from, until]
 		{
-			const auto value = v.time_since_epoch().count();
-			const auto bound = b.time_since_epoch().count();
+			const auto& f = std::chrono::sys_days{ p.get_from() };
+			const auto u = std::chrono::sys_days{ p.get_until() } + std::chrono::days{ 1 };
 
-			const auto to_sys_days = [](const int i)
-			{
-				return std::chrono::sys_days{} + std::chrono::days{ i };
-			};
+			return _iota(f, u);
+		} // make constexpr?
 
-			return
-				std::views::iota(value, bound) |
-				std::views::transform(to_sys_days); // would be nice if we don't need to do this step
-		}
-*/
 	}
 
 }

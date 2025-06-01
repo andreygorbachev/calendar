@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <iota.h>
+#include <period.h>
 
 #include <gtest/gtest.h>
 
@@ -40,11 +41,10 @@ namespace gregorian
 
 		TEST(iota, iota1)
 		{
-			const auto v = sys_days{ 2025y / May / 25d };
-			const auto b = sys_days{ 2025y / May / 30d };
+			const auto p = days_period{ 2025y / May / 25d, 2025y / May / 30d };
 
 			const auto s =
-				util::iota(v, b) |
+				util::iota(p) |
 				std::ranges::to<vector>();
 
 			const auto expected = vector<sys_days>{
@@ -52,7 +52,8 @@ namespace gregorian
 				2025y / May / 26d,
 				2025y / May / 27d,
 				2025y / May / 28d,
-				2025y / May / 29d
+				2025y / May / 29d,
+				2025y / May / 30d
 			};
 
 			EXPECT_EQ(expected, s);
@@ -60,25 +61,17 @@ namespace gregorian
 
 		TEST(iota, iota2)
 		{
-			const auto v = sys_days{ 2025y / May / 25d };
-			const auto b = sys_days{ 2025y / May / 25d };
+			const auto p = days_period{ 2025y / May / 25d, 2025y / May / 25d };
 
 			const auto s =
-				util::iota(v, b) |
+				util::iota(p) |
 				std::ranges::to<vector>();
 
 			const auto expected = vector<sys_days>{
+				2025y / May / 25d
 			};
 
 			EXPECT_EQ(expected, s);
-		}
-
-		TEST(iota, iota3)
-		{
-			const auto v = 2025y / May / 30d;
-			const auto b = 2025y / May / 25d;
-
-			// not 100% sure how to test this case
 		}
 
 	}
