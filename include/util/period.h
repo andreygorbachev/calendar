@@ -36,6 +36,9 @@ namespace gregorian
 	namespace util
 	{
 
+		// it seems that std::chrono assumes that the period is closed, i.e. [from, until]
+		// (which is somewhat different from C++, which uses half-open intervals [from, until))
+		// here we follow the same convention of a closed period
 		template<typename T> class period final
 		{
 
