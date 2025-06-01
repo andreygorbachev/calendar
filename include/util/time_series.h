@@ -41,7 +41,7 @@ namespace gregorian
 	{
 
 		template<typename T>
-		class _time_series final // should this go into a separate sublibrary (like iota went?) - in this case it should not use period (or period should also go there)
+		class _time_series final // does it still need _?
 		{
 
 		public:
