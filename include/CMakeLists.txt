@@ -4,7 +4,6 @@ add_subdirectory(util)
 
 add_library(${PROJECT_NAME} INTERFACE
   weekend.h
-  time_series.h
   schedule.h
   calendar.h
   annual_holiday_interface.h

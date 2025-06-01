@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <period.h>
+#include <time_series.h>
 
 #include <weekend.h>
 #include <schedule.h>
