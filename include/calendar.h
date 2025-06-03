@@ -105,7 +105,7 @@ namespace gregorian
 				const weekend& we
 			);
 
-			util::_time_series<bool> _non_business_days;
+			util::time_series<bool> _non_business_days;
 			// calendars follow a 28 year cycle (apart of Easter, which has its own, much longer cycle)
 			// so maybe this could be done better (only cache a single cycle)
 		};

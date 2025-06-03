@@ -40,25 +40,25 @@ namespace gregorian
 	namespace util
 	{
 
-		TEST(_time_series, constructor1)
+		TEST(time_series, constructor1)
 		{
-			const auto ts = _time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			const auto ts = time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
 			EXPECT_EQ(expected, ts.get_period());
 		}
 		/*
-			TEST(_time_series, constructor2)
-			{
-				const auto ts = _time_series<double>{ period{ sys_days{ 2023y / January / 1d }, sys_days{ 2023y / June / 5d } } };
-
-				const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
-				EXPECT_EQ(expected, ts.get_period());
-			}
-		*/
-		TEST(_time_series, operator_subscript_1)
+		TEST(time_series, constructor2)
 		{
-			const auto ts = _time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			const auto ts = time_series<double>{ period{ sys_days{ 2023y / January / 1d }, sys_days{ 2023y / June / 5d } } };
+
+			const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
+			EXPECT_EQ(expected, ts.get_period());
+		}
+		*/
+		TEST(time_series, operator_subscript_1)
+		{
+			const auto ts = time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto expected = double{};
 			EXPECT_EQ(expected, ts[2023y / January / 1d]);
@@ -67,17 +67,17 @@ namespace gregorian
 			EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
 		}
 
-		TEST(_time_series, operator_subscript_2)
+		TEST(time_series, operator_subscript_2)
 		{
-			auto ts = _time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 			ts[2023y / January / 3d] = 3.4269;
 
 			EXPECT_EQ(3.4269, ts[2023y / January / 3d]);
 		}
 
-		TEST(_time_series, operator_subscript_3)
+		TEST(time_series, operator_subscript_3)
 		{
-			const auto ts = _time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			const auto ts = time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto expected = double{};
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
@@ -86,9 +86,9 @@ namespace gregorian
 			EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
 		}
 
-		TEST(_time_series, operator_subscript_4)
+		TEST(time_series, operator_subscript_4)
 		{
-			auto ts = _time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<double>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto sd = sys_days{ 2023y / January / 3d };
 
@@ -97,11 +97,11 @@ namespace gregorian
 			EXPECT_EQ(3.4269, ts[sd]);
 		}
 
-		TEST(_time_series_bool, constructor1)
+		TEST(time_series_bool, constructor1)
 		{
 			const auto f = 2023y / January / 1d;
 			const auto u = f;
-			const auto ts = _time_series<bool>{ days_period{ f, u } };
+			const auto ts = time_series<bool>{ days_period{ f, u } };
 
 			const auto expected = days_period{ f, u };
 			EXPECT_EQ(expected, ts.get_period());
@@ -110,13 +110,13 @@ namespace gregorian
 			EXPECT_EQ(bool{}, ts[u]);
 		}
 
-		TEST(_time_series_bool, constructor2)
+		TEST(time_series_bool, constructor2)
 		{
-			const auto cs = _time_series<bool>::get_chunk_size();
+			const auto cs = time_series<bool>::get_chunk_size();
 
 			const auto f = 2023y / January / 1d;
 			const auto u = sys_days{ f } + days{ cs } - days{ 1 };
-			const auto ts = _time_series<bool>{ days_period{ f, u } };
+			const auto ts = time_series<bool>{ days_period{ f, u } };
 
 			const auto expected = days_period{ f, u };
 			EXPECT_EQ(expected, ts.get_period());
@@ -125,13 +125,13 @@ namespace gregorian
 			EXPECT_EQ(bool{}, ts[u]);
 		}
 
-		TEST(_time_series_bool, constructor3)
+		TEST(time_series_bool, constructor3)
 		{
-			const auto cs = _time_series<bool>::get_chunk_size();
+			const auto cs = time_series<bool>::get_chunk_size();
 
 			const auto f = 2023y / January / 1d;
 			const auto u = sys_days{ f } + days{ cs } - days{ 1 } + days{ 1 };
-			const auto ts = _time_series<bool>{ days_period{ f, u } };
+			const auto ts = time_series<bool>{ days_period{ f, u } };
 
 			const auto expected = days_period{ f, u };
 			EXPECT_EQ(expected, ts.get_period());
@@ -140,17 +140,17 @@ namespace gregorian
 			EXPECT_EQ(bool{}, ts[u]);
 		}
 		/*
-			TEST(_time_series_bool, constructor4)
-			{
-				const auto ts = _time_series<bool>{ period{ sys_days{ 2023y / January / 1d }, sys_days{ 2023y / June / 5d } } };
-
-				const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
-				EXPECT_EQ(expected, ts.get_period());
-			}
-		*/
-		TEST(_time_series_bool, operator_subscript_1)
+		TEST(time_series_bool, constructor4)
 		{
-			const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			const auto ts = time_series<bool>{ period{ sys_days{ 2023y / January / 1d }, sys_days{ 2023y / June / 5d } } };
+
+			const auto expected = days_period{ 2023y / January / 1d, 2023y / June / 5d };
+			EXPECT_EQ(expected, ts.get_period());
+		}
+		*/
+		TEST(time_series_bool, operator_subscript_1)
+		{
+			const auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto expected = bool{};
 			EXPECT_EQ(expected, ts[2023y / January / 1d]);
@@ -159,9 +159,9 @@ namespace gregorian
 			EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
 		}
 
-		TEST(_time_series_bool, operator_subscript_2)
+		TEST(time_series_bool, operator_subscript_2)
 		{
-			auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			ts[2023y / January / 3d] = false;
 			EXPECT_EQ(false, ts[2023y / January / 3d]);
@@ -170,9 +170,9 @@ namespace gregorian
 			EXPECT_EQ(true, ts[2023y / January / 3d]);
 		}
 
-		TEST(_time_series_bool, operator_subscript_3)
+		TEST(time_series_bool, operator_subscript_3)
 		{
-			const auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			const auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto expected = bool{};
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
@@ -181,9 +181,9 @@ namespace gregorian
 			EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
 		}
 
-		TEST(_time_series_bool, operator_subscript_4)
+		TEST(time_series_bool, operator_subscript_4)
 		{
-			auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			const auto sd = sys_days{ 2023y / January / 3d };
 
@@ -194,9 +194,9 @@ namespace gregorian
 			EXPECT_EQ(true, ts[sd]);
 		}
 
-		TEST(_time_series_bool, count_1)
+		TEST(time_series_bool, count_1)
 		{
-			auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			ts[2023y / January / 1d] = false;
 			ts[2023y / January / 2d] = false;
@@ -209,9 +209,9 @@ namespace gregorian
 			EXPECT_EQ(2, ts.count(p));
 		}
 
-		TEST(_time_series_bool, count_2)
+		TEST(time_series_bool, count_2)
 		{
-			auto ts = _time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
+			auto ts = time_series<bool>{ days_period{ 2023y / January / 1d, 2023y / June / 5d } };
 
 			ts[2023y / January / 1d] = false;
 			ts[2023y / January / 2d] = false;
@@ -224,9 +224,9 @@ namespace gregorian
 			EXPECT_EQ(2, ts.count(p));
 		}
 
-		TEST(_time_series_bool, get_chunk_size_1)
+		TEST(time_series_bool, get_chunk_size_1)
 		{
-			EXPECT_EQ(64, _time_series<bool>::get_chunk_size());
+			EXPECT_EQ(64, time_series<bool>::get_chunk_size());
 		}
 
 	}

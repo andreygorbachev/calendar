@@ -268,7 +268,7 @@ namespace gregorian
 	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days3)
 	{
-		const auto cs = _time_series<bool>::get_chunk_size();
+		const auto cs = time_series<bool>::get_chunk_size();
 
 		const auto& c = make_calendar_england();
 		const auto& cp = c.get_schedule().get_period();
@@ -322,7 +322,7 @@ namespace gregorian
 	// should this be a _time_series_bool test?
 	TEST(calendar, count_business_days4)
 	{
-		const auto cs = _time_series<bool>::get_chunk_size();
+		const auto cs = time_series<bool>::get_chunk_size();
 
 		const auto& c = make_calendar_england();
 		const auto& cp = c.get_schedule().get_period();
