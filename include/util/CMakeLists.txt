@@ -8,4 +8,4 @@ add_library(${PROJECT_NAME} INTERFACE
 
 target_include_directories(${PROJECT_NAME} INTERFACE .)
 
-export(TARGETS calendar-util NAMESPACE Calendar::Util:: FILE CalendarUtilConfig.cmake)
+#export(TARGETS calendar-util NAMESPACE Calendar::Util:: FILE CalendarUtilConfig.cmake)
