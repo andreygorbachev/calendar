@@ -1,6 +1,6 @@
 project(calendar-test)
 
-set(BUILD_GMOCK Off)
+set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
 
 include(FetchContent)
 FetchContent_Declare(
