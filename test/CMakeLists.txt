@@ -2,10 +2,8 @@ project(calendar-test)
 
 set(BUILD_GMOCK Off)
 
-add_subdirectory(util)
-
 include(FetchContent)
-FetchContent_Declare( # as we have also do this in calendar-util-test - should this be done in one place only?
+FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        v1.17.0
@@ -28,3 +26,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME})
+
+add_subdirectory(util)
