@@ -10,6 +10,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+add_subdirectory(util)
+
 add_executable(${PROJECT_NAME}
   weekend.cpp
   schedule.cpp
@@ -26,5 +28,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME})
-
-add_subdirectory(util)
