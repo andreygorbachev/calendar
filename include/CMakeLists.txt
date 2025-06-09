@@ -18,4 +18,4 @@ target_link_libraries(${PROJECT_NAME} INTERFACE
   calendar-util
 )
 
-export(TARGETS calendar NAMESPACE Calendar:: FILE CalendarConfig.cmake)
+#export(TARGETS calendar NAMESPACE Calendar:: FILE CalendarConfig.cmake)
