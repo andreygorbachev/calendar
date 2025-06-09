@@ -1,5 +1,7 @@
 project(calendar-test)
 
+set(BUILD_GMOCK Off)
+
 add_subdirectory(util)
 
 include(FetchContent)
