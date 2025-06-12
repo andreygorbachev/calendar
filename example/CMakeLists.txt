@@ -1,4 +1,4 @@
-project("example" LANGUAGES NONE)
+project("calendar-example" LANGUAGES NONE)
 
 add_subdirectory(ANBIMA)
 add_subdirectory(country)
