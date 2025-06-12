@@ -1,5 +1,3 @@
-project("example" LANGUAGES NONE)
-
 add_subdirectory(ANBIMA)
 add_subdirectory(country)
 add_subdirectory(ICS)
