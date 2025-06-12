@@ -1,4 +1,4 @@
-project(calendar-test)
+project("calendar-test" LANGUAGES CXX)
 
 set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
 

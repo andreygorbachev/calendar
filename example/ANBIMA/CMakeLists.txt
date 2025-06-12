@@ -1,4 +1,4 @@
-project(calendar-example-ANBIMA)
+project("calendar-example-ANBIMA" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   example.cpp

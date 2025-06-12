@@ -1,4 +1,4 @@
-project(calendar-example-CSV)
+project("calendar-example-CSV" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   example.cpp

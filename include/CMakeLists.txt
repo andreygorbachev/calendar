@@ -1,4 +1,4 @@
-project("calendar")
+project("calendar" LANGUAGES CXX)
 
 add_subdirectory(util)
 

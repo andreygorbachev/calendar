@@ -1,4 +1,4 @@
-project("calendar-performance")
+project("calendar-performance" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   SONIA.cpp

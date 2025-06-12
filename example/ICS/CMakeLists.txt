@@ -1,4 +1,4 @@
-project(calendar-example-ICS)
+project("calendar-example-ICS" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   example.cpp
