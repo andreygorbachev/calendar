@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}-test" LANGUAGES CXX)
+project("${PROJECT_NAME}_test" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   period.cpp
@@ -7,7 +7,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-  calendar-util
+  calendar_util
   GTest::gtest_main
 )
 

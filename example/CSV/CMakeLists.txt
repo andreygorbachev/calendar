@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}-CSV" LANGUAGES CXX)
+project("${PROJECT_NAME}_CSV" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   example.cpp

@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}-util" LANGUAGES NONE)
+project("${PROJECT_NAME}_util" LANGUAGES NONE)
 
 add_subdirectory(include)
 

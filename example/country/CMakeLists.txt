@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}-country" LANGUAGES CXX)
+project("${PROJECT_NAME}_country" LANGUAGES CXX)
 
 add_library(${PROJECT_NAME}
   calendars.cpp

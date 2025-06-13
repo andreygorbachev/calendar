@@ -1,4 +1,4 @@
-# project "calendar-util"
+# project "calendar_util"
 
 add_library(${PROJECT_NAME} INTERFACE
   period.h

@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}-T2" LANGUAGES CXX)
+project("${PROJECT_NAME}_T2" LANGUAGES CXX)
 
 add_library(${PROJECT_NAME}
   calendar-T2.cpp
