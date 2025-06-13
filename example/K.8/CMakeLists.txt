@@ -1,4 +1,4 @@
-project("calendar-example-K.8" LANGUAGES CXX)
+project("${PROJECT_NAME}-K.8" LANGUAGES CXX)
 
 add_library(${PROJECT_NAME}
   calendar-K.8.cpp

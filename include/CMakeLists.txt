@@ -1,6 +1,4 @@
-project("calendar" LANGUAGES CXX)
-
-add_subdirectory(util)
+# project "calendar"
 
 add_library(${PROJECT_NAME} INTERFACE
   weekend.h

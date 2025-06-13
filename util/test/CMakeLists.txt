@@ -1,4 +1,4 @@
-project("calendar-util-test" LANGUAGES CXX)
+project("${PROJECT_NAME}-test" LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
   period.cpp

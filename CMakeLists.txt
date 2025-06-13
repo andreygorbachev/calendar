@@ -6,6 +6,18 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
+set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        v1.17.0
+)
+FetchContent_MakeAvailable(googletest)
+
+add_subdirectory(util)
+
 add_subdirectory(include)
 
 if(NOT GREGORIAN_CALENDAR_MINIMAL)
