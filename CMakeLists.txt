@@ -22,7 +22,7 @@ add_subdirectory(util)
 
 add_subdirectory(include)
 
-if(CALENDAR_BUILD_TESTS_AND_EXAMPLES)
+if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
 	enable_testing()
 
