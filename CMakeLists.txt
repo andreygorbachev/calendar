@@ -16,11 +16,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+option(CALENDAR_BUILD_TESTS_AND_EXAMPLES "Build all of calendar's own tests and examples." On)
+
 add_subdirectory(util)
 
 add_subdirectory(include)
 
-if(NOT GREGORIAN_CALENDAR_MINIMAL)
+if(CALENDAR_BUILD_TESTS_AND_EXAMPLES)
 
 	enable_testing()
 
