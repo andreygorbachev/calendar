@@ -2,7 +2,7 @@ project("${PROJECT_NAME}_util" LANGUAGES NONE)
 
 add_subdirectory(include)
 
-if(NOT GREGORIAN_CALENDAR_MINIMAL)
+if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
 	enable_testing()
 
