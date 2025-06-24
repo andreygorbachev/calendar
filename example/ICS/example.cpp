@@ -40,25 +40,25 @@ using namespace std::chrono;
 inline auto parse_ics_england_and_wales() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
-	return parse_ics("..\\..\\..\\example\\ICS\\data\\england-and-wales.ics"); // or set a working directory?
+	return parse_ics("england-and-wales.ics"); // or set a working directory?
 }
 
 inline auto parse_ics_scotland() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
-	return parse_ics("..\\..\\..\\example\\ICS\\data\\scotland.ics");
+	return parse_ics("scotland.ics");
 }
 
 inline auto parse_ics_northern_ireland() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
-	return parse_ics("..\\..\\..\\example\\ICS\\data\\northern-ireland.ics");
+	return parse_ics("northern-ireland.ics");
 }
 
 inline auto parse_ics_united_states() -> schedule
 {
 	// from https://www.newyorkfed.org/aboutthefed/holiday_schedule
-	return parse_ics("..\\..\\..\\example\\ICS\\data\\united-states.ics"); // is it the same as US national hols?
+	return parse_ics("united-states.ics"); // is it the same as US national hols?
 }
 
 

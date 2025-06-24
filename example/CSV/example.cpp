@@ -39,19 +39,19 @@ using namespace std::chrono;
 inline auto parse_csv_NYM_schedule() -> schedule
 {
 	// from https://www.cdsmodel.com/fee-computations.html
-	return parse_csv_schedule("..\\..\\..\\example\\CSV\\data\\NYM.csv", 2009y, 2070y); // or set a working directory?
+	return parse_csv_schedule("NYM.csv", 2009y, 2070y); // or set a working directory?
 }
 
 inline auto parse_csv_TYO_schedule() -> schedule
 {
 	// from https://www.cdsmodel.com/fee-computations.html
-	return parse_csv_schedule("..\\..\\..\\example\\CSV\\data\\TYO.csv", 2009y, 2070y);
+	return parse_csv_schedule("TYO.csv", 2009y, 2070y);
 }
 
 inline auto parse_csv_NNT_schedule() -> schedule
 {
 	// from https://www.cdsmodel.com/fee-computations.html
-	return parse_csv_schedule("..\\..\\..\\example\\CSV\\data\\NNT.csv", 2009y, 2070y);
+	return parse_csv_schedule("NNT.csv", 2009y, 2070y);
 }
 
 

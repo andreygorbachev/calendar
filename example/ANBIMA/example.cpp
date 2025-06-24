@@ -43,7 +43,7 @@ inline auto parse_csv_ANBIMA_schedule() -> schedule
 {
 	// from https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls
 	// (download it and re-save it as CSV)
-	return parse_csv_schedule("..\\..\\..\\example\\ANBIMA\\data\\feriados_nacionais.csv", 2001y, 2099y); // or set a working directory?
+	return parse_csv_schedule("feriados_nacionais.csv", 2001y, 2099y); // or set a working directory?
 }
 
 

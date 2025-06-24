@@ -1,5 +1,9 @@
 project("${PROJECT_NAME}_CSV" LANGUAGES CXX)
 
+configure_file(data/NYM.csv NYM.csv COPYONLY)
+configure_file(data/TYO.csv TYO.csv COPYONLY)
+configure_file(data/NNT.csv NNT.csv COPYONLY)
+
 add_executable(${PROJECT_NAME}
   example.cpp
   parser.h
