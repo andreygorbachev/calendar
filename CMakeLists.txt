@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
-set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
-
 option(CALENDAR_BUILD_TESTS_AND_EXAMPLES "Build all of calendar's own tests and examples." On)
 
 add_subdirectory(util)
@@ -17,6 +15,8 @@ add_subdirectory(include)
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
   include(FetchContent)
+
+  set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
 
   FetchContent_Declare(
     googletest
