@@ -8,14 +8,6 @@ set(CMAKE_CXX_EXTENSIONS Off)
 
 set(BUILD_GMOCK Off) # I am not sure if this meant to be used outside of googletest
 
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        v1.17.0
-)
-FetchContent_MakeAvailable(googletest)
-
 option(CALENDAR_BUILD_TESTS_AND_EXAMPLES "Build all of calendar's own tests and examples." On)
 
 add_subdirectory(util)
@@ -23,6 +15,16 @@ add_subdirectory(util)
 add_subdirectory(include)
 
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
+
+  include(FetchContent)
+
+  FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG        v1.17.0
+  )
+
+  FetchContent_MakeAvailable(googletest)
 
   enable_testing()
 
