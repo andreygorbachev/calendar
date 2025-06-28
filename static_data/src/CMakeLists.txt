@@ -19,3 +19,5 @@ target_sources(${PROJECT_NAME} PRIVATE
 target_link_libraries(${PROJECT_NAME} PUBLIC
   calendar
 )
+
+#export(TARGETS calendar_static-data NAMESPACE Calendar::StaticData:: FILE CalendarStaticDataConfig.cmake)
