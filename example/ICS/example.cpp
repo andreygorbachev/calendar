@@ -40,7 +40,7 @@ using namespace std::chrono;
 inline auto parse_ics_england_and_wales() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
-	return parse_ics("england-and-wales.ics"); // or set a working directory?
+	return parse_ics("england-and-wales.ics");
 }
 
 inline auto parse_ics_scotland() -> schedule
