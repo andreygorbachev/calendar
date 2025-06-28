@@ -56,6 +56,11 @@ namespace gregorian
 
 		auto make_T2_calendar() -> const gregorian::calendar&; // actually started in November 2007
 
+
+		// from https://www.federalreserve.gov/aboutthefed/k8.htm
+
+		auto make_K_8_calendar() -> const gregorian::calendar&;
+
 	}
 
 }
