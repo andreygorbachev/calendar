@@ -140,7 +140,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -150,7 +150,7 @@ namespace gregorian
 			const auto known_part = _England_schedule();
 
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
+			const auto generated_part_until = Epoch.get_until().year();
 
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
 			const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
@@ -295,7 +295,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -305,7 +305,7 @@ namespace gregorian
 			const auto known_part = _Scotland_schedule();
 
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
+			const auto generated_part_until = Epoch.get_until().year();
 
 			const auto SecondJanuary = offset_holiday{ &NewYearsDay, days{ 1 } };
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
@@ -463,7 +463,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch, year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -473,7 +473,7 @@ namespace gregorian
 			const auto known_part = _Northern_Ireland_schedule();
 
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = generated_part_from + years{ 10 }; // factor out this const
+			const auto generated_part_until = Epoch.get_until().year();
 
 			const auto StPatricsDay = named_holiday{ March / day{ 18u } };
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };

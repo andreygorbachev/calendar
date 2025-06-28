@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <period.h>
 #include <calendar.h>
 #include <schedule.h>
 
@@ -34,8 +35,10 @@ namespace gregorian
 	namespace static_data
 	{
 
-		constexpr auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
-		// all calendars should include holidays from at least this day
+		constexpr auto Epoch = util::period{
+			std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary, // all calendars should include holidays from at least this day
+			std::chrono::year{ 2118 } / gregorian::LastDayOfDecember
+		}; // or should it be in years?
 
 
 		// from https://www.gov.uk/bank-holidays

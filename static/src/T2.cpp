@@ -42,8 +42,8 @@ namespace gregorian
 
 		auto _make_T2_calendar() -> calendar
 		{
-			const auto from = Epoch.year();
-			const auto until = Epoch.year() + years{ 100 }; // factor out this const
+			const auto from = Epoch.get_from().year();
+			const auto until = Epoch.get_until(). year();
 
 			const auto LabourDay = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
 
