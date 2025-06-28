@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <static.h>
+#include <static_data.h>
 
 #include <gtest/gtest.h>
 
@@ -35,7 +35,7 @@ using namespace std::chrono;
 namespace gregorian
 {
 
-	namespace static_data // need to think about a better name
+	namespace static_data
 	{
 
 		TEST(static, make_calendar1)

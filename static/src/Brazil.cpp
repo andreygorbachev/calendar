@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "static.h"
+#include "static_data.h"
 
 #include <schedule.h>
 #include <annual_holidays.h>
