@@ -40,7 +40,7 @@ namespace gregorian
 
 		TEST(static, make_calendar1)
 		{
-			const auto& cal = make_England_calendar();
+			const auto& cal = make_T2_calendar();
 		}
 
 	}
