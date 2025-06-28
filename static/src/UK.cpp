@@ -32,12 +32,11 @@
 using namespace std;
 using namespace std::chrono;
 
-using namespace gregorian;
-using namespace gregorian::util;
-
 
 namespace gregorian
 {
+
+	using namespace util;
 
 	namespace static_data
 	{

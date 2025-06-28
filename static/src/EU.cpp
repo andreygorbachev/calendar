@@ -25,17 +25,15 @@
 #include <schedule.h>
 #include <annual_holidays.h>
 #include <weekend.h>
-#include <business_day_adjusters.h>
 
 using namespace std;
 using namespace std::chrono;
 
-using namespace gregorian;
-using namespace gregorian::util;
-
 
 namespace gregorian
 {
+
+	using namespace util;
 
 	namespace static_data
 	{

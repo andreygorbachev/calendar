@@ -61,6 +61,13 @@ namespace gregorian
 
 		auto make_K_8_calendar() -> const gregorian::calendar&;
 
+
+		//
+
+		auto make_ANBIMA_calendar() -> const gregorian::calendar&;
+
+		// B3?
+
 	}
 
 }
