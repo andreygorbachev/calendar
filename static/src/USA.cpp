@@ -71,7 +71,7 @@ namespace gregorian
 				rules1
 			);
 
-			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Juneteenth National Independence Day
+			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Emancipation Day
 
 			const auto rules2 = annual_holiday_storage{
 				&NewYearsDay,
