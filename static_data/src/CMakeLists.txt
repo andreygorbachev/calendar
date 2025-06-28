@@ -13,7 +13,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 # to make IDE to show this file as part of the project
 target_sources(${PROJECT_NAME} PRIVATE
-  ../include/static_data.h # should target_include_directories take care of a pathe here?
+  ../include/static_data.h # should target_include_directories take care of a path here?
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
