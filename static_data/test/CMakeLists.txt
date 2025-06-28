@@ -5,7 +5,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-  calendar_static
+  calendar_static-data
   GTest::gtest_main
 )
 

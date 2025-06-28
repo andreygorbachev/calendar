@@ -1,4 +1,4 @@
-# project "calendar_static"
+# project "calendar_static-data"
 
 add_library(${PROJECT_NAME}
   UK.cpp
@@ -12,7 +12,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 )
 
 # to make IDE to show this file as part of the project
-target_sources(${PROJECT_NAME} PUBLIC # PRIVATE
+target_sources(${PROJECT_NAME} PRIVATE
   ../include/static_data.h # should target_include_directories take care of a pathe here?
 )
 

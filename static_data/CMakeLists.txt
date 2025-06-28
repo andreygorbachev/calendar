@@ -1,4 +1,4 @@
-project("${PROJECT_NAME}_static" LANGUAGES CXX)
+project("${PROJECT_NAME}_static-data" LANGUAGES CXX)
 
 add_subdirectory(src)
 

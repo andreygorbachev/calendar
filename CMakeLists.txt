@@ -12,7 +12,7 @@ add_subdirectory(util)
 
 add_subdirectory(include)
 
-add_subdirectory(static)
+add_subdirectory(static_data)
 
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 

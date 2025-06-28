@@ -46,12 +46,12 @@ namespace gregorian
 
 			const auto TiradentesDay = named_holiday{ April / 21d };
 			const auto LabourDay = named_holiday{ May / 1d };
-			const auto ShroveMonday = offset_holiday{ &_Easter, std::chrono::days{ -47 - 1 } }; // should it be in the actual library?
-			const auto ShroveTuesday = offset_holiday{ &_Easter, std::chrono::days{ -46 - 1 } }; // should it be in the actual library?
-			const auto CorpusChristi = offset_holiday{ &_Easter, std::chrono::days{ 60 } }; // should it be in the actual library?
+			const auto ShroveMonday = offset_holiday{ &_Easter, std::chrono::days{ -47 - 1 } }; // should it be in the main library?
+			const auto ShroveTuesday = offset_holiday{ &_Easter, std::chrono::days{ -46 - 1 } }; // should it be in the main library?
+			const auto CorpusChristi = offset_holiday{ &_Easter, std::chrono::days{ 60 } }; // should it be in the main library?
 			const auto IndependenceDay = named_holiday{ September / 7d };
 			const auto OurLadyOfAparecida = named_holiday{ October / 12d };
-			const auto AllSoulsDay = named_holiday{ November / 2d }; // should it be in the actual library?
+			const auto AllSoulsDay = named_holiday{ November / 2d }; // should it be in the main library?
 			const auto RepublicProclamationDay = named_holiday{ November / 15d };
 
 			const auto rules1 = annual_holiday_storage{
