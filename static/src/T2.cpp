@@ -20,17 +20,61 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#pragma once
+#include "static.h"
 
-#include <calendar.h>
+#include <schedule.h>
+#include <annual_holidays.h>
+#include <weekend.h>
+#include <business_day_adjusters.h>
 
-#include <chrono>
+using namespace std;
+using namespace std::chrono;
+
+using namespace gregorian;
+using namespace gregorian::util;
 
 
+namespace gregorian
+{
 
-const auto Epoch = std::chrono::year{ 2023 } / std::chrono::March / std::chrono::day{ 20u };
+	namespace static_data
+	{
+
+		auto _make_T2_calendar() -> calendar
+		{
+			const auto from = Epoch.year();
+			const auto until = Epoch.year() + years{ 100 }; // factor out this const
+
+			const auto LabourDay = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
+
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&GoodFriday,
+				&EasterMonday,
+				&LabourDay,
+				&ChristmasDay,
+				&BoxingDay
+			};
+
+			const auto s = make_holiday_schedule(
+				years_period{ from, until },
+				rules
+			);
+
+			return calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			// please note that holidays are not adjusted in T2
+		}
 
 
-// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
+		auto make_T2_calendar() -> const calendar&
+		{
+			static const auto s = _make_T2_calendar();
+			return s;
+		}
 
-auto make_T2_calendar() -> const gregorian::calendar&;
+	}
+
+}

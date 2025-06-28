@@ -34,7 +34,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		const auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
+		constexpr auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
 		// all calendars should include holidays from at least this day
 
 
@@ -47,6 +47,11 @@ namespace gregorian
 		auto make_Scotland_calendar() -> const gregorian::calendar&;
 
 		auto make_Northern_Ireland_calendar() -> const gregorian::calendar&;
+
+
+		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
+
+		auto make_T2_calendar() -> const gregorian::calendar&; // actually started in November 2007
 
 	}
 

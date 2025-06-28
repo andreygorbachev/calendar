@@ -1,7 +1,8 @@
 # project "calendar_static"
 
 add_library(${PROJECT_NAME}
-  static.cpp
+  UK.cpp
+  T2.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
