@@ -41,6 +41,9 @@ namespace gregorian
 
 		auto _make_ANBIMA_calendar() -> calendar
 		{
+			const auto from = Epoch.get_from().year();
+			const auto until = Epoch.get_until().year();
+
 			const auto TiradentesDay = named_holiday{ April / 21d };
 			const auto LabourDay = named_holiday{ May / 1d };
 			const auto ShroveMonday = offset_holiday{ &_Easter, std::chrono::days{ -47 - 1 } }; // should it be in the actual library?
@@ -67,7 +70,7 @@ namespace gregorian
 			};
 
 			const auto s1 = make_holiday_schedule(
-				years_period{ 2001y, 2023y }, // should we use Epoch?
+				years_period{ from, 2023y },
 				rules1
 			);
 
@@ -90,7 +93,7 @@ namespace gregorian
 			};
 
 			const auto s2 = make_holiday_schedule(
-				years_period{ 2024y, 2099y }, // shuold we use Epoch?
+				years_period{ 2024y, until },
 				rules2
 			);
 
