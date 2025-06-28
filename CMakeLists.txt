@@ -12,6 +12,8 @@ add_subdirectory(util)
 
 add_subdirectory(include)
 
+add_subdirectory(static)
+
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
   include(FetchContent)

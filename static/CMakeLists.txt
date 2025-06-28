@@ -1,6 +1,6 @@
-project("${PROJECT_NAME}_util" LANGUAGES NONE)
+project("${PROJECT_NAME}_static" LANGUAGES NONE)
 
-add_subdirectory(include)
+add_subdirectory(src)
 
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2023-2024 Andrey Gorbachev
+// Copyright (c) 2023 Andrey Gorbachev
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#pragma once
+#include <static.h>
 
-#include <calendar.h>
-#include <schedule.h>
+#include <gtest/gtest.h>
 
 #include <chrono>
+#include <ranges>
+#include <vector>
+
+using namespace std;
+using namespace std::chrono;
 
 
+namespace gregorian
+{
 
-const auto Epoch = std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary;
-// all calendars should include holidays from at least this day
+	namespace static_data // need to think about a better name
+	{
 
+		TEST(static, make_calendar1)
+		{
+			const auto& cal = make_England_calendar();
+		}
 
-// from https://www.gov.uk/bank-holidays
+	}
 
-auto make_England_calendar() -> const gregorian::calendar&;
-
-auto make_Wales_calendar() -> const gregorian::calendar&;
-
-auto make_Scotland_calendar() -> const gregorian::calendar&;
-
-auto make_Northern_Ireland_calendar() -> const gregorian::calendar&;
+}
