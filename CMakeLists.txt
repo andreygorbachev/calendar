@@ -8,12 +8,6 @@ set(CMAKE_CXX_EXTENSIONS Off)
 
 option(CALENDAR_BUILD_TESTS_AND_EXAMPLES "Build all of calendar's own tests and examples." On)
 
-add_subdirectory(util)
-
-add_subdirectory(include)
-
-add_subdirectory(static_data)
-
 if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
   include(FetchContent)
@@ -29,6 +23,16 @@ if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
   FetchContent_MakeAvailable(googletest)
 
   enable_testing()
+
+endif()
+
+add_subdirectory(util)
+
+add_subdirectory(include)
+
+add_subdirectory(static_data)
+
+if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
 
   add_subdirectory(test)
   add_subdirectory(performance)
