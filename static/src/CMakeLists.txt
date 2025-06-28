@@ -2,8 +2,8 @@
 
 add_library(${PROJECT_NAME}
   UK.cpp
-  T2.cpp
-  K_8.cpp
+  EU.cpp
+  USA.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
