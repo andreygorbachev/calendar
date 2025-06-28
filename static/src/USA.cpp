@@ -39,7 +39,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _make_K_8_calendar() -> calendar
+		auto _make_K_8_calendar() -> calendar // const auto InaugurationDay = named_holiday{ January / day{ 20u } }; - do we need to handle it?
 		{
 			const auto from = Epoch.get_from().year();
 			const auto until = Epoch.get_until().year();
