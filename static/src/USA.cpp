@@ -47,19 +47,17 @@ namespace gregorian
 			const auto MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 			const auto Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
 			const auto MemorialDay = weekday_last_holiday{ May / Monday[last] };
-			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Juneteenth National Independence Day
 			const auto IndependenceDay = named_holiday{ July / day{ 4u } };
 			const auto LaborDay = weekday_indexed_holiday{ September / Monday[1] };
 			const auto ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
 			const auto VeteransDay = named_holiday{ November / day{ 11u } };
 			const auto ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
-			const auto rules = annual_holiday_storage{
+			const auto rules1 = annual_holiday_storage{
 				&NewYearsDay,
 				&MartinLutherKing,
 				&Washington,
 				&MemorialDay,
-				&Juneteenth, // this is not correct - it was introduced only in 2021
 				&IndependenceDay,
 				&LaborDay,
 				&ColumbusDay,
@@ -68,16 +66,35 @@ namespace gregorian
 				&ChristmasDay
 			};
 
-			// 2025 January 20 is also an innaguration day (in addition to Birthday Of Martin Luther King, Jr.)
+			const auto s1 = make_holiday_schedule(
+				years_period{ from, 2020y },
+				rules1
+			);
 
-			const auto s = make_holiday_schedule(
-				years_period{ from, until },
-				rules
+			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Juneteenth National Independence Day
+
+			const auto rules2 = annual_holiday_storage{
+				&NewYearsDay,
+				&MartinLutherKing,
+				&Washington,
+				&MemorialDay,
+				&Juneteenth,
+				&IndependenceDay,
+				&LaborDay,
+				&ColumbusDay,
+				&VeteransDay,
+				&ThanksgivingDay,
+				&ChristmasDay
+			};
+
+			const auto s2 = make_holiday_schedule(
+				years_period{ 2021y, until },
+				rules2
 			);
 
 			auto c = calendar{
 				SaturdaySundayWeekend,
-				s
+				s1 + s2
 			};
 
 			c.substitute(Nearest);
@@ -86,7 +103,7 @@ namespace gregorian
 		}
 
 
-		auto make_K_8_calendar() -> const calendar&
+		auto make_K_8_calendar() -> const calendar& // do we need the historic part explicitly?
 		{
 			static const auto s = _make_K_8_calendar();
 			return s;

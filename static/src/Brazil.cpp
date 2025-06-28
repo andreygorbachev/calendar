@@ -67,7 +67,7 @@ namespace gregorian
 			};
 
 			const auto s1 = make_holiday_schedule(
-				years_period{ 2001y, 2023y },
+				years_period{ 2001y, 2023y }, // should we use Epoch?
 				rules1
 			);
 
@@ -90,7 +90,7 @@ namespace gregorian
 			};
 
 			const auto s2 = make_holiday_schedule(
-				years_period{ 2024y, 2099y },
+				years_period{ 2024y, 2099y }, // shuold we use Epoch?
 				rules2
 			);
 
@@ -137,7 +137,7 @@ namespace gregorian
 */
 
 
-		auto make_ANBIMA_calendar() -> const calendar&
+		auto make_ANBIMA_calendar() -> const calendar& // do we need the historic part explicitly?
 		{
 			static const auto s = _make_ANBIMA_calendar();
 			return s;
