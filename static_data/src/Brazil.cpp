@@ -39,7 +39,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _make_ANBIMA_calendar() -> calendar
+		auto _make_ANBIMA_calendar() -> calendar // should this go to the fin-calendar?
 		{
 			const auto from = Epoch.get_from().year();
 			const auto until = Epoch.get_until().year();
