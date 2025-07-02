@@ -61,7 +61,7 @@ namespace gregorian
 
 		auto make_USA_Federal_calendar() -> const calendar&;
 
-		// Washington D.C.?
+		auto make_Washington_DC_Federal_calendar() -> const calendar&;
 
 
 		//

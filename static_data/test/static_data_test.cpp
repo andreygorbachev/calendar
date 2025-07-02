@@ -45,7 +45,8 @@ namespace gregorian
 
 		TEST(static, make_calendar2)
 		{
-			const auto& cal = make_USA_Federal_calendar();
+			const auto& cal1 = make_USA_Federal_calendar();
+			const auto& cal2 = make_Washington_DC_Federal_calendar();
 		}
 
 		TEST(static, make_calendar3)
