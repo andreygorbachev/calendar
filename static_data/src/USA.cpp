@@ -42,6 +42,17 @@ namespace gregorian
 		auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // website has history going back to 2011
+				2017y / January / 2d,
+				2017y / January / 16d,
+				2017y / February / 20d,
+				2017y / May / 29d,
+				2017y / July / 4d,
+				2017y / September / 4d,
+				2017y / October / 9d,
+				2017y / November / 10d,
+				2017y / November / 23d,
+				2017y / December / 25d,
+
 				2018y / January / 1d,
 				2018y / January / 15d,
 				2018y / February / 19d,
