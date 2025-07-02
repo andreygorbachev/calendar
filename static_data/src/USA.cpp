@@ -159,11 +159,45 @@ namespace gregorian
 				2027y / November / 25d,
 				2027y / December / 24d,
 
-				// more available
+				2027y / December / 31d,
+				2028y / January / 17d,
+				2028y / February / 21d,
+				2028y / May / 29d,
+				2028y / June / 19d,
+				2028y / July / 4d,
+				2028y / September / 4d,
+				2028y / October / 9d,
+				2028y / November / 10d,
+				2028y / November / 23d,
+				2028y / December / 25d,
+
+				2029y / January / 1d,
+				2029y / January / 15d,
+				2029y / February / 19d,
+				2029y / May / 28d,
+				2029y / June / 19d,
+				2029y / July / 4d,
+				2029y / September / 3d,
+				2029y / October / 8d,
+				2029y / November / 12d,
+				2029y / November / 22d,
+				2029y / December / 25d,
+
+				2030y / January / 1d,
+				2030y / January / 21d,
+				2030y / February / 18d,
+				2030y / May / 27d,
+				2030y / June / 19d,
+				2030y / July / 4d,
+				2030y / September / 2d,
+				2030y / October / 14d,
+				2030y / November / 11d,
+				2030y / November / 28d,
+				2030y / December / 25d,
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), year{ 2030 } / LastDayOfDecember },
 				move(holidays)
 			};
 		}
