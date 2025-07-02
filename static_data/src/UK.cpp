@@ -287,7 +287,7 @@ namespace gregorian
 				2027y / March / 26d,
 				2027y / May / 3d,
 				2027y / May / 31d,
-				2027y / August / 30d, // is this correct?
+				2027y / August / 2d,
 				2027y / November / 30d,
 				2027y / December / 27d,
 				2027y / December / 28d,
