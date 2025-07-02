@@ -36,35 +36,35 @@ namespace gregorian
 	{
 
 		constexpr auto Epoch = util::period{
-			std::chrono::year{ 2018 } / gregorian::FirstDayOfJanuary, // all calendars should include holidays from at least this day
-			std::chrono::year{ 2118 } / gregorian::LastDayOfDecember
+			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
+			std::chrono::year{ 2118 } / LastDayOfDecember
 		}; // or should it be in years?
 
 
 		// from https://www.gov.uk/bank-holidays
 
-		auto make_England_calendar() -> const gregorian::calendar&;
+		auto make_England_calendar() -> const calendar&;
 
-		auto make_Wales_calendar() -> const gregorian::calendar&;
+		auto make_Wales_calendar() -> const calendar&;
 
-		auto make_Scotland_calendar() -> const gregorian::calendar&;
+		auto make_Scotland_calendar() -> const calendar&;
 
-		auto make_Northern_Ireland_calendar() -> const gregorian::calendar&;
+		auto make_Northern_Ireland_calendar() -> const calendar&;
 
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar() -> const gregorian::calendar&; // actually started in November 2007
+		auto make_T2_calendar() -> const calendar&; // actually started in November 2007
 
 
-		// from https://www.federalreserve.gov/aboutthefed/k8.htm
+		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
-		auto make_K_8_calendar() -> const gregorian::calendar&;
+		auto make_USA_Federal_calendar() -> const calendar&;
 
 
 		//
 
-		auto make_ANBIMA_calendar() -> const gregorian::calendar&;
+		auto make_ANBIMA_calendar() -> const calendar&;
 
 		// B3?
 

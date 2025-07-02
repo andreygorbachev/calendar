@@ -39,41 +39,152 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _make_K_8_calendar() -> calendar // const auto InaugurationDay = named_holiday{ January / day{ 20u } }; - do we need to handle it?
+		auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
-			const auto from = Epoch.get_from().year();
-			const auto until = Epoch.get_until().year();
+			auto holidays = schedule::dates{ // website has history going back to 2011
+				2018y / January / 1d,
+				2018y / January / 15d,
+				2018y / February / 19d,
+				2018y / May / 28d,
+				2018y / July / 4d,
+				2018y / September / 3d,
+				2018y / October / 8d,
+				2018y / November / 12d,
+				2018y / November / 22d,
+				2018y / December / 25d,
+
+				2019y / January / 1d,
+				2019y / January / 21d,
+				2019y / February / 18d,
+				2019y / May / 27d,
+				2019y / July / 4d,
+				2019y / September / 2d,
+				2019y / October / 14d,
+				2019y / November / 11d,
+				2019y / November / 28d,
+				2019y / December / 25d,
+
+				2020y / January / 1d,
+				2020y / January / 20d,
+				2020y / February / 17d,
+				2020y / May / 25d,
+				2020y / July / 3d,
+				2020y / September / 7d,
+				2020y / October / 12d,
+				2020y / November / 11d,
+				2020y / November / 26d,
+				2020y / December / 25d,
+
+				2021y / January / 1d,
+				2021y / January / 18d,
+				2021y / February / 15d,
+				2021y / May / 31d,
+				2021y / June / 18d,
+				2021y / July / 5d,
+				2021y / September / 6d,
+				2021y / October / 11d,
+				2021y / November / 11d,
+				2021y / November / 25d,
+				2021y / December / 24d,
+
+				2021y / December / 31d,
+				2022y / January / 17d,
+				2022y / February / 21d,
+				2022y / May / 30d,
+				2022y / June / 20d,
+				2022y / July / 4d,
+				2022y / September / 5d,
+				2022y / October / 10d,
+				2022y / November / 11d,
+				2022y / November / 24d,
+				2022y / December / 26d,
+
+				2023y / January / 2d,
+				2023y / January / 16d,
+				2023y / February / 20d,
+				2023y / May / 29d,
+				2023y / June / 19d,
+				2023y / July / 4d,
+				2023y / September / 4d,
+				2023y / October / 9d,
+				2023y / November / 10d,
+				2023y / November / 23d,
+				2023y / December / 25d,
+
+				2024y / January / 1d,
+				2024y / January / 15d,
+				2024y / February / 19d,
+				2024y / May / 27d,
+				2024y / June / 19d,
+				2024y / July / 4d,
+				2024y / September / 2d,
+				2024y / October / 14d,
+				2024y / November / 11d,
+				2024y / November / 28d,
+				2024y / December / 25d,
+
+				2025y / January / 1d,
+				2025y / January / 20d,
+				2025y / February / 17d,
+				2025y / May / 26d,
+				2025y / June / 19d,
+				2025y / July / 4d,
+				2025y / September / 1d,
+				2025y / October / 13d,
+				2025y / November / 11d,
+				2025y / November / 27d,
+				2025y / December / 25d,
+
+				2026y / January / 1d,
+				2026y / January / 19d,
+				2026y / February / 16d,
+				2026y / May / 25d,
+				2026y / June / 19d,
+				2026y / July / 3d,
+				2026y / September / 7d,
+				2026y / October / 12d,
+				2026y / November / 11d,
+				2026y / November / 26d,
+				2026y / December / 25d,
+
+				2027y / January / 1d,
+				2027y / January / 18d,
+				2027y / February / 15d,
+				2027y / May / 31d,
+				2027y / June / 18d,
+				2027y / July / 5d,
+				2027y / September / 6d,
+				2027y / October / 11d,
+				2027y / November / 11d,
+				2027y / November / 25d,
+				2027y / December / 24d,
+
+			};
+
+			return schedule{
+				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		auto _make_USA_Federal_calendar() -> calendar
+		{
+			const auto known_part = _USA_Federal_schedule();
+
+			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
+			const auto generated_part_until = Epoch.get_until().year();
 
 			const auto MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 			const auto Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
 			const auto MemorialDay = weekday_last_holiday{ May / Monday[last] };
+			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Emancipation Day
 			const auto IndependenceDay = named_holiday{ July / day{ 4u } };
 			const auto LaborDay = weekday_indexed_holiday{ September / Monday[1] };
 			const auto ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
 			const auto VeteransDay = named_holiday{ November / day{ 11u } };
 			const auto ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
-			const auto rules1 = annual_holiday_storage{
-				&NewYearsDay,
-				&MartinLutherKing,
-				&Washington,
-				&MemorialDay,
-				&IndependenceDay,
-				&LaborDay,
-				&ColumbusDay,
-				&VeteransDay,
-				&ThanksgivingDay,
-				&ChristmasDay
-			};
-
-			const auto s1 = make_holiday_schedule(
-				years_period{ from, 2020y },
-				rules1
-			);
-
-			const auto Juneteenth = named_holiday{ June / day{ 19u } }; // Emancipation Day
-
-			const auto rules2 = annual_holiday_storage{
+			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
 				&MartinLutherKing,
 				&Washington,
@@ -87,25 +198,29 @@ namespace gregorian
 				&ChristmasDay
 			};
 
-			const auto s2 = make_holiday_schedule(
-				years_period{ 2021y, until },
-				rules2
+			const auto generated_part = make_holiday_schedule(
+				years_period{ generated_part_from, generated_part_until },
+				rules
 			);
 
-			auto c = calendar{
+			// setup a calendar for the generated part only (to do substitution for the generated dates)
+			auto cal = calendar{
 				SaturdaySundayWeekend,
-				s1 + s2
+				generated_part
 			};
+			cal.substitute(Nearest);
 
-			c.substitute(Nearest);
-
-			return c;
+			return calendar{
+				SaturdaySundayWeekend,
+				known_part + cal.get_schedule()
+			};
 		}
 
 
-		auto make_K_8_calendar() -> const calendar& // do we need the historic part explicitly?
+
+		auto make_USA_Federal_calendar() -> const calendar&
 		{
-			static const auto s = _make_K_8_calendar();
+			static const auto s = _make_USA_Federal_calendar();
 			return s;
 		}
 
