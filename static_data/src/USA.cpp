@@ -373,10 +373,9 @@ namespace gregorian
 			};
 			cal.substitute(Nearest);
 
-			return calendar{
-				SaturdaySundayWeekend,
-				known_part + cal.get_schedule()
-			}; // add the USA part
+			return 
+				_make_USA_Federal_calendar() &
+				calendar{ SaturdaySundayWeekend, known_part + cal.get_schedule() };
 		}
 
 
