@@ -310,7 +310,7 @@ namespace gregorian
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
 			const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
 			const auto SummerBankHoliday = weekday_indexed_holiday{ August / Monday[1] };
-			const auto StAndrewsDay = named_holiday{ November / day{ 30u } };
+			const auto StAndrewsDay = named_holiday{ November / 30d };
 
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
@@ -474,10 +474,10 @@ namespace gregorian
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 			const auto generated_part_until = Epoch.get_until().year();
 
-			const auto StPatricsDay = named_holiday{ March / day{ 18u } };
+			const auto StPatricsDay = named_holiday{ March / 18d };
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
 			const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
-			const auto OrangemensDay = named_holiday{ July / day{ 12u } };
+			const auto OrangemensDay = named_holiday{ July / 12d };
 			const auto SummerBankHoliday = weekday_last_holiday{ August / Monday[last] };
 
 			const auto rules = annual_holiday_storage{
