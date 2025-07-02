@@ -43,6 +43,24 @@ namespace gregorian
 			const auto& cal = make_T2_calendar();
 		}
 
+		TEST(static, make_calendar2)
+		{
+			const auto& cal = make_USA_Federal_calendar();
+		}
+
+		TEST(static, make_calendar3)
+		{
+			const auto& cal1 = make_England_calendar();
+			const auto& cal2 = make_Scotland_calendar();
+			const auto& cal3 = make_Wales_calendar();
+			const auto& cal4 = make_Northern_Ireland_calendar();
+		}
+
+		TEST(static, make_calendar4)
+		{
+			const auto& cal = make_ANBIMA_calendar();
+		}
+
 	}
 
 }
