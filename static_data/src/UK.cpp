@@ -139,7 +139,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -294,7 +294,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -462,7 +462,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), year{ 2027 } / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
