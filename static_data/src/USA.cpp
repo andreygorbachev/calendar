@@ -348,6 +348,27 @@ namespace gregorian
 			};
 		}
 
+		// should it move to the main library?
+		auto _make_holiday_schedule(
+			const util::years_period& p,
+			const annual_holiday_storage& rules
+		) noexcept -> schedule
+		{
+			auto hols = schedule::dates{};
+
+			for (auto y = p.get_from(); y <= p.get_until(); ++y)
+				for (const auto& rule : rules)
+					hols.insert(rule->make_holiday(y));
+
+			return schedule{
+				util::days_period{
+					p.get_from() / FirstDayOfJanuary,
+					p.get_until() / LastDayOfDecember
+				},
+				std::move(hols)
+			};
+		}
+
 		auto _make_Washington_DC_Federal_calendar() -> calendar
 		{
 			const auto known_part = _Washington_DC_Federal_schedule();
@@ -361,7 +382,7 @@ namespace gregorian
 				&InaugurationDay
 			};
 
-			const auto generated_part = make_holiday_schedule(
+			const auto generated_part = _make_holiday_schedule(
 				years_period{ generated_part_from, generated_part_until },
 				rules // not right as this should be every 4th year only
 			);
@@ -374,7 +395,7 @@ namespace gregorian
 			cal.substitute(Nearest);
 
 			return 
-				_make_USA_Federal_calendar() &
+				_make_USA_Federal_calendar() |
 				calendar{ SaturdaySundayWeekend, known_part + cal.get_schedule() };
 		}
 

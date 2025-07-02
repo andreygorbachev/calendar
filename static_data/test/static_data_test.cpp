@@ -62,6 +62,22 @@ namespace gregorian
 			const auto& cal = make_ANBIMA_calendar();
 		}
 
+		TEST(static, InaugurationDay)
+		{
+			const auto& cal1 = make_USA_Federal_calendar();
+			const auto& cal2 = make_Washington_DC_Federal_calendar();
+
+			// from the "known" part
+			EXPECT_FALSE(cal2.is_business_day(2025y / January / 20d));
+			EXPECT_FALSE(cal1.is_business_day(2025y / January / 20d)); // also is a MartinLutherKing
+
+			EXPECT_FALSE(cal2.is_business_day(2021y / January / 20d));
+
+			EXPECT_TRUE(cal2.is_business_day(2026y / January / 20d));
+
+			// from the "generated" part?
+		}
+
 	}
 
 }
