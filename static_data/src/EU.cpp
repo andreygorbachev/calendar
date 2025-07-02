@@ -43,7 +43,7 @@ namespace gregorian
 			const auto from = Epoch.get_from().year();
 			const auto until = Epoch.get_until(). year();
 
-			const auto LabourDay = weekday_indexed_holiday{ std::chrono::May / std::chrono::Monday[1] };
+			const auto LabourDay = weekday_indexed_holiday{ May / Monday[1] };
 
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
