@@ -349,7 +349,7 @@ namespace gregorian
 		}
 
 		// should it move to the main library (in a more generic form)?
-		auto _make_holiday_schedule(
+		auto _make_Washington_DC_Federal_holiday_schedule(
 			const util::years_period& p,
 			const annual_holiday_storage& rules
 		) noexcept -> schedule
@@ -382,7 +382,7 @@ namespace gregorian
 				&InaugurationDay
 			};
 
-			const auto generated_part = _make_holiday_schedule(
+			const auto generated_part = _make_Washington_DC_Federal_holiday_schedule(
 				years_period{ generated_part_from, generated_part_until },
 				rules // not right as this should be every 4th year only
 			);
