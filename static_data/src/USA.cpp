@@ -356,8 +356,6 @@ namespace gregorian
 		{
 			auto hols = schedule::dates{};
 
-			const auto f = p.get_from() / 4;
-
 			for (auto y = 2033y; y <= p.get_until(); y += years{ 4 })
 				for (const auto& rule : rules)
 					hols.insert(rule->make_holiday(y));
