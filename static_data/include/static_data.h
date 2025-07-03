@@ -54,7 +54,7 @@ namespace gregorian
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar() -> const calendar&; // actually started in November 2007
+		auto make_T2_calendar() -> const calendar&;
 
 
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/

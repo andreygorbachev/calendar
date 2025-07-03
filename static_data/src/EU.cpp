@@ -40,8 +40,9 @@ namespace gregorian
 
 		auto _make_T2_calendar() -> calendar // should we give it a full name of TARGET2?
 		{
-			const auto from = Epoch.get_from().year();
-			const auto until = Epoch.get_until(). year();
+			constexpr auto from = 2007y; // Actually the calendar became effective from November 2007, so not 100% sure about 2007 prior to that
+			constexpr auto until = Epoch.get_until().year();
+			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
 			const auto LabourDay = weekday_indexed_holiday{ May / Monday[1] };
 

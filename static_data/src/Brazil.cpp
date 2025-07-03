@@ -41,8 +41,9 @@ namespace gregorian
 
 		auto _make_ANBIMA_calendar() -> calendar // should this go to the fin-calendar?
 		{
-			const auto from = Epoch.get_from().year();
-			const auto until = Epoch.get_until().year();
+			constexpr auto from = 2001y;
+			constexpr auto until = Epoch.get_until().year();
+			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
 			const auto TiradentesDay = named_holiday{ April / 21d };
 			const auto LabourDay = named_holiday{ May / 1d };
