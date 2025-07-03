@@ -348,7 +348,7 @@ namespace gregorian
 			};
 		}
 
-		// should it move to the main library?
+		// should it move to the main library (in a more generic form)?
 		auto _make_holiday_schedule(
 			const util::years_period& p,
 			const annual_holiday_storage& rules
@@ -356,7 +356,9 @@ namespace gregorian
 		{
 			auto hols = schedule::dates{};
 
-			for (auto y = p.get_from(); y <= p.get_until(); ++y)
+			const auto f = p.get_from() / 4;
+
+			for (auto y = 2033y; y <= p.get_until(); y += years{ 4 })
 				for (const auto& rule : rules)
 					hols.insert(rule->make_holiday(y));
 
