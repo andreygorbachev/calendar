@@ -384,7 +384,7 @@ namespace gregorian
 
 			const auto generated_part = _make_Washington_DC_Federal_holiday_schedule(
 				years_period{ generated_part_from, generated_part_until },
-				rules // not right as this should be every 4th year only
+				rules
 			);
 
 			// setup a calendar for the generated part only (to do substitution for the generated dates)
