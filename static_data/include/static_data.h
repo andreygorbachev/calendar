@@ -68,8 +68,6 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar() -> const calendar&;
 
-		// B3?
-
 	}
 
 }

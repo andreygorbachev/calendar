@@ -104,40 +104,6 @@ namespace gregorian
 			// please note that holidays are not adjusted in ANBIMA
 		}
 
-/*
-		auto _B3_schedule() -> schedule
-		{
-			// from https://www.b3.com.br/en_us/solutions/platforms/puma-trading-system/for-members-and-traders/trading-calendar/holidays/
-
-			const auto period = years_period{ 2001y, 2099y };
-
-			const auto SaoPaulosFoundation = named_holiday{ January / 25d };
-			const auto ConstitutionalistRevolution = named_holiday{ July / 9d };
-			const auto BlackConsciousnessDay = named_holiday{ November / 20d };
-
-			const auto rules1 = annual_holiday_storage{
-				&SaoPaulosFoundation,
-				&ConstitutionalistRevolution,
-				&BlackConsciousnessDay,
-				&ChristmasEve
-			};
-
-			const auto s1 = make_holiday_schedule(period, rules1);
-
-			// finally add last business day of the year as a holiday
-
-			const auto rules2 = annual_holiday_storage{
-				&NewYearsEve
-			};
-
-			const auto s2 = make_holiday_schedule(period, rules1);
-
-			auto c2 = calendar{ SaturdaySundayWeekend, s2 };
-			c2.substitute(Preceding);
-
-			return _ANBIMA_schedule() + s1 + c2.get_schedule();
-		}
-*/
 
 
 		auto make_ANBIMA_calendar() -> const calendar& // do we need the historic part explicitly?
@@ -145,13 +111,7 @@ namespace gregorian
 			static const auto s = _make_ANBIMA_calendar();
 			return s;
 		}
-/*
-		auto make_B3_calendar() -> const calendar&
-		{
-			static const auto s = _make_B3_calendar();
-			return s;
-		}
-*/
+
 	}
 
 }
