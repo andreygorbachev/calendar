@@ -8,7 +8,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-  calendar
+  calendar_static-data
 )
 
 # to make IDE to show this file as part of the project
