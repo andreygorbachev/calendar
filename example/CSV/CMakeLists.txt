@@ -12,3 +12,10 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
   calendar
 )
+
+# to make IDE to show this file as part of the project
+target_sources(${PROJECT_NAME} PRIVATE
+  data/NYM.csv
+  data/TYO.csv
+  data/NNT.csv
+)
