@@ -52,6 +52,8 @@ namespace gregorian
 
 	private:
 
+		// current convention is to throw an exception is the adjustment takes us outside the calendar's bounds
+
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day = 0;
 
 		// if more efficient, derived classes should also override this method, but it is not mandatory
