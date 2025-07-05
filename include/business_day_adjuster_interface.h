@@ -53,6 +53,7 @@ namespace gregorian
 	private:
 
 		// current convention is to throw an exception is the adjustment takes us outside the calendar's bounds
+		// (this might not be a good idea as USA uses Nearest convention and has 1st January as a holiday)
 
 		virtual auto _adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day = 0;
 
