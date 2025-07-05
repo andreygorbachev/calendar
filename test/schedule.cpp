@@ -96,10 +96,45 @@ namespace gregorian
 
 	TEST(schedule, operator_bitwise_not)
 	{
-		auto s = make_mpc_holiday_schedule_2023_2024(); // ~ is inside that function
-		const auto cal = calendar{ NoWeekend, move(s) };
+		const auto& dates = make_mpc_dates_may_2023();
+		
+		const auto hols = ~dates;
 
-		EXPECT_EQ(2023y / June / 22d, Following.adjust(2023y / May / 12d, cal));
+		const auto expected = schedule{ util::days_period{ 2023y / May / 1d, 2023y / May / 31d }, {
+			2023y / May / 1d,
+			2023y / May / 2d,
+			2023y / May / 3d,
+			2023y / May / 4d,
+			2023y / May / 5d,
+			2023y / May / 6d,
+			2023y / May / 7d,
+			2023y / May / 8d,
+			2023y / May / 9d,
+			2023y / May / 10d,
+			2023y / May / 12d,
+			// no 11th
+			2023y / May / 13d,
+			2023y / May / 14d,
+			2023y / May / 15d,
+			2023y / May / 16d,
+			2023y / May / 17d,
+			2023y / May / 18d,
+			2023y / May / 19d,
+			2023y / May / 20d,
+			2023y / May / 21d,
+			2023y / May / 22d,
+			2023y / May / 23d,
+			2023y / May / 24d,
+			2023y / May / 25d,
+			2023y / May / 26d,
+			2023y / May / 27d,
+			2023y / May / 28d,
+			2023y / May / 29d,
+			2023y / May / 30d,
+			2023y / May / 31d
+		} };
+
+		EXPECT_EQ(expected, hols);
 	}
 
 	TEST(schedule, operator_equal_to)
