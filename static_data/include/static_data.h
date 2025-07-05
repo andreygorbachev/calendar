@@ -27,6 +27,7 @@
 #include <schedule.h>
 
 #include <chrono>
+#include <string>
 
 
 namespace gregorian
@@ -34,6 +35,10 @@ namespace gregorian
 
 	namespace static_data
 	{
+
+		auto locate_calendar(std::string_view tz_name) -> const calendar&; // or should it return const calendar* like locate_zone?
+
+
 
 		constexpr auto Epoch = util::period{
 			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
