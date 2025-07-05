@@ -517,7 +517,6 @@ namespace gregorian
 			using namespace std::chrono;
 
 			auto meeting_dates = schedule::dates{
-				// 2023 confirmed dates
 				2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
 				2023y / March / 23d, // March MPC Summary and minutes
 				2023y / May / 11d, // May MPC Summary and minutes and May Monetary Policy Report
@@ -526,7 +525,7 @@ namespace gregorian
 				2023y / September / 21d, // September MPC Summary and minutes
 				2023y / November / 2d, // November MPC Summary and minutes and November Monetary Policy Report
 				2023y / December / 14d, // December MPC Summary and minutes
-				// 2024 provisional dates
+
 				2024y / February / 1d, //February MPC Summary and minutes and February Monetary Policy Report
 				2024y / March / 21d, // March MPC Summary and minutes
 				2024y / May / 9d, // May MPC Summary and minutes and May Monetary Policy Report
@@ -535,9 +534,28 @@ namespace gregorian
 				2024y / September / 19d, // September MPC Summary and minutes
 				2024y / November / 7d, // November MPC Summary and minutes and November Monetary Policy Report
 				2024y / December / 19d, // December MPC Summary and minutes
+
+				2025y / February / 6d, // February MPC Summary and minutes and February Monetary Policy Report
+				2025y / March / 20d, // March MPC Summary and minutes
+				2025y / May / 8d, // May MPC Summary and minutes and May Monetary Policy Report
+				2025y / June / 19d, // June MPC Summary and minutes
+				2025y / August / 7d, // August MPC Summary and minutes and August Monetary Policy Report
+				2025y / September / 18d, // September MPC Summary and minutes
+				2025y / November / 6d, // November MPC Summary and minutes and November Monetary Policy Report
+				2025y / December / 18d, // December MPC Summary and minutes
+
+				// provisional dates
+				2026y / February / 5d, // February MPC Summary and minutes and February Monetary Policy Report
+				2026y / March / 19d, // March MPC Summary and minutes
+				2026y / April / 30d, // April MPC Summary and minutes and May Monetary Policy Report
+				2026y / June / 18d, // June MPC Summary and minutes
+				2026y / July/ 30d, // July MPC Summary and minutes and August Monetary Policy Report
+				2026y / September / 17d, // September MPC Summary and minutes
+				2026y / November / 5d, // November MPC Summary and minutes and November Monetary Policy Report
+				2026y / December / 17d, // December MPC Summary and minutes 
 			};
 
-			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2024y / LastDayOfDecember }, std::move(meeting_dates) };
+			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2026y / LastDayOfDecember }, std::move(meeting_dates) };
 		}
 
 		auto _MPC_schedule() -> schedule // MPC holiday dates
