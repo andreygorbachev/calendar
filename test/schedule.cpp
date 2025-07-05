@@ -183,26 +183,26 @@ namespace gregorian
 
 	TEST(schedule, operator_addition_assignment_date)
 	{
-		auto s = make_holiday_schedule_england();
+		auto s = make_holiday_schedule_england_april_2023();
 
 		EXPECT_FALSE(s.contains(2023y / April / 1d));
 		s += 2023y / April / 1d;
 		EXPECT_TRUE(s.contains(2023y / April / 1d));
 
 		EXPECT_FALSE(s.contains(2024y / April / 1d));
-		s += 2024y / April / 1d;
+		s += 2024y / April / 1d; // 2024 is outside the period, so no-op
 		EXPECT_FALSE(s.contains(2024y / April / 1d));
 	}
 
 	TEST(schedule, operator_subtraction_assignment_date)
 	{
-		auto s = make_holiday_schedule_england();
+		auto s = make_holiday_schedule_england_april_2023();
 
 		s += 2023y / April / 1d;
-		EXPECT_NE(make_holiday_schedule_england(), s);
+		EXPECT_NE(make_holiday_schedule_england_april_2023(), s);
 
 		s -= 2023y / April / 1d;
-		EXPECT_EQ(make_holiday_schedule_england(), s);
+		EXPECT_EQ(make_holiday_schedule_england_april_2023(), s);
 	}
 
 
