@@ -200,7 +200,7 @@ namespace gregorian
 		using namespace std::chrono;
 
 		auto meeting_dates = schedule::dates{
-			2023y / May / 11d, // May MPC Summary and minutes and May Monetary Policy Report
+			2023y / May / 11d,
 		};
 
 		return schedule{ util::days_period{ 2023y / May / 1d, 2023y / May / 31d }, std::move(meeting_dates) };
