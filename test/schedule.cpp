@@ -76,8 +76,8 @@ namespace gregorian
 
 	TEST(schedule, operator_bitwise_or)
 	{
-		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s1 = make_holiday_schedule_england_april_2023() + make_holiday_schedule_england_may_2023();
+		const auto& s2 = make_holiday_schedule_united_states_may_2023();
 
 		const auto s = s1 | s2;
 
@@ -87,8 +87,8 @@ namespace gregorian
 
 	TEST(schedule, operator_bitwise_and)
 	{
-		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s1 = make_holiday_schedule_england_april_2023() + make_holiday_schedule_england_may_2023();
+		const auto& s2 = make_holiday_schedule_united_states_may_2023();
 
 		const auto s = s1 & s2;
 
