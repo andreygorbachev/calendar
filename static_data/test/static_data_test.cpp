@@ -62,6 +62,11 @@ namespace gregorian
 			const auto& cal = make_ANBIMA_calendar();
 		}
 
+		TEST(static, make_calendar5)
+		{
+			const auto& cal = make_MPC_calendar();
+		}
+
 		TEST(static, InaugurationDay)
 		{
 			const auto& cal1 = make_USA_Federal_calendar();
