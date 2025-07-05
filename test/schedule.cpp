@@ -51,24 +51,26 @@ namespace gregorian
 
 	TEST(schedule, constructor_2)
 	{
-		const auto s1 = make_holiday_schedule_england();
+		const auto s1 = make_holiday_schedule_england_may_2023();
 		const auto s2 = schedule{
-			days_period{ 2023y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+			days_period{ 2023y / May / 1d, 2023y / May / 15d },
 			s1.get_dates()
-		};
+		}; // dates outside the period will be dropped
 
-		EXPECT_EQ(make_holiday_schedule_england(), s1);
-		EXPECT_NE(make_holiday_schedule_england(), s2);
+		EXPECT_EQ(make_holiday_schedule_england_may_2023(), s1);
+		EXPECT_NE(make_holiday_schedule_england_may_2023(), s2);
 	}
 
 	TEST(schedule, constructor_3)
 	{
-		const auto s1 = make_holiday_schedule_england();
+		const auto s1 = make_holiday_schedule_england_may_2023();
 		const auto s2 = schedule{
 			s1.get_dates()
 		};
 
-		EXPECT_EQ(make_holiday_schedule_england(), s2);
+		const auto expected_period = util::days_period{ 2023y / FirstDayOfJanuary, 2023y / LastDayOfDecember };
+
+		EXPECT_EQ(expected_period, s2.get_period());
 	}
 
 
@@ -139,16 +141,16 @@ namespace gregorian
 
 	TEST(schedule, operator_equal_to)
 	{
-		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_england();
+		const auto& s1 = make_holiday_schedule_england_may_2023();
+		const auto& s2 = make_holiday_schedule_england_may_2023();
 
 		EXPECT_TRUE(s1 == s2);
 	}
 
 	TEST(schedule, operator_not_equal_to)
 	{
-		const auto& s1 = make_holiday_schedule_england();
-		const auto& s2 = make_holiday_schedule_united_states();
+		const auto& s1 = make_holiday_schedule_england_may_2023();
+		const auto& s2 = make_holiday_schedule_united_states_may_2023();
 
 		EXPECT_TRUE(s1 != s2);
 	}
