@@ -50,11 +50,11 @@ int main()
 	const auto parsed = calendar{ SaturdaySundayWeekend, parse_csv_ANBIMA_schedule() };
 	const auto& made = locate_calendar("America/ANBIMA");
 
-	const auto from = max(
+	const auto& from = max(
 		parsed.get_schedule().get_period().get_from(),
 		made.get_schedule().get_period().get_from()
 	);
-	const auto until = min(
+	const auto& until = min(
 		parsed.get_schedule().get_period().get_until(),
 		made.get_schedule().get_period().get_until()
 	);
