@@ -36,8 +36,24 @@ namespace gregorian
 
 		auto locate_calendar(string_view tz_name) -> const calendar&
 		{
-			throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
+			if (tz_name == "Europe/London"s)
+				return make_England_calendar();
+			else if (tz_name == "Europe/Cardif"s)
+				return make_Wales_calendar();
+			else if (tz_name == "Europe/Edinburgh"s)
+				return make_Scotland_calendar();
+			else if (tz_name == "Europe/Belfast"s)
+				return make_Northern_Ireland_calendar();
+			else
+				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
+
+		// not 100% sure about following tz-data, but it seems to be ok for now
+
+		// we'll probably end up with a separate data file like tz-data (maybe in a similar format)
+		// (that we'll also make a long if ... eles chain not needed)
+
+		// otherwise, make* functions should not be exposed anyway
 
 	}
 

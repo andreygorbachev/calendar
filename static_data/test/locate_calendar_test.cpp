@@ -44,6 +44,11 @@ namespace gregorian
 			EXPECT_THROW(locate_calendar("foo"), runtime_error);
 		}
 
+		TEST(static, locate_calendar2)
+		{
+			const auto& cal = locate_calendar("Europe/London");
+		}
+
 	}
 
 }
