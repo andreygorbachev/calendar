@@ -179,6 +179,7 @@ namespace gregorian
 		EXPECT_FALSE(c.is_non_business_day(2023y / May / 2d));
 		EXPECT_THROW(c.is_non_business_day(1y / May / 1d), out_of_range);
 		EXPECT_THROW(c.is_non_business_day(9999y / May / 1d), out_of_range);
+		EXPECT_FALSE(c.is_non_business_day(2023y / February / 30d)); // not .ok()
 	}
 
 	TEST(calendar, is_non_business_day2)
@@ -189,6 +190,7 @@ namespace gregorian
 		EXPECT_FALSE(c.is_non_business_day(sys_days{ 2023y / May / 2d }));
 		EXPECT_THROW(c.is_non_business_day(sys_days{ 1y / May / 1d }), out_of_range);
 		EXPECT_THROW(c.is_non_business_day(sys_days{ 9999y / May / 1d }), out_of_range);
+		EXPECT_FALSE(c.is_non_business_day(sys_days{ 2023y / February / 30d })); // not .ok()
 	}
 
 	TEST(calendar, is_business_day1)
@@ -199,6 +201,7 @@ namespace gregorian
 		EXPECT_TRUE(c.is_business_day(2023y / May / 2d));
 		EXPECT_THROW(c.is_business_day(1y / May / 1d), out_of_range);
 		EXPECT_THROW(c.is_business_day(9999y / May / 1d), out_of_range);
+		EXPECT_TRUE(c.is_business_day(2023y / February / 30d)); // not .ok()
 	}
 
 	TEST(calendar, is_business_day2)
@@ -209,6 +212,7 @@ namespace gregorian
 		EXPECT_TRUE(c.is_business_day(sys_days{ 2023y / May / 2d }));
 		EXPECT_THROW(c.is_business_day(sys_days{ 1y / May / 1d }), out_of_range);
 		EXPECT_THROW(c.is_business_day(sys_days{ 9999y / May / 1d }), out_of_range);
+		EXPECT_TRUE(c.is_business_day(sys_days{ 2023y / February / 30d })); // not .ok()
 	}
 
 	TEST(calendar, count_business_days1)
