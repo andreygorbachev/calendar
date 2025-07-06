@@ -54,6 +54,8 @@ namespace gregorian
 				return make_USA_Federal_calendar();
 			else if (tz_name == "America/Washington"s) // not a city, but federal holidays
 				return make_Washington_DC_Federal_calendar();
+			else if (tz_name == "America/ANBIMA"s) // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+				return make_ANBIMA_calendar();
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
