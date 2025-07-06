@@ -48,7 +48,7 @@ inline auto parse_csv_ANBIMA_schedule() -> schedule
 int main()
 {
 	const auto parsed = calendar{ SaturdaySundayWeekend, parse_csv_ANBIMA_schedule() };
-	const auto& made = make_ANBIMA_calendar();
+	const auto& made = locate_calendar("America/ANBIMA");
 
 	const auto from = max(
 		parsed.get_schedule().get_period().get_from(),
