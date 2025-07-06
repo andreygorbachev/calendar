@@ -50,6 +50,10 @@ namespace gregorian
 				return make_MPC_calendar();
 			else if (tz_name == "Europe/T2"s) // or should it be Europe/EU/MPC? or should it be in etcetera?
 				return make_T2_calendar();
+			else if (tz_name == "America/USD"s) // not a city, but federal holidays
+				return make_USA_Federal_calendar();
+			else if (tz_name == "America/Washington"s) // not a city, but federal holidays
+				return make_Washington_DC_Federal_calendar();
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
