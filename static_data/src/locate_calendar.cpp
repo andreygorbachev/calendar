@@ -66,6 +66,8 @@ namespace gregorian
 		// we'll probably end up with a separate data file like tz-data (maybe in a similar format)
 		// (that we'll also make a long if ... eles chain not needed)
 
+		// #embed could also be considered, at least for the known dates
+
 		// otherwise, make* functions should not be exposed anyway
 
 	}
