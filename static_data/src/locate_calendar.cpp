@@ -48,7 +48,7 @@ namespace gregorian
 				return make_Northern_Ireland_calendar();
 			else if (tz_name == "Europe/MPC"s) // or should it be Europe/UK/MPC? or should it be in etcetera?
 				return make_MPC_calendar();
-			else if (tz_name == "Europe/T2"s) // or should it be Europe/EU/MPC? or should it be in etcetera?
+			else if (tz_name == "Europe/T2"s) // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 				return make_T2_calendar();
 			else if (tz_name == "America/USA"s) // not a city, but federal holidays
 				return make_USA_Federal_calendar();
