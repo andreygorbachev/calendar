@@ -60,11 +60,11 @@ int main()
 	);
 
 	const auto cal1 = calendar{
-		SaturdaySundayWeekend,
+		parsed.get_weekend(),
 		schedule{ days_period{ from, until }, parsed.get_schedule().get_dates() }
 	};
 	const auto cal2 = calendar{
-		SaturdaySundayWeekend,
+		made.get_weekend(),
 		schedule{ days_period{ from, until }, made.get_schedule().get_dates() }
 	};
 
