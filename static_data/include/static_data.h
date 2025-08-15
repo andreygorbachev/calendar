@@ -47,6 +47,7 @@ namespace gregorian
 			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
 			std::chrono::year{ 2118 } / LastDayOfDecember
 		}; // or should it be in years?
+		// we probably want 2000-2099
 
 
 		// from https://www.gov.uk/bank-holidays
@@ -67,7 +68,7 @@ namespace gregorian
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar() -> const calendar&;
+		auto make_T2_calendar() -> const calendar&; // example of a calendar which did not exist in 2000
 
 
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
