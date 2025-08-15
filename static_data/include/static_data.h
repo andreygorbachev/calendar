@@ -43,6 +43,8 @@ namespace gregorian
 
 		auto locate_calendar(std::string_view tz_name) -> const calendar&; // or should it return const calendar* like locate_zone?
 		// or is it more of a locale thing, rather than a time zone?
+		
+		// what should we do for thread safety?
 
 
 		constexpr auto Epoch = util::period{
