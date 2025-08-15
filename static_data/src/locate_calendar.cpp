@@ -43,15 +43,18 @@ namespace gregorian
 		static auto _make_calendar_registry()
 		{
 			auto r = _calendar_registry{};
+
 			r["Europe/London"] = &make_England_calendar(); // from UK, only London is in tzdata
 			r["Europe/Cardif"] = &make_Wales_calendar();
 			r["Europe/Edinburgh"] = &make_Scotland_calendar();
 			r["Europe/Belfast"] = &make_Northern_Ireland_calendar();
 			r["Europe/MPC"] = &make_MPC_calendar(); // or should it be Europe/UK/MPC? or should it be in etcetera?
 			r["Europe/T2"] = &make_T2_calendar(); // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+
 			r["America/USA"] = &make_USA_Federal_calendar(); // not a city, but federal holidays
 			r["America/Washington"] = &make_Washington_DC_Federal_calendar(); // not a city, but federal holidays
 			r["America/ANBIMA"] = &make_ANBIMA_calendar(); // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+
 			return r;
 
 			// can we make the calendars only if they are needed?
