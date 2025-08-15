@@ -36,7 +36,7 @@ namespace gregorian
 
 		auto locate_calendar(string_view tz_name) -> const calendar&
 		{
-			// linear serach for now, but we can use a map later if needed
+			// linear search for now, but we can use a map later if needed
 			// (each calendar should be able to register itself during initialization)
 			if (tz_name == "Europe/London"s) // from UK, only London is in tzdata
 				return make_England_calendar();
