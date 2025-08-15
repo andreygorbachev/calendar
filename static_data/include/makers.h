@@ -22,8 +22,6 @@
 
 #pragma once
 
-#include "makers.h"
-
 #include <period.h>
 #include <calendar.h>
 #include <schedule.h>
@@ -38,18 +36,37 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// we should probably label every holiday with a time frame it is applicable
-		// (and have a singleton for the "as of date" so a calendar from that date can be created)
+		// from https://www.gov.uk/bank-holidays
 
-		auto locate_calendar(std::string_view tz_name) -> const calendar&; // or should it return const calendar* like locate_zone?
-		// or is it more of a locale thing, rather than a time zone?
+		auto make_England_calendar() -> const calendar&;
+
+		auto make_Wales_calendar() -> const calendar&;
+
+		auto make_Scotland_calendar() -> const calendar&;
+
+		auto make_Northern_Ireland_calendar() -> const calendar&;
+
+		// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
+
+		auto make_MPC_calendar() -> const calendar&; // should this go to the fin-calendar?
+		// does not correspond to Epoch
 
 
-		constexpr auto Epoch = util::period{
-			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
-			std::chrono::year{ 2118 } / LastDayOfDecember
-		}; // or should it be in years?
-		// we probably want 2000-2099
+		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
+
+		auto make_T2_calendar() -> const calendar&; // example of a calendar which did not exist in 2000
+
+
+		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
+
+		auto make_USA_Federal_calendar() -> const calendar&;
+
+		auto make_Washington_DC_Federal_calendar() -> const calendar&;
+
+
+		//
+
+		auto make_ANBIMA_calendar() -> const calendar&; // should this go to the fin-calendar?
 
 	}
 
