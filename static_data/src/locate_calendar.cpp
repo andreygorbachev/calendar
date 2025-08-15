@@ -21,8 +21,11 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h"
 
 #include <stdexcept>
+#include <map>
+//#include <memory>
 
 using namespace std;
 using namespace std::chrono;
@@ -34,28 +37,40 @@ namespace gregorian
 	namespace static_data
 	{
 
+		using _calendar_registry = map<string_view, const calendar*>; // should probably be unique_ptr // should it be string rather than string_view?
+		// is map a correct data structure for this?
+
+		static auto _make_calendar_registry()
+		{
+			auto r = _calendar_registry{};
+			r["Europe/London"] = &make_England_calendar(); // from UK, only London is in tzdata
+			r["Europe/Cardif"] = &make_Wales_calendar();
+			r["Europe/Edinburgh"] = &make_Scotland_calendar();
+			r["Europe/Belfast"] = &make_Northern_Ireland_calendar();
+			r["Europe/MPC"] = &make_MPC_calendar(); // or should it be Europe/UK/MPC? or should it be in etcetera?
+			r["Europe/T2"] = &make_T2_calendar(); // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+			r["America/USA"] = &make_USA_Federal_calendar(); // not a city, but federal holidays
+			r["America/Washington"] = &make_Washington_DC_Federal_calendar(); // not a city, but federal holidays
+			r["America/ANBIMA"] = &make_ANBIMA_calendar(); // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+			return r;
+
+			// can we make the calendars only if they are needed?
+		}
+
+		static auto _get_calendar_registry()
+		{
+			static const auto r = _make_calendar_registry();
+			return r;
+		}
+
+
 		auto locate_calendar(string_view tz_name) -> const calendar&
 		{
-			// linear search for now, but we can use a map later if needed
-			// (each calendar should be able to register itself during initialization)
-			if (tz_name == "Europe/London"s) // from UK, only London is in tzdata
-				return make_England_calendar();
-			else if (tz_name == "Europe/Cardif"s)
-				return make_Wales_calendar();
-			else if (tz_name == "Europe/Edinburgh"s)
-				return make_Scotland_calendar();
-			else if (tz_name == "Europe/Belfast"s)
-				return make_Northern_Ireland_calendar();
-			else if (tz_name == "Europe/MPC"s) // or should it be Europe/UK/MPC? or should it be in etcetera?
-				return make_MPC_calendar();
-			else if (tz_name == "Europe/T2"s) // or should it be Europe/EU/TARGET2? or should it be in etcetera?
-				return make_T2_calendar();
-			else if (tz_name == "America/USA"s) // not a city, but federal holidays
-				return make_USA_Federal_calendar();
-			else if (tz_name == "America/Washington"s) // not a city, but federal holidays
-				return make_Washington_DC_Federal_calendar();
-			else if (tz_name == "America/ANBIMA"s) // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
-				return make_ANBIMA_calendar();
+			const auto& reg = _get_calendar_registry();
+
+			const auto it = reg.find(tz_name);
+			if(it != reg.cend())
+				return *it->second;
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
@@ -64,7 +79,7 @@ namespace gregorian
 		// (not sure if continent is important to calendars)
 
 		// we'll probably end up with a separate data file like tz-data (maybe in a similar format)
-		// (that we'll also make a long if ... eles chain not needed)
+		// or sqlite database
 
 		// #embed could also be considered, at least for the known dates
 
