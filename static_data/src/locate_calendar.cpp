@@ -45,16 +45,16 @@ namespace gregorian
 		{
 			auto r = _calendar_registry{};
 
-			r["Europe/London"] = [] { return make_England_calendar(); }; // from UK, only London is in tzdata
-			r["Europe/Cardif"] = [] { return make_Wales_calendar(); };
-			r["Europe/Edinburgh"] = [] { return make_Scotland_calendar(); };
-			r["Europe/Belfast"] = [] { return make_Northern_Ireland_calendar(); };
-			r["Europe/MPC"] = [] { return make_MPC_calendar(); }; // or should it be Europe/UK/MPC? or should it be in etcetera?
-			r["Europe/T2"] = [] { return make_T2_calendar(); }; // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+			r["Europe/London"] = [] -> const calendar& { return make_England_calendar(); }; // from UK, only London is in tzdata
+			r["Europe/Cardif"] = [] -> const calendar& { return make_Wales_calendar(); };
+			r["Europe/Edinburgh"] = [] -> const calendar& { return make_Scotland_calendar(); };
+			r["Europe/Belfast"] = [] -> const calendar& { return make_Northern_Ireland_calendar(); };
+			r["Europe/MPC"] = [] -> const calendar& { return make_MPC_calendar(); }; // or should it be Europe/UK/MPC? or should it be in etcetera?
+			r["Europe/T2"] = [] -> const calendar& { return make_T2_calendar(); }; // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
-			r["America/USA"] = [] { return make_USA_Federal_calendar(); }; // not a city, but federal holidays
-			r["America/Washington"] = [] { return make_Washington_DC_Federal_calendar(); }; // not a city, but federal holidays
-			r["America/ANBIMA"] = [] { return make_ANBIMA_calendar(); }; // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+			r["America/USA"] = [] -> const calendar& { return make_USA_Federal_calendar(); }; // not a city, but federal holidays
+			r["America/Washington"] = [] -> const calendar& { return make_Washington_DC_Federal_calendar(); }; // not a city, but federal holidays
+			r["America/ANBIMA"] = [] -> const calendar& { return make_ANBIMA_calendar(); }; // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
 
 			return r;
 		}
