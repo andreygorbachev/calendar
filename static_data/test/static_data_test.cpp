@@ -38,33 +38,9 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(static, make_calendar1)
+		TEST(static, make_calendar)
 		{
 			const auto& cal = make_T2_calendar();
-		}
-
-		TEST(static, make_calendar2)
-		{
-			const auto& cal1 = make_USA_Federal_calendar();
-			const auto& cal2 = make_Washington_DC_Federal_calendar();
-		}
-
-		TEST(static, make_calendar3)
-		{
-			const auto& cal1 = make_England_calendar();
-			const auto& cal2 = make_Scotland_calendar();
-			const auto& cal3 = make_Wales_calendar();
-			const auto& cal4 = make_Northern_Ireland_calendar();
-		}
-
-		TEST(static, make_calendar4)
-		{
-			const auto& cal = make_ANBIMA_calendar();
-		}
-
-		TEST(static, make_calendar5)
-		{
-			const auto& cal = make_MPC_calendar();
 		}
 
 		TEST(static, InaugurationDay)

@@ -26,6 +26,7 @@
 #include <stdexcept>
 #include <map>
 //#include <memory>
+#include <functional>
 
 using namespace std;
 using namespace std::chrono;
@@ -37,27 +38,25 @@ namespace gregorian
 	namespace static_data
 	{
 
-		using _calendar_registry = map<string_view, const calendar*>; // should probably be unique_ptr // should it be string rather than string_view?
+		using _calendar_registry = map<string_view, function<const calendar&()>>; // should probably be unique_ptr // should it be string rather than string_view?
 		// is map a correct data structure for this?
 
 		static auto _make_calendar_registry()
 		{
 			auto r = _calendar_registry{};
 
-			r["Europe/London"] = &make_England_calendar(); // from UK, only London is in tzdata
-			r["Europe/Cardif"] = &make_Wales_calendar();
-			r["Europe/Edinburgh"] = &make_Scotland_calendar();
-			r["Europe/Belfast"] = &make_Northern_Ireland_calendar();
-			r["Europe/MPC"] = &make_MPC_calendar(); // or should it be Europe/UK/MPC? or should it be in etcetera?
-			r["Europe/T2"] = &make_T2_calendar(); // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+			r["Europe/London"] = [] { return make_England_calendar(); }; // from UK, only London is in tzdata
+			r["Europe/Cardif"] = [] { return make_Wales_calendar(); };
+			r["Europe/Edinburgh"] = [] { return make_Scotland_calendar(); };
+			r["Europe/Belfast"] = [] { return make_Northern_Ireland_calendar(); };
+			r["Europe/MPC"] = [] { return make_MPC_calendar(); }; // or should it be Europe/UK/MPC? or should it be in etcetera?
+			r["Europe/T2"] = [] { return make_T2_calendar(); }; // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
-			r["America/USA"] = &make_USA_Federal_calendar(); // not a city, but federal holidays
-			r["America/Washington"] = &make_Washington_DC_Federal_calendar(); // not a city, but federal holidays
-			r["America/ANBIMA"] = &make_ANBIMA_calendar(); // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+			r["America/USA"] = [] { return make_USA_Federal_calendar(); }; // not a city, but federal holidays
+			r["America/Washington"] = [] { return make_Washington_DC_Federal_calendar(); }; // not a city, but federal holidays
+			r["America/ANBIMA"] = [] { return make_ANBIMA_calendar(); }; // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
 
 			return r;
-
-			// can we make the calendars only if they are needed?
 		}
 
 		static auto _get_calendar_registry()
@@ -73,7 +72,7 @@ namespace gregorian
 
 			const auto it = reg.find(tz_name);
 			if(it != reg.cend())
-				return *it->second;
+				return it->second();
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}

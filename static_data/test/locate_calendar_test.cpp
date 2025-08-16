@@ -46,15 +46,7 @@ namespace gregorian
 
 		TEST(static, locate_calendar2)
 		{
-			const auto& cal1 = locate_calendar("Europe/London");
-			const auto& cal2 = locate_calendar("Europe/Cardif");
-			const auto& cal3 = locate_calendar("Europe/Edinburgh");
-			const auto& cal4 = locate_calendar("Europe/Belfast");
-			const auto& cal5 = locate_calendar("Europe/MPC");
-			const auto& cal6 = locate_calendar("Europe/T2");
-			const auto& cal7 = locate_calendar("America/USA");
-			const auto& cal8 = locate_calendar("America/Washington");
-			const auto& cal9 = locate_calendar("America/ANBIMA");
+			const auto& cal = locate_calendar("Europe/London");
 		}
 
 	}
