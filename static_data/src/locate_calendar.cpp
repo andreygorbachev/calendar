@@ -41,7 +41,7 @@ namespace gregorian
 		using _calendar_registry = map<string_view, function<const calendar&()>>; // should probably be unique_ptr // should it be string rather than string_view?
 		// is map a correct data structure for this?
 
-		static auto _make_calendar_registry()
+		static auto _make_calendar_registry() -> _calendar_registry
 		{
 			auto r = _calendar_registry{};
 
@@ -59,7 +59,7 @@ namespace gregorian
 			return r;
 		}
 
-		static auto _get_calendar_registry()
+		static auto _get_calendar_registry() -> const _calendar_registry&
 		{
 			static const auto r = _make_calendar_registry();
 			return r;
