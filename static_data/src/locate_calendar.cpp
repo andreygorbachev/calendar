@@ -43,20 +43,18 @@ namespace gregorian
 
 		static auto _make_calendar_registry() -> _calendar_registry
 		{
-			auto r = _calendar_registry{};
+			return _calendar_registry{
+				{ "Europe/London", [] -> const calendar& { return make_England_calendar(); } }, // from UK, only London is in tzdata
+				{ "Europe/Cardif", [] -> const calendar& { return make_Wales_calendar(); } },
+				{ "Europe/Edinburgh", [] -> const calendar& { return make_Scotland_calendar(); } },
+				{ "Europe/Belfast", [] -> const calendar& { return make_Northern_Ireland_calendar(); } },
+				{ "Europe/MPC", [] -> const calendar& { return make_MPC_calendar(); } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
+				{ "Europe/T2", [] -> const calendar& { return make_T2_calendar(); } }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
-			r["Europe/London"] = [] -> const calendar& { return make_England_calendar(); }; // from UK, only London is in tzdata
-			r["Europe/Cardif"] = [] -> const calendar& { return make_Wales_calendar(); };
-			r["Europe/Edinburgh"] = [] -> const calendar& { return make_Scotland_calendar(); };
-			r["Europe/Belfast"] = [] -> const calendar& { return make_Northern_Ireland_calendar(); };
-			r["Europe/MPC"] = [] -> const calendar& { return make_MPC_calendar(); }; // or should it be Europe/UK/MPC? or should it be in etcetera?
-			r["Europe/T2"] = [] -> const calendar& { return make_T2_calendar(); }; // or should it be Europe/EU/TARGET2? or should it be in etcetera?
-
-			r["America/USA"] = [] -> const calendar& { return make_USA_Federal_calendar(); }; // not a city, but federal holidays
-			r["America/Washington"] = [] -> const calendar& { return make_Washington_DC_Federal_calendar(); }; // not a city, but federal holidays
-			r["America/ANBIMA"] = [] -> const calendar& { return make_ANBIMA_calendar(); }; // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
-
-			return r;
+				{ "America/USA", [] -> const calendar& { return make_USA_Federal_calendar(); } }, // not a city, but federal holidays
+				{ "America/Washington", [] -> const calendar& { return make_Washington_DC_Federal_calendar(); } }, // not a city, but federal holidays
+				{ "America/ANBIMA", [] -> const calendar& { return make_ANBIMA_calendar(); } }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+			};
 		}
 
 		static auto _get_calendar_registry() -> const _calendar_registry&
