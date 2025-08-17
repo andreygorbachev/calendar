@@ -63,6 +63,7 @@ namespace gregorian
 	using annual_holiday_storage = std::vector<const annual_holiday*>;
 	// choice here is influenced by a desire to eventualy be able to apply annual_holiday rules at compile time (constexpr)
 
+
 	inline auto make_holiday_schedule(
 		const util::years_period& p,
 		const annual_holiday_storage& rules

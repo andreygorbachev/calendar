@@ -51,7 +51,7 @@ namespace gregorian
 			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
 			std::chrono::year{ 2118 } / LastDayOfDecember
 		}; // or should it be in years?
-		// we probably want 2000-2099
+		// we probably want 2001-2100
 
 	}
 
