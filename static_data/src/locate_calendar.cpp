@@ -25,7 +25,6 @@
 
 #include <stdexcept>
 #include <map>
-//#include <memory>
 #include <functional>
 
 using namespace std;
@@ -38,7 +37,8 @@ namespace gregorian
 	namespace static_data
 	{
 
-		using _calendar_registry = map<string_view, function<const calendar&()>>; // should probably be unique_ptr // should it be string rather than string_view?
+		using _calendar_registry = map<string_view, function<const calendar&()>>;
+		// should it be string rather than string_view?
 		// is map a correct data structure for this?
 
 		static auto _make_calendar_registry() -> _calendar_registry
