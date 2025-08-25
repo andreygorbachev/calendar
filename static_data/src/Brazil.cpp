@@ -27,6 +27,8 @@
 #include <weekend.h>
 #include <business_day_adjusters.h>
 
+#include <vector>
+
 using namespace std;
 using namespace std::chrono;
 
@@ -44,6 +46,8 @@ namespace gregorian
 			const annual_holiday* holiday;
 			days_period epoch{ Epoch };
 		};
+
+		using _ANBIMA_annual_holiday_storage = vector<_ANBIMA_annual_holiday_epoch>;
 
 
 		auto _make_ANBIMA_calendar() -> calendar
