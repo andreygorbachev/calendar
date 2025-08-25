@@ -28,9 +28,12 @@
 #include <business_day_adjusters.h>
 
 #include <vector>
+#include <ranges>
 
 using namespace std;
 using namespace std::chrono;
+using namespace std::ranges;
+using namespace std::ranges::views;
 
 
 namespace gregorian
@@ -103,21 +106,11 @@ namespace gregorian
 				rules1
 			);
 
-			const auto rules2 = annual_holiday_storage{
-				&NewYearsDay,
-				&_ShroveMonday,
-				&_ShroveTuesday,
-				&GoodFriday,
-				&_TiradentesDay,
-				&_LabourDay,
-				&_CorpusChristi,
-				&_IndependenceDay,
-				&_OurLadyOfAparecida,
-				&_AllSoulsDay,
-				&_RepublicProclamationDay,
-				&_BlackConsciousnessDay,
-				&ChristmasDay
-			};
+			const auto getter2 = [](const auto& x) noexcept { return x.holiday; };
+
+			const auto rules2 = _ANBINA_annual_holiday_epoch_storage
+				| views::transform(getter2)
+				| to<annual_holiday_storage>();
 
 			const auto s2 = make_holiday_schedule(
 				years_period{ 2024y, until },
