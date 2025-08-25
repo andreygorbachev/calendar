@@ -44,10 +44,21 @@ namespace gregorian
 		struct _ANBIMA_annual_holiday_epoch final
 		{
 			const annual_holiday* holiday;
-			days_period epoch{ Epoch };
+			days_period epoch{ Epoch }; // we probably need a separate epochs for announcements and applicability
 		};
 
 		using _ANBIMA_annual_holiday_storage = vector<_ANBIMA_annual_holiday_epoch>;
+
+		const auto _TiradentesDay = named_holiday{ April / 21d };
+		const auto _LabourDay = named_holiday{ May / 1d };
+		const auto _ShroveMonday = offset_holiday{ &_Easter, days{ -47 - 1 } }; // should it be in the main library?
+		const auto _ShroveTuesday = offset_holiday{ &_Easter, days{ -46 - 1 } }; // should it be in the main library?
+		const auto _CorpusChristi = offset_holiday{ &_Easter, days{ 60 } }; // should it be in the main library?
+		const auto _IndependenceDay = named_holiday{ September / 7d };
+		const auto _OurLadyOfAparecida = named_holiday{ October / 12d };
+		const auto _AllSoulsDay = named_holiday{ November / 2d }; // should it be in the main library?
+		const auto _RepublicProclamationDay = named_holiday{ November / 15d };
+		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
 
 		auto _make_ANBIMA_calendar() -> calendar
@@ -56,28 +67,18 @@ namespace gregorian
 			constexpr auto until = Epoch.get_until().year();
 			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
-			const auto TiradentesDay = named_holiday{ April / 21d };
-			const auto LabourDay = named_holiday{ May / 1d };
-			const auto ShroveMonday = offset_holiday{ &_Easter, days{ -47 - 1 } }; // should it be in the main library?
-			const auto ShroveTuesday = offset_holiday{ &_Easter, days{ -46 - 1 } }; // should it be in the main library?
-			const auto CorpusChristi = offset_holiday{ &_Easter, days{ 60 } }; // should it be in the main library?
-			const auto IndependenceDay = named_holiday{ September / 7d };
-			const auto OurLadyOfAparecida = named_holiday{ October / 12d };
-			const auto AllSoulsDay = named_holiday{ November / 2d }; // should it be in the main library?
-			const auto RepublicProclamationDay = named_holiday{ November / 15d };
-
 			const auto rules1 = annual_holiday_storage{
 				&NewYearsDay,
-				&ShroveMonday,
-				&ShroveTuesday,
+				&_ShroveMonday,
+				&_ShroveTuesday,
 				&GoodFriday,
-				&TiradentesDay,
-				&LabourDay,
-				&CorpusChristi,
-				&IndependenceDay,
-				&OurLadyOfAparecida,
-				&AllSoulsDay,
-				&RepublicProclamationDay,
+				&_TiradentesDay,
+				&_LabourDay,
+				&_CorpusChristi,
+				&_IndependenceDay,
+				&_OurLadyOfAparecida,
+				&_AllSoulsDay,
+				&_RepublicProclamationDay,
 				&ChristmasDay
 			};
 
@@ -86,21 +87,19 @@ namespace gregorian
 				rules1
 			);
 
-			const auto BlackConsciousnessDay = named_holiday{ November / 20d };
-
 			const auto rules2 = annual_holiday_storage{
 				&NewYearsDay,
-				&ShroveMonday,
-				&ShroveTuesday,
+				&_ShroveMonday,
+				&_ShroveTuesday,
 				&GoodFriday,
-				&TiradentesDay,
-				&LabourDay,
-				&CorpusChristi,
-				&IndependenceDay,
-				&OurLadyOfAparecida,
-				&AllSoulsDay,
-				&RepublicProclamationDay,
-				&BlackConsciousnessDay,
+				&_TiradentesDay,
+				&_LabourDay,
+				&_CorpusChristi,
+				&_IndependenceDay,
+				&_OurLadyOfAparecida,
+				&_AllSoulsDay,
+				&_RepublicProclamationDay,
+				&_BlackConsciousnessDay,
 				&ChristmasDay
 			};
 
