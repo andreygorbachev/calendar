@@ -41,13 +41,13 @@ namespace gregorian
 	namespace static_data
 	{
 
-		struct _ANBIMA_annual_holiday_epoch final
+		struct _annual_holiday_epoch final
 		{
 			const annual_holiday* holiday;
 			days_period epoch{ Epoch }; // we probably need a separate epochs for announcements and applicability
 		};
 
-		using _ANBIMA_annual_holiday_storage = vector<_ANBIMA_annual_holiday_epoch>;
+		using _annual_holiday_epoch_storage = vector<_annual_holiday_epoch>;
 
 		const auto _TiradentesDay = named_holiday{ April / 21d };
 		const auto _LabourDay = named_holiday{ May / 1d };
@@ -59,6 +59,22 @@ namespace gregorian
 		const auto _AllSoulsDay = named_holiday{ November / 2d }; // should it be in the main library?
 		const auto _RepublicProclamationDay = named_holiday{ November / 15d };
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
+
+		const auto _ANBINA_annual_holiday_epoch_storage = _annual_holiday_epoch_storage{
+			{ &NewYearsDay, Epoch },
+			{ &_ShroveMonday, Epoch },
+			{ &_ShroveTuesday, Epoch },
+			{ &GoodFriday, Epoch },
+			{ &_TiradentesDay, Epoch },
+			{ &_LabourDay, Epoch },
+			{ &_CorpusChristi, Epoch },
+			{ &_IndependenceDay, Epoch },
+			{ &_OurLadyOfAparecida, Epoch },
+			{ &_AllSoulsDay, Epoch },
+			{ &_RepublicProclamationDay, Epoch },
+			{ &_BlackConsciousnessDay, Epoch }, // should be from 2024
+			{ &ChristmasDay, Epoch }
+		};
 
 
 		auto _make_ANBIMA_calendar() -> calendar
