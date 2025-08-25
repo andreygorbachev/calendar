@@ -39,6 +39,13 @@ namespace gregorian
 	namespace static_data
 	{
 
+		struct _ANBIMA_annual_holiday_epoch final
+		{
+			const annual_holiday* holiday;
+			days_period epoch{ Epoch };
+		};
+
+
 		auto _make_ANBIMA_calendar() -> calendar
 		{
 			constexpr auto from = 2001y;
