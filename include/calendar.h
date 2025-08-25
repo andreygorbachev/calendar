@@ -95,7 +95,7 @@ namespace gregorian
 
 	private:
 
-		struct cache
+		struct cache // should the name start with _ ?
 		{
 			explicit cache(const calendar& cal);
 
