@@ -95,9 +95,9 @@ namespace gregorian
 
 	private:
 
-		struct cache // should the name start with _ ?
+		struct _cache
 		{
-			explicit cache(const calendar& cal);
+			explicit _cache(const calendar& cal);
 
 			void substitute(
 				const std::chrono::year_month_day& out,
@@ -105,12 +105,12 @@ namespace gregorian
 				const weekend& we
 			);
 
-			util::time_series<bool> _non_business_days;
+			util::time_series<bool> non_business_days;
 			// calendars follow a 28 year cycle (apart of Easter, which has its own, much longer cycle)
 			// so maybe this could be done better (only cache a single cycle)
 		};
 
-		cache _cache;
+		_cache _cch;
 
 	};
 
@@ -118,7 +118,7 @@ namespace gregorian
 
 	inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
 	{
-		return cal1._cache._non_business_days == cal2._cache._non_business_days;
+		return cal1._cch.non_business_days == cal2._cch.non_business_days;
 	}
 
 
@@ -148,7 +148,7 @@ namespace gregorian
 		schedule hols
 	) :	_we{ std::move(we) },
 		_hols{ std::move(hols) },
-		_cache{ *this }
+		_cch{ *this }
 	{
 	}
 
@@ -170,7 +170,7 @@ namespace gregorian
 			{
 				const auto substitute_day = a.adjust(holiday, *this);
 				sub_cal._hols += substitute_day;
-				sub_cal._cache.substitute(holiday, substitute_day, _we);
+				sub_cal._cch.substitute(holiday, substitute_day, _we);
 			}
 			else
 			{
@@ -184,12 +184,12 @@ namespace gregorian
 
 	inline auto calendar::is_non_business_day(const std::chrono::year_month_day& ymd) const -> bool
 	{
-		return _cache._non_business_days[ymd];
+		return _cch.non_business_days[ymd];
 	}
 
 	inline auto calendar::is_non_business_day(const std::chrono::sys_days& sd) const -> bool
 	{
-		return _cache._non_business_days[sd];
+		return _cch.non_business_days[sd];
 	}
 
 	inline auto calendar::is_business_day(const std::chrono::year_month_day& ymd) const -> bool
@@ -209,7 +209,7 @@ namespace gregorian
 	// from and until, which we'll need to further adjust by the number of weekends between the same 2 dates
 	inline auto calendar::count_business_days(const util::days_period& period) const -> std::size_t
 	{
-		const auto non_business_days = _cache._non_business_days.count(period);
+		const auto non_business_days = _cch.non_business_days.count(period);
 		const auto calendar_days =
 			std::chrono::sys_days{ period.get_until() } - std::chrono::sys_days{ period.get_from() };
 
@@ -219,7 +219,7 @@ namespace gregorian
 
 	inline auto calendar::count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t
 	{
-		const auto non_business_days = _cache._non_business_days.count(p);
+		const auto non_business_days = _cch.non_business_days.count(p);
 		const auto calendar_days = p.get_until() - p.get_from();
 
 		using namespace std::chrono;
@@ -264,8 +264,8 @@ namespace gregorian
 	}
 
 
-	inline calendar::cache::cache(const calendar& cal)
-		: _non_business_days{ cal.get_schedule().get_period() }
+	inline calendar::_cache::_cache(const calendar& cal)
+		: non_business_days{ cal.get_schedule().get_period() }
 	{
 		const auto [f, u] = cal.get_schedule().get_period().from_until();
 		for (
@@ -273,18 +273,18 @@ namespace gregorian
 			d <= u;
 			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
 		)
-			_non_business_days[d] = cal._is_non_business_day(d);
+			non_business_days[d] = cal._is_non_business_day(d);
 	}
 
 
-	inline void calendar::cache::substitute(
+	inline void calendar::_cache::substitute(
 		const std::chrono::year_month_day& out,
 		const std::chrono::year_month_day& in,
 		const weekend& we
 	)
 	{
-		_non_business_days[out] = we.is_weekend(out); // we allow a holiday on a weekend
-		_non_business_days[in] = true;
+		non_business_days[out] = we.is_weekend(out); // we allow a holiday on a weekend
+		non_business_days[in] = true;
 	}
 
 }
