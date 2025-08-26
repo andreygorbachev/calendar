@@ -45,13 +45,13 @@ namespace gregorian
 	namespace static_data
 	{
 
-		struct _annual_holiday_epoch final
+		struct _annual_holiday_period final
 		{
 			const annual_holiday* holiday;
-			days_period epoch{ Epoch }; // we probably need a separate epochs for announcements and applicability
+			days_period period{ Epoch }; // we probably need a separate epochs for announcements and applicability
 		};
 
-		using _annual_holiday_epoch_storage = vector<_annual_holiday_epoch>;
+		using _annual_holiday_period_storage = vector<_annual_holiday_period>;
 
 		const auto _TiradentesDay = named_holiday{ April / 21d };
 		const auto _LabourDay = named_holiday{ May / 1d };
@@ -64,7 +64,7 @@ namespace gregorian
 		const auto _RepublicProclamationDay = named_holiday{ November / 15d };
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
-		const auto _ANBINA_annual_holiday_epoch_storage = _annual_holiday_epoch_storage{
+		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
 			{ &NewYearsDay, Epoch },
 			{ &_ShroveMonday, Epoch },
 			{ &_ShroveTuesday, Epoch },
@@ -109,7 +109,7 @@ namespace gregorian
 
 			const auto getter2 = [](const auto& x) noexcept { return x.holiday; };
 
-			const auto rules2 = _ANBINA_annual_holiday_epoch_storage
+			const auto rules2 = _ANBINA_annual_holiday_period_storage
 				| views::transform(getter2)
 				| to<annual_holiday_storage>();
 
