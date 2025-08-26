@@ -107,9 +107,12 @@ namespace gregorian
 				rules1
 			);
 
+			const auto filter2 = [](const auto& x) noexcept { return x.period.get_from().year() >= 2024y; };
+
 			const auto getter2 = [](const auto& x) noexcept { return x.holiday; };
 
 			const auto rules2 = _ANBINA_annual_holiday_period_storage
+				| views::filter(filter2)
 				| views::transform(getter2)
 				| to<annual_holiday_storage>();
 
