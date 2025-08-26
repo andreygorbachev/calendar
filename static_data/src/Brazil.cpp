@@ -22,6 +22,7 @@
 
 #include "static_data.h"
 
+#include <period.h>
 #include <schedule.h>
 #include <annual_holidays.h>
 #include <weekend.h>
@@ -75,7 +76,7 @@ namespace gregorian
 			{ &_OurLadyOfAparecida, Epoch },
 			{ &_AllSoulsDay, Epoch },
 			{ &_RepublicProclamationDay, Epoch },
-			{ &_BlackConsciousnessDay, Epoch }, // should be from 2024
+			{ &_BlackConsciousnessDay, period{ 2024y / FirstDayOfJanuary, Epoch.get_until() } },
 			{ &ChristmasDay, Epoch }
 		};
 
