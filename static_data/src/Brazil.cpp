@@ -87,9 +87,11 @@ namespace gregorian
 			constexpr auto until = Epoch.get_until().year();
 			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
-			const auto getter = [](const auto& x) noexcept { return x.holiday; };
+			constexpr auto getter = [](const auto& x) noexcept { return x.holiday; };
 
-			const auto filter1 = [](const auto& x) noexcept { return x.period.get_from().year() <= 2023y; };
+			constexpr auto filter1 = [](const auto& x) noexcept {
+				return x.period.get_from().year() <= 2023y;
+			};
 
 			const auto rules1 = _ANBINA_annual_holiday_period_storage
 				| views::filter(filter1)
@@ -101,7 +103,9 @@ namespace gregorian
 				rules1
 			);
 
-			const auto filter2 = [](const auto& x) noexcept { return x.period.get_from().year() <= Epoch.get_until().year(); };
+			constexpr auto filter2 = [](const auto& x) noexcept {
+				return x.period.get_from().year() <= Epoch.get_until().year();
+			};
 
 			const auto rules2 = _ANBINA_annual_holiday_period_storage
 				| views::filter(filter2)
