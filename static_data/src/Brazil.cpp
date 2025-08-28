@@ -65,7 +65,7 @@ namespace gregorian
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
 		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
-			{ &NewYearsDay, Epoch },
+			{ &NewYearsDay, Epoch }, // Epoch here needs another though as we actually start this calendar prior to the Epoch's from
 			{ &_ShroveMonday, Epoch },
 			{ &_ShroveTuesday, Epoch },
 			{ &GoodFriday, Epoch },
