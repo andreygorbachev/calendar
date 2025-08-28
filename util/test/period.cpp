@@ -244,6 +244,8 @@ namespace gregorian
 			EXPECT_FALSE(p.contains(sys_days{ 2023y / June / 1d }));
 		}
 
+		// add a test for contains(period)
+
 	}
 
 }

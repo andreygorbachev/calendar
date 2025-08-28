@@ -64,6 +64,7 @@ namespace gregorian
 			constexpr auto from_until() const -> std::pair<T, T>;
 
 			constexpr auto contains(const T& x) const noexcept -> bool;
+			constexpr auto contains(const period& p) const noexcept -> bool;
 
 		private:
 
@@ -163,6 +164,12 @@ namespace gregorian
 		constexpr auto period<T>::contains(const T& x) const noexcept -> bool
 		{
 			return _from <= x && x <= _until;
+		}
+
+		template<typename T>
+		constexpr auto period<T>::contains(const period& p) const noexcept -> bool
+		{
+			return _from <= p._from && p._until <= _until;
 		}
 
 	}

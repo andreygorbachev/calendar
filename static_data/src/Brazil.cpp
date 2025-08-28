@@ -86,7 +86,7 @@ namespace gregorian
 			constexpr auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
 
 			constexpr auto until_2023 = [](const auto& x) noexcept {
-				return x.period.get_from().year() <= 2023y;
+				return x.period.contains(Epoch);
 			};
 
 			const auto rules1 = _ANBINA_annual_holiday_period_storage
@@ -100,7 +100,7 @@ namespace gregorian
 			);
 
 			constexpr auto from_2024 = [](const auto& x) noexcept {
-				return x.period.get_from().year() <= Epoch.get_until().year();
+				return x.period.contains(period{ 2024y / FirstDayOfJanuary, Epoch.get_until() });
 			};
 
 			const auto rules2 = _ANBINA_annual_holiday_period_storage
