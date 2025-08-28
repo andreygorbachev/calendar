@@ -83,10 +83,6 @@ namespace gregorian
 
 		auto _make_ANBIMA_calendar() -> calendar
 		{
-			constexpr auto from = 2001y;
-			constexpr auto until = Epoch.get_until().year();
-			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
-
 			constexpr auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
 
 			constexpr auto until_2023 = [](const auto& x) noexcept {
@@ -99,7 +95,7 @@ namespace gregorian
 				| to<annual_holiday_storage>();
 
 			const auto s1 = make_holiday_schedule(
-				years_period{ from, 2023y },
+				years_period{ 2001y, 2023y }, // starts before Epoch.get_from().year()
 				rules1
 			);
 
@@ -113,7 +109,7 @@ namespace gregorian
 				| to<annual_holiday_storage>();
 
 			const auto s2 = make_holiday_schedule(
-				years_period{ 2024y, until },
+				years_period{ 2024y, Epoch.get_until().year() },
 				rules2
 			);
 
