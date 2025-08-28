@@ -87,15 +87,15 @@ namespace gregorian
 			constexpr auto until = Epoch.get_until().year();
 			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
-			constexpr auto getter = [](const auto& x) noexcept { return x.holiday; };
+			constexpr auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
 
-			constexpr auto filter1 = [](const auto& x) noexcept {
+			constexpr auto before_2024 = [](const auto& x) noexcept {
 				return x.period.get_from().year() <= 2023y;
 			};
 
 			const auto rules1 = _ANBINA_annual_holiday_period_storage
-				| views::filter(filter1)
-				| views::transform(getter)
+				| views::filter(before_2024)
+				| views::transform(get_holiday)
 				| to<annual_holiday_storage>();
 
 			const auto s1 = make_holiday_schedule(
@@ -103,13 +103,13 @@ namespace gregorian
 				rules1
 			);
 
-			constexpr auto filter2 = [](const auto& x) noexcept {
+			constexpr auto after_2024 = [](const auto& x) noexcept {
 				return x.period.get_from().year() <= Epoch.get_until().year();
 			};
 
 			const auto rules2 = _ANBINA_annual_holiday_period_storage
-				| views::filter(filter2)
-				| views::transform(getter)
+				| views::filter(after_2024)
+				| views::transform(get_holiday)
 				| to<annual_holiday_storage>();
 
 			const auto s2 = make_holiday_schedule(
