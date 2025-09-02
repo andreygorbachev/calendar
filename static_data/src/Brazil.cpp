@@ -91,7 +91,7 @@ namespace gregorian
 
 			const auto rules1 = _ANBINA_annual_holiday_period_storage
 				| views::filter(until_2023)
-				| views::transform(get_holiday)
+				| views::transform(get_holiday) // is there a way to use projections here?
 				| to<annual_holiday_storage>();
 
 			const auto s1 = make_holiday_schedule(
@@ -105,7 +105,7 @@ namespace gregorian
 
 			const auto rules2 = _ANBINA_annual_holiday_period_storage
 				| views::filter(from_2024)
-				| views::transform(get_holiday)
+				| views::transform(get_holiday) // is there a way to use projections here?
 				| to<annual_holiday_storage>();
 
 			const auto s2 = make_holiday_schedule(
