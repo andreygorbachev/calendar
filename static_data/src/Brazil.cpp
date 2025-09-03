@@ -64,53 +64,66 @@ namespace gregorian
 		const auto _RepublicProclamationDay = named_holiday{ November / 15d };
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
-		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
-			{ &NewYearsDay, Epoch }, // Epoch here needs another though as we actually start this calendar prior to the Epoch's from
-			{ &_ShroveMonday, Epoch },
-			{ &_ShroveTuesday, Epoch },
-			{ &GoodFriday, Epoch },
-			{ &_TiradentesDay, Epoch },
-			{ &_LabourDay, Epoch },
-			{ &_CorpusChristi, Epoch },
-			{ &_IndependenceDay, Epoch },
-			{ &_OurLadyOfAparecida, Epoch },
-			{ &_AllSoulsDay, Epoch },
-			{ &_RepublicProclamationDay, Epoch },
-			{ &_BlackConsciousnessDay, period{ 2024y / FirstDayOfJanuary, Epoch.get_until() } },
-			{ &ChristmasDay, Epoch }
+		constexpr auto _ANBIMA_Epoch = period{
+			std::chrono::year{ 2001 } / FirstDayOfJanuary, // starts before Epoch.get_from().year()
+			Epoch.get_until()
 		};
+
+		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
+			{ &NewYearsDay, _ANBIMA_Epoch },
+			{ &_ShroveMonday, _ANBIMA_Epoch },
+			{ &_ShroveTuesday, _ANBIMA_Epoch },
+			{ &GoodFriday, _ANBIMA_Epoch },
+			{ &_TiradentesDay, _ANBIMA_Epoch },
+			{ &_LabourDay, _ANBIMA_Epoch },
+			{ &_CorpusChristi, _ANBIMA_Epoch },
+			{ &_IndependenceDay, _ANBIMA_Epoch },
+			{ &_OurLadyOfAparecida, _ANBIMA_Epoch },
+			{ &_AllSoulsDay, _ANBIMA_Epoch },
+			{ &_RepublicProclamationDay, _ANBIMA_Epoch },
+			{ &_BlackConsciousnessDay, period{ 2024y / FirstDayOfJanuary, Epoch.get_until() } },
+			{ &ChristmasDay, _ANBIMA_Epoch }
+		};
+
+
+		auto _make_holiday_schedule(
+			const _annual_holiday_period_storage& storage,
+			const years_period& epoch
+		) -> schedule
+		{
+			const auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
+
+			const auto _epoch = days_period{
+				epoch.get_from() / FirstDayOfJanuary,
+				Epoch.get_until()
+			};
+
+			const auto contains_epoch = [&_epoch](const auto& x) noexcept {
+				return x.period.contains(_epoch);
+			};
+
+			const auto rules = storage
+				| views::filter(contains_epoch)
+				| views::transform(get_holiday) // is there a way to use projections here?
+				| to<annual_holiday_storage>();
+
+			return make_holiday_schedule(
+				epoch,
+				rules
+			);
+		}
 
 
 		auto _make_ANBIMA_calendar() -> calendar
 		{
-			constexpr auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
-
-			constexpr auto until_2023 = [](const auto& x) noexcept {
-				return x.period.contains(Epoch);
-			};
-
-			const auto rules1 = _ANBINA_annual_holiday_period_storage
-				| views::filter(until_2023)
-				| views::transform(get_holiday) // is there a way to use projections here?
-				| to<annual_holiday_storage>();
-
-			const auto s1 = make_holiday_schedule(
-				years_period{ 2001y, 2023y }, // starts before Epoch.get_from().year()
-				rules1
+			const auto s1 = _make_holiday_schedule(
+				_ANBINA_annual_holiday_period_storage,
+				years_period{ _ANBIMA_Epoch.get_from().year(), 2023y}
 			);
 
-			constexpr auto from_2024 = [](const auto& x) noexcept {
-				return x.period.contains(period{ 2024y / FirstDayOfJanuary, Epoch.get_until() });
-			};
-
-			const auto rules2 = _ANBINA_annual_holiday_period_storage
-				| views::filter(from_2024)
-				| views::transform(get_holiday) // is there a way to use projections here?
-				| to<annual_holiday_storage>();
-
-			const auto s2 = make_holiday_schedule(
-				years_period{ 2024y, Epoch.get_until().year() },
-				rules2
+			const auto s2 = _make_holiday_schedule(
+				_ANBINA_annual_holiday_period_storage,
+				years_period{ 2024y, Epoch.get_until().year() }
 			);
 
 			return calendar{
