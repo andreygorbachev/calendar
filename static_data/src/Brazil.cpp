@@ -86,11 +86,73 @@ namespace gregorian
 		};
 
 
+		auto _make_sub_epochs(const _annual_holiday_period_storage& storage)
+		{
+			auto result = vector<days_period>{}; // should it be std::set? // but I guess we maintain sorted order natually anyway
+
+			if (storage.empty())
+				return result;
+
+			for (const auto& holiday : storage)
+			{
+				if (result.empty())
+				{
+					result.push_back(holiday.period);
+					continue; // or just start with the Epoch?
+				}
+
+				// if the first holiday is over the Epoch (I guess common)
+				// then we can probably make an optimistion and skip all the Epoch holidays
+
+				auto it1 = std::lower_bound(
+					result.rbegin(),
+					result.rend(),
+					holiday.period,
+					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names?
+				);
+				if (it1->get_from() != holiday.period.get_from())
+				{
+					const auto p1_from = it1->get_from();
+					const auto p1_until = holiday.period.get_from() - years{ 1 };
+					const auto p2_from = holiday.period.get_from();
+					const auto p2_until = std::min(it1->get_until(), holiday.period.get_until());
+
+					*it1 = days_period{ p1_from, p1_until };
+
+					result.insert(it1.base(), days_period{ p2_from, p2_until }); // might not be the best with std::vector
+				}
+
+				// we could probably re-use it1 in the next search
+
+				// find where holiday.period.get_until() fits in the result
+				// if it is not in any of the until dates, replace the period it is in with 2 subperiods
+				// so we need to search until dates to find one not less than ours (so greater or equal)
+				// lower_bound
+				const auto it2 = std::lower_bound(
+					result.cbegin(),
+					result.cend(),
+					holiday.period,
+					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names?
+				);
+				if (it2->get_until() != holiday.period.get_until())
+				{
+					;// split
+				}
+
+				// there might be already an STL algorithm (or their combination) to do the above
+			}
+
+			return result;
+		}
+
+
 		auto _make_holiday_schedule(
 			const _annual_holiday_period_storage& storage,
 			const years_period& epoch
 		) -> schedule
 		{
+			const auto sub_epochs = _make_sub_epochs(storage);
+
 			const auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
 
 			const auto _epoch = days_period{
