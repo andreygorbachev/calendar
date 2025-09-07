@@ -86,7 +86,7 @@ namespace gregorian
 		};
 
 
-		auto _make_sub_epochs(const _annual_holiday_period_storage& storage)
+		auto _make_sub_epochs(const _annual_holiday_period_storage& storage) // do we assume that at least one holiday (if any exist) covers the whole Epoch?
 		{
 			auto result = vector<days_period>{}; // should it be std::set? // but I guess we maintain sorted order natually anyway
 
@@ -104,11 +104,12 @@ namespace gregorian
 				// if the first holiday is over the Epoch (I guess common)
 				// then we can probably make an optimistion and skip all the Epoch holidays
 
+				// does current "from" splits any of the existing periods?
 				auto it1 = std::lower_bound(
 					result.rbegin(),
 					result.rend(),
 					holiday.period,
-					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names?
+					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names for x and y?
 				);
 				if (it1->get_from() != holiday.period.get_from())
 				{
@@ -128,11 +129,12 @@ namespace gregorian
 				// if it is not in any of the until dates, replace the period it is in with 2 subperiods
 				// so we need to search until dates to find one not less than ours (so greater or equal)
 				// lower_bound
-				const auto it2 = std::lower_bound(
-					result.cbegin(),
-					result.cend(),
+				// does current "until" splits any of the existing periods?
+				auto it2 = std::lower_bound(
+					result.begin(),
+					result.end(),
 					holiday.period,
-					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names?
+					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names for x and y?
 				);
 				if (it2->get_until() != holiday.period.get_until())
 				{
