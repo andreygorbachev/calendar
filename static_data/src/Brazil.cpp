@@ -184,22 +184,27 @@ namespace gregorian
 				_ANBINA_annual_holiday_period_storage,
 				_ANBIMA_Epoch
 			);
-
-			const auto& se1 = sub_epochs[0u]; // temp only
-			const auto s1 = _make_holiday_schedule(
+	
+			assert(!sub_epochs.empty());
+			const auto& se = sub_epochs.front();
+			auto s = _make_holiday_schedule(
 				_ANBINA_annual_holiday_period_storage,
-				years_period{ se1.get_from().year(), se1.get_until().year() }
+				years_period{ se.get_from().year(), se.get_until().year() }
 			);
-
-			const auto& se2 = sub_epochs[1u]; // temp only
-			const auto s2 = _make_holiday_schedule(
-				_ANBINA_annual_holiday_period_storage,
-				years_period{ se2.get_from().year(), se2.get_until().year() }
-			);
+			std::for_each(
+				std::next(sub_epochs.cbegin()),
+				sub_epochs.cend(),
+				[&s](const auto& se){
+					s += _make_holiday_schedule(
+						_ANBINA_annual_holiday_period_storage,
+						years_period{ se.get_from().year(), se.get_until().year() }
+					);
+				}
+			); // find a nicer way to express this
 
 			return calendar{
 				SaturdaySundayWeekend,
-				s1 + s2
+				s
 			};
 			// please note that holidays are not adjusted in ANBIMA
 		}
