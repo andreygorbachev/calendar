@@ -30,6 +30,7 @@
 
 #include <vector>
 #include <ranges>
+#include <cassert>
 
 using namespace std;
 using namespace std::chrono;
@@ -95,8 +96,8 @@ namespace gregorian
 
 			for (const auto& holiday : storage)
 			{
+//				assert(Epoch.contains(holiday.period));
 				// we can probably make an optimistion and skip all the Epoch holidays
-				// we should probably assert that holiday.period is not outside epoch?
 
 				// does current "from" splits any of the existing periods?
 				const auto it1 = std::lower_bound(
@@ -105,7 +106,7 @@ namespace gregorian
 					holiday.period,
 					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names for x and y?
 				);
-				// assert that it1 is valid?
+				assert(it1 != result.crend());
 				if (it1->get_from() != holiday.period.get_from())
 				{
 					const auto p1_from = it1->get_from();
@@ -127,7 +128,7 @@ namespace gregorian
 					holiday.period,
 					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names for x and y?
 				);
-				// assert that it2 is valid?
+				assert(it2 != result.cend());
 				if (it2->get_until() != holiday.period.get_until())
 				{
 					const auto it = std::prev(it2); // assert that it is valid?
