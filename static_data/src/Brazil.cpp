@@ -161,8 +161,6 @@ namespace gregorian
 			const years_period& epoch
 		) -> schedule
 		{
-			const auto sub_epochs = _make_sub_epochs(storage);
-
 			const auto get_holiday = [](const auto& x) noexcept { return x.holiday; };
 
 			const auto _epoch = days_period{
@@ -188,14 +186,18 @@ namespace gregorian
 
 		auto _make_ANBIMA_calendar() -> calendar
 		{
+			const auto sub_epochs = _make_sub_epochs(_ANBINA_annual_holiday_period_storage);
+
+			const auto& se1 = sub_epochs[0u]; // temp only
 			const auto s1 = _make_holiday_schedule(
 				_ANBINA_annual_holiday_period_storage,
-				years_period{ _ANBIMA_Epoch.get_from().year(), 2023y}
+				years_period{ se1.get_from().year(), se1.get_until().year() }
 			);
 
+			const auto& se2 = sub_epochs[1u]; // temp only
 			const auto s2 = _make_holiday_schedule(
 				_ANBINA_annual_holiday_period_storage,
-				years_period{ 2024y, Epoch.get_until().year() }
+				years_period{ se2.get_from().year(), se2.get_until().year() }
 			);
 
 			return calendar{
