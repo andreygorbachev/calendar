@@ -102,6 +102,7 @@ namespace gregorian
 				}
 
 				// if the first holiday is over the Epoch (I guess common)
+				// if it is not we need to actually handle that there will be a holiday expanding result, rather than just splitting
 				// then we can probably make an optimistion and skip all the Epoch holidays
 
 				// does current "from" splits any of the existing periods?
