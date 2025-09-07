@@ -104,7 +104,7 @@ namespace gregorian
 					result.rbegin(),
 					result.rend(),
 					holiday.period,
-					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names for x and y?
+					[](const auto& rf, const auto& hf) { return rf.get_from() > hf.get_from(); }
 				);
 				assert(it1 != result.crend());
 				if (it1->get_from() != holiday.period.get_from())
@@ -126,7 +126,7 @@ namespace gregorian
 					result.begin(),
 					result.end(),
 					holiday.period,
-					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names for x and y?
+					[](const auto& ru, const auto& hu) { return ru.get_until() < hu.get_until(); }
 				);
 				assert(it2 != result.cend());
 				if (it2->get_until() != holiday.period.get_until())
@@ -200,7 +200,8 @@ namespace gregorian
 						years_period{ se.get_from().year(), se.get_until().year() }
 					);
 				}
-			); // find a nicer way to express this
+			);
+			// there might be already an STL algorithm (or their combination) to do the above
 
 			return calendar{
 				SaturdaySundayWeekend,
