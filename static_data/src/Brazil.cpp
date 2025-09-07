@@ -112,6 +112,7 @@ namespace gregorian
 					holiday.period,
 					[](const auto& x, const auto& y) { return x.get_from() > y.get_from(); } // better names for x and y?
 				);
+				// assert that it1 is valid?
 				if (it1->get_from() != holiday.period.get_from())
 				{
 					const auto p1_from = it1->get_from();
@@ -137,6 +138,7 @@ namespace gregorian
 					holiday.period,
 					[](const auto& x, const auto& y) { return x.get_until() < y.get_until(); } // better names for x and y?
 				);
+				// assert that it2 is valid?
 				if (it2->get_until() != holiday.period.get_until())
 				{
 					;// split
