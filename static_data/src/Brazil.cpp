@@ -105,7 +105,7 @@ namespace gregorian
 				// then we can probably make an optimistion and skip all the Epoch holidays
 
 				// does current "from" splits any of the existing periods?
-				auto it1 = std::lower_bound(
+				const auto it1 = std::lower_bound(
 					result.rbegin(),
 					result.rend(),
 					holiday.period,
@@ -130,7 +130,7 @@ namespace gregorian
 				// so we need to search until dates to find one not less than ours (so greater or equal)
 				// lower_bound
 				// does current "until" splits any of the existing periods?
-				auto it2 = std::lower_bound(
+				const auto it2 = std::lower_bound(
 					result.begin(),
 					result.end(),
 					holiday.period,
