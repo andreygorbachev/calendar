@@ -118,19 +118,15 @@ namespace gregorian
 					const auto p1_from = it1->get_from();
 					const auto p1_until = holiday.period.get_from() - years{ 1 };
 					const auto p2_from = holiday.period.get_from();
-					const auto p2_until = std::min(it1->get_until(), holiday.period.get_until());
+					const auto p2_until = it1->get_until();
 
 					*it1 = days_period{ p1_from, p1_until };
 
 					result.insert(it1.base(), days_period{ p2_from, p2_until }); // might not be the best with std::vector
 				}
 
-				// we could probably re-use it1 in the next search
+				// we could probably re-use it1 somehow in the next search
 
-				// find where holiday.period.get_until() fits in the result
-				// if it is not in any of the until dates, replace the period it is in with 2 subperiods
-				// so we need to search until dates to find one not less than ours (so greater or equal)
-				// lower_bound
 				// does current "until" splits any of the existing periods?
 				const auto it2 = std::lower_bound(
 					result.begin(),
@@ -141,7 +137,16 @@ namespace gregorian
 				// assert that it2 is valid?
 				if (it2->get_until() != holiday.period.get_until())
 				{
-					;// split
+					const auto it = std::prev(it2); // assert that it is valid?
+
+					const auto p1_from = it1->get_from();
+					const auto p1_until = holiday.period.get_until() - years{ 1 };
+					const auto p2_from = holiday.period.get_until();
+					const auto p2_until = it1->get_until();
+
+					*it = days_period{ p1_from, p1_until };
+
+					result.insert(std::next(it), days_period{ p2_from, p2_until }); // might not be the best with std::vector
 				}
 
 				// there might be already an STL algorithm (or their combination) to do the above
