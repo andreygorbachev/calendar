@@ -86,24 +86,17 @@ namespace gregorian
 		};
 
 
-		auto _make_sub_epochs(const _annual_holiday_period_storage& storage) // do we assume that at least one holiday (if any exist) covers the whole Epoch?
+		auto _make_sub_epochs(
+			const _annual_holiday_period_storage& storage,
+			const days_period& epoch
+		)
 		{
-			auto result = vector<days_period>{}; // should it be std::set? // but I guess we maintain sorted order natually anyway
-
-			if (storage.empty())
-				return result;
+			auto result = vector<days_period>{ epoch }; // should it be std::set? // but I guess we maintain sorted order naturally anyway
 
 			for (const auto& holiday : storage)
 			{
-				if (result.empty())
-				{
-					result.push_back(holiday.period);
-					continue; // or just start with the Epoch?
-				}
-
-				// if the first holiday is over the Epoch (I guess common)
-				// if it is not we need to actually handle that there will be a holiday expanding result, rather than just splitting
-				// then we can probably make an optimistion and skip all the Epoch holidays
+				// we can probably make an optimistion and skip all the Epoch holidays
+				// we should probably assert that holiday.period is not outside epoch?
 
 				// does current "from" splits any of the existing periods?
 				const auto it1 = std::lower_bound(
@@ -186,7 +179,10 @@ namespace gregorian
 
 		auto _make_ANBIMA_calendar() -> calendar
 		{
-			const auto sub_epochs = _make_sub_epochs(_ANBINA_annual_holiday_period_storage);
+			const auto sub_epochs = _make_sub_epochs(
+				_ANBINA_annual_holiday_period_storage,
+				_ANBIMA_Epoch
+			);
 
 			const auto& se1 = sub_epochs[0u]; // temp only
 			const auto s1 = _make_holiday_schedule(
