@@ -99,6 +99,8 @@ namespace gregorian
 //				assert(Epoch.contains(holiday.period));
 				// we can probably make an optimistion and skip all the Epoch holidays
 
+				auto it2_begin = result.begin();
+
 				// does current "from" splits any of the existing periods?
 				const auto it1 = std::lower_bound(
 					result.rbegin(),
@@ -116,14 +118,12 @@ namespace gregorian
 
 					*it1 = days_period{ p1_from, p1_until };
 
-					result.insert(it1.base(), days_period{ p2_from, p2_until }); // might not be the best with std::vector
+					it2_begin = result.insert(it1.base(), days_period{ p2_from, p2_until }); // might not be the best with std::vector
 				}
-
-				// we could probably re-use it1 somehow in the next search
 
 				// does current "until" splits any of the existing periods?
 				const auto it2 = std::lower_bound(
-					result.begin(),
+					it2_begin,
 					result.end(),
 					holiday.period,
 					[](const auto& ru, const auto& hu) { return ru.get_until() < hu.get_until(); }
