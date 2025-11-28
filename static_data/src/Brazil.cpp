@@ -30,6 +30,7 @@
 #include <vector>
 #include <ranges>
 #include <cassert>
+#include <algorithm>
 
 using namespace std;
 using namespace std::chrono;
