@@ -22,10 +22,14 @@
 
 #include "static_data.h"
 
+#include <period.h>
 #include <schedule.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
+
+#include <utility>
+#include <chrono>
 
 using namespace std;
 using namespace std::chrono;

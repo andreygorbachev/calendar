@@ -22,12 +22,7 @@
 
 #pragma once
 
-#include <period.h>
 #include <calendar.h>
-#include <schedule.h>
-
-#include <chrono>
-#include <string>
 
 
 namespace gregorian
