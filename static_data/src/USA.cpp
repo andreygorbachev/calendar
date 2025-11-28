@@ -369,7 +369,7 @@ namespace gregorian
 					p.get_from() / FirstDayOfJanuary,
 					p.get_until() / LastDayOfDecember
 				},
-				std::move(hols)
+				move(hols)
 			};
 		}
 

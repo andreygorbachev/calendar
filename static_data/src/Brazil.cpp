@@ -67,7 +67,7 @@ namespace gregorian
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
 		constexpr auto _ANBIMA_Epoch = period{
-			std::chrono::year{ 2001 } / FirstDayOfJanuary, // starts before Epoch.get_from().year()
+			year{ 2001 } / FirstDayOfJanuary, // starts before Epoch.get_from().year()
 			Epoch.get_until()
 		};
 

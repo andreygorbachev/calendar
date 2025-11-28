@@ -516,8 +516,6 @@ namespace gregorian
 
 		auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
-			using namespace std::chrono;
-
 			auto meeting_dates = schedule::dates{
 				2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
 				2023y / March / 23d, // March MPC Summary and minutes
@@ -557,7 +555,7 @@ namespace gregorian
 				2026y / December / 17d, // December MPC Summary and minutes 
 			};
 
-			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2026y / LastDayOfDecember }, std::move(meeting_dates) };
+			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2026y / LastDayOfDecember }, move(meeting_dates) };
 		}
 
 		auto _MPC_schedule() -> schedule // MPC holiday dates
