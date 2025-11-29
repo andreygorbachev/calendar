@@ -233,10 +233,20 @@ namespace gregorian
 				return is_business_day(ymd);
 			};
 
+#ifdef _MSC_BUILD
 		auto s =
 			util::iota(p) |
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
+#else
+		auto _s =
+			util::iota(p) |
+			std::views::filter(is_bd);
+
+		auto s = schedule::dates{};
+		for (const auto& bd : _s)
+			s.insert(bd);
+#endif
 
 		return schedule{
 			util::days_period{ p.get_from(), p.get_until() },

@@ -41,7 +41,7 @@ namespace gregorian
 
 		TEST(iota, iota1)
 		{
-#ifdef _MSC_BUILD 
+#ifdef _MSC_BUILD
 			const auto p = days_period{ 2025y / May / 25d, 2025y / May / 30d };
 
 			const auto s =
@@ -63,7 +63,7 @@ namespace gregorian
 
 		TEST(iota, iota2)
 		{
-#ifdef _MSC_BUILD 
+#ifdef _MSC_BUILD
 			const auto p = days_period{ 2025y / May / 25d, 2025y / May / 25d };
 
 			const auto s =
