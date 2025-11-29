@@ -24,6 +24,7 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <calendar.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
@@ -43,7 +44,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2010y / December / 31d, // we actually do not keep it in the 2011 calendar
@@ -283,7 +284,7 @@ namespace gregorian
 			};
 		}
 
-		auto _Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2013y / January / 21d,
@@ -303,7 +304,7 @@ namespace gregorian
 			};
 		}
 
-		auto _make_USA_Federal_calendar() -> calendar
+		static auto _make_USA_Federal_calendar() -> calendar
 		{
 			const auto known_part = _USA_Federal_schedule();
 
@@ -353,7 +354,7 @@ namespace gregorian
 		}
 
 		// should it move to the main library (in a more generic form)?
-		auto _make_Washington_DC_Federal_holiday_schedule(
+		static auto _make_Washington_DC_Federal_holiday_schedule(
 			const util::years_period& p,
 			const annual_holiday_storage& rules
 		) noexcept -> schedule
@@ -373,7 +374,7 @@ namespace gregorian
 			};
 		}
 
-		auto _make_Washington_DC_Federal_calendar() -> calendar
+		static auto _make_Washington_DC_Federal_calendar() -> calendar
 		{
 			const auto known_part = _Washington_DC_Federal_schedule();
 

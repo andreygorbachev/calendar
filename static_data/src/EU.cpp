@@ -22,7 +22,9 @@
 
 #include "static_data.h"
 
+#include <period.h>
 #include <calendar.h>
+#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 
@@ -40,7 +42,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _make_T2_calendar() -> calendar // should we give it a full name of TARGET2?
+		static auto _make_T2_calendar() -> calendar // should we give it a full name of TARGET2?
 		{
 			constexpr auto from = 2007y; // Actually the calendar became effective from November 2007, so not 100% sure about 2007 prior to that
 			constexpr auto until = Epoch.get_until().year();

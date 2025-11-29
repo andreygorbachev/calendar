@@ -43,7 +43,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2018y / January / 1d,
@@ -146,7 +146,7 @@ namespace gregorian
 			};
 		}
 
-		auto _make_England_calendar() -> calendar
+		static auto _make_England_calendar() -> calendar
 		{
 			const auto known_part = _England_schedule();
 
@@ -188,7 +188,7 @@ namespace gregorian
 
 
 
-		auto _Scotland_schedule() -> schedule
+		static auto _Scotland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
 				2018y / January / 1d,
@@ -301,7 +301,7 @@ namespace gregorian
 			};
 		}
 
-		auto _make_Scotland_calendar() -> calendar
+		static auto _make_Scotland_calendar() -> calendar
 		{
 			const auto known_part = _Scotland_schedule();
 
@@ -346,7 +346,7 @@ namespace gregorian
 
 
 
-		auto _Northern_Ireland_schedule() -> schedule
+		static auto _Northern_Ireland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
 				2018y / January / 1d,
@@ -469,7 +469,7 @@ namespace gregorian
 			};
 		}
 
-		auto _make_Northern_Ireland_calendar() -> calendar
+		static auto _make_Northern_Ireland_calendar() -> calendar
 		{
 			const auto known_part = _Northern_Ireland_schedule();
 
@@ -514,7 +514,7 @@ namespace gregorian
 		}
 
 
-		auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
+		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
 			auto meeting_dates = schedule::dates{
 				2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
@@ -558,12 +558,12 @@ namespace gregorian
 			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2026y / LastDayOfDecember }, move(meeting_dates) };
 		}
 
-		auto _MPC_schedule() -> schedule // MPC holiday dates
+		static auto _MPC_schedule() -> schedule // MPC holiday dates
 		{
 			return ~_MPC_dates();
 		}
 
-		auto _make_MPC_calendar() -> calendar
+		static auto _make_MPC_calendar() -> calendar
 		{
 			const auto known_part = _MPC_schedule();
 

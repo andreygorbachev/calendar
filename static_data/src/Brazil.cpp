@@ -24,6 +24,7 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <calendar.h>
 #include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <weekend.h>
@@ -89,7 +90,7 @@ namespace gregorian
 		};
 
 
-		auto _make_sub_epochs(
+		static auto _make_sub_epochs(
 			const _annual_holiday_period_storage& storage,
 			const days_period& epoch
 		)
@@ -152,7 +153,7 @@ namespace gregorian
 		}
 
 
-		auto _make_holiday_schedule(
+		static auto _make_holiday_schedule(
 			const _annual_holiday_period_storage& storage,
 			const years_period& epoch
 		) -> schedule
@@ -180,7 +181,7 @@ namespace gregorian
 		}
 
 
-		auto _make_ANBIMA_calendar() -> calendar
+		static auto _make_ANBIMA_calendar() -> calendar
 		{
 			const auto sub_epochs = _make_sub_epochs(
 				_ANBINA_annual_holiday_period_storage,
