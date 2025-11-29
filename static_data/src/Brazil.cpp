@@ -169,10 +169,20 @@ namespace gregorian
 				return x.period.contains(_epoch);
 			};
 
+#ifdef _MSC_BUILD
 			const auto rules = storage
 				| views::filter(contains_epoch)
 				| views::transform(get_holiday) // is there a way to use projections here?
 				| to<annual_holiday_storage>();
+#else
+			auto _rules = storage
+				| views::filter(contains_epoch)
+				| views::transform(get_holiday);
+
+			auto rules = annual_holiday_storage{};
+			for (const auto& r : _rules)
+				rules.push_back(r);
+#endif
 
 			return make_holiday_schedule(
 				epoch,
