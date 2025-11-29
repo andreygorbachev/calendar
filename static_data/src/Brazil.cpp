@@ -28,6 +28,7 @@
 #include <annual_holidays.h>
 #include <weekend.h>
 
+#include <chrono>
 #include <vector>
 #include <ranges>
 #include <cassert>
