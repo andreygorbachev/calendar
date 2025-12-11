@@ -138,10 +138,19 @@ namespace gregorian
 				2027y / August / 30d,
 				2027y / December / 27d,
 				2027y / December / 28d,
+
+				2028y / January / 3d,
+				2028y / April / 14d,
+				2028y / April / 17d,
+				2028y / May / 1d,
+				2028y / May / 29d,
+				2028y / August / 28d,
+				2028y / December / 25d,
+				2028y / December / 26d,
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -293,10 +302,20 @@ namespace gregorian
 				2027y / November / 30d,
 				2027y / December / 27d,
 				2027y / December / 28d,
+
+				2028y / January / 3d,
+				2028y / January / 4d,
+				2028y / April / 14d,
+				2028y / May / 1d,
+				2028y / May / 29d,
+				2028y / August / 7d,
+				2028y / November / 30d,
+				2028y / December / 25d,
+				2028y / December / 26d,
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -461,10 +480,21 @@ namespace gregorian
 				2027y / August / 30d,
 				2027y / December / 27d,
 				2027y / December / 28d,
+
+				2028y / January / 3d,
+				2028y / March / 17d,
+				2028y / April / 14d,
+				2028y / April / 17d,
+				2028y / May / 1d,
+				2028y / May / 29d,
+				2028y / July / 12d,
+				2028y / August / 28d,
+				2028y / December / 25d,
+				2028y / December / 26d,
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2027y / LastDayOfDecember },
+				days_period{ Epoch.get_from(), 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
