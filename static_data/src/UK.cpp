@@ -24,6 +24,7 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <calendar.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
