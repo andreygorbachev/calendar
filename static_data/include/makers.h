@@ -63,6 +63,11 @@ namespace gregorian
 		auto make_Washington_DC_Federal_calendar() -> const calendar&;
 
 
+		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
+
+		auto make_Canada_Federal_calendar() -> const calendar&; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
+
+
 		//
 
 		auto make_ANBIMA_calendar() -> const calendar&; // should this go to the fin-calendar?

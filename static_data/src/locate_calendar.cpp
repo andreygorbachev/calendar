@@ -54,6 +54,7 @@ namespace gregorian
 				{ "America/USA", [] -> const calendar& { return make_USA_Federal_calendar(); } }, // not a city, but federal holidays
 				{ "America/Washington", [] -> const calendar& { return make_Washington_DC_Federal_calendar(); } }, // not a city, but federal holidays
 				{ "America/ANBIMA", [] -> const calendar& { return make_ANBIMA_calendar(); } }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+				{ "America/Canada", [] -> const calendar& { return make_Canada_Federal_calendar(); } }, // not a city, but federal holidays
 			};
 		}
 

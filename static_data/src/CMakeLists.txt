@@ -4,6 +4,7 @@ add_library(${PROJECT_NAME}
   UK.cpp
   EU.cpp
   USA.cpp
+  Canada.cpp
   Brazil.cpp
   locate_calendar.cpp
 )
