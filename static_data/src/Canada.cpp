@@ -48,17 +48,17 @@ namespace gregorian
 		static auto _Canada_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
-				2025y / January / 1d, // New Year
-				2025y / April / 18d, // Good Friday
-				2025y / April / 21d, // Easter Monday
-				2025y / May / 19d, // Victoria Day
-				2025y / July / 1d, // Canada Day
-				2025y / September / 1d, // Labour Day
-				2025y / September / 30d, // National Day for Truth and Reconciliation
-				2025y / October / 13d, // Thanksgiving Day
-				2025y / November / 11d, // Remembrance Day
-				2025y / December / 25d, // Christmas Day
-				2025y / December / 26d, // Boxing Day
+				2025y / January / 1d, // New Year // Nationwide statutory holiday
+				2025y / April / 18d, // Good Friday // Nationwide statutory holiday
+				2025y / April / 21d, // Easter Monday // Federal statutory holiday, also observed in some provinces // this one is not 100% clear to me from https://en.wikipedia.org/wiki/Public_holidays_in_Canada
+				2025y / May / 19d, // Victoria Day // Federal statutory holiday, also observed in some provinces
+				2025y / July / 1d, // Canada Day // Nationwide statutory holiday
+				2025y / September / 1d, // Labour Day // Nationwide statutory holiday
+				2025y / September / 30d, // National Day for Truth and Reconciliation // Federal statutory holiday, also observed in some provinces
+				2025y / October / 13d, // Thanksgiving Day // Federal statutory holiday, also observed in some provinces
+				2025y / November / 11d, // Remembrance Day // Federal statutory holiday, also observed in some provinces
+				2025y / December / 25d, // Christmas Day // Nationwide statutory holiday
+				2025y / December / 26d, // Boxing Day // Federal statutory holiday, also observed in some provinces
 			};
 
 			return schedule{
@@ -80,6 +80,8 @@ namespace gregorian
 				move(holidays)
 			};
 		}
+
+		// we should also deal with "Civic Holiday" - Monday, August 4, 2025 (excluding Quebec)
 
 		static auto _make_Canada_Federal_calendar() -> calendar
 		{
