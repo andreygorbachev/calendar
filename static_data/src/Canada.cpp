@@ -68,25 +68,18 @@ namespace gregorian
 			};
 		}
 
-//		static auto _Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
-//		{
-//			auto holidays = schedule::dates{
-//				2013y / January / 21d,
-//
-//				2017y / January / 20d,
-//
-//				2021y / January / 20d,
-//
-//				2025y / January / 20d,
-//
-//				2029y / January / 19d,
-//			};
-//
-//			return schedule{
+		static auto _Quebec_schedule() -> schedule // or should it be a "proper" function (without _)?
+		{
+			auto holidays = schedule::dates{
+				2025y / June / 24d, // Saint-Jean-Baptiste Day
+			};
+
+			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-//				move(holidays)
-//			};
-//		}
+				days_period{ 2025 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
 
 		static auto _make_Canada_Federal_calendar() -> calendar
 		{
@@ -138,7 +131,7 @@ namespace gregorian
 		}
 
 //		// should it move to the main library (in a more generic form)?
-//		static auto _make_Washington_DC_Federal_holiday_schedule(
+//		static auto _make_Quebec_holiday_schedule(
 //			const util::years_period& p,
 //			const annual_holiday_storage& rules
 //		) noexcept -> schedule
@@ -157,11 +150,11 @@ namespace gregorian
 //				move(hols)
 //			};
 //		}
-//
-//		static auto _make_Washington_DC_Federal_calendar() -> calendar
-//		{
-//			const auto known_part = _Washington_DC_Federal_schedule();
-//
+
+		static auto _make_Quebec_calendar() -> calendar
+		{
+			const auto known_part = _Quebec_schedule();
+
 //			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 //			const auto generated_part_until = Epoch.get_until().year();
 //
@@ -182,11 +175,11 @@ namespace gregorian
 //				generated_part
 //			};
 //			cal.substitute(Nearest);
-//
-//			return 
-//				_make_USA_Federal_calendar() |
-//				calendar{ SaturdaySundayWeekend, known_part + cal.get_schedule() };
-//		}
+
+			return 
+				_make_Canada_Federal_calendar() |
+				calendar{ SaturdaySundayWeekend, known_part /* + cal.get_schedule()*/};
+		}
 
 
 
@@ -196,11 +189,11 @@ namespace gregorian
 			return s;
 		}
 
-//		auto make_Washington_DC_Federal_calendar() -> const calendar&
-//		{
-//			static const auto s = _make_Washington_DC_Federal_calendar();
-//			return s;
-//		}
+		auto make_Quebec_calendar() -> const calendar&
+		{
+			static const auto s = _make_Quebec_calendar();
+			return s;
+		}
 
 	}
 

@@ -51,10 +51,11 @@ namespace gregorian
 				{ "Europe/MPC", [] -> const calendar& { return make_MPC_calendar(); } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 				{ "Europe/T2", [] -> const calendar& { return make_T2_calendar(); } }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
-				{ "America/USA", [] -> const calendar& { return make_USA_Federal_calendar(); } }, // not a city, but federal holidays
+				{ "America/USA", [] -> const calendar& { return make_USA_Federal_calendar(); } },
 				{ "America/Washington", [] -> const calendar& { return make_Washington_DC_Federal_calendar(); } }, // not a city, but federal holidays
 				{ "America/ANBIMA", [] -> const calendar& { return make_ANBIMA_calendar(); } }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
-				{ "America/Canada", [] -> const calendar& { return make_Canada_Federal_calendar(); } }, // not a city, but federal holidays
+				{ "America/Canada", [] -> const calendar& { return make_Canada_Federal_calendar(); } },
+				{ "America/Quebec", [] -> const calendar& { return make_Quebec_calendar(); } },
 			};
 		}
 
