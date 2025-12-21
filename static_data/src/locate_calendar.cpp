@@ -26,6 +26,7 @@
 #include <stdexcept>
 #include <map>
 #include <functional>
+#include <string>
 
 using namespace std;
 using namespace std::chrono;
