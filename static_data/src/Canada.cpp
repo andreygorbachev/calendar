@@ -87,48 +87,46 @@ namespace gregorian
 		{
 			const auto known_part = _Canada_Federal_schedule();
 
-//			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-//			const auto generated_part_until = Epoch.get_until().year();
-//
-//			const auto MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
-//			const auto Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
-//			const auto MemorialDay = weekday_last_holiday{ May / Monday[last] };
-//			const auto Juneteenth = named_holiday{ June / 19d }; // Emancipation Day
-//			const auto IndependenceDay = named_holiday{ July / 4d };
-//			const auto LaborDay = weekday_indexed_holiday{ September / Monday[1] };
-//			const auto ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
-//			const auto VeteransDay = named_holiday{ November / 11d };
-//			const auto ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
-//
-//			const auto rules = annual_holiday_storage{
-//				&NewYearsDay,
-//				&MartinLutherKing,
-//				&Washington,
-//				&MemorialDay,
-//				&Juneteenth,
-//				&IndependenceDay,
-//				&LaborDay,
-//				&ColumbusDay,
-//				&VeteransDay,
-//				&ThanksgivingDay,
-//				&ChristmasDay
-//			};
-//
-//			const auto generated_part = make_holiday_schedule(
-//				years_period{ generated_part_from, generated_part_until },
-//				rules
-//			);
-//
-//			// setup a calendar for the generated part only (to do substitution for the generated dates)
-//			auto cal = calendar{
-//				SaturdaySundayWeekend,
-//				generated_part
-//			};
-//			cal.substitute(Nearest);
+			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
+			const auto generated_part_until = Epoch.get_until().year();
+
+			// from Wikipedia
+			const auto VictoriaDay = weekday_indexed_holiday{ May / Monday[3] }; // should be: observed on the last Monday preceding May 25
+			const auto CanadaDay = named_holiday{ July / 1d }; // celebrates the anniversary of Canadian Confederation which occurred on July 1, 1867
+			const auto LabourDay = weekday_indexed_holiday{ September / Monday[1] }; // occurs on the first Monday in September
+			const auto NDTR = named_holiday{ September / 30d }; // National Day for Truth and Reconciliation // day of memorial to recognize the atrocities and multi-generational effects of the Canadian Indian residential school system
+			const auto ThanksgivingDay = weekday_indexed_holiday{ October / Monday[2] }; // held on the second Monday in October
+			const auto RemembranceDay = named_holiday{ November / 11d }; // is observed on 11 November to recall the end of First World War hostilities
+
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&GoodFriday,
+				&EasterMonday,
+				&VictoriaDay,
+				&CanadaDay,
+				&LabourDay,
+				&NDTR,
+				&ThanksgivingDay,
+				&RemembranceDay,
+				&ChristmasDay,
+				&BoxingDay
+			};
+
+			const auto generated_part = make_holiday_schedule(
+				years_period{ generated_part_from, generated_part_until },
+				rules
+			);
+
+			// setup a calendar for the generated part only (to do substitution for the generated dates)
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				generated_part
+			};
+			cal.substitute(Nearest); // this needs to be checked
 
 			return calendar{
 				SaturdaySundayWeekend,
-				known_part /* + cal.get_schedule()*/
+				known_part + cal.get_schedule()
 			};
 		}
 
