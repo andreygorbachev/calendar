@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h" // only for _VictorisDay?
 
 #include <period.h>
 #include <schedule.h>
