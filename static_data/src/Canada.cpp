@@ -83,6 +83,22 @@ namespace gregorian
 
 		// we should also deal with "Civic Holiday" - Monday, August 4, 2025 (excluding Quebec)
 
+
+		class _victoria_day_holiday final : public annual_holiday // should it be generalized and moved to annual_holidays.h?
+		{
+
+		private:
+
+			auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+		};
+
+		auto _victoria_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+		{
+			return { y, May, 25d };
+		}
+
+
 		static auto _make_Canada_Federal_calendar() -> calendar
 		{
 			const auto known_part = _Canada_Federal_schedule();
@@ -91,7 +107,7 @@ namespace gregorian
 			const auto generated_part_until = Epoch.get_until().year();
 
 			// from Wikipedia
-			const auto VictoriaDay = weekday_indexed_holiday{ May / Monday[3] }; // should be: observed on the last Monday preceding May 25
+			const auto VictoriaDay = _victoria_day_holiday{}; // observed on the last Monday preceding May 25
 			const auto CanadaDay = named_holiday{ July / 1d }; // celebrates the anniversary of Canadian Confederation which occurred on July 1, 1867
 			const auto LabourDay = weekday_indexed_holiday{ September / Monday[1] }; // occurs on the first Monday in September
 			const auto NDTR = named_holiday{ September / 30d }; // National Day for Truth and Reconciliation // day of memorial to recognize the atrocities and multi-generational effects of the Canadian Indian residential school system
