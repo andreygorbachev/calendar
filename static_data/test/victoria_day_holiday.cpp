@@ -20,13 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <static_data.h>
+#include <makers.h>
 
 #include <gtest/gtest.h>
 
-#include <stdexcept>
+#include <chrono>
 
-using namespace std;
 using namespace std::chrono;
 
 
@@ -36,14 +35,9 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(static, locate_calendar1)
+		TEST(_victoria_day_holiday, make_holiday)
 		{
-			EXPECT_THROW(locate_calendar("foo"), runtime_error);
-		}
-
-		TEST(static, locate_calendar2)
-		{
-			const auto& cal = locate_calendar("Europe/London");
+			EXPECT_EQ(2025y / May / 19d, _VictoriaDay.make_holiday(2025y));
 		}
 
 	}

@@ -23,6 +23,7 @@
 #pragma once
 
 #include "annual_holiday_interface.h"
+#include "schedule.h"
 
 #include <chrono>
 #include <cmath>
