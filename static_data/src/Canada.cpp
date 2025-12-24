@@ -89,13 +89,17 @@ namespace gregorian
 
 		private:
 
-			auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+			auto _make_holiday(const year& y) const noexcept -> year_month_day final;
 
 		};
 
-		auto _victoria_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+		auto _victoria_day_holiday::_make_holiday(const year& y) const noexcept -> year_month_day
 		{
-			return { y, May, 25d };
+			// GitHub Copilot suggested this implementation based on the description of Victoria Day - maybe review it later
+			const auto d25 = sys_days{ y / May / 25d };
+			const auto wd = weekday{ d25 };
+			const auto days_back = (wd.iso_encoding() + 6) % 7; // iso_encoding(): Mon=1..Sun=7
+			return d25 - days{ days_back };
 		}
 
 
