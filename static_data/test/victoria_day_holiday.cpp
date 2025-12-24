@@ -38,6 +38,7 @@ namespace gregorian
 		TEST(_victoria_day_holiday, make_holiday)
 		{
 			EXPECT_EQ(2025y / May / 19d, _VictoriaDay.make_holiday(2025y));
+			EXPECT_EQ(2026y / May / 25d, _VictoriaDay.make_holiday(2026y)); // May 25 is a Monday // is this correct?
 		}
 
 	}
