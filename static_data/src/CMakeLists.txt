@@ -17,6 +17,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_sources(${PROJECT_NAME} PRIVATE
   ../include/static_data.h # should target_include_directories take care of a path here?
   ../include/makers.h
+  ../include/victoria_day_holiday.h
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

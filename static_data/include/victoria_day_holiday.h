@@ -20,13 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <victoria_day_holiday.h>
+#pragma once
 
-#include <gtest/gtest.h>
+#include <annual_holiday_interface.h>
 
 #include <chrono>
-
-using namespace std::chrono;
 
 
 namespace gregorian
@@ -35,10 +33,28 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(_victoria_day_holiday, make_holiday)
+		// is file's name consistent with the name of the class?
+		class _victoria_day_holiday final : public annual_holiday // should it be generalized and moved to annual_holidays.h?
 		{
-			EXPECT_EQ(2025y / May / 19d, _VictoriaDay.make_holiday(2025y));
-			EXPECT_EQ(2026y / May / 25d, _VictoriaDay.make_holiday(2026y)); // May 25 is a Monday // is this correct?
+
+		private:
+
+			// from Wikipedia:
+			// observed on the last Monday preceding May 25
+			auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+		};
+
+		const auto _VictoriaDay = _victoria_day_holiday{};
+
+
+		inline auto _victoria_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+		{
+			// GitHub Copilot suggested this implementation based on the description of Victoria Day - maybe review it later
+			const auto d25 = std::chrono::sys_days{ y / std::chrono::May / std::chrono::day{ 25u } };
+			const auto wd = std::chrono::weekday{ d25 };
+			const auto days_back = (wd.iso_encoding() + 6) % 7; // iso_encoding(): Mon=1..Sun=7
+			return d25 - std::chrono::days{ days_back };
 		}
 
 	}
