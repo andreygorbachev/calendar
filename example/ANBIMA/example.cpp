@@ -24,9 +24,15 @@
 
 #include <static_data.h>
 
+#include <calendar.h>
+#include <weekend.h>
+#include <period.h>
+#include <schedule.h>
+
 #include <chrono>
 #include <iostream>
-#include <utility>
+#include <ios>
+#include <algorithm>
 
 using namespace gregorian;
 using namespace gregorian::util;
@@ -37,7 +43,7 @@ using namespace std::chrono;
 
 
 
-inline auto parse_csv_ANBIMA_schedule() -> schedule
+static auto parse_csv_ANBIMA_schedule() -> schedule
 {
 	// from https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls
 	// (download it and re-save it as CSV)

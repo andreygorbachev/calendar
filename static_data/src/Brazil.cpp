@@ -34,6 +34,7 @@
 #include <ranges>
 #include <cassert>
 #include <algorithm>
+#include <iterator>
 
 using namespace std;
 using namespace std::chrono;

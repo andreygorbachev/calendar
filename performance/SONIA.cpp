@@ -23,6 +23,7 @@
 #include "London.h"
 
 #include <calendar.h>
+#include <period.h>
 
 #include <chrono>
 #include <string>

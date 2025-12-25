@@ -23,11 +23,15 @@
 #include "London.h"
 
 #include <schedule.h>
+#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
+#include <period.h>
+#include <calendar.h>
 
 #include <chrono>
+#include <utility>
 
 
 using namespace std;
@@ -40,7 +44,7 @@ using namespace gregorian::util;
 
 const auto _Epoch = year{ 2018 } / FirstDayOfJanuary;
 
-auto _make_London_schedule() -> schedule
+static auto _make_London_schedule() -> schedule
 {
 	auto holidays = schedule::dates{
 		year{ 2018 } / January / day{ 1u },
@@ -116,7 +120,7 @@ auto _make_London_schedule() -> schedule
 	};
 }
 
-auto _make_London_calendar() -> calendar
+static auto _make_London_calendar() -> calendar
 {
 	const auto known_part = _make_London_schedule();
 

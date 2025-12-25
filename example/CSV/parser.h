@@ -31,7 +31,8 @@
 #include <chrono>
 #include <istream>
 #include <fstream>
-#include <stdexcept>
+#include <utility>
+#include <stdexcept> // only for !_MSC_BUILD
 
 
 inline auto _parse_date(std::istream& fs) -> std::chrono::year_month_day

@@ -29,6 +29,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <ios>
 
 using namespace gregorian;
 
@@ -37,19 +38,19 @@ using namespace std::chrono;
 
 
 
-inline auto parse_ics_england_and_wales() -> schedule
+static auto parse_ics_england_and_wales() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
 	return parse_ics("england-and-wales.ics");
 }
 
-inline auto parse_ics_scotland() -> schedule
+static auto parse_ics_scotland() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
 	return parse_ics("scotland.ics");
 }
 
-inline auto parse_ics_northern_ireland() -> schedule
+static auto parse_ics_northern_ireland() -> schedule
 {
 	// from https://www.gov.uk/bank-holidays
 	return parse_ics("northern-ireland.ics");
