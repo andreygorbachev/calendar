@@ -53,7 +53,7 @@ namespace gregorian
 			// GitHub Copilot suggested this implementation based on the description of Victoria Day - maybe review it later
 			const auto d25 = std::chrono::sys_days{ y / std::chrono::May / std::chrono::day{ 25u } };
 			const auto wd = std::chrono::weekday{ d25 };
-			const auto days_back = (wd.iso_encoding() + 6) % 7; // iso_encoding(): Mon=1..Sun=7
+			const auto days_back = (wd.iso_encoding() + 6u) % 7u; // iso_encoding(): Mon=1..Sun=7
 			return d25 - std::chrono::days{ days_back };
 		}
 
