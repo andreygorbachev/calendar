@@ -23,10 +23,13 @@
 #include "static_data.h"
 #include "makers.h"
 
+#include <calendar.h>
+
 #include <stdexcept>
 #include <map>
 #include <functional>
 #include <string>
+#include <string_view>
 
 using namespace std;
 using namespace std::chrono;
