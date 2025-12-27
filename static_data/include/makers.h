@@ -80,7 +80,7 @@ namespace gregorian
 
 
 
-		// below are exposed for testing purposes
+		// below are exposed for testing purposes only
 		using _calendar_registry = std::map<std::string_view, calendar>;
 		// should it be string rather than string_view?
 		// is map a correct data structure for this?
