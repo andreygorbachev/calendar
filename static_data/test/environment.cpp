@@ -24,8 +24,6 @@
 
 #include <gtest/gtest.h>
 
-using namespace std::chrono;
-
 
 namespace gregorian
 {
@@ -33,10 +31,10 @@ namespace gregorian
 	namespace static_data
 	{
 
-		class StaticDataEnvironment : public ::testing::Environment
+		class Environment : public testing::Environment
 		{
 		public:
-			~StaticDataEnvironment() override
+			~Environment() override
 			{
 			}
 
@@ -52,8 +50,8 @@ namespace gregorian
 			}
 		};
 
-		testing::Environment* const env =
-			testing::AddGlobalTestEnvironment(new StaticDataEnvironment);
+		const auto* const env =
+			testing::AddGlobalTestEnvironment(new gregorian::static_data::Environment);
 
 	}
 
