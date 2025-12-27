@@ -24,7 +24,6 @@
 
 #include <calendar.h>
 
-#include <map>
 #include <string>
 #include <string_view>
 #include <stdexcept>
@@ -37,10 +36,6 @@ namespace gregorian
 
 	namespace static_data
 	{
-
-		using _calendar_registry = map<string_view, calendar>;
-		// should it be string rather than string_view?
-		// is map a correct data structure for this?
 
 		static auto _make_calendar_registry() -> _calendar_registry
 		{
@@ -65,7 +60,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _get_calendar_registry() -> const _calendar_registry&
+		auto _get_calendar_registry() -> const _calendar_registry&
 		{
 			static const auto r = _make_calendar_registry();
 			return r;

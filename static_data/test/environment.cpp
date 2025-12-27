@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <static_data.h>
+#include <makers.h>
 
 #include <gtest/gtest.h>
 
@@ -43,7 +43,7 @@ namespace gregorian
 			// Override this to define how to set up the environment.
 			void SetUp() override
 			{
-				locate_calendar("Europe/London"); // how to initialise more explicitly?
+				_get_calendar_registry(); // to initialise the calendars
 			}
 
 			// Override this to define how to tear down the environment.

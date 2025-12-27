@@ -24,6 +24,9 @@
 
 #include <calendar.h>
 
+#include <map> // for _get_calendar_registry only
+#include <string_view> // for _get_calendar_registry only
+
 
 namespace gregorian
 {
@@ -74,6 +77,15 @@ namespace gregorian
 		//
 
 		auto make_ANBIMA_calendar() -> const calendar&; // should this go to the fin-calendar?
+
+
+
+		// below are exposed for testing purposes
+		using _calendar_registry = std::map<std::string_view, calendar>;
+		// should it be string rather than string_view?
+		// is map a correct data structure for this?
+
+		auto _get_calendar_registry() -> const _calendar_registry&;
 
 	}
 
