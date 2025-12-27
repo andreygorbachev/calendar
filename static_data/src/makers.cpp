@@ -22,6 +22,8 @@
 
 #include "makers.h"
 
+#include <calendar.h>
+
 #include <map>
 #include <string_view>
 
@@ -34,14 +36,30 @@ namespace gregorian
 	namespace static_data
 	{
 
-		using _calendar_registry2 = map<string_view, _calendar_registry_entry2>;
+		using _calendar_registry2 = map<string_view, calendar>;
 		// should it be string rather than string_view?
 		// is map a correct data structure for this?
 
 		static auto _make_calendar_registry2() -> _calendar_registry2
 		{
+			// at the moment we create all calendars (needed or not), which might or might not be what we want
+			// this could be changed to lazy creation if needed, but we'll have to deal with synchronization then
 			return _calendar_registry2{
-				// nothing to start with
+				{ "Europe/London", make_England_calendar() },
+				{ "Europe/Cardif", make_Wales_calendar() },
+				{ "Europe/Edinburgh", make_Scotland_calendar() },
+				{ "Europe/Belfast", make_Northern_Ireland_calendar() },
+				{ "Europe/MPC", make_MPC_calendar() },
+
+				{ "Europe/T2", make_T2_calendar() },
+
+				{ "America/USA", make_USA_Federal_calendar() },
+				{ "America/Washington", make_Washington_DC_Federal_calendar() },
+
+				{ "America/Canada", make_Canada_Federal_calendar() },
+				{ "America/Quebec", make_Quebec_calendar() },
+
+				{ "America/ANBIMA", make_ANBIMA_calendar() },
 			};
 		}
 
