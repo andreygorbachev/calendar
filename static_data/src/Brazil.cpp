@@ -53,7 +53,8 @@ namespace gregorian
 		struct _annual_holiday_period final
 		{
 			const annual_holiday* holiday;
-			days_period period{ Epoch }; // we probably need separate epochs for announcements and applicability
+			days_period period{ Epoch };
+			year_month_day announced{}; // do we need time as well?
 		};
 
 		using _annual_holiday_period_storage = vector<_annual_holiday_period>;
