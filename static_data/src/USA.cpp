@@ -355,7 +355,7 @@ namespace gregorian
 		}
 
 		// should it move to the main library (in a more generic form)?
-		static auto _make_Washington_DC_Federal_holiday_schedule(
+		static auto _make_Washington_DC_Federal_holiday_schedule( // Victoria Day sits in it own file ...
 			const util::years_period& p,
 			const annual_holiday_storage& rules
 		) noexcept -> schedule
