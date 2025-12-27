@@ -7,6 +7,7 @@ add_library(${PROJECT_NAME}
   Canada.cpp
   Brazil.cpp
   locate_calendar.cpp
+  makers.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

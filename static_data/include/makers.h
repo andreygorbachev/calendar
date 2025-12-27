@@ -35,6 +35,12 @@ namespace gregorian
 		// do we need to be able to handle a case when a new holiday was created,
 		// but then cancelled very soon after (during the same year)?
 
+
+		struct _calendar_registry_entry2 final
+		{
+		};
+
+
 		// from https://www.gov.uk/bank-holidays
 
 		auto make_England_calendar() -> const calendar&;
