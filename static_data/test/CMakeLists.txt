@@ -4,6 +4,7 @@ add_executable(${PROJECT_NAME}
   static_data_test.cpp
   locate_calendar_test.cpp
   victoria_day_holiday_test.cpp
+  environment.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
