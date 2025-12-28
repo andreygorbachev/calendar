@@ -67,6 +67,8 @@ namespace gregorian
 
 		auto make_Canada_Federal_calendar() -> const calendar&; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
 
+		auto make_Ontario_calendar() -> const calendar&;
+
 		auto make_Quebec_calendar() -> const calendar&;
 
 

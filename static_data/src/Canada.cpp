@@ -69,6 +69,19 @@ namespace gregorian
 			};
 		}
 
+		static auto _Ontario_schedule() -> schedule // or should it be a "proper" function (without _)?
+		{
+			auto holidays = schedule::dates{
+				2025y / August / 4d, // Civic Holiday
+			};
+
+			return schedule{
+//				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
+				days_period{ 2025 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
 		static auto _Quebec_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
@@ -82,7 +95,6 @@ namespace gregorian
 			};
 		}
 
-		// we should also deal with "Civic Holiday" - Monday, August 4, 2025 (excluding Quebec)
 
 
 		static auto _make_Canada_Federal_calendar() -> calendar
@@ -152,6 +164,36 @@ namespace gregorian
 //			};
 //		}
 
+		static auto _make_Ontario_calendar() -> calendar
+		{
+			const auto known_part = _Ontario_schedule();
+
+//			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
+//			const auto generated_part_until = Epoch.get_until().year();
+//
+//			const auto InaugurationDay = named_holiday{ January / 20d };
+//
+//			const auto rules = annual_holiday_storage{
+//				&InaugurationDay
+//			};
+//
+//			const auto generated_part = _make_Washington_DC_Federal_holiday_schedule(
+//				years_period{ generated_part_from, generated_part_until },
+//				rules
+//			);
+//
+//			// setup a calendar for the generated part only (to do substitution for the generated dates)
+//			auto cal = calendar{
+//				SaturdaySundayWeekend,
+//				generated_part
+//			};
+//			cal.substitute(Nearest);
+
+			return
+				_make_Canada_Federal_calendar() |
+				calendar{ SaturdaySundayWeekend, known_part /* + cal.get_schedule()*/ };
+		}
+
 		static auto _make_Quebec_calendar() -> calendar
 		{
 			const auto known_part = _Quebec_schedule();
@@ -190,9 +232,15 @@ namespace gregorian
 			return s;
 		}
 
+		auto make_Ontario_calendar() -> const calendar&
+		{
+			static const auto s = _make_Ontario_calendar(); // should it be Toronto calendar?
+			return s;
+		}
+
 		auto make_Quebec_calendar() -> const calendar&
 		{
-			static const auto s = _make_Quebec_calendar();
+			static const auto s = _make_Quebec_calendar(); // should it be Montreal calendar (or Quebec City)?
 			return s;
 		}
 
