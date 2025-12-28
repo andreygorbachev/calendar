@@ -74,9 +74,11 @@ int main()
 		schedule{ days_period{ from, until }, made.get_schedule().get_dates() }
 	};
 
+	const auto num_dates = sys_days{ until } - sys_days{ from };
+
 	cout << boolalpha;
 
-	cout << "Is parsed calendar the same as made calendar (over common dates)? " << (cal1 == cal2) << endl;
+	cout << "Is parsed calendar the same as made calendar (over " << num_dates.count() << " dates)? " << (cal1 == cal2) << endl;
 
 	return 0;
 }
