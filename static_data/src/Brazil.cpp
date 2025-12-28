@@ -58,7 +58,7 @@ namespace gregorian
 		{
 			const annual_holiday* holiday;
 			days_period period{ Epoch };
-			days_period announced_cancelled{ Epoch }; // do we need time as well?
+			days_period announced_cancelled{ Epoch }; // do we need time as well? // is creation and cancellation immidiately effective?
 		};
 
 		using _annual_holiday_period_storage = vector<_annual_holiday_period>;
