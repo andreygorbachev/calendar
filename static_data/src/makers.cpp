@@ -71,7 +71,7 @@ namespace gregorian
 		}
 
 
-		auto locate_calendar(string_view tz_name) -> const calendar&
+		auto locate_calendar(string_view tz_name) -> const calendar& // this should probably return _calendar_versions instead
 		{
 			const auto& reg = _get_calendar_registry();
 
