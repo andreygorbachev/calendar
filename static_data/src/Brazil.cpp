@@ -93,7 +93,7 @@ namespace gregorian
 			{ &_RepublicProclamationDay, _ANBIMA_Epoch },
 			{
 				&_BlackConsciousnessDay,
-				period{ 2024y / FirstDayOfJanuary, Epoch.get_until() },
+				period{ 2024y / FirstDayOfJanuary, Epoch.get_until() }, // or should it be the first day it was celebrated?
 				period{ 2023y / December / 21d, Epoch.get_until() } // was enacted as Law No. 14,759 on 21 December 2023
 			},
 			{ &ChristmasDay, _ANBIMA_Epoch }
