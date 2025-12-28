@@ -23,11 +23,13 @@
 #include "makers.h"
 
 #include <calendar.h>
+#include <schedule.h>
 
 #include <string>
 #include <string_view>
 #include <stdexcept>
 #include <chrono>
+#include <cassert>
 
 using namespace std;
 using namespace std::chrono;
@@ -44,21 +46,21 @@ namespace gregorian
 			// at the moment we create all calendars (needed or not), which might or might not be what we want
 			// this could be changed to lazy creation if needed, but we'll have to deal with synchronization then
 			return _calendar_registry{
-				{ "Europe/London", make_England_calendar() }, // from UK, only London is in tzdata
-				{ "Europe/Cardif", make_Wales_calendar() },
-				{ "Europe/Edinburgh", make_Scotland_calendar() },
-				{ "Europe/Belfast", make_Northern_Ireland_calendar() },
-				{ "Europe/MPC", make_MPC_calendar() }, // or should it be Europe/UK/MPC? or should it be in etcetera?
+				{ "Europe/London", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_England_calendar() } } }, // from UK, only London is in tzdata
+				{ "Europe/Cardif", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Wales_calendar() } } },
+				{ "Europe/Edinburgh", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Scotland_calendar() } } },
+				{ "Europe/Belfast", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Northern_Ireland_calendar() } } },
+				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 
-				{ "Europe/T2", make_T2_calendar() }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+				{ "Europe/T2", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_T2_calendar() } } }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
-				{ "America/USA", make_USA_Federal_calendar() },
-				{ "America/Washington", make_Washington_DC_Federal_calendar() }, // not a city, but federal holidays
+				{ "America/USA", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_USA_Federal_calendar() } } },
+				{ "America/Washington", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Washington_DC_Federal_calendar() } } }, // not a city, but federal holidays
 
-				{ "America/Canada", make_Canada_Federal_calendar() },
-				{ "America/Quebec", make_Quebec_calendar() },
+				{ "America/Canada", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Canada_Federal_calendar() } } },
+				{ "America/Quebec", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Quebec_calendar() } } },
 
-				{ "America/ANBIMA", make_ANBIMA_calendar() }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+				{ "America/ANBIMA", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_ANBIMA_calendar() } } }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
 			};
 		}
 
@@ -75,7 +77,11 @@ namespace gregorian
 
 			const auto it = reg.find(tz_name);
 			if (it != reg.cend())
-				return it->second;
+			{
+				const auto& cal_versions = it->second;
+				assert(!cal_versions.empty());
+				return cal_versions.crbegin()->second; // return the latest version
+			}
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}

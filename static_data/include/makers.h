@@ -25,6 +25,7 @@
 #include <calendar.h>
 
 #include <map> // for _get_calendar_registry only
+#include <chrono> // for _get_calendar_registry only
 #include <string_view> // for _get_calendar_registry only
 
 
@@ -76,7 +77,8 @@ namespace gregorian
 
 
 		// below are exposed for testing purposes only
-		using _calendar_registry = std::map<std::string_view, calendar>;
+		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>;
+		using _calendar_registry = std::map<std::string_view, _calendar_versions>;
 		// should it be string rather than string_view?
 		// is map a correct data structure for this?
 
