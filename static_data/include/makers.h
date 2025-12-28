@@ -34,11 +34,6 @@ namespace gregorian
 	namespace static_data // should these functions to be internal function only?
 	{
 
-		// to handle a possiblity of generating a calendar as of a specific historical date
-		// do we need to be able to handle a case when a new holiday was created,
-		// but then cancelled very soon after (during the same year)?
-
-
 		// from https://www.gov.uk/bank-holidays
 
 		auto make_England_calendar() -> const calendar&;

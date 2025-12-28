@@ -50,11 +50,15 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// to handle a possiblity of generating a calendar as of a specific historical date
+		// do we need to be able to handle a case when a new holiday was created,
+		// but then cancelled very soon after (during the same year)?
+
 		struct _annual_holiday_period final
 		{
 			const annual_holiday* holiday;
 			days_period period{ Epoch };
-			year_month_day announced{}; // do we need time as well?
+			days_period announced_cancelled{ Epoch }; // do we need time as well?
 		};
 
 		using _annual_holiday_period_storage = vector<_annual_holiday_period>;
