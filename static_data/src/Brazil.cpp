@@ -60,6 +60,7 @@ namespace gregorian
 			days_period period{ Epoch };
 			days_period announced_cancelled{ Epoch }; // do we need time as well? // is creation and cancellation immidiately effective?
 		};
+		// how do we handle a situation when Saturday "moves" to another day (and actually is a business day)?
 
 		using _annual_holiday_period_storage = vector<_annual_holiday_period>;
 
