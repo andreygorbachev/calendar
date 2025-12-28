@@ -91,7 +91,11 @@ namespace gregorian
 			{ &_OurLadyOfAparecida, _ANBIMA_Epoch },
 			{ &_AllSoulsDay, _ANBIMA_Epoch },
 			{ &_RepublicProclamationDay, _ANBIMA_Epoch },
-			{ &_BlackConsciousnessDay, period{ 2024y / FirstDayOfJanuary, Epoch.get_until() } },
+			{
+				&_BlackConsciousnessDay,
+				period{ 2024y / FirstDayOfJanuary, Epoch.get_until() },
+				period{ 2023y / December / 21d, Epoch.get_until() } // was enacted as Law No. 14,759 on 21 December 2023
+			},
 			{ &ChristmasDay, _ANBIMA_Epoch }
 		};
 
