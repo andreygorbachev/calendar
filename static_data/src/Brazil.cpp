@@ -106,9 +106,15 @@ namespace gregorian
 			const days_period& epoch
 		)
 		{
+			const auto as_of_date = 2025y / December / 28d; // temp only - set to today as of first development date
+
+			const auto contains_as_of_date = [&as_of_date](const auto& x) noexcept {
+				return x.announced_cancelled.contains(as_of_date);
+			};
+
 			auto result = vector<days_period>{ epoch }; // should it be std::set? // but I guess we maintain sorted order naturally anyway
 
-			for (const auto& holiday : storage)
+			for (const auto& holiday : storage | views::filter(contains_as_of_date))
 			{
 //				assert(Epoch.contains(holiday.period));
 				// we can probably make an optimistion and skip all the Epoch holidays
