@@ -27,8 +27,10 @@
 #include <string>
 #include <string_view>
 #include <stdexcept>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 
 namespace gregorian
@@ -76,6 +78,12 @@ namespace gregorian
 				return it->second;
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
+		}
+
+		auto locate_calendar(string_view tz_name, year_month_day as_of_day) -> const calendar&
+		{
+			// at the moment we ignore as_of_day
+			return locate_calendar(tz_name);
 		}
 
 		// not 100% sure about following tz-data, but it seems to be ok for now

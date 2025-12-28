@@ -42,6 +42,10 @@ namespace gregorian
 		auto locate_calendar(std::string_view tz_name) -> const calendar&; // or should it return const calendar* like locate_zone?
 		// or is it more of a locale thing, rather than a time zone?
 
+		auto locate_calendar(std::string_view tz_name, std::chrono::year_month_day as_of_date) -> const calendar&; // or should it return const calendar* like locate_zone?
+		// should we pass parametes by value or by const reference?
+
+
 		constexpr auto Epoch = util::period{
 			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
 			std::chrono::year{ 2118 } / LastDayOfDecember

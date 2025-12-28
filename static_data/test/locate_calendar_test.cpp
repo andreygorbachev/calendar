@@ -24,6 +24,7 @@
 
 #include <gtest/gtest.h>
 
+#include <chrono>
 #include <stdexcept>
 
 using namespace std;
@@ -44,6 +45,16 @@ namespace gregorian
 		TEST(static, locate_calendar2)
 		{
 			const auto& cal = locate_calendar("Europe/London");
+		}
+
+		TEST(static, locate_calendar3)
+		{
+			EXPECT_THROW(locate_calendar("foo", 2025y / December / 28d), runtime_error);
+		}
+
+		TEST(static, locate_calendar4)
+		{
+			const auto& cal = locate_calendar("Europe/London", 2025y / December / 28d);
 		}
 
 	}
