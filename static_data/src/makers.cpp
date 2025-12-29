@@ -72,17 +72,13 @@ namespace gregorian
 		}
 
 
-		auto locate_calendar(string_view tz_name) -> const calendar& // this should probably return _calendar_versions instead
+		static auto _locate_calendar_versions(string_view tz_name) -> const _calendar_versions& // this should probably return _calendar_versions instead
 		{
 			const auto& reg = _get_calendar_registry();
 
 			const auto it = reg.find(tz_name);
 			if (it != reg.cend())
-			{
-				const auto& cal_versions = it->second;
-				assert(!cal_versions.empty());
-				return cal_versions.crbegin()->second; // return the latest version
-			}
+				return it->second;
 			else
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
@@ -90,7 +86,9 @@ namespace gregorian
 		auto locate_calendar(string_view tz_name, year_month_day as_of_day) -> const calendar&
 		{
 			// at the moment we ignore as_of_day
-			return locate_calendar(tz_name);
+			const auto& cal_versions = _locate_calendar_versions(tz_name);
+			assert(!cal_versions.empty());
+			return cal_versions.crbegin()->second; // return the latest version
 		}
 
 		// not 100% sure about following tz-data, but it seems to be ok for now
