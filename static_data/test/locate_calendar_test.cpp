@@ -46,6 +46,9 @@ namespace gregorian
 
 			// none existing version
 			EXPECT_THROW(locate_calendar("America/ANBIMA", 2000y / LastDayOfDecember), runtime_error);
+
+			// also test the first and last date of the applicable epoch
+			// (do we need to do anything special for after the epoch?)
 		}
 
 		TEST(static, locate_calendar2)

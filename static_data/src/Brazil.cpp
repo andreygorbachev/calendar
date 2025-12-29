@@ -82,23 +82,23 @@ namespace gregorian
 		};
 
 		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
-			{ &NewYearsDay, _ANBIMA_Epoch },
-			{ &_ShroveMonday, _ANBIMA_Epoch },
-			{ &_ShroveTuesday, _ANBIMA_Epoch },
-			{ &GoodFriday, _ANBIMA_Epoch },
-			{ &_TiradentesDay, _ANBIMA_Epoch },
-			{ &_LabourDay, _ANBIMA_Epoch },
-			{ &_CorpusChristi, _ANBIMA_Epoch },
-			{ &_IndependenceDay, _ANBIMA_Epoch },
-			{ &_OurLadyOfAparecida, _ANBIMA_Epoch },
-			{ &_AllSoulsDay, _ANBIMA_Epoch },
-			{ &_RepublicProclamationDay, _ANBIMA_Epoch },
+			{ &NewYearsDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_ShroveMonday, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_ShroveTuesday, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &GoodFriday, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_TiradentesDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_LabourDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_CorpusChristi, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_IndependenceDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_OurLadyOfAparecida, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_AllSoulsDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &_RepublicProclamationDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
 			{
 				&_BlackConsciousnessDay,
 				period{ 2024y / FirstDayOfJanuary, Epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
 				period{ 2023y / December / 21d, Epoch.get_until() } // was enacted as Law No. 14,759 on 21 December 2023
 			},
-			{ &ChristmasDay, _ANBIMA_Epoch }
+			{ &ChristmasDay, _ANBIMA_Epoch, _ANBIMA_Epoch }
 		};
 
 
@@ -244,11 +244,24 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions
 		{
-			// temporary hard code the dates of 2 different versions here
-			return {
-				{ _ANBIMA_Epoch.get_from(), _make_ANBIMA_calendar(_ANBIMA_Epoch.get_from()) },
-				{ 2023y / December / 21d, _make_ANBIMA_calendar(2023y / December / 21d) }
+			// temporary ignore the cancelled part of announced_cancelled
+
+			const auto get_announced = [](const auto& x) noexcept {
+				return x.announced_cancelled.get_from();
 			};
+
+			// make below pretier?
+			auto versions = _ANBINA_annual_holiday_period_storage
+				| views::transform(get_announced)
+				| to<vector>();
+			ranges::sort(versions);
+			const auto ret = ranges::unique(versions);
+			versions.erase(ret.cbegin(), ret.cend());
+
+			auto result = _calendar_versions{};
+			for (const auto& as_of_date : versions)
+				result.emplace(as_of_date, _make_ANBIMA_calendar(as_of_date));
+			return result;
 		}
 
 	}
