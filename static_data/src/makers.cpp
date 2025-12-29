@@ -67,7 +67,7 @@ namespace gregorian
 
 		auto _get_calendar_registry() -> const _calendar_registry&
 		{
-			static const auto r = _make_calendar_registry();
+			static const auto r = _make_calendar_registry(); // ideally all this will be generated at compile time
 			return r;
 		}
 
