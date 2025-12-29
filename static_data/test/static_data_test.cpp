@@ -38,11 +38,6 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(static, make_calendar)
-		{
-			const auto& cal = make_T2_calendar();
-		}
-
 		TEST(static, InaugurationDay)
 		{
 			const auto& cal1 = make_USA_Federal_calendar();
