@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -207,12 +208,12 @@ namespace gregorian
 		}
 
 
-		static auto _make_ANBIMA_calendar() -> calendar
+		static auto _make_ANBIMA_calendar(const year_month_day& as_of_date) -> calendar
 		{
 			const auto sub_epochs = _make_sub_epochs(
 				_ANBINA_annual_holiday_period_storage,
 				_ANBIMA_Epoch,
-				2025y / LastDayOfDecember // temp only
+				as_of_date
 			);
 	
 			assert(!sub_epochs.empty());
@@ -240,11 +241,19 @@ namespace gregorian
 			// please note that holidays are not adjusted in ANBIMA
 		}
 
+		static auto _make_ANBIMA_calendar_versions(const year_month_day& as_of_date) -> _calendar_versions
+		{
+			// temporary hard code the dates of 2 different versions here
+			return {
+				{ _ANBIMA_Epoch.get_until(), _make_ANBIMA_calendar(_ANBIMA_Epoch.get_until()) },
+				{ 2023y / December / 21d, _make_ANBIMA_calendar(2023y / December / 21d) }
+			};
+		}
 
 
 		auto make_ANBIMA_calendar() -> const calendar& // do we need the historic part explicitly?
 		{
-			static const auto s = _make_ANBIMA_calendar();
+			static const auto s = _make_ANBIMA_calendar(2025y / LastDayOfDecember); // temp only
 			return s;
 		}
 

@@ -79,7 +79,7 @@ namespace gregorian
 
 
 		// below are exposed for testing purposes only
-		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>;
+		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>; // actually needed for makers?
 		using _calendar_registry = std::map<std::string_view, _calendar_versions>;
 		// should it be string rather than string_view?
 		// is map a correct data structure for this?
