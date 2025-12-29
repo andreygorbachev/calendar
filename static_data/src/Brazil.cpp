@@ -103,11 +103,10 @@ namespace gregorian
 
 		static auto _make_sub_epochs(
 			const _annual_holiday_period_storage& storage,
-			const days_period& epoch
+			const days_period& epoch,
+			const year_month_day& as_of_date
 		)
 		{
-			const auto as_of_date = 2025y / December / 28d; // temp only - set to today as of first development date
-
 			const auto contains_as_of_date = [&as_of_date](const auto& x) noexcept {
 				return x.announced_cancelled.contains(as_of_date);
 			};
@@ -212,7 +211,8 @@ namespace gregorian
 		{
 			const auto sub_epochs = _make_sub_epochs(
 				_ANBINA_annual_holiday_period_storage,
-				_ANBIMA_Epoch
+				_ANBIMA_Epoch,
+				2025y / LastDayOfDecember // temp only
 			);
 	
 			assert(!sub_epochs.empty());
