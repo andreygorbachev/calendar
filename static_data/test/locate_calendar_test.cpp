@@ -49,6 +49,23 @@ namespace gregorian
 			const auto& cal = locate_calendar("Europe/London", 2025y / LastDayOfDecember);
 		}
 
+		TEST(static, locate_calendar3)
+		{
+			// test 2 different versions of the same calendar (ANBIMA)
+			// Black Consciousness Day
+
+			const auto& cal_ver1 = locate_calendar("America/ANBIMA", 2023y / December / 20d); // prior to announcement of the new holiday
+			const auto& cal_ver2 = locate_calendar("America/ANBIMA", 2023y / December / 21d); // on the announcement date of the new holiday
+			EXPECT_TRUE(cal_ver1 != cal_ver2);
+
+			// holiday did not exist at all before it was announced
+			EXPECT_TRUE(cal_ver1.is_business_day(2023y / November / 20d));
+			EXPECT_TRUE(cal_ver1.is_business_day(2024y / November / 20d));
+			// holiday exists after it was announced (but starting from 2024)
+			EXPECT_TRUE(cal_ver2.is_business_day(2023y / November / 20d));
+			EXPECT_FALSE(cal_ver2.is_business_day(2024y / November / 20d));
+		}
+
 	}
 
 }
