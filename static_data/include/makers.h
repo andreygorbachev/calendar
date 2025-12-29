@@ -63,7 +63,7 @@ namespace gregorian
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar() -> const calendar&; // example of a calendar which did not exist in 2000
+		auto make_T2_calendar() -> const calendar&; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
 
 
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
@@ -85,6 +85,7 @@ namespace gregorian
 		//
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
+		// does not correspond to Epoch
 
 	}
 
