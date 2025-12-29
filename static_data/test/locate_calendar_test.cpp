@@ -41,15 +41,14 @@ namespace gregorian
 
 		TEST(static, locate_calendar1)
 		{
+			// none existing name
 			EXPECT_THROW(locate_calendar("foo", 2025y / LastDayOfDecember), runtime_error);
+
+			// none existing version
+			EXPECT_THROW(locate_calendar("America/ANBIMA", 2000y / LastDayOfDecember), runtime_error);
 		}
 
 		TEST(static, locate_calendar2)
-		{
-			const auto& cal = locate_calendar("Europe/London", 2025y / LastDayOfDecember);
-		}
-
-		TEST(static, locate_calendar3)
 		{
 			// test 2 different versions of the same calendar (ANBIMA)
 			// Black Consciousness Day

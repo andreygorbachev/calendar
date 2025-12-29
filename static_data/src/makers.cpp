@@ -83,15 +83,20 @@ namespace gregorian
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
 
-		auto locate_calendar(string_view tz_name, year_month_day as_of_day) -> const calendar&
+		auto locate_calendar(string_view tz_name, year_month_day as_of_date) -> const calendar&
 		{
 			const auto& cal_versions = _locate_calendar_versions(tz_name);
 			assert(!cal_versions.empty());
 
-			const auto cal_iter = --cal_versions.upper_bound(as_of_day);
-			// do we need to throw an exception if as_of_date is before the first available version?
+			const auto earliest_as_of_date = cal_versions.cbegin()->first;
+			if (as_of_date >= earliest_as_of_date)
+			{
+				const auto cal_iter = --cal_versions.upper_bound(as_of_date);
 
-			return cal_iter->second;
+				return cal_iter->second;
+			}
+			else
+				throw runtime_error{ "calendar's version as of date "s + string{ tz_name } + " could not be located"s };
 		}
 
 		// not 100% sure about following tz-data, but it seems to be ok for now
