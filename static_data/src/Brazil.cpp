@@ -246,7 +246,7 @@ namespace gregorian
 		{
 			// temporary hard code the dates of 2 different versions here
 			return {
-				{ _ANBIMA_Epoch.get_until(), _make_ANBIMA_calendar(_ANBIMA_Epoch.get_until()) },
+				{ _ANBIMA_Epoch.get_from(), _make_ANBIMA_calendar(_ANBIMA_Epoch.get_from()) },
 				{ 2023y / December / 21d, _make_ANBIMA_calendar(2023y / December / 21d) }
 			};
 		}

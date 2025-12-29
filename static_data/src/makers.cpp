@@ -85,10 +85,13 @@ namespace gregorian
 
 		auto locate_calendar(string_view tz_name, year_month_day as_of_day) -> const calendar&
 		{
-			// at the moment we ignore as_of_day
 			const auto& cal_versions = _locate_calendar_versions(tz_name);
 			assert(!cal_versions.empty());
-			return cal_versions.crbegin()->second; // return the latest version
+
+			const auto cal_iter = --cal_versions.upper_bound(as_of_day);
+			// do we need to throw an exception if as_of_date is before the first available version?
+
+			return cal_iter->second;
 		}
 
 		// not 100% sure about following tz-data, but it seems to be ok for now
