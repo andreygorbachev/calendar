@@ -265,7 +265,7 @@ namespace gregorian
 #endif
 			ranges::sort(versions);
 			const auto ret = ranges::unique(versions);
-			versions.erase(ret.cbegin(), ret.cend());
+			versions.erase(ret.begin(), ret.end());
 
 			auto result = _calendar_versions{};
 			for (const auto& as_of_date : versions)
