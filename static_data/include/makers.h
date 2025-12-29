@@ -35,6 +35,16 @@ namespace gregorian
 	namespace static_data // should these functions to be internal function only?
 	{
 
+		// below are exposed for testing purposes only
+		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>; // actually needed for makers?
+		using _calendar_registry = std::map<std::string_view, _calendar_versions>;
+		// should it be string rather than string_view?
+		// is map a correct data structure for this?
+
+		auto _get_calendar_registry() -> const _calendar_registry&;
+
+
+
 		// from https://www.gov.uk/bank-holidays
 
 		auto make_England_calendar() -> const calendar&;
@@ -74,17 +84,7 @@ namespace gregorian
 
 		//
 
-		auto make_ANBIMA_calendar() -> const calendar&; // should this go to the fin-calendar?
-
-
-
-		// below are exposed for testing purposes only
-		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>; // actually needed for makers?
-		using _calendar_registry = std::map<std::string_view, _calendar_versions>;
-		// should it be string rather than string_view?
-		// is map a correct data structure for this?
-
-		auto _get_calendar_registry() -> const _calendar_registry&;
+		auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 
 	}
 

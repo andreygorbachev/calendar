@@ -61,7 +61,7 @@ namespace gregorian
 				{ "America/Ontario", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Ontario_calendar() } } },
 				{ "America/Quebec", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Quebec_calendar() } } },
 
-				{ "America/ANBIMA", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_ANBIMA_calendar() } } }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+				{ "America/ANBIMA", make_ANBIMA_calendar_versions() }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
 			};
 		}
 
