@@ -59,7 +59,9 @@ namespace gregorian
 		{
 			const annual_holiday* holiday;
 			days_period period{ Epoch }; // if we deal in annual calendars, should this be in years?
-			days_period announced_cancelled{ Epoch }; // do we need time as well? // is creation and cancellation immidiately effective (how tzdata deals with the same)?
+			year_month_day announced{ Epoch.get_from() }; // do we need time as well?
+			// we should also have a cancellation date (but we need to find a good example first)
+			// is creation and cancellation immidiately effective (how tzdata deals with the same)?
 		};
 		// how do we handle a situation when Saturday "moves" to another day (and actually is a business day)?
 
@@ -82,23 +84,23 @@ namespace gregorian
 		};
 
 		const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
-			{ &NewYearsDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_ShroveMonday, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_ShroveTuesday, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &GoodFriday, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_TiradentesDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_LabourDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_CorpusChristi, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_IndependenceDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_OurLadyOfAparecida, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_AllSoulsDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
-			{ &_RepublicProclamationDay, _ANBIMA_Epoch, _ANBIMA_Epoch },
+			{ &NewYearsDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_ShroveMonday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_ShroveTuesday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &GoodFriday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_TiradentesDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_LabourDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_CorpusChristi, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_IndependenceDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_OurLadyOfAparecida, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_AllSoulsDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			{ &_RepublicProclamationDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
 			{
 				&_BlackConsciousnessDay,
 				period{ 2024y / FirstDayOfJanuary, Epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
-				period{ 2023y / December / 21d, Epoch.get_until() } // was enacted as Law No. 14,759 on 21 December 2023
+				2023y / December / 21d // was enacted as Law No. 14,759 on 21 December 2023
 			},
-			{ &ChristmasDay, _ANBIMA_Epoch, _ANBIMA_Epoch }
+			{ &ChristmasDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() }
 		};
 
 
@@ -109,7 +111,7 @@ namespace gregorian
 		)
 		{
 			const auto contains_as_of_date = [&as_of_date](const auto& x) noexcept {
-				return x.announced_cancelled.contains(as_of_date);
+				return as_of_date >= x.announced;
 			};
 
 			auto result = vector<days_period>{ epoch }; // should it be std::set? // but I guess we maintain sorted order naturally anyway
@@ -247,7 +249,7 @@ namespace gregorian
 			// temporary ignore the cancelled part of announced_cancelled
 
 			const auto get_announced = [](const auto& x) noexcept {
-				return x.announced_cancelled.get_from();
+				return x.announced;
 			};
 
 			// make below pretier?
