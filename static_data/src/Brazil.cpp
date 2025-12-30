@@ -25,21 +25,12 @@
 
 #include <period.h>
 #include <schedule.h>
-#include <calendar.h>
 #include <annual_holidays.h>
-#include <weekend.h>
 
 #include <chrono>
-#include <vector>
-#include <ranges>
-#include <cassert>
-#include <algorithm>
-#include <iterator>
 
 using namespace std;
 using namespace std::chrono;
-using namespace std::ranges;
-using namespace std::ranges::views;
 
 
 namespace gregorian
@@ -94,6 +85,7 @@ namespace gregorian
 				_ANBINA_annual_holiday_period_storage,
 				_ANBIMA_Epoch
 			);
+			// please note that holidays are not adjusted in ANBIMA
 		}
 
 	}

@@ -193,7 +193,6 @@ namespace gregorian
 				SaturdaySundayWeekend, // probably do not hard code it
 				s
 			};
-			// please note that holidays are not adjusted in ANBIMA
 		}
 
 
@@ -265,7 +264,7 @@ namespace gregorian
 		}
 
 
-		static auto _locate_calendar_versions(string_view tz_name) -> const _calendar_versions& // this should probably return _calendar_versions instead
+		static auto _locate_calendar_versions(string_view tz_name) -> const _calendar_versions&
 		{
 			const auto& reg = _get_calendar_registry();
 
