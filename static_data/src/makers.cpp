@@ -162,14 +162,11 @@ namespace gregorian
 		static auto _make_calendar(
 			const _annual_holiday_period_storage& storage,
 			const days_period& epoch,
+			const weekend& we,
 			const year_month_day& as_of_date
 		) -> calendar
 		{
-			const auto sub_epochs = _make_sub_epochs(
-				storage,
-				epoch,
-				as_of_date
-			);
+			const auto sub_epochs = _make_sub_epochs(storage, epoch, as_of_date);
 
 			assert(!sub_epochs.empty());
 			const auto& se = sub_epochs.front();
@@ -189,16 +186,14 @@ namespace gregorian
 			);
 			// there might be already an STL algorithm (or their combination) to do the above
 
-			return calendar{
-				SaturdaySundayWeekend, // probably do not hard code it
-				s
-			};
+			return calendar{ we, s };
 		}
 
 
 		auto _make_calendar_versions(
 			const _annual_holiday_period_storage& storage,
-			const days_period& epoch
+			const days_period& epoch,
+			const weekend& we
 		) -> _calendar_versions
 		{
 			const auto get_announced = [](const auto& x) noexcept {
@@ -226,7 +221,7 @@ namespace gregorian
 			for (const auto& as_of_date : versions)
 				result.emplace(
 					as_of_date,
-					_make_calendar(storage, epoch, as_of_date)
+					_make_calendar(storage,	epoch, we, as_of_date)
 				);
 			return result;
 		}

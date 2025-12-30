@@ -25,6 +25,7 @@
 #include "static_data.h"
 
 #include <calendar.h>
+#include <weekend.h>
 #include <annual_holiday_interface.h>
 #include <period.h>
 
@@ -65,7 +66,8 @@ namespace gregorian
 
 		auto _make_calendar_versions(
 			const _annual_holiday_period_storage& storage,
-			const util::days_period& epoch
+			const util::days_period& epoch,
+			const weekend& we
 		) -> _calendar_versions;
 
 
