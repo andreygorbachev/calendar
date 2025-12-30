@@ -211,7 +211,7 @@ namespace gregorian
 				| views::transform(get_announced)
 				| to<vector>();
 #else
-			auto _versions = _ANBINA_annual_holiday_period_storage
+			auto _versions = storage
 				| views::transform(get_announced);
 
 			auto versions = vector<year_month_day>{};
