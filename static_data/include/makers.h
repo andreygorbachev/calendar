@@ -25,7 +25,6 @@
 #include "static_data.h"
 
 #include <calendar.h>
-#include <schedule.h>
 #include <annual_holiday_interface.h>
 #include <period.h>
 
@@ -64,17 +63,10 @@ namespace gregorian
 
 		using _annual_holiday_period_storage = std::vector<_annual_holiday_period>;
 
-		auto _make_sub_epochs(
+		auto _make_calendar_versions(
 			const _annual_holiday_period_storage& storage,
-			const util::days_period& epoch,
-			const std::chrono::year_month_day& as_of_date
-		) -> std::vector<util::days_period>; // do we need to expose this function?
-
-		auto _make_holiday_schedule(
-			const _annual_holiday_period_storage& storage,
-			const util::years_period& epoch
-		) -> schedule; // do we need to expose this function?
-
+			const util::days_period& epoch
+		) -> _calendar_versions;
 
 
 		// from https://www.gov.uk/bank-holidays

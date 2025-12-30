@@ -25,6 +25,7 @@
 
 #include <calendar.h>
 #include <schedule.h>
+#include <weekend.h>
 #include <period.h>
 #include <annual_holiday_interface.h>
 
@@ -52,7 +53,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto _make_sub_epochs(
+		static auto _make_sub_epochs(
 			const _annual_holiday_period_storage& storage,
 			const days_period& epoch,
 			const year_month_day& as_of_date
@@ -120,7 +121,7 @@ namespace gregorian
 		}
 
 
-		auto _make_holiday_schedule(
+		static auto _make_holiday_schedule(
 			const _annual_holiday_period_storage& storage,
 			const years_period& epoch
 		) -> schedule
@@ -156,6 +157,81 @@ namespace gregorian
 				rules
 			);
 		}
+
+
+		static auto _make_calendar(
+			const _annual_holiday_period_storage& storage,
+			const days_period& epoch,
+			const year_month_day& as_of_date
+		) -> calendar
+		{
+			const auto sub_epochs = _make_sub_epochs(
+				storage,
+				epoch,
+				as_of_date
+			);
+
+			assert(!sub_epochs.empty());
+			const auto& se = sub_epochs.front();
+			auto s = _make_holiday_schedule(
+				storage,
+				years_period{ se.get_from().year(), se.get_until().year() }
+			);
+			std::for_each(
+				std::next(sub_epochs.cbegin()),
+				sub_epochs.cend(),
+				[&storage, &s](const auto& se) { // ideally we should capture storage by const reference
+					s += _make_holiday_schedule(
+						storage,
+						years_period{ se.get_from().year(), se.get_until().year() }
+					);
+				}
+			);
+			// there might be already an STL algorithm (or their combination) to do the above
+
+			return calendar{
+				SaturdaySundayWeekend, // probably do not hard code it
+				s
+			};
+			// please note that holidays are not adjusted in ANBIMA
+		}
+
+
+		auto _make_calendar_versions(
+			const _annual_holiday_period_storage& storage,
+			const days_period& epoch
+		) -> _calendar_versions
+		{
+			const auto get_announced = [](const auto& x) noexcept {
+				return x.announced;
+			};
+
+			// make below pretier?
+#ifdef _MSC_BUILD
+			auto versions = storage
+				| views::transform(get_announced)
+				| to<vector>();
+#else
+			auto _versions = _ANBINA_annual_holiday_period_storage
+				| views::transform(get_announced);
+
+			auto versions = vector<year_month_day>{};
+			for (const auto& v : _versions)
+				versions.push_back(v);
+#endif
+			ranges::sort(versions);
+			const auto ret = ranges::unique(versions);
+			versions.erase(ret.begin(), ret.end());
+
+			auto result = _calendar_versions{};
+			for (const auto& as_of_date : versions)
+				result.emplace(
+					as_of_date,
+					_make_calendar(storage, epoch, as_of_date)
+				);
+			return result;
+		}
+
 
 
 		static auto _make_calendar_registry() -> _calendar_registry
