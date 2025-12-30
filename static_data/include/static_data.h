@@ -46,7 +46,12 @@ namespace gregorian
 			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
 			std::chrono::year{ 2118 } / LastDayOfDecember
 		}; // or should it be in years?
-		// we probably want 2000-2100 (or until 2099)
+		// we probably want 2001-2100
+
+		// from Wikipedia:
+		// The 21st century is the current century in the Anno Domini or Common Era, in accordance with the Gregorian calendar.
+		// It began on 1 January 2001 (MMI), and will end on 31 December 2100 (MMC).
+		// It is the first century of the 3rd millennium.
 
 	}
 
