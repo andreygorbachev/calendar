@@ -58,34 +58,34 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions
 		{
-			constexpr auto _ANBIMA_Epoch = period{
+			constexpr auto epoch = period{
 				year{ 2001 } / FirstDayOfJanuary, // starts before Epoch.get_from().year()
 				Epoch.get_until()
 			};
 
-			const auto _ANBINA_annual_holiday_period_storage = _annual_holiday_period_storage{
-				{ &NewYearsDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_ShroveMonday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_ShroveTuesday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &GoodFriday, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_TiradentesDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_LabourDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_CorpusChristi, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_IndependenceDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_OurLadyOfAparecida, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_AllSoulsDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
-				{ &_RepublicProclamationDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() },
+			const auto rules = _annual_holiday_period_storage{
+				{ &NewYearsDay, epoch, epoch.get_from() },
+				{ &_ShroveMonday, epoch, epoch.get_from() },
+				{ &_ShroveTuesday, epoch, epoch.get_from() },
+				{ &GoodFriday, epoch, epoch.get_from() },
+				{ &_TiradentesDay, epoch, epoch.get_from() },
+				{ &_LabourDay, epoch, epoch.get_from() },
+				{ &_CorpusChristi, epoch, epoch.get_from() },
+				{ &_IndependenceDay, epoch, epoch.get_from() },
+				{ &_OurLadyOfAparecida, epoch, epoch.get_from() },
+				{ &_AllSoulsDay, epoch, epoch.get_from() },
+				{ &_RepublicProclamationDay, epoch, epoch.get_from() },
 				{
 					&_BlackConsciousnessDay,
 					period{ 2024y / FirstDayOfJanuary, Epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
 					2023y / December / 21d // was enacted as Law No. 14,759 on 21 December 2023
 				},
-				{ &ChristmasDay, _ANBIMA_Epoch, _ANBIMA_Epoch.get_from() }
+				{ &ChristmasDay, epoch, epoch.get_from() }
 			};
 
 			return _make_calendar_versions(
-				_ANBINA_annual_holiday_period_storage,
-				_ANBIMA_Epoch,
+				rules,
+				epoch,
 				SaturdaySundayWeekend,
 				NoAdjustment
 			);

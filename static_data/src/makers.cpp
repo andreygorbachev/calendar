@@ -55,7 +55,7 @@ namespace gregorian
 	{
 
 		static auto _make_sub_epochs(
-			const _annual_holiday_period_storage& storage,
+			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
 			const year_month_day& as_of_date
 		) -> vector<days_period>
@@ -66,7 +66,7 @@ namespace gregorian
 
 			auto result = vector<days_period>{ epoch }; // should it be std::set? // but I guess we maintain sorted order naturally anyway
 
-			for (const auto& holiday : storage | views::filter(contains_as_of_date))
+			for (const auto& holiday : rules | views::filter(contains_as_of_date))
 			{
 //				assert(Epoch.contains(holiday.period));
 				// we can probably make an optimistion and skip all the Epoch holidays
@@ -123,7 +123,7 @@ namespace gregorian
 
 
 		static auto _make_holiday_schedule(
-			const _annual_holiday_period_storage& storage,
+			const _annual_holiday_period_storage& rules,
 			const years_period& epoch
 		) -> schedule
 		{
@@ -139,49 +139,51 @@ namespace gregorian
 				};
 
 #ifdef _MSC_BUILD
-			const auto rules = storage
+			const auto rules2 = rules // we need a better name
 				| views::filter(contains_epoch)
 				| views::transform(get_holiday) // is there a way to use projections here?
 				| to<annual_holiday_storage>();
 #else
-			auto _rules = storage
+			auto _rules2 = rules
 				| views::filter(contains_epoch)
 				| views::transform(get_holiday);
 
-			auto rules = annual_holiday_storage{};
-			for (const auto& r : _rules)
-				rules.push_back(r);
+			auto rules2 = annual_holiday_storage{};
+			for (const auto& r : _rules2)
+				rules2.push_back(r);
 #endif
 
 			return make_holiday_schedule(
 				epoch,
-				rules
+				rules2
 			);
 		}
 
 
 		static auto _make_calendar(
-			const _annual_holiday_period_storage& storage,
+			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
 			const weekend& we,
 			const business_day_adjuster& adjuster,
 			const year_month_day& as_of_date
 		) -> calendar
 		{
-			const auto sub_epochs = _make_sub_epochs(storage, epoch, as_of_date);
+//			const auto known_part = schedule{};
+
+			const auto sub_epochs = _make_sub_epochs(rules, epoch, as_of_date);
 
 			assert(!sub_epochs.empty());
 			const auto& se = sub_epochs.front();
 			auto generated_part = _make_holiday_schedule(
-				storage,
+				rules,
 				years_period{ se.get_from().year(), se.get_until().year() }
 			);
 			std::for_each(
 				std::next(sub_epochs.cbegin()),
 				sub_epochs.cend(),
-				[&storage, &generated_part](const auto& se) { // ideally we should capture storage by const reference
+				[&rules, &generated_part](const auto& se) { // ideally we should capture rules by const reference
 					generated_part += _make_holiday_schedule(
-						storage,
+						rules,
 						years_period{ se.get_from().year(), se.get_until().year() }
 					);
 				}
@@ -191,12 +193,16 @@ namespace gregorian
 			// setup a calendar for the generated part only (to do substitution for the generated dates)
 			auto cal = calendar{ we, generated_part };
 			cal.substitute(adjuster);
-			return cal;
+
+			return calendar{
+				we,
+				/*known_part +*/ cal.get_schedule()
+			};
 		}
 
 
 		auto _make_calendar_versions(
-			const _annual_holiday_period_storage& storage,
+			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
 			const weekend& we,
 			const business_day_adjuster& adjuster
@@ -208,11 +214,11 @@ namespace gregorian
 
 			// make below pretier?
 #ifdef _MSC_BUILD
-			auto versions = storage
+			auto versions = rules
 				| views::transform(get_announced)
 				| to<vector>();
 #else
-			auto _versions = storage
+			auto _versions = rules
 				| views::transform(get_announced);
 
 			auto versions = vector<year_month_day>{};
@@ -227,7 +233,7 @@ namespace gregorian
 			for (const auto& as_of_date : versions)
 				result.emplace(
 					as_of_date,
-					_make_calendar(storage,	epoch, we, adjuster, as_of_date)
+					_make_calendar(rules, epoch, we, adjuster, as_of_date)
 				);
 			return result;
 		}
