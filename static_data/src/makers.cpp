@@ -290,7 +290,7 @@ namespace gregorian
 			const auto earliest_as_of_date = cal_versions.cbegin()->first;
 			if (as_of_date >= earliest_as_of_date)
 			{
-				const auto cal_iter = --cal_versions.upper_bound(as_of_date);
+				const auto cal_iter = std::prev(cal_versions.upper_bound(as_of_date));
 
 				return cal_iter->second;
 			}
