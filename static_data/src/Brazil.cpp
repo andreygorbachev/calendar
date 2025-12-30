@@ -51,10 +51,6 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// to handle a possiblity of generating a calendar as of a specific historical date
-		// do we need to be able to handle a case when a new holiday was created,
-		// but then cancelled very soon after (during the same year)?
-
 		struct _annual_holiday_period final
 		{
 			const annual_holiday* holiday;
