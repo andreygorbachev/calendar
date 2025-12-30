@@ -26,8 +26,9 @@
 
 #include <calendar.h>
 #include <weekend.h>
-#include <annual_holiday_interface.h>
 #include <period.h>
+#include <annual_holiday_interface.h>
+#include <business_day_adjuster_interface.h>
 
 #include <vector>
 #include <chrono>
@@ -67,7 +68,8 @@ namespace gregorian
 		auto _make_calendar_versions(
 			const _annual_holiday_period_storage& storage,
 			const util::days_period& epoch,
-			const weekend& we
+			const weekend& we,
+			const business_day_adjuster& adjuster
 		) -> _calendar_versions;
 
 

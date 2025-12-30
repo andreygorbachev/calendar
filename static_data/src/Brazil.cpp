@@ -27,6 +27,7 @@
 #include <schedule.h>
 #include <weekend.h>
 #include <annual_holidays.h>
+#include <business_day_adjusters.h>
 
 #include <chrono>
 
@@ -85,9 +86,9 @@ namespace gregorian
 			return _make_calendar_versions(
 				_ANBINA_annual_holiday_period_storage,
 				_ANBIMA_Epoch,
-				SaturdaySundayWeekend
+				SaturdaySundayWeekend,
+				NoAdjustment
 			);
-			// please note that holidays are not adjusted in ANBIMA
 		}
 
 	}

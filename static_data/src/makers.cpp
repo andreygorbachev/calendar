@@ -28,6 +28,7 @@
 #include <weekend.h>
 #include <period.h>
 #include <annual_holiday_interface.h>
+#include <business_day_adjuster_interface.h>
 
 #include <string>
 #include <string_view>
@@ -163,6 +164,7 @@ namespace gregorian
 			const _annual_holiday_period_storage& storage,
 			const days_period& epoch,
 			const weekend& we,
+			const business_day_adjuster& adjuster,
 			const year_month_day& as_of_date
 		) -> calendar
 		{
@@ -170,15 +172,15 @@ namespace gregorian
 
 			assert(!sub_epochs.empty());
 			const auto& se = sub_epochs.front();
-			auto s = _make_holiday_schedule(
+			auto generated_part = _make_holiday_schedule(
 				storage,
 				years_period{ se.get_from().year(), se.get_until().year() }
 			);
 			std::for_each(
 				std::next(sub_epochs.cbegin()),
 				sub_epochs.cend(),
-				[&storage, &s](const auto& se) { // ideally we should capture storage by const reference
-					s += _make_holiday_schedule(
+				[&storage, &generated_part](const auto& se) { // ideally we should capture storage by const reference
+					generated_part += _make_holiday_schedule(
 						storage,
 						years_period{ se.get_from().year(), se.get_until().year() }
 					);
@@ -186,15 +188,19 @@ namespace gregorian
 			);
 			// there might be already an STL algorithm (or their combination) to do the above
 
-			return calendar{ we, s };
+			// setup a calendar for the generated part only (to do substitution for the generated dates)
+			auto cal = calendar{ we, generated_part };
+			cal.substitute(adjuster);
+			return cal;
 		}
 
 
 		auto _make_calendar_versions(
 			const _annual_holiday_period_storage& storage,
 			const days_period& epoch,
-			const weekend& we
-		) -> _calendar_versions
+			const weekend& we,
+			const business_day_adjuster& adjuster
+			) -> _calendar_versions
 		{
 			const auto get_announced = [](const auto& x) noexcept {
 				return x.announced;
@@ -221,7 +227,7 @@ namespace gregorian
 			for (const auto& as_of_date : versions)
 				result.emplace(
 					as_of_date,
-					_make_calendar(storage,	epoch, we, as_of_date)
+					_make_calendar(storage,	epoch, we, adjuster, as_of_date)
 				);
 			return result;
 		}
