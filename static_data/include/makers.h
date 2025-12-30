@@ -22,10 +22,15 @@
 
 #pragma once
 
-#include <calendar.h>
+#include "static_data.h"
 
+#include <calendar.h>
+#include <annual_holiday_interface.h>
+#include <period.h>
+
+#include <vector>
+#include <chrono>
 #include <map> // for _get_calendar_registry only
-#include <chrono> // for _get_calendar_registry only
 #include <string_view> // for _get_calendar_registry only
 
 
@@ -35,13 +40,28 @@ namespace gregorian
 	namespace static_data // should these functions to be internal function only?
 	{
 
+		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>;
+
 		// below are exposed for testing purposes only
-		using _calendar_versions = std::map<std::chrono::year_month_day, calendar>; // actually needed for makers?
 		using _calendar_registry = std::map<std::string_view, _calendar_versions>;
 		// should it be string rather than string_view?
 		// is map a correct data structure for this?
 
 		auto _get_calendar_registry() -> const _calendar_registry&;
+
+
+
+		struct _annual_holiday_period final
+		{
+			const annual_holiday* holiday;
+			util::days_period period{ Epoch }; // if we deal in annual calendars, should this be in years?
+			std::chrono::year_month_day announced{ Epoch.get_from() }; // do we need time as well?
+			// we should also have a cancellation date (but we need to find a good example first)
+			// is creation and cancellation immidiately effective (how tzdata deals with the same)?
+		};
+		// how do we handle a situation when Saturday "moves" to another day (and actually is a business day)?
+
+		using _annual_holiday_period_storage = std::vector<_annual_holiday_period>;
 
 
 
