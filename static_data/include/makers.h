@@ -111,7 +111,7 @@ namespace gregorian
 		auto make_Quebec_calendar() -> const calendar&;
 
 
-		//
+		// from https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 		// does not correspond to Epoch
