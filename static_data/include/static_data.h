@@ -43,8 +43,8 @@ namespace gregorian
 
 
 		constexpr auto Epoch = util::period{
-			std::chrono::year{ 2018 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
-			std::chrono::year{ 2118 } / LastDayOfDecember
+			std::chrono::year{ 2012 } / FirstDayOfJanuary, // all calendars should include holidays from at least this day
+			std::chrono::year{ 2112 } / LastDayOfDecember
 		}; // or should it be in years?
 		// we probably want 2001-2100
 
