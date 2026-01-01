@@ -1338,10 +1338,10 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions
 		{
-			const auto schedule = _make_ANBIMA_schedule();
+			const auto holidays = _make_ANBIMA_schedule();
 
 			const auto epoch = period{
-				schedule.get_period().get_from(), // starts before Epoch
+				holidays.get_period().get_from(), // starts before Epoch
 				Epoch.get_until()
 			};
 
@@ -1366,6 +1366,7 @@ namespace gregorian
 			};
 
 			return _make_calendar_versions(
+				holidays,
 				rules,
 				epoch,
 				SaturdaySundayWeekend,

@@ -25,6 +25,7 @@
 #include "static_data.h"
 
 #include <calendar.h>
+#include <schedule.h>
 #include <weekend.h>
 #include <period.h>
 #include <annual_holiday_interface.h>
@@ -66,6 +67,7 @@ namespace gregorian
 		using _annual_holiday_period_storage = std::vector<_annual_holiday_period>;
 
 		auto _make_calendar_versions(
+			const schedule& holidays,
 			const _annual_holiday_period_storage& storage,
 			const util::days_period& epoch,
 			const weekend& we,

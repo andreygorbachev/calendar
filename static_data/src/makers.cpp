@@ -202,6 +202,7 @@ namespace gregorian
 
 
 		auto _make_calendar_versions(
+			const schedule& holidays,
 			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
 			const weekend& we,
