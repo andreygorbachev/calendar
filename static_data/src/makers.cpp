@@ -54,6 +54,30 @@ namespace gregorian
 	namespace static_data
 	{
 
+		static auto _make_known_part(
+			const schedule& holidays, // how do we handle empty holidays? (which we would have at the start of a brand new calendar)
+			const days_period& epoch,
+			const year_month_day& as_of_date
+		) -> schedule
+		{
+			// temp only
+			// do we need to check anything about holidays period and epoch?
+			if (as_of_date == 2001y / FirstDayOfJanuary)
+				return schedule{
+					util::days_period{ epoch.get_from(), 2023y / LastDayOfDecember },
+					holidays.get_dates()
+				}; // use up to something relative to the next version
+			else if (as_of_date == 2023y / December / 21d)
+				return schedule{
+					util::days_period{ epoch.get_from(), holidays.get_period().get_until() },
+					holidays.get_dates()
+				}; // use as much as available
+			else
+				assert(false); // not implemented yet
+			// obviously parts of the known_part are the same for different versions
+			// (so possible optimisation would be to store the common parts only once)
+		}
+
 		static auto _make_sub_epochs(
 			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
@@ -161,6 +185,7 @@ namespace gregorian
 
 
 		static auto _make_calendar(
+			const schedule& holidays,
 			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
 			const weekend& we,
@@ -168,21 +193,19 @@ namespace gregorian
 			const year_month_day& as_of_date
 		) -> calendar
 		{
-//			const auto known_part = schedule{};
-
 			const auto sub_epochs = _make_sub_epochs(rules, epoch, as_of_date);
 
 			assert(!sub_epochs.empty());
 			const auto& se = sub_epochs.front();
-			auto generated_part = _make_holiday_schedule(
+			auto _generated_part = _make_holiday_schedule(
 				rules,
 				years_period{ se.get_from().year(), se.get_until().year() }
 			);
 			std::for_each(
 				std::next(sub_epochs.cbegin()),
 				sub_epochs.cend(),
-				[&rules, &generated_part](const auto& se) { // ideally we should capture rules by const reference
-					generated_part += _make_holiday_schedule(
+				[&rules, &_generated_part](const auto& se) { // ideally we should capture rules by const reference
+					_generated_part += _make_holiday_schedule(
 						rules,
 						years_period{ se.get_from().year(), se.get_until().year() }
 					);
@@ -191,12 +214,25 @@ namespace gregorian
 			// there might be already an STL algorithm (or their combination) to do the above
 
 			// setup a calendar for the generated part only (to do substitution for the generated dates)
-			auto cal = calendar{ we, generated_part };
+			auto cal = calendar{ we, _generated_part };
 			cal.substitute(adjuster);
+
+			const auto known_part = _make_known_part(holidays, epoch, as_of_date);
+
+			// clean up the below
+			const auto generated_epoch = days_period{
+				std::max(epoch.get_from(), year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }),
+				epoch.get_until()
+			};
+
+			const auto generated_part = schedule{
+				generated_epoch,
+				cal.get_schedule().get_dates()
+			}; // above is wastefull as we can be more targeted with _generated_part (and not generate the not needed front part)
 
 			return calendar{
 				we,
-				/*known_part +*/ cal.get_schedule()
+				known_part + generated_part
 			};
 		}
 
@@ -234,7 +270,14 @@ namespace gregorian
 			for (const auto& as_of_date : versions)
 				result.emplace(
 					as_of_date,
-					_make_calendar(rules, epoch, we, adjuster, as_of_date)
+					_make_calendar(
+						holidays,
+						rules,
+						epoch,
+						we,
+						adjuster,
+						as_of_date
+					)
 				);
 			return result;
 		}
