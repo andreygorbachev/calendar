@@ -48,6 +48,61 @@ namespace gregorian
 		static auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2012y / January / 2d, // New Year’s Day (substitute day)
+				2012y / April / 6d, // Good Friday
+				2012y / April / 9d, // Easter Monday
+				2012y / May / 7d, // Early May bank holiday
+				2012y / June / 4d, // Spring bank holiday (substitute day)
+				2012y / June / 5d, // Queen's Diamond Jubilee (extra bank holiday)
+				2012y / August / 27d, // Summer bank holiday
+				2012y / December / 25d, // Christmas Day
+				2012y / December / 26d, // Boxing Day
+
+				2013y / January / 1d, // New Year’s Day
+				2013y / March / 29d, // Good Friday
+				2013y / April / 1d, // Easter Monday
+				2013y / May / 6d, // Early May bank holiday
+				2013y / May / 27d, // Spring bank holiday
+				2013y / August / 26d, // Summer bank holiday
+				2013y / December / 25d, // Christmas Day
+				2013y / December / 26d, // Boxing Day
+
+				2014y / January / 1d, // New Year’s Day
+				2014y / April / 18d, // Good Friday
+				2014y / April / 21d, // Easter Monday
+				2014y / May / 5d, // Early May bank holiday
+				2014y / May / 26d, // Spring bank holiday
+				2014y / August / 25d, // Summer bank holiday
+				2014y / December / 25d, // Christmas Day
+				2014y / December / 26d, // Boxing Day
+
+				2015y / January / 1d, // New Year’s Day
+				2015y / April / 3d, // Good Friday
+				2015y / April / 6d, // Easter Monday
+				2015y / May / 4d, // Early May bank holiday
+				2015y / May / 25d, // Spring bank holiday
+				2015y / August / 31d, // Summer bank holiday
+				2015y / December / 25d, // Christmas Day
+				2015y / December / 28d, // Boxing Day (substitute day)
+
+				2016y / January / 1d, // New Year’s Day
+				2016y / March / 25d, // Good Friday
+				2016y / March / 28d, // Easter Monday
+				2016y / May / 2d, // Early May bank holiday
+				2016y / May / 30d, // Spring bank holiday
+				2016y / August / 29d, // Summer bank holiday
+				2016y / December / 26d, // Boxing Day
+				2016y / December / 27d, // Christmas Day (substitute day)
+
+				2017y / January / 2d, // New Year’s Day (substitute day)
+				2017y / April / 14d, // Good Friday
+				2017y / April / 17d, // Easter Monday
+				2017y / May / 1d, // Early May bank holiday
+				2017y / May / 29d, // Spring bank holiday
+				2017y / August / 28d, // Summer bank holiday
+				2017y / December / 25d, // Christmas Day
+				2017y / December / 26d, // Boxing Day
+
 				2018y / January / 1d, // New Year’s Day
 				2018y / March / 30d, // Good Friday
 				2018y / April / 2d, // Easter Monday
@@ -202,6 +257,67 @@ namespace gregorian
 		static auto _Scotland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2012y / January / 2d, // 2nd January
+				2012y / January / 3d, // New Year’s Day (substitute day)
+				2012y / April / 6d, // Good Friday
+				2012y / May / 7d, // Early May bank holiday
+				2012y / June / 4d, // Spring bank holiday (substitute day)
+				2012y / June / 5d, // Queen's Diamond Jubilee (extra bank holiday)
+				2012y / August / 6d, // Summer bank holiday
+				2012y / November / 30d, // St Andrew’s Day
+				2012y / December / 25d, // Christmas Day
+				2012y / December / 26d, // Boxing Day
+
+				2013y / January / 1d, // New Year’s Day
+				2013y / January / 2d, // 2nd January
+				2013y / March / 29d, // Good Friday
+				2013y / May / 6d, // Early May bank holiday
+				2013y / May / 27d, // Spring bank holiday
+				2013y / August / 5d, // Summer bank holiday
+				2013y / December / 2d, // St Andrew’s Day (substitute day)
+				2013y / December / 25d, // Christmas Day
+				2013y / December / 26d, // Boxing Day
+
+				2014y / January / 1d, // New Year’s Day
+				2014y / January / 2d, // 2nd January
+				2014y / April / 18d, // Good Friday
+				2014y / May / 5d, // Early May bank holiday
+				2014y / May / 26d, // Spring bank holiday
+				2014y / August / 4d, // Summer bank holiday
+				2014y / December / 1d, // St Andrew’s Day (substitute day)
+				2014y / December / 25d, // Christmas Day
+				2014y / December / 26d, // Boxing Day
+
+				2015y / January / 1d, // New Year’s Day
+				2015y / January / 2d, // 2nd January
+				2015y / April / 3d, // Good Friday
+				2015y / May / 4d, // Early May bank holiday
+				2015y / May / 25d, // Spring bank holiday
+				2015y / August / 3d, // Summer bank holiday
+				2015y / November / 30d, // St Andrew’s Day
+				2015y / December / 25d, // Christmas Day
+				2015y / December / 28d, // Boxing Day (substitute day)
+
+				2016y / January / 1d, // New Year’s Day
+				2016y / January / 4d, // 2nd January (subsitute day)
+				2016y / March / 25d, // Good Friday
+				2016y / May / 2d, // Early May bank holiday
+				2016y / May / 30d, // Spring bank holiday
+				2016y / August / 1d, // Summer bank holiday
+				2016y / November / 30d, // St Andrew’s Day
+				2016y / December / 26d, // Boxing Day
+				2016y / December / 27d, // Christmas Day (substitute day)
+
+				2017y / January / 2d, // 2nd January
+				2017y / January / 3d, // New Year’s Day (subsitute day)
+				2017y / April / 14d, // Good Friday
+				2017y / May / 1d, // Early May bank holiday
+				2017y / May / 29d, // Spring bank holiday
+				2017y / August / 7d, // Summer bank holiday
+				2017y / November / 30d, // St Andrew’s Day
+				2017y / December / 25d, // Christmas Day
+				2017y / December / 26d, // Boxing Day
+
 				2018y / January / 1d, // New Year’s Day
 				2018y / January / 2d, // 2nd January
 				2018y / March / 30d, // Good Friday
@@ -370,6 +486,73 @@ namespace gregorian
 		static auto _Northern_Ireland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year’s Day (substitute day)
+				2012y / March / 19d, // St Patrick’s Day (substitute day)
+				2012y / April / 6d, // Good Friday
+				2012y / April / 9d, // Easter Monday
+				2012y / May / 7d, // Early May bank holiday
+				2012y / June / 4d, // Spring bank holiday (substitute day)
+				2012y / June / 5d, // Queen's Diamond Jubilee (extra bank holiday)
+				2012y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2012y / August / 27d, // Summer bank holiday
+				2012y / December / 25d, // Christmas Day
+				2012y / December / 26d, // Boxing Day
+
+				2013y / January / 1d, // New Year’s Day
+				2013y / March / 18d, // St Patrick’s Day (substitute day)
+				2013y / March / 29d, // Good Friday
+				2013y / April / 1d, // Easter Monday
+				2013y / May / 6d, // Early May bank holiday
+				2013y / May / 27d, // Spring bank holiday
+				2013y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2013y / August / 26d, // Summer bank holiday
+				2013y / December / 25d, // Christmas Day
+				2013y / December / 26d, // Boxing Day
+
+				2014y / January / 1d, // New Year’s Day
+				2014y / March / 17d, // St Patrick’s Day
+				2014y / April / 18d, // Good Friday
+				2014y / April / 21d, // Easter Monday
+				2014y / May / 5d, // Early May bank holiday
+				2014y / May / 26d, // Spring bank holiday
+				2014y / July / 14d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2014y / August / 25d, // Summer bank holiday
+				2014y / December / 25d, // Christmas Day
+				2014y / December / 26d, // Boxing Day
+
+				2015y / January / 1d, // New Year’s Day
+				2015y / March / 17d, // St Patrick’s Day
+				2015y / April / 3d, // Good Friday
+				2015y / April / 6d, // Easter Monday
+				2015y / May / 4d, // Early May bank holiday
+				2015y / May / 25d, // Spring bank holiday
+				2015y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2015y / August / 31d, // Summer bank holiday
+				2015y / December / 25d, // Christmas Day
+				2015y / December / 28d, // Boxing Day (substitite day)
+
+				2016y / January / 1d, // New Year’s Day
+				2016y / March / 17d, // St Patrick’s Day
+				2016y / March / 25d, // Good Friday
+				2016y / March / 28d, // Easter Monday
+				2016y / May / 2d, // Early May bank holiday
+				2016y / May / 30d, // Spring bank holiday
+				2016y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2016y / August / 29d, // Summer bank holiday
+				2016y / December / 26d, // Boxing Day
+				2016y / December / 27d, // Christmas Day (substitute day)
+
+				2017y / January / 2d, // New Year’s Day (substitute day)
+				2017y / March / 17d, // St Patrick’s Day
+				2017y / April / 14d, // Good Friday
+				2017y / April / 17d, // Easter Monday
+				2017y / May / 1d, // Early May bank holiday
+				2017y / May / 29d, // Spring bank holiday
+				2017y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2017y / August / 28d, // Summer bank holiday
+				2017y / December / 25d, // Christmas Day
+				2017y / December / 26d, // Boxing Day
+
 				2018y / January / 1d, // New Year’s Day
 				2018y / March / 19d, // St Patrick’s Day (substitute day)
 				2018y / March / 30d, // Good Friday
