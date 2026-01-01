@@ -279,6 +279,20 @@ namespace gregorian
 				2030y / December / 25d, // Christmas Day
 			};
 
+			// from the same documentation:
+			// 
+			// *This holiday is designated as "Washington’s Birthday" in section 6103(a)of title 5 of the United States Code,
+			// which is the law that specifies holidays for Federal employees.Though other institutions such as state and
+			// local governments and private businesses may use other names, it is our policy to always refer to holidays
+			// by the names designated in the law.
+			//
+			// ** If a holiday falls on a Saturday, for most Federal employees, the preceding Friday will be treated as a holiday
+			// for pay and leave purposes. (See 5 U.S.C. 6103(b).) If a holiday falls on a Sunday, for most Federal employees,
+			// the following Monday will be treated as a holiday for pay and leave purposes.
+			// (See Section 3(a)of Executive Order 11582, February 11, 1971.)
+			// See also our Federal Holidays – "In Lieu Of" Determination Fact Sheet at
+			// https ://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination.
+
 			return schedule{
 				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
 				move(holidays)
@@ -298,6 +312,13 @@ namespace gregorian
 
 				2029y / January / 19d,
 			};
+
+			// from the same documentation:
+			//
+			// *This holiday is designated as "Inauguration Day" in section 6103(c) of title 5 of the United States Code,
+			// which is the law that specifies holidays for Federal employees.
+			// Federal employees in the Washington, DC, area are entitled to a holiday on the day a President is inaugurated
+			// on January 20th for each fourth year after 1965.
 
 			return schedule{
 				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
