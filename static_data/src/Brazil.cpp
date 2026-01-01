@@ -60,7 +60,7 @@ namespace gregorian
 		// should it be inside make_ANBIMA_calendar_versions?
 		static auto _make_ANBIMA_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
-			auto holidays = schedule::dates{
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2001y / January / 1d, // Confraternização Universal
 				2001y / February / 26d, // Carnaval
 				2001y / February / 27d, // Carnaval

@@ -47,108 +47,108 @@ namespace gregorian
 
 		static auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
-			auto holidays = schedule::dates{
-				2018y / January / 1d,
-				2018y / March / 30d,
-				2018y / April / 2d,
-				2018y / May / 7d,
-				2018y / May / 28d,
-				2018y / August / 27d,
-				2018y / December / 25d,
-				2018y / December / 26d,
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2018y / January / 1d, // New Year’s Day
+				2018y / March / 30d, // Good Friday
+				2018y / April / 2d, // Easter Monday
+				2018y / May / 7d, // Early May bank holiday
+				2018y / May / 28d, // Spring bank holiday
+				2018y / August / 27d, // Summer bank holiday
+				2018y / December / 25d, // Christmas Day
+				2018y / December / 26d, // Boxing Day
 
-				2019y / January / 1d,
-				2019y / April / 19d,
-				2019y / April / 22d,
-				2019y / May / 6d,
-				2019y / May / 27d,
-				2019y / August / 26d,
-				2019y / December / 25d,
-				2019y / December / 26d,
+				2019y / January / 1d, // New Year’s Day
+				2019y / April / 19d, // Good Friday
+				2019y / April / 22d, // Easter Monday
+				2019y / May / 6d, // Early May bank holiday
+				2019y / May / 27d, // Spring bank holiday
+				2019y / August / 26d, // Summer bank holiday
+				2019y / December / 25d, // Christmas Day
+				2019y / December / 26d, // Boxing Day
 
-				2020y / January / 1d,
-				2020y / April / 10d,
-				2020y / April / 13d,
-				2020y / May / 8d,
-				2020y / May / 25d,
-				2020y / August / 31d,
-				2020y / December / 25d,
-				2020y / December / 28d,
+				2020y / January / 1d, // New Year’s Day
+				2020y / April / 10d, // Good Friday
+				2020y / April / 13d, // Easter Monday
+				2020y / May / 8d, // Early May bank holiday (VE day)
+				2020y / May / 25d, // Spring bank holiday
+				2020y / August / 31d, // Summer bank holiday
+				2020y / December / 25d, // Christmas Day
+				2020y / December / 28d, // Boxing Day (substitute day)
 
-				2021y / January / 1d,
-				2021y / April / 2d,
-				2021y / April / 5d,
-				2021y / May / 3d,
-				2021y / May / 31d,
-				2021y / August / 30d,
-				2021y / December / 27d,
-				2021y / December / 28d,
+				2021y / January / 1d, // New Year’s Day
+				2021y / April / 2d, // Good Friday
+				2021y / April / 5d, // Easter Monday
+				2021y / May / 3d, // Early May bank holiday
+				2021y / May / 31d, // Spring bank holiday
+				2021y / August / 30d, // Summer bank holiday
+				2021y / December / 27d, // Christmas Day (substitute day)
+				2021y / December / 28d, // Boxing Day (substitute day)
 
-				2022y / January / 3d,
-				2022y / April / 15d,
-				2022y / April / 18d,
-				2022y / May / 2d,
-				2022y / June / 2d,
-				2022y / June / 3d,
-				2022y / August / 29d,
-				2022y / September / 19d,
-				2022y / December / 26d,
-				2022y / December / 27d,
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / April / 15d, // Good Friday
+				2022y / April / 18d, // Easter Monday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / August / 29d, // Summer bank holiday
+				2022y / September / 19d, // Bank Holiday for the State Funeral of Queen Elizabeth II
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d, // Christmas Day (substitute day)
 
-				2023y / January / 2d,
-				2023y / April / 7d,
-				2023y / April / 10d,
-				2023y / May / 1d,
-				2023y / May / 8d,
-				2023y / May / 29d,
-				2023y / August / 28d,
-				2023y / December / 25d,
-				2023y / December / 26d,
+				2023y / January / 2d, // New Year’s Day (substitute day)
+				2023y / April / 7d, // Good Friday
+				2023y / April / 10d, // Easter Monday
+				2023y / May / 1d, // Early May bank holiday
+				2023y / May / 8d, // Bank holiday for the coronation of King Charles III
+				2023y / May / 29d, // Spring bank holiday
+				2023y / August / 28d, // Summer bank holiday
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
 
-				2024y / January / 1d,
-				2024y / March / 29d,
-				2024y / April / 1d,
-				2024y / May / 6d,
-				2024y / May / 27d,
-				2024y / August / 26d,
-				2024y / December / 25d,
-				2024y / December / 26d,
+				2024y / January / 1d, // New Year’s Day
+				2024y / March / 29d, // Good Friday
+				2024y / April / 1d, // Easter Monday
+				2024y / May / 6d, // Early May bank holiday
+				2024y / May / 27d, // Spring bank holiday
+				2024y / August / 26d, // Summer bank holiday
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
 
-				2025y / January / 1d,
-				2025y / April / 18d,
-				2025y / April / 21d,
-				2025y / May / 5d,
-				2025y / May / 26d,
-				2025y / August / 25d,
-				2025y / December / 25d,
-				2025y / December / 26d,
+				2025y / January / 1d, // New Year’s Day
+				2025y / April / 18d, // Good Friday
+				2025y / April / 21d, // Easter Monday
+				2025y / May / 5d, // Early May bank holiday
+				2025y / May / 26d, // Spring bank holiday
+				2025y / August / 25d, // Summer bank holiday
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Boxing Day
 
-				2026y / January / 1d,
-				2026y / April / 3d,
-				2026y / April / 6d,
-				2026y / May / 4d,
-				2026y / May / 25d,
-				2026y / August / 31d,
-				2026y / December / 25d,
-				2026y / December / 28d,
+				2026y / January / 1d, // New Year’s Day
+				2026y / April / 3d, // Good Friday
+				2026y / April / 6d, // Easter Monday
+				2026y / May / 4d, // Early May bank holiday
+				2026y / May / 25d, // Spring bank holiday
+				2026y / August / 31d, // Summer bank holiday
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 28d, // Boxing Day (substitute day)
 
-				2027y / January / 1d,
-				2027y / March / 26d,
-				2027y / March / 29d,
-				2027y / May / 3d,
-				2027y / May / 31d,
-				2027y / August / 30d,
-				2027y / December / 27d,
-				2027y / December / 28d,
+				2027y / January / 1d, // New Year’s Day
+				2027y / March / 26d, // Good Friday
+				2027y / March / 29d, // Easter Monday
+				2027y / May / 3d, // Early May bank holiday
+				2027y / May / 31d, // Spring bank holiday
+				2027y / August / 30d, // Summer bank holiday
+				2027y / December / 27d, // Christmas Day (substitute day)
+				2027y / December / 28d, // Boxing Day (substitute day)
 
-				2028y / January / 3d,
-				2028y / April / 14d,
-				2028y / April / 17d,
-				2028y / May / 1d,
-				2028y / May / 29d,
-				2028y / August / 28d,
-				2028y / December / 25d,
-				2028y / December / 26d,
+				2028y / January / 3d, // New Year’s Day (substitute day)
+				2028y / April / 14d, // Good Friday
+				2028y / April / 17d, // Easter Monday
+				2028y / May / 1d, // Early May bank holiday
+				2028y / May / 29d, // Spring bank holiday
+				2028y / August / 28d, // Summer bank holiday
+				2028y / December / 25d, // Christmas Day
+				2028y / December / 26d, // Boxing Day
 			};
 
 			return schedule{
@@ -202,118 +202,118 @@ namespace gregorian
 		static auto _Scotland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
-				2018y / January / 1d,
-				2018y / January / 2d,
-				2018y / March / 30d,
-				2018y / May / 7d,
-				2018y / May / 28d,
-				2018y / August / 6d,
-				2018y / November / 30d,
-				2018y / December / 25d,
-				2018y / December / 26d,
+				2018y / January / 1d, // New Year’s Day
+				2018y / January / 2d, // 2nd January
+				2018y / March / 30d, // Good Friday
+				2018y / May / 7d, // Early May bank holiday
+				2018y / May / 28d, // Spring bank holiday
+				2018y / August / 6d, // Summer bank holiday
+				2018y / November / 30d, // St Andrew’s Day
+				2018y / December / 25d, // Christmas Day
+				2018y / December / 26d, // Boxing Day
 
-				2019y / January / 1d,
-				2019y / January / 2d,
-				2019y / April / 19d,
-				2019y / May / 6d,
-				2019y / May / 27d,
-				2019y / August / 5d,
-				2019y / December / 2d,
-				2019y / December / 25d,
-				2019y / December / 26d,
+				2019y / January / 1d, // New Year’s Day
+				2019y / January / 2d, // 2nd January
+				2019y / April / 19d, // Good Friday
+				2019y / May / 6d, // Early May bank holiday
+				2019y / May / 27d, // Spring bank holiday
+				2019y / August / 5d, // Summer bank holiday
+				2019y / December / 2d, // St Andrew’s Day (substitute day)
+				2019y / December / 25d, // Christmas Day
+				2019y / December / 26d, // Boxing Day
 
-				2020y / January / 1d,
-				2020y / January / 2d,
-				2020y / April / 10d,
-				2020y / May / 8d,
-				2020y / May / 25d,
-				2020y / August / 3d,
-				2020y / November / 30d,
-				2020y / December / 25d,
-				2020y / December / 28d,
+				2020y / January / 1d, // New Year’s Day
+				2020y / January / 2d, // 2nd January
+				2020y / April / 10d, // Good Friday
+				2020y / May / 8d, // Early May bank holiday (VE day)
+				2020y / May / 25d, // Spring bank holiday
+				2020y / August / 3d, // Summer bank holiday
+				2020y / November / 30d, // St Andrew’s Day
+				2020y / December / 25d, // Christmas Day
+				2020y / December / 28d, // Boxing Day (substitute day)
 
-				2021y / January / 1d,
-				2021y / January / 4d,
-				2021y / April / 2d,
-				2021y / May / 3d,
-				2021y / May / 31d,
-				2021y / August / 2d,
-				2021y / November / 30d,
-				2021y / December / 27d,
-				2021y / December / 28d,
+				2021y / January / 1d, // New Year’s Day
+				2021y / January / 4d, // 2nd January (substitute day)
+				2021y / April / 2d, // Good Friday
+				2021y / May / 3d, // Early May bank holiday
+				2021y / May / 31d, // Spring bank holiday
+				2021y / August / 2d, // Summer bank holiday
+				2021y / November / 30d, // St Andrew’s Day
+				2021y / December / 27d, // Christmas Day (substitute day)
+				2021y / December / 28d, // Boxing Day (substitute day)
 
-				2022y / January / 3d,
-				2022y / January / 4d,
-				2022y / April / 15d,
-				2022y / May / 2d,
-				2022y / June / 2d,
-				2022y / June / 3d,
-				2022y / August / 1d,
-				2022y / September / 19d,
-				2022y / November / 30d,
-				2022y / December / 26d,
-				2022y / December / 27d,
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / January / 4d, // 2nd January (substitute day)
+				2022y / April / 15d, // Good Friday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / August / 1d, // Summer bank holiday
+				2022y / September / 19d, // Bank Holiday for the State Funeral of Queen Elizabeth II
+				2022y / November / 30d, // St Andrew’s Day
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d, // Christmas Day (substitute day)
 
-				2023y / January / 2d,
-				2023y / January / 3d,
-				2023y / April / 7d,
-				2023y / May / 1d,
-				2023y / May / 8d,
-				2023y / May / 29d,
-				2023y / August / 7d,
-				2023y / November / 30d,
-				2023y / December / 25d,
-				2023y / December / 26d,
+				2023y / January / 2d, // New Year’s Day (substitute day)
+				2023y / January / 3d, // 2nd January (substitute day)
+				2023y / April / 7d, // Good Friday
+				2023y / May / 1d, // Early May bank holiday
+				2023y / May / 8d, // Bank holiday for the coronation of King Charles III
+				2023y / May / 29d, // Spring bank holiday
+				2023y / August / 7d, // Summer bank holiday
+				2023y / November / 30d, // St Andrew’s Day
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
 
-				2024y / January / 1d,
-				2024y / January / 2d,
-				2024y / March / 29d,
-				2024y / May / 6d,
-				2024y / May / 27d,
-				2024y / August / 5d,
-				2024y / December / 2d,
-				2024y / December / 25d,
-				2024y / December / 26d,
+				2024y / January / 1d, // New Year’s Day
+				2024y / January / 2d, // 2nd January
+				2024y / March / 29d, // Good Friday
+				2024y / May / 6d, // Early May bank holiday
+				2024y / May / 27d, // Spring bank holiday
+				2024y / August / 5d, // Summer bank holiday
+				2024y / December / 2d, // St Andrew’s Day (substitute day)
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
 
-				2025y / January / 1d,
-				2025y / January / 2d,
-				2025y / April / 18d,
-				2025y / May / 5d,
-				2025y / May / 26d,
-				2025y / August / 4d,
-				2025y / December / 1d,
-				2025y / December / 25d,
-				2025y / December / 26d,
+				2025y / January / 1d, // New Year’s Day
+				2025y / January / 2d, // 2nd January
+				2025y / April / 18d, // Good Friday
+				2025y / May / 5d, // Early May bank holiday
+				2025y / May / 26d, // Spring bank holiday
+				2025y / August / 4d, // Summer bank holiday
+				2025y / December / 1d, // St Andrew’s Day (substitute day)
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Boxing Day
 
-				2026y / January / 1d,
-				2026y / January / 2d,
-				2026y / April / 3d,
-				2026y / May / 4d,
-				2026y / May / 25d,
-				2026y / August / 3d,
-				2026y / November / 30d,
-				2026y / December / 25d,
-				2026y / December / 28d,
+				2026y / January / 1d, // New Year’s Day
+				2026y / January / 2d, // 2nd January
+				2026y / April / 3d, // Good Friday
+				2026y / May / 4d, // Early May bank holiday
+				2026y / May / 25d, // Spring bank holiday
+				2026y / August / 3d, // Summer bank holiday
+				2026y / November / 30d, // St Andrew’s Day
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 28d, // Boxing Day (substitute day)
 
-				2027y / January / 1d,
-				2027y / January / 4d,
-				2027y / March / 26d,
-				2027y / May / 3d,
-				2027y / May / 31d,
-				2027y / August / 2d,
-				2027y / November / 30d,
-				2027y / December / 27d,
-				2027y / December / 28d,
+				2027y / January / 1d, // New Year’s Day
+				2027y / January / 4d, // 2nd January (substitute day)
+				2027y / March / 26d, // Good Friday
+				2027y / May / 3d, // Early May bank holiday
+				2027y / May / 31d, // Spring bank holiday
+				2027y / August / 2d, // Summer bank holiday
+				2027y / November / 30d, // St Andrew’s Day
+				2027y / December / 27d, // Christmas Day (substitute day)
+				2027y / December / 28d, // Boxing Day (substitute day)
 
-				2028y / January / 3d,
-				2028y / January / 4d,
-				2028y / April / 14d,
-				2028y / May / 1d,
-				2028y / May / 29d,
-				2028y / August / 7d,
-				2028y / November / 30d,
-				2028y / December / 25d,
-				2028y / December / 26d,
+				2028y / January / 3d, // New Year’s Day (substitute day)
+				2028y / January / 4d, // 2nd January (substitute day)
+				2028y / April / 14d, // Good Friday
+				2028y / May / 1d, // Early May bank holiday
+				2028y / May / 29d, // Spring bank holiday
+				2028y / August / 7d, // Summer bank holiday
+				2028y / November / 30d, // St Andrew’s Day
+				2028y / December / 25d, // Christmas Day
+				2028y / December / 26d, // Boxing Day
 			};
 
 			return schedule{
@@ -370,129 +370,129 @@ namespace gregorian
 		static auto _Northern_Ireland_schedule() -> schedule
 		{
 			auto holidays = schedule::dates{
-				2018y / January / 1d,
-				2018y / March / 19d,
-				2018y / March / 30d,
-				2018y / April / 2d,
-				2018y / May / 7d,
-				2018y / May / 28d,
-				2018y / July / 12d,
-				2018y / August / 27d,
-				2018y / December / 25d,
-				2018y / December / 26d,
+				2018y / January / 1d, // New Year’s Day
+				2018y / March / 19d, // St Patrick’s Day (substitute day)
+				2018y / March / 30d, // Good Friday
+				2018y / April / 2d, // Easter Monday
+				2018y / May / 7d, // Early May bank holiday
+				2018y / May / 28d, // Spring bank holiday
+				2018y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2018y / August / 27d, // Summer bank holiday
+				2018y / December / 25d, // Christmas Day
+				2018y / December / 26d, // Boxing Day
 
-				2019y / January / 1d,
-				2019y / March / 18d,
-				2019y / April / 19d,
-				2019y / April / 22d,
-				2019y / May / 6d,
-				2019y / May / 27d,
-				2019y / July / 12d,
-				2019y / August / 26d,
-				2019y / December / 25d,
-				2019y / December / 26d,
+				2019y / January / 1d, // New Year’s Day
+				2019y / March / 18d, // St Patrick’s Day (substitute day)
+				2019y / April / 19d, // Good Friday
+				2019y / April / 22d, // Easter Monday
+				2019y / May / 6d, // Early May bank holiday
+				2019y / May / 27d, // Spring bank holiday
+				2019y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2019y / August / 26d, // Summer bank holiday
+				2019y / December / 25d, // Christmas Day
+				2019y / December / 26d, // Boxing Day
 
-				2020y / January / 1d,
-				2020y / March / 17d,
-				2020y / April / 10d,
-				2020y / April / 13d,
-				2020y / May / 8d,
-				2020y / May / 25d,
-				2020y / July / 13d,
-				2020y / August / 31d,
-				2020y / December / 25d,
-				2020y / December / 28d,
+				2020y / January / 1d, // New Year’s Day
+				2020y / March / 17d, // St Patrick’s Day
+				2020y / April / 10d, // Good Friday
+				2020y / April / 13d, // Easter Monday
+				2020y / May / 8d, // Early May bank holiday (VE day)
+				2020y / May / 25d, // Spring bank holiday
+				2020y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2020y / August / 31d, // Summer bank holiday
+				2020y / December / 25d, // Christmas Day
+				2020y / December / 28d, // Boxing Day (substitute day)
 
-				2021y / January / 1d,
-				2021y / March / 17d,
-				2021y / April / 2d,
-				2021y / April / 5d,
-				2021y / May / 3d,
-				2021y / May / 31d,
-				2021y / July / 12d,
-				2021y / August / 30d,
-				2021y / December / 27d,
-				2021y / December / 28d,
+				2021y / January / 1d, // New Year’s Day
+				2021y / March / 17d, // St Patrick’s Day
+				2021y / April / 2d, // Good Friday
+				2021y / April / 5d, // Easter Monday
+				2021y / May / 3d, // Early May bank holiday
+				2021y / May / 31d, // Spring bank holiday
+				2021y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2021y / August / 30d, // Summer bank holiday
+				2021y / December / 27d, // Christmas Day (substitute day)
+				2021y / December / 28d, // Boxing Day (substitute day)
 
-				2022y / January / 3d,
-				2022y / March / 17d,
-				2022y / April / 15d,
-				2022y / April / 18d,
-				2022y / May / 2d,
-				2022y / June / 2d,
-				2022y / June / 3d,
-				2022y / July / 12d,
-				2022y / August / 29d,
-				2022y / September / 19d,
-				2022y / December / 26d,
-				2022y / December / 27d,
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / March / 17d, // St Patrick’s Day
+				2022y / April / 15d, // Good Friday
+				2022y / April / 18d, // Easter Monday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2022y / August / 29d, // Summer bank holiday
+				2022y / September / 19d, // Bank Holiday for the State Funeral of Queen Elizabeth II
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d, // Christmas Day (substitute day)
 
-				2023y / January / 2d,
-				2023y / March / 17d,
-				2023y / April / 7d,
-				2023y / April / 10d,
-				2023y / May / 1d,
-				2023y / May / 8d,
-				2023y / May / 29d,
-				2023y / July / 12d,
-				2023y / August / 28d,
-				2023y / December / 25d,
-				2023y / December / 26d,
+				2023y / January / 2d, // New Year’s Day (substitute day)
+				2023y / March / 17d, // St Patrick’s Day
+				2023y / April / 7d, // Good Friday
+				2023y / April / 10d, // Easter Monday
+				2023y / May / 1d, // Early May bank holiday
+				2023y / May / 8d, // Bank holiday for the coronation of King Charles III
+				2023y / May / 29d, // Spring bank holiday
+				2023y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2023y / August / 28d, // Summer bank holiday
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
 
-				2024y / January / 1d,
-				2024y / March / 18d,
-				2024y / March / 29d,
-				2024y / April / 1d,
-				2024y / May / 6d,
-				2024y / May / 27d,
-				2024y / July / 12d,
-				2024y / August / 26d,
-				2024y / December / 25d,
-				2024y / December / 26d,
+				2024y / January / 1d, // New Year’s Day
+				2024y / March / 18d, // St Patrick’s Day (substitute day)
+				2024y / March / 29d, // Good Friday
+				2024y / April / 1d, // Easter Monday
+				2024y / May / 6d, // Early May bank holiday
+				2024y / May / 27d, // Spring bank holiday
+				2024y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2024y / August / 26d, // Summer bank holiday
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
 
-				2025y / January / 1d,
-				2025y / March / 17d,
-				2025y / April / 18d,
-				2025y / April / 21d,
-				2025y / May / 5d,
-				2025y / May / 26d,
-				2025y / July / 14d,
-				2025y / August / 25d,
-				2025y / December / 25d,
-				2025y / December / 26d,
+				2025y / January / 1d, // New Year’s Day
+				2025y / March / 17d, // St Patrick’s Day
+				2025y / April / 18d, // Good Friday
+				2025y / April / 21d, // Easter Monday
+				2025y / May / 5d, // Early May bank holiday
+				2025y / May / 26d, // Spring bank holiday
+				2025y / July / 14d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2025y / August / 25d, // Summer bank holiday
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Boxing Day
 
-				2026y / January / 1d,
-				2026y / March / 17d,
-				2026y / April / 3d,
-				2026y / April / 6d,
-				2026y / May / 4d,
-				2026y / May / 25d,
-				2026y / July / 13d,
-				2026y / August / 31d,
-				2026y / December / 25d,
-				2026y / December / 28d,
+				2026y / January / 1d, // New Year’s Day
+				2026y / March / 17d, // St Patrick’s Day
+				2026y / April / 3d, // Good Friday
+				2026y / April / 6d, // Easter Monday
+				2026y / May / 4d, // Early May bank holiday
+				2026y / May / 25d, // Spring bank holiday
+				2026y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2026y / August / 31d, // Summer bank holiday
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 28d, // Boxing Day (substitute day)
 
-				2027y / January / 1d,
-				2027y / March / 17d,
-				2027y / March / 26d,
-				2027y / March / 29d,
-				2027y / May / 3d,
-				2027y / May / 31d,
-				2027y / July / 12d,
-				2027y / August / 30d,
-				2027y / December / 27d,
-				2027y / December / 28d,
+				2027y / January / 1d, // New Year’s Day
+				2027y / March / 17d, // St Patrick’s Day
+				2027y / March / 26d, // Good Friday
+				2027y / March / 29d, // Easter Monday
+				2027y / May / 3d, // Early May bank holiday
+				2027y / May / 31d, // Spring bank holiday
+				2027y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2027y / August / 30d, // Summer bank holiday
+				2027y / December / 27d, // Christmas Day (substitute day)
+				2027y / December / 28d, // Boxing Day (substitute day)
 
-				2028y / January / 3d,
-				2028y / March / 17d,
-				2028y / April / 14d,
-				2028y / April / 17d,
-				2028y / May / 1d,
-				2028y / May / 29d,
-				2028y / July / 12d,
-				2028y / August / 28d,
-				2028y / December / 25d,
-				2028y / December / 26d,
+				2028y / January / 3d, // New Year’s Day (substitute day)
+				2028y / March / 17d, // St Patrick’s Day
+				2028y / April / 14d, // Good Friday
+				2028y / April / 17d, // Easter Monday
+				2028y / May / 1d, // Early May bank holiday
+				2028y / May / 29d, // Spring bank holiday
+				2028y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2028y / August / 28d, // Summer bank holiday
+				2028y / December / 25d, // Christmas Day
+				2028y / December / 26d, // Boxing Day
 			};
 
 			return schedule{
