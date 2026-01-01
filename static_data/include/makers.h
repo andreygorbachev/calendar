@@ -105,6 +105,7 @@ namespace gregorian
 
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
+		// (not yet cover the Epoch completely)
 
 		auto make_Canada_Federal_calendar() -> const calendar&; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
 
