@@ -731,7 +731,25 @@ namespace gregorian
 
 		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
-			auto meeting_dates = schedule::dates{
+			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+				2021y / February / 4d, // February MPC Summary and minutes and February Monetary Policy Report
+				2021y / March / 18d, // March MPC Summary and minutes
+				2021y / May / 6d, // May MPC Summary and minutes and May Monetary Policy Report
+				2021y / June / 24d, // June MPC Summary and minutes
+				2021y / August / 5d, // August MPC Summary and minutes and August Monetary Policy Report
+				2021y / September / 23d, // September MPC Summary and minutes
+				2021y / November / 4d, // November MPC Summary and minutes and November Monetary Policy Report
+				2021y / December / 16d, // December MPC Summary and minutes 
+
+				2022y / February / 3d, // February MPC Summary and minutes and February Monetary Policy Report
+				2022y / March / 17d, // March MPC Summary and minutes
+				2022y / May / 5d, // May MPC Summary and minutes and May Monetary Policy Report
+				2022y / June / 16d, // June MPC Summary and minutes
+				2022y / August / 4d, // August MPC Summary and minutes and August Monetary Policy Report
+				2022y / September / 15d, // September MPC Summary and minutes
+				2022y / November / 3d, // November MPC Summary and minutes and November Monetary Policy Report
+				2022y / December / 15d, // December MPC Summary and minutes
+
 				2023y / February / 2d, // February MPC Summary and minutes and February Monetary Policy Report
 				2023y / March / 23d, // March MPC Summary and minutes
 				2023y / May / 11d, // May MPC Summary and minutes and May Monetary Policy Report
@@ -779,7 +797,7 @@ namespace gregorian
 				2027y / December / 16d, // December MPC Summary and minutes 
 			};
 
-			return schedule{ util::days_period{ 2023y / FirstDayOfJanuary, 2027y / LastDayOfDecember }, move(meeting_dates) };
+			return schedule{ util::days_period{ 2021y / FirstDayOfJanuary, 2027y / LastDayOfDecember }, move(meeting_dates) };
 		}
 
 		static auto _MPC_schedule() -> schedule // MPC holiday dates
