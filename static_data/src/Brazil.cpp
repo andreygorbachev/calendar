@@ -58,7 +58,7 @@ namespace gregorian
 
 
 		// should it be inside make_ANBIMA_calendar_versions?
-		static auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _make_ANBIMA_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2001y / January / 1d, // Confraternização Universal
@@ -1338,8 +1338,10 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions
 		{
-			constexpr auto epoch = period{
-				year{ 2001 } / FirstDayOfJanuary, // starts before Epoch.get_from().year()
+			const auto schedule = _make_ANBIMA_schedule();
+
+			const auto epoch = period{
+				schedule.get_period().get_from(), // starts before Epoch
 				Epoch.get_until()
 			};
 
