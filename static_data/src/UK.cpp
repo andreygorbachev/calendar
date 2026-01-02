@@ -923,7 +923,10 @@ namespace gregorian
 				2027y / December / 16d, // December MPC Summary and minutes 
 			};
 
-			return schedule{ util::days_period{ 2021y / FirstDayOfJanuary, 2027y / LastDayOfDecember }, move(meeting_dates) };
+			return schedule{
+				util::days_period{ Epoch.get_from(), 2027y / LastDayOfDecember},
+				move(meeting_dates)
+			};
 		}
 
 		static auto _MPC_schedule() -> schedule // MPC holiday dates
