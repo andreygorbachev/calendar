@@ -733,10 +733,48 @@ namespace gregorian
 		{
 			// below are confimed dates but also the latest provisional dates
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+				2012y / January / 12d,
+				2012y / February / 9d,
+				2012y / March / 8d,
+				2012y / April / 5d,
+				2012y / May / 10d,
+				2012y / June / 7d,
+				2012y / July / 5d,
+				2012y / August / 2d,
+				2012y / September / 6d,
+				2012y / October / 4d,
+				2012y / November / 8d,
+				2012y / December / 6d,
+
+				2013y / January / 10d,
+				2013y / February / 7d,
+				2013y / March / 7d,
+				2013y / April / 4d,
+				2013y / May / 9d,
+				2013y / June / 6d,
+				2013y / July / 4d,
+				2013y / August / 1d,
+				2013y / September / 5d,
+				2013y / October / 9d,
+				2013y / November / 7d,
+				2013y / December / 5d,
+
+				2014y / January / 9d,
+				2014y / February / 6d,
+				2014y / March / 6d,
+				2014y / April / 9d,
+				2014y / May / 8d,
+				2014y / June / 5d,
+				2014y / July / 10d,
+				2014y / August / 7d,
+				2014y / September / 4d,
+				2014y / October / 8d,
+				2014y / November / 6d,
+				2014y / December / 4d,
 
 				// From "Monetary Policy Committee dates for 2015 and provisional dates for 2016":
 				// 
-				// ** Because the scheduled date for the May 2015 general election falls on a day when the MPC meeting would usually
+				// (**) Because the scheduled date for the May 2015 general election falls on a day when the MPC meeting would usually
 				// take place, the meeting will be deferred by 24 hours to Thursday afternoon and Friday morning. The decision would be
 				// announced at 12 noon on the Monday after the election, as previously published.
 				2015y / January / 8d,
@@ -754,15 +792,15 @@ namespace gregorian
 
 				// From "Monetary Policy Committee publication dates for 2016 and provisional dates for 2017":
 				// 
-				// Under current legislation, the MPC must meet and announce a policy decision at least once a month.Therefore,
-				// as shown in Table 1, the MPC has provisionally scheduled twelve meetings for both 2016 and 2017.
+				// Under current legislation, the MPC must meet and announce a policy decision at least once a month. Therefore,
+				// as shown, the MPC has provisionally scheduled twelve meetings for both 2016 and 2017.
 				// 
 				// However, the Government has announced that it proposes to introduce to Parliament in this session
 				// a Bank of England Bill which will include a provision to move the MPC to a schedule of eight regular meetings a year.
 				// To provide scope for such a change, the MPC published last December a provisional schedule for 2016
 				// in which eight of the twelve annual meetings are spaced roughly evenly through the year with the intention that,
 				// if Parliament passes the proposed legislation to make the change, the MPC could drop the remaining four meetings
-				// once the law has changed.Those four meetings are provisionally scheduled for January, April, July and October.
+				// once the law has changed. Those four meetings are provisionally scheduled for January, April, July and October.
 				// The remaining eight meeting dates would be unaffected by the switch.
 				// The provisional schedule for 2017 preserves this structure.
 				//
@@ -770,7 +808,7 @@ namespace gregorian
 				// Following the July 2016 meeting, the MPC will move promptly to the eight meeting schedule as and when the Bill
 				// has received Royal Assent and the provisions have come into force. So if that were to happen at any point before October 2016,
 				// then the meeting currently scheduled for that month would be dropped, as would the meetings currently scheduled for
-				// January, April, July and October 2017, as highlighted(*) in the table below.
+				// January, April, July and October 2017, as highlighted (*) in the table below.
 				2016y / January / 14d,
 				2016y / February / 4d,
 				2016y / March / 17d,
