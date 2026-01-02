@@ -734,6 +734,24 @@ namespace gregorian
 			// below are confimed dates but also the latest provisional dates
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
 
+				// From "Monetary Policy Committee dates for 2015 and provisional dates for 2016":
+				// 
+				// ** Because the scheduled date for the May 2015 general election falls on a day when the MPC meeting would usually
+				// take place, the meeting will be deferred by 24 hours to Thursday afternoon and Friday morning. The decision would be
+				// announced at 12 noon on the Monday after the election, as previously published.
+				2015y / January / 8d,
+				2015y / February / 5d,
+				2015y / March / 5d,
+				2015y / April / 9d,
+				2015y / May / 11d, // **
+				2015y / June / 4d,
+				2015y / July / 9d,
+				2015y / August / 6d,
+				2015y / September / 10d,
+				2015y / October / 8d,
+				2015y / November / 5d,
+				2015y / December / 10d,
+
 				// From "Monetary Policy Committee publication dates for 2016 and provisional dates for 2017":
 				// 
 				// Under current legislation, the MPC must meet and announce a policy decision at least once a month.Therefore,
