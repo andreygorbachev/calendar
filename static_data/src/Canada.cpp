@@ -49,6 +49,18 @@ namespace gregorian
 		static auto _Canada_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2024y / January / 1d, // New Year
+				2024y / March / 29d, // Good Friday
+				2024y / April / 1d, // Easter Monday
+				2024y / May / 20d, // Victoria Day
+				2024y / July / 1d, // Canada Day
+				2024y / September / 2d, // Labour Day
+				2024y / September / 30d, // National Day for Truth and Reconciliation
+				2024y / October / 14d, // Thanksgiving Day
+				2024y / November / 11d, // Remembrance Day
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
+
 				2025y / January / 1d, // New Year // Nationwide statutory holiday
 				2025y / April / 18d, // Good Friday // Nationwide statutory holiday
 				2025y / April / 21d, // Easter Monday // Federal statutory holiday, also observed in some provinces // this one is not 100% clear to me from https://en.wikipedia.org/wiki/Public_holidays_in_Canada
@@ -64,7 +76,7 @@ namespace gregorian
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2025 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -72,12 +84,14 @@ namespace gregorian
 		static auto _Ontario_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2024y / August / 5d, // Civic Holiday
+
 				2025y / August / 4d, // Civic Holiday
 			};
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2025 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -85,12 +99,14 @@ namespace gregorian
 		static auto _Quebec_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2024y / June / 24d, // Saint-Jean-Baptiste Day
+
 				2025y / June / 24d, // Saint-Jean-Baptiste Day
 			};
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2025 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
