@@ -731,7 +731,41 @@ namespace gregorian
 
 		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
+			// below are confimed dates but also the latest provisional dates
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+
+				// From "Monetary Policy Committee publication dates for 2016 and provisional dates for 2017":
+				// 
+				// Under current legislation, the MPC must meet and announce a policy decision at least once a month.Therefore,
+				// as shown in Table 1, the MPC has provisionally scheduled twelve meetings for both 2016 and 2017.
+				// 
+				// However, the Government has announced that it proposes to introduce to Parliament in this session
+				// a Bank of England Bill which will include a provision to move the MPC to a schedule of eight regular meetings a year.
+				// To provide scope for such a change, the MPC published last December a provisional schedule for 2016
+				// in which eight of the twelve annual meetings are spaced roughly evenly through the year with the intention that,
+				// if Parliament passes the proposed legislation to make the change, the MPC could drop the remaining four meetings
+				// once the law has changed.Those four meetings are provisionally scheduled for January, April, July and October.
+				// The remaining eight meeting dates would be unaffected by the switch.
+				// The provisional schedule for 2017 preserves this structure.
+				//
+				// The MPC will meet on the first three of these provisional dates, in January, April and July 2016.
+				// Following the July 2016 meeting, the MPC will move promptly to the eight meeting schedule as and when the Bill
+				// has received Royal Assent and the provisions have come into force. So if that were to happen at any point before October 2016,
+				// then the meeting currently scheduled for that month would be dropped, as would the meetings currently scheduled for
+				// January, April, July and October 2017, as highlighted(*) in the table below.
+				2016y / January / 14d,
+				2016y / February / 4d,
+				2016y / March / 17d,
+				2016y / April / 14d,
+				2016y / May / 12d,
+				2016y / June / 16d,
+				2016y / July / 14d,
+				2016y / August / 4d,
+				2016y / September / 15d,
+				2016y / October / 13d, // *
+				2016y / November / 3d,
+				2016y / December / 15d,
+
 				2017y / February / 2d,
 				2017y / March / 16d,
 				2017y / May / 11d,
@@ -747,7 +781,7 @@ namespace gregorian
 				2018y / June / 21d,
 				2018y / August / 2d,
 				2018y / September / 13d,
-				2018y / November / 1d, // Published on 14 September 2017: The November 2018 date is now confirmed as Thursday 1 November.
+				2018y / November / 1d,
 				2018y / December / 20d,
 
 				2019y / February / 7d,
