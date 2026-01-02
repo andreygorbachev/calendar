@@ -49,6 +49,18 @@ namespace gregorian
 		static auto _Canada_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2023y / January / 2d, // New Year
+				2023y / April / 7d, // Good Friday
+				2023y / April / 10d, // Easter Monday
+				2023y / May / 22d, // Victoria Day
+				2023y / July / 3d, // Canada Day
+				2023y / September / 4d, // Labour Day
+				2023y / October / 2d, // National Day for Truth and Reconciliation
+				2023y / October / 9d, // Thanksgiving Day
+				2023y / November / 11d, // Remembrance Day
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
+
 				2024y / January / 1d, // New Year
 				2024y / March / 29d, // Good Friday
 				2024y / April / 1d, // Easter Monday
@@ -76,7 +88,7 @@ namespace gregorian
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -84,6 +96,8 @@ namespace gregorian
 		static auto _Ontario_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2023y / August / 7d, // Civic Holiday
+
 				2024y / August / 5d, // Civic Holiday
 
 				2025y / August / 4d, // Civic Holiday
@@ -91,7 +105,7 @@ namespace gregorian
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -99,6 +113,8 @@ namespace gregorian
 		static auto _Quebec_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
+				2023y / June / 24d, // Saint-Jean-Baptiste Day // not clear if this should move from Saturday to Monday?
+
 				2024y / June / 24d, // Saint-Jean-Baptiste Day
 
 				2025y / June / 24d, // Saint-Jean-Baptiste Day
@@ -106,7 +122,7 @@ namespace gregorian
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2024 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -151,7 +167,7 @@ namespace gregorian
 				SaturdaySundayWeekend,
 				generated_part
 			};
-			cal.substitute(Nearest); // this needs to be checked
+			cal.substitute(Following);
 
 			return calendar{
 				SaturdaySundayWeekend,
