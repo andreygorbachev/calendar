@@ -54,28 +54,28 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// at the moment we use known_part only to the year end before as_of_date (we can probably do a bit better)
+		// (but we should be mindful that we can have several new holidays pending, which start in different years after as_of_date)
 		static auto _make_known_part(
 			const schedule& holidays, // how do we handle empty holidays? (which we would have at the start of a brand new calendar)
 			const days_period& epoch,
 			const year_month_day& as_of_date
 		) -> schedule
 		{
-			// temp only
-			// do we need to check anything about holidays period and epoch?
-			if (as_of_date == 2001y / FirstDayOfJanuary)
-				return schedule{
-					util::days_period{ epoch.get_from(), 2023y / LastDayOfDecember },
-					holidays.get_dates()
-				}; // use up to something relative to the next version
-			else if (as_of_date == 2023y / December / 21d)
-				return schedule{
-					util::days_period{ epoch.get_from(), holidays.get_period().get_until() },
-					holidays.get_dates()
-				}; // use as much as available
-			else
-				assert(false); // not implemented yet
-			// obviously parts of the known_part are the same for different versions
-			// (so possible optimisation would be to store the common parts only once)
+			const auto known_part_from = std::max(
+				holidays.get_period().get_from(),
+				epoch.get_from() // what if there is a gap between epoch from and holidays from?
+			);
+			const auto known_part_until = std::min(
+				holidays.get_period().get_until(),
+				year_month_day{ as_of_date.year() / LastDayOfDecember }
+			);
+
+			return schedule{
+				util::days_period{ known_part_from, known_part_until },
+				holidays.get_dates()
+			};
+			// should we be using the fact that as_of_date could imply new holidays which start some years after the as_of_date?
 		}
 
 		static auto _make_sub_epochs(
@@ -217,23 +217,31 @@ namespace gregorian
 			auto cal = calendar{ we, _generated_part };
 			cal.substitute(adjuster);
 
-			const auto known_part = _make_known_part(holidays, epoch, as_of_date);
-
 			// clean up the below
-			const auto generated_epoch = days_period{
-				std::max(epoch.get_from(), year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }),
-				epoch.get_until()
-			};
+			if (as_of_date > epoch.get_from())
+			{
+				const auto known_part = _make_known_part(holidays, epoch, as_of_date);
 
-			const auto generated_part = schedule{
-				generated_epoch,
-				cal.get_schedule().get_dates()
-			}; // above is wastefull as we can be more targeted with _generated_part (and not generate the not needed front part)
+				const auto generated_epoch = days_period{
+					std::max(epoch.get_from(), year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }),
+					epoch.get_until()
+				};
 
-			return calendar{
-				we,
-				known_part + generated_part
-			};
+				const auto generated_part = schedule{
+					generated_epoch,
+					cal.get_schedule().get_dates()
+				}; // above is wastefull as we can be more targeted with _generated_part (and not generate the not needed front part)
+
+				return calendar{
+					we,
+					known_part + generated_part
+				};
+			}
+			else
+			{
+				// special case when we do not have known part at all
+				cal;
+			}
 		}
 
 
