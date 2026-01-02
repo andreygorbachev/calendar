@@ -732,6 +732,15 @@ namespace gregorian
 		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+				2017y / February / 2d,
+				2017y / March / 16d,
+				2017y / May / 11d,
+				2017y / June / 15d,
+				2017y / August / 3d,
+				2017y / September / 14d,
+				2017y / November / 2d,
+				2017y / December / 14d,
+
 				2018y / February / 8d,
 				2018y / March / 22d,
 				2018y / May / 10d,
