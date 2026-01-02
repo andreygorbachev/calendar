@@ -732,6 +732,15 @@ namespace gregorian
 		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+				2018y / February / 8d,
+				2018y / March / 22d,
+				2018y / May / 10d,
+				2018y / June / 21d,
+				2018y / August / 2d,
+				2018y / September / 13d,
+				2018y / November / 1d, // Published on 14 September 2017: The November 2018 date is now confirmed as Thursday 1 November.
+				2018y / December / 20d,
+
 				2019y / February / 7d,
 				2019y / March / 21d,
 				2019y / May / 2d,
