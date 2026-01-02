@@ -732,6 +732,15 @@ namespace gregorian
 		static auto _MPC_dates() -> schedule // actual MPC dates (not MPC holiday dates)
 		{
 			auto meeting_dates = schedule::dates{ // I think these are always Thursday's
+				2020y / January / 30d,
+				2020y / March / 26d,
+				2020y / May / 7d,
+				2020y / June / 18d,
+				2020y / August / 6d,
+				2020y / September / 17d,
+				2020y / November / 5d,
+				2020y / December / 17d,
+
 				2021y / February / 4d, // February MPC Summary and minutes and February Monetary Policy Report
 				2021y / March / 18d, // March MPC Summary and minutes
 				2021y / May / 6d, // May MPC Summary and minutes and May Monetary Policy Report
