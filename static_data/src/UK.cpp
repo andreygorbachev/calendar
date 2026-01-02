@@ -938,6 +938,8 @@ namespace gregorian
 		{
 			const auto known_part = _MPC_schedule();
 
+			// should provisional dates as of publication time should be historical rules?
+
 			return calendar{
 				NoWeekend,
 				known_part
