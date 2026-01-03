@@ -222,18 +222,14 @@ namespace gregorian
 			{
 				const auto known_part = _make_known_part(holidays, epoch, as_of_date);
 
-				const auto generated_from = std::max(
+				const auto generated_part_from = std::max(
 					epoch.get_from(),
 					year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }
 				);
-
-				const auto generated_epoch = days_period{
-					generated_from,
-					epoch.get_until()
-				};
+				const auto generated_part_until = epoch.get_until();
 
 				const auto generated_part = schedule{
-					generated_epoch,
+					period{ generated_part_from, generated_part_until },
 					cal.get_schedule().get_dates()
 				}; // above is wastefull as we can be more targeted with _generated_part (and not generate the not needed front part)
 
