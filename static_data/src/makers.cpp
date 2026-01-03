@@ -222,8 +222,13 @@ namespace gregorian
 			{
 				const auto known_part = _make_known_part(holidays, epoch, as_of_date);
 
+				const auto generated_from = std::max(
+					epoch.get_from(),
+					year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }
+				);
+
 				const auto generated_epoch = days_period{
-					std::max(epoch.get_from(), year_month_day{ sys_days{ known_part.get_period().get_until() } + days{ 1 } }),
+					generated_from,
 					epoch.get_until()
 				};
 
