@@ -46,6 +46,8 @@ namespace gregorian
 	namespace static_data
 	{
 
+		const auto _InaugurationDay = named_holiday{ January / 20d };
+
 		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
 		const auto _MemorialDay = weekday_last_holiday{ May / Monday[last] };
@@ -337,7 +339,7 @@ namespace gregorian
 				move(holidays)
 			};
 
-			return _make_USA_Federal_schedule() + s;
+			return _make_USA_Federal_schedule() | s;
 		}
 
 
@@ -386,14 +388,15 @@ namespace gregorian
 				Epoch.get_until()
 			};
 
-//			const auto InaugurationDay = named_holiday{ January / 20d };
-//
-//			const auto rules = annual_holiday_storage{
-//				&InaugurationDay
-//			};
-
 			const auto rules = _annual_holiday_period_storage{
 				{ &NewYearsDay, epoch, epoch.get_from() },
+				{
+					&_InaugurationDay,
+					epoch,
+//					period{ 2013y / FirstDayOfJanuary, 2013y / LastDayOfDecember },
+					epoch.get_from()
+//					1965y / January / 20d // find a more correct day
+				},
 				{ &_MartinLutherKing, epoch, epoch.get_from() },
 				{ &_Washington, epoch, epoch.get_from() },
 				{ &_MemorialDay, epoch, epoch.get_from() },
@@ -402,13 +405,14 @@ namespace gregorian
 					period{ 2021y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
 					2021y / June / 17d // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 				},
-				{ &_IndependenceDay, epoch, epoch.get_from() }, // not yet fully correct
+				{ &_IndependenceDay, epoch, epoch.get_from() },
 				{ &_LaborDay, epoch, epoch.get_from() },
 				{ &_ColumbusDay, epoch, epoch.get_from() },
 				{ &_VeteransDay, epoch, epoch.get_from() },
 				{ &_ThanksgivingDay, epoch, epoch.get_from() },
 				{ &ChristmasDay, epoch, epoch.get_from() }
 			};
+			// handling of InaugurationDay is a aukward (as it is not every year)
 
 			return _make_calendar_versions(
 				holidays,

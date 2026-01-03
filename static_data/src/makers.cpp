@@ -308,7 +308,7 @@ namespace gregorian
 				{ "Europe/T2", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_T2_calendar() } } }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
 				{ "America/USA", make_USA_Federal_calendar_versions() },
-//				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
+				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 
 				{ "America/Canada", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Canada_Federal_calendar() } } },
 				{ "America/Ontario", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Ontario_calendar() } } },
