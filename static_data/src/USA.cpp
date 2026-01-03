@@ -60,7 +60,7 @@ namespace gregorian
 		static auto _make_USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
-				2010y / December / 31d, // New Year's Day // we actually do not keep it in the 2011 calendar
+				2010y / December / 31d, // New Year's Day
 				2011y / January / 17d, // Birthday of Martin Luther King, Jr.
 				2011y / February / 21d, // Washington’s Birthday
 				2011y / May / 30d, // Memorial Day
@@ -306,7 +306,7 @@ namespace gregorian
 			// https ://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination.
 
 			return schedule{
-				days_period{ 2011y / FirstDayOfJanuary, 2030y / LastDayOfDecember },
+				days_period{ 2010y / December / 31d, 2030y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
 				move(holidays)
 			};
 		}
@@ -333,7 +333,7 @@ namespace gregorian
 			// on January 20th for each fourth year after 1965.
 
 			const auto s = schedule{
-				days_period{ 2011y / FirstDayOfJanuary, 2030y / LastDayOfDecember },
+				days_period{ 2010y / December / 31d, 2030y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
 				move(holidays)
 			};
 
