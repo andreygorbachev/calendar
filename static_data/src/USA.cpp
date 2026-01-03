@@ -56,7 +56,7 @@ namespace gregorian
 		const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
 
-		static auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _make_USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2010y / December / 31d, // New Year's Day // we actually do not keep it in the 2011 calendar
@@ -310,7 +310,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _make_Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
 				2013y / January / 21d,
@@ -339,7 +339,7 @@ namespace gregorian
 
 		static auto _make_USA_Federal_calendar() -> calendar
 		{
-			const auto known_part = _USA_Federal_schedule();
+			const auto known_part = _make_USA_Federal_schedule();
 
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 			const auto generated_part_until = Epoch.get_until().year();
@@ -399,7 +399,7 @@ namespace gregorian
 
 		static auto _make_Washington_DC_Federal_calendar() -> calendar
 		{
-			const auto known_part = _Washington_DC_Federal_schedule();
+			const auto known_part = _make_Washington_DC_Federal_schedule();
 
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 			const auto generated_part_until = Epoch.get_until().year();
