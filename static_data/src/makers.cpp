@@ -76,6 +76,7 @@ namespace gregorian
 				holidays.get_dates()
 			};
 			// should we be using the fact that as_of_date could imply new holidays which start some years after the as_of_date?
+			// how do we handle as_of_date, which is !ok()? (is that an assertion failure?)
 		}
 
 		static auto _make_sub_epochs(
