@@ -240,7 +240,7 @@ namespace gregorian
 			else
 			{
 				// special case when we do not have known part at all
-				cal;
+				return cal;
 			}
 		}
 

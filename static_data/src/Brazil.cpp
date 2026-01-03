@@ -1327,7 +1327,10 @@ namespace gregorian
 				2099y / December / 25d, // Natal
 			};
 
-			return schedule{ util::days_period{ 2001y / FirstDayOfJanuary, 2099y / LastDayOfDecember }, move(holidays) };
+			return schedule{
+				days_period{ 2001y / FirstDayOfJanuary, 2099y / LastDayOfDecember },
+				move(holidays)
+			};
 		}
 		// notes from the above document:
 		// 1) According to Resolution No. 2,516, starting in the year 2000, Holy Thursday was considered a working day.

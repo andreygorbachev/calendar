@@ -294,7 +294,7 @@ namespace gregorian
 			// https ://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination.
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
+				days_period{ 2011y / FirstDayOfJanuary, 2030y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -321,7 +321,7 @@ namespace gregorian
 			// on January 20th for each fourth year after 1965.
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
+				days_period{ 2011y / FirstDayOfJanuary, 2030y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
