@@ -73,7 +73,7 @@ namespace gregorian
 
 		for (auto y = p.get_from(); y <= p.get_until(); ++y)
 			for (const auto& rule : rules)
-				hols.insert(rule->make_holiday(y));
+				hols.insert(rule->make_holiday(y)); // what if we get a holiday, which is !ok()?
 
 		return schedule{
 			util::days_period{
