@@ -45,6 +45,7 @@ namespace gregorian
 	{
 
 		// should these be inside make_ANBIMA_calendar_versions?
+		// otherwise should they be in their own namespace?
 		const auto _TiradentesDay = named_holiday{ April / 21d };
 		const auto _LabourDay = named_holiday{ May / 1d };
 		const auto _ShroveMonday = offset_holiday{ &_Easter, days{ -47 - 1 } }; // should it be in the main library?

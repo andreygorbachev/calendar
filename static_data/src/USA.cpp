@@ -45,6 +45,17 @@ namespace gregorian
 	namespace static_data
 	{
 
+		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
+		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
+		const auto _MemorialDay = weekday_last_holiday{ May / Monday[last] };
+		const auto _Juneteenth = named_holiday{ June / 19d }; // Emancipation Day
+		const auto _IndependenceDay = named_holiday{ July / 4d };
+		const auto _LaborDay = weekday_indexed_holiday{ September / Monday[1] };
+		const auto _ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
+		const auto _VeteransDay = named_holiday{ November / 11d };
+		const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
+
+
 		static auto _USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{
@@ -333,27 +344,17 @@ namespace gregorian
 			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
 			const auto generated_part_until = Epoch.get_until().year();
 
-			const auto MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
-			const auto Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
-			const auto MemorialDay = weekday_last_holiday{ May / Monday[last] };
-			const auto Juneteenth = named_holiday{ June / 19d }; // Emancipation Day
-			const auto IndependenceDay = named_holiday{ July / 4d };
-			const auto LaborDay = weekday_indexed_holiday{ September / Monday[1] };
-			const auto ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
-			const auto VeteransDay = named_holiday{ November / 11d };
-			const auto ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
-
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
-				&MartinLutherKing,
-				&Washington,
-				&MemorialDay,
-				&Juneteenth,
-				&IndependenceDay,
-				&LaborDay,
-				&ColumbusDay,
-				&VeteransDay,
-				&ThanksgivingDay,
+				&_MartinLutherKing,
+				&_Washington,
+				&_MemorialDay,
+				&_Juneteenth,
+				&_IndependenceDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
 				&ChristmasDay
 			};
 
