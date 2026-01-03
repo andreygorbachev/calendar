@@ -20,13 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <makers.h>
+#include <static_data.h>
 
 #include <gtest/gtest.h>
 
 #include <chrono>
-#include <ranges>
-#include <vector>
 
 using namespace std;
 using namespace std::chrono;
@@ -40,8 +38,9 @@ namespace gregorian
 
 		TEST(static, InaugurationDay)
 		{
-			const auto& cal1 = make_USA_Federal_calendar();
-			const auto& cal2 = make_Washington_DC_Federal_calendar();
+			const auto as_of_date = 2023y / December / 20d;
+			const auto& cal1 = locate_calendar("America/USA", as_of_date);
+			const auto& cal2 = locate_calendar("America/Washington", as_of_date);
 
 			// from the "known" part
 			EXPECT_FALSE(cal2.is_business_day(2025y / January / 20d));

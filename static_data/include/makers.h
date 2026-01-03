@@ -99,9 +99,9 @@ namespace gregorian
 
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
-		auto make_USA_Federal_calendar() -> const calendar&;
+		auto make_USA_Federal_calendar_versions() -> _calendar_versions;
 
-		auto make_Washington_DC_Federal_calendar() -> const calendar&;
+		auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions;
 
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html

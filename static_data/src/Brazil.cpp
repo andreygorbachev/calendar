@@ -1363,7 +1363,7 @@ namespace gregorian
 				{ &_RepublicProclamationDay, epoch, epoch.get_from() },
 				{
 					&_BlackConsciousnessDay,
-					period{ 2024y / FirstDayOfJanuary, Epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
+					period{ 2024y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
 					2023y / December / 21d // was enacted as Law No. 14,759 on 21 December 2023
 				},
 				{ &ChristmasDay, epoch, epoch.get_from() }

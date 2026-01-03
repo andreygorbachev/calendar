@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -331,114 +332,91 @@ namespace gregorian
 			// Federal employees in the Washington, DC, area are entitled to a holiday on the day a President is inaugurated
 			// on January 20th for each fourth year after 1965.
 
-			return schedule{
+			const auto s = schedule{
 				days_period{ 2011y / FirstDayOfJanuary, 2030y / LastDayOfDecember },
 				move(holidays)
 			};
+
+			return _make_USA_Federal_schedule() + s;
 		}
 
-		static auto _make_USA_Federal_calendar() -> calendar
+
+		auto make_USA_Federal_calendar_versions() -> _calendar_versions
 		{
-			const auto known_part = _make_USA_Federal_schedule();
+			const auto holidays = _make_USA_Federal_schedule();
 
-			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = Epoch.get_until().year();
-
-			const auto rules = annual_holiday_storage{
-				&NewYearsDay,
-				&_MartinLutherKing,
-				&_Washington,
-				&_MemorialDay,
-				&_Juneteenth,
-				&_IndependenceDay,
-				&_LaborDay,
-				&_ColumbusDay,
-				&_VeteransDay,
-				&_ThanksgivingDay,
-				&ChristmasDay
+			const auto epoch = period{
+				holidays.get_period().get_from(), // starts before Epoch
+				Epoch.get_until()
 			};
 
-			const auto generated_part = make_holiday_schedule(
-				years_period{ generated_part_from, generated_part_until },
-				rules
-			);
-
-			// setup a calendar for the generated part only (to do substitution for the generated dates)
-			auto cal = calendar{
-				SaturdaySundayWeekend,
-				generated_part
-			};
-			cal.substitute(Nearest);
-
-			return calendar{
-				SaturdaySundayWeekend,
-				known_part + cal.get_schedule()
-			};
-		}
-
-		// should it move to the main library (in a more generic form)?
-		static auto _make_Washington_DC_Federal_holiday_schedule( // Victoria Day sits in it own file ...
-			const util::years_period& p,
-			const annual_holiday_storage& rules
-		) noexcept -> schedule
-		{
-			auto hols = schedule::dates{};
-
-			for (auto y = 2033y; y <= p.get_until(); y += years{ 4 })
-				for (const auto& rule : rules)
-					hols.insert(rule->make_holiday(y));
-
-			return schedule{
-				util::days_period{
-					p.get_from() / FirstDayOfJanuary,
-					p.get_until() / LastDayOfDecember
+			const auto rules = _annual_holiday_period_storage{
+				{ &NewYearsDay, epoch, epoch.get_from() },
+				{ &_MartinLutherKing, epoch, epoch.get_from() },
+				{ &_Washington, epoch, epoch.get_from() },
+				{ &_MemorialDay, epoch, epoch.get_from() },
+				{
+					&_Juneteenth,
+					period{ 2021y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
+					2021y / June / 17d // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 				},
-				move(hols)
-			};
-		}
-
-		static auto _make_Washington_DC_Federal_calendar() -> calendar
-		{
-			const auto known_part = _make_Washington_DC_Federal_schedule();
-
-			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = Epoch.get_until().year();
-
-			const auto InaugurationDay = named_holiday{ January / 20d };
-
-			const auto rules = annual_holiday_storage{
-				&InaugurationDay
+				{ &_IndependenceDay, epoch, epoch.get_from() },
+				{ &_LaborDay, epoch, epoch.get_from() },
+				{ &_ColumbusDay, epoch, epoch.get_from() },
+				{ &_VeteransDay, epoch, epoch.get_from() },
+				{ &_ThanksgivingDay, epoch, epoch.get_from() },
+				{ &ChristmasDay, epoch, epoch.get_from() }
 			};
 
-			const auto generated_part = _make_Washington_DC_Federal_holiday_schedule(
-				years_period{ generated_part_from, generated_part_until },
-				rules
-			);
-
-			// setup a calendar for the generated part only (to do substitution for the generated dates)
-			auto cal = calendar{
+			return _make_calendar_versions(
+				holidays,
+				rules,
+				epoch,
 				SaturdaySundayWeekend,
-				generated_part
+				Nearest
+			);
+		}
+
+		auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions
+		{
+			const auto holidays = _make_Washington_DC_Federal_schedule();
+
+			const auto epoch = period{
+				holidays.get_period().get_from(), // starts before Epoch
+				Epoch.get_until()
 			};
-			cal.substitute(Nearest);
 
-			return 
-				_make_USA_Federal_calendar() |
-				calendar{ SaturdaySundayWeekend, known_part + cal.get_schedule() };
-		}
+//			const auto InaugurationDay = named_holiday{ January / 20d };
+//
+//			const auto rules = annual_holiday_storage{
+//				&InaugurationDay
+//			};
 
+			const auto rules = _annual_holiday_period_storage{
+				{ &NewYearsDay, epoch, epoch.get_from() },
+				{ &_MartinLutherKing, epoch, epoch.get_from() },
+				{ &_Washington, epoch, epoch.get_from() },
+				{ &_MemorialDay, epoch, epoch.get_from() },
+				{
+					&_Juneteenth,
+					period{ 2021y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
+					2021y / June / 17d // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				},
+				{ &_IndependenceDay, epoch, epoch.get_from() }, // not yet fully correct
+				{ &_LaborDay, epoch, epoch.get_from() },
+				{ &_ColumbusDay, epoch, epoch.get_from() },
+				{ &_VeteransDay, epoch, epoch.get_from() },
+				{ &_ThanksgivingDay, epoch, epoch.get_from() },
+				{ &ChristmasDay, epoch, epoch.get_from() }
+			};
 
-
-		auto make_USA_Federal_calendar() -> const calendar&
-		{
-			static const auto s = _make_USA_Federal_calendar();
-			return s;
-		}
-
-		auto make_Washington_DC_Federal_calendar() -> const calendar&
-		{
-			static const auto s = _make_Washington_DC_Federal_calendar();
-			return s;
+			return _make_calendar_versions(
+				holidays,
+				rules,
+				epoch,
+				SaturdaySundayWeekend,
+				Nearest
+			);
 		}
 
 	}
