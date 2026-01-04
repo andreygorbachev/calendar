@@ -55,7 +55,7 @@ namespace gregorian
 		> // we can also use period{} to specify empty period, rather than using optional here
 		{
 			if(schedule_period.get_from() < epoch.get_from())
-				throw std::out_of_range{ "No gap is allowed between the epoch start and schedule perio start" };
+				throw std::out_of_range{ "Schedule period from can't be after epoch from" };
 
 			const auto known_from = schedule_period.get_from();
 			const auto known_until = schedule_period.get_until();
