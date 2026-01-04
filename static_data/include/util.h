@@ -38,6 +38,8 @@ namespace gregorian
 	{
 
 		auto known_period_generated_period(
+			const util::days_period& schedule_period,
+			const util::days_period& epoch
 		) -> std::pair<
 			std::optional<util::days_period>, // we might not have any known period at all
 			std::optional<util::days_period> // we might not have any generated period at all

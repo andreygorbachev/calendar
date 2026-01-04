@@ -28,7 +28,7 @@
 #include <gtest/gtest.h>
 
 #include <chrono>
-#include <exception>
+#include <stdexcept>
 
 #include "setup.h"
 

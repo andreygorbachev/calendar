@@ -30,7 +30,7 @@
 
 #include <gtest/gtest.h>
 
-#include <cstddef>
+#include <stdexcept>
 #include <chrono>
 
 #include "setup.h"

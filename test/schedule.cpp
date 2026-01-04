@@ -23,13 +23,13 @@
 #include <period.h>
 
 #include <schedule.h>
-#include <business_day_adjusters.h>
 
 #include <gtest/gtest.h>
 
 #include <utility>
 #include <chrono>
 #include <algorithm>
+#include <stdexcept>
 
 #include "setup.h"
 

@@ -26,8 +26,10 @@
 
 #include <utility>
 #include <optional>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 
 namespace gregorian
@@ -44,12 +46,21 @@ namespace gregorian
 		// from what we know about holidays and from the Epoch
 		// (maybe ignore as_of_date for now, and handle it later)
 		auto known_period_generated_period(
+			const days_period& schedule_period,
+			const days_period& epoch
 		) -> pair<
-			optional<util::days_period>, // we might not have any known period at all
-			optional<util::days_period> // we might not have any generated period at all
+			optional<days_period>, // we might not have any known period at all
+			optional<days_period> // we might not have any generated period at all
 		>
 		{
-			return {};
+			const auto known_from = schedule_period.get_from();
+			const auto known_until = schedule_period.get_until();
+			const auto generated_from = year_month_day{ sys_days{ known_until } + days{ 1 } };
+			const auto generated_until = epoch.get_until();
+			return {
+				days_period{ known_from, known_until },
+				days_period{ generated_from, generated_until }
+			};
 		}
 
 	}
