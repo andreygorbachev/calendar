@@ -245,17 +245,13 @@ namespace gregorian
 		}
 
 
-		auto _make_calendar_versions(
-			const schedule& holidays,
-			const _annual_holiday_period_storage& rules,
-			const days_period& epoch,
-			const weekend& we,
-			const business_day_adjuster& adjuster
-			) -> _calendar_versions
+		static auto _make_versions(
+			const _annual_holiday_period_storage& rules
+		)
 		{
 			const auto get_announced = [](const auto& x) noexcept {
 				return x.announced;
-			};
+				};
 
 			// make below pretier?
 #ifdef _MSC_BUILD
@@ -273,6 +269,20 @@ namespace gregorian
 			ranges::sort(versions);
 			const auto ret = ranges::unique(versions);
 			versions.erase(ret.begin(), ret.end());
+
+			return versions;
+		}
+
+
+		auto _make_calendar_versions(
+			const schedule& holidays,
+			const _annual_holiday_period_storage& rules,
+			const days_period& epoch,
+			const weekend& we,
+			const business_day_adjuster& adjuster
+			) -> _calendar_versions
+		{
+			const auto versions = _make_versions(rules);
 
 			auto result = _calendar_versions{};
 			for (const auto& as_of_date : versions)
