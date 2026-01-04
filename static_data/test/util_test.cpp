@@ -38,6 +38,8 @@ using namespace std::chrono;
 namespace gregorian
 {
 
+	using namespace util;
+
 	namespace static_data
 	{
 
@@ -47,7 +49,7 @@ namespace gregorian
 			// known period starts at the same time as Epoch starts
 			// and ends before the Epoch ends
 
-			const auto schedule_period = util::days_period{
+			const auto schedule_period = days_period{
 				Epoch.get_from(),
 				2025y / LastDayOfDecember
 			};
@@ -57,9 +59,9 @@ namespace gregorian
 				Epoch
 			);
 
-			EXPECT_TRUE(known_period.has_value());
-			EXPECT_TRUE(generated_period.has_value());
-			EXPECT_EQ(Epoch, *known_period + *generated_period);
+			EXPECT_NE(days_period{}, known_period);
+			EXPECT_NE(days_period{}, generated_period);
+			EXPECT_EQ(Epoch, known_period + generated_period);
 		}
 
 		TEST(util, known_period_generated_period2)

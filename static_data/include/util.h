@@ -28,7 +28,6 @@
 #include <period.h>
 
 #include <utility>
-#include <optional>
 
 
 namespace gregorian
@@ -41,8 +40,8 @@ namespace gregorian
 			const util::days_period& schedule_period,
 			const util::days_period& epoch
 		) -> std::pair<
-			std::optional<util::days_period>, // we might not have any known period at all
-			std::optional<util::days_period> // we might not have any generated period at all
+			util::days_period, // we might not have any known period at all
+			util::days_period // we might not have any generated period at all
 		>;
 
 	}

@@ -25,7 +25,6 @@
 #include <period.h>
 
 #include <utility>
-#include <optional>
 #include <chrono>
 #include <stdexcept>
 
@@ -49,10 +48,7 @@ namespace gregorian
 		auto known_period_generated_period(
 			const days_period& schedule_period,
 			const days_period& epoch
-		) -> pair<
-			optional<days_period>, // we might not have any known period at all
-			optional<days_period> // we might not have any generated period at all
-		> // we can also use period{} to specify empty period, rather than using optional here
+		) -> pair<days_period, days_period> 
 		{
 			if(schedule_period.get_from() < epoch.get_from())
 				throw std::out_of_range{ "Schedule period from can't be after epoch from" };
