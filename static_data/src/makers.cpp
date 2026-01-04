@@ -79,6 +79,7 @@ namespace gregorian
 			// how do we handle as_of_date, which is !ok()? (is that an assertion failure?)
 		}
 
+
 		static auto _make_sub_epochs(
 			const _annual_holiday_period_storage& rules,
 			const days_period& epoch,
