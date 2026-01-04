@@ -22,12 +22,26 @@
 
 #pragma once
 
+// these are internal utilities, which are not expected to be used directly by the users of the library
+// (but we would like to untit test them)
+
+#include <period.h>
+
+#include <utility>
+#include <optional>
+
 
 namespace gregorian
 {
 
 	namespace static_data
 	{
+
+		auto known_period_generated_period(
+		) -> std::pair<
+			std::optional<util::days_period>, // we might not have any known period at all
+			std::optional<util::days_period> // we might not have any generated period at all
+		>;
 
 	}
 

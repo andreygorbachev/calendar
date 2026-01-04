@@ -20,36 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "util.h"
+#include <static_data.h>
 
-#include <period.h>
+#include <gtest/gtest.h>
 
-#include <utility>
-#include <optional>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 
 namespace gregorian
 {
 
-	using namespace util;
-
 	namespace static_data
 	{
 
-		// is it too confusing to have util.h/util.cpp here and util namespace elewhere?
-
-		// first thing we need is to generate a known period and generated period
-		// from what we know about holidays and from the Epoch
-		// (maybe ignore as_of_date for now, and handle it later)
-		auto known_period_generated_period(
-		) -> pair<
-			optional<util::days_period>, // we might not have any known period at all
-			optional<util::days_period> // we might not have any generated period at all
-		>
+		TEST(util, known_period_generated_period)
 		{
-			return {};
 		}
 
 	}
