@@ -109,7 +109,7 @@ namespace gregorian
 				if (it1->get_from() != holiday.period.get_from())
 				{
 					const auto p1_from = it1->get_from();
-					const auto p1_until = holiday.period.get_from() - years{ 1 };
+					const auto p1_until = sys_days{ holiday.period.get_from() } - days{ 1 };
 					const auto p2_from = holiday.period.get_from();
 					const auto p2_until = it1->get_until();
 
@@ -128,16 +128,14 @@ namespace gregorian
 				assert(it2 != result.cend());
 				if (it2->get_until() != holiday.period.get_until())
 				{
-					const auto it = std::prev(it2); // assert that it is valid?
+					const auto p1_from = it2->get_from();
+					const auto p1_until = holiday.period.get_until();
+					const auto p2_from = sys_days{ holiday.period.get_until() } + days{ 1 };
+					const auto p2_until = it2->get_until();
 
-					const auto p1_from = it1->get_from();
-					const auto p1_until = holiday.period.get_until() - years{ 1 };
-					const auto p2_from = holiday.period.get_until();
-					const auto p2_until = it1->get_until();
+					*it2 = days_period{ p1_from, p1_until };
 
-					*it = days_period{ p1_from, p1_until };
-
-					result.insert(std::next(it), days_period{ p2_from, p2_until }); // might not be the best with std::vector
+					result.insert(std::next(it2), days_period{ p2_from, p2_until }); // might not be the best with std::vector
 				}
 
 				// there might be already an STL algorithm (or their combination) to do the above

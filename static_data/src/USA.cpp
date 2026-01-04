@@ -392,8 +392,7 @@ namespace gregorian
 				{ &NewYearsDay, epoch, epoch.get_from() },
 				{
 					&_InaugurationDay,
-					epoch,
-//					period{ 2013y / FirstDayOfJanuary, 2013y / LastDayOfDecember },
+					period{ 2013y / FirstDayOfJanuary, 2013y / LastDayOfDecember },
 					epoch.get_from()
 //					1965y / January / 20d // find a more correct day
 				},
@@ -412,7 +411,7 @@ namespace gregorian
 				{ &_ThanksgivingDay, epoch, epoch.get_from() },
 				{ &ChristmasDay, epoch, epoch.get_from() }
 			};
-			// handling of InaugurationDay is a aukward (as it is not every year)
+			// handling of InaugurationDay is awkward (as it is not every year)
 
 			return _make_calendar_versions(
 				holidays,
