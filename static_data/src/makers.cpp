@@ -160,7 +160,7 @@ namespace gregorian
 
 			const auto contains_epoch = [&_epoch](const auto& x) noexcept {
 				return x.period.contains(_epoch);
-				};
+			};
 
 #ifdef _MSC_BUILD
 			const auto rules2 = rules // we need a better name
