@@ -29,6 +29,7 @@
 #include <schedule.h>
 
 #include <chrono>
+#include <stdexcept>
 
 using namespace std;
 using namespace std::chrono;
@@ -59,6 +60,19 @@ namespace gregorian
 			EXPECT_TRUE(known_period.has_value());
 			EXPECT_TRUE(generated_period.has_value());
 			EXPECT_EQ(Epoch, *known_period + *generated_period);
+		}
+
+		TEST(util, known_period_generated_period2)
+		{
+			// schedule period is after the epoch starts
+			// we do not allow such case and it should throw
+
+			const auto schedule_period = util::days_period{
+				Epoch.get_from() - years{ 1 },
+				2025y / LastDayOfDecember
+			};
+
+			EXPECT_THROW(known_period_generated_period(schedule_period,	Epoch), out_of_range);
 		}
 
 	}

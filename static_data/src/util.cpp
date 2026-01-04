@@ -27,6 +27,7 @@
 #include <utility>
 #include <optional>
 #include <chrono>
+#include <stdexcept>
 
 using namespace std;
 using namespace std::chrono;
@@ -51,8 +52,11 @@ namespace gregorian
 		) -> pair<
 			optional<days_period>, // we might not have any known period at all
 			optional<days_period> // we might not have any generated period at all
-		>
+		> // we can also use period{} to specify empty period, rather than using optional here
 		{
+			if(schedule_period.get_from() < epoch.get_from())
+				throw std::out_of_range{ "No gap is allowed between the epoch start and schedule perio start" };
+
 			const auto known_from = schedule_period.get_from();
 			const auto known_until = schedule_period.get_until();
 			const auto generated_from = year_month_day{ sys_days{ known_until } + days{ 1 } };
