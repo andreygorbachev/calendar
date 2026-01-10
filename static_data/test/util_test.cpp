@@ -125,6 +125,11 @@ namespace gregorian
 			EXPECT_EQ(Epoch, *generated_period);
 		}
 
+
+		TEST(util, make_holiday_schedule_as_of_date1)
+		{
+		}
+
 	}
 
 }

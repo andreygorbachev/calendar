@@ -21,8 +21,10 @@
 // SOFTWARE.
 
 #include "util.h"
+#include "makers.h"
 
 #include <period.h>
+#include <annual_holiday_interface.h>
 
 #include <optional>
 #include <chrono>
@@ -63,6 +65,15 @@ namespace gregorian
 			const auto generated_until = epoch.get_until();
 
 			return days_period{ generated_from, generated_until };
+		}
+
+
+		auto make_holiday_schedule_as_of_date(
+			const _annual_holiday_period_storage& storage,
+			const year_month_day& as_of_date
+		) -> annual_holiday_storage
+		{
+			return {};
 		}
 
 	}

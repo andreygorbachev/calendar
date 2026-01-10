@@ -25,8 +25,12 @@
 // these are internal utilities, which are not expected to be used directly by the users of the library
 // (but we would like to untit test them)
 
-#include <period.h>
+#include "makers.h"
 
+#include <period.h>
+#include <annual_holiday_interface.h>
+
+#include <chrono>
 #include <optional>
 
 
@@ -40,6 +44,12 @@ namespace gregorian
 			const std::optional<util::days_period>& known, // we might not have any known period at all
 			const util::days_period& epoch
 		) -> std::optional<util::days_period>; // we might not have any generated period at all
+
+
+		auto make_holiday_schedule_as_of_date(
+			const _annual_holiday_period_storage& storage, // should it be "_"?
+			const std::chrono::year_month_day& as_of_date
+		) -> annual_holiday_storage;
 
 	}
 
