@@ -50,6 +50,7 @@ namespace gregorian
 			const _annual_holiday_period_storage& storage, // should it be "_"?
 			const std::chrono::year_month_day& as_of_date
 		) -> annual_holiday_storage;
+		// what should it return? annual_holiday_storage with applicable periods? periods with applicable annual_holiday_storage?
 
 	}
 

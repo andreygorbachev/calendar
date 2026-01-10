@@ -23,10 +23,12 @@
 #include <gtest/gtest.h>
 
 #include <util.h>
+#include <makers.h>
 #include <static_data.h>
 
 #include <period.h>
 #include <schedule.h>
+#include <annual_holidays.h>
 
 #include <chrono>
 #include <stdexcept>
@@ -128,6 +130,33 @@ namespace gregorian
 
 		TEST(util, make_holiday_schedule_as_of_date1)
 		{
+			const auto hol1 = named_holiday{ January / 1d };
+			const auto hol2 = named_holiday{ January / 2d };
+
+			const auto hol2_announcement = 2025y / January / 1d;
+			const auto hol2_period = period{
+				2026y / FirstDayOfJanuary,
+				Epoch.get_until()
+			};
+
+			const auto rules = _annual_holiday_period_storage{
+				{
+					&hol1,
+					Epoch,
+					Epoch.get_from()
+				},
+				{
+					&hol2,
+					hol2_period,
+					hol2_announcement
+				}
+			};
+
+			const auto rules_as_of_date = make_holiday_schedule_as_of_date(
+				rules,
+				Epoch.get_from()
+			);
+
 		}
 
 	}
