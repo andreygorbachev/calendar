@@ -30,11 +30,8 @@
 #include "schedule.h"
 #include "business_day_adjuster_interface.h"
 
-#include <cstddef>
 #include <utility>
 #include <chrono>
-#include <vector>
-#include <stdexcept>
 #include <compare>
 #include <ranges>
 
