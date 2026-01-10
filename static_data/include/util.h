@@ -27,7 +27,7 @@
 
 #include <period.h>
 
-#include <utility>
+#include <optional>
 
 
 namespace gregorian
@@ -36,13 +36,10 @@ namespace gregorian
 	namespace static_data
 	{
 
-		auto known_period_generated_period(
-			const util::days_period& schedule_period,
+		auto make_generated_period(
+			const std::optional<util::days_period>& known, // we might not have any known period at all
 			const util::days_period& epoch
-		) -> std::pair<
-			util::days_period, // we might not have any known period at all
-			util::days_period // we might not have any generated period at all
-		>;
+		) -> std::optional<util::days_period>; // we might not have any generated period at all
 
 	}
 

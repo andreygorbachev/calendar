@@ -30,6 +30,7 @@
 
 #include <chrono>
 #include <stdexcept>
+#include <optional>
 
 using namespace std;
 using namespace std::chrono;
@@ -43,38 +44,85 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(util, known_period_generated_period1)
+		TEST(util, make_generated_period1)
 		{
 			// common case: we have both known and generated periods
-			// known period starts at the same time as Epoch starts
-			// and ends before the Epoch ends
+			// knwon from is the same as Epoch from
+			// and knwon until is before Epoch until
 
-			const auto schedule_period = days_period{
+			const auto known_period = days_period{
 				Epoch.get_from(),
 				2025y / LastDayOfDecember
 			};
 
-			const auto [known_period, generated_period] = known_period_generated_period(
-				schedule_period,
+			const auto generated_period = make_generated_period(
+				known_period,
 				Epoch
 			);
 
-			EXPECT_NE(days_period{}, known_period);
-			EXPECT_NE(days_period{}, generated_period);
-			EXPECT_EQ(Epoch, known_period + generated_period);
+			EXPECT_TRUE(generated_period.has_value());
+			EXPECT_EQ(Epoch, known_period + *generated_period);
 		}
 
-		TEST(util, known_period_generated_period2)
+		TEST(util, make_generated_period2)
 		{
-			// schedule period is after the epoch starts
-			// we do not allow such case and it should throw
+			// known period is before the Epoch from
+			// (we do not allow such case and it should throw)
 
-			const auto schedule_period = util::days_period{
+			const auto known_period = days_period{
 				Epoch.get_from() - years{ 1 },
 				2025y / LastDayOfDecember
 			};
 
-			EXPECT_THROW(known_period_generated_period(schedule_period,	Epoch), out_of_range);
+			EXPECT_THROW(make_generated_period(known_period, Epoch), out_of_range);
+		}
+
+		TEST(util, make_generated_period3)
+		{
+			// known until is after Epoch until
+
+			const auto known_period = days_period{
+				Epoch.get_from(),
+				Epoch.get_until() + years{ 1 }
+			};
+
+			const auto generated_period = make_generated_period(
+				known_period,
+				Epoch
+			);
+
+			EXPECT_FALSE(generated_period.has_value());
+		}
+
+		TEST(util, make_generated_period4)
+		{
+			// known until is before Epoch from
+
+			const auto known_period = days_period{
+				Epoch.get_from() - years{ 2 },
+				Epoch.get_from() - years{ 1 }
+			};
+
+			const auto generated_period = make_generated_period(
+				known_period,
+				Epoch
+			);
+
+			EXPECT_TRUE(generated_period.has_value());
+			EXPECT_EQ(Epoch, *generated_period);
+		}
+
+		TEST(util, make_generated_period5)
+		{
+			// no known period
+
+			const auto generated_period = make_generated_period(
+				nullopt,
+				Epoch
+			);
+
+			EXPECT_TRUE(generated_period.has_value());
+			EXPECT_EQ(Epoch, *generated_period);
 		}
 
 	}

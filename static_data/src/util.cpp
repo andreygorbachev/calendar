@@ -24,7 +24,7 @@
 
 #include <period.h>
 
-#include <utility>
+#include <optional>
 #include <chrono>
 #include <stdexcept>
 
@@ -42,25 +42,27 @@ namespace gregorian
 
 		// is it too confusing to have util.h/util.cpp here and util namespace elewhere?
 
-		// first thing we need is to generate a known period and generated period
-		// from what we know about holidays and from the Epoch
+		// first thing we need is to generate a generated period
+		// from known_period and from the Epoch
 		// (maybe ignore as_of_date for now, and handle it later)
-		auto known_period_generated_period(
-			const days_period& schedule_period,
+		auto make_generated_period(
+			const optional<days_period>& known,
 			const days_period& epoch
-		) -> pair<days_period, days_period> 
+		) -> optional<days_period>
 		{
-			if(schedule_period.get_from() < epoch.get_from())
-				throw std::out_of_range{ "Schedule period from can't be after epoch from" };
+			if (!known || known->get_until() < epoch.get_from())
+				return epoch;
 
-			const auto known_from = schedule_period.get_from();
-			const auto known_until = schedule_period.get_until();
-			const auto generated_from = year_month_day{ sys_days{ known_until } + days{ 1 } };
+			if (known->get_from() < epoch.get_from())
+				throw out_of_range{ "Known period from can't be after epoch from" };
+
+			if (known->get_until() >= epoch.get_until())
+				return nullopt;
+
+			const auto generated_from = year_month_day{ sys_days{ known->get_until() } + days{1} };
 			const auto generated_until = epoch.get_until();
-			return {
-				days_period{ known_from, known_until },
-				days_period{ generated_from, generated_until }
-			};
+
+			return days_period{ generated_from, generated_until };
 		}
 
 	}
