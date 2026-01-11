@@ -74,7 +74,7 @@ namespace gregorian
 		}
 
 
-		auto make_generated_periods_as_of_date(
+		auto make_generated_sub_periods_as_of_date(
 			const _annual_holiday_period_storage& storage,
 			const year_month_day& as_of_date
 		) -> days_period_set

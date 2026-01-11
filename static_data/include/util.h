@@ -63,7 +63,7 @@ namespace gregorian
 		using days_period_set = std::set<util::days_period, _compare_subsequent_periods>;
 		// is it correct to return set here? // should we be using yers_period instead of days_period?
 
-		auto make_generated_periods_as_of_date(
+		auto make_generated_sub_periods_as_of_date(
 			const _annual_holiday_period_storage& storage,
 			const std::chrono::year_month_day& as_of_date
 		) -> days_period_set;

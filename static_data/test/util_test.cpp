@@ -129,7 +129,7 @@ namespace gregorian
 
 
 
-		TEST(util, make_generated_periods_as_of_date1)
+		TEST(util, make_generated_sub_periods_as_of_date1)
 		{
 			const auto hol1 = named_holiday{ January / 1d };
 			const auto hol2 = named_holiday{ January / 2d };
@@ -153,25 +153,25 @@ namespace gregorian
 				}
 			};
 
-			const auto generated_periods_as_of_date1 = make_generated_periods_as_of_date(
+			const auto periods1 = make_generated_sub_periods_as_of_date(
 				rules,
 				Epoch.get_from()
 			);
-			EXPECT_EQ(1u, generated_periods_as_of_date1.size());
+			EXPECT_EQ(1u, periods1.size());
 			// add an actual check that we only have Epoch here
 
-			const auto generated_periods_as_of_date2 = make_generated_periods_as_of_date(
+			const auto periods2 = make_generated_sub_periods_as_of_date(
 				rules,
 				hol2_announcement
 			);
-			EXPECT_EQ(3u, generated_periods_as_of_date2.size());
+			EXPECT_EQ(3u, periods2.size());
 			// add an actual check of what we got
 
-			const auto generated_periods_as_of_date3 = make_generated_periods_as_of_date(
+			const auto periods3 = make_generated_sub_periods_as_of_date(
 				rules,
 				2027y / January / 1d
 			);
-			EXPECT_EQ(3u, generated_periods_as_of_date3.size()); // at this point we do not have a konwn part, so need to generate all historial periods
+			EXPECT_EQ(3u, periods3.size()); // at this point we do not have a konwn part, so need to generate all historial periods
 			// add an actual check of what we got
 		}
 
