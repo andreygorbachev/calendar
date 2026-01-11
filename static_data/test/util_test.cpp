@@ -128,6 +128,54 @@ namespace gregorian
 		}
 
 
+
+		TEST(util, make_generated_periods_as_of_date1)
+		{
+			const auto hol1 = named_holiday{ January / 1d };
+			const auto hol2 = named_holiday{ January / 2d };
+
+			const auto hol2_announcement = 2025y / January / 1d;
+			const auto hol2_period = period{
+				2026y / FirstDayOfJanuary,
+				2026y / LastDayOfDecember,
+			};
+
+			const auto rules = _annual_holiday_period_storage{
+				{
+					&hol1,
+					Epoch,
+					Epoch.get_from()
+				},
+				{
+					&hol2,
+					hol2_period,
+					hol2_announcement
+				}
+			};
+
+			const auto generated_periods_as_of_date1 = make_generated_periods_as_of_date(
+				rules,
+				Epoch.get_from()
+			);
+			EXPECT_EQ(1u, generated_periods_as_of_date1.size());
+			// add an actual check that we only have Epoch here
+
+			const auto generated_periods_as_of_date2 = make_generated_periods_as_of_date(
+				rules,
+				hol2_announcement
+			);
+			EXPECT_EQ(3u, generated_periods_as_of_date2.size());
+			// add an actual check of what we got
+
+			const auto generated_periods_as_of_date3 = make_generated_periods_as_of_date(
+				rules,
+				2027y / January / 1d
+			);
+			EXPECT_EQ(3u, generated_periods_as_of_date3.size()); // at this point we do not have a konwn part, so need to generate all historial periods
+			// add an actual check of what we got
+		}
+
+
 		TEST(util, make_holiday_schedule_as_of_date1)
 		{
 			const auto hol1 = named_holiday{ January / 1d };
@@ -136,7 +184,7 @@ namespace gregorian
 			const auto hol2_announcement = 2025y / January / 1d;
 			const auto hol2_period = period{
 				2026y / FirstDayOfJanuary,
-				Epoch.get_until()
+				2026y / LastDayOfDecember,
 			};
 
 			const auto rules = _annual_holiday_period_storage{
@@ -156,7 +204,6 @@ namespace gregorian
 				rules,
 				Epoch.get_from()
 			);
-
 		}
 
 	}

@@ -32,6 +32,7 @@
 
 #include <chrono>
 #include <optional>
+#include <set>
 
 
 namespace gregorian
@@ -46,6 +47,28 @@ namespace gregorian
 		) -> std::optional<util::days_period>; // we might not have any generated period at all
 
 
+		class _compare_subsequent_periods
+		{
+		public:
+			auto operator()(
+				const util::days_period& lhs,
+				const util::days_period& rhs
+			) const -> bool
+			{
+				// assert that rhs.get_from() is the next day after lhs.get_until()
+				return lhs.get_from() < rhs.get_from();
+			}
+		};
+
+		using days_period_set = std::set<util::days_period, _compare_subsequent_periods>;
+		// is it correct to return set here? // should we be using yers_period instead of days_period?
+
+		auto make_generated_periods_as_of_date(
+			const _annual_holiday_period_storage& storage,
+			const std::chrono::year_month_day& as_of_date
+		) -> days_period_set;
+			
+			
 		auto make_holiday_schedule_as_of_date(
 			const _annual_holiday_period_storage& storage, // should it be "_"?
 			const std::chrono::year_month_day& as_of_date
