@@ -252,7 +252,7 @@ namespace gregorian
 		{
 			const auto get_announced = [](const auto& x) noexcept {
 				return x.announced;
-				};
+			};
 
 			// make below pretier?
 #ifdef _MSC_BUILD
