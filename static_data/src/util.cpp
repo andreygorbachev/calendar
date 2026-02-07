@@ -30,7 +30,6 @@
 #include <optional>
 #include <chrono>
 #include <stdexcept>
-#include <set>
 #include <cassert>
 #include <algorithm>
 #include <iterator>
