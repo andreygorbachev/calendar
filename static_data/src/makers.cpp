@@ -155,8 +155,8 @@ namespace gregorian
 
 			const auto _epoch = days_period{
 				epoch.get_from() / FirstDayOfJanuary,
-				Epoch.get_until()
-			};
+				epoch.get_until() / LastDayOfDecember
+			}; // does it mean that we have a wrong representation of epoch?
 
 			const auto contains_epoch = [&_epoch](const auto& x) noexcept {
 				return x.period.contains(_epoch);
