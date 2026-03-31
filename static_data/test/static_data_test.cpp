@@ -45,6 +45,7 @@ namespace gregorian
 			// from the "known" part
 			EXPECT_FALSE(cal2.is_business_day(2025y / January / 20d));
 			EXPECT_FALSE(cal1.is_business_day(2025y / January / 20d)); // also is a MartinLutherKing
+			// when we have both MartinLutherKing and InaugurationDay, we do not double-counting holidays, do we?
 
 			EXPECT_FALSE(cal2.is_business_day(2021y / January / 20d));
 			EXPECT_FALSE(cal2.is_business_day(2029y / January / 19d));
