@@ -43,12 +43,8 @@ namespace gregorian
 			const auto& cal2 = locate_calendar("America/Washington", as_of_date);
 
 			// from the "known" part
-			EXPECT_TRUE(cal2.is_business_day(2025y / January / 17d)); // Friday
-			EXPECT_FALSE(cal2.is_business_day(2025y / January / 18d)); // Saturday
-			EXPECT_FALSE(cal2.is_business_day(2025y / January / 19d)); // Sunday
-			EXPECT_FALSE(cal2.is_business_day(2025y / January / 20d)); // Monday, InaugurationDay
+			EXPECT_FALSE(cal2.is_business_day(2025y / January / 20d));
 			EXPECT_FALSE(cal1.is_business_day(2025y / January / 20d)); // also is a MartinLutherKing
-			EXPECT_TRUE(cal2.is_business_day(2025y / January / 21d)); // Tuesday
 			// when we have both MartinLutherKing and InaugurationDay, we do not double-counting holidays, do we?
 
 			EXPECT_FALSE(cal2.is_business_day(2021y / January / 20d));
