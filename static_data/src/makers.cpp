@@ -78,6 +78,11 @@ namespace gregorian
 			// should we be using the fact that as_of_date could imply new holidays which start some years after the as_of_date?
 			// how do we handle as_of_date, which is !ok()? (is that an assertion failure?)
 		}
+		// alternatively we should consider the following:
+		// Choose all the applicable rules for as_of_date
+		// Ignore the rules which have already started
+		// Announced but not yet started (the rest of them) we use the easliest starting date
+		// this should give us a new known_part
 
 
 		static auto _make_sub_epochs(
