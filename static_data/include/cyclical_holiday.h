@@ -74,14 +74,15 @@ namespace gregorian
 
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
-			// assert that _hoiday is not nullptr?
+			// assert that _holiday is not nullptr?
 			// assert that y is after _start (or handle is somehow)?
 
-			const auto diff = y - _start;
-			if (diff % _period != std::chrono::years{ 0 })
-				return y / std::chrono::January / std::chrono::day{ 32u }; // intentionally invalid date to indicate that there is no holiday in this year
-			else
-				return _holiday->make_holiday(y);
+			auto d = _holiday->make_holiday(y);
+
+			if ((y - _start) % _period != std::chrono::years{ 0 })
+				d = d.year() / d.month() / std::chrono::day{ 32u }; // intentionally invalidate date to indicate that there is no holiday in this year
+
+			return d;
 		}
 		// is it too convoluted to rely on a "magic" invalid date to indicate that there is no holiday in a given year?
 

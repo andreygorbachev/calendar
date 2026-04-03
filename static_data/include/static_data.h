@@ -36,6 +36,7 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// when a new holiday is introduced on ymd is it effective from that day? or from the next day?
 		auto locate_calendar(std::string_view tz_name, std::chrono::year_month_day as_of_date) -> const calendar&; // or should it return const calendar* like locate_zone?
 		// or is it more of a locale thing, rather than a time zone?
 		// has tz_data "as of date" functionality?
