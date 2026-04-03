@@ -46,7 +46,7 @@ namespace gregorian
 	{
 
 		const auto _January_20 = named_holiday{ January / 20d };
-		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 2013y, years{ 4 } };
+		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
 
 		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
