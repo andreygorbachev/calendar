@@ -66,9 +66,10 @@ namespace gregorian
 			const std::chrono::years period
 		) noexcept :
 			_holiday{ holiday },
-			_period{ period },
-			_start{ start }
+			_start{ start },
+			_period{ period }
 		{
+			// should we check that _period is above 0? (or how else do we handle that?)
 		}
 
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day

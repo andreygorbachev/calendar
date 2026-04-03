@@ -22,11 +22,10 @@
 
 #include "static_data.h"
 #include "makers.h"
+#include "cyclical_holiday.h"
 
 #include <period.h>
 #include <schedule.h>
-#include <calendar.h>
-#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
@@ -46,7 +45,8 @@ namespace gregorian
 	namespace static_data
 	{
 
-		const auto _InaugurationDay = named_holiday{ January / 20d };
+		const auto _January_20 = named_holiday{ January / 20d };
+		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 2013y, years{ 4 } };
 
 		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
