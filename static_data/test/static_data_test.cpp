@@ -52,6 +52,7 @@ namespace gregorian
 			EXPECT_TRUE(cal2.is_business_day(2026y / January / 20d));
 
 			// from the "generated" part
+			// as known_part grows with time, how do we keep this part "generated"?
 			EXPECT_FALSE(cal2.is_business_day(2033y / January / 20d));
 
 			EXPECT_TRUE(cal2.is_business_day(2034y / January / 20d));
