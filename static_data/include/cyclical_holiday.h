@@ -45,7 +45,7 @@ namespace gregorian
 				const annual_holiday* const holiday,
 				const std::chrono::year start,
 				const std::chrono::years period
-			) noexcept;
+			) noexcept; // pass by value? const reference?
 
 		private:
 
