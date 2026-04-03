@@ -390,37 +390,7 @@ namespace gregorian
 
 			const auto rules = _annual_holiday_period_storage{
 				{ &NewYearsDay, epoch, epoch.get_from() },
-				{
-					&_InaugurationDay,
-					period{ 2013y / FirstDayOfJanuary, 2013y / LastDayOfDecember },
-					epoch.get_from()
-//					1965y / January / 20d // find the correct day
-				},
-				{
-					&_InaugurationDay,
-					period{ 2017y / FirstDayOfJanuary, 2017y / LastDayOfDecember },
-					epoch.get_from()
-				},
-				{
-					&_InaugurationDay,
-					period{ 2021y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
-					epoch.get_from()
-				},
-				{
-					&_InaugurationDay,
-					period{ 2025y / FirstDayOfJanuary, 2025y / LastDayOfDecember },
-					epoch.get_from()
-				},
-				{
-					&_InaugurationDay,
-					period{ 2029y / FirstDayOfJanuary, 2029y / LastDayOfDecember },
-					epoch.get_from()
-				},
-				{
-					&_InaugurationDay,
-					period{ 2033y / FirstDayOfJanuary, 2033y / LastDayOfDecember },
-					epoch.get_from()
-				},
+				{ &_InaugurationDay, epoch, epoch.get_from() },
 				{ &_MartinLutherKing, epoch, epoch.get_from() },
 				{ &_Washington, epoch, epoch.get_from() },
 				{ &_MemorialDay, epoch, epoch.get_from() },
