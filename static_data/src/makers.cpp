@@ -79,6 +79,11 @@ namespace gregorian
 			// how do we handle as_of_date, which is !ok()? (is that an assertion failure?)
 		}
 		// alternatively we should consider the following:
+		// [                     [ ]]
+		// known to as_of_date prev year or to the end of known
+		// Generate from as_of_date or from the startof the year after known
+		// Could be that we have nothing to know
+		// Could be that we have nothing to generate
 		// Choose all the applicable rules for as_of_date
 		// Ignore the rules which have already started
 		// Announced but not yet started (the rest of them) we use the easliest starting date
