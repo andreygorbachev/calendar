@@ -406,7 +406,6 @@ namespace gregorian
 				{ &_ThanksgivingDay, epoch, epoch.get_from() },
 				{ &ChristmasDay, epoch, epoch.get_from() }
 			};
-			// handling of InaugurationDay is awkward (as it is not every year)
 
 			return _make_calendar_versions(
 				holidays,
