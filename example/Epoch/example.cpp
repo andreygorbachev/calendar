@@ -41,14 +41,14 @@ int main()
 	const auto as_of_date = 2023y / December / 21d; // should we do systems date instead?
 	const auto& cal = locate_calendar("America/ANBIMA", as_of_date);
 
-	cout << "   date   " << " " << "is business day" << endl;
+	cout << "   date   " << ", " << "is business day" << endl;
 	cout << boolalpha;
 	for (
 		auto d = Epoch.get_from();
 		d <= Epoch.get_until();
 		d = sys_days{ d } + days{ 1 }
 	)
-		cout << d << " " << cal.is_business_day(d) << endl;
+		cout << d << ", " << cal.is_business_day(d) << endl;
 
 	return 0;
 }
