@@ -64,7 +64,7 @@ namespace gregorian
 				{ "Europe/Belfast", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Northern_Ireland_calendar() } } },
 				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 
-				{ "Europe/T2", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_T2_calendar() } } }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
+				{ "Europe/T2", make_T2_calendar_versions() }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
 				{ "America/USA", make_USA_Federal_calendar_versions() },
 				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?

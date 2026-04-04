@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h"
 
 #include <period.h>
 #include <calendar.h>
@@ -28,6 +29,7 @@
 #include <annual_holidays.h>
 #include <weekend.h>
 
+#include <utility>
 #include <chrono>
 
 using namespace std;
@@ -42,7 +44,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		static auto _make_T2_calendar() -> calendar // should we give it a full name of TARGET2?
+		auto make_T2_calendar_versions() -> _calendar_versions // should we give it a full name of TARGET2?
 		{
 			constexpr auto from = 2007y; // Actually the calendar became effective from November 2007, so not 100% sure about 2007 prior to that
 			constexpr auto until = Epoch.get_until().year();
@@ -64,18 +66,15 @@ namespace gregorian
 				rules
 			);
 
-			return calendar{
+			auto cal0 = calendar{
 				SaturdaySundayWeekend,
 				s
 			};
 			// please note that holidays are not adjusted in T2
-		}
 
-
-		auto make_T2_calendar() -> const calendar&
-		{
-			static const auto s = _make_T2_calendar();
-			return s;
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+			};
 		}
 
 	}

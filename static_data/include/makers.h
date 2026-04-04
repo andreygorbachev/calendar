@@ -22,16 +22,8 @@
 
 #pragma once
 
-#include "static_data.h"
-
 #include <calendar.h>
-#include <schedule.h>
-#include <weekend.h>
-#include <period.h>
-#include <annual_holiday_interface.h>
-#include <business_day_adjuster_interface.h>
 
-#include <vector>
 #include <chrono>
 #include <map> // for _get_calendar_registry only
 #include <string_view> // for _get_calendar_registry only
@@ -72,7 +64,7 @@ namespace gregorian
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar() -> const calendar&; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
+		auto make_T2_calendar_versions() -> _calendar_versions; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
 
 
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
