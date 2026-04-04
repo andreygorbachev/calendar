@@ -30,7 +30,7 @@
 namespace gregorian
 {
 
-	namespace static_data
+	namespace static_data // needs unit tests
 	{
 
 		// is file's name consistent with the name of the class?
