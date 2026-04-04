@@ -7,7 +7,6 @@ add_library(${PROJECT_NAME}
   Canada.cpp
   Brazil.cpp
   makers.cpp
-  util.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -20,7 +19,6 @@ target_sources(${PROJECT_NAME} PRIVATE
   ../include/makers.h
   ../include/cyclical_holiday.h
   ../include/victoria_day_holiday.h
-  ../include/util.h
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

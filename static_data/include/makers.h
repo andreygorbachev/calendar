@@ -54,28 +54,6 @@ namespace gregorian
 
 
 
-		struct _annual_holiday_period final
-		{
-			const annual_holiday* holiday;
-			util::days_period period{ Epoch }; // if we deal in annual calendars, should this be in years?
-			std::chrono::year_month_day announced{ Epoch.get_from() }; // do we need time as well?
-			// we should also have a cancellation date (but we need to find a good example first)
-			// is creation and cancellation immidiately effective (how tzdata deals with the same)?
-		};
-		// how do we handle a situation when Saturday "moves" to another day (and actually is a business day)?
-
-		using _annual_holiday_period_storage = std::vector<_annual_holiday_period>;
-
-		auto _make_calendar_versions(
-			const schedule& holidays,
-			const _annual_holiday_period_storage& storage,
-			const util::days_period& epoch,
-			const weekend& we,
-			const business_day_adjuster& adjuster
-		) -> _calendar_versions;
-
-
-
 		// from https://www.gov.uk/bank-holidays
 
 		auto make_England_calendar() -> const calendar&;
