@@ -48,9 +48,6 @@ namespace gregorian
 	{
 
 		// should these be in their own namespace?
-		const auto _January_20 = named_holiday{ January / 20d };
-		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
-
 		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
 		const auto _MemorialDay = weekday_last_holiday{ May / Monday[last] };
@@ -60,6 +57,9 @@ namespace gregorian
 		const auto _ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
 		const auto _VeteransDay = named_holiday{ November / 11d };
 		const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
+
+		const auto _January_20 = named_holiday{ January / 20d };
+		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
 
 		// part0 - before Juneteenth
 		// part1 - after Juneteenth
@@ -175,7 +175,7 @@ namespace gregorian
 				2020y / October / 12d, // Columbus Day
 				2020y / November / 11d, // Veterans Day
 				2020y / November / 26d, // Thanksgiving Day
-				2020y / December / 25d, // Christmas Day
+				2020y / December / 25d // Christmas Day
 			};
 
 			return schedule{
@@ -332,7 +332,7 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{
 				2013y / January / 21d,
-				2017y / January / 20d,
+				2017y / January / 20d
 			};
 
 			const auto s = schedule{

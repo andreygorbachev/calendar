@@ -26,8 +26,10 @@
 #include <period.h>
 #include <schedule.h>
 #include <weekend.h>
+#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <business_day_adjusters.h>
+#include <calendar.h>
 
 #include <chrono>
 #include <utility>
@@ -44,8 +46,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// should these be inside make_ANBIMA_calendar_versions?
-		// otherwise should they be in their own namespace?
+		// should these be in their own namespace?
 		const auto _TiradentesDay = named_holiday{ April / 21d };
 		const auto _LabourDay = named_holiday{ May / 1d };
 		const auto _ShroveMonday = offset_holiday{ &_Easter, days{ -47 - 1 } }; // should it be in the main library?
@@ -57,9 +58,10 @@ namespace gregorian
 		const auto _RepublicProclamationDay = named_holiday{ November / 15d };
 		const auto _BlackConsciousnessDay = named_holiday{ November / 20d };
 
+		// part0 - before Dia Nacional de Zumbi e da Consciência Negra
+		// part1 - after Dia Nacional de Zumbi e da Consciência Negra
 
-		// should it be inside make_ANBIMA_calendar_versions?
-		static auto _make_ANBIMA_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _make_ANBIMA_known_schedule_part0() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2001y / January / 1d, // Confraternização Universal
@@ -337,7 +339,18 @@ namespace gregorian
 				2023y / October / 12d, // Nossa Sr.a Aparecida - Padroeira do Brasil
 				2023y / November / 2d, // Finados
 				2023y / November / 15d, // Proclamação da República
-				2023y / December / 25d, // Natal
+				2023y / December / 25d // Natal
+			};
+
+			return schedule{
+				days_period{ 2001y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_ANBIMA_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
 				2024y / January / 1d, // Confraternização Universal
 				2024y / February / 12d, // Carnaval
 				2024y / February / 13d, // Carnaval
@@ -1329,7 +1342,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2001y / FirstDayOfJanuary, 2099y / LastDayOfDecember },
+				days_period{ 2024y / FirstDayOfJanuary, 2099y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -1340,42 +1353,73 @@ namespace gregorian
 		// 4) This list does not include municipal holidays, elections, and New Year's Day. The criterion adopted was to indicate holidays that do not affect bank reserves.
 
 
+		static auto _make_ANBIMA_generated_schedule_part0() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_ShroveMonday,
+				&_ShroveTuesday,
+				&GoodFriday,
+				&_TiradentesDay,
+				&_LabourDay,
+				&_CorpusChristi,
+				&_IndependenceDay,
+				&_OurLadyOfAparecida,
+				&_AllSoulsDay,
+				&_RepublicProclamationDay,
+				&ChristmasDay
+			};
+
+			return make_holiday_schedule(
+				util::years_period{ 2024y, Epoch.get_until().year() },
+				rules
+			);
+		}
+
+		static auto _make_ANBIMA_generated_schedule_part1() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_ShroveMonday,
+				&_ShroveTuesday,
+				&GoodFriday,
+				&_TiradentesDay,
+				&_LabourDay,
+				&_CorpusChristi,
+				&_IndependenceDay,
+				&_OurLadyOfAparecida,
+				&_AllSoulsDay,
+				&_RepublicProclamationDay,
+				&_BlackConsciousnessDay,
+				&ChristmasDay
+			}; // we can make it from part0
+
+			return make_holiday_schedule(
+				util::years_period{ 2100y, Epoch.get_until().year() },
+				rules
+			);
+		}
+
+
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions
 		{
-			const auto holidays = _make_ANBIMA_schedule();
-
-			const auto epoch = period{
-				holidays.get_period().get_from(), // starts before Epoch
-				Epoch.get_until()
-			};
-
-			const auto rules = _annual_holiday_period_storage{
-				{ &NewYearsDay, epoch, epoch.get_from() },
-				{ &_ShroveMonday, epoch, epoch.get_from() },
-				{ &_ShroveTuesday, epoch, epoch.get_from() },
-				{ &GoodFriday, epoch, epoch.get_from() },
-				{ &_TiradentesDay, epoch, epoch.get_from() },
-				{ &_LabourDay, epoch, epoch.get_from() },
-				{ &_CorpusChristi, epoch, epoch.get_from() },
-				{ &_IndependenceDay, epoch, epoch.get_from() },
-				{ &_OurLadyOfAparecida, epoch, epoch.get_from() },
-				{ &_AllSoulsDay, epoch, epoch.get_from() },
-				{ &_RepublicProclamationDay, epoch, epoch.get_from() },
-				{
-					&_BlackConsciousnessDay,
-					period{ 2024y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
-					2023y / December / 21d // was enacted as Law No. 14,759 on 21 December 2023
-				},
-				{ &ChristmasDay, epoch, epoch.get_from() }
-			};
-
-			return _make_calendar_versions(
-				holidays,
-				rules,
-				epoch,
+			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				NoAdjustment
-			);
+				_make_ANBIMA_known_schedule_part0() +
+				_make_ANBIMA_generated_schedule_part0()
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_ANBIMA_known_schedule_part0() +
+				_make_ANBIMA_known_schedule_part1() +
+				_make_ANBIMA_generated_schedule_part1()
+			};
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ 2023y / December / 21d, move(cal1) }, // was enacted as Law No. 14,759 on 21 December 2023
+			};
 		}
 
 	}
