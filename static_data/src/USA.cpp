@@ -26,9 +26,11 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
 #include <weekend.h>
 #include <business_day_adjusters.h>
+#include <calendar.h>
 
 #include <utility>
 #include <chrono>
@@ -45,6 +47,7 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// should these be in their own namespace?
 		const auto _January_20 = named_holiday{ January / 20d };
 		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
 
@@ -58,8 +61,10 @@ namespace gregorian
 		const auto _VeteransDay = named_holiday{ November / 11d };
 		const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
+		// part0 - before Juneteenth
+		// part1 - after Juneteenth
 
-		static auto _make_USA_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		static auto _make_USA_Federal_known_schedule_part0() -> schedule
 		{
 			auto holidays = schedule::dates{
 				2010y / December / 31d, // New Year's Day
@@ -171,7 +176,17 @@ namespace gregorian
 				2020y / November / 11d, // Veterans Day
 				2020y / November / 26d, // Thanksgiving Day
 				2020y / December / 25d, // Christmas Day
+			};
 
+			return schedule{
+				days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
+				move(holidays)
+			};
+		}
+
+		static auto _make_USA_Federal_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
 				2021y / January / 1d, // New Year's Day
 				2021y / January / 18d, // Birthday of Martin Luther King, Jr.
 				2021y / February / 15d, // Washington’s Birthday
@@ -293,127 +308,226 @@ namespace gregorian
 				2030y / December / 25d, // Christmas Day
 			};
 
-			// from the same documentation:
-			// 
-			// *This holiday is designated as "Washington’s Birthday" in section 6103(a)of title 5 of the United States Code,
-			// which is the law that specifies holidays for Federal employees.Though other institutions such as state and
-			// local governments and private businesses may use other names, it is our policy to always refer to holidays
-			// by the names designated in the law.
-			//
-			// ** If a holiday falls on a Saturday, for most Federal employees, the preceding Friday will be treated as a holiday
-			// for pay and leave purposes. (See 5 U.S.C. 6103(b).) If a holiday falls on a Sunday, for most Federal employees,
-			// the following Monday will be treated as a holiday for pay and leave purposes.
-			// (See Section 3(a)of Executive Order 11582, February 11, 1971.)
-			// See also our Federal Holidays – "In Lieu Of" Determination Fact Sheet at
-			// https ://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination.
-
 			return schedule{
-				days_period{ 2010y / December / 31d, 2030y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
+				days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
 
-		static auto _make_Washington_DC_Federal_schedule() -> schedule // or should it be a "proper" function (without _)?
+		// from the same documentation:
+		// 
+		// *This holiday is designated as "Washington’s Birthday" in section 6103(a)of title 5 of the United States Code,
+		// which is the law that specifies holidays for Federal employees.Though other institutions such as state and
+		// local governments and private businesses may use other names, it is our policy to always refer to holidays
+		// by the names designated in the law.
+		//
+		// ** If a holiday falls on a Saturday, for most Federal employees, the preceding Friday will be treated as a holiday
+		// for pay and leave purposes. (See 5 U.S.C. 6103(b).) If a holiday falls on a Sunday, for most Federal employees,
+		// the following Monday will be treated as a holiday for pay and leave purposes.
+		// (See Section 3(a)of Executive Order 11582, February 11, 1971.)
+		// See also our Federal Holidays – "In Lieu Of" Determination Fact Sheet at
+		// https ://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination.
+
+		static auto _make_Washington_DC_Federal_known_schedule_part0() -> schedule
 		{
 			auto holidays = schedule::dates{
 				2013y / January / 21d,
-
 				2017y / January / 20d,
-
-				2021y / January / 20d,
-
-				2025y / January / 20d,
-
-				2029y / January / 19d,
 			};
 
-			// from the same documentation:
-			//
-			// *This holiday is designated as "Inauguration Day" in section 6103(c) of title 5 of the United States Code,
-			// which is the law that specifies holidays for Federal employees.
-			// Federal employees in the Washington, DC, area are entitled to a holiday on the day a President is inaugurated
-			// on January 20th for each fourth year after 1965.
-
 			const auto s = schedule{
-				days_period{ 2010y / December / 31d, 2030y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
+				days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
 				move(holidays)
 			};
 
-			return _make_USA_Federal_schedule() | s;
+			return _make_USA_Federal_known_schedule_part0() | s;
+		}
+
+		static auto _make_Washington_DC_Federal_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2021y / January / 20d,
+				2025y / January / 20d,
+				2029y / January / 19d,
+			};
+
+			const auto s = schedule{
+				days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
+				move(holidays)
+			};
+
+			return _make_USA_Federal_known_schedule_part1() | s;
+		}
+
+		// from the same documentation:
+		//
+		// *This holiday is designated as "Inauguration Day" in section 6103(c) of title 5 of the United States Code,
+		// which is the law that specifies holidays for Federal employees.
+		// Federal employees in the Washington, DC, area are entitled to a holiday on the day a President is inaugurated
+		// on January 20th for each fourth year after 1965.
+
+
+		static auto _make_USA_Federal_generated_schedule_part0() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing,
+				&_Washington,
+				&_MemorialDay,
+				&_IndependenceDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
+				&ChristmasDay
+			};
+
+			const auto s = make_holiday_schedule(
+				util::years_period{ 2021y, Epoch.get_until().year() },
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_USA_Federal_generated_schedule_part1() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing,
+				&_Washington,
+				&_MemorialDay,
+				&_Juneteenth,
+				&_IndependenceDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
+				&ChristmasDay
+			}; // we can make it from part0
+
+			const auto s = make_holiday_schedule(
+				util::years_period{ 2031y, Epoch.get_until().year() },
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_Washington_DC_Federal_generated_schedule_part0() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing,
+				&_InaugurationDay,
+				&_Washington,
+				&_MemorialDay,
+				&_IndependenceDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
+				&ChristmasDay
+			}; // we can make it from USA_Federal
+
+			const auto s = make_holiday_schedule(
+				util::years_period{ 2021y, Epoch.get_until().year() },
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_Washington_DC_Federal_generated_schedule_part1() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing,
+				&_InaugurationDay,
+				&_Washington,
+				&_MemorialDay,
+				&_Juneteenth,
+				&_IndependenceDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
+				&ChristmasDay
+			}; // we can make it from part0
+
+			const auto s = make_holiday_schedule(
+				util::years_period{ 2031y, Epoch.get_until().year() },
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
 		}
 
 
 		auto make_USA_Federal_calendar_versions() -> _calendar_versions
 		{
-			const auto holidays = _make_USA_Federal_schedule();
-
-			const auto epoch = period{
-				holidays.get_period().get_from(), // starts before Epoch
-				Epoch.get_until()
-			};
-
-			const auto rules = _annual_holiday_period_storage{
-				{ &NewYearsDay, epoch, epoch.get_from() },
-				{ &_MartinLutherKing, epoch, epoch.get_from() },
-				{ &_Washington, epoch, epoch.get_from() },
-				{ &_MemorialDay, epoch, epoch.get_from() },
-				{
-					&_Juneteenth,
-					period{ 2021y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
-					2021y / June / 17d // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
-				},
-				{ &_IndependenceDay, epoch, epoch.get_from() },
-				{ &_LaborDay, epoch, epoch.get_from() },
-				{ &_ColumbusDay, epoch, epoch.get_from() },
-				{ &_VeteransDay, epoch, epoch.get_from() },
-				{ &_ThanksgivingDay, epoch, epoch.get_from() },
-				{ &ChristmasDay, epoch, epoch.get_from() }
-			};
-
-			return _make_calendar_versions(
-				holidays,
-				rules,
-				epoch,
+			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				Nearest
-			);
+				_make_USA_Federal_known_schedule_part0() +
+				_make_USA_Federal_generated_schedule_part0()
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_USA_Federal_known_schedule_part0() +
+				_make_USA_Federal_known_schedule_part1() +
+				_make_USA_Federal_generated_schedule_part1()
+			};
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal1.get_schedule().get_period().get_from(), move(cal1) },
+			};
 		}
 
 		auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions
 		{
-			const auto holidays = _make_Washington_DC_Federal_schedule();
-
-			const auto epoch = period{
-				holidays.get_period().get_from(), // starts before Epoch
-				Epoch.get_until()
-			};
-
-			const auto rules = _annual_holiday_period_storage{
-				{ &NewYearsDay, epoch, epoch.get_from() },
-				{ &_InaugurationDay, epoch, epoch.get_from() },
-				{ &_MartinLutherKing, epoch, epoch.get_from() },
-				{ &_Washington, epoch, epoch.get_from() },
-				{ &_MemorialDay, epoch, epoch.get_from() },
-				{
-					&_Juneteenth,
-					period{ 2021y / FirstDayOfJanuary, epoch.get_until() }, // or should it be the first day it was celebrated? (are we dealing in whole years here?)
-					2021y / June / 17d // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
-				},
-				{ &_IndependenceDay, epoch, epoch.get_from() },
-				{ &_LaborDay, epoch, epoch.get_from() },
-				{ &_ColumbusDay, epoch, epoch.get_from() },
-				{ &_VeteransDay, epoch, epoch.get_from() },
-				{ &_ThanksgivingDay, epoch, epoch.get_from() },
-				{ &ChristmasDay, epoch, epoch.get_from() }
-			};
-
-			return _make_calendar_versions(
-				holidays,
-				rules,
-				epoch,
+			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				Nearest
-			);
+				_make_Washington_DC_Federal_known_schedule_part0() +
+				_make_Washington_DC_Federal_generated_schedule_part0()
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_Washington_DC_Federal_known_schedule_part0() +
+				_make_Washington_DC_Federal_known_schedule_part1() +
+				_make_Washington_DC_Federal_generated_schedule_part1()
+			};
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal1.get_schedule().get_period().get_from(), move(cal1) },
+			};
 		}
 
 	}
