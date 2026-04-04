@@ -503,9 +503,9 @@ namespace gregorian
 				_make_USA_Federal_generated_schedule_part1()
 			};
 
-			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ cal1.get_schedule().get_period().get_from(), move(cal1) },
+				return {
+					{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+					{ 2021y / June / 17d, move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 			};
 		}
 
@@ -526,7 +526,7 @@ namespace gregorian
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ cal1.get_schedule().get_period().get_from(), move(cal1) },
+				{ 2021y / June / 17d, move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 			};
 		}
 
