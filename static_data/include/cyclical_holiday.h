@@ -26,6 +26,7 @@
 
 #include <chrono>
 #include <utility>
+#include <cassert>
 
 
 namespace gregorian
@@ -63,8 +64,8 @@ namespace gregorian
 
 		inline _cyclical_holiday::_cyclical_holiday(
 			const annual_holiday* const holiday,
-			const std::chrono::year start,
-			const std::chrono::years period
+			std::chrono::year start,
+			std::chrono::years period
 		) noexcept :
 			_holiday{ holiday },
 			_start{ std::move(start) },
@@ -74,7 +75,7 @@ namespace gregorian
 
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
-			// assert that _holiday is not nullptr?
+			assert(_holiday);
 
 			auto d = _holiday->make_holiday(y);
 

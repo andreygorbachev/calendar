@@ -21,23 +21,16 @@
 // SOFTWARE.
 
 #include "makers.h"
-#include "static_data.h"
 
 #include <calendar.h>
 #include <schedule.h>
-#include <weekend.h>
 #include <period.h>
-#include <annual_holiday_interface.h>
-#include <business_day_adjuster_interface.h>
 
 #include <string>
 #include <string_view>
 #include <stdexcept>
 #include <chrono>
 #include <cassert>
-#include <vector>
-#include <ranges>
-#include <algorithm>
 #include <iterator>
 
 using namespace std;
