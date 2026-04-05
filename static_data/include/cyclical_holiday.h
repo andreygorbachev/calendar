@@ -43,6 +43,8 @@ namespace gregorian
 
 		public:
 
+			_cyclical_holiday() noexcept = delete;
+
 			explicit _cyclical_holiday(
 				const annual_holiday* const holiday,
 				std::chrono::year start,
