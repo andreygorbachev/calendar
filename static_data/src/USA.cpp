@@ -59,7 +59,7 @@ namespace gregorian
 		const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
 		const auto _January_20 = named_holiday{ January / 20d };
-		const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
+		const auto _InaugurationDay = _cyclical_holiday{ _January_20, 1965y, years{ 4 } };
 
 		// part0 - before Juneteenth
 		// part1 - after Juneteenth

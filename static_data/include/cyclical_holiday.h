@@ -26,7 +26,6 @@
 
 #include <chrono>
 #include <utility>
-#include <cassert>
 
 
 namespace gregorian
@@ -46,7 +45,7 @@ namespace gregorian
 			_cyclical_holiday() noexcept = delete;
 
 			explicit _cyclical_holiday(
-				const annual_holiday* const holiday,
+				const annual_holiday& holiday,
 				std::chrono::year start,
 				std::chrono::years period
 			) noexcept;
@@ -57,7 +56,7 @@ namespace gregorian
 
 		private:
 
-			const annual_holiday* _holiday; // rule to apply
+			const annual_holiday& _holiday; // rule to apply
 			std::chrono::year _start; // first year when the cyclical rule becomes effective
 			std::chrono::years _period; // number of years between occurrences
 
@@ -65,7 +64,7 @@ namespace gregorian
 
 
 		inline _cyclical_holiday::_cyclical_holiday(
-			const annual_holiday* const holiday,
+			const annual_holiday& holiday,
 			std::chrono::year start,
 			std::chrono::years period
 		) noexcept :
@@ -77,9 +76,7 @@ namespace gregorian
 
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
-			assert(_holiday);
-
-			auto d = _holiday->make_holiday(y);
+			auto d = _holiday.make_holiday(y);
 
 			if ((y - _start) % _period != std::chrono::years{ 0 })
 				d = d.year() / d.month() / std::chrono::day{ 32u }; // intentionally invalidate date to indicate that there is no holiday in this year
