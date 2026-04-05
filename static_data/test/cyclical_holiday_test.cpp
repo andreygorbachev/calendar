@@ -61,6 +61,18 @@ namespace gregorian
 			EXPECT_EQ(2021y / January / 20d, _InaugurationDay.make_holiday(2021y));
 		}
 
+		TEST(_cyclical_holiday, make_holiday3)
+		{
+			const auto _January_20 = named_holiday{ January / 20d };
+			const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
+
+			EXPECT_EQ(1961y / January / 20d, _InaugurationDay.make_holiday(1961y)); // year before start does not make sense, but it works
+			EXPECT_FALSE(_InaugurationDay.make_holiday(1962y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(1963y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(1964y).ok());
+			EXPECT_EQ(1965y / January / 20d, _InaugurationDay.make_holiday(1965y));
+		}
+
 	}
 
 }

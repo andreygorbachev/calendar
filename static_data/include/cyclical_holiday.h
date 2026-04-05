@@ -75,7 +75,6 @@ namespace gregorian
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
 			// assert that _holiday is not nullptr?
-			// assert that y is after _start (or handle is somehow)?
 
 			auto d = _holiday->make_holiday(y);
 
