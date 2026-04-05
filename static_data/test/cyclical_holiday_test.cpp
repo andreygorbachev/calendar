@@ -37,7 +37,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(_cyclical_holiday, make_holiday)
+		TEST(_cyclical_holiday, make_holiday1)
 		{
 			const auto _January_20 = named_holiday{ January / 20d };
 			const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
@@ -47,6 +47,18 @@ namespace gregorian
 			EXPECT_FALSE(_InaugurationDay.make_holiday(2027y).ok());
 			EXPECT_FALSE(_InaugurationDay.make_holiday(2028y).ok());
 			EXPECT_EQ(2029y / January / 20d, _InaugurationDay.make_holiday(2029y));
+		}
+
+		TEST(_cyclical_holiday, make_holiday2)
+		{
+			const auto _January_20 = named_holiday{ January / 20d };
+			const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ -4 } }; // negative period does not make sense, but it works
+
+			EXPECT_EQ(2025y / January / 20d, _InaugurationDay.make_holiday(2025y));
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2024y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2023y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2022y).ok());
+			EXPECT_EQ(2021y / January / 20d, _InaugurationDay.make_holiday(2021y));
 		}
 
 	}

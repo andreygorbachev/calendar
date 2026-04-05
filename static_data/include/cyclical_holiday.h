@@ -25,12 +25,13 @@
 #include <annual_holiday_interface.h>
 
 #include <chrono>
+#include <utility>
 
 
 namespace gregorian
 {
 
-	namespace static_data // needs unit tests
+	namespace static_data
 	{
 
 		// is file's name consistent with the name of the class?
@@ -43,9 +44,9 @@ namespace gregorian
 
 			explicit _cyclical_holiday(
 				const annual_holiday* const holiday,
-				const std::chrono::year start,
-				const std::chrono::years period
-			) noexcept; // pass by value? const reference?
+				std::chrono::year start,
+				std::chrono::years period
+			) noexcept;
 
 		private:
 
@@ -66,10 +67,9 @@ namespace gregorian
 			const std::chrono::years period
 		) noexcept :
 			_holiday{ holiday },
-			_start{ start },
-			_period{ period }
+			_start{ std::move(start) },
+			_period{ std::move(period) }
 		{
-			// should we check that _period is above 0? (or how else do we handle that?)
 		}
 
 		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
