@@ -22,6 +22,8 @@
 
 #include <cyclical_holiday.h>
 
+#include <annual_holidays.h>
+
 #include <gtest/gtest.h>
 
 #include <chrono>
@@ -37,6 +39,14 @@ namespace gregorian
 
 		TEST(_cyclical_holiday, make_holiday)
 		{
+			const auto _January_20 = named_holiday{ January / 20d };
+			const auto _InaugurationDay = _cyclical_holiday{ &_January_20, 1965y, years{ 4 } };
+
+			EXPECT_EQ(2025y / January / 20d, _InaugurationDay.make_holiday(2025y));
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2026y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2027y).ok());
+			EXPECT_FALSE(_InaugurationDay.make_holiday(2028y).ok());
+			EXPECT_EQ(2029y / January / 20d, _InaugurationDay.make_holiday(2029y));
 		}
 
 	}
