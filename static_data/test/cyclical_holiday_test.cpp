@@ -39,8 +39,11 @@ namespace gregorian
 
 		TEST(_cyclical_holiday, make_holiday1)
 		{
-			const auto _January_20 = named_holiday{ January / 20d };
-			const auto _InaugurationDay = _cyclical_holiday{ _January_20, 1965y, years{ 4 } };
+			const auto _InaugurationDay = _cyclical_holiday{
+				named_holiday{ January / 20d },
+				1965y,
+				years{ 4 }
+			};
 
 			EXPECT_EQ(2025y / January / 20d, _InaugurationDay.make_holiday(2025y));
 			EXPECT_FALSE(_InaugurationDay.make_holiday(2026y).ok());
@@ -51,8 +54,11 @@ namespace gregorian
 
 		TEST(_cyclical_holiday, make_holiday2)
 		{
-			const auto _January_20 = named_holiday{ January / 20d };
-			const auto _InaugurationDay = _cyclical_holiday{ _January_20, 1965y, years{ -4 } }; // negative period does not make sense, but it works
+			const auto _InaugurationDay = _cyclical_holiday{
+				named_holiday{ January / 20d },
+				1965y,
+				years{ 4 }
+			};
 
 			EXPECT_EQ(2025y / January / 20d, _InaugurationDay.make_holiday(2025y));
 			EXPECT_FALSE(_InaugurationDay.make_holiday(2024y).ok());
@@ -63,8 +69,11 @@ namespace gregorian
 
 		TEST(_cyclical_holiday, make_holiday3)
 		{
-			const auto _January_20 = named_holiday{ January / 20d };
-			const auto _InaugurationDay = _cyclical_holiday{ _January_20, 1965y, years{ 4 } };
+			const auto _InaugurationDay = _cyclical_holiday{
+				named_holiday{ January / 20d },
+				1965y,
+				years{ 4 }
+			};
 
 			EXPECT_EQ(1961y / January / 20d, _InaugurationDay.make_holiday(1961y)); // year before start does not make sense, but it works
 			EXPECT_FALSE(_InaugurationDay.make_holiday(1962y).ok());

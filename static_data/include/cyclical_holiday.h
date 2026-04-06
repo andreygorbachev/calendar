@@ -37,15 +37,14 @@ namespace gregorian
 		// is file's name consistent with the name of the class?
 		// is there a different (and better) approach out there - make a templated periodic_holiday (templated on priodicity)
 		// then annual_holiday would follow from that
+		template<typename T>
 		class _cyclical_holiday final : public annual_holiday // should it be moved to annual_holidays.h?
 		{
 
 		public:
 
-			_cyclical_holiday() noexcept = delete;
-
 			explicit _cyclical_holiday(
-				const annual_holiday& holiday,
+				T holiday,
 				std::chrono::year start,
 				std::chrono::years period
 			) noexcept;
@@ -56,25 +55,27 @@ namespace gregorian
 
 		private:
 
-			const annual_holiday& _holiday; // rule to apply
+			T _holiday; // rule to apply
 			std::chrono::year _start; // first year when the cyclical rule becomes effective
 			std::chrono::years _period; // number of years between occurrences
 
 		};
 
 
-		inline _cyclical_holiday::_cyclical_holiday(
-			const annual_holiday& holiday,
+		template<typename T>
+		_cyclical_holiday<T>::_cyclical_holiday(
+			T holiday,
 			std::chrono::year start,
 			std::chrono::years period
 		) noexcept :
-			_holiday{ holiday },
+			_holiday{ std::move(holiday) },
 			_start{ std::move(start) },
 			_period{ std::move(period) }
 		{
 		}
 
-		inline auto _cyclical_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+		template<typename T>
+		auto _cyclical_holiday<T>::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
 			auto d = _holiday.make_holiday(y);
 

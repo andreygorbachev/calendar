@@ -43,10 +43,13 @@ namespace gregorian
 		virtual ~annual_holiday() noexcept = default;
 
 		annual_holiday(const annual_holiday&) = delete;
-		annual_holiday(annual_holiday&&) noexcept = delete;
+		annual_holiday(annual_holiday&&) noexcept = default;
 
 		annual_holiday& operator=(const annual_holiday&) = delete;
-		annual_holiday& operator=(annual_holiday&&) noexcept = delete;
+		annual_holiday& operator=(annual_holiday&&) noexcept = default;
+
+		// something like cyclical_holiday needs to move the underlying annual_holiday, so we allow moved
+		// (which might or might not be good in general as these are meant to be used via pointer and hence not move)
 
 	public:
 
