@@ -26,6 +26,7 @@
 
 #include <chrono>
 #include <utility>
+#include <algorithm>
 
 
 namespace gregorian
