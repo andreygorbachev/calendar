@@ -48,9 +48,9 @@ namespace gregorian
 
 		// from https://www.gov.uk/bank-holidays
 
-		auto make_England_calendar() -> const calendar&;
+		auto make_England_calendar_versions() -> _calendar_versions;
 
-		auto make_Wales_calendar() -> const calendar&;
+		auto make_Wales_calendar_versions() -> _calendar_versions;
 
 		auto make_Scotland_calendar() -> const calendar&;
 

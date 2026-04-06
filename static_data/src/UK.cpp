@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "static_data.h"
+#include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -45,7 +46,24 @@ namespace gregorian
 	namespace static_data
 	{
 
-		static auto _England_schedule() -> schedule // or should it be a "proper" function (without _)?
+		// Queen's Diamond Jubilee
+		// (which was announced on 5 January 2010, before Epoch started - https://en.wikipedia.org/wiki/Diamond_Jubilee_of_Elizabeth_II#:~:text=old%20Katherine%20Dewar.-,Extended%20weekend,honour%20of%20the%20Diamond%20Jubilee.)
+		// 
+		// part0 - after Queen's Diamond Jubilee and before 75th anniversary of VE Day
+		// (which was announced on 7 June 2019 - https://www.gov.uk/government/news/2020-may-bank-holiday-will-be-moved-to-mark-75th-anniversary-of-ve-day)
+		// 
+		// part1 - after 75th anniversary of VE Day and before Queen’s Platinum Jubilee in 2022
+		// (which was announced on 12 November 2020 - https://www.gov.uk/government/news/extra-bank-holiday-to-mark-the-queens-platinum-jubilee-in-2022)
+		// 
+		// part2a - after Queen’s Platinum Jubilee in 2022 and before State Funeral of Queen Elizabeth II
+		// (which was announced on 10 September 2022 - https://www.gov.uk/government/news/bank-holiday-announced-for-her-majesty-queen-elizabeth-iis-state-funeral-on-monday-19-september)
+		// 
+		// part2b - after State Funeral of Queen Elizabeth II and before coronation of King Charles III
+		// (which was announced on 6 November 2022 - https://www.gov.uk/government/news/bank-holiday-proclaimed-in-honour-of-the-coronation-of-his-majesty-king-charles-iii)
+		// 
+		// part3 - after coronation of King Charles III
+
+		static auto _make_England_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2012y / January / 2d, // New Year’s Day (substitute day)
@@ -119,8 +137,18 @@ namespace gregorian
 				2019y / May / 27d, // Spring bank holiday
 				2019y / August / 26d, // Summer bank holiday
 				2019y / December / 25d, // Christmas Day
-				2019y / December / 26d, // Boxing Day
+				2019y / December / 26d // Boxing Day
+			};
 
+			return schedule{
+				days_period{ 2012y / FirstDayOfJanuary, 2019y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_England_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2020y / January / 1d, // New Year’s Day
 				2020y / April / 10d, // Good Friday
 				2020y / April / 13d, // Easter Monday
@@ -137,8 +165,38 @@ namespace gregorian
 				2021y / May / 31d, // Spring bank holiday
 				2021y / August / 30d, // Summer bank holiday
 				2021y / December / 27d, // Christmas Day (substitute day)
-				2021y / December / 28d, // Boxing Day (substitute day)
+				2021y / December / 28d // Boxing Day (substitute day)
+			};
 
+			return schedule{
+				days_period{ 2020y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_England_known_schedule_part2a() -> schedule
+		{
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / April / 15d, // Good Friday
+				2022y / April / 18d, // Easter Monday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / August / 29d, // Summer bank holiday
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d // Christmas Day (substitute day)
+			};
+
+			return schedule{
+				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_England_known_schedule_part2b() -> schedule
+		{
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2022y / January / 3d, // New Year’s Day (substitute day)
 				2022y / April / 15d, // Good Friday
 				2022y / April / 18d, // Easter Monday
@@ -148,8 +206,18 @@ namespace gregorian
 				2022y / August / 29d, // Summer bank holiday
 				2022y / September / 19d, // Bank Holiday for the State Funeral of Queen Elizabeth II
 				2022y / December / 26d, // Boxing Day
-				2022y / December / 27d, // Christmas Day (substitute day)
+				2022y / December / 27d // Christmas Day (substitute day)
+			};
 
+			return schedule{
+				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_England_known_schedule_part3() -> schedule
+		{
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2023y / January / 2d, // New Year’s Day (substitute day)
 				2023y / April / 7d, // Good Friday
 				2023y / April / 10d, // Easter Monday
@@ -207,18 +275,16 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ Epoch.get_from(), 2028y / LastDayOfDecember },
+				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
 
-		static auto _make_England_calendar() -> calendar
+
+		static auto _make_England_generated_schedule(
+			util::years_period period
+		) -> schedule
 		{
-			const auto known_part = _England_schedule();
-
-			const auto generated_part_from = known_part.get_period().get_until().year() + years{ 1 };
-			const auto generated_part_until = Epoch.get_until().year();
-
 			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
 			const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
 			const auto SummerBankHoliday = weekday_last_holiday{ August / Monday[last] };
@@ -234,25 +300,74 @@ namespace gregorian
 				&BoxingDay
 			};
 
-			const auto generated_part = make_holiday_schedule(
-				years_period{ generated_part_from, generated_part_until },
+			const auto s = make_holiday_schedule(
+				period,
 				rules
 			);
 
-			// setup a calendar for the generated part only (to do substitution for the generated dates)
 			auto cal = calendar{
 				SaturdaySundayWeekend,
-				generated_part
+				s
 			};
 			cal.substitute(Following);
 
-			return calendar{
-				SaturdaySundayWeekend,
-				known_part + cal.get_schedule()
-			};
+			return cal.get_schedule();
 		}
 
 
+		auto make_England_calendar_versions() -> _calendar_versions
+		{
+			auto cal0 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_generated_schedule(years_period{ 2020y, Epoch.get_until().year() })
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_generated_schedule(years_period{ 2022y, Epoch.get_until().year() })
+			};
+
+			auto cal2 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2a() +
+				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal3 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal4 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_known_schedule_part3() +
+				_make_England_generated_schedule(years_period{ 2029y, Epoch.get_until().year() })
+			};
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ 2019y / June / 7d, move(cal1) },
+				{ 2020y / November / 12d, move(cal2) },
+				{ 2022y / September / 10d, move(cal3) },
+				{ 2022y / November / 6d, move(cal4) },
+			};
+		}
+
+		auto make_Wales_calendar_versions() -> _calendar_versions
+		{
+			return make_England_calendar_versions();
+		}
 
 		static auto _Scotland_schedule() -> schedule
 		{
@@ -947,17 +1062,6 @@ namespace gregorian
 		}
 
 
-
-		auto make_England_calendar() -> const calendar&
-		{
-			static const auto s = _make_England_calendar();
-			return s;
-		}
-
-		auto make_Wales_calendar() -> const calendar&
-		{
-			return make_England_calendar();
-		}
 
 		auto make_Scotland_calendar() -> const calendar&
 		{

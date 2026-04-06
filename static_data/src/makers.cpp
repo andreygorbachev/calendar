@@ -51,8 +51,8 @@ namespace gregorian
 			// at the moment we create all calendars (needed or not), which might or might not be what we want
 			// this could be changed to lazy creation if needed, but we'll have to deal with synchronization then
 			return _calendar_registry{
-				{ "Europe/London", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_England_calendar() } } }, // from UK, only London is in tzdata
-				{ "Europe/Cardif", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Wales_calendar() } } },
+				{ "Europe/London", make_England_calendar_versions() }, // from UK, only London is in tzdata
+				{ "Europe/Cardif", make_Wales_calendar_versions() },
 				{ "Europe/Edinburgh", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Scotland_calendar() } } },
 				{ "Europe/Belfast", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Northern_Ireland_calendar() } } },
 				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
