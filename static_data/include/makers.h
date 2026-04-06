@@ -75,7 +75,7 @@ namespace gregorian
 
 		// from https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
 
-		// add FOMC calenar
+		// add FOMC calendar
 
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
