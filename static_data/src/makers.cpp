@@ -55,7 +55,7 @@ namespace gregorian
 				{ "Europe/Cardif", make_Wales_calendar_versions() },
                 { "Europe/Edinburgh", make_Scotland_calendar_versions() },
 				{ "Europe/Belfast", make_Northern_Ireland_calendar_versions() },
-				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
+				{ "Europe/MPC", make_MPC_calendar_versions() }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 
 				{ "Europe/T2", make_T2_calendar_versions() }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
