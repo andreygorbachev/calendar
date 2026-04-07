@@ -54,7 +54,7 @@ namespace gregorian
 				{ "Europe/London", make_England_calendar_versions() }, // from UK, only London is in tzdata
 				{ "Europe/Cardif", make_Wales_calendar_versions() },
                 { "Europe/Edinburgh", make_Scotland_calendar_versions() },
-				{ "Europe/Belfast", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Northern_Ireland_calendar() } } },
+				{ "Europe/Belfast", make_Northern_Ireland_calendar_versions() },
 				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 
 				{ "Europe/T2", make_T2_calendar_versions() }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?

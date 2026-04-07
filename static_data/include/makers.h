@@ -54,7 +54,7 @@ namespace gregorian
 
 		auto make_Scotland_calendar_versions() -> _calendar_versions;
 
-		auto make_Northern_Ireland_calendar() -> const calendar&;
+		auto make_Northern_Ireland_calendar_versions() -> _calendar_versions;
 
 		// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
 

@@ -146,6 +146,7 @@ namespace gregorian
 			};
 		}
 
+
 		static auto _make_England_known_schedule_part1() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
@@ -1173,6 +1174,348 @@ namespace gregorian
 		{
 			static const auto s = _make_MPC_calendar();
 			return s;
+		}
+
+
+
+		static auto _make_Northern_Ireland_known_schedule_part0() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year’s Day (substitute day)
+				2012y / March / 19d, // St Patrick’s Day (substitute day)
+				2012y / April / 6d, // Good Friday
+				2012y / April / 9d, // Easter Monday
+				2012y / May / 7d, // Early May bank holiday
+				2012y / June / 4d, // Spring bank holiday (substitute day)
+				2012y / June / 5d, // Queen's Diamond Jubilee (extra bank holiday)
+				2012y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2012y / August / 27d, // Summer bank holiday
+				2012y / December / 25d, // Christmas Day
+				2012y / December / 26d, // Boxing Day
+
+				2013y / January / 1d, // New Year’s Day
+				2013y / March / 18d, // St Patrick’s Day (substitute day)
+				2013y / March / 29d, // Good Friday
+				2013y / April / 1d, // Easter Monday
+				2013y / May / 6d, // Early May bank holiday
+				2013y / May / 27d, // Spring bank holiday
+				2013y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2013y / August / 26d, // Summer bank holiday
+				2013y / December / 25d, // Christmas Day
+				2013y / December / 26d, // Boxing Day
+
+				2014y / January / 1d, // New Year’s Day
+				2014y / March / 17d, // St Patrick’s Day
+				2014y / April / 18d, // Good Friday
+				2014y / April / 21d, // Easter Monday
+				2014y / May / 5d, // Early May bank holiday
+				2014y / May / 26d, // Spring bank holiday
+				2014y / July / 14d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2014y / August / 25d, // Summer bank holiday
+				2014y / December / 25d, // Christmas Day
+				2014y / December / 26d, // Boxing Day
+
+				2015y / January / 1d, // New Year’s Day
+				2015y / March / 17d, // St Patrick’s Day
+				2015y / April / 3d, // Good Friday
+				2015y / April / 6d, // Easter Monday
+				2015y / May / 4d, // Early May bank holiday
+				2015y / May / 25d, // Spring bank holiday
+				2015y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2015y / August / 31d, // Summer bank holiday
+				2015y / December / 25d, // Christmas Day
+				2015y / December / 28d, // Boxing Day (substitite day)
+
+				2016y / January / 1d, // New Year’s Day
+				2016y / March / 17d, // St Patrick’s Day
+				2016y / March / 25d, // Good Friday
+				2016y / March / 28d, // Easter Monday
+				2016y / May / 2d, // Early May bank holiday
+				2016y / May / 30d, // Spring bank holiday
+				2016y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2016y / August / 29d, // Summer bank holiday
+				2016y / December / 26d, // Boxing Day
+				2016y / December / 27d, // Christmas Day (substitute day)
+
+				2017y / January / 2d, // New Year’s Day (substitute day)
+				2017y / March / 17d, // St Patrick’s Day
+				2017y / April / 14d, // Good Friday
+				2017y / April / 17d, // Easter Monday
+				2017y / May / 1d, // Early May bank holiday
+				2017y / May / 29d, // Spring bank holiday
+				2017y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2017y / August / 28d, // Summer bank holiday
+				2017y / December / 25d, // Christmas Day
+				2017y / December / 26d, // Boxing Day
+
+				2018y / January / 1d, // New Year’s Day
+				2018y / March / 19d, // St Patrick’s Day (substitute day)
+				2018y / March / 30d, // Good Friday
+				2018y / April / 2d, // Easter Monday
+				2018y / May / 7d, // Early May bank holiday
+				2018y / May / 28d, // Spring bank holiday
+				2018y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2018y / August / 27d, // Summer bank holiday
+				2018y / December / 25d, // Christmas Day
+				2018y / December / 26d, // Boxing Day
+
+				2019y / January / 1d, // New Year’s Day
+				2019y / March / 18d, // St Patrick’s Day (substitute day)
+				2019y / April / 19d, // Good Friday
+				2019y / April / 22d, // Easter Monday
+				2019y / May / 6d, // Early May bank holiday
+				2019y / May / 27d, // Spring bank holiday
+				2019y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2019y / August / 26d, // Summer bank holiday
+				2019y / December / 25d, // Christmas Day
+				2019y / December / 26d // Boxing Day
+			};
+
+			return schedule{
+				days_period{ 2012y / FirstDayOfJanuary, 2019y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_Northern_Ireland_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2020y / January / 1d, // New Year’s Day
+				2020y / March / 17d, // St Patrick’s Day
+				2020y / April / 10d, // Good Friday
+				2020y / April / 13d, // Easter Monday
+				2020y / May / 8d, // Early May bank holiday (VE day)
+				2020y / May / 25d, // Spring bank holiday
+				2020y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2020y / August / 31d, // Summer bank holiday
+				2020y / December / 25d, // Christmas Day
+				2020y / December / 28d, // Boxing Day (substitute day)
+
+				2021y / January / 1d, // New Year’s Day
+				2021y / March / 17d, // St Patrick’s Day
+				2021y / April / 2d, // Good Friday
+				2021y / April / 5d, // Easter Monday
+				2021y / May / 3d, // Early May bank holiday
+				2021y / May / 31d, // Spring bank holiday
+				2021y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2021y / August / 30d, // Summer bank holiday
+				2021y / December / 27d, // Christmas Day (substitute day)
+				2021y / December / 28d // Boxing Day (substitute day)
+			};
+
+			return schedule{
+				days_period{ 2020y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_Northern_Ireland_known_schedule_part2a() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / March / 17d, // St Patrick’s Day
+				2022y / April / 15d, // Good Friday
+				2022y / April / 18d, // Easter Monday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2022y / August / 29d, // Summer bank holiday
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d // Christmas Day (substitute day)
+			};
+
+			return schedule{
+				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_Northern_Ireland_known_schedule_part2b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2022y / January / 3d, // New Year’s Day (substitute day)
+				2022y / March / 17d, // St Patrick’s Day
+				2022y / April / 15d, // Good Friday
+				2022y / April / 18d, // Easter Monday
+				2022y / May / 2d, // Early May bank holiday
+				2022y / June / 2d, // Spring bank holiday
+				2022y / June / 3d, // Platinum Jubilee bank holiday
+				2022y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2022y / August / 29d, // Summer bank holiday
+				2022y / September / 19d, // Bank Holiday for the State Funeral of Queen Elizabeth II
+				2022y / December / 26d, // Boxing Day
+				2022y / December / 27d // Christmas Day (substitute day)
+			};
+
+			return schedule{
+				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_Northern_Ireland_known_schedule_part3() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2023y / January / 2d, // New Year’s Day (substitute day)
+				2023y / March / 17d, // St Patrick’s Day
+				2023y / April / 7d, // Good Friday
+				2023y / April / 10d, // Easter Monday
+				2023y / May / 1d, // Early May bank holiday
+				2023y / May / 8d, // Bank holiday for the coronation of King Charles III
+				2023y / May / 29d, // Spring bank holiday
+				2023y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2023y / August / 28d, // Summer bank holiday
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
+
+				2024y / January / 1d, // New Year’s Day
+				2024y / March / 18d, // St Patrick’s Day (substitute day)
+				2024y / March / 29d, // Good Friday
+				2024y / April / 1d, // Easter Monday
+				2024y / May / 6d, // Early May bank holiday
+				2024y / May / 27d, // Spring bank holiday
+				2024y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2024y / August / 26d, // Summer bank holiday
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
+
+				2025y / January / 1d, // New Year’s Day
+				2025y / March / 17d, // St Patrick’s Day
+				2025y / April / 18d, // Good Friday
+				2025y / April / 21d, // Easter Monday
+				2025y / May / 5d, // Early May bank holiday
+				2025y / May / 26d, // Spring bank holiday
+				2025y / July / 14d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2025y / August / 25d, // Summer bank holiday
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Boxing Day
+
+				2026y / January / 1d, // New Year’s Day
+				2026y / March / 17d, // St Patrick’s Day
+				2026y / April / 3d, // Good Friday
+				2026y / April / 6d, // Easter Monday
+				2026y / May / 4d, // Early May bank holiday
+				2026y / May / 25d, // Spring bank holiday
+				2026y / July / 13d, // Battle of the Boyne (Orangemen’s Day) (substitute day)
+				2026y / August / 31d, // Summer bank holiday
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 28d, // Boxing Day (substitute day)
+
+				2027y / January / 1d, // New Year’s Day
+				2027y / March / 17d, // St Patrick’s Day
+				2027y / March / 26d, // Good Friday
+				2027y / March / 29d, // Easter Monday
+				2027y / May / 3d, // Early May bank holiday
+				2027y / May / 31d, // Spring bank holiday
+				2027y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2027y / August / 30d, // Summer bank holiday
+				2027y / December / 27d, // Christmas Day (substitute day)
+				2027y / December / 28d, // Boxing Day (substitute day)
+
+				2028y / January / 3d, // New Year’s Day (substitute day)
+				2028y / March / 17d, // St Patrick’s Day
+				2028y / April / 14d, // Good Friday
+				2028y / April / 17d, // Easter Monday
+				2028y / May / 1d, // Early May bank holiday
+				2028y / May / 29d, // Spring bank holiday
+				2028y / July / 12d, // Battle of the Boyne (Orangemen’s Day)
+				2028y / August / 28d, // Summer bank holiday
+				2028y / December / 25d, // Christmas Day
+				2028y / December / 26d // Boxing Day
+			};
+
+			return schedule{
+				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_Northern_Ireland_generated_schedule(
+			util::years_period period
+		) -> schedule
+		{
+			const auto StPatricsDay = named_holiday{ March / 18d };
+			const auto EarlyMayBankHoliday = weekday_indexed_holiday{ May / Monday[1] };
+			const auto SpringBankHoliday = weekday_last_holiday{ May / Monday[last] };
+			const auto OrangemensDay = named_holiday{ July / 12d };
+			const auto SummerBankHoliday = weekday_last_holiday{ August / Monday[last] };
+
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&StPatricsDay,
+				&GoodFriday,
+				&EasterMonday,
+				&EarlyMayBankHoliday,
+				&SpringBankHoliday,
+				&OrangemensDay,
+				&SummerBankHoliday,
+				&ChristmasDay,
+				&BoxingDay
+			};
+
+			const auto s = make_holiday_schedule(
+				period,
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Following);
+
+			return cal.get_schedule();
+		}
+
+
+		auto make_Northern_Ireland_calendar_versions() -> _calendar_versions
+		{
+			auto cal0 = calendar{
+				SaturdaySundayWeekend,
+				_make_Northern_Ireland_known_schedule_part0() +
+				_make_Northern_Ireland_generated_schedule(years_period{ 2020y, Epoch.get_until().year() })
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_Northern_Ireland_known_schedule_part0() +
+				_make_Northern_Ireland_known_schedule_part1() +
+				_make_Northern_Ireland_generated_schedule(years_period{ 2022y, Epoch.get_until().year() })
+			};
+
+			auto cal2 = calendar{
+				SaturdaySundayWeekend,
+				_make_Northern_Ireland_known_schedule_part0() +
+				_make_Northern_Ireland_known_schedule_part1() +
+				_make_Northern_Ireland_known_schedule_part2a() +
+				_make_Northern_Ireland_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal3 = calendar{
+				SaturdaySundayWeekend,
+				_make_Northern_Ireland_known_schedule_part0() +
+				_make_Northern_Ireland_known_schedule_part1() +
+				_make_Northern_Ireland_known_schedule_part2b() +
+				_make_Northern_Ireland_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal4 = calendar{
+				SaturdaySundayWeekend,
+				_make_Northern_Ireland_known_schedule_part0() +
+				_make_Northern_Ireland_known_schedule_part1() +
+				_make_Northern_Ireland_known_schedule_part2b() +
+				_make_Northern_Ireland_known_schedule_part3() +
+				_make_Northern_Ireland_generated_schedule(years_period{ 2029y, Epoch.get_until().year() })
+			};
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ 2019y / June / 7d, move(cal1) },
+				{ 2020y / November / 12d, move(cal2) },
+				{ 2022y / September / 10d, move(cal3) },
+				{ 2022y / November / 6d, move(cal4) },
+			};
 		}
 
 	}
