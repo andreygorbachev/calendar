@@ -22,6 +22,7 @@
 
 #include "static_data.h"
 #include "victoria_day_holiday.h"
+#include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -258,22 +259,31 @@ namespace gregorian
 
 
 
-		auto make_Canada_Federal_calendar() -> const calendar&
+		auto make_Canada_Federal_calendar_versions() -> _calendar_versions
 		{
-			static const auto s = _make_Canada_Federal_calendar();
-			return s;
+			auto cal0 = _make_Canada_Federal_calendar();
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+			};
 		}
 
-		auto make_Ontario_calendar() -> const calendar&
+		auto make_Ontario_calendar_versions() -> _calendar_versions
 		{
-			static const auto s = _make_Ontario_calendar(); // should it be Toronto calendar?
-			return s;
+			auto cal0 = _make_Ontario_calendar(); // should it be Toronto calendar?
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+			};
 		}
 
-		auto make_Quebec_calendar() -> const calendar&
+		auto make_Quebec_calendar_versions() -> _calendar_versions
 		{
-			static const auto s = _make_Quebec_calendar(); // should it be Montreal calendar (or Quebec City)?
-			return s;
+			auto cal0 = _make_Quebec_calendar(); // should it be Montreal calendar (or Quebec City)?
+
+			return {
+				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+			};
 		}
 
 	}

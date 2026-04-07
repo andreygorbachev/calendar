@@ -81,11 +81,11 @@ namespace gregorian
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
 		// (not yet cover the Epoch completely)
 
-		auto make_Canada_Federal_calendar() -> const calendar&; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
+		auto make_Canada_Federal_calendar_versions() -> _calendar_versions; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
 
-		auto make_Ontario_calendar() -> const calendar&;
+		auto make_Ontario_calendar_versions() -> _calendar_versions;
 
-		auto make_Quebec_calendar() -> const calendar&;
+		auto make_Quebec_calendar_versions() -> _calendar_versions;
 
 
 		// from https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls

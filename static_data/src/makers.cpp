@@ -62,9 +62,9 @@ namespace gregorian
 				{ "America/USA", make_USA_Federal_calendar_versions() },
 				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 
-				{ "America/Canada", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Canada_Federal_calendar() } } },
-				{ "America/Ontario", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Ontario_calendar() } } },
-				{ "America/Quebec", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Quebec_calendar() } } },
+				{ "America/Canada", make_Canada_Federal_calendar_versions() },
+				{ "America/Ontario", make_Ontario_calendar_versions() },
+				{ "America/Quebec", make_Quebec_calendar_versions() },
 
 				{ "America/ANBIMA", make_ANBIMA_calendar_versions() }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
 			};
