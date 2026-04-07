@@ -53,7 +53,7 @@ namespace gregorian
 			return _calendar_registry{
 				{ "Europe/London", make_England_calendar_versions() }, // from UK, only London is in tzdata
 				{ "Europe/Cardif", make_Wales_calendar_versions() },
-				{ "Europe/Edinburgh", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Scotland_calendar() } } },
+                { "Europe/Edinburgh", make_Scotland_calendar_versions() },
 				{ "Europe/Belfast", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_Northern_Ireland_calendar() } } },
 				{ "Europe/MPC", _calendar_versions{ { 2026y / FirstDayOfJanuary, make_MPC_calendar() } } }, // or should it be Europe/UK/MPC? or should it be in etcetera?
 

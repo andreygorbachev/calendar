@@ -52,7 +52,7 @@ namespace gregorian
 
 		auto make_Wales_calendar_versions() -> _calendar_versions;
 
-		auto make_Scotland_calendar() -> const calendar&;
+		auto make_Scotland_calendar_versions() -> _calendar_versions;
 
 		auto make_Northern_Ireland_calendar() -> const calendar&;
 
