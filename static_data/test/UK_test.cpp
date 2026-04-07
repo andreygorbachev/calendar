@@ -24,12 +24,8 @@
 
 #include <gtest/gtest.h>
 
-#include <schedule.h>
-
 #include <chrono>
-#include <stdexcept>
 
-using namespace std;
 using namespace std::chrono;
 
 
