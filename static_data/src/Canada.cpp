@@ -85,11 +85,23 @@ namespace gregorian
 				2025y / November / 11d, // Remembrance Day // Federal statutory holiday, also observed in some provinces
 				2025y / December / 25d, // Christmas Day // Nationwide statutory holiday
 				2025y / December / 26d, // Boxing Day // Federal statutory holiday, also observed in some provinces
+
+				2026y / January / 1d, // New Year
+				2026y / April / 3d, // Good Friday
+				2026y / April / 6d, // Easter Monday
+				2026y / May / 18d, // Victoria Day
+				2026y / July / 1d, // Canada Day
+				2026y / September / 7d, // Labour Day
+				2026y / September / 30d, // National Day for Truth and Reconciliation
+				2026y / October / 12d, // Thanksgiving Day
+				2026y / November / 11d, // Remembrance Day
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 26d, // Boxing Day
 			};
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -102,11 +114,13 @@ namespace gregorian
 				2024y / August / 5d, // Civic Holiday
 
 				2025y / August / 4d, // Civic Holiday
+
+				2026y / August / 3d, // Civic Holiday
 			};
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -119,11 +133,13 @@ namespace gregorian
 				2024y / June / 24d, // Saint-Jean-Baptiste Day
 
 				2025y / June / 24d, // Saint-Jean-Baptiste Day
+
+				2026y / June / 24d, // Saint-Jean-Baptiste Day
 			};
 
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
-				days_period{ 2023 / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				move(holidays)
 			};
 		}

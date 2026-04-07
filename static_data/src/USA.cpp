@@ -335,6 +335,7 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{
 				2013y / January / 21d,
+
 				2017y / January / 20d
 			};
 
@@ -350,7 +351,9 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{
 				2021y / January / 20d,
+
 				2025y / January / 20d,
+
 				2029y / January / 19d,
 			};
 
