@@ -236,7 +236,7 @@ namespace gregorian
 			std::views::filter(is_bd) |
 			std::ranges::to<schedule::dates>();
 #else
-		auto _s =
+		const auto _s =
 			util::iota(p) |
 			std::views::filter(is_bd);
 
