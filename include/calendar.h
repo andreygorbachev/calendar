@@ -36,7 +36,7 @@
 #include <ranges>
 
 
-namespace gregorian
+namespace gregorian // should the namespace be called civil?
 {
 
 	class calendar // std::chrono::time_zone has a name, should we also have a name in calendar? (if we provide provide the database I would say yes)
