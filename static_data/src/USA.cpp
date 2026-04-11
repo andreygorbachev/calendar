@@ -551,7 +551,7 @@ namespace gregorian
 				2023y / January / 2d, // New Year's Day 2022/2023
 				2023y / January / 16d, // Martin Luther King Day
 				2023y / February / 20d, // Presidents Day
-				//Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
 				2023y / May / 29d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
 				2023y / June / 19d, // Juneteenth
