@@ -79,8 +79,9 @@ namespace gregorian
 
 		// from https://www.sifma.org/resources/guides-playbooks/holiday-schedule
 
-		// add SIFMA calendar (is it the same as US Government Securities?)
-		// also has something for UK and Japan
+		auto make_SIFMA_calendar_versions() -> _calendar_versions;
+		// is it the same as US Government Securities?
+		// also has something for UK and Japan (US securities trading in UK and Japan)
 
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
