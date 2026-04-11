@@ -767,10 +767,11 @@ namespace gregorian
 		{
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
-				&_MartinLutherKing,
-				&_Washington,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
 				&_MemorialDay,
-				&_IndependenceDay,
+				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
@@ -796,11 +797,12 @@ namespace gregorian
 		{
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
-				&_MartinLutherKing,
-				&_Washington,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
 				&_MemorialDay,
 				&_Juneteenth,
-				&_IndependenceDay,
+				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
