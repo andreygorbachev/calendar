@@ -584,46 +584,10 @@ namespace gregorian
 				2027y / November / 11d, // Veterans Day
 				2027y / November / 25d, // Thanksgiving Day
 				2027y / December / 24d, // Christmas Day
-
-				2027y / December / 31d, // New Year's Day
-				2028y / January / 17d, // Birthday of Martin Luther King, Jr.
-				2028y / February / 21d, // Washington’s Birthday
-				2028y / May / 29d, // Memorial Day
-				2028y / June / 19d, // Juneteenth National Independence Day
-				2028y / July / 4d, // Independence Day
-				2028y / September / 4d, // Labor Day
-				2028y / October / 9d, // Columbus Day
-				2028y / November / 10d, // Veterans Day
-				2028y / November / 23d, // Thanksgiving Day
-				2028y / December / 25d, // Christmas Day
-
-				2029y / January / 1d, // New Year's Day
-				2029y / January / 15d, // Birthday of Martin Luther King, Jr.
-				2029y / February / 19d, // Washington’s Birthday
-				2029y / May / 28d, // Memorial Day
-				2029y / June / 19d, // Juneteenth National Independence Day
-				2029y / July / 4d, // Independence Day
-				2029y / September / 3d, // Labor Day
-				2029y / October / 8d, // Columbus Day
-				2029y / November / 12d, // Veterans Day
-				2029y / November / 22d, // Thanksgiving Day
-				2029y / December / 25d, // Christmas Day
-
-				2030y / January / 1d, // New Year's Day
-				2030y / January / 21d, // Birthday of Martin Luther King, Jr.
-				2030y / February / 18d, // Washington’s Birthday
-				2030y / May / 27d, // Memorial Day
-				2030y / June / 19d, // Juneteenth National Independence Day
-				2030y / July / 4d, // Independence Day
-				2030y / September / 2d, // Labor Day
-				2030y / October / 14d, // Columbus Day
-				2030y / November / 11d, // Veterans Day
-				2030y / November / 28d, // Thanksgiving Day
-				2030y / December / 25d, // Christmas Day
 			};
 
 			return schedule{
-				days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
+				days_period{ 2021y / January / 1d, 2027y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -798,7 +762,7 @@ namespace gregorian
 			}; // we can make it from part0
 
 			const auto s = make_holiday_schedule(
-				util::years_period{ 2031y, Epoch.get_until().year() },
+				util::years_period{ 2028y, Epoch.get_until().year() },
 				rules
 			);
 
