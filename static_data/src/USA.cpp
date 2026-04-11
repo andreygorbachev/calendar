@@ -612,7 +612,7 @@ namespace gregorian
 				2026y / December / 25d, // Christmas Day
 				// Early Close (2:00 p.m.Eastern Time): Thursday, December 24, 2026
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2026
-
+/*
 				2027y / January / 1d, // New Year’s Day 2026/2027
 				2027y / January / 18d, // Martin Luther King Day
 				2027y / February / 15d, // Presidents Day
@@ -631,10 +631,11 @@ namespace gregorian
 				2027y / December / 24d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2027
 				// Early Close (2:00 p.m. Eastern Time): Friday, December 31, 2028
-			};
+*/			};
 
 			return schedule{
-				days_period{ 2021y / January / 1d, 2027y / LastDayOfDecember },
+//				days_period{ 2021y / January / 1d, 2027y / LastDayOfDecember },
+				days_period{ 2021y / January / 1d, 2026y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -811,7 +812,8 @@ namespace gregorian
 			}; // we can make it from part0
 
 			const auto s = make_holiday_schedule(
-				util::years_period{ 2028y, Epoch.get_until().year() },
+//				util::years_period{ 2028y, Epoch.get_until().year() },
+				util::years_period{ 2027y, Epoch.get_until().year() },
 				rules
 			);
 
