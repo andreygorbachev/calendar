@@ -380,6 +380,7 @@ namespace gregorian
 
 		static auto _make_SIFMA_known_schedule_part0() -> schedule
 		{
+			// still to do
 			auto holidays = schedule::dates{
 				2010y / December / 31d, // New Year's Day
 				2011y / January / 17d, // Birthday of Martin Luther King, Jr.
@@ -501,89 +502,135 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part1() -> schedule
 		{
 			auto holidays = schedule::dates{
-				2021y / January / 1d, // New Year's Day
-				2021y / January / 18d, // Birthday of Martin Luther King, Jr.
-				2021y / February / 15d, // Washington’s Birthday
+				2021y / January / 1d, // New Year's Day 2020/2021
+				2021y / January / 18d, // Martin Luther King Day
+				2021y / February / 15d, // Presidents Day
+				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
 				2021y / May / 31d, // Memorial Day
-				2021y / June / 18d, // Juneteenth National Independence Day
-				2021y / July / 5d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
+				// Juneteenth?
+				2021y / July / 5d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
 				2021y / September / 6d, // Labor Day
 				2021y / October / 11d, // Columbus Day
 				2021y / November / 11d, // Veterans Day
 				2021y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
 				2021y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
+				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
 
-				2021y / December / 31d, // New Year's Day
-				2022y / January / 17d, // Birthday of Martin Luther King, Jr.
-				2022y / February / 21d, // Washington’s Birthday
+				// No New Year's Day 2021/2022
+				2022y / January / 17d, // Martin Luther King Day
+				2022y / February / 21d, // Presidents Day
+				2022y / April / 15d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
 				2022y / May / 30d, // Memorial Day
-				2022y / June / 20d, // Juneteenth National Independence Day
-				2022y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
+				2022y / June / 20d, // Juneteenth
+				2022y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
 				2022y / September / 5d, // Labor Day
 				2022y / October / 10d, // Columbus Day
 				2022y / November / 11d, // Veterans Day
 				2022y / November / 24d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
 				2022y / December / 26d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
 
-				2023y / January / 2d, // New Year's Day
-				2023y / January / 16d, // Birthday of Martin Luther King, Jr.
-				2023y / February / 20d, // Washington’s Birthday
+				2023y / January / 2d, // New Year's Day 2022/2023
+				2023y / January / 16d, // Martin Luther King Day
+				2023y / February / 20d, // Presidents Day
+				//Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
 				2023y / May / 29d, // Memorial Day
-				2023y / June / 19d, // Juneteenth National Independence Day
-				2023y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
+				2023y / June / 19d, // Juneteenth
+				2023y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
 				2023y / September / 4d, // Labor Day
 				2023y / October / 9d, // Columbus Day
 				2023y / November / 10d, // Veterans Day
 				2023y / November / 23d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
 				2023y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
 
-				2024y / January / 1d, // New Year's Day
-				2024y / January / 15d, // Birthday of Martin Luther King, Jr.
-				2024y / February / 19d, // Washington’s Birthday
+				2024y / January / 1d, // New Year’s Day 2023/2024
+				2024y / January / 15d, // Martin Luther King Day
+				2024y / February / 19d, // Presidents Day
+				2024y / March / 29d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, March 28, 2024
 				2024y / May / 27d, // Memorial Day
-				2024y / June / 19d, // Juneteenth National Independence Day
-				2024y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2024
+				2024y / June / 19d, // Juneteenth
+				2024y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2024
 				2024y / September / 2d, // Labor Day
 				2024y / October / 14d, // Columbus Day
 				2024y / November / 11d, // Veterans Day
 				2024y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2024
 				2024y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2024
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2024
 
-				2025y / January / 1d, // New Year's Day
-				2025y / January / 20d, // Birthday of Martin Luther King, Jr.
-				2025y / February / 17d, // Washington’s Birthday
+				2025y / January / 1d, // New Year’s Day 2024/2025
+				2025y / January / 20d, // Martin Luther King Day
+				2025y / February / 17d, // Presidents Day
+				2025y / April / 18d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, April 17, 2025
 				2025y / May / 26d, // Memorial Day
-				2025y / June / 19d, // Juneteenth National Independence Day
-				2025y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 23, 2025
+				2025y / June / 19d, // Juneteenth
+				2025y / July / 4d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 3, 2025
 				2025y / September / 1d, // Labor Day
 				2025y / October / 13d, // Columbus Day
 				2025y / November / 11d, // Veterans Day
 				2025y / November / 27d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 28, 2025
 				2025y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, December 24, 2025
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, December 31, 2025
 
-				2026y / January / 1d, // New Year's Day
-				2026y / January / 19d, // Birthday of Martin Luther King, Jr.
-				2026y / February / 16d, // Washington’s Birthday
+				2026y / January / 1d, // New Year’s Day 2025/2026
+				2026y / January / 19d, // Martin Luther King Day
+				2026y / February / 16d, // Presidents Day
+				// Good Friday Early Close (12:00 p.m. Eastern Time): Friday,
 				2026y / May / 25d, // Memorial Day
-				2026y / June / 19d, // Juneteenth National Independence Day
-				2026y / July / 3d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2026
+				2026y / June / 19d, // Juneteenth
+				2026y / July / 3d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m.Eastern Time): Thursday, July 2, 2026
 				2026y / September / 7d, // Labor Day
 				2026y / October / 12d, // Columbus Day
 				2026y / November / 11d, // Veterans Day
 				2026y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, November 27, 2026
 				2026y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m.Eastern Time): Thursday, December 24, 2026
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2026
 
-				2027y / January / 1d, // New Year's Day
-				2027y / January / 18d, // Birthday of Martin Luther King, Jr.
-				2027y / February / 15d, // Washington’s Birthday
+				2027y / January / 1d, // New Year’s Day 2026/2027
+				2027y / January / 18d, // Martin Luther King Day
+				2027y / February / 15d, // Presidents Day
+				2027y / March / 26d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, March 25, 2027
 				2027y / May / 31d, // Memorial Day
-				2027y / June / 18d, // Juneteenth National Independence Day
-				2027y / July / 5d, // Independence Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, May 28, 2027
+				2027y / June / 18d, // Juneteenth
+				2027y / July / 5d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2027
 				2027y / September / 6d, // Labor Day
 				2027y / October / 11d, // Columbus Day
 				2027y / November / 11d, // Veterans Day
 				2027y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, November 26, 2027
 				2027y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2027
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 31, 2028
 			};
 
 			return schedule{
