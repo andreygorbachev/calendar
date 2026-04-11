@@ -882,6 +882,8 @@ namespace gregorian
 		}
 
 
+		// Do we capture the below:
+		// For any holidays falling on a Saturday, Federal Reserve banks and branches will be open the preceding Friday. The Board of Governors, however, will be closed.
 		auto make_SIFMA_calendar_versions() -> _calendar_versions
 		{
 			auto cal0 = calendar{
