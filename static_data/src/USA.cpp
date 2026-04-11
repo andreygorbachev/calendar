@@ -764,6 +764,7 @@ namespace gregorian
 		}
 
 
+		// is there a way to forecast when full days are demoted to half days?
 		static auto _make_SIFMA_generated_schedule_part0() -> schedule
 		{
 			const auto rules = annual_holiday_storage{
