@@ -61,10 +61,10 @@ namespace gregorian
 
 		public:
 
-			auto operator[](const std::chrono::year_month_day& ymd)->T&;
+			auto operator[](const std::chrono::year_month_day& ymd) -> T&;
 			auto operator[](const std::chrono::year_month_day& ymd) const -> const T&;
 
-			auto operator[](const std::chrono::sys_days& sd)->T&;
+			auto operator[](const std::chrono::sys_days& sd) -> T&;
 			auto operator[](const std::chrono::sys_days& sd) const -> const T&;
 
 		public:
