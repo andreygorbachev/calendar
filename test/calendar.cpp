@@ -137,16 +137,8 @@ namespace gregorian
 		EXPECT_EQ(expected, c);
 	}
 
-/*	TEST(calendar, substitute2)
+	TEST(calendar, substitute2)
 	{
-		const auto expected = calendar{
-			SaturdaySundayWeekend,
-			schedule{
-				period{ 2028y / January / 1d, 2028y / January / 31d },
-				schedule::dates{}
-			}
-		};
-
 		auto c = calendar{
 			SaturdaySundayWeekend,
 			schedule{
@@ -156,10 +148,8 @@ namespace gregorian
 				}
 			}
 		};
-		c.substitute(Nearest);
-
-		EXPECT_EQ(expected, c);
-	}*/
+		EXPECT_THROW(c.substitute(Nearest), out_of_range); // stepping outside of the schedule period
+	}
 
 	TEST(calendar, get_weekend)
 	{
