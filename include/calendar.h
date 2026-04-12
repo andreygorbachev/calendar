@@ -68,7 +68,7 @@ namespace gregorian // should the namespace be called civil?
 		auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// is returning schedule the right thing to do?
-		auto make_business_days_schedule(const util::days_period& p) const -> schedule;
+		auto make_business_days_schedule(util::days_period p) const -> schedule;
 
 		auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
 
@@ -223,12 +223,12 @@ namespace gregorian // should the namespace be called civil?
 		return calendar_days.count() - non_business_days + 1uz;
 	}
 
-	inline auto calendar::make_business_days_schedule(const util::days_period& p) const -> schedule
+	inline auto calendar::make_business_days_schedule(util::days_period p) const -> schedule
 	{
 		const auto is_bd = [this](const std::chrono::year_month_day& ymd)
-			{
-				return is_business_day(ymd);
-			};
+		{
+			return is_business_day(ymd);
+		};
 
 #ifdef _MSC_BUILD
 		auto s =
@@ -245,10 +245,7 @@ namespace gregorian // should the namespace be called civil?
 			s.insert(bd);
 #endif
 
-		return schedule{
-			util::days_period{ p.get_from(), p.get_until() },
-			std::move(s)
-		};
+		return schedule{ std::move(p), std::move(s)	};
 	}
 
 	inline auto calendar::make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule
