@@ -621,7 +621,7 @@ namespace gregorian
 				2026y / December / 25d, // Christmas Day
 				// Early Close (2:00 p.m.Eastern Time): Thursday, December 24, 2026
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2026
-/*
+
 				2027y / January / 1d, // New Year’s Day 2026/2027
 				2027y / January / 18d, // Martin Luther King Day
 				2027y / February / 15d, // Presidents Day
@@ -640,11 +640,23 @@ namespace gregorian
 				2027y / December / 24d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2027
 				// Early Close (2:00 p.m. Eastern Time): Friday, December 31, 2028
-*/			};
+	
+				// temporary workaround for 2028y / January / 1d being a Sunday, and thus needing Nearest adjustment which currently would not work accross the start of the generated section
+				2028y / January / 17d, // Birthday of Martin Luther King, Jr.
+				2028y / February / 21d, // Washington’s Birthday
+				2028y / April / 14d, // Good Friday
+				2028y / May / 29d, // Memorial Day
+				2028y / June / 19d, // Juneteenth National Independence Day
+				2028y / July / 4d, // Independence Day
+				2028y / September / 4d, // Labor Day
+				2028y / October / 9d, // Columbus Day
+				2028y / November / 10d, // Veterans Day
+				2028y / November / 23d, // Thanksgiving Day
+				2028y / December / 25d, // Christmas Day
+		};
 
 			return schedule{
-//				days_period{ 2021y / January / 1d, 2027y / LastDayOfDecember },
-				days_period{ 2021y / January / 1d, 2026y / LastDayOfDecember },
+				days_period{ 2021y / January / 1d, 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -823,7 +835,7 @@ namespace gregorian
 
 			const auto s = make_holiday_schedule(
 //				util::years_period{ 2028y, Epoch.get_until().year() },
-				util::years_period{ 2027y, Epoch.get_until().year() },
+				util::years_period{ 2029y, Epoch.get_until().year() },
 				rules
 			);
 
