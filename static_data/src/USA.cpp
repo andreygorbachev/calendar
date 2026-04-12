@@ -459,16 +459,23 @@ namespace gregorian
 				2018y / November / 22d, // Thanksgiving Day
 				2018y / December / 25d, // Christmas Day
 
-				2019y / January / 1d, // New Year's Day
-				2019y / January / 21d, // Birthday of Martin Luther King, Jr.
-				2019y / February / 18d, // Washington’s Birthday
+				2019y / January / 1d, // New Year's Day 2018/2019
+				2019y / January / 21d, // Martin Luther King Day
+				2019y / February / 18d, // Presidents Day
+				2019y / April / 19d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time) : Thursday, April 18, 2019
 				2019y / May / 27d, // Memorial Day
-				2019y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time) : Friday, May 24, 2019
+				2019y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time) : Wednesday, July 3, 2019
 				2019y / September / 2d, // Labor Day
 				2019y / October / 14d, // Columbus Day
 				2019y / November / 11d, // Veterans Day
 				2019y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time) : Friday, November 29, 2019
 				2019y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 31, 2019
 
 				// above are from SIFMA Holiday Recommendations 1996 - 2019
 
@@ -476,7 +483,7 @@ namespace gregorian
 				2020y / January / 20d, // Martin Luther King Day
 				2020y / February / 17d, // Presidents Day
 				2020y / April / 10d, // Good Friday
-				// Early Close (2:00 p.m.Eastern Time): Thursday, April 9, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
 				2020y / May / 25d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
 				2020y / July / 3d, // U.S. Independence Day
@@ -630,16 +637,23 @@ namespace gregorian
 				2018y / November / 22d, // Thanksgiving Day
 				2018y / December / 25d, // Christmas Day
 
-				2019y / January / 1d, // New Year's Day
-				2019y / January / 21d, // Birthday of Martin Luther King, Jr.
-				2019y / February / 18d, // Washington’s Birthday
+				2019y / January / 1d, // New Year's Day 2018/2019
+				2019y / January / 21d, // Martin Luther King Day
+				2019y / February / 18d, // Presidents Day
+				2019y / April / 19d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time) : Thursday, April 18, 2019
 				2019y / May / 27d, // Memorial Day
-				2019y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time) : Friday, May 24, 2019
+				2019y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time) : Wednesday, July 3, 2019
 				2019y / September / 2d, // Labor Day
 				2019y / October / 14d, // Columbus Day
 				2019y / November / 11d, // Veterans Day
 				2019y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time) : Friday, November 29, 2019
 				2019y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 31, 2019
 
 				// above are from SIFMA Holiday Recommendations 1996 - 2019
 
@@ -647,7 +661,7 @@ namespace gregorian
 				2020y / January / 20d, // Martin Luther King Day
 				2020y / February / 17d, // Presidents Day
 				2020y / April / 10d, // Good Friday
-				// Early Close (2:00 p.m.Eastern Time): Thursday, April 9, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
 				2020y / May / 25d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
 				2020y / July / 3d, // U.S. Independence Day
