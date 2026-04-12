@@ -382,17 +382,6 @@ namespace gregorian
 		{
 			// still to do
 			auto holidays = schedule::dates{
-				2010y / December / 31d, // New Year's Day
-				2011y / January / 17d, // Birthday of Martin Luther King, Jr.
-				2011y / February / 21d, // Washington’s Birthday
-				2011y / May / 30d, // Memorial Day
-				2011y / July / 4d, // Independence Day
-				2011y / September / 5d, // Labor Day
-				2011y / October / 10d, // Columbus Day
-				2011y / November / 11d, // Veterans Day
-				2011y / November / 24d, // Thanksgiving Day
-				2011y / December / 26d, // Christmas Day
-
 				2012y / January / 2d, // New Year's Day
 				2012y / January / 16d, // Birthday of Martin Luther King, Jr.
 				2012y / February / 20d, // Washington’s Birthday
@@ -555,7 +544,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2010y / December / 31d, 2023y / LastDayOfDecember },
+				days_period{ 2012y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -564,17 +553,6 @@ namespace gregorian
 		{
 			// still to do
 			auto holidays = schedule::dates{
-				2010y / December / 31d, // New Year's Day
-				2011y / January / 17d, // Birthday of Martin Luther King, Jr.
-				2011y / February / 21d, // Washington’s Birthday
-				2011y / May / 30d, // Memorial Day
-				2011y / July / 4d, // Independence Day
-				2011y / September / 5d, // Labor Day
-				2011y / October / 10d, // Columbus Day
-				2011y / November / 11d, // Veterans Day
-				2011y / November / 24d, // Thanksgiving Day
-				2011y / December / 26d, // Christmas Day
-
 				2012y / January / 2d, // New Year's Day
 				2012y / January / 16d, // Birthday of Martin Luther King, Jr.
 				2012y / February / 20d, // Washington’s Birthday
@@ -702,7 +680,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2010y / December / 31d, 2021y / LastDayOfDecember },
+				days_period{ 2012y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
