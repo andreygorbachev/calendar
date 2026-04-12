@@ -462,103 +462,13 @@ namespace gregorian
 				2018y / November / 12d, // Veterans Day
 				2018y / November / 22d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
-				2018y / December / 25d, // Christmas Day
+				2018y / December / 25d // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
 				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
-
-				2019y / January / 1d, // New Year's Day 2018/2019
-				2019y / January / 21d, // Martin Luther King Day
-				2019y / February / 18d, // Presidents Day
-				2019y / April / 19d, // Good Friday
-				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
-				2019y / May / 27d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
-				2019y / July / 4d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
-				2019y / September / 2d, // Labor Day
-				2019y / October / 14d, // Columbus Day
-				2019y / November / 11d, // Veterans Day
-				2019y / November / 28d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
-				2019y / December / 25d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
-				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
-
-				// above are from SIFMA Holiday Recommendations 1996 - 2019
-
-				2020y / January / 1d, // New Year's Day 2019/2020
-				2020y / January / 20d, // Martin Luther King Day
-				2020y / February / 17d, // Presidents Day
-				2020y / April / 10d, // Good Friday
-				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
-				2020y / May / 25d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
-				2020y / July / 3d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time): Thursday, July 2, 2020
-				2020y / September / 7d, // Labor Day
-				2020y / October / 12d, // Columbus Day
-				2020y / November / 11d, // Veterans Day
-				2020y / November / 26d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
-				2020y / December / 25d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
-				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
-
-				2021y / January / 1d, // New Year's Day 2020/2021
-				2021y / January / 18d, // Martin Luther King Day
-				2021y / February / 15d, // Presidents Day
-				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
-				2021y / May / 31d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
-				2021y / July / 5d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
-				2021y / September / 6d, // Labor Day
-				2021y / October / 11d, // Columbus Day
-				2021y / November / 11d, // Veterans Day
-				2021y / November / 25d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
-				2021y / December / 24d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
-				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
-				
-				// No New Year's Day 2021/2022
-				2022y / January / 17d, // Martin Luther King Day
-				2022y / February / 21d, // Presidents Day
-				2022y / April / 15d, // Good Friday
-				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
-				2022y / May / 30d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
-				2022y / July / 4d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
-				2022y / September / 5d, // Labor Day
-				2022y / October / 10d, // Columbus Day
-				2022y / November / 11d, // Veterans Day
-				2022y / November / 24d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
-				2022y / December / 26d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
-				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
-
-				2023y / January / 2d, // New Year's Day 2022/2023
-				2023y / January / 16d, // Martin Luther King Day
-				2023y / February / 20d, // Presidents Day
-				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
-				2023y / May / 29d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
-				2023y / July / 4d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
-				2023y / September / 4d, // Labor Day
-				2023y / October / 9d, // Columbus Day
-				2023y / November / 10d, // Veterans Day
-				2023y / November / 23d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
-				2023y / December / 25d // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
-				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
 			};
 
 			return schedule{
-				days_period{ 2012y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				days_period{ 2012y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -647,10 +557,21 @@ namespace gregorian
 				2018y / November / 12d, // Veterans Day
 				2018y / November / 22d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
-				2018y / December / 25d, // Christmas Day
+				2018y / December / 5d, // In Honor of Former President George H.W.Bush
+				2018y / December / 25d // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
 				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
+			};
 
+			return schedule{
+				days_period{ 2012y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_SIFMA_known_schedule_part1a() -> schedule
+		{
+			auto holidays = schedule::dates{
 				2019y / January / 1d, // New Year's Day 2018/2019
 				2019y / January / 21d, // Martin Luther King Day
 				2019y / February / 18d, // Presidents Day
@@ -702,20 +623,110 @@ namespace gregorian
 				2021y / November / 11d, // Veterans Day
 				2021y / November / 25d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
-				2021y / December / 24d // Christmas Day
+				2021y / December / 24d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
 				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+
+				// No New Year's Day 2021/2022
+				2022y / January / 17d, // Martin Luther King Day
+				2022y / February / 21d, // Presidents Day
+				2022y / April / 15d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
+				2022y / May / 30d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
+				2022y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
+				2022y / September / 5d, // Labor Day
+				2022y / October / 10d, // Columbus Day
+				2022y / November / 11d, // Veterans Day
+				2022y / November / 24d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
+				2022y / December / 26d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
+
+				2023y / January / 2d, // New Year's Day 2022/2023
+				2023y / January / 16d, // Martin Luther King Day
+				2023y / February / 20d, // Presidents Day
+				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / May / 29d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
+				2023y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
+				2023y / September / 4d, // Labor Day
+				2023y / October / 9d, // Columbus Day
+				2023y / November / 10d, // Veterans Day
+				2023y / November / 23d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
+				2023y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
 			};
 
 			return schedule{
-				days_period{ 2012y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
+				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
 
-		static auto _make_SIFMA_known_schedule_part1() -> schedule
+		static auto _make_SIFMA_known_schedule_part1b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2019y / January / 1d, // New Year's Day 2018/2019
+				2019y / January / 21d, // Martin Luther King Day
+				2019y / February / 18d, // Presidents Day
+				2019y / April / 19d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
+				2019y / May / 27d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
+				2019y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
+				2019y / September / 2d, // Labor Day
+				2019y / October / 14d, // Columbus Day
+				2019y / November / 11d, // Veterans Day
+				2019y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
+				2019y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
+
+				// above are from SIFMA Holiday Recommendations 1996 - 2019
+
+				2020y / January / 1d, // New Year's Day 2019/2020
+				2020y / January / 20d, // Martin Luther King Day
+				2020y / February / 17d, // Presidents Day
+				2020y / April / 10d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
+				2020y / May / 25d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
+				2020y / July / 3d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 2, 2020
+				2020y / September / 7d, // Labor Day
+				2020y / October / 12d, // Columbus Day
+				2020y / November / 11d, // Veterans Day
+				2020y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
+				2020y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
+
+				2021y / January / 1d, // New Year's Day 2020/2021
+				2021y / January / 18d, // Martin Luther King Day
+				2021y / February / 15d, // Presidents Day
+				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
+				2021y / May / 31d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
+				2021y / July / 5d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
+				2021y / September / 6d, // Labor Day
+				2021y / October / 11d, // Columbus Day
+				2021y / November / 11d, // Veterans Day
+				2021y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
+				2021y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
+				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+
 				// No New Year's Day 2021/2022
 				2022y / January / 17d, // Martin Luther King Day
 				2022y / February / 21d, // Presidents Day
@@ -749,10 +760,20 @@ namespace gregorian
 				2023y / November / 10d, // Veterans Day
 				2023y / November / 23d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
-				2023y / December / 25d, // Christmas Day
+				2023y / December / 25d // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
 				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
+			};
 
+			return schedule{
+				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_SIFMA_known_schedule_part2() -> schedule
+		{
+			auto holidays = schedule::dates{
 				2024y / January / 1d, // New Year’s Day 2023/2024
 				2024y / January / 15d, // Martin Luther King Day
 				2024y / February / 19d, // Presidents Day
@@ -773,11 +794,6 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2024
 
 				2025y / January / 1d, // New Year’s Day 2024/2025
-				// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
-				// * Press Releases
-				// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
-				// Published on :
-				// December 30, 2024
 				2025y / January / 20d, // Martin Luther King Day
 				2025y / February / 17d, // Presidents Day
 				2025y / April / 18d, // Good Friday
@@ -848,7 +864,7 @@ namespace gregorian
 		};
 
 			return schedule{
-				days_period{ 2022y / January / 1d, 2028y / LastDayOfDecember },
+				days_period{ 2024y / January / 1d, 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -995,7 +1011,7 @@ namespace gregorian
 			};
 
 			const auto s = make_holiday_schedule(
-				util::years_period{ 2024y, Epoch.get_until().year() },
+				util::years_period{ 2019y, Epoch.get_until().year() },
 				rules
 			);
 
@@ -1009,6 +1025,36 @@ namespace gregorian
 		}
 
 		static auto _make_SIFMA_generated_schedule_part1() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
+				&_MemorialDay,
+				&_IndependenceDay, // U.S. Independence Day
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay,
+				&ChristmasDay
+			};
+
+			const auto s = make_holiday_schedule(
+				util::years_period{ 2024y, Epoch.get_until().year() },
+				rules
+			);
+
+			auto cal = calendar{
+				SaturdaySundayWeekend,
+				s
+			};
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_SIFMA_generated_schedule_part2() -> schedule
 		{
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
@@ -1099,18 +1145,35 @@ namespace gregorian
 			auto cal1 = calendar{
 				SaturdaySundayWeekend,
 				_make_SIFMA_known_schedule_part0b() +
-				_make_SIFMA_known_schedule_part1() +
+				_make_SIFMA_known_schedule_part1a() +
 				_make_SIFMA_generated_schedule_part1()
+			};
+
+			auto cal2 = calendar{
+				SaturdaySundayWeekend,
+				_make_SIFMA_known_schedule_part0b() +
+				_make_SIFMA_known_schedule_part1b() +
+				_make_SIFMA_known_schedule_part2() +
+				_make_SIFMA_generated_schedule_part2()
 			};
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2021y / July / 14d, move(cal1) },
+				{ 2018y / December / 1d, move(cal1) },
+				// * Press Releases
+				// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
+				// Published on : December 1, 2018
+				{ 2021y / July / 14d, move(cal2) },
 				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
 				// * Press Releases
 				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
 				// Published on : July 14, 2021
 			};
+
+			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
+			// * Press Releases
+			// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
+			// Published on : December 30, 2024
 		}
 
 	}
