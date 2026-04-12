@@ -448,34 +448,41 @@ namespace gregorian
 				2017y / November / 23d, // Thanksgiving Day
 				2017y / December / 25d, // Christmas Day
 
-				2018y / January / 1d, // New Year's Day
-				2018y / January / 15d, // Birthday of Martin Luther King, Jr.
-				2018y / February / 19d, // Washington’s Birthday
+				2018y / January / 1d, // New Year's Day 2017/2018
+				2018y / January / 15d, // Martin Luther King Day
+				2018y / February / 19d, // Presidents Day
+				2018y / March / 30d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, March 29, 2018
 				2018y / May / 28d, // Memorial Day
-				2018y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 25, 2018
+				2018y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, July 3, 2018
 				2018y / September / 3d, // Labor Day
 				2018y / October / 8d, // Columbus Day
 				2018y / November / 12d, // Veterans Day
 				2018y / November / 22d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
 				2018y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
 
 				2019y / January / 1d, // New Year's Day 2018/2019
 				2019y / January / 21d, // Martin Luther King Day
 				2019y / February / 18d, // Presidents Day
 				2019y / April / 19d, // Good Friday
-				// Early Close (2:00 p.m. Eastern Time) : Thursday, April 18, 2019
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
 				2019y / May / 27d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time) : Friday, May 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
 				2019y / July / 4d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time) : Wednesday, July 3, 2019
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
 				2019y / September / 2d, // Labor Day
 				2019y / October / 14d, // Columbus Day
 				2019y / November / 11d, // Veterans Day
 				2019y / November / 28d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time) : Friday, November 29, 2019
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
 				2019y / December / 25d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 24, 2019
-				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 31, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
 
 				// above are from SIFMA Holiday Recommendations 1996 - 2019
 
@@ -626,34 +633,41 @@ namespace gregorian
 				2017y / November / 23d, // Thanksgiving Day
 				2017y / December / 25d, // Christmas Day
 
-				2018y / January / 1d, // New Year's Day
-				2018y / January / 15d, // Birthday of Martin Luther King, Jr.
-				2018y / February / 19d, // Washington’s Birthday
+				2018y / January / 1d, // New Year's Day 2017/2018
+				2018y / January / 15d, // Martin Luther King Day
+				2018y / February / 19d, // Presidents Day
+				2018y / March / 30d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, March 29, 2018
 				2018y / May / 28d, // Memorial Day
-				2018y / July / 4d, // Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 25, 2018
+				2018y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, July 3, 2018
 				2018y / September / 3d, // Labor Day
 				2018y / October / 8d, // Columbus Day
 				2018y / November / 12d, // Veterans Day
 				2018y / November / 22d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
 				2018y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
 
 				2019y / January / 1d, // New Year's Day 2018/2019
 				2019y / January / 21d, // Martin Luther King Day
 				2019y / February / 18d, // Presidents Day
 				2019y / April / 19d, // Good Friday
-				// Early Close (2:00 p.m. Eastern Time) : Thursday, April 18, 2019
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
 				2019y / May / 27d, // Memorial Day
-				// Early Close (2:00 p.m. Eastern Time) : Friday, May 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
 				2019y / July / 4d, // U.S. Independence Day
-				// Early Close (2:00 p.m. Eastern Time) : Wednesday, July 3, 2019
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
 				2019y / September / 2d, // Labor Day
 				2019y / October / 14d, // Columbus Day
 				2019y / November / 11d, // Veterans Day
 				2019y / November / 28d, // Thanksgiving Day
-				// Early Close (2:00 p.m. Eastern Time) : Friday, November 29, 2019
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
 				2019y / December / 25d, // Christmas Day
-				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 24, 2019
-				// Early Close (2:00 p.m. Eastern Time) : Tuesday, December 31, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
 
 				// above are from SIFMA Holiday Recommendations 1996 - 2019
 
