@@ -773,6 +773,11 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2024
 
 				2025y / January / 1d, // New Year’s Day 2024/2025
+				// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
+				// * Press Releases
+				// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
+				// Published on :
+				// December 30, 2024
 				2025y / January / 20d, // Martin Luther King Day
 				2025y / February / 17d, // Presidents Day
 				2025y / April / 18d, // Good Friday
@@ -1101,6 +1106,7 @@ namespace gregorian
 			return {
 				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
 				{ 2021y / July / 14d, move(cal1) },
+				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
 				// * Press Releases
 				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
 				// Published on : July 14, 2021
