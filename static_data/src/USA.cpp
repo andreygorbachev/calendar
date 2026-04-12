@@ -378,7 +378,7 @@ namespace gregorian
 		// on January 20th for each fourth year after 1965.
 
 
-		static auto _make_SIFMA_known_schedule_part0() -> schedule
+		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			// still to do
 			auto holidays = schedule::dates{
@@ -497,27 +497,16 @@ namespace gregorian
 				2020y / November / 11d, // Veterans Day
 				2020y / November / 26d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
-				2020y / December / 25d // Christmas Day
+				2020y / December / 25d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
-			};
 
-			return schedule{
-				days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
-				move(holidays)
-			};
-		}
-
-		static auto _make_SIFMA_known_schedule_part1() -> schedule
-		{
-			auto holidays = schedule::dates{
 				2021y / January / 1d, // New Year's Day 2020/2021
 				2021y / January / 18d, // Martin Luther King Day
 				2021y / February / 15d, // Presidents Day
 				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
 				2021y / May / 31d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
-				// Juneteenth?
 				2021y / July / 5d, // U.S. Independence Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
 				2021y / September / 6d, // Labor Day
@@ -528,7 +517,199 @@ namespace gregorian
 				2021y / December / 24d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
 				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+				
+				// No New Year's Day 2021/2022
+				2022y / January / 17d, // Martin Luther King Day
+				2022y / February / 21d, // Presidents Day
+				2022y / April / 15d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
+				2022y / May / 30d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
+				2022y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
+				2022y / September / 5d, // Labor Day
+				2022y / October / 10d, // Columbus Day
+				2022y / November / 11d, // Veterans Day
+				2022y / November / 24d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
+				2022y / December / 26d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
 
+				2023y / January / 2d, // New Year's Day 2022/2023
+				2023y / January / 16d, // Martin Luther King Day
+				2023y / February / 20d, // Presidents Day
+				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / May / 29d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
+				2023y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
+				2023y / September / 4d, // Labor Day
+				2023y / October / 9d, // Columbus Day
+				2023y / November / 10d, // Veterans Day
+				2023y / November / 23d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
+				2023y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
+			};
+
+			return schedule{
+				days_period{ 2010y / December / 31d, 2023y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_SIFMA_known_schedule_part0b() -> schedule
+		{
+			// still to do
+			auto holidays = schedule::dates{
+				2010y / December / 31d, // New Year's Day
+				2011y / January / 17d, // Birthday of Martin Luther King, Jr.
+				2011y / February / 21d, // Washington’s Birthday
+				2011y / May / 30d, // Memorial Day
+				2011y / July / 4d, // Independence Day
+				2011y / September / 5d, // Labor Day
+				2011y / October / 10d, // Columbus Day
+				2011y / November / 11d, // Veterans Day
+				2011y / November / 24d, // Thanksgiving Day
+				2011y / December / 26d, // Christmas Day
+
+				2012y / January / 2d, // New Year's Day
+				2012y / January / 16d, // Birthday of Martin Luther King, Jr.
+				2012y / February / 20d, // Washington’s Birthday
+				2012y / May / 28d, // Memorial Day
+				2012y / July / 4d, // Independence Day
+				2012y / September / 3d, // Labor Day
+				2012y / October / 8d, // Columbus Day
+				2012y / November / 12d, // Veterans Day
+				2012y / November / 22d, // Thanksgiving Day
+				2012y / December / 25d, // Christmas Day
+
+				2013y / January / 1d, // New Year's Day
+				2013y / January / 21d, // Birthday of Martin Luther King, Jr.
+				2013y / February / 18d, // Washington’s Birthday
+				2013y / May / 27d, // Memorial Day
+				2013y / July / 4d, // Independence Day
+				2013y / September / 2d, // Labor Day
+				2013y / October / 14d, // Columbus Day
+				2013y / November / 11d, // Veterans Day
+				2013y / November / 28d, // Thanksgiving Day
+				2013y / December / 25d, // Christmas Day
+
+				2014y / January / 1d, // New Year's Day
+				2014y / January / 20d, // Birthday of Martin Luther King, Jr.
+				2014y / February / 17d, // Washington’s Birthday
+				2014y / May / 26d, // Memorial Day
+				2014y / July / 4d, // Independence Day
+				2014y / September / 1d, // Labor Day
+				2014y / October / 13d, // Columbus Day
+				2014y / November / 11d, // Veterans Day
+				2014y / November / 27d, // Thanksgiving Day
+				2014y / December / 25d, // Christmas Day
+
+				2015y / January / 1d, // New Year's Day
+				2015y / January / 19d, // Birthday of Martin Luther King, Jr.
+				2015y / February / 16d, // Washington’s Birthday
+				2015y / May / 25d, // Memorial Day
+				2015y / July / 3d, // Independence Day
+				2015y / September / 7d, // Labor Day
+				2015y / October / 12d, // Columbus Day
+				2015y / November / 11d, // Veterans Day
+				2015y / November / 26d, // Thanksgiving Day
+				2015y / December / 25d, // Christmas Day
+
+				2016y / January / 1d, // New Year's Day
+				2016y / January / 18d, // Birthday of Martin Luther King, Jr.
+				2016y / February / 15d, // Washington’s Birthday
+				2016y / May / 30d, // Memorial Day
+				2016y / July / 4d, // Independence Day
+				2016y / September / 5d, // Labor Day
+				2016y / October / 10d, // Columbus Day
+				2016y / November / 11d, // Veterans Day
+				2016y / November / 24d, // Thanksgiving Day
+				2016y / December / 26d, // Christmas Day
+
+				2017y / January / 2d, // New Year's Day
+				2017y / January / 16d, // Birthday of Martin Luther King, Jr.
+				2017y / February / 20d, // Washington’s Birthday
+				2017y / May / 29d, // Memorial Day
+				2017y / July / 4d, // Independence Day
+				2017y / September / 4d, // Labor Day
+				2017y / October / 9d, // Columbus Day
+				2017y / November / 10d, // Veterans Day
+				2017y / November / 23d, // Thanksgiving Day
+				2017y / December / 25d, // Christmas Day
+
+				2018y / January / 1d, // New Year's Day
+				2018y / January / 15d, // Birthday of Martin Luther King, Jr.
+				2018y / February / 19d, // Washington’s Birthday
+				2018y / May / 28d, // Memorial Day
+				2018y / July / 4d, // Independence Day
+				2018y / September / 3d, // Labor Day
+				2018y / October / 8d, // Columbus Day
+				2018y / November / 12d, // Veterans Day
+				2018y / November / 22d, // Thanksgiving Day
+				2018y / December / 25d, // Christmas Day
+
+				2019y / January / 1d, // New Year's Day
+				2019y / January / 21d, // Birthday of Martin Luther King, Jr.
+				2019y / February / 18d, // Washington’s Birthday
+				2019y / May / 27d, // Memorial Day
+				2019y / July / 4d, // Independence Day
+				2019y / September / 2d, // Labor Day
+				2019y / October / 14d, // Columbus Day
+				2019y / November / 11d, // Veterans Day
+				2019y / November / 28d, // Thanksgiving Day
+				2019y / December / 25d, // Christmas Day
+
+				// above are from SIFMA Holiday Recommendations 1996 - 2019
+
+				2020y / January / 1d, // New Year's Day 2019/2020
+				2020y / January / 20d, // Martin Luther King Day
+				2020y / February / 17d, // Presidents Day
+				2020y / April / 10d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, April 9, 2020
+				2020y / May / 25d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
+				2020y / July / 3d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 2, 2020
+				2020y / September / 7d, // Labor Day
+				2020y / October / 12d, // Columbus Day
+				2020y / November / 11d, // Veterans Day
+				2020y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
+				2020y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
+
+				2021y / January / 1d, // New Year's Day 2020/2021
+				2021y / January / 18d, // Martin Luther King Day
+				2021y / February / 15d, // Presidents Day
+				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
+				2021y / May / 31d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
+				2021y / July / 5d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
+				2021y / September / 6d, // Labor Day
+				2021y / October / 11d, // Columbus Day
+				2021y / November / 11d, // Veterans Day
+				2021y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
+				2021y / December / 24d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
+				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+			};
+
+			return schedule{
+				days_period{ 2010y / December / 31d, 2021y / LastDayOfDecember },
+				move(holidays)
+			};
+		}
+
+		static auto _make_SIFMA_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
 				// No New Year's Day 2021/2022
 				2022y / January / 17d, // Martin Luther King Day
 				2022y / February / 21d, // Presidents Day
@@ -656,7 +837,7 @@ namespace gregorian
 		};
 
 			return schedule{
-				days_period{ 2021y / January / 1d, 2028y / LastDayOfDecember },
+				days_period{ 2022y / January / 1d, 2028y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -803,7 +984,7 @@ namespace gregorian
 			};
 
 			const auto s = make_holiday_schedule(
-				util::years_period{ 2021y, Epoch.get_until().year() },
+				util::years_period{ 2024y, Epoch.get_until().year() },
 				rules
 			);
 
@@ -900,20 +1081,23 @@ namespace gregorian
 		{
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				_make_SIFMA_known_schedule_part0() +
+				_make_SIFMA_known_schedule_part0a() +
 				_make_SIFMA_generated_schedule_part0()
 			};
 
 			auto cal1 = calendar{
 				SaturdaySundayWeekend,
-				_make_SIFMA_known_schedule_part0() +
+				_make_SIFMA_known_schedule_part0b() +
 				_make_SIFMA_known_schedule_part1() +
 				_make_SIFMA_generated_schedule_part1()
 			};
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2021y / June / 17d, move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				{ 2021y / July / 14d, move(cal1) },
+				// * Press Releases
+				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
+				// Published on : July 14, 2021
 			};
 		}
 
