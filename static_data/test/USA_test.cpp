@@ -37,7 +37,8 @@ namespace gregorian
 
 		TEST(static, SIFMA)
 		{
-			const auto& cal0 = locate_calendar("America/SIFMA", Epoch.get_from());
+//			const auto& cal0 = locate_calendar("America/SIFMA", Epoch.get_from());
+			const auto& cal0 = locate_calendar("America/SIFMA", 2018y / January / 1d); // at the moment we only start in 2018 (to cover SOFR)
 			EXPECT_FALSE(cal0.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
 			EXPECT_FALSE(cal0.is_non_business_day(2022y / June / 20d)); // Juneteenth
 
