@@ -521,7 +521,7 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
 				2023y / September / 4d, // Labor Day
 				2023y / October / 9d, // Columbus Day
-				2023y / November / 10d, // Veterans Day
+				// No Veterans Day
 				2023y / November / 23d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
 				2023y / December / 25d // Christmas Day
@@ -623,7 +623,7 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
 				2023y / September / 4d, // Labor Day
 				2023y / October / 9d, // Columbus Day
-				2023y / November / 10d, // Veterans Day
+				// No Veterans Day
 				2023y / November / 23d, // Thanksgiving Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
 				2023y / December / 25d // Christmas Day
@@ -716,6 +716,7 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Friday, December 31, 2028
 	
 				// temporary workaround for 2028y / January / 1d being a Sunday, and thus needing Nearest adjustment which currently would not work accross the start of the generated section
+				// No New Year’s Day
 				2028y / January / 17d, // Birthday of Martin Luther King, Jr.
 				2028y / February / 21d, // Washington’s Birthday
 				2028y / April / 14d, // Good Friday
