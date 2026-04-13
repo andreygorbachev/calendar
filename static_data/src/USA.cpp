@@ -798,6 +798,7 @@ namespace gregorian
 		}
 
 
+		// I think we might need a Sunday-to-Monday rule for InaugurationDay
 		static auto _make_Washington_DC_Federal_generated_schedule_part0() -> schedule
 		{
 			const auto rules = annual_holiday_storage{
