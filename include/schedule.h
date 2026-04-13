@@ -24,10 +24,9 @@
 
 #include <period.h>
 
-#include <cstddef>
 #include <chrono>
 #include <utility>
-#include <set>
+#include <set> // we should probably consider <flat_set> instead, but it is not yet widely supported
 #include <algorithm>
 #include <compare>
 
