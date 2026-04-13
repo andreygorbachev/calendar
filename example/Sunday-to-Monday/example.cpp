@@ -56,8 +56,8 @@ static auto make_Nearest(const util::years_period& period) -> calendar
 		&NewYearsDay,
 		&_MartinLutherKing,
 		&_Washington,
-		& GoodFriday,
 		&_MemorialDay,
+		&_Juneteenth,
 		&_IndependenceDay,
 		&_LaborDay,
 		&_ColumbusDay,
@@ -86,8 +86,8 @@ static auto make_Sunday_to_Monday(const util::years_period& period) -> calendar
 		&NewYearsDay,
 		&_MartinLutherKing,
 		&_Washington,
-		& GoodFriday,
 		&_MemorialDay,
+		&_Juneteenth,
 		&_IndependenceDay,
 		&_LaborDay,
 		&_ColumbusDay,
@@ -119,9 +119,11 @@ static auto make_Sunday_to_Monday(const util::years_period& period) -> calendar
 
 
 
+// K.8 - Holidays Observed by the Federal Reserve System 2026-2030
+// also https://www.frbservices.org/about/holiday-schedules
 int main()
 {
-	const auto period = util::years_period{ 2018y, 2023y };
+	const auto period = util::years_period{ 2026y, 2030y };
 
 	const auto nearest = make_Nearest(period);
 	const auto sunday_to_monday = make_Sunday_to_Monday(period);
