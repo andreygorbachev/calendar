@@ -30,8 +30,7 @@
 
 #include <chrono>
 #include <iostream>
-#include <algorithm>
-#include <iterator>
+#include <ios>
 
 using namespace gregorian;
 
@@ -50,37 +49,7 @@ const auto _ColumbusDay = weekday_indexed_holiday{ October / Monday[2] };
 const auto _VeteransDay = named_holiday{ November / 11d };
 const auto _ThanksgivingDay = weekday_indexed_holiday{ November / Thursday[4] };
 
-static auto make_Nearest(const util::years_period& period) -> calendar
-{
-	const auto rules = annual_holiday_storage{
-		&NewYearsDay,
-		&_MartinLutherKing,
-		&_Washington,
-		&_MemorialDay,
-		&_Juneteenth,
-		&_IndependenceDay,
-		&_LaborDay,
-		&_ColumbusDay,
-		&_VeteransDay,
-		&_ThanksgivingDay,
-		&ChristmasDay
-	};
-
-	const auto s = make_holiday_schedule(
-		period,
-		rules
-	);
-
-	auto cal = calendar{
-		SaturdaySundayWeekend,
-		s
-	};
-	cal.substitute(Nearest);
-
-	return cal;
-}
-
-static auto make_Sunday_to_Monday(const util::years_period& period) -> calendar
+static auto make_Sunday_to_Monday_adjusted_calendar(const util::years_period& period) -> calendar
 {
 	const auto rules = annual_holiday_storage{
 		&NewYearsDay,
@@ -119,29 +88,39 @@ static auto make_Sunday_to_Monday(const util::years_period& period) -> calendar
 
 
 
-// K.8 - Holidays Observed by the Federal Reserve System 2026-2030
-// also https://www.frbservices.org/about/holiday-schedules
+// Holidays Observed - K.8 
+// https://www.federalreserve.gov/aboutthefed/k8.htm
+// https://www.frbservices.org/about/holiday-schedules
+
 int main()
 {
-	const auto period = util::years_period{ 2026y, 2030y };
+	const auto sunday_to_monday = make_Sunday_to_Monday_adjusted_calendar(util::years_period{ 2026y, 2030y });
 
-	const auto nearest = make_Nearest(period);
-	const auto sunday_to_monday = make_Sunday_to_Monday(period);
+	cout << boolalpha;
 
-	const auto dp = util::days_period{
-		period.get_from() / January / 1d,
-		period.get_until() / December / 31d
-	};
+	// * Saturday - the Federal Reserve Banks are open, but the Board of Governors is closed on July 3, 2026, June 18, 2027, December 24, 2027, November 10, 2028, and December 31, 2028.
+	// ** Sunday - the Federal Reserve Banks and the Board of Governors are closed on July 5, 2027, and November 12, 2029.
 
-	auto diffs = schedule::dates{};
-	ranges::set_symmetric_difference(
-		nearest.make_business_days_schedule(dp).get_dates(),
-		sunday_to_monday.make_business_days_schedule(dp).get_dates(),
-		inserter(diffs, diffs.begin())
-	);
-	cout << "The following dates are in one calendar but not in the other:" << endl;
-	for (const auto& d : diffs)
-		cout << d << endl;
+	const auto day1 = 2026y / July / 3d;
+	cout << "2026 Independence Day (no adjustment): " << day1 << " is business day: " << sunday_to_monday.is_business_day(day1) << endl;
+
+	const auto day2 = 2027y / June / 18d;
+	cout << "2027 Juneteenth National Independence Day (no adjustment): " << day2 << " is business day: " << sunday_to_monday.is_business_day(day2) << endl;
+
+	const auto day3 = 2027y / July / 5d;
+	cout << "2027 Independence Day (adjustment): " << day3 << " is business day: " << sunday_to_monday.is_business_day(day3) << endl;
+
+	const auto day4 = 2027y / December / 24d;
+	cout << "2027 Christmas Day (no adjustment): " << day4 << " is business day: " << sunday_to_monday.is_business_day(day4) << endl;
+
+	const auto day5 = 2027y / December / 31d;
+	cout << "2027 New Year's Day (no adjustment): " << day5 << " is business day: " << sunday_to_monday.is_business_day(day5) << endl;
+
+	const auto day6 = 2028y / November / 10d;
+	cout << "2027 Veterans Day (no adjustment): " << day6 << " is business day: " << sunday_to_monday.is_business_day(day6) << endl;
+
+	const auto day7 = 2029y / November / 12d;
+	cout << "2028 Veterans Day (adjustment): " << day7 << " is business day: " << sunday_to_monday.is_business_day(day7) << endl;
 
 	return 0;
 }
