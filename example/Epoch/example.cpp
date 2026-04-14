@@ -38,7 +38,7 @@ using namespace std::chrono;
 
 int main()
 {
-	const auto as_of_date = 2023y / December / 21d; // should we do systems date instead?
+	const auto as_of_date = floor<days>(system_clock::now());
 	const auto& cal = locate_calendar("America/ANBIMA", as_of_date);
 
 	cout << "   date   " << ", " << "is business day" << endl;
