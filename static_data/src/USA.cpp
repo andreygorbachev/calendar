@@ -456,7 +456,7 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
 
-				// above are from SIFMA Holiday Recommendations 1996 - 2019
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
 				2020y / January / 1d, // New Year's Day 2019/2020
 				2020y / January / 20d, // Martin Luther King Day
@@ -556,7 +556,7 @@ namespace gregorian
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
 
-				// above are from SIFMA Holiday Recommendations 1996 - 2019
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
 				2020y / January / 1d, // New Year's Day 2019/2020
 				2020y / January / 20d, // Martin Luther King Day
@@ -725,7 +725,7 @@ namespace gregorian
 				2028y / July / 4d, // Independence Day
 				2028y / September / 4d, // Labor Day
 				2028y / October / 9d, // Columbus Day
-				2028y / November / 10d, // Veterans Day
+				// No Veterans Day
 				2028y / November / 23d, // Thanksgiving Day
 				2028y / December / 25d, // Christmas Day
 		};
@@ -883,11 +883,18 @@ namespace gregorian
 				rules
 			);
 
-			auto cal = calendar{
-				SaturdaySundayWeekend,
+			auto cal0 = calendar{
+				SundayWeekend,
 				s
 			};
-			cal.substitute(Nearest);
+			cal0.substitute(Following);
+
+			const auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				schedule{ s.get_period(), {} }
+			};
+
+			const auto cal = cal0 | cal1;
 
 			return cal.get_schedule();
 		}
@@ -906,18 +913,25 @@ namespace gregorian
 				&_VeteransDay,
 				&_ThanksgivingDay,
 				&ChristmasDay
-			};
+			}; // we can make it from part0
 
 			const auto s = make_holiday_schedule(
 				util::years_period{ 2024y, Epoch.get_until().year() },
 				rules
 			);
 
-			auto cal = calendar{
-				SaturdaySundayWeekend,
+			auto cal0 = calendar{
+				SundayWeekend,
 				s
 			};
-			cal.substitute(Nearest);
+			cal0.substitute(Following);
+
+			const auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				schedule{ s.get_period(), {} }
+			};
+
+			const auto cal = cal0 | cal1;
 
 			return cal.get_schedule();
 		}
@@ -945,11 +959,18 @@ namespace gregorian
 				rules
 			);
 
-			auto cal = calendar{
-				SaturdaySundayWeekend,
+			auto cal0 = calendar{
+				SundayWeekend,
 				s
 			};
-			cal.substitute(Nearest);
+			cal0.substitute(Following);
+
+			const auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				schedule{ s.get_period(), {} }
+			};
+
+			const auto cal = cal0 | cal1;
 
 			return cal.get_schedule();
 		}
