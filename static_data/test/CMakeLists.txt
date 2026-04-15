@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME}
   locate_calendar_test.cpp
   victoria_day_holiday_test.cpp
   cyclical_holiday_test.cpp
+  make_third_Friday_schedule_test.cpp
   UK_test.cpp
   USA_test.cpp
   Brazil_test.cpp
