@@ -47,7 +47,8 @@ namespace gregorian
 				util::days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				schedule::dates{
 					2026y / January / 9d,
-					2026y / February / 11d,
+//					2026y / February / 11d, // probably government shutdown in 2026, so the release is later than usual
+					2026y / February / 6d,
 					2026y / March / 6d,
 					2026y / April / 3d,
 					2026y / May / 8d,
