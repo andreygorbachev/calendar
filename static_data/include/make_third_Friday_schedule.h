@@ -46,18 +46,34 @@ namespace gregorian
 			for (auto month = period.get_from() / std::chrono::January - std::chrono::months{ 1 }; // reference week is in the previous month of the release date
 				month <= period.get_until() / std::chrono::December - std::chrono::months{ 1 };
 				month += std::chrono::months{ 1 } // data is released monthly
-			) // do we look over reference months or over release months?
+				) // do we look over reference months or over release months?
 			{
 				const auto _12th = month / std::chrono::day{ 12u };
 
 				const auto start_of_reference_week =
 					std::chrono::sys_days{ _12th } - std::chrono::days{ std::chrono::weekday{ _12th }.c_encoding() }; // week Sunday to Saturday
 
-				const auto release_date = start_of_reference_week +
+				auto release_date = start_of_reference_week +
 					std::chrono::days{ 5 } + // move to Friday of the reference week
 					std::chrono::weeks{ 3 }; // move to the third Friday after reference week
 
-				// it looks like sometimes there are 4 weeks wait for the release, rather than 3, so more is needed here
+				// Generally, the Employment Situation publication date is the third Friday after the week that includes the 12th.
+				// This usually results in the release being scheduled for the first Friday of the month following the reference month.However,
+				// when the 12th of the month falls on a Sunday and there are 30 days or less in the month, the release date will be the second Friday of the month.In addition,
+				// if the third Friday after the December reference period falls on January 1–3, the release date will be the second Friday of the month.
+				//
+				// If the normal release day Friday happens to be a federal holiday, such as July 4th, the release date will be the Thursday immediately preceding the holiday.
+				// The Employment Situation release dates are adjusted only for designated federal holidays.
+				//
+				// The Employment Situation release dates are approved by the Office of Management and Budget and published in advance.
+					
+				const auto release_date_year_month_day = std::chrono::year_month_day{ release_date };
+				const auto release_date_month = release_date_year_month_day.month();
+				const auto release_date_day = release_date_year_month_day.day();
+				if (release_date_month == std::chrono::January &&
+					(release_date_day == std::chrono::day{ 1u } || release_date_day == std::chrono::day{ 2u } || release_date_day == std::chrono::day{ 1u })
+				)
+					release_date += std::chrono::weeks{ 1 };
 
 				const auto adjusted_release_date = Preceding.adjust(release_date, cal);
 
