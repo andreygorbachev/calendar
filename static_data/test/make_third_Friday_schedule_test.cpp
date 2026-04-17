@@ -46,7 +46,7 @@ namespace gregorian
 			const auto expected = schedule{
 				util::days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				schedule::dates{
-					2026y / January / 9d, // case when the Januiary's release falls on 1st, 2nd or 3rd
+					2026y / January / 9d, // case when the January's release falls on 1st, 2nd or 3rd
 //					2026y / February / 11d, // probably government shutdown in 2026, so the release is later than usual
 					2026y / February / 6d,
 					2026y / March / 6d,

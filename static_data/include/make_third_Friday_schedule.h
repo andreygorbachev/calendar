@@ -73,7 +73,7 @@ namespace gregorian
 				const auto release_year_month_day = std::chrono::year_month_day{ release_date };
 				const auto release_month = release_year_month_day.month();
 				const auto release_day = release_year_month_day.day();
-				if ((_12th_wd == 0 && days_in_month <= 30u) ||
+				if (/*(_12th_wd == 0 && days_in_month <= 30u) ||*/
 					(release_month == std::chrono::January && (release_day == std::chrono::day{ 1u } || release_day == std::chrono::day{ 2u } || release_day == std::chrono::day{ 1u }))
 				)
 					release_date += std::chrono::weeks{ 1 };
