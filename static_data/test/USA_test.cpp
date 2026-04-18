@@ -37,26 +37,40 @@ namespace gregorian
 
 		TEST(static, SIFMA)
 		{
-//			const auto& cal0 = locate_calendar("America/SIFMA", Epoch.get_from());
-			const auto& cal0 = locate_calendar("America/SIFMA", 2018y / January / 1d); // at the moment we only start in 2018 (to cover SOFR)
+			const auto& cal0 = locate_calendar("America/SIFMA", Epoch.get_from());
+			EXPECT_FALSE(cal0.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
 			EXPECT_FALSE(cal0.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
 			EXPECT_FALSE(cal0.is_non_business_day(2022y / June / 20d)); // Juneteenth
 
-			const auto& cal1a = locate_calendar("America/SIFMA", 2018y / November / 30d );
+			const auto& cal1a = locate_calendar("America/SIFMA", 2012y / October / 28d);
+			EXPECT_FALSE(cal1a.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
 			EXPECT_FALSE(cal1a.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
 			EXPECT_FALSE(cal1a.is_non_business_day(2022y / June / 20d)); // Juneteenth
 
-			const auto& cal1b = locate_calendar("America/SIFMA", 2018y / December / 1d );
-			EXPECT_TRUE(cal1b.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
+			const auto& cal1b = locate_calendar("America/SIFMA", 2012y / October / 29d);
+			EXPECT_TRUE(cal1b.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
+			EXPECT_FALSE(cal1b.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
 			EXPECT_FALSE(cal1b.is_non_business_day(2022y / June / 20d)); // Juneteenth
 
-			const auto& cal2a = locate_calendar("America/SIFMA", 2021y / July / 13d);
-			EXPECT_TRUE(cal2a.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
+			const auto& cal2a = locate_calendar("America/SIFMA", 2018y / November / 30d );
+			EXPECT_TRUE(cal2a.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
+			EXPECT_FALSE(cal2a.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
 			EXPECT_FALSE(cal2a.is_non_business_day(2022y / June / 20d)); // Juneteenth
 
-			const auto& cal2b = locate_calendar("America/SIFMA", 2021y / July / 14d);
+			const auto& cal2b = locate_calendar("America/SIFMA", 2018y / December / 1d );
+			EXPECT_TRUE(cal2b.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
 			EXPECT_TRUE(cal2b.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
-			EXPECT_TRUE(cal2b.is_non_business_day(2022y / June / 20d)); // Juneteenth
+			EXPECT_FALSE(cal2b.is_non_business_day(2022y / June / 20d)); // Juneteenth
+
+			const auto& cal3a = locate_calendar("America/SIFMA", 2021y / July / 13d);
+			EXPECT_TRUE(cal3a.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
+			EXPECT_TRUE(cal3a.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
+			EXPECT_FALSE(cal3a.is_non_business_day(2022y / June / 20d)); // Juneteenth
+
+			const auto& cal3b = locate_calendar("America/SIFMA", 2021y / July / 14d);
+			EXPECT_TRUE(cal3b.is_non_business_day(2012y / October / 30d)); // Hurricane Sandy
+			EXPECT_TRUE(cal3b.is_non_business_day(2018y / December / 5d)); // In Honor of Former President George H.W.Bush
+			EXPECT_TRUE(cal3b.is_non_business_day(2022y / June / 20d)); // Juneteenth
 		}
 
 	}
