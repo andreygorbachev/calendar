@@ -381,6 +381,24 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year's Day 2012
+				2012y / January / 16d, // Martin Luther King Day
+				2012y / February / 20d, // President's Day
+				// 2012 April 6 Recommended Early Close (12:00PM)
+				// No Good Friday
+				2012y / May / 28d, // Memorial Day
+				2012y / July / 4d, // Independence Day
+				2012y / September / 3d, // Labor Day
+				2012y / October / 8d, // Columbus Day
+				// 2012 October 29 Recommended Early Close (12:00PM)
+				2012y / October / 30d, // N/A (Hurricane Sandy)
+				2012y / November / 12d, // Veterans Day
+				// 2012 November 23 Recommended Early Close (2pm EST)
+				2012y / November / 22d, // Thanksgiving Day
+				// 2012 December 24 Recommended Early Close (2pm EST)
+				2012y / December / 25d, // Christmas Day
+				// 2012 December 31 Recommended Early Close (2pm EST)
+
 				2013y / January / 1d, // New Year's Day
 				2013y / January / 21d, // Martin Luther King Day
 				2013y / February / 18d, // President's Day
@@ -491,7 +509,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2012y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -499,6 +517,24 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year's Day 2012
+				2012y / January / 16d, // Martin Luther King Day
+				2012y / February / 20d, // President's Day
+				// 2012 April 6 Recommended Early Close (12:00PM)
+				// No Good Friday
+				2012y / May / 28d, // Memorial Day
+				2012y / July / 4d, // Independence Day
+				2012y / September / 3d, // Labor Day
+				2012y / October / 8d, // Columbus Day
+				// 2012 October 29 Recommended Early Close (12:00PM)
+				2012y / October / 30d, // N/A (Hurricane Sandy)
+				2012y / November / 12d, // Veterans Day
+				// 2012 November 23 Recommended Early Close (2pm EST)
+				2012y / November / 22d, // Thanksgiving Day
+				// 2012 December 24 Recommended Early Close (2pm EST)
+				2012y / December / 25d, // Christmas Day
+				// 2012 December 31 Recommended Early Close (2pm EST)
+
 				2013y / January / 1d, // New Year's Day
 				2013y / January / 21d, // Martin Luther King Day
 				2013y / February / 18d, // President's Day
@@ -610,7 +646,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2012y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
