@@ -381,6 +381,23 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2013y / January / 1d, // New Year's Day
+				2013y / January / 21d, // Martin Luther King Day
+				2013y / February / 18d, // President's Day
+				// 2013 March 28 Recommended Early Close (2pm EST)
+				2013y / March / 29d, // Good Friday
+				// 2013 May 24 Recommended Early Close (2pm EST)
+				2013y / May / 27d, // Memorial Day
+				2013y / July / 4d, // Independence Day
+				2013y / September / 2d, // Labor Day
+				2013y / October / 14d, // Columbus Day
+				2013y / November / 11d, // Veterans Day
+				// 2013 November 29 Recommended Early Close (2pm EST)
+				2013y / November / 28d, // Thanksgiving Day
+				// 2013 December 24 Recommended Early Close (2pm EST)
+				2013y / December / 25d, // Christmas Day
+				// 2013 December 31 Recommended Early Close (2pm EST)
+
 				2014y / January / 1d, // New Year's Day 2014
 				2014y / January / 20d, // Martin Luther King Day
 				2014y / February / 17d, // President's Day
@@ -474,7 +491,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2014y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -482,6 +499,23 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2013y / January / 1d, // New Year's Day
+				2013y / January / 21d, // Martin Luther King Day
+				2013y / February / 18d, // President's Day
+				// 2013 March 28 Recommended Early Close (2pm EST)
+				2013y / March / 29d, // Good Friday
+				// 2013 May 24 Recommended Early Close (2pm EST)
+				2013y / May / 27d, // Memorial Day
+				2013y / July / 4d, // Independence Day
+				2013y / September / 2d, // Labor Day
+				2013y / October / 14d, // Columbus Day
+				2013y / November / 11d, // Veterans Day
+				// 2013 November 29 Recommended Early Close (2pm EST)
+				2013y / November / 28d, // Thanksgiving Day
+				// 2013 December 24 Recommended Early Close (2pm EST)
+				2013y / December / 25d, // Christmas Day
+				// 2013 December 31 Recommended Early Close (2pm EST)
+
 				2014y / January / 1d, // New Year's Day 2014
 				2014y / January / 20d, // Martin Luther King Day
 				2014y / February / 17d, // President's Day
@@ -576,7 +610,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2014y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
