@@ -381,6 +381,19 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2017y / January / 2d, // New Year's Day 2017
+				2017y / January / 16d, //Martin Luther King Day
+				2017y / February / 20d, // President's Day
+				2017y / April / 14d, // Good Friday
+				2017y / May / 29d, // Memorial Day
+				2017y / July / 4d, // Independence Day
+				2017y / September / 4d, // Labor Day
+				2017y / October / 9d, // Columbus Day
+				2017y / November / 23d, // Thanksgiving Day
+				2017y / December / 25d, // Christmas Day
+
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
+
 				2018y / January / 1d, // New Year's Day 2017/2018
 				2018y / January / 15d, // Martin Luther King Day
 				2018y / February / 19d, // Presidents Day
@@ -401,7 +414,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2018y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2017y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -409,6 +422,19 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2017y / January / 2d, // New Year's Day 2017
+				2017y / January / 16d, //Martin Luther King Day
+				2017y / February / 20d, // President's Day
+				2017y / April / 14d, // Good Friday
+				2017y / May / 29d, // Memorial Day
+				2017y / July / 4d, // Independence Day
+				2017y / September / 4d, // Labor Day
+				2017y / October / 9d, // Columbus Day
+				2017y / November / 23d, // Thanksgiving Day
+				2017y / December / 25d, // Christmas Day
+
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
+
 				2018y / January / 1d, // New Year's Day 2017/2018
 				2018y / January / 15d, // Martin Luther King Day
 				2018y / February / 19d, // Presidents Day
@@ -430,7 +456,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2018y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2017y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -455,8 +481,6 @@ namespace gregorian
 				2019y / December / 25d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
-
-				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
 				2020y / January / 1d, // New Year's Day 2019/2020
 				2020y / January / 20d, // Martin Luther King Day
@@ -555,8 +579,6 @@ namespace gregorian
 				2019y / December / 25d, // Christmas Day
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
 				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
-
-				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
 				2020y / January / 1d, // New Year's Day 2019/2020
 				2020y / January / 20d, // Martin Luther King Day
