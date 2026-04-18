@@ -46,7 +46,7 @@ namespace gregorian
 			for (auto m = period.get_from() / std::chrono::January - std::chrono::months{ 1 }; // reference week is in the previous month of the release date
 				m <= period.get_until() / std::chrono::December - std::chrono::months{ 1 };
 				m += std::chrono::months{ 1 } // data is released monthly
-			) // do we look over reference months or over release months?
+			)
 			{
 				const auto _12th_of_reference_month = m / std::chrono::day{ 12u };
 
@@ -54,8 +54,8 @@ namespace gregorian
 				const auto start_of_reference_period = std::chrono::sys_days{ _12th_of_reference_month } - std::chrono::days{ _12th_of_reference_month_weekday };
 
 				auto release_date = start_of_reference_period +
-					std::chrono::days{ 5 } + // move to Friday of the reference week
-					std::chrono::weeks{ 3 }; // move to the third Friday after reference week
+					std::chrono::days{ 5 } + // move to the Friday of the reference week
+					std::chrono::weeks{ 3 }; // move to the third Friday after the reference week
 
 				// Generally, the Employment Situation publication date is the third Friday after the week that includes the 12th.
 				// This usually results in the release being scheduled for the first Friday of the month following the reference month.
@@ -84,7 +84,7 @@ namespace gregorian
 			}
 
 			return schedule{
-				util::period{ period.get_from() / FirstDayOfJanuary, period.get_until() / LastDayOfDecember }, // this is unpleasant to go from years_period to days_period, maybe we should have a constructor of schedule which takes years_period and does the conversion itself, etc
+				util::period{ period.get_from() / FirstDayOfJanuary, period.get_until() / LastDayOfDecember }, // this is unpleasant because we go from years_period to days_period, maybe we should have a constructor of schedule which takes years_period and does the conversion itself, etc
 				release_dates
 			};
 		}
