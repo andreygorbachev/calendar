@@ -381,9 +381,27 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2015y / January / 1d, // New Year's Day 2015
+				2015y / January / 19d, // Martin Luther King Day
+				2015y / February / 16d, // President’s Day
+				// 2015 April 2 Recommended Early Close (2pm EST)
+				2015y / April / 3d, // Good Friday
+				// 2015 May 22 Recommended Early Close (2pm EST)
+				2015y / May / 25d, // Memorial Day
+				// 2015 July 2 Recommended Early Close (2pm EST)
+				2015y / July / 3d, // Independence Day
+				2015y / September / 7d, // Labor Day
+				2015y / October / 12d, // Columbus Day
+				2015y / November / 11d, // Veterans Day
+				2015y / November / 26d, // Thanksgiving Day
+				// 2015 November 27 Recommended Early Close (2pm EST)
+				// 2015 December 24 Recommended Early Close (2pm EST)
+				2015y / December / 25d, // Christmas Day
+				// 2015 December 31 Recommended Early Close (2pm EST)
+
 				2016y / January / 1d, // New Year's Day 2016
 				2016y / January / 18d, // Martin Luther King Day
-				2016y / February / 15d, // President’s Birthday
+				2016y / February / 15d, // President’s Day
 				// 2016 March 24 Recommended Early Close (2pm EST)
 				2016y / March / 25d, // Good Friday
 				// 2016 May 27 Recommended Early Close (2pm EST)
@@ -438,7 +456,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2016y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2015y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -446,9 +464,27 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2015y / January / 1d, // New Year's Day 2015
+				2015y / January / 19d, // Martin Luther King Day
+				2015y / February / 16d, // President’s Day
+				// 2015 April 2 Recommended Early Close (2pm EST)
+				2015y / April / 3d, // Good Friday
+				// 2015 May 22 Recommended Early Close (2pm EST)
+				2015y / May / 25d, // Memorial Day
+				// 2015 July 2 Recommended Early Close (2pm EST)
+				2015y / July / 3d, // Independence Day
+				2015y / September / 7d, // Labor Day
+				2015y / October / 12d, // Columbus Day
+				2015y / November / 11d, // Veterans Day
+				2015y / November / 26d, // Thanksgiving Day
+				// 2015 November 27 Recommended Early Close (2pm EST)
+				// 2015 December 24 Recommended Early Close (2pm EST)
+				2015y / December / 25d, // Christmas Day
+				// 2015 December 31 Recommended Early Close (2pm EST)
+
 				2016y / January / 1d, // New Year's Day 2016
 				2016y / January / 18d, // Martin Luther King Day
-				2016y / February / 15d, // President’s Birthday
+				2016y / February / 15d, // President’s Day
 				// 2016 March 24 Recommended Early Close (2pm EST)
 				2016y / March / 25d, // Good Friday
 				// 2016 May 27 Recommended Early Close (2pm EST)
@@ -504,7 +540,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2016y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2015y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
