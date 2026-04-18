@@ -381,16 +381,40 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0a() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2016y / January / 1d, // New Year's Day 2016
+				2016y / January / 18d, // Martin Luther King Day
+				2016y / February / 15d, // President’s Birthday
+				// 2016 March 24 Recommended Early Close (2pm EST)
+				2016y / March / 25d, // Good Friday
+				// 2016 May 27 Recommended Early Close (2pm EST)
+				2016y / May / 30d, // Memorial Day
+				// 2016 July 1 Recommended Early Close (2pm EST)
+				2016y / July / 4d, // Independence Day
+				2016y / September / 5d, // Labor Day
+				2016y / October / 10d, // Columbus Day
+				2016y / November / 11d, // Veterans Day
+				// 2016 November 25 Recommended Early Close (2pm EST)
+				2016y / November / 24d, // Thanksgiving Day
+				// 2016 December 23 Recommended Early Close (2pm EST)
+				2016y / December / 26d, // Christmas Day
+				// 2016 December 31 Recommended Early Close (2pm EST)
+
 				2017y / January / 2d, // New Year's Day 2017
-				2017y / January / 16d, //Martin Luther King Day
+				2017y / January / 16d, // Martin Luther King Day
 				2017y / February / 20d, // President's Day
+				// 2017 Aprul 13 Recommended Early Close (2pm EST)
 				2017y / April / 14d, // Good Friday
+				// 2017 May 26 Recommended Early Close (2pm EST)
 				2017y / May / 29d, // Memorial Day
+				// 2017 July 3 Recommended Early Close (2pm EST)
 				2017y / July / 4d, // Independence Day
 				2017y / September / 4d, // Labor Day
 				2017y / October / 9d, // Columbus Day
+				// 2017 November 24 Recommended Early Close (2pm EST)
 				2017y / November / 23d, // Thanksgiving Day
+				// 2017 December 22 Recommended Early Close (2pm EST)
 				2017y / December / 25d, // Christmas Day
+				// 2017 December 29 Recommended Early Close (2pm EST)
 
 				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
@@ -414,7 +438,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2017y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2016y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
@@ -422,16 +446,40 @@ namespace gregorian
 		static auto _make_SIFMA_known_schedule_part0b() -> schedule
 		{
 			auto holidays = schedule::dates{
+				2016y / January / 1d, // New Year's Day 2016
+				2016y / January / 18d, // Martin Luther King Day
+				2016y / February / 15d, // President’s Birthday
+				// 2016 March 24 Recommended Early Close (2pm EST)
+				2016y / March / 25d, // Good Friday
+				// 2016 May 27 Recommended Early Close (2pm EST)
+				2016y / May / 30d, // Memorial Day
+				// 2016 July 1 Recommended Early Close (2pm EST)
+				2016y / July / 4d, // Independence Day
+				2016y / September / 5d, // Labor Day
+				2016y / October / 10d, // Columbus Day
+				2016y / November / 11d, // Veterans Day
+				// 2016 November 25 Recommended Early Close (2pm EST)
+				2016y / November / 24d, // Thanksgiving Day
+				// 2016 December 23 Recommended Early Close (2pm EST)
+				2016y / December / 26d, // Christmas Day
+				// 2016 December 31 Recommended Early Close (2pm EST)
+
 				2017y / January / 2d, // New Year's Day 2017
-				2017y / January / 16d, //Martin Luther King Day
+				2017y / January / 16d, // Martin Luther King Day
 				2017y / February / 20d, // President's Day
+				// 2017 Aprul 13 Recommended Early Close (2pm EST)
 				2017y / April / 14d, // Good Friday
+				// 2017 May 26 Recommended Early Close (2pm EST)
 				2017y / May / 29d, // Memorial Day
+				// 2017 July 3 Recommended Early Close (2pm EST)
 				2017y / July / 4d, // Independence Day
 				2017y / September / 4d, // Labor Day
 				2017y / October / 9d, // Columbus Day
+				// 2017 November 24 Recommended Early Close (2pm EST)
 				2017y / November / 23d, // Thanksgiving Day
+				// 2017 December 22 Recommended Early Close (2pm EST)
 				2017y / December / 25d, // Christmas Day
+				// 2017 December 29 Recommended Early Close (2pm EST)
 
 				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
 
@@ -456,7 +504,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2017y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				days_period{ 2016y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
 				move(holidays)
 			};
 		}
