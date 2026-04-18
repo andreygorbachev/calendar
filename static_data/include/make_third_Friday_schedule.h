@@ -41,19 +41,19 @@ namespace gregorian
 			const calendar& cal
 		) -> schedule
 		{
-			auto dates = schedule::dates{};
+			auto release_dates = schedule::dates{};
 
-			for (auto month = period.get_from() / std::chrono::January - std::chrono::months{ 1 }; // reference week is in the previous month of the release date
-				month <= period.get_until() / std::chrono::December - std::chrono::months{ 1 };
-				month += std::chrono::months{ 1 } // data is released monthly
-				) // do we look over reference months or over release months?
+			for (auto m = period.get_from() / std::chrono::January - std::chrono::months{ 1 }; // reference week is in the previous month of the release date
+				m <= period.get_until() / std::chrono::December - std::chrono::months{ 1 };
+				m += std::chrono::months{ 1 } // data is released monthly
+			) // do we look over reference months or over release months?
 			{
-				const auto _12th = month / std::chrono::day{ 12u };
+				const auto _12th_of_reference_month = m / std::chrono::day{ 12u };
 
-				const auto _12th_wd = std::chrono::weekday{ _12th }.c_encoding(); // week Sunday to Saturday
-				const auto start_of_reference_week = std::chrono::sys_days{ _12th } - std::chrono::days{ _12th_wd };
+				const auto _12th_of_reference_month_weekday = std::chrono::weekday{ _12th_of_reference_month }.c_encoding(); // week Sunday to Saturday
+				const auto start_of_reference_period = std::chrono::sys_days{ _12th_of_reference_month } - std::chrono::days{ _12th_of_reference_month_weekday };
 
-				auto release_date = start_of_reference_week +
+				auto release_date = start_of_reference_period +
 					std::chrono::days{ 5 } + // move to Friday of the reference week
 					std::chrono::weeks{ 3 }; // move to the third Friday after reference week
 
@@ -68,24 +68,24 @@ namespace gregorian
 				//
 				// The Employment Situation release dates are approved by the Office of Management and Budget and published in advance.
 
-				const auto days_in_month = static_cast<unsigned>(std::chrono::year_month_day_last{ month / std::chrono::last }.day());
+				const auto days_in_reference_month = static_cast<unsigned>(std::chrono::year_month_day_last{ m / std::chrono::last }.day());
 					
 				const auto release_year_month_day = std::chrono::year_month_day{ release_date };
 				const auto release_month = release_year_month_day.month();
 				const auto release_day = release_year_month_day.day();
-				if (/*(_12th_wd == 0 && days_in_month <= 30u) ||*/
+				if (/*(_12th_of_reference_month_weekday == 0 && days_in_reference_month <= 30u) ||*/
 					(release_month == std::chrono::January && (release_day == std::chrono::day{ 1u } || release_day == std::chrono::day{ 2u } || release_day == std::chrono::day{ 1u }))
 				)
 					release_date += std::chrono::weeks{ 1 };
 
-				const auto adjusted_release_date = Preceding.adjust(release_date, cal);
+				release_date = Preceding.adjust(release_date, cal);
 
-				dates.insert(adjusted_release_date);
+				release_dates.insert(release_date);
 			}
 
 			return schedule{
 				util::period{ period.get_from() / FirstDayOfJanuary, period.get_until() / LastDayOfDecember }, // this is unpleasant to go from years_period to days_period, maybe we should have a constructor of schedule which takes years_period and does the conversion itself, etc
-				dates
+				release_dates
 			};
 		}
 
