@@ -137,7 +137,8 @@ namespace gregorian
 	{
 		auto result = sd;
 		while (!cal.is_business_day(result))
-			++result;
+//			result++;
+			result += std::chrono::days{ 1 };
 
 		return result;
 	}
@@ -157,8 +158,8 @@ namespace gregorian
 	{
 		auto result = sd;
 		while (!cal.is_business_day(result))
-			--result;
-
+//			result--;
+			result -= std::chrono::days{ 1 };
 		return result;
 	}
 
