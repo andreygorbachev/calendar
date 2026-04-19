@@ -133,7 +133,7 @@ namespace gregorian
 		for (
 			auto d = p.get_from();
 			d <= p.get_until();
-			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
+			d = ++std::chrono::sys_days{ d }
 		)
 			if (!s.contains(d))
 				ds.insert(d);

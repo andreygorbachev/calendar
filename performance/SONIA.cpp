@@ -61,7 +61,7 @@ static void experiment_is_business_day_year_month_day()
 		for (
 			auto d = SONIA_compound_index_from;
 			d <= until;
-			d = sys_days{ d } + days{ 1 }
+			d = ++sys_days{ d }
 		)
 			if (calendar.is_business_day(d))
 				number_of_business_days++;
@@ -106,7 +106,7 @@ static void experiment_is_business_day_sys_days()
 		for (
 			auto d = sys_days{ SONIA_compound_index_from };
 			d <= sys_days{ until };
-			d += days{ 1 }
+			++d
 		)
 			if (calendar.is_business_day(d))
 				number_of_business_days++;

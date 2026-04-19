@@ -275,7 +275,7 @@ namespace gregorian // should the namespace be called civil?
 		for (
 			auto d = f;
 			d <= u;
-			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
+			d = ++std::chrono::sys_days{ d }
 		)
 			non_business_days[d] = cal._is_non_business_day(d);
 	}

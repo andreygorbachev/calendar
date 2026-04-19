@@ -53,7 +53,7 @@ namespace gregorian
 		constexpr auto iota(const days_period& p) // closed period [from, until]
 		{
 			const auto& f = std::chrono::sys_days{ p.get_from() };
-			const auto u = std::chrono::sys_days{ p.get_until() } + std::chrono::days{ 1 };
+			const auto u = ++std::chrono::sys_days{ p.get_until() };
 
 			return _iota(f, u);
 		}
