@@ -46,7 +46,7 @@ int main()
 	for (
 		auto d = Epoch.get_from();
 		d <= Epoch.get_until();
-		d = ++sys_days{ d }
+		d = sys_days{ d } + days{ 1 }
 	)
 		cout << d << ", " << cal.is_business_day(d) << endl;
 
