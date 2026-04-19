@@ -89,7 +89,7 @@ namespace gregorian
 				throw runtime_error{ "calendar "s + string{ tz_name } + " could not be located"s };
 		}
 
-		auto locate_calendar(string_view tz_name, year_month_day as_of_date) -> const calendar&
+		auto locate_calendar(string_view tz_name, year_month_day as_of_date) -> const calendar& // should it be in static_data.cpp?
 		{
 			const auto& cal_versions = _locate_calendar_versions(tz_name);
 			assert(!cal_versions.empty());
