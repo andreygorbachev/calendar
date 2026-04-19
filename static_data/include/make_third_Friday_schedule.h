@@ -50,11 +50,13 @@ namespace gregorian
 			{
 				const auto _12th_of_reference_month = m / std::chrono::day{ 12u };
 
-				const auto _12th_of_reference_month_weekday = std::chrono::weekday{ _12th_of_reference_month }.c_encoding(); // week Sunday to Saturday
-				const auto start_of_reference_period = std::chrono::sys_days{ _12th_of_reference_month } - std::chrono::days{ _12th_of_reference_month_weekday };
+				const auto _12th_of_reference_month_weekday = std::chrono::weekday{ _12th_of_reference_month }; // week Sunday to Saturday
+				const auto start_of_reference_period =
+					std::chrono::sys_days{ _12th_of_reference_month } -
+					std::chrono::days{ _12th_of_reference_month_weekday.c_encoding() };
 
 				auto release_date = start_of_reference_period +
-					std::chrono::days{ 5 } + // move to the Friday of the reference week
+					std::chrono::days{ std::chrono::Friday.c_encoding() } + // move to the Friday of the reference week
 					std::chrono::weeks{ 3 }; // move to the third Friday after the reference week
 
 				// Generally, the Employment Situation publication date is the third Friday after the week that includes the 12th.
@@ -71,12 +73,13 @@ namespace gregorian
 				const auto days_in_reference_month = static_cast<unsigned>(std::chrono::year_month_day_last{ m / std::chrono::last }.day());
 					
 				const auto release_year_month_day = std::chrono::year_month_day{ release_date };
+				const auto release_year = release_year_month_day.year();
 				const auto release_month = release_year_month_day.month();
 				const auto release_day = release_year_month_day.day();
-				if (/*(_12th_of_reference_month_weekday == 0 && days_in_reference_month <= 30u) ||*/
+				if ((_12th_of_reference_month_weekday == std::chrono::Sunday && days_in_reference_month <= 30u) ||
 					(release_month == std::chrono::January && (release_day == std::chrono::day{ 1u } || release_day == std::chrono::day{ 2u } || release_day == std::chrono::day{ 1u }))
 				)
-					release_date += std::chrono::weeks{ 1 };
+					release_date = release_year / release_month / std::chrono::Friday[2];
 
 				release_date = Preceding.adjust(release_date, cal);
 
