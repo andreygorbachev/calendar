@@ -36,7 +36,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		inline auto _make_third_Friday_schedule(
+		inline auto _make_third_Friday_schedule( // should it be in a source file?
 			const util::years_period& period,
 			const calendar& cal
 		) -> schedule
