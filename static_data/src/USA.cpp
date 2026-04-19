@@ -70,6 +70,8 @@ namespace gregorian
 		// part1 - after Juneteenth
 
 
+		// is it better to generate holidays for all dates (including known),
+		// but adjust them from time to time for "unexpected" non-business days, like hurricane
 
 		static auto _make_USA_Federal_known_schedule_part0() -> schedule
 		{
