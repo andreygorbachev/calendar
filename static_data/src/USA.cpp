@@ -1096,35 +1096,35 @@ namespace gregorian
 		// is there a way to forecast when full days are demoted to half days?
 		static auto _make_SIFMA_generated_schedule_part0() -> schedule
 		{
-			const auto rules = annual_holiday_storage{
-				&NewYearsDay,
+			const auto p = util::years_period{ 2013y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
 				&_MemorialDay,
-				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
-				&_ThanksgivingDay,
+				&_ThanksgivingDay
+			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) }; // list of US holidays is as such as we can get away with this
+			cal0.substitute(Following);
+
+			// here we do not follow K.8 calendar (sometimes we'll have a K.8 business day, but not a business day in SIFMA)
+			const auto rules1 = annual_holiday_storage{
+				&NewYearsDay,
+				&_IndependenceDay, // U.S. Independence Day
 				&ChristmasDay
 			};
 
-			const auto s = make_holiday_schedule(
-				util::years_period{ 2013y, Epoch.get_until().year() },
-				rules
-			);
+			auto s1 = make_holiday_schedule(p, rules1);
 
-			auto cal0 = calendar{
-				SundayWeekend,
-				s
-			};
-			cal0.substitute(Following);
-
-			const auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				schedule{ s.get_period(), {} }
-			};
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
 
 			const auto cal = cal0 | cal1;
 
@@ -1133,35 +1133,34 @@ namespace gregorian
 
 		static auto _make_SIFMA_generated_schedule_part1() -> schedule
 		{
-			const auto rules = annual_holiday_storage{
-				&NewYearsDay,
+			const auto p = util::years_period{ 2019y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
 				&_MemorialDay,
-				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
-				&_ThanksgivingDay,
-				&ChristmasDay
-			}; // we can make it from part0
-
-			const auto s = make_holiday_schedule(
-				util::years_period{ 2019y, Epoch.get_until().year() },
-				rules
-			);
-
-			auto cal0 = calendar{
-				SundayWeekend,
-				s
+				&_ThanksgivingDay
 			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
 			cal0.substitute(Following);
 
-			const auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				schedule{ s.get_period(), {} }
+			const auto rules1 = annual_holiday_storage{
+				&NewYearsDay,
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
 			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
 
 			const auto cal = cal0 | cal1;
 
@@ -1170,35 +1169,34 @@ namespace gregorian
 
 		static auto _make_SIFMA_generated_schedule_part2() -> schedule
 		{
-			const auto rules = annual_holiday_storage{
-				&NewYearsDay,
+			const auto p = util::years_period{ 2024y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
 				&_MemorialDay,
-				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
-				&_ThanksgivingDay,
-				&ChristmasDay
-			}; // we can make it from part0
-
-			const auto s = make_holiday_schedule(
-				util::years_period{ 2024y, Epoch.get_until().year() },
-				rules
-			);
-
-			auto cal0 = calendar{
-				SundayWeekend,
-				s
+				&_ThanksgivingDay
 			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
 			cal0.substitute(Following);
 
-			const auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				schedule{ s.get_period(), {} }
+			const auto rules1 = annual_holiday_storage{
+				&NewYearsDay,
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
 			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
 
 			const auto cal = cal0 | cal1;
 
@@ -1207,37 +1205,36 @@ namespace gregorian
 
 		static auto _make_SIFMA_generated_schedule_part3() -> schedule
 		{
-			const auto rules = annual_holiday_storage{
-				&NewYearsDay,
+//			const auto p = util::years_period{ 2028y, Epoch.get_until().year() };
+			const auto p = util::years_period{ 2029y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
 				&_MemorialDay,
-				&_Juneteenth,
-				&_IndependenceDay, // U.S. Independence Day
 				&_LaborDay,
 				&_ColumbusDay,
 				&_VeteransDay,
-				&_ThanksgivingDay,
-				&ChristmasDay
-			}; // we can make it from part0
-
-			const auto s = make_holiday_schedule(
-//				util::years_period{ 2028y, Epoch.get_until().year() },
-				util::years_period{ 2029y, Epoch.get_until().year() },
-				rules
-			);
-
-			auto cal0 = calendar{
-				SundayWeekend,
-				s
+				&_ThanksgivingDay
 			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
 			cal0.substitute(Following);
 
-			const auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				schedule{ s.get_period(), {} }
+			const auto rules1 = annual_holiday_storage{
+				&NewYearsDay,
+				&_Juneteenth,
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
 			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
 
 			const auto cal = cal0 | cal1;
 
