@@ -46,7 +46,7 @@ namespace gregorian
 		auto p = days_period{ 2023y / April / 1d, 2023y / April / 1d };
 		auto ds = schedule::dates{};
 
-		EXPECT_NO_THROW(schedule(move(p), move(ds))); // ok to have a schedule for just 1 day
+		EXPECT_NO_THROW(schedule(std::move(p), std::move(ds))); // ok to have a schedule for just 1 day
 	}
 
 	TEST(schedule, constructor_2)

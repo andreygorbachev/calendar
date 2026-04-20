@@ -142,7 +142,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2012y / FirstDayOfJanuary, 2019y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -171,7 +171,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2020y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -191,7 +191,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -212,7 +212,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -277,7 +277,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -357,11 +357,11 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2019y / June / 7d, move(cal1) },
-				{ 2020y / November / 12d, move(cal2) },
-				{ 2022y / September / 10d, move(cal3) },
-				{ 2022y / November / 6d, move(cal4) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2019y / June / 7d, std::move(cal1) },
+				{ 2020y / November / 12d, std::move(cal2) },
+				{ 2022y / September / 10d, std::move(cal3) },
+				{ 2022y / November / 6d, std::move(cal4) },
 			};
 		}
 
@@ -461,7 +461,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2012y / FirstDayOfJanuary, 2019y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -491,7 +491,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2020y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -512,7 +512,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -534,7 +534,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -605,7 +605,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -688,11 +688,11 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2019y / June / 7d, move(cal1) },
-				{ 2020y / November / 12d, move(cal2) },
-				{ 2022y / September / 10d, move(cal3) },
-				{ 2022y / November / 6d, move(cal4) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2019y / June / 7d, std::move(cal1) },
+				{ 2020y / November / 12d, std::move(cal2) },
+				{ 2022y / September / 10d, std::move(cal3) },
+				{ 2022y / November / 6d, std::move(cal4) },
 			};
 		}
 
@@ -793,7 +793,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2012y / FirstDayOfJanuary, 2019y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -825,7 +825,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2020y / FirstDayOfJanuary, 2021y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -847,7 +847,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -870,7 +870,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2022y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -947,7 +947,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -1030,11 +1030,11 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2019y / June / 7d, move(cal1) },
-				{ 2020y / November / 12d, move(cal2) },
-				{ 2022y / September / 10d, move(cal3) },
-				{ 2022y / November / 6d, move(cal4) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2019y / June / 7d, std::move(cal1) },
+				{ 2020y / November / 12d, std::move(cal2) },
+				{ 2022y / September / 10d, std::move(cal3) },
+				{ 2022y / November / 6d, std::move(cal4) },
 			};
 		}
 
@@ -1236,7 +1236,7 @@ namespace gregorian
 
 			return schedule{
 				util::days_period{ Epoch.get_from(), 2027y / LastDayOfDecember},
-				move(meeting_dates)
+				std::move(meeting_dates)
 			};
 		}
 
@@ -1257,7 +1257,7 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 			};
 		}
 

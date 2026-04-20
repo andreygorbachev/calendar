@@ -116,7 +116,7 @@ static auto _make_London_schedule() -> schedule
 
 	return schedule{
 		days_period{ _Epoch, year{ 2024 } / LastDayOfDecember },
-		move(holidays)
+		std::move(holidays)
 	};
 }
 

@@ -102,7 +102,7 @@ namespace gregorian
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
 				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -121,7 +121,7 @@ namespace gregorian
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
 				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -140,7 +140,7 @@ namespace gregorian
 			return schedule{
 //				days_period{ Epoch.get_from(), 2030y / LastDayOfDecember },
 				days_period{ 2023 / FirstDayOfJanuary, 2026y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -209,7 +209,7 @@ namespace gregorian
 //					p.get_from() / FirstDayOfJanuary,
 //					p.get_until() / LastDayOfDecember
 //				},
-//				move(hols)
+//				std::move(hols)
 //			};
 //		}
 
@@ -280,7 +280,7 @@ namespace gregorian
 			auto cal0 = _make_Canada_Federal_calendar();
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 			};
 		}
 
@@ -289,7 +289,7 @@ namespace gregorian
 			auto cal0 = _make_Ontario_calendar(); // should it be Toronto calendar?
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 			};
 		}
 
@@ -298,7 +298,7 @@ namespace gregorian
 			auto cal0 = _make_Quebec_calendar(); // should it be Montreal calendar (or Quebec City)?
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 			};
 		}
 

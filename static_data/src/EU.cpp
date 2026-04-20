@@ -73,7 +73,7 @@ namespace gregorian
 			// please note that holidays are not adjusted in T2
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 			};
 		}
 

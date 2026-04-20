@@ -343,7 +343,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2001y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -1342,7 +1342,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2024y / FirstDayOfJanuary, 2099y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 		// notes from the above document:
@@ -1416,8 +1416,8 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2023y / December / 21d, move(cal1) }, // was enacted as Law No. 14,759 on 21 December 2023
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2023y / December / 21d, std::move(cal1) }, // was enacted as Law No. 14,759 on 21 December 2023
 			};
 		}
 

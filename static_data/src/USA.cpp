@@ -189,7 +189,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -319,7 +319,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -348,7 +348,7 @@ namespace gregorian
 
 			const auto s = schedule{
 				days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
-				move(holidays)
+				std::move(holidays)
 			};
 
 			return _make_USA_Federal_known_schedule_part0() | s;
@@ -366,7 +366,7 @@ namespace gregorian
 
 			const auto s = schedule{
 				days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 
 			return _make_USA_Federal_known_schedule_part1() | s;
@@ -402,7 +402,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -430,7 +430,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -548,7 +548,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -667,7 +667,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -765,7 +765,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -865,7 +865,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -964,7 +964,7 @@ namespace gregorian
 
 			return schedule{
 				days_period{ 2024y / January / 1d, 2028y / LastDayOfDecember },
-				move(holidays)
+				std::move(holidays)
 			};
 		}
 
@@ -1262,8 +1262,8 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2021y / June / 17d, move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 			};
 		}
 
@@ -1284,8 +1284,8 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
-				{ 2021y / June / 17d, move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
 			};
 		}
 
@@ -1326,17 +1326,17 @@ namespace gregorian
 
 			// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
 			return {
-				{ cal0.get_schedule().get_period().get_from(), move(cal0) },
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
 
-				{ 2012y / October / 29d, move(cal1) },
+				{ 2012y / October / 29d, std::move(cal1) },
 				// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
 
-				{ 2018y / December / 1d, move(cal2) },
+				{ 2018y / December / 1d, std::move(cal2) },
 				// * Press Releases
 				// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
 				// Published on : December 1, 2018
 
-				{ 2021y / July / 14d, move(cal3) },
+				{ 2021y / July / 14d, std::move(cal3) },
 				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
 				// * Press Releases
 				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
