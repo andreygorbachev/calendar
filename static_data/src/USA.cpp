@@ -1099,6 +1099,7 @@ namespace gregorian
 			const auto p = util::years_period{ 2013y, Epoch.get_until().year() };
 
 			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
@@ -1116,7 +1117,6 @@ namespace gregorian
 
 			// here we do not follow K.8 calendar (sometimes we'll have a K.8 business day, but not a business day in SIFMA)
 			const auto rules1 = annual_holiday_storage{
-				&NewYearsDay,
 				&_IndependenceDay, // U.S. Independence Day
 				&ChristmasDay
 			};
@@ -1136,6 +1136,7 @@ namespace gregorian
 			const auto p = util::years_period{ 2019y, Epoch.get_until().year() };
 
 			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
@@ -1152,7 +1153,6 @@ namespace gregorian
 			cal0.substitute(Following);
 
 			const auto rules1 = annual_holiday_storage{
-				&NewYearsDay,
 				&_IndependenceDay, // U.S. Independence Day
 				&ChristmasDay
 			};
@@ -1172,6 +1172,7 @@ namespace gregorian
 			const auto p = util::years_period{ 2024y, Epoch.get_until().year() };
 
 			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
@@ -1188,7 +1189,6 @@ namespace gregorian
 			cal0.substitute(Following);
 
 			const auto rules1 = annual_holiday_storage{
-				&NewYearsDay,
 				&_IndependenceDay, // U.S. Independence Day
 				&ChristmasDay
 			};
@@ -1209,6 +1209,7 @@ namespace gregorian
 			const auto p = util::years_period{ 2029y, Epoch.get_until().year() };
 
 			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
 				&_MartinLutherKing, // Martin Luther King Day
 				&_Washington, // Presidents Day
 				&GoodFriday,
@@ -1225,7 +1226,6 @@ namespace gregorian
 			cal0.substitute(Following);
 
 			const auto rules1 = annual_holiday_storage{
-				&NewYearsDay,
 				&_Juneteenth,
 				&_IndependenceDay, // U.S. Independence Day
 				&ChristmasDay
