@@ -79,7 +79,7 @@ static auto make_Sunday_to_Monday_adjusted_calendar(const util::years_period& pe
 
 	// add Saturdays
 	const auto cal1 = calendar{
-		SaturdaySundayWeekend,
+		SaturdaySundayWeekend, // tecnhically should be SaturdayWeekend, but as its not available we use SaturdaySundayWeekend instead
 		schedule{ s.get_period(), {} }
 	};
 
