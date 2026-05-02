@@ -28,6 +28,7 @@
 #include <weekend.h>
 #include <annual_holiday_interface.h>
 #include <annual_holidays.h>
+#include <business_day_adjusters.h>
 #include <calendar.h>
 
 #include <chrono>
@@ -105,10 +106,15 @@ namespace gregorian
 //				2026y / December / 25d, // Navidad
 			};
 
-			return schedule{
+			auto s = schedule{
 				days_period{ 2006y / FirstDayOfJanuary, 2006y / LastDayOfDecember },
 				std::move(holidays)
 			};
+
+			auto cal = calendar{ SaturdaySundayWeekend, std::move(s) };
+			cal.substitute(Nearest); // it seems that the SEGOB's publications are not adjusted
+
+			return cal.get_schedule();
 		}
 
 
@@ -129,10 +135,15 @@ namespace gregorian
 				&ChristmasDay
 			};
 
-			return make_holiday_schedule(
+			auto s = make_holiday_schedule(
 				util::years_period{ 2007y, Epoch.get_until().year() },
 				rules
 			);
+
+			auto cal = calendar{ SaturdaySundayWeekend, std::move(s) };
+			cal.substitute(Nearest);
+
+			return cal.get_schedule();
 		}
 
 		auto make_CNBV_calendar_versions() -> _calendar_versions
