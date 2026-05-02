@@ -61,6 +61,7 @@ namespace gregorian
 
 
 
+		// there was also some changes announced in 2005 about shifting holidays to make long weekends - we might not be handliong them correctly
 		const auto _ConstitutionDay = weekday_indexed_holiday{ February / Monday[1] }; // Observance
 		const auto _BenitoJuarezsBirthday = weekday_indexed_holiday{ March / Monday[3] }; // Observance
 		const auto _HolyThursday = offset_holiday{ &_Easter, std::chrono::days{ -3 } }; // should it be in the main library?
@@ -71,24 +72,41 @@ namespace gregorian
 		const auto _FeastOfOurLadyOfGuadalupe = named_holiday{ December / 12d };
 
 
+
 		static auto _make_CNBV_known_schedule_part0() -> schedule // is it a correct name? (CNBV)
 		{
-			auto holidays = schedule::dates{ // should we include day of the week into comments?
-				2026y / January / 1d, // Ano Nuevo
-				2026y / February / 2d, // Día de la Constitución
-				2026y / March / 16d, // Natalicio de Benito Juárez
-				2026y / April / 2d, // Jueves Santo
-				2026y / April / 3d, // Viernes Santo
-				2026y / May / 1d, // Día del Trabajo
-				2026y / September / 16d, // Día de la Independencia
-				2026y / November / 2d, // Día de los Fieles Difuntos (Día de Muertos)
-				2026y / November / 16d, // Día de la Revolución
-				2026y / December / 12d, // Día de la Virgen de Guadalupe
-				2026y / December / 25d, // Navidad
+			auto holidays = schedule::dates{
+
+				// from https://sidof.segob.gob.mx/notas/2102331
+
+				2006y / January / 1d,
+				2006y / February / 5d,
+				2006y / March / 21d,
+				2006y / April / 13d,
+				2006y / April / 14d,
+				2006y / May / 1d,
+				2006y / September / 16d,
+				2006y / November / 2d,
+				2006y / November / 20d,
+				2006y / December / 1d,
+				2006y / December / 12d,
+				2006y / December / 25d,
+
+//				2026y / January / 1d, // Ano Nuevo
+//				2026y / February / 2d, // Día de la Constitución
+//				2026y / March / 16d, // Natalicio de Benito Juárez
+//				2026y / April / 2d, // Jueves Santo
+//				2026y / April / 3d, // Viernes Santo
+//				2026y / May / 1d, // Día del Trabajo
+//				2026y / September / 16d, // Día de la Independencia
+//				2026y / November / 2d, // Día de los Fieles Difuntos (Día de Muertos)
+//				2026y / November / 16d, // Día de la Revolución
+//				2026y / December / 12d, // Día de la Virgen de Guadalupe
+//				2026y / December / 25d, // Navidad
 			};
 
 			return schedule{
-				days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2006y / FirstDayOfJanuary, 2006y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
@@ -112,8 +130,7 @@ namespace gregorian
 			};
 
 			return make_holiday_schedule(
-//				util::years_period{ 2027y, Epoch.get_until().year() },
-				util::years_period{ 2006y, Epoch.get_until().year() },
+				util::years_period{ 2007y, Epoch.get_until().year() },
 				rules
 			);
 		}
@@ -122,7 +139,7 @@ namespace gregorian
 		{
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-//				_make_CNBV_known_schedule_part0() +
+				_make_CNBV_known_schedule_part0() +
 				_make_CNBV_generated_schedule_part0()
 			};
 
