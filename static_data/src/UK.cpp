@@ -43,29 +43,308 @@ namespace gregorian
 
 	using namespace util;
 
-       namespace static_data
-		{
-
-		// Queen's Diamond Jubilee
-		// (which was announced on 5 January 2010, before Epoch started - https://en.wikipedia.org/wiki/Diamond_Jubilee_of_Elizabeth_II#:~:text=old%20Katherine%20Dewar.-,Extended%20weekend,honour%20of%20the%20Diamond%20Jubilee.)
+	namespace static_data
+	{
+		
+		// part0 before Millennium Eve
+		// (which was announced on 3 June 1998 - https://hansard.parliament.uk/Commons/1998-06-03/debates/a62c58b8-642b-4c7a-8727-93fee4d70e00/MillenniumBankHoliday)
+		//
+		// part1 - afer Millennium Eve and before Golden Jubilee
+		// (which was announced on 23 November 2000 - https://en.wikipedia.org/wiki/Golden_Jubilee_of_Elizabeth_II)
 		// 
-		// part0 - after Queen's Diamond Jubilee and before 75th anniversary of VE Day
+		// part2a - after Queen's Golden Jubilee and before Queen's Diamond Jubilee
+		// (which was announced on 5 January 2010 - https://en.wikipedia.org/wiki/Diamond_Jubilee_of_Elizabeth_II#:~:text=old%20Katherine%20Dewar.-,Extended%20weekend,honour%20of%20the%20Diamond%20Jubilee.)
+		// 
+		// part2b - after Queen's Diamond Jubilee and before Royal wedding
+		// (which was announced on 23 November 2010 - https://www.gov.uk/government/news/pm-welcomes-announcement-of-date-for-royal-wedding)
+		// 
+		// part3 - after Royal wedding and before 75th anniversary of VE Day
 		// (which was announced on 7 June 2019 - https://www.gov.uk/government/news/2020-may-bank-holiday-will-be-moved-to-mark-75th-anniversary-of-ve-day)
 		// 
-		// part1 - after 75th anniversary of VE Day and before Queen’s Platinum Jubilee in 2022
+		// part4 - after 75th anniversary of VE Day and before Queen’s Platinum Jubilee in 2022
 		// (which was announced on 12 November 2020 - https://www.gov.uk/government/news/extra-bank-holiday-to-mark-the-queens-platinum-jubilee-in-2022)
 		// 
-		// part2a - after Queen’s Platinum Jubilee in 2022 and before State Funeral of Queen Elizabeth II
+		// part5a - after Queen’s Platinum Jubilee in 2022 and before State Funeral of Queen Elizabeth II
 		// (which was announced on 10 September 2022 - https://www.gov.uk/government/news/bank-holiday-announced-for-her-majesty-queen-elizabeth-iis-state-funeral-on-monday-19-september)
 		// 
-		// part2b - after State Funeral of Queen Elizabeth II and before coronation of King Charles III
+		// part5b - after State Funeral of Queen Elizabeth II and before coronation of King Charles III
 		// (which was announced on 6 November 2022 - https://www.gov.uk/government/news/bank-holiday-proclaimed-in-honour-of-the-coronation-of-his-majesty-king-charles-iii)
 		// 
-		// part3 - after coronation of King Charles III
+		// part6 - after coronation of King Charles III
 
 		static auto _make_England_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+
+				// from https://www.dmo.gov.uk/ (file ukbankholidays-nov23a.xls)
+
+				1998y / January / 1d,
+				1998y / April / 10d,
+				1998y / April / 13d,
+				1998y / May / 4d,
+				1998y / May / 25d,
+				1998y / August / 31d,
+				1998y / December / 25d,
+				1998y / December / 28d
+			};
+
+			return schedule{
+				days_period{ 1998y / FirstDayOfJanuary, 1998y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+
+		static auto _make_England_known_schedule_part1() -> schedule
+		{
+			auto holidays = schedule::dates{
+				1999y / January / 1d,
+				1999y / April / 2d,
+				1999y / April / 5d,
+				1999y / May / 3d,
+				1999y / May / 31d,
+				1999y / August / 30d,
+				1999y / December / 27d,
+				1999y / December / 28d,
+				1999y / December / 31d, // Millennium Eve
+
+				2000y / January / 3d,
+				2000y / April / 21d,
+				2000y / April / 24d,
+				2000y / May / 1d,
+				2000y / May / 29d,
+				2000y / August / 28d,
+				2000y / December / 25d,
+				2000y / December / 26d,
+
+				2001y / January / 1d,
+				2001y / April / 13d,
+				2001y / April / 16d,
+				2001y / May / 7d,
+				2001y / May / 28d,
+				2001y / August / 27d,
+				2001y / December / 25d,
+				2001y / December / 26d
+			};
+
+			return schedule{
+				days_period{ 1999y / FirstDayOfJanuary, 2001y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+
+		static auto _make_England_known_schedule_part2a() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2002y / January / 1d,
+				2002y / March / 29d,
+				2002y / April / 1d,
+				2002y / May / 6d,
+				2002y / June / 3d, // Golden Jubilee
+				2002y / June / 4d, // Golden Jubilee
+				2002y / August / 26d,
+				2002y / December / 25d,
+				2002y / December / 26d,
+
+				2003y / January / 1d,
+				2003y / April / 18d,
+				2003y / April / 21d,
+				2003y / May / 5d,
+				2003y / May / 26d,
+				2003y / August / 25d,
+				2003y / December / 25d,
+				2003y / December / 26d,
+
+				2004y / January / 1d,
+				2004y / April / 9d,
+				2004y / April / 12d,
+				2004y / May / 3d,
+				2004y / May / 31d,
+				2004y / August / 30d,
+				2004y / December / 27d,
+				2004y / December / 28d,
+
+				2005y / January / 3d,
+				2005y / March / 25d,
+				2005y / March / 28d,
+				2005y / May / 2d,
+				2005y / May / 30d,
+				2005y / August / 29d,
+				2005y / December / 26d,
+				2005y / December / 27d,
+
+				2006y / January / 2d,
+				2006y / April / 14d,
+				2006y / April / 17d,
+				2006y / May / 1d,
+				2006y / May / 29d,
+				2006y / August / 28d,
+				2006y / December / 25d,
+				2006y / December / 26d,
+
+				2007y / January / 1d,
+				2007y / April / 6d,
+				2007y / April / 9d,
+				2007y / May / 7d,
+				2007y / May / 28d,
+				2007y / August / 27d,
+				2007y / December / 25d,
+				2007y / December / 26d,
+
+				2008y / January / 1d,
+				2008y / March / 21d,
+				2008y / March / 24d,
+				2008y / May / 5d,
+				2008y / May / 26d,
+				2008y / August / 25d,
+				2008y / December / 25d,
+				2008y / December / 26d,
+
+				2009y / January / 1d,
+				2009y / April / 10d,
+				2009y / April / 13d,
+				2009y / May / 4d,
+				2009y / May / 25d,
+				2009y / August / 31d,
+				2009y / December / 25d,
+				2009y / December / 28d,
+
+				2010y / January / 1d,
+				2010y / April / 2d,
+				2010y / April / 5d,
+				2010y / May / 3d,
+				2010y / May / 31d,
+				2010y / August / 30d,
+				2010y / December / 27d,
+				2010y / December / 28d,
+
+				2011y / January / 3d,
+				2011y / April / 22d,
+				2011y / April / 25d,
+				2011y / May / 2d,
+				2011y / May / 30d,
+				2011y / August / 29d,
+				2011y / December / 26d,
+				2011y / December / 27d
+			};
+
+			return schedule{
+				days_period{ 2002y / FirstDayOfJanuary, 2011y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+
+		static auto _make_England_known_schedule_part2b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2002y / January / 1d,
+				2002y / March / 29d,
+				2002y / April / 1d,
+				2002y / May / 6d,
+				2002y / June / 3d, // Golden Jubilee
+				2002y / June / 4d, // Golden Jubilee
+				2002y / August / 26d,
+				2002y / December / 25d,
+				2002y / December / 26d,
+
+				2003y / January / 1d,
+				2003y / April / 18d,
+				2003y / April / 21d,
+				2003y / May / 5d,
+				2003y / May / 26d,
+				2003y / August / 25d,
+				2003y / December / 25d,
+				2003y / December / 26d,
+
+				2004y / January / 1d,
+				2004y / April / 9d,
+				2004y / April / 12d,
+				2004y / May / 3d,
+				2004y / May / 31d,
+				2004y / August / 30d,
+				2004y / December / 27d,
+				2004y / December / 28d,
+
+				2005y / January / 3d,
+				2005y / March / 25d,
+				2005y / March / 28d,
+				2005y / May / 2d,
+				2005y / May / 30d,
+				2005y / August / 29d,
+				2005y / December / 26d,
+				2005y / December / 27d,
+
+				2006y / January / 2d,
+				2006y / April / 14d,
+				2006y / April / 17d,
+				2006y / May / 1d,
+				2006y / May / 29d,
+				2006y / August / 28d,
+				2006y / December / 25d,
+				2006y / December / 26d,
+
+				2007y / January / 1d,
+				2007y / April / 6d,
+				2007y / April / 9d,
+				2007y / May / 7d,
+				2007y / May / 28d,
+				2007y / August / 27d,
+				2007y / December / 25d,
+				2007y / December / 26d,
+
+				2008y / January / 1d,
+				2008y / March / 21d,
+				2008y / March / 24d,
+				2008y / May / 5d,
+				2008y / May / 26d,
+				2008y / August / 25d,
+				2008y / December / 25d,
+				2008y / December / 26d,
+
+				2009y / January / 1d,
+				2009y / April / 10d,
+				2009y / April / 13d,
+				2009y / May / 4d,
+				2009y / May / 25d,
+				2009y / August / 31d,
+				2009y / December / 25d,
+				2009y / December / 28d,
+
+				2010y / January / 1d,
+				2010y / April / 2d,
+				2010y / April / 5d,
+				2010y / May / 3d,
+				2010y / May / 31d,
+				2010y / August / 30d,
+				2010y / December / 27d,
+				2010y / December / 28d,
+
+				2011y / January / 3d,
+				2011y / April / 22d,
+				2011y / April / 25d,
+				2011y / April / 29d, // Royal Wedding
+				2011y / May / 2d,
+				2011y / May / 30d,
+				2011y / August / 29d,
+				2011y / December / 26d,
+				2011y / December / 27d
+			};
+
+			return schedule{
+				days_period{ 2002y / FirstDayOfJanuary, 2011y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+
+		static auto _make_England_known_schedule_part3() -> schedule
+		{
+			auto holidays = schedule::dates{
+
+				// from https://www.gov.uk/bank-holidays
+
 				2012y / January / 2d, // New Year’s Day (substitute day)
 				2012y / April / 6d, // Good Friday
 				2012y / April / 9d, // Easter Monday
@@ -147,7 +426,7 @@ namespace gregorian
 		}
 
 
-		static auto _make_England_known_schedule_part1() -> schedule
+		static auto _make_England_known_schedule_part4() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2020y / January / 1d, // New Year’s Day
@@ -175,7 +454,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _make_England_known_schedule_part2a() -> schedule
+		static auto _make_England_known_schedule_part5a() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2022y / January / 3d, // New Year’s Day (substitute day)
@@ -195,7 +474,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _make_England_known_schedule_part2b() -> schedule
+		static auto _make_England_known_schedule_part5b() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2022y / January / 3d, // New Year’s Day (substitute day)
@@ -216,7 +495,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _make_England_known_schedule_part3() -> schedule
+		static auto _make_England_known_schedule_part6() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 				2023y / January / 2d, // New Year’s Day (substitute day)
@@ -321,22 +600,30 @@ namespace gregorian
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
 				_make_England_known_schedule_part0() +
-				_make_England_generated_schedule(years_period{ 2020y, Epoch.get_until().year() })
+				_make_England_generated_schedule(years_period{ 1999y, Epoch.get_until().year() })
 			};
 
 			auto cal1 = calendar{
 				SaturdaySundayWeekend,
 				_make_England_known_schedule_part0() +
 				_make_England_known_schedule_part1() +
-				_make_England_generated_schedule(years_period{ 2022y, Epoch.get_until().year() })
+				_make_England_generated_schedule(years_period{ 2002y, Epoch.get_until().year() })
 			};
 
-			auto cal2 = calendar{
+			auto cal2a = calendar{
 				SaturdaySundayWeekend,
 				_make_England_known_schedule_part0() +
 				_make_England_known_schedule_part1() +
 				_make_England_known_schedule_part2a() +
-				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+				_make_England_generated_schedule(years_period{ 2012y, Epoch.get_until().year() })
+			};
+
+			auto cal2b = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_generated_schedule(years_period{ 2012y, Epoch.get_until().year() })
 			};
 
 			auto cal3 = calendar{
@@ -344,7 +631,8 @@ namespace gregorian
 				_make_England_known_schedule_part0() +
 				_make_England_known_schedule_part1() +
 				_make_England_known_schedule_part2b() +
-				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+				_make_England_known_schedule_part3() +
+				_make_England_generated_schedule(years_period{ 2020y, Epoch.get_until().year() })
 			};
 
 			auto cal4 = calendar{
@@ -353,15 +641,54 @@ namespace gregorian
 				_make_England_known_schedule_part1() +
 				_make_England_known_schedule_part2b() +
 				_make_England_known_schedule_part3() +
+				_make_England_known_schedule_part4() +
+				_make_England_generated_schedule(years_period{ 2022y, Epoch.get_until().year() })
+			};
+
+			auto cal5a = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_known_schedule_part3() +
+				_make_England_known_schedule_part4() +
+				_make_England_known_schedule_part5a() +
+				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal5b = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_known_schedule_part3() +
+				_make_England_known_schedule_part4() +
+				_make_England_known_schedule_part5b() +
+				_make_England_generated_schedule(years_period{ 2023y, Epoch.get_until().year() })
+			};
+
+			auto cal6 = calendar{
+				SaturdaySundayWeekend,
+				_make_England_known_schedule_part0() +
+				_make_England_known_schedule_part1() +
+				_make_England_known_schedule_part2b() +
+				_make_England_known_schedule_part3() +
+				_make_England_known_schedule_part4() +
+				_make_England_known_schedule_part5b() +
+				_make_England_known_schedule_part6() +
 				_make_England_generated_schedule(years_period{ 2029y, Epoch.get_until().year() })
 			};
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-				{ 2019y / June / 7d, std::move(cal1) },
-				{ 2020y / November / 12d, std::move(cal2) },
-				{ 2022y / September / 10d, std::move(cal3) },
-				{ 2022y / November / 6d, std::move(cal4) },
+				{ 1998y / June / 3d, std::move(cal1) },
+				{ 2000y / November / 23d, std::move(cal2a) },
+				{ 2010y / January / 5d, std::move(cal2b) },
+				{ 2010y / November / 23d, std::move(cal3) },
+				{ 2019y / June / 7d, std::move(cal4) },
+				{ 2020y / November / 12d, std::move(cal5a) },
+				{ 2022y / September / 10d, std::move(cal5b) },
+				{ 2022y / November / 6d, std::move(cal6) },
 			};
 		}
 
