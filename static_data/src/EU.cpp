@@ -50,7 +50,7 @@ namespace gregorian
 			constexpr auto until = Epoch.get_until().year();
 			static_assert(from <= Epoch.get_from().year(), "Non-standard [from, until] should cover Epoch");
 
-			const auto LabourDay = weekday_indexed_holiday{ May / Monday[1] };
+			const auto LabourDay = named_holiday{ std::chrono::May / std::chrono::day{ 1u } };
 
 			const auto rules = annual_holiday_storage{
 				&NewYearsDay,
@@ -66,14 +66,14 @@ namespace gregorian
 				rules
 			);
 
-			auto cal0 = calendar{
+			auto cal = calendar{
 				SaturdaySundayWeekend,
 				s
 			};
 			// please note that holidays are not adjusted in T2
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ cal.get_schedule().get_period().get_from(), std::move(cal) },
 			};
 		}
 
