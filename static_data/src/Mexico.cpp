@@ -81,7 +81,8 @@ namespace gregorian
 				// from https://sidof.segob.gob.mx/notas/2102331
 
 				2006y / January / 1d,
-				2006y / February / 5d,
+//				2006y / February / 5d,
+				2006y / February / 6d, // to match F-TIIE publication dates - needs to be investigated further
 				2006y / March / 21d,
 				2006y / April / 13d,
 				2006y / April / 14d,
@@ -106,15 +107,10 @@ namespace gregorian
 //				2026y / December / 25d, // Navidad
 			};
 
-			auto s = schedule{
+			return schedule{
 				days_period{ 2006y / FirstDayOfJanuary, 2006y / LastDayOfDecember },
 				std::move(holidays)
 			};
-
-			auto cal = calendar{ SaturdaySundayWeekend, std::move(s) };
-			cal.substitute(Nearest); // it seems that the SEGOB's publications are not adjusted
-
-			return cal.get_schedule();
 		}
 
 
