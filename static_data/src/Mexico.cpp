@@ -45,6 +45,21 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// from Bank of Mexico website:
+		// 
+		// 2026 bank holidays
+		// 
+		// • January 1.
+		// • The first Monday of February in commemoration of February 5.
+		// • The third Monday of March in commemoration of March 21.
+		// • April 2 and 3.
+		// • May 1.
+		// • September 16.
+		// • November 2 and the third Monday of the month in commemoration of November 20.
+		// • December 12 and 25.
+		// • Saturdays and Sundays.
+
+
 		static auto _make_CNBV_known_schedule_part0() -> schedule // is it a correct name? (CNBV)
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
