@@ -45,7 +45,7 @@ namespace gregorian
 			EXPECT_THROW(locate_calendar("foo", 2025y / LastDayOfDecember), runtime_error);
 
 			// none existing version
-			EXPECT_THROW(locate_calendar("America/ANBIMA", 2000y / LastDayOfDecember), runtime_error);
+			EXPECT_THROW(locate_calendar("America/ANBIMA", 1999y / LastDayOfDecember), runtime_error);
 
 			// also test the first and last date of the applicable epoch
 			// (do we need to do anything special for after the epoch?)

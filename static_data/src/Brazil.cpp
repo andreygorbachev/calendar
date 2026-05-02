@@ -63,6 +63,24 @@ namespace gregorian
 		static auto _make_ANBIMA_known_schedule_part0() -> schedule
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+
+				// Implied from SELIC history
+
+				2000y / January / 1d,
+				2000y / March / 6d,
+				2000y / March / 7d,
+				2000y / April / 21d,
+				2000y / April / 23d,
+				2000y / May / 1d,
+				2000y / June / 22d,
+				2000y / September / 7d,
+				2000y / October / 12d,
+				2000y / November / 2d,
+				2000y / November / 15d,
+				2000y / December / 25d,
+
+				// from ANBIMA
+
 				2001y / January / 1d, // Confraternização Universal
 				2001y / February / 26d, // Carnaval
 				2001y / February / 27d, // Carnaval
@@ -342,7 +360,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2001y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				days_period{ 2000y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
