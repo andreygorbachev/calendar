@@ -20,66 +20,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "static_data.h"
-#include "makers.h"
+#include <static_data.h>
 
-#include <period.h>
-#include <schedule.h>
-#include <weekend.h>
-#include <annual_holiday_interface.h>
-#include <annual_holidays.h>
-#include <calendar.h>
+#include <gtest/gtest.h>
 
 #include <chrono>
-#include <utility>
 
-using namespace std;
 using namespace std::chrono;
 
 
 namespace gregorian
 {
 
-	using namespace util;
-
 	namespace static_data
 	{
 
-		static auto _make_CNBV_known_schedule_part0() -> schedule // is it a correct name? (CNBV)
+		TEST(static, CNBV)
 		{
-			auto holidays = schedule::dates{ // should we include day of the week into comments?
-			};
-
-			return schedule{
-				days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
-				std::move(holidays)
-			};
-		}
-
-
-
-		static auto _make_CNBV_generated_schedule_part0() -> schedule
-		{
-			const auto rules = annual_holiday_storage{
-			};
-
-			return make_holiday_schedule(
-				util::years_period{ 2027y, Epoch.get_until().year() },
-				rules
-			);
-		}
-
-		auto make_CNBV_calendar_versions() -> _calendar_versions
-		{
-			auto cal0 = calendar{
-				SaturdaySundayWeekend,
-				_make_CNBV_known_schedule_part0() +
-				_make_CNBV_generated_schedule_part0()
-			};
-
-			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-			};
+			const auto& cal0 = locate_calendar("America/CNBV", 2026y / January / 1d);
+//			const auto& cal0 = locate_calendar("America/CNBV", Epoch.get_from());
+//			EXPECT_FALSE(cal0.is_non_business_day(2024y / November / 20d));
 		}
 
 	}

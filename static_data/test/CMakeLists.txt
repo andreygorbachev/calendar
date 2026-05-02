@@ -9,6 +9,7 @@ add_executable(${PROJECT_NAME}
   UK_test.cpp
   USA_test.cpp
   Brazil_test.cpp
+  Mexico_test.cpp
   environment.cpp
 )
 

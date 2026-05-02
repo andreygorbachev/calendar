@@ -67,6 +67,8 @@ namespace gregorian
 				{ "America/Quebec", make_Quebec_calendar_versions() },
 
 				{ "America/ANBIMA", make_ANBIMA_calendar_versions() }, // or should it be America/Brazil/ANBIMA? or should it be in etcetera?
+
+				{ "America/CNBV", make_CNBV_calendar_versions() }, // or should it be America/Mexico/CNBV? or should it be in etcetera?
 			};
 		}
 

@@ -98,6 +98,11 @@ namespace gregorian
 
 		auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 
+
+		// from https://www.gob.mx/cnbv/acciones-y-programas/calendario-cnbv
+
+		auto make_CNBV_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
+
 	}
 
 }
