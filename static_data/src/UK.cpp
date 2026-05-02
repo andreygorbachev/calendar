@@ -76,6 +76,18 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 
+				// based on SONIA historical publication dates from https://www.bankofengland.co.uk/boeapps/database/
+				// (SONIA started in March 1997)
+
+				1997y / January / 1d,   // New Year's Day
+				1997y / March / 28d,    // Good Friday
+				1997y / March / 31d,    // Easter Monday
+				1997y / May / 5d,       // Early May bank holiday
+				1997y / May / 26d,      // Spring bank holiday
+				1997y / August / 25d,   // Summer bank holiday
+				1997y / December / 25d, // Christmas Day
+				1997y / December / 26d, // Boxing Day
+		
 				// from https://www.dmo.gov.uk/ (file ukbankholidays-nov23a.xls)
 
 				1998y / January / 1d,
@@ -89,7 +101,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 1998y / FirstDayOfJanuary, 1998y / LastDayOfDecember },
+				days_period{ 1997y / FirstDayOfJanuary, 1998y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}

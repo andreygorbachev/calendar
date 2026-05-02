@@ -38,7 +38,7 @@ namespace gregorian
 		// I guess as we treat all data as code, we should unit test it as well
 		TEST(static, England)
 		{
-			const auto& cal0 = locate_calendar("Europe/London", 1998y / January / 1d);
+			const auto& cal0 = locate_calendar("Europe/London", 1997y / January / 1d);
 			EXPECT_FALSE(cal0.is_non_business_day(1999y / December / 31d)); // Millennium Eve
 			EXPECT_TRUE(cal0.is_non_business_day(2002y / May / 27d)); // Spring bank holiday
 			EXPECT_FALSE(cal0.is_non_business_day(2002y / June / 3d)); // Queen's Golden Jubilee
