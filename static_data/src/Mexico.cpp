@@ -68,20 +68,45 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{
 
-				// from https://sidof.segob.gob.mx/notas/2102331
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2006, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
 
-				2006y / January / 1d,
-				2006y / February / 6d, // 2006y / February / 5d,
-				2006y / March / 21d, // not moved?
-				2006y / April / 13d,
+				2006y / January / 1d, // I. 1 de enero.
+				2006y / February / 6d, // II. 5 de febrero.
+				2006y / March / 21d, // III. 21 de marzo.
+				2006y / April / 13d, // IV. 13 y 14 de abril.
 				2006y / April / 14d,
-				2006y / May / 1d,
-				2006y / September / 16d,
-				2006y / November / 2d,
+				2006y / May / 1d, // V. 1 de mayo.
+				2006y / September / 16d, // VI. 16 de septiembre.
+				2006y / November / 2d, // VII. 2 y 20 de noviembre.
 				2006y / November / 20d,
-				2006y / December / 1d, // inauguration of Felipe Calderón
+				2006y / December / 1d, // VIII. 1, 12 y 25 de diciembre.
 				2006y / December / 12d,
 				2006y / December / 25d,
+
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2007, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+/*				2007y / January / 1d, // I. El 1 de enero.
+				II.El primer lunes de febrero en conmemoración del 5 de febrero.
+
+III.El tercer lunes de marzo en conmemoración del 21 de marzo.
+
+IV.El 5 y 6 de abril.
+
+V.El 1 de mayo.
+
+VI.El 16 de septiembre.
+
+VII.El 2 de noviembre.Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
+
+VIII.El 12 y 25 de diciembre. */
+
+				// from 
+
+				// from
 
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2010, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
@@ -350,7 +375,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2010y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2006y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
