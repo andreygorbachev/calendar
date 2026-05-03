@@ -28,7 +28,6 @@
 #include <weekend.h>
 #include <annual_holiday_interface.h>
 #include <annual_holidays.h>
-#include <business_day_adjusters.h>
 #include <calendar.h>
 
 #include <chrono>
@@ -81,16 +80,15 @@ namespace gregorian
 				// from https://sidof.segob.gob.mx/notas/2102331
 
 				2006y / January / 1d,
-//				2006y / February / 5d,
-				2006y / February / 6d, // to match F-TIIE publication dates - needs to be investigated further
-				2006y / March / 21d,
+				2006y / February / 6d, // 2006y / February / 5d,
+				2006y / March / 21d, // not moved?
 				2006y / April / 13d,
 				2006y / April / 14d,
 				2006y / May / 1d,
 				2006y / September / 16d,
 				2006y / November / 2d,
 				2006y / November / 20d,
-				2006y / December / 1d,
+				2006y / December / 1d, // inauguration of Felipe Calderón
 				2006y / December / 12d,
 				2006y / December / 25d,
 
@@ -129,17 +127,12 @@ namespace gregorian
 				&_RevolutionDay,
 				&_FeastOfOurLadyOfGuadalupe,
 				&ChristmasDay
-			};
+			}; // inaugurations every 6 years? (used to be in December 1st, but moved to October 1st in 2024?)
 
-			auto s = make_holiday_schedule(
+			return make_holiday_schedule(
 				util::years_period{ 2007y, Epoch.get_until().year() },
 				rules
 			);
-
-			auto cal = calendar{ SaturdaySundayWeekend, std::move(s) };
-			cal.substitute(Nearest);
-
-			return cal.get_schedule();
 		}
 
 		auto make_CNBV_calendar_versions() -> _calendar_versions
