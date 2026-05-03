@@ -83,6 +83,22 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2016, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2016y / January / 1d, // I. El 1 de enero.
+				2016y / February / 1d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 1 de febrero.
+				2016y / March / 21d, // III. El 21 de marzo.
+				2016y / March / 24d, // IV. El 24 y 25 de marzo.
+				2016y / March / 25d,
+				2016y / May / 1d, // V. El 1 de mayo.
+				2016y / September / 16d, // VI. El 16 de septiembre.
+				2016y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 21 de noviembre.
+				2016y / November / 21d,
+				2016y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2016y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2017, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -249,7 +265,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2017y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2016y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
