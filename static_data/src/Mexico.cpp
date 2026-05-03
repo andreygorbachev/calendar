@@ -83,6 +83,23 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2024 EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2024y / January / 1d, // I. El 1o. de enero.
+				2024y / February / 5d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+				2024y / March / 21d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+				2024y / March / 28d, // IV. El 28 y 29 de marzo.
+				2024y / March / 29d,
+				2024y / May / 1d, // V. El 1o. de mayo.
+				2024y / September / 16d, // VI. El 16 de septiembre.
+				2024y / October / 1d, // VII. El 1o. de octubre.
+				2024y / November / 2d, // VIII. El 2 de noviembre y el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
+				2024y / November / 18d,
+				2024y / December / 12d, // IX. El 12 y 25 de diciembre.
+				2024y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2025 EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -92,7 +109,7 @@ namespace gregorian
 				2025y / March / 17d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
 				2025y / April / 17d, // IV. El 17 y 18 de abril.
 				2025y / April / 18d,
-				2025y / May / 1d, // V. El 1o.de mayo.
+				2025y / May / 1d, // V. El 1o. de mayo.
 				2025y / September / 16d, // VI. El 16 de septiembre.
 				2025y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
 				2025y / November / 17d,
