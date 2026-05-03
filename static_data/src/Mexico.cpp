@@ -83,6 +83,22 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2020, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2020y / January/ 1d, // I. El 1 de enero.
+				2020y / February / 3d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 3 de febrero.
+				2020y / March / 16d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 16 de marzo.
+				2020y / April / 9d, // IV. El 9 y 10 de abril.
+				2020y / April / 10d,
+				2020y / May / 1d, // V. El 1 de mayo.
+				2020y / September / 16d, // VI. El 16 de septiembre.
+				2020y / November / 2d, // VII. El 2 de noviembre.Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 16 de noviembre.
+				2020y / November / 16d,
+				2020y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2020y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2021, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
