@@ -83,6 +83,23 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2021, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2021y / January / 1d, // I. El 1 de enero.
+				2021y / February / 1d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 1 de febrero.
+				2021y / March / 15d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 15 de marzo.
+				2021y / April / 1d, // IV. El 1 y 2 de abril.
+				2021y / April / 2d,
+				2021y / May / 1d, // V. El 1 de mayo.
+				2021y / September / 16d, // VI. El 16 de septiembre.
+				2021y / November / 2d, // VII. El 2 de noviembre.Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 15 de noviembre.
+				2021y / November / 15d,
+				2021y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2021y / December / 25d,
+
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2022, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -166,7 +183,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2025y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2021y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
