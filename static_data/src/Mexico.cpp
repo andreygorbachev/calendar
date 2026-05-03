@@ -103,7 +103,21 @@ namespace gregorian
 
 				// from 
 
-				// from
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2009, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2009y / January / 1d, // I. El 1 de enero.
+				2009y / February / 2d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 2 de febrero.
+				2009y / March / 16d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 16 de marzo.
+				2009y / April / 9d, // IV. El 9 y 10 de abril.
+				2009y / April / 10d,
+				2009y / May / 1d, // V. El 1 de mayo.
+				2009y / September / 16d, // VI. El 16 de septiembre.
+				2009y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 denoviembre, es decir, el 16 de noviembre.
+				2009y / November / 16d,
+				2009y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2009y / December / 25d,
 
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2010, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
@@ -140,7 +154,6 @@ namespace gregorian
 				2012y / December / 1d, // IX. El 1, 12 y 25 de diciembre.
 				2012y / December / 12d,
 				2012y / December / 25d,
-
 
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2013, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
