@@ -89,20 +89,17 @@ namespace gregorian
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
 				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
 
-/*				2007y / January / 1d, // I. El 1 de enero.
-				II.El primer lunes de febrero en conmemoración del 5 de febrero.
-
-III.El tercer lunes de marzo en conmemoración del 21 de marzo.
-
-IV.El 5 y 6 de abril.
-
-V.El 1 de mayo.
-
-VI.El 16 de septiembre.
-
-VII.El 2 de noviembre.Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
-
-VIII.El 12 y 25 de diciembre. */
+				2007y / January / 1d, // I. El 1 de enero.
+				2007y / February / 5d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+				2007y / March / 19d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+				2007y / April / 5d, // IV. El 5 y 6 de abril.
+				2007y / April / 6d,
+				2007y / May / 1d, // V. El 1 de mayo.
+				2007y / September / 16d, // VI. El 16 de septiembre.
+				2007y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
+				2007y / November / 19d,
+				2007y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2007y / December / 25d,
 
 				// from 
 
