@@ -45,22 +45,6 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// from Bank of Mexico website:
-		// 
-		// 2026 bank holidays
-		// 
-		// • January 1.
-		// • The first Monday of February in commemoration of February 5.
-		// • The third Monday of March in commemoration of March 21.
-		// • April 2 and 3.
-		// • May 1.
-		// • September 16.
-		// • November 2 and the third Monday of the month in commemoration of November 20.
-		// • December 12 and 25.
-		// • Saturdays and Sundays.
-
-
-
 		// there was also some changes announced in 2005 about shifting holidays to make long weekends - we might not be handliong them correctly
 		const auto _ConstitutionDay = weekday_indexed_holiday{ February / Monday[1] }; // Observance
 		const auto _BenitoJuarezsBirthday = weekday_indexed_holiday{ March / Monday[3] }; // Observance
@@ -92,17 +76,21 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
-//				2026y / January / 1d, // Ano Nuevo
-//				2026y / February / 2d, // Día de la Constitución
-//				2026y / March / 16d, // Natalicio de Benito Juárez
-//				2026y / April / 2d, // Jueves Santo
-//				2026y / April / 3d, // Viernes Santo
-//				2026y / May / 1d, // Día del Trabajo
-//				2026y / September / 16d, // Día de la Independencia
-//				2026y / November / 2d, // Día de los Fieles Difuntos (Día de Muertos)
-//				2026y / November / 16d, // Día de la Revolución
-//				2026y / December / 12d, // Día de la Virgen de Guadalupe
-//				2026y / December / 25d, // Navidad
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2026 EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y DE
+				// VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+//				2026y / January / 1d, // I. El 1o. de enero.
+//				2026y / February / 2d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+//				2026y / March / 16d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+//				2026y / April / 2d, // IV. El 2 y 3 de abril.
+//				2026y / April / 3d,
+//				2026y / May / 1d, // V. El 1o. de mayo.
+//				2026y / September / 16d, // VI. El 16 de septiembre.
+//				2026y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de dicho mes, este último en conmemoración del 20 de noviembre.
+//				2026y / November / 16d,
+//				2026y / December / 12d, // VIII. El 12 y 25 de diciembre.
+//				2026y / December / 25d,
 			};
 
 			return schedule{
