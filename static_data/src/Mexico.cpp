@@ -83,6 +83,24 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2010, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2010y / January / 1d, //I. El 1 de enero.
+				2010y / February / 1d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 1 de febrero.
+				2010y / March / 15d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 15 de marzo.
+				2010y / April / 1d, // IV. El 1 y 2 de abril.
+				2010y / April / 2d,
+				2010y / May / 1d, // V. El 1 de mayo.
+				2010y / September / 16d, // VI. El 16 de septiembre.
+				2010y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 15 de noviembre.
+				2010y / November / 15d,
+				2010y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2010y / December / 25d,
+
+				// from 
+
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2012, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
 				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -332,7 +350,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2012y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2010y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
