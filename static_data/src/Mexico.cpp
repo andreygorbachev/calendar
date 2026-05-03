@@ -143,7 +143,8 @@ namespace gregorian
 				2010y / April / 1d, // IV. El 1 y 2 de abril.
 				2010y / April / 2d,
 				2010y / May / 1d, // V. El 1 de mayo.
-				2010y / September / 16d, // VI. El 16 de septiembre.
+//				2010y / September / 16d, // VI. El 16 de septiembre.
+				2010y / September / 17d, // find a reference to why that moved (again we are not yet handling the histical calendars)
 				2010y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 15 de noviembre.
 				2010y / November / 15d,
 				2010y / December / 12d, // VIII. El 12 y 25 de diciembre.
@@ -157,7 +158,7 @@ namespace gregorian
 				2011y / April / 1d,
 				2011y / April / 2d,
 				2011y / May / 1d,
-				2011y / September / 17d, // moved
+				2011y / September / 16d,
 				2011y / November / 2d,
 				2011y / November / 21d,
 				2011y / December / 12d,
