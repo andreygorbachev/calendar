@@ -83,6 +83,22 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2023 EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2023y / January / 1d, // I. El 1 de enero.
+				2023y / February / 6d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+				2023y / March / 20d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+				2023y / April / 6d, // IV. El 6 y 7 de abril.
+				2023y / April / 7d,
+				2023y / May / 1d, // V. El 1 de mayo.
+				2023y / September / 16d, // VI. El 16 de septiembre.
+				2023y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de noviembre en conmemoración del 20 de noviembre.
+				2023y / November / 20d,
+				2023y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2023y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2024 EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
