@@ -149,7 +149,19 @@ namespace gregorian
 				2010y / December / 12d, // VIII. El 12 y 25 de diciembre.
 				2010y / December / 25d,
 
-				// from 
+				// from ???
+
+				2011y / January / 1d,
+				2011y / February / 7d,
+				2011y / March / 21d,
+				2011y / April / 1d,
+				2011y / April / 2d,
+				2011y / May / 1d,
+				2011y / September / 17d, // moved
+				2011y / November / 2d,
+				2011y / November / 21d,
+				2011y / December / 12d,
+				2011y / December / 25d,
 
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2012, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
