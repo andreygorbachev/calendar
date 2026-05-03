@@ -83,6 +83,24 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2018, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2018y / January / 1d, // I. El 1 de enero.
+				2018y / February / 5d, // II. El 5 de febrero.
+				2018y / March / 19d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 19 de marzo.
+				2018y / March / 29d, // IV. El 29 y 30 de marzo.
+				2018y / March / 30d,
+				2018y / May / 1d, // V. El 1 de mayo.
+				2018y / July / 1d, // VI. El 1 de julio, con motivo de las elecciones federales.
+				2018y / September / 16d, // VII. El 16 de septiembre.
+				2018y / November / 2d, // VIII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 19 de noviembre.
+				2019y / November / 19d,
+				2018y / December / 1d, // IX. El 1, 12 y 25 de diciembre.
+				2018y / December / 12d,
+				2018y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2019, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -94,7 +112,7 @@ namespace gregorian
 				2019y / April / 19d,
 				2019y / May / 1d, // V. El 1 de mayo.
 				2019y / September / 16d, // VI. El 16 de septiembre.
-				2019y / November / 2d, // VII. El 2 de noviembre.Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 18 de noviembre.
+				2019y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 18 de noviembre.
 				2019y / November / 18d,
 				2019y / December / 12d, // VIII. El 12 y 25 de diciembre.
 				2019y / December / 25d,
@@ -110,7 +128,7 @@ namespace gregorian
 				2020y / April / 10d,
 				2020y / May / 1d, // V. El 1 de mayo.
 				2020y / September / 16d, // VI. El 16 de septiembre.
-				2020y / November / 2d, // VII. El 2 de noviembre.Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 16 de noviembre.
+				2020y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 16 de noviembre.
 				2020y / November / 16d,
 				2020y / December / 12d, // VIII. El 12 y 25 de diciembre.
 				2020y / December / 25d,
@@ -126,7 +144,7 @@ namespace gregorian
 				2021y / April / 2d,
 				2021y / May / 1d, // V. El 1 de mayo.
 				2021y / September / 16d, // VI. El 16 de septiembre.
-				2021y / November / 2d, // VII. El 2 de noviembre.Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 15 de noviembre.
+				2021y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de noviembre en conmemoración del 20 de noviembre, es decir, el 15 de noviembre.
 				2021y / November / 15d,
 				2021y / December / 12d, // VIII. El 12 y 25 de diciembre.
 				2021y / December / 25d,
@@ -215,7 +233,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2019y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2018y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
