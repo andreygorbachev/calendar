@@ -22,6 +22,7 @@
 
 #include "static_data.h"
 #include "makers.h"
+#include "cyclical_holiday.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -45,7 +46,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// there was also some changes announced in 2005 about shifting holidays to make long weekends - we might not be handliong them correctly
+		// there was also some changes announced in 2005 about shifting holidays to make long weekends - we are not yet handling the histical calendars
 		const auto _ConstitutionDay = weekday_indexed_holiday{ February / Monday[1] }; // Observance
 		const auto _BenitoJuarezsBirthday = weekday_indexed_holiday{ March / Monday[3] }; // Observance
 		const auto _HolyThursday = offset_holiday{ &_Easter, std::chrono::days{ -3 } }; // should it be in the main library?
@@ -55,9 +56,15 @@ namespace gregorian
 		const auto _RevolutionDay = weekday_indexed_holiday{ November / Monday[3] }; // Observance
 		const auto _FeastOfOurLadyOfGuadalupe = named_holiday{ December / 12d };
 
+		const auto _InaugurationDay = _cyclical_holiday{
+			named_holiday{ October / 1d },
+			2024y, // before that it was December 1st, but moved to October 1st in 2024 - we are not yet handling the histical calendars
+			years{ 6 }
+		};
 
 
-		static auto _make_CNBV_known_schedule_part0() -> schedule // is it a correct name? (CNBV)
+
+		static auto _make_CNBV_known_schedule_part0() -> schedule // is it a correct name? (CNBV?)
 		{
 			auto holidays = schedule::dates{
 
@@ -76,25 +83,41 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2025 EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
+				// DE VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2025y / January / 1d, // I. El 1o. de enero.
+				2025y / February / 3d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+				2025y / March / 17d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+				2025y / April / 17d, // IV. El 17 y 18 de abril.
+				2025y / April / 18d,
+				2025y / May / 1d, // V. El 1o.de mayo.
+				2025y / September / 16d, // VI. El 16 de septiembre.
+				2025y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de dicho mes en conmemoración del 20 de noviembre.
+				2025y / November / 17d,
+				2025y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2025y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2026 EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y DE
 				// VALORES DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
 
-//				2026y / January / 1d, // I. El 1o. de enero.
-//				2026y / February / 2d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
-//				2026y / March / 16d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
-//				2026y / April / 2d, // IV. El 2 y 3 de abril.
-//				2026y / April / 3d,
-//				2026y / May / 1d, // V. El 1o. de mayo.
-//				2026y / September / 16d, // VI. El 16 de septiembre.
-//				2026y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de dicho mes, este último en conmemoración del 20 de noviembre.
-//				2026y / November / 16d,
-//				2026y / December / 12d, // VIII. El 12 y 25 de diciembre.
-//				2026y / December / 25d,
+				2026y / January / 1d, // I. El 1o. de enero.
+				2026y / February / 2d, // II. El primer lunes de febrero en conmemoración del 5 de febrero.
+				2026y / March / 16d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo.
+				2026y / April / 2d, // IV. El 2 y 3 de abril.
+				2026y / April / 3d,
+				2026y / May / 1d, // V. El 1o. de mayo.
+				2026y / September / 16d, // VI. El 16 de septiembre.
+				2026y / November / 2d, // VII. El 2 de noviembre y el tercer lunes de dicho mes, este último en conmemoración del 20 de noviembre.
+				2026y / November / 16d,
+				2026y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2026y / December / 25d,
 			};
 
 			return schedule{
-				days_period{ 2006y / FirstDayOfJanuary, 2006y / LastDayOfDecember },
+				days_period{ 2025y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
@@ -111,14 +134,15 @@ namespace gregorian
 				&GoodFriday,
 				&_LabourDay,
 				&_IndependenceDay,
+				&_InaugurationDay,
 				&_AllSoulsDay,
 				&_RevolutionDay,
 				&_FeastOfOurLadyOfGuadalupe,
 				&ChristmasDay
-			}; // inaugurations every 6 years? (used to be in December 1st, but moved to October 1st in 2024?)
+			};
 
 			return make_holiday_schedule(
-				util::years_period{ 2007y, Epoch.get_until().year() },
+				util::years_period{ 2027y, Epoch.get_until().year() },
 				rules
 			);
 		}
@@ -132,7 +156,8 @@ namespace gregorian
 			};
 
 			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+//				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				{ 2026y / FirstDayOfJanuary, std::move(cal0) },
 			};
 		}
 
