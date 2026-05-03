@@ -101,7 +101,21 @@ namespace gregorian
 				2007y / December / 12d, // VIII. El 12 y 25 de diciembre.
 				2007y / December / 25d,
 
-				// from 
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2008, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2008y / January / 1d, // I. El 1 de enero.
+				2008y / February / 4d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 4 de febrero.
+				2008y / March / 17d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 17 de marzo.
+				2008y / March / 20d, // IV. El 20 y 21 de marzo.
+				2008y / March / 21d,
+				2008y / May / 1d, // V. El 1 de mayo.
+				2008y / September / 16d, // VI. El 16 de septiembre.
+				2008y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 17 de noviembre.
+				2008y / November / 17d,
+				2008y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2008y / December / 25d,
 
 				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2009, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
