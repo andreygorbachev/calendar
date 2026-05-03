@@ -83,6 +83,22 @@ namespace gregorian
 				2006y / December / 12d,
 				2006y / December / 25d,
 
+				// from "DISPOSICIONES DE CARACTER GENERAL QUE SEÑALAN LOS DIAS DEL AÑO 2013, EN QUE LAS
+				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISION DE LA COMISION NACIONAL BANCARIA Y
+				// DE VALORES, DEBERAN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
+
+				2013y / January / 1d, // I. El 1 de enero.
+				2013y / February / 4d, // II. El primer lunes de febrero en conmemoración del 5 de febrero, es decir, el 4 de febrero.
+				2013y / March / 18d, // III. El tercer lunes de marzo en conmemoración del 21 de marzo, es decir, el 18 de marzo.
+				2013y / March / 28d, // IV. El 28 y 29 de marzo.
+				2013y / March / 29d,
+				2013y / May / 1d, // V. El 1 de mayo.
+				2013y / September / 16d, // VI. El 16 de septiembre.
+				2013y / November / 2d, // VII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 18 de noviembre.
+				2013y / November / 18d,
+				2013y / December / 12d, // VIII. El 12 y 25 de diciembre.
+				2013y / December / 25d,
+
 				// from "DISPOSICIONES DE CARÁCTER GENERAL QUE SEÑALAN LOS DÍAS DEL AÑO 2014, EN QUE LAS
 				// ENTIDADES FINANCIERAS SUJETAS A LA SUPERVISIÓN DE LA COMISIÓN NACIONAL BANCARIA Y
 				// DE VALORES, DEBERÁN CERRAR SUS PUERTAS Y SUSPENDER OPERACIONES"
@@ -297,7 +313,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2014y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2013y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
