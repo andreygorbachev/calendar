@@ -275,7 +275,7 @@ namespace gregorian
 				2018y / July / 1d, // VI. El 1 de julio, con motivo de las elecciones federales.
 				2018y / September / 16d, // VII. El 16 de septiembre.
 				2018y / November / 2d, // VIII. El 2 de noviembre. Adicionalmente, el tercer lunes de dicho mes en conmemoración del 20 de noviembre, es decir, el 19 de noviembre.
-				2019y / November / 19d,
+				2018y / November / 19d,
 				2018y / December / 1d, // IX. El 1, 12 y 25 de diciembre.
 				2018y / December / 12d,
 				2018y / December / 25d,
