@@ -418,8 +418,6 @@ namespace gregorian
 		{
 			const auto known_part = _make_Tokyo_known_schedule_part0();
 
-			// should provisional dates as of publication time should be historical rules?
-
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
 				known_part

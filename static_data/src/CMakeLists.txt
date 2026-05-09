@@ -5,6 +5,7 @@ add_library(${PROJECT_NAME}
   EU.cpp
   USA.cpp
   Japan.cpp
+  Switzerland.cpp
   Canada.cpp
   Brazil.cpp
   Mexico.cpp

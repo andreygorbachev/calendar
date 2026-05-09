@@ -58,6 +58,8 @@ namespace gregorian
 
 				{ "Europe/T2", make_T2_calendar_versions() }, // or should it be Europe/EU/TARGET2? or should it be in etcetera?
 
+				{ "Europe/Zurich", make_Zurich_calendar_versions() },
+
 				{ "America/USA", make_USA_Federal_calendar_versions() },
 				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 				{ "America/SIFMA", make_SIFMA_calendar_versions() }, // or should it be America/USA/SIFMA? or should it be in etcetera?

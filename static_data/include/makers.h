@@ -67,6 +67,11 @@ namespace gregorian
 		auto make_T2_calendar_versions() -> _calendar_versions; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
 
 
+		// from https://www.six-group.com/en/market-data/news-tools/trading-currency-holiday-calendar.html#/
+
+		auto make_Zurich_calendar_versions() -> _calendar_versions;
+
+
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
 		auto make_USA_Federal_calendar_versions() -> _calendar_versions;
