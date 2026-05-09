@@ -46,6 +46,18 @@ namespace gregorian
 		static auto _make_Zurich_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2025y / January / 1d, // New Year's Day
+				2025y / January / 2d, // Berchtholdstag
+				2025y / April / 18d, // Good Friday
+				2025y / April / 21d, // Easter Monday
+				2025y / May / 1d, // Labour Day
+				2025y / May / 29d, // Ascension Day
+				2025y / June / 9d, // Whitmonday
+				2025y / December / 24d, // Christmas Eve
+				2025y / December / 25d, // Christmas
+				2025y / December / 26d, // St. Stephen's Day
+				2025y / December / 31d, // New Year's Eve
+
 				2026y / January / 1d, // New Year's Day
 				2026y / January / 2d, // Berchtholdstag
 				2026y / April / 3d, // Good Friday
@@ -59,7 +71,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2025y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
