@@ -103,6 +103,11 @@ namespace gregorian
 
 		auto make_CNBV_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 
+
+		// from https://www.boj.or.jp/en/about/outline/holi.htm
+
+		auto make_Tokyo_calendar_versions() -> _calendar_versions;
+
 	}
 
 }

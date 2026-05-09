@@ -24,6 +24,7 @@
 #include "makers.h"
 
 #include <period.h>
+#include <schedule.h>
 #include <calendar.h>
 #include <weekend.h>
 
@@ -45,9 +46,6 @@ namespace gregorian
 		static auto _make_Tokyo_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
-
-				// from https://www.boj.or.jp/en/about/outline/holi.htm
-
 				2026y / January / 1d,
 				2026y / January / 2d,
 				2026y / January / 3d,
