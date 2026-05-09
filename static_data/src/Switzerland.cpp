@@ -46,6 +46,16 @@ namespace gregorian
 		static auto _make_Zurich_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2026y / January / 1d, // New Year's Day
+				2026y / January / 2d, // Berchtholdstag
+				2026y / April / 3d, // Good Friday
+				2026y / April / 6d, // Easter Monday
+				2026y / May / 1d, // Labour Day
+				2026y / May / 14d, // Ascension Day
+				2026y / May / 25d, // Whitmonday
+				2026y / December / 24d, // Christmas Eve
+				2026y / December / 25d, // Christmas
+				2026y / December / 31d, // New Year's Eve
 			};
 
 			return schedule{
