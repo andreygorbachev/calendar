@@ -65,7 +65,6 @@ namespace gregorian
 				&WhitMonday,
 				&_SwissNationalDay,
 				// Knabenschiessen (afternoon only)
-				&ChristmasEve, // maybe need a separate calendar for SARON as this one is labelled as "afternoon only" and hence might not be a full day off for everyone
 				&ChristmasDay,
 				&BoxingDay, // St.Stephen’s Day
 				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
@@ -88,7 +87,7 @@ namespace gregorian
 				2024y / May / 9d, // Ascension Day
 				2024y / May / 20d, // Whitmonday
 				2024y / August / 1d, // National Day
-				2024y / December / 24d, // Christmas Eve
+//				2024y / December / 24d, // Christmas Eve
 				2024y / December / 25d, // Christmas
 				2024y / December / 26d, // St. Stephen's Day
 				2024y / December / 31d, // New Year's Eve
@@ -100,7 +99,7 @@ namespace gregorian
 				2025y / May / 1d, // Labour Day
 				2025y / May / 29d, // Ascension Day
 				2025y / June / 9d, // Whitmonday
-				2025y / December / 24d, // Christmas Eve
+//				2025y / December / 24d, // Christmas Eve
 				2025y / December / 25d, // Christmas
 				2025y / December / 26d, // St. Stephen's Day
 				2025y / December / 31d, // New Year's Eve
@@ -112,7 +111,7 @@ namespace gregorian
 				2026y / May / 1d, // Labour Day
 				2026y / May / 14d, // Ascension Day
 				2026y / May / 25d, // Whitmonday
-				2026y / December / 24d, // Christmas Eve
+//				2026y / December / 24d, // Christmas Eve
 				2026y / December / 25d, // Christmas
 				2026y / December / 31d, // New Year's Eve
 			};
@@ -140,7 +139,6 @@ namespace gregorian
 				&WhitMonday,
 				&_SwissNationalDay,
 				// Knabenschiessen (afternoon only)
-				&ChristmasEve, // maybe need a separate calendar for SARON as this one is labelled as "afternoon only" and hence might not be a full day off for everyone
 				&ChristmasDay,
 				&BoxingDay, // St.Stephen’s Day
 				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.

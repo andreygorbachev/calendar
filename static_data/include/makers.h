@@ -68,6 +68,7 @@ namespace gregorian
 
 
 		// from https://www.six-group.com/en/market-data/news-tools/trading-currency-holiday-calendar.html#/
+		// (could be incorrect as it lists ChristmasEve as a holiday, which might be an exchange holiday, but not Zurich holiday)
 
 		auto make_Zurich_calendar_versions() -> _calendar_versions;
 
