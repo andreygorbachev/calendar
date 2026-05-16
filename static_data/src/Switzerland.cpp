@@ -67,7 +67,7 @@ namespace gregorian
 				// Knabenschiessen (afternoon only)
 				&ChristmasDay,
 				&BoxingDay, // St.Stephen’s Day
-				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
+				// &NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
 			};
 
 			return make_holiday_schedule(
@@ -90,7 +90,7 @@ namespace gregorian
 //				2024y / December / 24d, // Christmas Eve
 				2024y / December / 25d, // Christmas
 				2024y / December / 26d, // St. Stephen's Day
-				2024y / December / 31d, // New Year's Eve
+//				2024y / December / 31d, // New Year's Eve
 
 				2025y / January / 1d, // New Year's Day
 				2025y / January / 2d, // Berchtholdstag
@@ -102,7 +102,7 @@ namespace gregorian
 //				2025y / December / 24d, // Christmas Eve
 				2025y / December / 25d, // Christmas
 				2025y / December / 26d, // St. Stephen's Day
-				2025y / December / 31d, // New Year's Eve
+//				2025y / December / 31d, // New Year's Eve
 
 				2026y / January / 1d, // New Year's Day
 				2026y / January / 2d, // Berchtholdstag
@@ -113,7 +113,7 @@ namespace gregorian
 				2026y / May / 25d, // Whitmonday
 //				2026y / December / 24d, // Christmas Eve
 				2026y / December / 25d, // Christmas
-				2026y / December / 31d, // New Year's Eve
+//				2026y / December / 31d, // New Year's Eve
 			};
 
 			// until we investigated the history of this calendar
@@ -141,7 +141,7 @@ namespace gregorian
 				// Knabenschiessen (afternoon only)
 				&ChristmasDay,
 				&BoxingDay, // St.Stephen’s Day
-				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
+				// &NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
 			};
 
 			return make_holiday_schedule(
