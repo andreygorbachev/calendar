@@ -27,6 +27,8 @@
 #include <schedule.h>
 #include <calendar.h>
 #include <weekend.h>
+#include <annual_holiday_interface.h>
+#include <annual_holidays.h>
 
 #include <utility>
 #include <chrono>
@@ -42,6 +44,13 @@ namespace gregorian
 
 	namespace static_data
 	{
+
+		// https://www.zuerich.com/en/inform-plan/useful-information-and-services/opening-hours-and-public-holidays/feiertage
+
+		// should these be in their own namespace?
+		const auto _BerchtoldsDay = named_holiday{ January / 2d };
+		const auto _LabourDay = named_holiday{ May / 1d };
+		const auto _SwissNationalDay = named_holiday{ August / 1d };
 
 		static auto _make_Zurich_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
@@ -89,13 +98,38 @@ namespace gregorian
 			};
 		}
 
+		static auto _make_Zurich_generated_schedule_part0() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_BerchtoldsDay,
+				&GoodFriday,
+				&EasterMonday,
+				// Sechseläuten (afternoon only)
+				&_LabourDay,
+				&AscensionDay,
+				&WhitMonday,
+				&_SwissNationalDay,
+				// Knabenschiessen (afternoon only)
+				&ChristmasEve, // maybe need a separate calendar for SARON as this one is labelled as "afternoon only" and hence might not be a full day off for everyone
+				&ChristmasDay,
+				&BoxingDay, // St.Stephen’s Day
+				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
+			};
+
+			return make_holiday_schedule(
+				util::years_period{ 2027y, Epoch.get_until().year() },
+				rules
+			);
+		}
+
+
 		auto make_Zurich_calendar_versions() -> _calendar_versions
 		{
-			const auto known_part = _make_Zurich_known_schedule_part0();
-
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				known_part
+				_make_Zurich_known_schedule_part0() +
+				_make_Zurich_generated_schedule_part0()
 			};
 
 			return {
