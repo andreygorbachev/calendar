@@ -52,6 +52,31 @@ namespace gregorian
 		const auto _LabourDay = named_holiday{ May / 1d };
 		const auto _SwissNationalDay = named_holiday{ August / 1d };
 
+		static auto _temp_Zurich() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_BerchtoldsDay,
+				&GoodFriday,
+				&EasterMonday,
+				// Sechseläuten (afternoon only)
+				&_LabourDay,
+				&AscensionDay,
+				&WhitMonday,
+				&_SwissNationalDay,
+				// Knabenschiessen (afternoon only)
+				&ChristmasEve, // maybe need a separate calendar for SARON as this one is labelled as "afternoon only" and hence might not be a full day off for everyone
+				&ChristmasDay,
+				&BoxingDay, // St.Stephen’s Day
+				&NewYearsEve // Most businesses in Zurich are open on New Year’s Eve but usually shut between 4 PM and 6 PM.
+			};
+
+			return make_holiday_schedule(
+				util::years_period{ 1999y, 2023y },
+				rules
+			);
+		}
+
 		static auto _make_Zurich_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
@@ -92,8 +117,12 @@ namespace gregorian
 				2026y / December / 31d, // New Year's Eve
 			};
 
+			// until we investigated the history of this calendar
+			const auto temp = _temp_Zurich().get_dates();
+			holidays.insert(temp.cbegin(), temp.cend());
+
 			return schedule{
-				days_period{ 2024y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 1999y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
