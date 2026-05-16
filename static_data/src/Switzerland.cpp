@@ -99,6 +99,7 @@ namespace gregorian
 				2025y / May / 1d, // Labour Day
 				2025y / May / 29d, // Ascension Day
 				2025y / June / 9d, // Whitmonday
+				2025y / August / 1d, // National Day
 //				2025y / December / 24d, // Christmas Eve
 				2025y / December / 25d, // Christmas
 				2025y / December / 26d, // St. Stephen's Day
