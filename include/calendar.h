@@ -68,6 +68,7 @@ namespace gregorian // should the namespace be called civil?
 		auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// is returning schedule the right thing to do?
+		// should these be standalone functions instead of member functions?
 		auto make_business_days_schedule(util::days_period p) const -> schedule;
 
 		auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
