@@ -67,11 +67,22 @@ namespace gregorian // should the namespace be called civil?
 
 		auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
+		// should below be standalone functions instead of member functions?
+
 		// is returning schedule the right thing to do?
-		// should these be standalone functions instead of member functions?
 		auto make_business_days_schedule(util::days_period p) const -> schedule;
 
 		auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
+
+		auto shift_business_days(
+			const std::chrono::year_month_day& ymd,
+			const std::chrono::days& n
+		) const -> std::chrono::year_month_day;	
+
+		auto shift_business_days(
+			const std::chrono::sys_days& sd,
+			const std::chrono::days& n
+		) const -> std::chrono::sys_days;
 
 	public:
 
@@ -255,6 +266,45 @@ namespace gregorian // should the namespace be called civil?
 		return make_business_days_schedule(
 			util::days_period{ p.get_from(), p.get_until() }
 		);
+	}
+
+
+	inline auto calendar::shift_business_days(
+		const std::chrono::year_month_day& ymd,
+		const std::chrono::days& n // is this a desirable type here?
+	) const -> std::chrono::year_month_day
+	{
+		// or implement directly?
+		return shift_business_days(std::chrono::sys_days{ ymd }, n);
+	}
+
+	inline auto calendar::shift_business_days(
+		const std::chrono::sys_days& sd,
+		const std::chrono::days& n // is this a desirable type here?
+	) const -> std::chrono::sys_days
+	{
+		const auto _n = n.count();
+		auto result = sd;
+		if (_n > 0) // should it be long long?
+		{
+			for (auto i = 0; i < _n; ++i) // should it be long long?
+			{
+				result = result + std::chrono::days{ 1 };
+				while (is_non_business_day(result))
+					result = result + std::chrono::days{ 1 }; // or should I use Following convention here (if the result is a non-business day, shift it to the next business day)?
+			}
+		}
+		else if (_n < 0) // should it be long long?
+		{
+			for (auto i = 0; i > _n; --i) // should it be long long?
+			{
+				result = result - std::chrono::days{ 1 };
+				while (is_non_business_day(result))
+					result = result - std::chrono::days{ 1 }; // or should I use Preceding convention here (if the result is a non-business day, shift it to the previous business day)?
+			}
+		}
+
+		return result;
 	}
 
 
