@@ -114,6 +114,11 @@ namespace gregorian
 
 		auto make_Tokyo_calendar_versions() -> _calendar_versions;
 
+
+		// from https://www.boi.org.il/media/egfjmggc/dates-when-shir-will-not-be-published.pdf
+
+		auto make_SHIR_calendar_versions() -> _calendar_versions;
+
 	}
 
 }

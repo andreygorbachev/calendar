@@ -73,6 +73,7 @@ namespace gregorian
 				{ "America/CNBV", make_CNBV_calendar_versions() }, // or should it be America/Mexico/CNBV? or should it be in etcetera?
 
 				{ "Asia/Tokyo", make_Tokyo_calendar_versions() },
+				{ "Asia/SHIR", make_SHIR_calendar_versions() }, // is this a correct name?
 			};
 		}
 
