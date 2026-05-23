@@ -20,15 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "static_data.h"
 #include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
 #include <calendar.h>
 #include <weekend.h>
-#include <annual_holiday_interface.h>
-#include <annual_holidays.h>
 
 #include <utility>
 #include <chrono>
@@ -50,6 +47,7 @@ namespace gregorian
 		static auto _make_SHIR_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				// are we missing any dates for 2022 before SHIR started? (how do we see calendars which not starting on 1st of January?)
 				2022y / March / 17d, // Purim (Tel Aviv)
 				2022y / March / 18d, // Purim (Jerusalem)
 				2022y / April / 15d, // Eve of Passover and Holiday abroad
