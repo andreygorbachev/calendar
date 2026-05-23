@@ -78,7 +78,7 @@ namespace gregorian
 				2023y / July / 27d, // Fast of Ninth of Av
 				2023y / September / 15d, // Eve of Rosh Hashanah (New Year)
 				2023y / September / 25d, // Day of Atonement (Yom Kippur)
-				2023y / October / 31d, // Municipals Elections
+				// 2023y / October / 31d, // Municipals Elections
 				2023y / December / 25d, // Holiday abroad
 				2023y / December / 26d, // Holiday abroad
 
