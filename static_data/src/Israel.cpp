@@ -50,6 +50,93 @@ namespace gregorian
 		static auto _make_SHIR_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
+				2022y / March / 17d, // Purim (Tel Aviv)
+				2022y / March / 18d, // Purim (Jerusalem)
+				2022y / April / 15d, // Eve of Passover and Holiday abroad
+				2022y / April / 18d, // Holiday abroad
+				2022y / April / 22d, // Last day of Passover
+				2022y / May / 5d, // Israel Independence Day
+				2022y / June / 3d, // Holiday abroad
+				2022y / September / 26d, // Rosh Hashanah (New Year) 1st Day
+				2022y / September / 27d, // Rosh Hashanah (New Year) 2nd Day
+				2022y / October / 4d, // Eve of Day of Atonement (Yom Kippur)
+				2022y / October / 5d, // Day of Atonement (Yom Kippur)
+				2022y / October / 10d, // First Day of Sukkot (Tabernacles)
+				2022y / October / 17d, // Rejoicing of the Law Festival (Simchat Torah)
+				2022y / November / 1d, // Election Day
+				2022y / December / 26d, // Holiday abroad
+
+				2023y / January / 2d, // Holiday abroad
+				2023y / March / 7d, // Purim (Tel Aviv)
+				2023y / March / 8d, // Purim (Jerusalem)
+				2023y / April / 5d, // Eve of Passover
+				2023y / April / 6d, // Passover
+				2023y / April / 7d, // Holiday abroad
+				2023y / April / 10d, // Holiday abroad
+				2023y / April / 12d, // Last day of Passover
+				2023y / April / 26d, // Israel Independence Day
+				2023y / May / 26d, // Holiday of Shavout
+				2023y / May / 29d, // Holiday abroad
+				2023y / July / 27d, // Fast of Ninth of Av
+				2023y / September / 15d, // Eve of Rosh Hashanah (New Year)
+				2023y / September / 25d, // Day of Atonement (Yom Kippur)
+				2023y / October / 31d, // Municipals Elections
+				2023y / December / 25d, // Holiday abroad
+				2023y / December / 26d, // Holiday abroad
+
+				2024y / January / 1d, // Holiday abroad
+				2024y / February / 27d, // Municipals Elections
+				2024y / March / 25d, // Purim (Jerusalem)
+				2024y / March / 29d, // Holiday abroad
+				2024y / April / 22d, // Eve of Passover
+				2024y / April / 23d, // Passover 1st day
+				2024y / April / 29d, // Last day of Passover
+				2024y / May / 14d, // Israel Independence Day
+				2024y / May / 27d, // Holiday abroad
+				2024y / June / 12d, // Shavout (Pentecost)
+				2024y / August / 13d, // Fast of Ninth of Av
+				2024y / October / 2d, // Eve of Rosh Hashanah (New Year)
+				2024y / October / 3d, // Rosh Hashanah (New Year) 1st Day
+				2024y / October / 4d, // Rosh Hashanah (New Year) 2nd Day
+				2024y / October / 11d, // Eve of Day of Atonement (Yom Kippur)
+				2024y / October / 17d, // First Day of Sukkot (Tabernacles)
+				2024y / October / 24d, // Rejoicing of the Law Festival (Simchat Torah)
+				2024y / December / 25d, // Holiday abroad
+				2024y / December / 26d, // Holiday abroad
+
+				2025y / January / 1d, // Holiday abroad
+				2025y / March / 14d, // Purim
+				2025y / April / 18d, // Holiday abroad
+				2025y / May / 1d, // Israel Independence Day
+				2025y / May / 26d, // Holiday abroad
+				2025y / June / 2d, // Shavout (Pentecost)
+				2025y / September / 22d, // Eve of Rosh Hashanah (New Year)
+				2025y / September / 23d, // Rosh Hashanah (New Year) 1st Day
+				2025y / September / 24d, // Rosh Hashanah (New Year) 2nd Day
+				2025y / October / 1d, // Eve of Day of Atonement (Yom Kippur)
+				2025y / October / 2d, // Day of Atonement (Yom Kippur)
+				2025y / October / 7d, // First Day of Sukkot (Tabernacles)
+				2025y / October / 14d, // Rejoicing of the Law Festival (Simchat Torah)
+				2025y / December / 25d, // Holiday abroad
+				2025y / December / 26d, // Holiday abroad
+
+				2026y / January / 1d, // Holiday abroad
+				2026y / March / 3d, // Purim
+				2026y / March / 4d, // Purim
+				2026y / April / 1d, // Eve of Passover
+				2026y / April / 2d, // Passover 1st day
+				2026y / April / 3d, // Holiday abroad
+				2026y / April / 6d, // Holiday abroad
+				2026y / April / 8d, // Last day of Passover
+				2026y / April / 22d, // Israel Independence Day
+				2026y / May / 22d, // Shavout (Pentecost)
+				2026y / May / 25d, // Holiday abroad
+				2026y / July / 23d, // Fast of Ninth of Av
+				2026y / September / 11d, // Eve of Rosh Hashanah (New Year)
+				2026y / September / 21d, // Day of Atonement (Yom Kippur)
+				2026y / October / 27d, // General Election day
+				2026y / December / 25d, // Holiday abroad
+				2026y / December / 28d, // Holiday abroad
 			};
 
 			return schedule{
