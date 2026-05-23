@@ -10,6 +10,7 @@ add_library(${PROJECT_NAME}
   Brazil.cpp
   Mexico.cpp
   Israel.cpp
+  Poland.cpp
   makers.cpp
 )
 

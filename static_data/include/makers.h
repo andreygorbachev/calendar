@@ -73,6 +73,11 @@ namespace gregorian
 		auto make_Zurich_calendar_versions() -> _calendar_versions;
 
 
+		// from https://its-poland.com/travel-tips/polish-bank-holidays
+
+		auto make_Warsaw_calendar_versions() -> _calendar_versions;
+
+
 		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
 		auto make_USA_Federal_calendar_versions() -> _calendar_versions;

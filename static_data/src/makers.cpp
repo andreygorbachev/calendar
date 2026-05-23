@@ -60,6 +60,8 @@ namespace gregorian
 
 				{ "Europe/Zurich", make_Zurich_calendar_versions() },
 
+				{ "Europe/Warsaw", make_Warsaw_calendar_versions() },
+
 				{ "America/USA", make_USA_Federal_calendar_versions() },
 				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 				{ "America/SIFMA", make_SIFMA_calendar_versions() }, // or should it be America/USA/SIFMA? or should it be in etcetera?
@@ -73,6 +75,7 @@ namespace gregorian
 				{ "America/CNBV", make_CNBV_calendar_versions() }, // or should it be America/Mexico/CNBV? or should it be in etcetera?
 
 				{ "Asia/Tokyo", make_Tokyo_calendar_versions() },
+
 				{ "Asia/SHIR", make_SHIR_calendar_versions() }, // is this a correct name?
 			};
 		}
