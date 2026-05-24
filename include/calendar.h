@@ -84,6 +84,12 @@ namespace gregorian // should the namespace be called civil?
 			const std::chrono::days& n
 		) const -> std::chrono::sys_days;
 
+		// or should we have a class business_day (which would take a calendar in a constructor)
+		// .ok() would check if that is or not a good business day
+		// operator+=(days) would a natural way to represent shift_business_days
+		// should be able to naturally convert to year_month_day and sys_days
+		// would it help witj itaration over business days (within a period)? (or do iterate over days and drop non business days)
+
 	public:
 
 		void substitute(const business_day_adjuster& a);
