@@ -84,6 +84,8 @@ namespace gregorian
 			};
 		}
 
+		// Pursuant to the Act of 6 December 2024 amending the Act on Public Holidays, Christmas Eve has been a statutory public holiday since 2025.
+
 	}
 
 }
