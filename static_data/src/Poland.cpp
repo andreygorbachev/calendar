@@ -62,6 +62,18 @@ namespace gregorian
 
 				// Implied from PolSTR history
 
+				2021y / January / 1d, // New Year's Day
+				2021y / January / 6d, // Epiphany
+				2021y / April / 18d, // Easter Monday
+				2021y / May / 1d, // Labor Day
+				2021y / May / 3d, // Constitution Day
+				2021y / June / 16d, // Corpus Christi
+				2021y / August / 15d, // Assumption of the Blessed Virgin Mary
+				2021y / November / 1d, // All Saints' Day
+				2021y / November / 11d, // Independence Day
+				2021y / December / 25d, // Christmas Day
+				2021y / December / 26d, // St.Stephen's Day
+
 				2022y / January / 1d, // New Year's Day
 				2022y / January / 6d, // Epiphany
 				2022y / April / 18d, // Easter Monday
@@ -72,7 +84,7 @@ namespace gregorian
 				2022y / November / 1d, // All Saints' Day
 				2022y / November / 11d, // Independence Day
 				2022y / December / 25d, // Christmas Day
-				2022y / December / 26d, // St.Stephen's Day (Second day of Christmas)
+				2022y / December / 26d, // St.Stephen's Day
 
 				2023y / January / 1d, // New Year's Day
 				2023y / January / 6d, // Epiphany
@@ -112,7 +124,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2022y / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2021y / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
@@ -123,6 +135,18 @@ namespace gregorian
 
 				// Implied from PolSTR history
 
+				2021y / January / 1d, // New Year's Day
+				2021y / January / 6d, // Epiphany
+				2021y / April / 18d, // Easter Monday
+				2021y / May / 1d, // Labor Day
+				2021y / May / 3d, // Constitution Day
+				2021y / June / 16d, // Corpus Christi
+				2021y / August / 15d, // Assumption of the Blessed Virgin Mary
+				2021y / November / 1d, // All Saints' Day
+				2021y / November / 11d, // Independence Day
+				2021y / December / 25d, // Christmas Day
+				2021y / December / 26d, // St.Stephen's Day
+
 				2022y / January / 1d, // New Year's Day
 				2022y / January / 6d, // Epiphany
 				2022y / April / 18d, // Easter Monday
@@ -133,7 +157,7 @@ namespace gregorian
 				2022y / November / 1d, // All Saints' Day
 				2022y / November / 11d, // Independence Day
 				2022y / December / 25d, // Christmas Day
-				2022y / December / 26d, // St.Stephen's Day (Second day of Christmas)
+				2022y / December / 26d, // St.Stephen's Day
 
 				2023y / January / 1d, // New Year's Day
 				2023y / January / 6d, // Epiphany
@@ -168,13 +192,13 @@ namespace gregorian
 				2025y / August / 15d, // Assumption of the Blessed Virgin Mary
 				2025y / November / 1d, // All Saints' Day
 				2025y / November / 11d, // Independence Day
-				2025y / December / 24d, // Christmas Eve (New public holiday)
+				2025y / December / 24d, // Christmas Eve
 				2025y / December / 25d, // Christmas Day
 				2025y / December / 26d // St.Stephen's Day
 			};
 
 			return schedule{
-				days_period{ 2022y / FirstDayOfJanuary, 2025y / LastDayOfDecember },
+				days_period{ 2021y / FirstDayOfJanuary, 2025y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
