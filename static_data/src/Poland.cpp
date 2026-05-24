@@ -137,10 +137,10 @@ namespace gregorian
 
 				2021y / January / 1d, // New Year's Day
 				2021y / January / 6d, // Epiphany
-				2021y / April / 18d, // Easter Monday
+				2021y / April / 5d, // Easter Monday
 				2021y / May / 1d, // Labor Day
 				2021y / May / 3d, // Constitution Day
-				2021y / June / 16d, // Corpus Christi
+				2021y / June / 3d, // Corpus Christi
 				2021y / August / 15d, // Assumption of the Blessed Virgin Mary
 				2021y / November / 1d, // All Saints' Day
 				2021y / November / 11d, // Independence Day
