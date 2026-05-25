@@ -47,6 +47,7 @@ namespace gregorian
 
 		const auto _NewYearsDay2 = named_holiday{ January / 2d };
 		const auto _NewYearsDay3 = named_holiday{ January / 3d };
+		const auto _ComingOfAgeDay = weekday_indexed_holiday{ January / Monday[2] };
 
 
 
@@ -428,6 +429,7 @@ namespace gregorian
 				&NewYearsDay,
 				&_NewYearsDay2,
 				&_NewYearsDay3,
+				&_ComingOfAgeDay,
 			};
 
 			return make_holiday_schedule(
