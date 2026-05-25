@@ -20,12 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include "static_data.h"
 #include "makers.h"
 
 #include <period.h>
 #include <schedule.h>
 #include <calendar.h>
 #include <weekend.h>
+#include <annual_holidays.h>
 
 #include <utility>
 #include <chrono>
@@ -41,6 +43,11 @@ namespace gregorian
 
 	namespace static_data
 	{
+
+		const auto _NewYearsDay2 = named_holiday{ January / 2d };
+		const auto _NewYearsDay3 = named_holiday{ January / 3d };
+
+
 
 		static auto _make_Tokyo_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
@@ -413,13 +420,28 @@ namespace gregorian
 			};
 		}
 
+
+		static auto _make_Tokyo_generated_schedule_part0() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_NewYearsDay2,
+				&_NewYearsDay3,
+			};
+
+			return make_holiday_schedule(
+				util::years_period{ 2028y, Epoch.get_until().year() },
+				rules
+			);
+		}
+
+
 		auto make_Tokyo_calendar_versions() -> _calendar_versions
 		{
-			const auto known_part = _make_Tokyo_known_schedule_part0();
-
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
-				known_part
+				_make_Tokyo_known_schedule_part0() +
+				_make_Tokyo_generated_schedule_part0()
 			};
 
 			return {

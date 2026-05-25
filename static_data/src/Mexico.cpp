@@ -418,7 +418,6 @@ namespace gregorian
 		}
 
 
-
 		static auto _make_CNBV_generated_schedule_part0() -> schedule
 		{
 			const auto rules = annual_holiday_storage{
@@ -441,6 +440,7 @@ namespace gregorian
 				rules
 			);
 		}
+
 
 		auto make_CNBV_calendar_versions() -> _calendar_versions
 		{
