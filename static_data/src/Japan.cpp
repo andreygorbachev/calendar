@@ -49,6 +49,8 @@ namespace gregorian
 		const auto _NewYearsDay3 = named_holiday{ January / 3d };
 		const auto _ComingOfAgeDay = weekday_indexed_holiday{ January / Monday[2] };
 		const auto _NationalFoundationDay = named_holiday{ February / 11d };
+		const auto _EmperorNaruhitoBirthday = named_holiday{ February / 23d };
+		const auto _EmperorAkihitoBirthday = named_holiday{ December / 23d };
 
 
 
@@ -432,6 +434,24 @@ namespace gregorian
 				&_NewYearsDay3,
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
+				&_EmperorAkihitoBirthday,
+			};
+
+			return make_holiday_schedule(
+				util::years_period{ 2028y, Epoch.get_until().year() },
+				rules
+			);
+		}
+
+		static auto _make_Tokyo_generated_schedule_part1() -> schedule
+		{
+			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_NewYearsDay2,
+				&_NewYearsDay3,
+				&_ComingOfAgeDay,
+				&_NationalFoundationDay,
+				&_EmperorNaruhitoBirthday,
 			};
 
 			return make_holiday_schedule(
