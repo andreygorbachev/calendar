@@ -59,8 +59,6 @@ namespace gregorian
 				// Implied from SARON history
 
 				// 1999 (partial 1999)
-				1999y / December / 24d, // Friday
-				1999y / December / 31d, // Friday
 
 				// 2000
 				2000y / April / 21d, // Friday
