@@ -52,6 +52,13 @@ namespace gregorian
 		// ** In terms of the Public Holidays Act, when a holiday falls on a Sunday, the following Monday is observed.
 
 		// should these be in their own namespace?
+		const auto _HumanRightsDay = named_holiday{ March / 21d };
+		const auto _FreedomDay = named_holiday{ April / 27d };
+		const auto _WorkersDay = named_holiday{ May / 1d };
+		const auto _YouthDay = named_holiday{ June / 16d };
+		const auto _NationalWomensDay = named_holiday{ August / 9d };
+		const auto _HeritageDay = named_holiday{ September / 24d };
+		const auto _DayOfReconciliation = named_holiday{ December / 16d };
 
 		static auto _make_Johannesburg_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
@@ -66,8 +73,7 @@ namespace gregorian
 				2026y / April / 27d, // Freedom Day
 				2026y / May / 1d, // Workers' Day
 				2026y / June / 16d, // Youth Day
-				2026y / August / 9d, // National Women's Day
-				2026y / August / 10d, // Public holiday (Women's Day observed) * *
+				2026y / August / 10d, // Public holiday (Women's Day observed)
 				2026y / September / 24d, // Heritage Day
 				2026y / December / 16d, // Day of Reconciliation
 				2026y / December / 25d, // Christmas Day
@@ -83,6 +89,18 @@ namespace gregorian
 		static auto _make_Johannesburg_generated_schedule_part0() -> schedule
 		{
 			const auto rules = annual_holiday_storage{
+				&NewYearsDay,
+				&_HumanRightsDay,
+				&GoodFriday,
+				&EasterMonday,
+				&_FreedomDay,
+				&_WorkersDay,
+				&_YouthDay,
+				&_NationalWomensDay,
+				&_HeritageDay,
+				&_DayOfReconciliation,
+				&ChristmasDay,
+				&BoxingDay
 			};
 
 			const auto s = make_holiday_schedule(
