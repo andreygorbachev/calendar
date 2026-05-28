@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME}
   Mexico.cpp
   Israel.cpp
   Poland.cpp
+  SouthAfrica.cpp # or should it be South_Africa.cpp?
   makers.cpp
 )
 

@@ -54,7 +54,7 @@ namespace gregorian
 
 		static auto _make_Zurich_known_schedule_part0() -> schedule // or should it be a "proper" function (without _)?
 		{
-			const auto holidays = schedule::dates{ // should we include day of the week into comments?
+			auto holidays = schedule::dates{ // should we include day of the week into comments?
 
 				// Implied from SARON history
 

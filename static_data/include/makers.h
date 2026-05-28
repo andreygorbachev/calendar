@@ -124,6 +124,11 @@ namespace gregorian
 
 		auto make_SHIR_calendar_versions() -> _calendar_versions;
 
+
+		// from
+
+		auto make_Johannesburg_calendar_versions() -> _calendar_versions;
+
 	}
 
 }

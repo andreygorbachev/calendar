@@ -77,6 +77,8 @@ namespace gregorian
 				{ "Asia/Tokyo", make_Tokyo_calendar_versions() },
 
 				{ "Asia/SHIR", make_SHIR_calendar_versions() }, // is this a correct name?
+
+				{ "Africa/Johannesburg", make_Johannesburg_calendar_versions() },
 			};
 		}
 
