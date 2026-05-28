@@ -176,8 +176,8 @@ namespace gregorian
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-				// handle National Elections
-				// handle Rugby World Cup Win
+				// 23 February 2024 https://www.thepresidency.gov.za/president-proclaims-election-date-and-public-holiday#:~:text=The%20proclamation%20on%20the%20election,public%20holiday%20throughout%20the%20Republic.
+				// 28 November 2023 PROCLAMATION 143 OF 2023
 			};
 		}
 
