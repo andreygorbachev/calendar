@@ -64,7 +64,55 @@ namespace gregorian
 		{
 			auto holidays = schedule::dates{ // should we include day of the week into comments?
 
-				// Implied from ZARONIA history
+				// 2022 (Implied from ZARONIA history)
+				// partial, as ZARONIA history starts from 2022-04-28
+				2022y / May / 2d, // Workers' Day (Observed)
+				2022y / June / 16d, // Youth Day
+				2022y / August / 9d, // National Women's Day
+				2022y / December / 16d, // Day of Reconciliation
+				2022y / December / 26d, // Day of Goodwill
+				2022y / December / 27d, // Christmas Day (Observed)
+
+				// 2023 (Implied from ZARONIA history)
+				2023y / January / 2d, // New Year's Day (Observed)
+				2023y / March / 21d, // Human Rights Day
+				2023y / April / 7d, // Good Friday
+				2023y / April / 10d, // Family Day
+				2023y / April / 27d, // Freedom Day
+				2023y / May / 1d, // Workers' Day
+				2023y / June / 16d, // Youth Day
+				2023y / August / 9d, // National Women's Day
+				2023y / September / 25d, // Heritage Day (Observed)
+				2023y / December / 15d, // Special Public Holiday (Rugby World Cup Win)
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Day of Goodwill
+
+				// 2024 (Implied from ZARONIA history)
+				2024y / January / 1d, // New Year's Day
+				2024y / March / 21d, // Human Rights Day
+				2024y / March / 29d, // Good Friday
+				2024y / April / 1d, // Family Day
+				2024y / May / 1d, // Workers' Day
+				2024y / May / 29d, // National Elections
+				2024y / June / 17d, // Youth Day (Observed)
+				2024y / August / 9d, // National Women's Day
+				2024y / September / 24d, // Heritage Day
+				2024y / December / 16d, // Day of Reconciliation
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Day of Goodwill
+
+				// 2025 (Implied from ZARONIA history)
+				2025y / January / 1d, // New Year's Day
+				2025y / March / 21d, // Human Rights Day
+				2025y / April / 18d, // Good Friday
+				2025y / April / 21d, // Family Day
+				2025y / April / 28d, // Freedom Day (Observed)
+				2025y / May / 1d, // Workers' Day
+				2025y / June / 16d, // Youth Day
+				2025y / September / 24d, // Heritage Day
+				2025y / December / 16d, // Day of Reconciliation
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Day of Goodwill
 
 				2026y / January / 1d, // New Year's Day
 				2026y / March / 21d, // Human Rights Day
@@ -81,7 +129,7 @@ namespace gregorian
 			};
 
 			return schedule{
-				days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+				days_period{ 2022y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
 				std::move(holidays)
 			};
 		}
@@ -128,6 +176,8 @@ namespace gregorian
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+				// handle National Elections
+				// handle Rugby World Cup Win
 			};
 		}
 
