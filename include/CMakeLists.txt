@@ -6,6 +6,7 @@ add_library(${PROJECT_NAME} INTERFACE
   calendar.h
   annual_holiday_interface.h
   annual_holidays.h
+  equinoxes_solstices.h
   business_day_adjuster_interface.h
   business_day_adjusters.h
 )

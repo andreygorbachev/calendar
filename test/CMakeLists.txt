@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME}
   schedule.cpp
   calendar.cpp
   annual_holidays.cpp
+  equinoxes_solstices.cpp
   business_day_adjusters.cpp
   setup.h
 )
