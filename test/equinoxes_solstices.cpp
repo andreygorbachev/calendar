@@ -25,6 +25,7 @@
 #include <gtest/gtest.h>
 
 #include <chrono>
+#include <ranges>
 
 using namespace std;
 using namespace std::chrono;
@@ -40,12 +41,75 @@ namespace gregorian
 		EXPECT_EQ(10, m); // October
 		EXPECT_NEAR(4.81, d, 0.01);
 	}
-/*
-	TEST(vernal_equinox, make_holiday)
+
+	TEST(vernal_equinox, make_holiday1)
 	{
-//		MarchEquinox.make_holiday(1962y);
+		const auto year = {
+			1996y,
+			1997y,
+			1998y,
+			1999y,
+			2000y,
+
+			2001y,
+			2002y,
+			2003y,	
+			2004y,
+			2005y
+		};
+
+		const auto d = {
+			20d,
+			20d,
+			20d,
+			21d,
+			20d,
+
+			20d,
+			20d,
+			21d,
+			20d,
+			20d
+		};
+
+		for (const auto [y, d] : std::views::zip(year, d))
+			EXPECT_EQ( y / March / d, MarchEquinox.make_holiday(y));
 	}
-*/
+
+	TEST(summer_solstice, make_holiday1)
+	{
+		const auto year = {
+			1996y,
+			1997y,
+			1998y,
+			1999y,
+			2000y,
+
+			2001y,
+			2002y,
+			2003y,
+			2004y,
+			2005y
+		};
+
+		const auto d = {
+			21d,
+			21d,
+			21d,
+			21d,
+			21d,
+
+			21d,
+			21d,
+			21d,
+			21d,
+			21d
+		};
+
+		for (const auto [y, d] : std::views::zip(year, d))
+			EXPECT_EQ(y / June / d, JuneSolstice.make_holiday(y));
+	}
+
 	TEST(summer_solstice, make_holiday2)
 	{
 		EXPECT_EQ(1962y / June / 21d, JuneSolstice.make_holiday(1962y));

@@ -37,7 +37,7 @@ namespace gregorian
 	// from "Astronomical Algorithms" second edition 1998
 	// by J.Meeus
 
-/*
+
 	class vernal_equinox final : public annual_holiday
 	{
 
@@ -57,7 +57,7 @@ namespace gregorian
 
 
 	const auto MarchEquinox = vernal_equinox{};
-*/
+
 
 
 	class summer_solstice final : public annual_holiday
@@ -284,7 +284,7 @@ namespace gregorian
 	{
 		const auto Y = _Y(y);
 
-		const auto JDE0 = C1 + C2 * Y + C3 * Y * Y + C4 * Y * Y * Y - C5 * Y * Y * Y * Y; // use std::pow?
+		const auto JDE0 = C1 + C2 * Y + C3 * Y * Y + C4 * Y * Y * Y + C5 * Y * Y * Y * Y; // use std::pow?
 
 		const auto T = _T(JDE0);
 
@@ -331,17 +331,15 @@ namespace gregorian
 	}
 
 
-	/*
 	inline auto vernal_equinox::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
-		const auto JDE0 = 2'451'623.80984 + 365'242.37404 * Y + 0.05169 * Y * Y - 0.00411 * Y * Y * Y - 0.00057 * Y * Y * Y * Y;
+		return _equinox_solstice<2'451'623.80984, 365'242.37404, 0.05169, -0.00411, -0.00057>(y);
 	}
-*/
 
 
 	inline auto summer_solstice::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
-		return _equinox_solstice<2'451'716.56767, 365241.62603, 0.00325, 0.00888, 0.00030>(y);
+		return _equinox_solstice<2'451'716.56767, 365241.62603, 0.00325, 0.00888, -0.00030>(y);
 	}
 
 }
