@@ -323,7 +323,7 @@ namespace gregorian
 
 
 
-	template<double C0, double C1, double C2, double C3, double C4>
+	template<const double C0, const double C1, const double C2, const double C3, const double C4>
 	auto _equinox_solstice(const int y) noexcept -> _day_month_year
 	{
 		const auto Y = _Y(y);
@@ -364,7 +364,7 @@ namespace gregorian
 		};
 	}
 
-	template<double C0, double C1, double C2, double C3, double C4>
+	template<const double C0, const double C1, const double C2, const double C3, const double C4>
 	auto _equinox_solstice(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
 	{
 		const auto yd = _from_std_chrono(y);
