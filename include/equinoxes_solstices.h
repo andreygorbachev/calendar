@@ -357,7 +357,7 @@ namespace gregorian
 		assert(m >= 1 && m <= 12);
 		assert(d >= 1.0 && d <= 31.0);
 
-		return std::chrono::year_month_day{
+		return {
 			std::chrono::year{ y },
 			std::chrono::month{ static_cast<unsigned int>(m) },
 			std::chrono::day{ static_cast<unsigned int>(d) }
