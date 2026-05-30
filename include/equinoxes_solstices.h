@@ -82,6 +82,28 @@ namespace gregorian
 
 
 
+	class autumnal_equinox final : public annual_holiday
+	{
+
+	public:
+
+//		explicit autumnal_equinox() noexcept;
+
+	private:
+
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+	private:
+
+		std::chrono::month_day _md;
+
+	};
+
+
+	const auto SeptemberEquinox = autumnal_equinox{};
+
+
+
 	auto _Y(const int year) noexcept -> double // constexpr?
 	{
 		return (static_cast<double>(year) - 2'000.0) / 1'000.0;
@@ -331,15 +353,24 @@ namespace gregorian
 	}
 
 
+
 	inline auto vernal_equinox::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return _equinox_solstice<2'451'623.80984, 365'242.37404, 0.05169, -0.00411, -0.00057>(y);
 	}
 
 
+
 	inline auto summer_solstice::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return _equinox_solstice<2'451'716.56767, 365241.62603, 0.00325, 0.00888, -0.00030>(y);
+	}
+
+
+
+	inline auto autumnal_equinox::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return _equinox_solstice<2'451'810.21715, 365'242.01767, -0.11575, 0.00337, 0.00078>(y);
 	}
 
 }
