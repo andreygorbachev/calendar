@@ -126,31 +126,31 @@ namespace gregorian
 
 
 
-	auto _Y(const int year) noexcept -> double // constexpr?
+	inline auto _Y(const int year) noexcept -> double // constexpr?
 	{
 		return (static_cast<double>(year) - 2'000.0) / 1'000.0;
 	}
 
 
-	auto _T(const double JDE0) noexcept -> double
+	inline auto _T(const double JDE0) noexcept -> double
 	{
 		return (JDE0 - 2'451'545.0) / 36'525.0;
 	}
 
 
-	auto _W(const double T) noexcept -> double
+	inline auto _W(const double T) noexcept -> double
 	{
 		return (35'999.373 * T - 2.47) * std::numbers::pi / 180.0;
 	}
 
 
-	auto _delta_lambda(const double W) noexcept -> double
+	inline auto _delta_lambda(const double W) noexcept -> double
 	{
 		return 1.0 + 0.0334 * std::cos(W) + 0.0007 * std::cos(2.0 * W); // are these noexcept? should we handle (assert) errors from there
 	}
 
 
-	auto _S(const double T) noexcept -> double
+	inline auto _S(const double T) noexcept -> double
 	{
 		const auto _A = {
 			485.0,
@@ -246,41 +246,41 @@ namespace gregorian
 	}
 
 
-	auto _JDE(const double JDE0, const double delta_lambda, const double S) noexcept -> double
+	inline auto _JDE(const double JDE0, const double delta_lambda, const double S) noexcept -> double
 	{
 		return JDE0 + 0.00001 * S / delta_lambda;
 	}
 
 
 
-	auto _alfa(const int Z) noexcept -> int
+	inline auto _alfa(const int Z) noexcept -> int
 	{
 		return static_cast<int>((static_cast<double>(Z) - 1'867'216.25) / 36'524.25);
 	}
 
-	auto _A(const int Z) noexcept -> int
+	inline auto _A(const int Z) noexcept -> int
 	{
 		const auto alfa = _alfa(Z);
 
 		return Z + 1 + alfa - static_cast<int>(static_cast<double>(alfa) / 4.0);
 	}
 
-	auto _B(const int A) noexcept -> int
+	inline auto _B(const int A) noexcept -> int
 	{
 		return A + 1524;
 	}
 
-	auto _C(const int B) noexcept -> int
+	inline auto _C(const int B) noexcept -> int
 	{
 		return static_cast<int>((static_cast<double>(B) - 122.1) / 365.25);
 	}
 
-	auto _D(const int C) noexcept -> int
+	inline auto _D(const int C) noexcept -> int
 	{
 		return static_cast<int>(365.25 * static_cast<double>(C));
 	}
 
-	auto _E(const int B, const int D) noexcept -> int
+	inline auto _E(const int B, const int D) noexcept -> int
 	{
 		return static_cast<int>((static_cast<double>(B - D)) / 30.6001);
 	}
@@ -292,7 +292,7 @@ namespace gregorian
 		int year;
 	};
 
-	auto _calculate_date(double JD) noexcept -> _day_month_year
+	inline auto _calculate_date(double JD) noexcept -> _day_month_year
 	{
 		assert(JD > 0.0);
 
@@ -345,12 +345,12 @@ namespace gregorian
 
 
 
-	auto _from_std_chrono(const std::chrono::year y) noexcept -> int
+	inline auto _from_std_chrono(const std::chrono::year y) noexcept -> int
 	{
 		return static_cast<int>(y);
 	}
 		
-	auto _to_std_chrono(const _day_month_year& dmy) noexcept -> std::chrono::year_month_day
+	inline auto _to_std_chrono(const _day_month_year& dmy) noexcept -> std::chrono::year_month_day
 	{
 		const auto [d, m, y] = dmy;
 		assert(y >= 1 && y <= 9999);
