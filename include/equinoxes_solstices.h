@@ -324,9 +324,9 @@ namespace gregorian
 
 
 	template<const double C0, const double C1, const double C2, const double C3, const double C4>
-	auto _equinox_solstice(const int y) noexcept -> _day_month_year
+	auto _equinox_solstice(const int year) noexcept -> _day_month_year
 	{
-		const auto Y = _Y(y);
+		const auto Y = _Y(year);
 
 		const auto JDE0 = C0 + C1 * Y + C2 * Y * Y + C3 * Y * Y * Y + C4 * Y * Y * Y * Y; // use std::pow?
 
@@ -367,11 +367,11 @@ namespace gregorian
 	template<const double C0, const double C1, const double C2, const double C3, const double C4>
 	auto _equinox_solstice(const std::chrono::year& y) noexcept -> std::chrono::year_month_day
 	{
-		const auto yd = _from_std_chrono(y);
+		const auto year = _from_std_chrono(y);
 
-		const auto ymd = _equinox_solstice<C0, C1, C2, C3, C4>(yd);
+		const auto dmy = _equinox_solstice<C0, C1, C2, C3, C4>(year);
 
-		return _to_std_chrono(ymd);
+		return _to_std_chrono(dmy);
 	}
 
 
