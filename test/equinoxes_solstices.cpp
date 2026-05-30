@@ -110,6 +110,11 @@ namespace gregorian
 			EXPECT_EQ(y / June / d, JuneSolstice.make_holiday(y));
 	}
 
+	TEST(summer_solstice, make_holiday2)
+	{
+		EXPECT_EQ(1962y / June / 21d, JuneSolstice.make_holiday(1962y));
+	}
+
 	TEST(autumnal_equinox, make_holiday1)
 	{
 		const auto year = {
@@ -144,9 +149,38 @@ namespace gregorian
 			EXPECT_EQ(y / September / d, SeptemberEquinox.make_holiday(y));
 	}
 
-	TEST(summer_solstice, make_holiday2)
+	TEST(winter_solstice, make_holiday1)
 	{
-		EXPECT_EQ(1962y / June / 21d, JuneSolstice.make_holiday(1962y));
+		const auto year = {
+			1996y,
+			1997y,
+			1998y,
+			1999y,
+			2000y,
+
+			2001y,
+			2002y,
+			2003y,
+			2004y,
+			2005y
+		};
+
+		const auto d = {
+			21d,
+			21d,
+			22d,
+			22d,
+			21d,
+
+			21d,
+			22d,
+			22d,
+			21d,
+			21d
+		};
+
+		for (const auto [y, d] : std::views::zip(year, d))
+			EXPECT_EQ(y / December / d, DecemberSolstice.make_holiday(y));
 	}
 
 }

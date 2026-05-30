@@ -104,6 +104,28 @@ namespace gregorian
 
 
 
+	class winter_solstice final : public annual_holiday
+	{
+
+	public:
+
+//		explicit winter_solstice() noexcept;
+
+	private:
+
+		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+
+	private:
+
+		std::chrono::month_day _md;
+
+	};
+
+
+	const auto DecemberSolstice = winter_solstice{};
+
+
+
 	auto _Y(const int year) noexcept -> double // constexpr?
 	{
 		return (static_cast<double>(year) - 2'000.0) / 1'000.0;
@@ -371,6 +393,13 @@ namespace gregorian
 	inline auto autumnal_equinox::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return _equinox_solstice<2'451'810.21715, 365'242.01767, -0.11575, 0.00337, 0.00078>(y);
+	}
+
+
+
+	inline auto winter_solstice::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	{
+		return _equinox_solstice<2'451'900.05952, 365'242.74049, -0.06223, -0.00823, 0.00032>(y);
 	}
 
 }
