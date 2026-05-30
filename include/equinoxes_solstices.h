@@ -298,9 +298,9 @@ namespace gregorian
 
 		JD += 0.5;
 
-		auto Zd = double{};
-		const auto F = std::modf(JD, &Zd);
-		const auto Z = static_cast<int>(Zd);
+		auto _Z = double{};
+		const auto F = std::modf(JD, &_Z);
+		const auto Z = static_cast<int>(_Z);
 
 		const auto A = Z < 2'299'161 ? Z : _A(Z);
 
@@ -312,7 +312,7 @@ namespace gregorian
 
 		const auto E = _E(B, D);
 
-		const auto day = B - D - static_cast<int>(30.6001 * static_cast<double>(E)) + F;
+		const auto day = static_cast<double>(B - D - static_cast<int>(30.6001 * static_cast<double>(E))) + F;
 
 		const auto month = E < 14 ? E - 1 : E - 13;
 
@@ -359,8 +359,8 @@ namespace gregorian
 
 		return std::chrono::year_month_day{
 			std::chrono::year{ y },
-			std::chrono::month{ static_cast<unsigned>(m) },
-			std::chrono::day{ static_cast<unsigned>(d) }
+			std::chrono::month{ static_cast<unsigned int>(m) },
+			std::chrono::day{ static_cast<unsigned int>(d) }
 		};
 	}
 
