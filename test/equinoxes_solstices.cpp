@@ -58,7 +58,7 @@ namespace gregorian
 			2005y
 		};
 
-		const auto d = {
+		const auto day = {
 			20d,
 			20d,
 			20d,
@@ -72,7 +72,7 @@ namespace gregorian
 			20d
 		};
 
-		for (const auto [y, d] : std::views::zip(year, d))
+		for (const auto& [y, d] : std::views::zip(year, day))
 			EXPECT_EQ( y / March / d, MarchEquinox.make_holiday(y));
 	}
 
@@ -92,7 +92,7 @@ namespace gregorian
 			2005y
 		};
 
-		const auto d = {
+		const auto day = {
 			21d,
 			21d,
 			21d,
@@ -106,7 +106,7 @@ namespace gregorian
 			21d
 		};
 
-		for (const auto [y, d] : std::views::zip(year, d))
+		for (const auto& [y, d] : std::views::zip(year, day))
 			EXPECT_EQ(y / June / d, JuneSolstice.make_holiday(y));
 	}
 
@@ -131,7 +131,7 @@ namespace gregorian
 			2005y
 		};
 
-		const auto d = {
+		const auto day = {
 			22d,
 			22d,
 			23d,
@@ -145,7 +145,7 @@ namespace gregorian
 			22d
 		};
 
-		for (const auto [y, d] : std::views::zip(year, d))
+		for (const auto& [y, d] : std::views::zip(year, day))
 			EXPECT_EQ(y / September / d, SeptemberEquinox.make_holiday(y));
 	}
 
@@ -165,7 +165,7 @@ namespace gregorian
 			2005y
 		};
 
-		const auto d = {
+		const auto day = {
 			21d,
 			21d,
 			22d,
@@ -179,7 +179,7 @@ namespace gregorian
 			21d
 		};
 
-		for (const auto [y, d] : std::views::zip(year, d))
+		for (const auto& [y, d] : std::views::zip(year, day))
 			EXPECT_EQ(y / December / d, DecemberSolstice.make_holiday(y));
 	}
 
