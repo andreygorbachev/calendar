@@ -448,6 +448,8 @@ namespace gregorian
 
 			};
 
+			// need to adjust (at least some holidays) Sunday->Monday
+
 			return make_holiday_schedule(
 				util::years_period{ 2028y, Epoch.get_until().year() },
 				rules
@@ -469,6 +471,8 @@ namespace gregorian
 				&_ChildrensDay,
 				&_EmperorNaruhitoBirthday,
 			};
+
+			// need to adjust (at least some holidays) Sunday->Monday
 
 			return make_holiday_schedule(
 				util::years_period{ 2028y, Epoch.get_until().year() },
