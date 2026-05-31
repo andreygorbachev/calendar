@@ -58,6 +58,7 @@ namespace gregorian
 		const auto _MarineDay = weekday_indexed_holiday{ July / Monday[3] };
 		const auto _RespectForTheAgedDay = weekday_indexed_holiday{ September / Monday[3] };
 		const auto _SportsDay = weekday_indexed_holiday{ October / Monday[2] }; // formerly Health and Sports Day
+		const auto _CultureDay = named_holiday{ November / 3d };
 		const auto _EmperorAkihitoBirthday = named_holiday{ December / 23d };
 
 
@@ -451,6 +452,7 @@ namespace gregorian
 				&_RespectForTheAgedDay,
 				&SeptemberEquinox,
 				&_SportsDay,
+				&_CultureDay,
 				&_EmperorAkihitoBirthday,
 			};
 
@@ -480,6 +482,7 @@ namespace gregorian
 				&_RespectForTheAgedDay,
 				&SeptemberEquinox,
 				&_SportsDay,
+				&_CultureDay,
 			};
 
 			// need to adjust (at least some holidays) Sunday->Monday
