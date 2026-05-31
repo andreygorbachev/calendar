@@ -51,11 +51,12 @@ namespace gregorian
 		const auto _ComingOfAgeDay = weekday_indexed_holiday{ January / Monday[2] };
 		const auto _NationalFoundationDay = named_holiday{ February / 11d };
 		const auto _EmperorNaruhitoBirthday = named_holiday{ February / 23d };
-		const auto _ShowaDay = named_holiday{ April / 29d };
+		const auto _ShowaDay = named_holiday{ April / 29d }; // established in 2007
 		const auto _ConstitutionDay = named_holiday{ May / 3d };
-		const auto _GreeneryDay = named_holiday{ May / 4d };
+		const auto _GreeneryDay = named_holiday{ May / 4d }; // In 2007, Greenery Day was moved to May 4, and April 29 took the name "Shōwa Day"
 		const auto _ChildrensDay = named_holiday{ May / 5d };
-		const auto _MarineDay = weekday_indexed_holiday{ July / Monday[3] };
+		const auto _MarineDay = weekday_indexed_holiday{ July / Monday[3] }; // established in 1995 (first observed in 1996) 
+		const auto _MountainDay = named_holiday{ August / 11d }; // established in 2014 (and first observed in 2016)
 		const auto _RespectForTheAgedDay = weekday_indexed_holiday{ September / Monday[3] };
 		const auto _SportsDay = weekday_indexed_holiday{ October / Monday[2] }; // formerly Health and Sports Day
 		const auto _CultureDay = named_holiday{ November / 3d };
@@ -450,12 +451,14 @@ namespace gregorian
 				&_GreeneryDay,
 				&_ChildrensDay,
 				&_MarineDay,
+				&_MountainDay,
 				&_RespectForTheAgedDay,
 				&SeptemberEquinox,
 				&_SportsDay,
 				&_CultureDay,
 				&_LaborThanksgivingDay,
 				&_EmperorAkihitoBirthday,
+				&NewYearsEve
 			};
 
 			// need to adjust (at least some holidays) Sunday->Monday
@@ -481,11 +484,13 @@ namespace gregorian
 				&_GreeneryDay,
 				&_ChildrensDay,
 				&_MarineDay,
+				&_MountainDay,
 				&_RespectForTheAgedDay,
 				&SeptemberEquinox,
 				&_SportsDay,
 				&_CultureDay,
 				&_LaborThanksgivingDay,
+				& NewYearsEve
 			};
 
 			// need to adjust (at least some holidays) Sunday->Monday
