@@ -49,9 +49,9 @@ namespace gregorian
 
 		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-	private:
-
-		std::chrono::month_day _md;
+//	private:
+//
+//		std::chrono::month_day _md;
 
 	};
 
@@ -71,9 +71,9 @@ namespace gregorian
 
 		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-	private:
-
-		std::chrono::month_day _md;
+//	private:
+//
+//		std::chrono::month_day _md;
 
 	};
 
@@ -93,9 +93,9 @@ namespace gregorian
 
 		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-	private:
-
-		std::chrono::month_day _md;
+//	private:
+//
+//		std::chrono::month_day _md;
 
 	};
 
@@ -115,9 +115,9 @@ namespace gregorian
 
 		auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
-	private:
-
-		std::chrono::month_day _md;
+//	private:
+//
+//		std::chrono::month_day _md;
 
 	};
 
