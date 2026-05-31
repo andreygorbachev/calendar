@@ -29,6 +29,7 @@
 #include <weekend.h>
 #include <annual_holiday_interface.h>
 #include <annual_holidays.h>
+#include <equinoxes_solstices.h>
 
 #include <utility>
 #include <chrono>
@@ -435,6 +436,7 @@ namespace gregorian
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
 				&_EmperorAkihitoBirthday,
+				&MarchEquinox,
 			};
 
 			return make_holiday_schedule(
@@ -451,6 +453,7 @@ namespace gregorian
 				&_NewYearsDay3,
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
+				&MarchEquinox,
 				&_EmperorNaruhitoBirthday,
 			};
 
