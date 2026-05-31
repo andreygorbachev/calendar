@@ -51,12 +51,13 @@ namespace gregorian
 		const auto _ComingOfAgeDay = weekday_indexed_holiday{ January / Monday[2] };
 		const auto _NationalFoundationDay = named_holiday{ February / 11d };
 		const auto _EmperorNaruhitoBirthday = named_holiday{ February / 23d };
-		const auto _EmperorAkihitoBirthday = named_holiday{ December / 23d };
 		const auto _ShowaDay = named_holiday{ April / 29d };
 		const auto _ConstitutionDay = named_holiday{ May / 3d };
 		const auto _GreeneryDay = named_holiday{ May / 4d };
 		const auto _ChildrensDay = named_holiday{ May / 5d };
 		const auto _MarineDay = weekday_indexed_holiday{ July / Monday[3] };
+		const auto _RespectForTheAgedDay = weekday_indexed_holiday{ September / Monday[3] };
+		const auto _EmperorAkihitoBirthday = named_holiday{ December / 23d };
 
 
 
@@ -440,14 +441,15 @@ namespace gregorian
 				&_NewYearsDay3,
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
-				&_EmperorAkihitoBirthday,
 				&MarchEquinox,
 				&_ShowaDay,
 				&_ConstitutionDay,
 				&_GreeneryDay,
 				&_ChildrensDay,
 				&_MarineDay,
-
+				&_RespectForTheAgedDay,
+				&SeptemberEquinox,
+				& _EmperorAkihitoBirthday,
 			};
 
 			// need to adjust (at least some holidays) Sunday->Monday
@@ -466,13 +468,15 @@ namespace gregorian
 				&_NewYearsDay3,
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
+				&_EmperorNaruhitoBirthday,
 				&MarchEquinox,
 				&_ShowaDay,
 				&_ConstitutionDay,
 				&_GreeneryDay,
 				&_ChildrensDay,
 				&_MarineDay,
-				&_EmperorNaruhitoBirthday,
+				&_RespectForTheAgedDay,
+				&SeptemberEquinox,
 			};
 
 			// need to adjust (at least some holidays) Sunday->Monday
