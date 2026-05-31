@@ -56,6 +56,7 @@ namespace gregorian
 		const auto _ConstitutionDay = named_holiday{ May / 3d };
 		const auto _GreeneryDay = named_holiday{ May / 4d };
 		const auto _ChildrensDay = named_holiday{ May / 5d };
+		const auto _MarineDay = weekday_indexed_holiday{ July / Monday[3] };
 
 
 
@@ -445,6 +446,7 @@ namespace gregorian
 				&_ConstitutionDay,
 				&_GreeneryDay,
 				&_ChildrensDay,
+				&_MarineDay,
 
 			};
 
@@ -469,6 +471,7 @@ namespace gregorian
 				&_ConstitutionDay,
 				&_GreeneryDay,
 				&_ChildrensDay,
+				&_MarineDay,
 				&_EmperorNaruhitoBirthday,
 			};
 
