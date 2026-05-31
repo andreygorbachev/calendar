@@ -52,6 +52,10 @@ namespace gregorian
 		const auto _NationalFoundationDay = named_holiday{ February / 11d };
 		const auto _EmperorNaruhitoBirthday = named_holiday{ February / 23d };
 		const auto _EmperorAkihitoBirthday = named_holiday{ December / 23d };
+		const auto _ShowaDay = named_holiday{ April / 29d };
+		const auto _ConstitutionDay = named_holiday{ May / 3d };
+		const auto _GreeneryDay = named_holiday{ May / 4d };
+		const auto _ChildrensDay = named_holiday{ May / 5d };
 
 
 
@@ -437,6 +441,11 @@ namespace gregorian
 				&_NationalFoundationDay,
 				&_EmperorAkihitoBirthday,
 				&MarchEquinox,
+				&_ShowaDay,
+				&_ConstitutionDay,
+				&_GreeneryDay,
+				&_ChildrensDay,
+
 			};
 
 			return make_holiday_schedule(
@@ -454,6 +463,10 @@ namespace gregorian
 				&_ComingOfAgeDay,
 				&_NationalFoundationDay,
 				&MarchEquinox,
+				&_ShowaDay,
+				&_ConstitutionDay,
+				&_GreeneryDay,
+				&_ChildrensDay,
 				&_EmperorNaruhitoBirthday,
 			};
 
