@@ -94,6 +94,10 @@ namespace gregorian
 		// is it the same as US Government Securities?
 		// also has something for UK and Japan (US securities trading in UK and Japan)
 
+		// from
+
+		auto make_SOFR_calendar_versions() -> _calendar_versions;
+
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
 		// (not yet cover the Epoch completely)

@@ -65,6 +65,7 @@ namespace gregorian
 				{ "America/USA", make_USA_Federal_calendar_versions() },
 				{ "America/Washington", make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 				{ "America/SIFMA", make_SIFMA_calendar_versions() }, // or should it be America/USA/SIFMA? or should it be in etcetera?
+				{ "America/SOFR", make_SOFR_calendar_versions() }, // or should it be America/USA/SOFR? or should it be in etcetera?
 
 				{ "America/Canada", make_Canada_Federal_calendar_versions() },
 				{ "America/Ontario", make_Ontario_calendar_versions() },

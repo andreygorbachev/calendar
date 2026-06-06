@@ -969,6 +969,597 @@ namespace gregorian
 		}
 
 
+		// these at the moment are just a copy of SIFMA dates (with some Good Friday differences as SOFR history shows)
+		// can we use a common source somehow to prevent copy/paste?
+		static auto _make_SOFR_known_schedule_part0a() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year's Day 2012
+				2012y / January / 16d, // Martin Luther King Day
+				2012y / February / 20d, // President's Day
+				// 2012 April 6 Recommended Early Close (12:00PM)
+				// No Good Friday
+				2012y / May / 28d, // Memorial Day
+				2012y / July / 4d, // Independence Day
+				2012y / September / 3d, // Labor Day
+				2012y / October / 8d, // Columbus Day
+				2012y / November / 12d, // Veterans Day
+				// 2012 November 23 Recommended Early Close (2pm EST)
+				2012y / November / 22d, // Thanksgiving Day
+				// 2012 December 24 Recommended Early Close (2pm EST)
+				2012y / December / 25d // Christmas Day
+				// 2012 December 31 Recommended Early Close (2pm EST)
+			};
+
+			return schedule{
+				days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part0b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2012y / January / 2d, // New Year's Day 2012
+				2012y / January / 16d, // Martin Luther King Day
+				2012y / February / 20d, // President's Day
+				// 2012 April 6 Recommended Early Close (12:00PM)
+				// No Good Friday
+				2012y / May / 28d, // Memorial Day
+				2012y / July / 4d, // Independence Day
+				2012y / September / 3d, // Labor Day
+				2012y / October / 8d, // Columbus Day
+				// 2012 October 29 Recommended Early Close (12:00PM)
+				2012y / October / 30d, // N/A (Hurricane Sandy)
+				2012y / November / 12d, // Veterans Day
+				// 2012 November 23 Recommended Early Close (2pm EST)
+				2012y / November / 22d, // Thanksgiving Day
+				// 2012 December 24 Recommended Early Close (2pm EST)
+				2012y / December / 25d // Christmas Day
+				// 2012 December 31 Recommended Early Close (2pm EST)
+			};
+
+			return schedule{
+				days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part1a() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2013y / January / 1d, // New Year's Day
+				2013y / January / 21d, // Martin Luther King Day
+				2013y / February / 18d, // President's Day
+				// 2013 March 28 Recommended Early Close (2pm EST)
+				2013y / March / 29d, // Good Friday
+				// 2013 May 24 Recommended Early Close (2pm EST)
+				2013y / May / 27d, // Memorial Day
+				2013y / July / 4d, // Independence Day
+				2013y / September / 2d, // Labor Day
+				2013y / October / 14d, // Columbus Day
+				2013y / November / 11d, // Veterans Day
+				// 2013 November 29 Recommended Early Close (2pm EST)
+				2013y / November / 28d, // Thanksgiving Day
+				// 2013 December 24 Recommended Early Close (2pm EST)
+				2013y / December / 25d, // Christmas Day
+				// 2013 December 31 Recommended Early Close (2pm EST)
+
+				2014y / January / 1d, // New Year's Day 2014
+				2014y / January / 20d, // Martin Luther King Day
+				2014y / February / 17d, // President's Day
+				// 2014 April 17 Recommended Early Close (2pm EST)
+				2014y / April / 18d, // Good Friday
+				// 2014 May 23 Recommended Early Close (2pm EST)
+				2014y / May / 26d, // Memorial Day
+				// 2014 July 3 Recommended Early Close (2pm EST)
+				2014y / July / 4d, // Independence Day
+				2014y / September / 1d, // Labor Day
+				2014y / October / 13d, // Columbus Day
+				2014y / November / 11d, // Veterans Day
+				// 2014 NOvember 28 Recommended Early Close (2pm EST)
+				2014y / November / 27d, // Thanksgiving Day
+				// 2014 December 24 Recommended Early Close (2pm EST)
+				2014y / December / 25d, // Christmas Day
+				// 2014 December 31 Recommended Early Close (2pm EST)
+
+				2015y / January / 1d, // New Year's Day 2015
+				2015y / January / 19d, // Martin Luther King Day
+				2015y / February / 16d, // President’s Day
+				// 2015 April 2 Recommended Early Close (2pm EST)
+				2015y / April / 3d, // Good Friday
+				// 2015 May 22 Recommended Early Close (2pm EST)
+				2015y / May / 25d, // Memorial Day
+				// 2015 July 2 Recommended Early Close (2pm EST)
+				2015y / July / 3d, // Independence Day
+				2015y / September / 7d, // Labor Day
+				2015y / October / 12d, // Columbus Day
+				2015y / November / 11d, // Veterans Day
+				// 2015 November 27 Recommended Early Close (2pm EST)
+				2015y / November / 26d, // Thanksgiving Day
+				// 2015 December 24 Recommended Early Close (2pm EST)
+				2015y / December / 25d, // Christmas Day
+				// 2015 December 31 Recommended Early Close (2pm EST)
+
+				2016y / January / 1d, // New Year's Day 2016
+				2016y / January / 18d, // Martin Luther King Day
+				2016y / February / 15d, // President’s Day
+				// 2016 March 24 Recommended Early Close (2pm EST)
+				2016y / March / 25d, // Good Friday
+				// 2016 May 27 Recommended Early Close (2pm EST)
+				2016y / May / 30d, // Memorial Day
+				// 2016 July 1 Recommended Early Close (2pm EST)
+				2016y / July / 4d, // Independence Day
+				2016y / September / 5d, // Labor Day
+				2016y / October / 10d, // Columbus Day
+				2016y / November / 11d, // Veterans Day
+				// 2016 November 25 Recommended Early Close (2pm EST)
+				2016y / November / 24d, // Thanksgiving Day
+				// 2016 December 23 Recommended Early Close (2pm EST)
+				2016y / December / 26d, // Christmas Day
+				// 2016 December 31 Recommended Early Close (2pm EST)
+
+				2017y / January / 2d, // New Year's Day 2017
+				2017y / January / 16d, // Martin Luther King Day
+				2017y / February / 20d, // President's Day
+				// 2017 Aprul 13 Recommended Early Close (2pm EST)
+				2017y / April / 14d, // Good Friday
+				// 2017 May 26 Recommended Early Close (2pm EST)
+				2017y / May / 29d, // Memorial Day
+				// 2017 July 3 Recommended Early Close (2pm EST)
+				2017y / July / 4d, // Independence Day
+				2017y / September / 4d, // Labor Day
+				2017y / October / 9d, // Columbus Day
+				// 2017 November 24 Recommended Early Close (2pm EST)
+				2017y / November / 23d, // Thanksgiving Day
+				// 2017 December 22 Recommended Early Close (2pm EST)
+				2017y / December / 25d, // Christmas Day
+				// 2017 December 29 Recommended Early Close (2pm EST)
+
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
+
+				2018y / January / 1d, // New Year's Day 2017/2018
+				2018y / January / 15d, // Martin Luther King Day
+				2018y / February / 19d, // Presidents Day
+				2018y / March / 30d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, March 29, 2018
+				2018y / May / 28d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 25, 2018
+				2018y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, July 3, 2018
+				2018y / September / 3d, // Labor Day
+				2018y / October / 8d, // Columbus Day
+				2018y / November / 12d, // Veterans Day
+				2018y / November / 22d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
+				2018y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
+			};
+
+			return schedule{
+				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part1b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2013y / January / 1d, // New Year's Day
+				2013y / January / 21d, // Martin Luther King Day
+				2013y / February / 18d, // President's Day
+				// 2013 March 28 Recommended Early Close (2pm EST)
+				2013y / March / 29d, // Good Friday
+				// 2013 May 24 Recommended Early Close (2pm EST)
+				2013y / May / 27d, // Memorial Day
+				2013y / July / 4d, // Independence Day
+				2013y / September / 2d, // Labor Day
+				2013y / October / 14d, // Columbus Day
+				2013y / November / 11d, // Veterans Day
+				// 2013 November 29 Recommended Early Close (2pm EST)
+				2013y / November / 28d, // Thanksgiving Day
+				// 2013 December 24 Recommended Early Close (2pm EST)
+				2013y / December / 25d, // Christmas Day
+				// 2013 December 31 Recommended Early Close (2pm EST)
+
+				2014y / January / 1d, // New Year's Day 2014
+				2014y / January / 20d, // Martin Luther King Day
+				2014y / February / 17d, // President's Day
+				// 2014 April 17 Recommended Early Close (2pm EST)
+				2014y / April / 18d, // Good Friday
+				// 2014 May 23 Recommended Early Close (2pm EST)
+				2014y / May / 26d, // Memorial Day
+				// 2014 July 3 Recommended Early Close (2pm EST)
+				2014y / July / 4d, // Independence Day
+				2014y / September / 1d, // Labor Day
+				2014y / October / 13d, // Columbus Day
+				2014y / November / 11d, // Veterans Day
+				// 2014 NOvember 28 Recommended Early Close (2pm EST)
+				2014y / November / 27d, // Thanksgiving Day
+				// 2014 December 24 Recommended Early Close (2pm EST)
+				2014y / December / 25d, // Christmas Day
+				// 2014 December 31 Recommended Early Close (2pm EST)
+
+				2015y / January / 1d, // New Year's Day 2015
+				2015y / January / 19d, // Martin Luther King Day
+				2015y / February / 16d, // President’s Day
+				// 2015 April 2 Recommended Early Close (2pm EST)
+				2015y / April / 3d, // Good Friday
+				// 2015 May 22 Recommended Early Close (2pm EST)
+				2015y / May / 25d, // Memorial Day
+				// 2015 July 2 Recommended Early Close (2pm EST)
+				2015y / July / 3d, // Independence Day
+				2015y / September / 7d, // Labor Day
+				2015y / October / 12d, // Columbus Day
+				2015y / November / 11d, // Veterans Day
+				// 2015 November 27 Recommended Early Close (2pm EST)
+				2015y / November / 26d, // Thanksgiving Day
+				// 2015 December 24 Recommended Early Close (2pm EST)
+				2015y / December / 25d, // Christmas Day
+				// 2015 December 31 Recommended Early Close (2pm EST)
+
+				2016y / January / 1d, // New Year's Day 2016
+				2016y / January / 18d, // Martin Luther King Day
+				2016y / February / 15d, // President’s Day
+				// 2016 March 24 Recommended Early Close (2pm EST)
+				2016y / March / 25d, // Good Friday
+				// 2016 May 27 Recommended Early Close (2pm EST)
+				2016y / May / 30d, // Memorial Day
+				// 2016 July 1 Recommended Early Close (2pm EST)
+				2016y / July / 4d, // Independence Day
+				2016y / September / 5d, // Labor Day
+				2016y / October / 10d, // Columbus Day
+				2016y / November / 11d, // Veterans Day
+				// 2016 November 25 Recommended Early Close (2pm EST)
+				2016y / November / 24d, // Thanksgiving Day
+				// 2016 December 23 Recommended Early Close (2pm EST)
+				2016y / December / 26d, // Christmas Day
+				// 2016 December 31 Recommended Early Close (2pm EST)
+
+				2017y / January / 2d, // New Year's Day 2017
+				2017y / January / 16d, // Martin Luther King Day
+				2017y / February / 20d, // President's Day
+				// 2017 Aprul 13 Recommended Early Close (2pm EST)
+				2017y / April / 14d, // Good Friday
+				// 2017 May 26 Recommended Early Close (2pm EST)
+				2017y / May / 29d, // Memorial Day
+				// 2017 July 3 Recommended Early Close (2pm EST)
+				2017y / July / 4d, // Independence Day
+				2017y / September / 4d, // Labor Day
+				2017y / October / 9d, // Columbus Day
+				// 2017 November 24 Recommended Early Close (2pm EST)
+				2017y / November / 23d, // Thanksgiving Day
+				// 2017 December 22 Recommended Early Close (2pm EST)
+				2017y / December / 25d, // Christmas Day
+				// 2017 December 29 Recommended Early Close (2pm EST)
+
+				// above is from "SIFMA Holiday Recommendations 1996 - 2019"
+
+				2018y / January / 1d, // New Year's Day 2017/2018
+				2018y / January / 15d, // Martin Luther King Day
+				2018y / February / 19d, // Presidents Day
+				2018y / March / 30d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, March 29, 2018
+				2018y / May / 28d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 25, 2018
+				2018y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, July 3, 2018
+				2018y / September / 3d, // Labor Day
+				2018y / October / 8d, // Columbus Day
+				2018y / November / 12d, // Veterans Day
+				2018y / November / 22d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 23, 2018
+				2018y / December / 5d, // In Honor of Former President George H.W.Bush
+				2018y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 24, 2018
+				// Early Close (2:00 p.m. Eastern Time): Monday, December 31, 2018
+			};
+
+			return schedule{
+				days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part2a() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2019y / January / 1d, // New Year's Day 2018/2019
+				2019y / January / 21d, // Martin Luther King Day
+				2019y / February / 18d, // Presidents Day
+				2019y / April / 19d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
+				2019y / May / 27d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
+				2019y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
+				2019y / September / 2d, // Labor Day
+				2019y / October / 14d, // Columbus Day
+				2019y / November / 11d, // Veterans Day
+				2019y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
+				2019y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
+
+				2020y / January / 1d, // New Year's Day 2019/2020
+				2020y / January / 20d, // Martin Luther King Day
+				2020y / February / 17d, // Presidents Day
+				2020y / April / 10d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
+				2020y / May / 25d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
+				2020y / July / 3d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 2, 2020
+				2020y / September / 7d, // Labor Day
+				2020y / October / 12d, // Columbus Day
+				2020y / November / 11d, // Veterans Day
+				2020y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
+				2020y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
+
+				2021y / January / 1d, // New Year's Day 2020/2021
+				2021y / January / 18d, // Martin Luther King Day
+				2021y / February / 15d, // Presidents Day
+				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
+				2021y / May / 31d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
+				2021y / July / 5d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
+				2021y / September / 6d, // Labor Day
+				2021y / October / 11d, // Columbus Day
+				2021y / November / 11d, // Veterans Day
+				2021y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
+				2021y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
+				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+
+				// No New Year's Day 2021/2022
+				2022y / January / 17d, // Martin Luther King Day
+				2022y / February / 21d, // Presidents Day
+				2022y / April / 15d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
+				2022y / May / 30d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
+				2022y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
+				2022y / September / 5d, // Labor Day
+				2022y / October / 10d, // Columbus Day
+				2022y / November / 11d, // Veterans Day
+				2022y / November / 24d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
+				2022y / December / 26d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
+
+				2023y / January / 2d, // New Year's Day 2022/2023
+				2023y / January / 16d, // Martin Luther King Day
+				2023y / February / 20d, // Presidents Day
+				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / May / 29d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
+				2023y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
+				2023y / September / 4d, // Labor Day
+				2023y / October / 9d, // Columbus Day
+				// No Veterans Day
+				2023y / November / 23d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
+				2023y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
+			};
+
+			return schedule{
+				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part2b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2019y / January / 1d, // New Year's Day 2018/2019
+				2019y / January / 21d, // Martin Luther King Day
+				2019y / February / 18d, // Presidents Day
+				2019y / April / 19d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 18, 2019
+				2019y / May / 27d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2019
+				2019y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2019
+				2019y / September / 2d, // Labor Day
+				2019y / October / 14d, // Columbus Day
+				2019y / November / 11d, // Veterans Day
+				2019y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2019
+				2019y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2019
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2019
+
+				2020y / January / 1d, // New Year's Day 2019/2020
+				2020y / January / 20d, // Martin Luther King Day
+				2020y / February / 17d, // Presidents Day
+				2020y / April / 10d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 9, 2020
+				2020y / May / 25d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2020
+				2020y / July / 3d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 2, 2020
+				2020y / September / 7d, // Labor Day
+				2020y / October / 12d, // Columbus Day
+				2020y / November / 11d, // Veterans Day
+				2020y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 27, 2020
+				2020y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 24, 2020
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2020
+
+				2021y / January / 1d, // New Year's Day 2020/2021
+				2021y / January / 18d, // Martin Luther King Day
+				2021y / February / 15d, // Presidents Day
+				2021y / April / 2d, // Good Friday
+				2021y / May / 31d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
+				2021y / July / 5d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2021
+				2021y / September / 6d, // Labor Day
+				2021y / October / 11d, // Columbus Day
+				2021y / November / 11d, // Veterans Day
+				2021y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 26, 2021
+				2021y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2021
+				// Early Close Only (2:00 p.m. Eastern Time): Friday, December 31, 2021
+
+				// No New Year's Day 2021/2022
+				2022y / January / 17d, // Martin Luther King Day
+				2022y / February / 21d, // Presidents Day
+				2022y / April / 15d, // Good Friday
+				// Early Close (2:00 p.m. Eastern Time): Thursday, April 14, 2022
+				2022y / May / 30d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 27, 2022
+				2022y / June / 20d, // Juneteenth
+				2022y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 1, 2022
+				2022y / September / 5d, // Labor Day
+				2022y / October / 10d, // Columbus Day
+				2022y / November / 11d, // Veterans Day
+				2022y / November / 24d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 25, 2022
+				2022y / December / 26d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 23, 2022
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
+
+				2023y / January / 2d, // New Year's Day 2022/2023
+				2023y / January / 16d, // Martin Luther King Day
+				2023y / February / 20d, // Presidents Day
+				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / May / 29d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
+				2023y / June / 19d, // Juneteenth
+				2023y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
+				2023y / September / 4d, // Labor Day
+				2023y / October / 9d, // Columbus Day
+				// No Veterans Day
+				2023y / November / 23d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
+				2023y / December / 25d // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
+			};
+
+			return schedule{
+				days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		static auto _make_SOFR_known_schedule_part3() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2024y / January / 1d, // New Year’s Day 2023/2024
+				2024y / January / 15d, // Martin Luther King Day
+				2024y / February / 19d, // Presidents Day
+				2024y / March / 29d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, March 28, 2024
+				2024y / May / 27d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 24, 2024
+				2024y / June / 19d, // Juneteenth
+				2024y / July / 4d, // U.S. Independence Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, July 3, 2024
+				2024y / September / 2d, // Labor Day
+				2024y / October / 14d, // Columbus Day
+				2024y / November / 11d, // Veterans Day
+				2024y / November / 28d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 29, 2024
+				2024y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 24, 2024
+				// Early Close (2:00 p.m. Eastern Time): Tuesday, December 31, 2024
+
+				2025y / January / 1d, // New Year’s Day 2024/2025
+				2025y / January / 20d, // Martin Luther King Day
+				2025y / February / 17d, // Presidents Day
+				2025y / April / 18d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, April 17, 2025
+				2025y / May / 26d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 23, 2025
+				2025y / June / 19d, // Juneteenth
+				2025y / July / 4d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m. Eastern Time): Thursday, July 3, 2025
+				2025y / September / 1d, // Labor Day
+				2025y / October / 13d, // Columbus Day
+				2025y / November / 11d, // Veterans Day
+				2025y / November / 27d, // Thanksgiving Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, November 28, 2025
+				2025y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, December 24, 2025
+				// Early Close (2:00 p.m. Eastern Time): Wednesday, December 31, 2025
+
+				2026y / January / 1d, // New Year’s Day 2025/2026
+				2026y / January / 19d, // Martin Luther King Day
+				2026y / February / 16d, // Presidents Day
+				// Good Friday Early Close (12:00 p.m. Eastern Time): Friday,
+				2026y / May / 25d, // Memorial Day
+				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2026
+				2026y / June / 19d, // Juneteenth
+				2026y / July / 3d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m.Eastern Time): Thursday, July 2, 2026
+				2026y / September / 7d, // Labor Day
+				2026y / October / 12d, // Columbus Day
+				2026y / November / 11d, // Veterans Day
+				2026y / November / 26d, // Thanksgiving Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, November 27, 2026
+				2026y / December / 25d, // Christmas Day
+				// Early Close (2:00 p.m.Eastern Time): Thursday, December 24, 2026
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 31, 2026
+
+				2027y / January / 1d, // New Year’s Day 2026/2027
+				2027y / January / 18d, // Martin Luther King Day
+				2027y / February / 15d, // Presidents Day
+				2027y / March / 26d, // Good Friday
+				// Early Close (2:00 p.m.Eastern Time): Thursday, March 25, 2027
+				2027y / May / 31d, // Memorial Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, May 28, 2027
+				2027y / June / 18d, // Juneteenth
+				2027y / July / 5d, // U.S. Independence Day (observed)
+				// Early Close (2:00 p.m. Eastern Time): Friday, July 2, 2027
+				2027y / September / 6d, // Labor Day
+				2027y / October / 11d, // Columbus Day
+				2027y / November / 11d, // Veterans Day
+				2027y / November / 25d, // Thanksgiving Day
+				// Early Close (2:00 p.m.Eastern Time): Friday, November 26, 2027
+				2027y / December / 24d, // Christmas Day
+				// Early Close (2:00 p.m. Eastern Time): Thursday, December 23, 2027
+				// Early Close (2:00 p.m. Eastern Time): Friday, December 31, 2028
+
+				// temporary workaround for 2028y / January / 1d being a Sunday, and thus needing Nearest adjustment which currently would not work accross the start of the generated section
+				// No New Year’s Day
+				2028y / January / 17d, // Birthday of Martin Luther King, Jr.
+				2028y / February / 21d, // Washington’s Birthday
+				2028y / April / 14d, // Good Friday
+				2028y / May / 29d, // Memorial Day
+				2028y / June / 19d, // Juneteenth National Independence Day
+				2028y / July / 4d, // Independence Day
+				2028y / September / 4d, // Labor Day
+				2028y / October / 9d, // Columbus Day
+				// No Veterans Day
+				2028y / November / 23d, // Thanksgiving Day
+				2028y / December / 25d, // Christmas Day
+			};
+
+			return schedule{
+				days_period{ 2024y / January / 1d, 2028y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+
 
 		static auto _make_USA_Federal_generated_schedule_part0() -> schedule
 		{
@@ -1242,6 +1833,155 @@ namespace gregorian
 		}
 
 
+		// is there a way to forecast when full days are demoted to half days?
+		static auto _make_SOFR_generated_schedule_part0() -> schedule
+		{
+			const auto p = util::years_period{ 2013y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
+				&_MemorialDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay
+			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) }; // list of US holidays is as such as we can get away with this
+			cal0.substitute(Following);
+
+			// here we do not follow K.8 calendar (sometimes we'll have a K.8 business day, but not a business day in SIFMA)
+			const auto rules1 = annual_holiday_storage{
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
+			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
+
+			const auto cal = cal0 | cal1;
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_SOFR_generated_schedule_part1() -> schedule
+		{
+			const auto p = util::years_period{ 2019y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
+				&_MemorialDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay
+			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
+			cal0.substitute(Following);
+
+			const auto rules1 = annual_holiday_storage{
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
+			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
+
+			const auto cal = cal0 | cal1;
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_SOFR_generated_schedule_part2() -> schedule
+		{
+			const auto p = util::years_period{ 2024y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
+				&_MemorialDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay
+			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
+			cal0.substitute(Following);
+
+			const auto rules1 = annual_holiday_storage{
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
+			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
+
+			const auto cal = cal0 | cal1;
+
+			return cal.get_schedule();
+		}
+
+		static auto _make_SOFR_generated_schedule_part3() -> schedule
+		{
+//			const auto p = util::years_period{ 2028y, Epoch.get_until().year() };
+			const auto p = util::years_period{ 2029y, Epoch.get_until().year() };
+
+			const auto rules0 = annual_holiday_storage{
+				&NewYearsDay,
+				&_MartinLutherKing, // Martin Luther King Day
+				&_Washington, // Presidents Day
+				&GoodFriday,
+				&_MemorialDay,
+				&_LaborDay,
+				&_ColumbusDay,
+				&_VeteransDay,
+				&_ThanksgivingDay
+			};
+
+			auto s0 = make_holiday_schedule(p, rules0);
+
+			auto cal0 = calendar{ SundayWeekend, std::move(s0) };
+			cal0.substitute(Following);
+
+			const auto rules1 = annual_holiday_storage{
+				&_Juneteenth,
+				&_IndependenceDay, // U.S. Independence Day
+				&ChristmasDay
+			};
+
+			auto s1 = make_holiday_schedule(p, rules1);
+
+			auto cal1 = calendar{ SaturdaySundayWeekend, std::move(s1) };
+			cal1.substitute(Nearest);
+
+			const auto cal = cal0 | cal1;
+
+			return cal.get_schedule();
+		}
+
+
 
 		auto make_USA_Federal_calendar_versions() -> _calendar_versions
 		{
@@ -1346,6 +2086,70 @@ namespace gregorian
 			// Published on : December 30, 2024
 		}
 
+
+
+		// The same as SIFMA calendar, but with some differences on Good Fridays
+		// SOFR actually started in April 2018, so we might want consider removing previous dates (unless we want to handle "pre-SOFR")
+		auto make_SOFR_calendar_versions() -> _calendar_versions
+		{
+			auto cal0 = calendar{
+				SaturdaySundayWeekend,
+				_make_SOFR_known_schedule_part0a() +
+				_make_SOFR_generated_schedule_part0()
+			};
+
+			auto cal1 = calendar{
+				SaturdaySundayWeekend,
+				_make_SOFR_known_schedule_part0b() +
+				_make_SOFR_known_schedule_part1a() +
+				_make_SOFR_generated_schedule_part1()
+			};
+
+			auto cal2 = calendar{
+				SaturdaySundayWeekend,
+				_make_SOFR_known_schedule_part0b() +
+				_make_SOFR_known_schedule_part1b() +
+				_make_SOFR_known_schedule_part2a() +
+				_make_SOFR_generated_schedule_part2()
+			};
+
+			auto cal3 = calendar{
+				SaturdaySundayWeekend,
+				_make_SOFR_known_schedule_part0b() +
+				_make_SOFR_known_schedule_part1b() +
+				_make_SOFR_known_schedule_part2b() +
+				_make_SOFR_known_schedule_part3() +
+				_make_SOFR_generated_schedule_part3()
+			};
+
+			// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
+			return {
+				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+
+				{ 2012y / October / 29d, std::move(cal1) },
+				// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
+
+				{ 2018y / December / 1d, std::move(cal2) },
+				// * Press Releases
+				// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
+				// Published on : December 1, 2018
+
+				// add Operating Policy
+				// Statement Regarding the Publication of Reference Rates on Friday, April 2, 2021
+				// Published on : March 3, 2021
+
+				{ 2021y / July / 14d, std::move(cal3) },
+				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
+				// * Press Releases
+				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
+				// Published on : July 14, 2021
+			};
+
+			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
+			// * Press Releases
+			// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
+			// Published on : December 30, 2024
+		}
 	}
 
 }
