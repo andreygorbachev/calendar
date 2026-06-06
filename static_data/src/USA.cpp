@@ -1504,7 +1504,7 @@ namespace gregorian
 				2026y / January / 1d, // New Year’s Day 2025/2026
 				2026y / January / 19d, // Martin Luther King Day
 				2026y / February / 16d, // Presidents Day
-				// Good Friday Early Close (12:00 p.m. Eastern Time): Friday,
+				2026y / April / 3d, // Good Friday
 				2026y / May / 25d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 22, 2026
 				2026y / June / 19d, // Juneteenth
@@ -2143,6 +2143,8 @@ namespace gregorian
 				// * Press Releases
 				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
 				// Published on : July 14, 2021
+
+				// 2023 and 2026 Good Friday
 			};
 
 			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
