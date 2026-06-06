@@ -1304,7 +1304,7 @@ namespace gregorian
 				2021y / January / 1d, // New Year's Day 2020/2021
 				2021y / January / 18d, // Martin Luther King Day
 				2021y / February / 15d, // Presidents Day
-				// Early Close Only (12:00 p.m.Eastern Time): Friday, April 2, 2021 – Confirmed based on the BLS Employment Situation Release Schedule
+				2021y / April / 2d, // Good Friday
 				2021y / May / 31d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 28, 2021
 				2021y / July / 5d, // U.S. Independence Day
@@ -1339,7 +1339,7 @@ namespace gregorian
 				2023y / January / 2d, // New Year's Day 2022/2023
 				2023y / January / 16d, // Martin Luther King Day
 				2023y / February / 20d, // Presidents Day
-				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / April / 7d, // Good Friday
 				2023y / May / 29d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
 				2023y / July / 4d, // U.S. Independence Day
@@ -1438,7 +1438,7 @@ namespace gregorian
 				2023y / January / 2d, // New Year's Day 2022/2023
 				2023y / January / 16d, // Martin Luther King Day
 				2023y / February / 20d, // Presidents Day
-				// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
+				2023y / April / 7d, // Good Friday
 				2023y / May / 29d, // Memorial Day
 				// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
 				2023y / June / 19d, // Juneteenth
