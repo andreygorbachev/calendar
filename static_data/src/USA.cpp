@@ -2089,7 +2089,17 @@ namespace gregorian
 
 
 		// The same as SIFMA calendar, but with some differences on Good Fridays
-		// SOFR actually started in April 2018, so we might want consider removing previous dates (unless we want to handle "pre-SOFR")
+
+		// SOFR actually started in April 2018, so we might want consider removing holidays prior to that date, but we also have (so maybe the SOFR calendar should cover that also):
+		// 1. Indicative "Pre-SOFR" Data(Modeled History)
+		// Start Date : August 25, 2014
+		// End Date : April 1, 2018 (right before the official live launch)
+		// Details : Prior to launching SOFR live in April 2018, the New York Fed released this historical time series using the exact same underlying transaction data and methodology to show how SOFR would have behaved.
+		// Due to data availability limits in transaction - level repo matching, they could only model it back to late August 2014.
+		// 2. Historical Proxy Data(Extended History)
+		// Start Date : February 1998
+		// Details : Because a 3.5 - year history(2014–2018) wasn't enough for risk managers to stress-test their models or calculate backward-looking fallback spreads over long horizons, the Fed separately released a much longer historical proxy series.
+		// This data goes back to February 1998 and is based on a morning survey of primary dealers' overnight Treasury general collateral repo borrowing activity conducted by the Fed's Open Market Trading Desk. 
 		auto make_SOFR_calendar_versions() -> _calendar_versions
 		{
 			auto cal0 = calendar{
