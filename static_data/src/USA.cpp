@@ -2154,7 +2154,7 @@ namespace gregorian
 				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
 				// Published on : July 14, 2021
 
-				// 2023 and 2026 Good Friday
+				// 2021, 2023 and 2026 Good Friday
 			};
 
 			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
