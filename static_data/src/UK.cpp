@@ -877,7 +877,7 @@ namespace gregorian
 			};
 		}
 
-		static auto _make_Scotland_known_schedule_part3() -> schedule
+		static auto _make_Scotland_known_schedule_part3a() -> schedule
 		{
 			auto holidays = schedule::dates{
 				2023y / January / 2d, // New Year’s Day (substitute day)
@@ -916,6 +916,80 @@ namespace gregorian
 				2026y / April / 3d, // Good Friday
 				2026y / May / 4d, // Early May bank holiday
 				2026y / May / 25d, // Spring bank holiday
+				2026y / August / 3d, // Summer bank holiday
+				2026y / November / 30d, // St Andrew’s Day
+				2026y / December / 25d, // Christmas Day
+				2026y / December / 28d, // Boxing Day (substitute day)
+
+				2027y / January / 1d, // New Year’s Day
+				2027y / January / 4d, // 2nd January (substitute day)
+				2027y / March / 26d, // Good Friday
+				2027y / May / 3d, // Early May bank holiday
+				2027y / May / 31d, // Spring bank holiday
+				2027y / August / 2d, // Summer bank holiday
+				2027y / November / 30d, // St Andrew’s Day
+				2027y / December / 27d, // Christmas Day (substitute day)
+				2027y / December / 28d, // Boxing Day (substitute day)
+
+				2028y / January / 3d, // New Year’s Day (substitute day)
+				2028y / January / 4d, // 2nd January (substitute day)
+				2028y / April / 14d, // Good Friday
+				2028y / May / 1d, // Early May bank holiday
+				2028y / May / 29d, // Spring bank holiday
+				2028y / August / 7d, // Summer bank holiday
+				2028y / November / 30d, // St Andrew’s Day
+				2028y / December / 25d, // Christmas Day
+				2028y / December / 26d, // Boxing Day
+			};
+
+			return schedule{
+				days_period{ 2023y / FirstDayOfJanuary, 2028y / LastDayOfDecember },
+				std::move(holidays)
+			};
+		}
+
+		// also from https://www.gov.scot/publications/bank-holidays/
+
+		static auto _make_Scotland_known_schedule_part3b() -> schedule
+		{
+			auto holidays = schedule::dates{
+				2023y / January / 2d, // New Year’s Day (substitute day)
+				2023y / January / 3d, // 2nd January (substitute day)
+				2023y / April / 7d, // Good Friday
+				2023y / May / 1d, // Early May bank holiday
+				2023y / May / 8d, // Bank holiday for the coronation of King Charles III
+				2023y / May / 29d, // Spring bank holiday
+				2023y / August / 7d, // Summer bank holiday
+				2023y / November / 30d, // St Andrew’s Day
+				2023y / December / 25d, // Christmas Day
+				2023y / December / 26d, // Boxing Day
+
+				2024y / January / 1d, // New Year’s Day
+				2024y / January / 2d, // 2nd January
+				2024y / March / 29d, // Good Friday
+				2024y / May / 6d, // Early May bank holiday
+				2024y / May / 27d, // Spring bank holiday
+				2024y / August / 5d, // Summer bank holiday
+				2024y / December / 2d, // St Andrew’s Day (substitute day)
+				2024y / December / 25d, // Christmas Day
+				2024y / December / 26d, // Boxing Day
+
+				2025y / January / 1d, // New Year’s Day
+				2025y / January / 2d, // 2nd January
+				2025y / April / 18d, // Good Friday
+				2025y / May / 5d, // Early May bank holiday
+				2025y / May / 26d, // Spring bank holiday
+				2025y / August / 4d, // Summer bank holiday
+				2025y / December / 1d, // St Andrew’s Day (substitute day)
+				2025y / December / 25d, // Christmas Day
+				2025y / December / 26d, // Boxing Day
+
+				2026y / January / 1d, // New Year’s Day
+				2026y / January / 2d, // 2nd January
+				2026y / April / 3d, // Good Friday
+				2026y / May / 4d, // Early May bank holiday
+				2026y / May / 25d, // Spring bank holiday
+				2026y / June / 15d, // World Cup
 				2026y / August / 3d, // Summer bank holiday
 				2026y / November / 30d, // St Andrew’s Day
 				2026y / December / 25d, // Christmas Day
@@ -1022,9 +1096,21 @@ namespace gregorian
 				_make_Scotland_known_schedule_part0() +
 				_make_Scotland_known_schedule_part1() +
 				_make_Scotland_known_schedule_part2b() +
-				_make_Scotland_known_schedule_part3() +
+				_make_Scotland_known_schedule_part3a() +
 				_make_Scotland_generated_schedule(years_period{ 2029y, Epoch.get_until().year() })
 			};
+
+			auto cal5 = calendar{
+				SaturdaySundayWeekend,
+				_make_Scotland_known_schedule_part0() +
+				_make_Scotland_known_schedule_part1() +
+				_make_Scotland_known_schedule_part2b() +
+				_make_Scotland_known_schedule_part3b() +
+				_make_Scotland_generated_schedule(years_period{ 2029y, Epoch.get_until().year() })
+			};
+
+			// or should we consider having known part for each year? (more functions, but maybe more clear?)
+			// (and generated schedule for each small "epoch")
 
 			return {
 				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
@@ -1032,6 +1118,7 @@ namespace gregorian
 				{ 2020y / November / 12d, std::move(cal2) },
 				{ 2022y / September / 10d, std::move(cal3) },
 				{ 2022y / November / 6d, std::move(cal4) },
+				{ 2026y / February / 5d, std::move(cal5) }, // https://www.gov.scot/news/world-cup-bank-holiday-confirmed/
 			};
 		}
 
