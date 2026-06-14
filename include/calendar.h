@@ -86,9 +86,9 @@ namespace gregorian // should the namespace be called civil?
 
 		// or should we have a class business_day (which would take a calendar in a constructor)
 		// .ok() would check if that is or not a good business day
-		// operator+=(days) would a natural way to represent shift_business_days
+		// operator+=(days) would be a natural way to represent shift_business_days
 		// should be able to naturally convert to year_month_day and sys_days
-		// would it help witj itaration over business days (within a period)? (or do iterate over days and drop non business days)
+		// would it help with itaration over business days (within a period)? (or do iterate over days and drop non business days)
 
 	public:
 
