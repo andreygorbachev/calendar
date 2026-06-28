@@ -47,6 +47,9 @@ namespace gregorian
 	namespace static_data
 	{
 
+		namespace USA
+		{
+
 		// should these be in their own namespace?
 		const auto _MartinLutherKing = weekday_indexed_holiday{ January / Monday[3] }; // Birthday Of Martin Luther King, Jr.
 		const auto _Washington = weekday_indexed_holiday{ February / Monday[3] }; // Washington's Birthday
@@ -1983,7 +1986,7 @@ namespace gregorian
 
 
 
-		auto make_USA_Federal_calendar_versions() -> _calendar_versions
+		auto make_Federal_calendar_versions() -> _calendar_versions
 		{
 			auto cal0 = calendar{
 				SaturdaySundayWeekend,
@@ -2161,6 +2164,8 @@ namespace gregorian
 			// * Press Releases
 			// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
 			// Published on : December 30, 2024
+		}
+
 		}
 	}
 

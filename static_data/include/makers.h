@@ -78,25 +78,30 @@ namespace gregorian
 		auto make_Warsaw_calendar_versions() -> _calendar_versions;
 
 
-		// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
+		namespace USA
+		{
 
-		auto make_USA_Federal_calendar_versions() -> _calendar_versions;
+			// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
-		auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions;
+			auto make_Federal_calendar_versions() -> _calendar_versions;
 
-		// from https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+			auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions;
 
-		// add FOMC calendar
+			// from https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
 
-		// from https://www.sifma.org/resources/guides-playbooks/holiday-schedule
+			// add FOMC calendar
 
-		auto make_SIFMA_calendar_versions() -> _calendar_versions;
-		// is it the same as US Government Securities?
-		// also has something for UK and Japan (US securities trading in UK and Japan)
+			// from https://www.sifma.org/resources/guides-playbooks/holiday-schedule
 
-		// from
+			auto make_SIFMA_calendar_versions() -> _calendar_versions;
+			// is it the same as US Government Securities?
+			// also has something for UK and Japan (US securities trading in UK and Japan)
 
-		auto make_SOFR_calendar_versions() -> _calendar_versions;
+			// from
+
+			auto make_SOFR_calendar_versions() -> _calendar_versions;
+
+		}
 
 
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
