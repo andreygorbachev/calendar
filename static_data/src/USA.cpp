@@ -218,6 +218,156 @@ namespace gregorian
 					2020y / December / 25d // Christmas Day
 				};
 
+				const auto _2021 = schedule::dates
+				{
+					2021y / January / 1d, // New Year's Day
+					2021y / January / 18d, // Birthday of Martin Luther King, Jr.
+					2021y / February / 15d, // Washington’s Birthday
+					2021y / May / 31d, // Memorial Day
+					2021y / June / 18d, // Juneteenth National Independence Day
+					2021y / July / 5d, // Independence Day
+					2021y / September / 6d, // Labor Day
+					2021y / October / 11d, // Columbus Day
+					2021y / November / 11d, // Veterans Day
+					2021y / November / 25d, // Thanksgiving Day
+					2021y / December / 24d // Christmas Day
+				};
+
+				const auto _2022 = schedule::dates
+				{
+					2021y / December / 31d, // New Year's Day
+					2022y / January / 17d, // Birthday of Martin Luther King, Jr.
+					2022y / February / 21d, // Washington’s Birthday
+					2022y / May / 30d, // Memorial Day
+					2022y / June / 20d, // Juneteenth National Independence Day
+					2022y / July / 4d, // Independence Day
+					2022y / September / 5d, // Labor Day
+					2022y / October / 10d, // Columbus Day
+					2022y / November / 11d, // Veterans Day
+					2022y / November / 24d, // Thanksgiving Day
+					2022y / December / 26d // Christmas Day
+				};
+
+				const auto _2023 = schedule::dates
+				{
+					2023y / January / 2d, // New Year's Day
+					2023y / January / 16d, // Birthday of Martin Luther King, Jr.
+					2023y / February / 20d, // Washington’s Birthday
+					2023y / May / 29d, // Memorial Day
+					2023y / June / 19d, // Juneteenth National Independence Day
+					2023y / July / 4d, // Independence Day
+					2023y / September / 4d, // Labor Day
+					2023y / October / 9d, // Columbus Day
+					2023y / November / 10d, // Veterans Day
+					2023y / November / 23d, // Thanksgiving Day
+					2023y / December / 25d // Christmas Day
+				};
+
+				const auto _2024 = schedule::dates
+				{
+					2024y / January / 1d, // New Year's Day
+					2024y / January / 15d, // Birthday of Martin Luther King, Jr.
+					2024y / February / 19d, // Washington’s Birthday
+					2024y / May / 27d, // Memorial Day
+					2024y / June / 19d, // Juneteenth National Independence Day
+					2024y / July / 4d, // Independence Day
+					2024y / September / 2d, // Labor Day
+					2024y / October / 14d, // Columbus Day
+					2024y / November / 11d, // Veterans Day
+					2024y / November / 28d, // Thanksgiving Day
+					2024y / December / 25d // Christmas Day
+				};
+
+				const auto _2025 = schedule::dates
+				{
+					2025y / January / 1d, // New Year's Day
+					2025y / January / 20d, // Birthday of Martin Luther King, Jr.
+					2025y / February / 17d, // Washington’s Birthday
+					2025y / May / 26d, // Memorial Day
+					2025y / June / 19d, // Juneteenth National Independence Day
+					2025y / July / 4d, // Independence Day
+					2025y / September / 1d, // Labor Day
+					2025y / October / 13d, // Columbus Day
+					2025y / November / 11d, // Veterans Day
+					2025y / November / 27d, // Thanksgiving Day
+					2025y / December / 25d // Christmas Day
+				};
+
+				const auto _2026 = schedule::dates
+				{
+					2026y / January / 1d, // New Year's Day
+					2026y / January / 19d, // Birthday of Martin Luther King, Jr.
+					2026y / February / 16d, // Washington’s Birthday
+					2026y / May / 25d, // Memorial Day
+					2026y / June / 19d, // Juneteenth National Independence Day
+					2026y / July / 3d, // Independence Day
+					2026y / September / 7d, // Labor Day
+					2026y / October / 12d, // Columbus Day
+					2026y / November / 11d, // Veterans Day
+					2026y / November / 26d, // Thanksgiving Day
+					2026y / December / 25d // Christmas Day
+				};
+
+				const auto _2027 = schedule::dates
+				{
+					2027y / January / 1d, // New Year's Day
+					2027y / January / 18d, // Birthday of Martin Luther King, Jr.
+					2027y / February / 15d, // Washington’s Birthday
+					2027y / May / 31d, // Memorial Day
+					2027y / June / 18d, // Juneteenth National Independence Day
+					2027y / July / 5d, // Independence Day
+					2027y / September / 6d, // Labor Day
+					2027y / October / 11d, // Columbus Day
+					2027y / November / 11d, // Veterans Day
+					2027y / November / 25d, // Thanksgiving Day
+					2027y / December / 24d // Christmas Day
+				};
+
+				const auto _2028 = schedule::dates
+				{
+					2027y / December / 31d, // New Year's Day
+					2028y / January / 17d, // Birthday of Martin Luther King, Jr.
+					2028y / February / 21d, // Washington’s Birthday
+					2028y / May / 29d, // Memorial Day
+					2028y / June / 19d, // Juneteenth National Independence Day
+					2028y / July / 4d, // Independence Day
+					2028y / September / 4d, // Labor Day
+					2028y / October / 9d, // Columbus Day
+					2028y / November / 10d, // Veterans Day
+					2028y / November / 23d, // Thanksgiving Day
+					2028y / December / 25d // Christmas Day
+				};
+
+				const auto _2029 = schedule::dates
+				{
+					2029y / January / 1d, // New Year's Day
+					2029y / January / 15d, // Birthday of Martin Luther King, Jr.
+					2029y / February / 19d, // Washington’s Birthday
+					2029y / May / 28d, // Memorial Day
+					2029y / June / 19d, // Juneteenth National Independence Day
+					2029y / July / 4d, // Independence Day
+					2029y / September / 3d, // Labor Day
+					2029y / October / 8d, // Columbus Day
+					2029y / November / 12d, // Veterans Day
+					2029y / November / 22d, // Thanksgiving Day
+					2029y / December / 25d // Christmas Day
+				};
+
+				const auto _2030 = schedule::dates
+				{
+					2030y / January / 1d, // New Year's Day
+					2030y / January / 21d, // Birthday of Martin Luther King, Jr.
+					2030y / February / 18d, // Washington’s Birthday
+					2030y / May / 27d, // Memorial Day
+					2030y / June / 19d, // Juneteenth National Independence Day
+					2030y / July / 4d, // Independence Day
+					2030y / September / 2d, // Labor Day
+					2030y / October / 14d, // Columbus Day
+					2030y / November / 11d, // Veterans Day
+					2030y / November / 28d, // Thanksgiving Day
+					2030y / December / 25d // Christmas Day
+				};
+					
 				static auto _make_known_schedule_part0() -> schedule
 				{
 					auto holidays = schedule::dates{};
@@ -240,127 +390,17 @@ namespace gregorian
 
 				static auto _make_known_schedule_part1() -> schedule
 				{
-					auto holidays = schedule::dates{
-						2021y / January / 1d, // New Year's Day
-						2021y / January / 18d, // Birthday of Martin Luther King, Jr.
-						2021y / February / 15d, // Washington’s Birthday
-						2021y / May / 31d, // Memorial Day
-						2021y / June / 18d, // Juneteenth National Independence Day
-						2021y / July / 5d, // Independence Day
-						2021y / September / 6d, // Labor Day
-						2021y / October / 11d, // Columbus Day
-						2021y / November / 11d, // Veterans Day
-						2021y / November / 25d, // Thanksgiving Day
-						2021y / December / 24d, // Christmas Day
-
-						2021y / December / 31d, // New Year's Day
-						2022y / January / 17d, // Birthday of Martin Luther King, Jr.
-						2022y / February / 21d, // Washington’s Birthday
-						2022y / May / 30d, // Memorial Day
-						2022y / June / 20d, // Juneteenth National Independence Day
-						2022y / July / 4d, // Independence Day
-						2022y / September / 5d, // Labor Day
-						2022y / October / 10d, // Columbus Day
-						2022y / November / 11d, // Veterans Day
-						2022y / November / 24d, // Thanksgiving Day
-						2022y / December / 26d, // Christmas Day
-
-						2023y / January / 2d, // New Year's Day
-						2023y / January / 16d, // Birthday of Martin Luther King, Jr.
-						2023y / February / 20d, // Washington’s Birthday
-						2023y / May / 29d, // Memorial Day
-						2023y / June / 19d, // Juneteenth National Independence Day
-						2023y / July / 4d, // Independence Day
-						2023y / September / 4d, // Labor Day
-						2023y / October / 9d, // Columbus Day
-						2023y / November / 10d, // Veterans Day
-						2023y / November / 23d, // Thanksgiving Day
-						2023y / December / 25d, // Christmas Day
-
-						2024y / January / 1d, // New Year's Day
-						2024y / January / 15d, // Birthday of Martin Luther King, Jr.
-						2024y / February / 19d, // Washington’s Birthday
-						2024y / May / 27d, // Memorial Day
-						2024y / June / 19d, // Juneteenth National Independence Day
-						2024y / July / 4d, // Independence Day
-						2024y / September / 2d, // Labor Day
-						2024y / October / 14d, // Columbus Day
-						2024y / November / 11d, // Veterans Day
-						2024y / November / 28d, // Thanksgiving Day
-						2024y / December / 25d, // Christmas Day
-
-						2025y / January / 1d, // New Year's Day
-						2025y / January / 20d, // Birthday of Martin Luther King, Jr.
-						2025y / February / 17d, // Washington’s Birthday
-						2025y / May / 26d, // Memorial Day
-						2025y / June / 19d, // Juneteenth National Independence Day
-						2025y / July / 4d, // Independence Day
-						2025y / September / 1d, // Labor Day
-						2025y / October / 13d, // Columbus Day
-						2025y / November / 11d, // Veterans Day
-						2025y / November / 27d, // Thanksgiving Day
-						2025y / December / 25d, // Christmas Day
-
-						2026y / January / 1d, // New Year's Day
-						2026y / January / 19d, // Birthday of Martin Luther King, Jr.
-						2026y / February / 16d, // Washington’s Birthday
-						2026y / May / 25d, // Memorial Day
-						2026y / June / 19d, // Juneteenth National Independence Day
-						2026y / July / 3d, // Independence Day
-						2026y / September / 7d, // Labor Day
-						2026y / October / 12d, // Columbus Day
-						2026y / November / 11d, // Veterans Day
-						2026y / November / 26d, // Thanksgiving Day
-						2026y / December / 25d, // Christmas Day
-
-						2027y / January / 1d, // New Year's Day
-						2027y / January / 18d, // Birthday of Martin Luther King, Jr.
-						2027y / February / 15d, // Washington’s Birthday
-						2027y / May / 31d, // Memorial Day
-						2027y / June / 18d, // Juneteenth National Independence Day
-						2027y / July / 5d, // Independence Day
-						2027y / September / 6d, // Labor Day
-						2027y / October / 11d, // Columbus Day
-						2027y / November / 11d, // Veterans Day
-						2027y / November / 25d, // Thanksgiving Day
-						2027y / December / 24d, // Christmas Day
-
-						2027y / December / 31d, // New Year's Day
-						2028y / January / 17d, // Birthday of Martin Luther King, Jr.
-						2028y / February / 21d, // Washington’s Birthday
-						2028y / May / 29d, // Memorial Day
-						2028y / June / 19d, // Juneteenth National Independence Day
-						2028y / July / 4d, // Independence Day
-						2028y / September / 4d, // Labor Day
-						2028y / October / 9d, // Columbus Day
-						2028y / November / 10d, // Veterans Day
-						2028y / November / 23d, // Thanksgiving Day
-						2028y / December / 25d, // Christmas Day
-
-						2029y / January / 1d, // New Year's Day
-						2029y / January / 15d, // Birthday of Martin Luther King, Jr.
-						2029y / February / 19d, // Washington’s Birthday
-						2029y / May / 28d, // Memorial Day
-						2029y / June / 19d, // Juneteenth National Independence Day
-						2029y / July / 4d, // Independence Day
-						2029y / September / 3d, // Labor Day
-						2029y / October / 8d, // Columbus Day
-						2029y / November / 12d, // Veterans Day
-						2029y / November / 22d, // Thanksgiving Day
-						2029y / December / 25d, // Christmas Day
-
-						2030y / January / 1d, // New Year's Day
-						2030y / January / 21d, // Birthday of Martin Luther King, Jr.
-						2030y / February / 18d, // Washington’s Birthday
-						2030y / May / 27d, // Memorial Day
-						2030y / June / 19d, // Juneteenth National Independence Day
-						2030y / July / 4d, // Independence Day
-						2030y / September / 2d, // Labor Day
-						2030y / October / 14d, // Columbus Day
-						2030y / November / 11d, // Veterans Day
-						2030y / November / 28d, // Thanksgiving Day
-						2030y / December / 25d, // Christmas Day
-					};
+					auto holidays = schedule::dates{};
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022.cbegin(), _2022.cend());
+					holidays.insert(_2023.cbegin(), _2023.cend());
+					holidays.insert(_2024.cbegin(), _2024.cend());
+					holidays.insert(_2025.cbegin(), _2025.cend());
+					holidays.insert(_2026.cbegin(), _2026.cend());
+					holidays.insert(_2027.cbegin(), _2027.cend());
+					holidays.insert(_2028.cbegin(), _2028.cend());
+					holidays.insert(_2029.cbegin(), _2029.cend());
+					holidays.insert(_2030.cbegin(), _2030.cend());
 
 					return schedule{
 						days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
