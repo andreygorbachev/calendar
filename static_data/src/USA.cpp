@@ -47,7 +47,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		namespace USA
+		namespace USA // or should it be Americal? or America/USA? (to be consistent with tzdata)
 		{
 
 		// should these be in their own namespace?
