@@ -82,7 +82,7 @@ namespace gregorian
 
 		TEST(static, SOFR)
 		{
-			// SOFR differ from SIFMA only on some Good Fridays days
+			// SOFR differ from SIFMA only on some Good Friday days
 			const auto expected_diffs = schedule::dates
 			{
 				2021y / April / 2d,
