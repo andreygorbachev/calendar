@@ -2126,7 +2126,7 @@ namespace gregorian
 			}
 
 
-			auto make_NFP_calendar_versions() -> _calendar_versions // add history prior to 2026
+			auto make_NFP_calendar_versions() -> _calendar_versions // add history prior to 2026 // use it for SIFMA forecasting?
 			{
 				const auto Federal_calendar = make_Federal_calendar_versions().at(2021y / June / 17d);
 
