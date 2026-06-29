@@ -891,27 +891,7 @@ namespace gregorian
 					// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
 				};
 
-				const auto _2023a = schedule::dates
-				{
-					2023y / January / 2d, // New Year's Day 2022/2023
-					2023y / January / 16d, // Martin Luther King Day
-					2023y / February / 20d, // Presidents Day
-					// Good Friday Early Close Only (12:00 p.m.Eastern Time): Friday, April 7, 2023 - Early Close is recommended rather than a full close to accommodate the release of US employment data
-					2023y / May / 29d, // Memorial Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
-					2023y / July / 4d, // U.S. Independence Day
-					// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
-					2023y / September / 4d, // Labor Day
-					2023y / October / 9d, // Columbus Day
-					// No Veterans Day
-					2023y / November / 23d, // Thanksgiving Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
-					2023y / December / 25d // Christmas Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
-					// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
-				};
-
-				const auto _2023b = schedule::dates
+				const auto _2023 = schedule::dates
 				{
 					2023y / January / 2d, // New Year's Day 2022/2023
 					2023y / January / 16d, // Martin Luther King Day
@@ -1098,10 +1078,9 @@ namespace gregorian
 					holidays.insert(_2020.cbegin(), _2020.cend());
 					holidays.insert(_2021.cbegin(), _2021.cend());
 					holidays.insert(_2022a.cbegin(), _2022a.cend());
-					holidays.insert(_2023a.cbegin(), _2023a.cend()); // do we need both 2022 and 2023 switching?
 
 					return schedule{
-						days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1114,10 +1093,9 @@ namespace gregorian
 					holidays.insert(_2020.cbegin(), _2020.cend());
 					holidays.insert(_2021.cbegin(), _2021.cend());
 					holidays.insert(_2022b.cbegin(), _2022b.cend());
-					holidays.insert(_2023b.cbegin(), _2023b.cend());
 
 					return schedule{
-						days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1125,6 +1103,7 @@ namespace gregorian
 				static auto _make_known_schedule_part3() -> schedule
 				{
 					auto holidays = schedule::dates{};
+					holidays.insert(_2023.cbegin(), _2023.cend());
 					holidays.insert(_2024.cbegin(), _2024.cend());
 					holidays.insert(_2025.cbegin(), _2025.cend());
 					holidays.insert(_2026.cbegin(), _2026.cend());
@@ -1132,7 +1111,7 @@ namespace gregorian
 					holidays.insert(_2028.cbegin(), _2028.cend());
 
 					return schedule{
-						days_period{ 2024y / January / 1d, 2028y / LastDayOfDecember },
+						days_period{ 2023y / January / 1d, 2028y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1214,7 +1193,7 @@ namespace gregorian
 
 				static auto _make_generated_schedule_part2() -> schedule
 				{
-					const auto p = util::years_period{ 2024y, Epoch.get_until().year() };
+					const auto p = util::years_period{ 2023y, Epoch.get_until().year() };
 
 					const auto rules0 = annual_holiday_storage{
 						&NewYearsDay,
@@ -1563,26 +1542,6 @@ namespace gregorian
 					// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
 				};
 
-				const auto _2023a = schedule::dates
-				{
-					2023y / January / 2d, // New Year's Day 2022/2023
-					2023y / January / 16d, // Martin Luther King Day
-					2023y / February / 20d, // Presidents Day
-					2023y / April / 7d, // Good Friday
-					2023y / May / 29d, // Memorial Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, May 26, 2023
-					2023y / July / 4d, // U.S. Independence Day
-					// Early Close (2:00 p.m. Eastern Time): Monday, July 3, 2023
-					2023y / September / 4d, // Labor Day
-					2023y / October / 9d, // Columbus Day
-					// No Veterans Day
-					2023y / November / 23d, // Thanksgiving Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, November 24, 2023
-					2023y / December / 25d // Christmas Day
-					// Early Close (2:00 p.m. Eastern Time): Friday, December 22, 2023
-					// Early Close (2:00 p.m. Eastern Time): Friday, December 29, 2023
-				};
-
 				const auto _2022b = schedule::dates
 				{
 					// No New Year's Day 2021/2022
@@ -1605,7 +1564,7 @@ namespace gregorian
 					// Early Close (2:00 p.m. Eastern Time): Friday, December 30, 2022
 				};
 
-				const auto _2023b = schedule::dates
+				const auto _2023 = schedule::dates
 				{
 					2023y / January / 2d, // New Year's Day 2022/2023
 					2023y / January / 16d, // Martin Luther King Day
@@ -1794,10 +1753,9 @@ namespace gregorian
 					holidays.insert(_2020.cbegin(), _2020.cend());
 					holidays.insert(_2021.cbegin(), _2021.cend());
 					holidays.insert(_2022a.cbegin(), _2022a.cend());
-					holidays.insert(_2023a.cbegin(), _2023a.cend());
 
 					return schedule{
-						days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1809,10 +1767,9 @@ namespace gregorian
 					holidays.insert(_2020.cbegin(), _2020.cend());
 					holidays.insert(_2021.cbegin(), _2021.cend());
 					holidays.insert(_2022b.cbegin(), _2022b.cend());
-					holidays.insert(_2023b.cbegin(), _2023b.cend());
 
 					return schedule{
-						days_period{ 2019y / FirstDayOfJanuary, 2023y / LastDayOfDecember },
+						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1820,6 +1777,7 @@ namespace gregorian
 				static auto _make_known_schedule_part3() -> schedule
 				{
 					auto holidays = schedule::dates{};
+					holidays.insert(_2023.cbegin(), _2023.cend());
 					holidays.insert(_2024.cbegin(), _2024.cend());
 					holidays.insert(_2025.cbegin(), _2025.cend());
 					holidays.insert(_2026.cbegin(), _2026.cend());
@@ -1827,7 +1785,7 @@ namespace gregorian
 					holidays.insert(_2028.cbegin(), _2028.cend());
 
 					return schedule{
-						days_period{ 2024y / January / 1d, 2028y / LastDayOfDecember },
+						days_period{ 2023y / January / 1d, 2028y / LastDayOfDecember },
 						std::move(holidays)
 					};
 				}
@@ -1909,7 +1867,7 @@ namespace gregorian
 
 				static auto _make_generated_schedule_part2() -> schedule
 				{
-					const auto p = util::years_period{ 2024y, Epoch.get_until().year() };
+					const auto p = util::years_period{ 2023y, Epoch.get_until().year() };
 
 					const auto rules0 = annual_holiday_storage{
 						&NewYearsDay,
