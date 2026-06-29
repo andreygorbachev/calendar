@@ -93,12 +93,14 @@ namespace gregorian
 			const auto as_of_date = 2026y / April / 9d;
 			const auto& SOFR_calendar = locate_calendar("America/SOFR", as_of_date);
 			const auto& SIFMA_calendar = locate_calendar("America/SIFMA", as_of_date);
-			const auto period = days_period{ 2018y / April / 2d, as_of_date }; // should we do it over the Epoch?
+
+			const auto SOFR_start_date = 2018y / April / 2d;
+			const auto comparison_period = days_period{ SOFR_start_date, as_of_date }; // should we do it over the Epoch?
 
 			auto diffs = schedule::dates{};
 			ranges::set_symmetric_difference(
-				SOFR_calendar.make_business_days_schedule(period).get_dates(),
-				SIFMA_calendar.make_business_days_schedule(period).get_dates(),
+				SOFR_calendar.make_business_days_schedule(comparison_period).get_dates(),
+				SIFMA_calendar.make_business_days_schedule(comparison_period).get_dates(),
 				inserter(diffs, diffs.begin())
 			);
 
