@@ -20,17 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <period.h>
+#include <schedule.h>
 #include <static_data.h>
 
 #include <gtest/gtest.h>
 
 #include <chrono>
+#include <algorithm>
+#include <iterator>
 
+using namespace std;
 using namespace std::chrono;
 
 
 namespace gregorian
 {
+
+	using namespace util;
 
 	namespace static_data
 	{
@@ -75,7 +82,27 @@ namespace gregorian
 
 		TEST(static, SOFR)
 		{
-			// consider (Good Friday) differences between SIFMA and SOFR calendars
+			// SOFR differ from SIFMA only on some Good Fridays days
+			const auto expected_diffs = schedule::dates
+			{
+				2021y / April / 2d,
+				2023y / April / 7d,
+				2026y / April / 3d,
+			};
+
+			const auto as_of_date = 2026y / April / 9d;
+			const auto& SOFR_calendar = locate_calendar("America/SOFR", as_of_date);
+			const auto& SIFMA_calendar = locate_calendar("America/SIFMA", as_of_date);
+			const auto period = days_period{ 2018y / April / 2d, as_of_date }; // should we do it over the Epoch?
+
+			auto diffs = schedule::dates{};
+			ranges::set_symmetric_difference(
+				SOFR_calendar.make_business_days_schedule(period).get_dates(),
+				SIFMA_calendar.make_business_days_schedule(period).get_dates(),
+				inserter(diffs, diffs.begin())
+			);
+
+			EXPECT_EQ(expected_diffs, diffs);
 		}
 
 	}
