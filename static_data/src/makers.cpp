@@ -65,6 +65,7 @@ namespace gregorian
 				{ "America/USA", USA::make_Federal_calendar_versions() },
 				{ "America/Washington", USA::make_Washington_DC_Federal_calendar_versions() }, // not a city, but federal holidays // wrong name?
 				{ "America/SIFMA", USA::make_SIFMA_calendar_versions() }, // or should it be America/USA/SIFMA? or should it be in etcetera?
+				{ "America/NFP", USA::make_NFP_calendar_versions() }, // or should it be America/USA/NFP? or should it be in etcetera? Does it need a better name than NFP (also remember that these are release dates)?
 				{ "America/SOFR", USA::make_SOFR_calendar_versions() }, // or should it be America/USA/SOFR? or should it be in etcetera?
 
 				{ "America/Canada", make_Canada_Federal_calendar_versions() },

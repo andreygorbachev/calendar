@@ -23,6 +23,7 @@
 #include "static_data.h"
 #include "makers.h"
 #include "cyclical_holiday.h"
+#include "make_third_Friday_schedule.h"
 
 #include <period.h>
 #include <schedule.h>
@@ -1268,6 +1269,84 @@ namespace gregorian
 			}
 
 
+			namespace NFP
+			{
+
+				const auto _2026a = schedule::dates
+				{
+					2026y / January / 9d,
+					2026y / February / 6d,
+					2026y / March / 6d,
+					2026y / April / 3d,
+					2026y / May / 8d,
+					2026y / June / 5d,
+					2026y / July / 2d,
+					2026y / August / 7d,
+					2026y / September / 4d,
+					2026y / October / 2d,
+					2026y / November / 6d,
+					2026y / December / 4d
+				};
+
+				const auto _2026b = schedule::dates
+				{
+					2026y / January / 9d,
+					// govenment shutdow
+				};
+
+				const auto _2026c = schedule::dates
+				{
+					2026y / January / 9d,
+					2026y / February / 11d,
+					2026y / March / 6d,
+					2026y / April / 3d,
+					2026y / May / 8d,
+					2026y / June / 5d,
+					2026y / July / 2d,
+					2026y / August / 7d,
+					2026y / September / 4d,
+					2026y / October / 2d,
+					2026y / November / 6d,
+					2026y / December / 4d
+				};
+
+
+				static auto _make_known_schedule_part0a() -> schedule
+				{
+					auto holidays = schedule::dates{};
+					holidays.insert(_2026a.cbegin(), _2026a.cend());
+
+					return schedule{
+						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+						std::move(holidays)
+					};
+				}
+
+				static auto _make_known_schedule_part0b() -> schedule
+				{
+					auto holidays = schedule::dates{};
+					holidays.insert(_2026b.cbegin(), _2026b.cend());
+
+					return schedule{
+						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+						std::move(holidays)
+					};
+				}
+
+				static auto _make_known_schedule_part0c() -> schedule
+				{
+					auto holidays = schedule::dates{};
+					holidays.insert(_2026c.cbegin(), _2026c.cend());
+
+					return schedule{
+						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
+						std::move(holidays)
+					};
+				}
+
+			}
+
+
 			namespace SOFR
 			{
 
@@ -2045,6 +2124,46 @@ namespace gregorian
 				// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
 				// Published on : December 30, 2024
 			}
+
+
+			auto make_NFP_calendar_versions() -> _calendar_versions // add history prior to 2026
+			{
+				const auto Federal_calendar = make_Federal_calendar_versions().at(2021y / June / 17d);
+
+				const auto NFP_dates0 =
+					NFP::_make_known_schedule_part0a() +
+					_make_third_Friday_schedule(
+						years_period{ 2027y, Epoch.get_until().year() },
+						Federal_calendar
+					);
+
+				auto cal0 = calendar{ NoWeekend, ~NFP_dates0 };
+
+				const auto NFP_dates1 =
+					NFP::_make_known_schedule_part0b();
+
+				auto cal1 = calendar{ NoWeekend, ~NFP_dates1 };
+
+				const auto NFP_dates2 =
+					NFP::_make_known_schedule_part0c() +
+					_make_third_Friday_schedule(
+						years_period{ 2027y, Epoch.get_until().year() },
+						Federal_calendar
+					);
+
+				auto cal2 = calendar{ NoWeekend, ~NFP_dates2 };
+
+				return {
+					{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+
+					{ 2026y / February / 2d, std::move(cal1) },
+					// "The Employment Situation release for January 2026 will not be released as scheduled on Friday, February 6, 2026.
+					// The release will be rescheduled upon the resumption of government funding."
+
+					{ 2026y / February / 4d, std::move(cal2) },
+					// https://www.bls.gov/bls/2025-lapse-revised-release-dates.htm
+				};
+			};
 
 
 			// The same as SIFMA calendar, but with some differences on Good Fridays

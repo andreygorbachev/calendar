@@ -107,6 +107,21 @@ namespace gregorian
 			EXPECT_EQ(expected_diffs, diffs);
 		}
 
+		TEST(static, NFP)
+		{
+			const auto& cal0 = locate_calendar("America/NFP", 2026y / February / 1d);
+			EXPECT_TRUE(cal0.is_business_day(2026y / February / 6d)); // scheduled
+			EXPECT_FALSE(cal0.is_business_day(2026y / February / 11d)); // adjusted due to government shutdown
+
+			const auto& cal1 = locate_calendar("America/NFP", 2026y / February / 2d); // government shutdown starts
+			EXPECT_FALSE(cal1.is_business_day(2026y / February / 6d)); // scheduled
+			EXPECT_FALSE(cal1.is_business_day(2026y / February / 11d)); // adjusted due to government shutdown
+
+			const auto& cal2 = locate_calendar("America/NFP", 2026y / February / 4d); // government shutdown ends
+			EXPECT_FALSE(cal2.is_business_day(2026y / February / 6d)); // scheduled
+			EXPECT_TRUE(cal2.is_business_day(2026y / February / 11d)); // adjusted due to government shutdown
+		}
+
 	}
 
 }
