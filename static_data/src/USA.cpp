@@ -1985,186 +1985,187 @@ namespace gregorian
 
 
 
-		auto make_Federal_calendar_versions() -> _calendar_versions
-		{
-			auto cal0 = calendar{
-				SaturdaySundayWeekend,
-				Federal::_make_known_schedule_part0() +
-				Federal::_make_generated_schedule_part0()
-			};
+			auto make_Federal_calendar_versions() -> _calendar_versions
+			{
+				auto cal0 = calendar{
+					SaturdaySundayWeekend,
+					Federal::_make_known_schedule_part0() +
+					Federal::_make_generated_schedule_part0()
+				};
 
-			auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				Federal::_make_known_schedule_part0() +
-				Federal::_make_known_schedule_part1() +
-				Federal::_make_generated_schedule_part1()
-			};
+				auto cal1 = calendar{
+					SaturdaySundayWeekend,
+					Federal::_make_known_schedule_part0() +
+					Federal::_make_known_schedule_part1() +
+					Federal::_make_generated_schedule_part1()
+				};
 
-			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-				{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
-			};
-		}
-
-
-		auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions
-		{
-			auto cal0 = calendar{
-				SaturdaySundayWeekend,
-				Washington_DC_Federal::_make_known_schedule_part0() +
-				Washington_DC_Federal::_make_generated_schedule_part0()
-			};
-
-			auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				Washington_DC_Federal::_make_known_schedule_part0() +
-				Washington_DC_Federal::_make_known_schedule_part1() +
-				Washington_DC_Federal::_make_generated_schedule_part1()
-			};
-
-			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-				{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
-			};
-		}
+				return {
+					{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+					{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				};
+			}
 
 
-		// Do we capture the below:
-		// For any holidays falling on a Saturday, Federal Reserve banks and branches will be open the preceding Friday. The Board of Governors, however, will be closed.
-		auto make_SIFMA_calendar_versions() -> _calendar_versions
-		{
-			auto cal0 = calendar{
-				SaturdaySundayWeekend,
-				SIFMA::_make_known_schedule_part0a() +
-				SIFMA::_make_generated_schedule_part0()
-			};
+			auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions
+			{
+				auto cal0 = calendar{
+					SaturdaySundayWeekend,
+					Washington_DC_Federal::_make_known_schedule_part0() +
+					Washington_DC_Federal::_make_generated_schedule_part0()
+				};
 
-			auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				SIFMA::_make_known_schedule_part0b() +
-				SIFMA::_make_known_schedule_part1a() +
-				SIFMA::_make_generated_schedule_part1()
-			};
+				auto cal1 = calendar{
+					SaturdaySundayWeekend,
+					Washington_DC_Federal::_make_known_schedule_part0() +
+					Washington_DC_Federal::_make_known_schedule_part1() +
+					Washington_DC_Federal::_make_generated_schedule_part1()
+				};
 
-			auto cal2 = calendar{
-				SaturdaySundayWeekend,
-				SIFMA::_make_known_schedule_part0b() +
-				SIFMA::_make_known_schedule_part1b() +
-				SIFMA::_make_known_schedule_part2a() +
-				SIFMA::_make_generated_schedule_part2()
-			};
+				return {
+					{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+					{ 2021y / June / 17d, std::move(cal1) }, // President Joe Biden signed the bill (Pub. L. 117–17) on June 17, 2021, making Juneteenth the eleventh American federal holiday
+				};
+			}
 
-			auto cal3 = calendar{
-				SaturdaySundayWeekend,
-				SIFMA::_make_known_schedule_part0b() +
-				SIFMA::_make_known_schedule_part1b() +
-				SIFMA::_make_known_schedule_part2b() +
-				SIFMA::_make_known_schedule_part3() +
-				SIFMA::_make_generated_schedule_part3()
-			};
 
-			// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
-			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+			// Do we capture the below:
+			// For any holidays falling on a Saturday, Federal Reserve banks and branches will be open the preceding Friday. The Board of Governors, however, will be closed.
+			auto make_SIFMA_calendar_versions() -> _calendar_versions
+			{
+				auto cal0 = calendar{
+					SaturdaySundayWeekend,
+					SIFMA::_make_known_schedule_part0a() +
+					SIFMA::_make_generated_schedule_part0()
+				};
 
-				{ 2012y / October / 29d, std::move(cal1) },
-				// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
+				auto cal1 = calendar{
+					SaturdaySundayWeekend,
+					SIFMA::_make_known_schedule_part0b() +
+					SIFMA::_make_known_schedule_part1a() +
+					SIFMA::_make_generated_schedule_part1()
+				};
 
-				{ 2018y / December / 1d, std::move(cal2) },
+				auto cal2 = calendar{
+					SaturdaySundayWeekend,
+					SIFMA::_make_known_schedule_part0b() +
+					SIFMA::_make_known_schedule_part1b() +
+					SIFMA::_make_known_schedule_part2a() +
+					SIFMA::_make_generated_schedule_part2()
+				};
+
+				auto cal3 = calendar{
+					SaturdaySundayWeekend,
+					SIFMA::_make_known_schedule_part0b() +
+					SIFMA::_make_known_schedule_part1b() +
+					SIFMA::_make_known_schedule_part2b() +
+					SIFMA::_make_known_schedule_part3() +
+					SIFMA::_make_generated_schedule_part3()
+				};
+
+				// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
+				return {
+					{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+
+					{ 2012y / October / 29d, std::move(cal1) },
+					// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
+
+					{ 2018y / December / 1d, std::move(cal2) },
+					// * Press Releases
+					// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
+					// Published on : December 1, 2018
+
+					{ 2021y / July / 14d, std::move(cal3) },
+					// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
+					// * Press Releases
+					// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
+					// Published on : July 14, 2021
+				};
+
+				// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
 				// * Press Releases
-				// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
-				// Published on : December 1, 2018
+				// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
+				// Published on : December 30, 2024
+			}
 
-				{ 2021y / July / 14d, std::move(cal3) },
-				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
+
+			// The same as SIFMA calendar, but with some differences on Good Fridays
+
+			// SOFR actually started in April 2018, so we might want consider removing holidays prior to that date, but we also have (so maybe the SOFR calendar should cover that also):
+			// 1. Indicative "Pre-SOFR" Data(Modeled History)
+			// Start Date : August 25, 2014
+			// End Date : April 1, 2018 (right before the official live launch)
+			// Details : Prior to launching SOFR live in April 2018, the New York Fed released this historical time series using the exact same underlying transaction data and methodology to show how SOFR would have behaved.
+			// Due to data availability limits in transaction - level repo matching, they could only model it back to late August 2014.
+			// 2. Historical Proxy Data(Extended History)
+			// Start Date : February 1998
+			// Details : Because a 3.5 - year history(2014–2018) wasn't enough for risk managers to stress-test their models or calculate backward-looking fallback spreads over long horizons, the Fed separately released a much longer historical proxy series.
+			// This data goes back to February 1998 and is based on a morning survey of primary dealers' overnight Treasury general collateral repo borrowing activity conducted by the Fed's Open Market Trading Desk. 
+			auto make_SOFR_calendar_versions() -> _calendar_versions
+			{
+				auto cal0 = calendar{
+					SaturdaySundayWeekend,
+					SOFR::_make_known_schedule_part0a() +
+					SOFR::_make_generated_schedule_part0()
+				};
+
+				auto cal1 = calendar{
+					SaturdaySundayWeekend,
+					SOFR::_make_known_schedule_part0b() +
+					SOFR::_make_known_schedule_part1a() +
+					SOFR::_make_generated_schedule_part1()
+				};
+
+				auto cal2 = calendar{
+					SaturdaySundayWeekend,
+					SOFR::_make_known_schedule_part0b() +
+					SOFR::_make_known_schedule_part1b() +
+					SOFR::_make_known_schedule_part2a() +
+					SOFR::_make_generated_schedule_part2()
+				};
+
+				auto cal3 = calendar{
+					SaturdaySundayWeekend,
+					SOFR::_make_known_schedule_part0b() +
+					SOFR::_make_known_schedule_part1b() +
+					SOFR::_make_known_schedule_part2b() +
+					SOFR::_make_known_schedule_part3() +
+					SOFR::_make_generated_schedule_part3()
+				};
+
+				// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
+				return {
+					{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
+
+					{ 2012y / October / 29d, std::move(cal1) },
+					// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
+
+					{ 2018y / December / 1d, std::move(cal2) },
+					// * Press Releases
+					// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
+					// Published on : December 1, 2018
+
+					// add Operating Policy
+					// Statement Regarding the Publication of Reference Rates on Friday, April 2, 2021
+					// Published on : March 3, 2021
+
+					{ 2021y / July / 14d, std::move(cal3) },
+					// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
+					// * Press Releases
+					// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
+					// Published on : July 14, 2021
+
+					// 2021, 2023 and 2026 Good Friday
+				};
+
+				// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
 				// * Press Releases
-				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
-				// Published on : July 14, 2021
-			};
+				// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
+				// Published on : December 30, 2024
+			}
 
-			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
-			// * Press Releases
-			// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
-			// Published on : December 30, 2024
 		}
 
-
-		// The same as SIFMA calendar, but with some differences on Good Fridays
-
-		// SOFR actually started in April 2018, so we might want consider removing holidays prior to that date, but we also have (so maybe the SOFR calendar should cover that also):
-		// 1. Indicative "Pre-SOFR" Data(Modeled History)
-		// Start Date : August 25, 2014
-		// End Date : April 1, 2018 (right before the official live launch)
-		// Details : Prior to launching SOFR live in April 2018, the New York Fed released this historical time series using the exact same underlying transaction data and methodology to show how SOFR would have behaved.
-		// Due to data availability limits in transaction - level repo matching, they could only model it back to late August 2014.
-		// 2. Historical Proxy Data(Extended History)
-		// Start Date : February 1998
-		// Details : Because a 3.5 - year history(2014–2018) wasn't enough for risk managers to stress-test their models or calculate backward-looking fallback spreads over long horizons, the Fed separately released a much longer historical proxy series.
-		// This data goes back to February 1998 and is based on a morning survey of primary dealers' overnight Treasury general collateral repo borrowing activity conducted by the Fed's Open Market Trading Desk. 
-		auto make_SOFR_calendar_versions() -> _calendar_versions
-		{
-			auto cal0 = calendar{
-				SaturdaySundayWeekend,
-				SOFR::_make_known_schedule_part0a() +
-				SOFR::_make_generated_schedule_part0()
-			};
-
-			auto cal1 = calendar{
-				SaturdaySundayWeekend,
-				SOFR::_make_known_schedule_part0b() +
-				SOFR::_make_known_schedule_part1a() +
-				SOFR::_make_generated_schedule_part1()
-			};
-
-			auto cal2 = calendar{
-				SaturdaySundayWeekend,
-				SOFR::_make_known_schedule_part0b() +
-				SOFR::_make_known_schedule_part1b() +
-				SOFR::_make_known_schedule_part2a() +
-				SOFR::_make_generated_schedule_part2()
-			};
-
-			auto cal3 = calendar{
-				SaturdaySundayWeekend,
-				SOFR::_make_known_schedule_part0b() +
-				SOFR::_make_known_schedule_part1b() +
-				SOFR::_make_known_schedule_part2b() +
-				SOFR::_make_known_schedule_part3() +
-				SOFR::_make_generated_schedule_part3()
-			};
-
-			// should we consider Hurricane Sandy, Honor of Former President George H.W.Bush, etc as a separate (unscheduled?) calendar?
-			return {
-				{ cal0.get_schedule().get_period().get_from(), std::move(cal0) },
-
-				{ 2012y / October / 29d, std::move(cal1) },
-				// https://www.isda.org/a/uViDE/hurricane-sandy-guidance-oct-29-2012.pdf
-
-				{ 2018y / December / 1d, std::move(cal2) },
-				// * Press Releases
-				// SIFMA Recommends Full Market Close Wednesday December 5 In Honor of Former President George H.W.Bush
-				// Published on : December 1, 2018
-
-				// add Operating Policy
-				// Statement Regarding the Publication of Reference Rates on Friday, April 2, 2021
-				// Published on : March 3, 2021
-
-				{ 2021y / July / 14d, std::move(cal3) },
-				// https://www.sifma.org/news/press-releases/sifma-revises-2022-fixed-income-market-close-recommendations-in-the-u-s-to-include-full-close-for-juneteenth-national-independence-day
-				// * Press Releases
-				// SIFMA Revises 2022 Fixed Income Market Close Recommendations in the U.S. to Include Full Close for Juneteenth National Independence Day
-				// Published on : July 14, 2021
-
-				// 2021, 2023 and 2026 Good Friday
-			};
-
-			// https://www.sifma.org/news/press-releases/sifma-recommends-early-market-close-on-january-9-2025-for-the-national-day-of-mourning-in-honor-of-former-president-carter
-			// * Press Releases
-			// SIFMA Recommends Early Market Close on January 9, 2025, for the National Day of Mourning in Honor of Former President Carter
-			// Published on : December 30, 2024
-		}
-
-		}
 	}
 
 }
