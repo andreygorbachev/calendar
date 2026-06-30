@@ -36,6 +36,7 @@ namespace gregorian
 	namespace static_data
 	{
 
+		// or represent this as a 12x monthly "holidays" (so each observation month, with a resulting, reporting, date in the next month, so Dec is in Jan of the next year)
 		inline auto _make_third_Friday_schedule( // should it be in a source file?
 			const util::years_period& period,
 			const calendar& cal
