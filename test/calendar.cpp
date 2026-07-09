@@ -663,35 +663,6 @@ namespace gregorian
 		EXPECT_EQ(expected_s6, s6);
 	}
 
-	TEST(calendar, shift_business_days1) // should we test shifting outside the calendar range?
-	{
-		const auto& c = make_calendar_england();
-
-		// from a business day
-		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ 1 }, c), 2023y / May / 3d);
-
-		// from a non-business day (May 1 is a holiday)
-		EXPECT_EQ(shift_business_days(2023y / May / 1d, days{ 1 }, c), 2023y / May / 2d);
-
-		// negative shift from a business day
-		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ -1 }, c), 2023y / April / 28d);
-
-		// zero shift returns same date
-		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ 0 }, c), 2023y / May / 2d);
-	}
-
-	TEST(calendar, shift_business_days2) // should this be just sys_days?
-	{
-		const auto& c = make_calendar_england();
-
-		// larger positive shift across weekends and holidays
-		EXPECT_EQ(shift_business_days(2023y / April / 28d, days{ 5 }, c), 2023y / May / 9d);
-
-		// sys_days overload: negative shift
-		EXPECT_EQ(shift_business_days(sys_days{ 2023y / May / 1d }, days{ -1 }, c), sys_days{ 2023y / April / 28d });
-	}
-
-
 	TEST(calendar, operator_equal_to)
 	{
 		const auto s = schedule{

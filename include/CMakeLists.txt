@@ -4,6 +4,7 @@ add_library(${PROJECT_NAME} INTERFACE
   weekend.h
   schedule.h
   calendar.h
+  calendar_algorithms.h
   annual_holiday_interface.h
   annual_holidays.h
   equinoxes_solstices.h

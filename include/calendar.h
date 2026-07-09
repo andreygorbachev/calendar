@@ -147,48 +147,6 @@ namespace gregorian // should the namespace be called civil?
 	}
 
 
-	inline auto shift_business_days(
-		const std::chrono::sys_days& sd,
-		const std::chrono::days& n, // is this a desirable type here?
-		const calendar& cal
-	) -> std::chrono::sys_days
-	{
-		const auto _n = n.count();
-		auto result = sd;
-		if (_n > 0) // should it be long long?
-		{
-			for (auto i = 0; i < _n; ++i) // should it be long long?
-			{
-				result = result + std::chrono::days{ 1 };
-				while (cal.is_non_business_day(result))
-					result = result + std::chrono::days{ 1 }; // or should I use Following convention here (if the result is a non-business day, shift it to the next business day)?
-			}
-		}
-		else if (_n < 0) // should it be long long?
-		{
-			for (auto i = 0; i > _n; --i) // should it be long long?
-			{
-				result = result - std::chrono::days{ 1 };
-				while (cal.is_non_business_day(result))
-					result = result - std::chrono::days{ 1 }; // or should I use Preceding convention here (if the result is a non-business day, shift it to the previous business day)?
-			}
-		}
-
-		return result;
-	}
-
-	inline auto shift_business_days(
-		const std::chrono::year_month_day& ymd,
-		const std::chrono::days& n, // is this a desirable type here?
-		const calendar& cal
-	) -> std::chrono::year_month_day
-	{
-		// or implement directly?
-		return shift_business_days(std::chrono::sys_days{ ymd }, n, cal);
-	}
-
-
-
 	inline calendar::calendar(
 		weekend we,
 		schedule hols
