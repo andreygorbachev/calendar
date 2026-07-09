@@ -38,18 +38,18 @@ namespace gregorian // should the namespace be called civil?
 	{
 		const auto _n = n.count();
 		auto result = sd;
-		if (_n > 0) // should it be long long?
+		if (_n > std::chrono::days::rep{ 0 })
 		{
-			for (auto i = 0; i < _n; ++i) // should it be long long?
+			for (auto i = std::chrono::days::rep{ 0 }; i < _n; ++i)
 			{
 				result = result + std::chrono::days{ 1 };
 				while (cal.is_non_business_day(result))
 					result = result + std::chrono::days{ 1 }; // or should I use Following convention here (if the result is a non-business day, shift it to the next business day)?
 			}
 		}
-		else if (_n < 0) // should it be long long?
+		else if (_n < std::chrono::days::rep{ 0 })
 		{
-			for (auto i = 0; i > _n; --i) // should it be long long?
+			for (auto i = std::chrono::days::rep{ 0 }; i > _n; --i)
 			{
 				result = result - std::chrono::days{ 1 };
 				while (cal.is_non_business_day(result))
