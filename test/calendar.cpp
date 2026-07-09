@@ -668,16 +668,16 @@ namespace gregorian
 		const auto& c = make_calendar_england();
 
 		// from a business day
-		EXPECT_EQ(c.shift_business_days(2023y / May / 2d, days{ 1 }), 2023y / May / 3d);
+		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ 1 }, c), 2023y / May / 3d);
 
 		// from a non-business day (May 1 is a holiday)
-		EXPECT_EQ(c.shift_business_days(2023y / May / 1d, days{ 1 }), 2023y / May / 2d);
+		EXPECT_EQ(shift_business_days(2023y / May / 1d, days{ 1 }, c), 2023y / May / 2d);
 
 		// negative shift from a business day
-		EXPECT_EQ(c.shift_business_days(2023y / May / 2d, days{ -1 }), 2023y / April / 28d);
+		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ -1 }, c), 2023y / April / 28d);
 
 		// zero shift returns same date
-		EXPECT_EQ(c.shift_business_days(2023y / May / 2d, days{ 0 }), 2023y / May / 2d);
+		EXPECT_EQ(shift_business_days(2023y / May / 2d, days{ 0 }, c), 2023y / May / 2d);
 	}
 
 	TEST(calendar, shift_business_days2) // should this be just sys_days?
@@ -685,10 +685,10 @@ namespace gregorian
 		const auto& c = make_calendar_england();
 
 		// larger positive shift across weekends and holidays
-		EXPECT_EQ(c.shift_business_days(2023y / April / 28d, days{ 5 }), 2023y / May / 9d);
+		EXPECT_EQ(shift_business_days(2023y / April / 28d, days{ 5 }, c), 2023y / May / 9d);
 
 		// sys_days overload: negative shift
-		EXPECT_EQ(c.shift_business_days(sys_days{ 2023y / May / 1d }, days{ -1 }), sys_days{ 2023y / April / 28d });
+		EXPECT_EQ(shift_business_days(sys_days{ 2023y / May / 1d }, days{ -1 }, c), sys_days{ 2023y / April / 28d });
 	}
 
 
