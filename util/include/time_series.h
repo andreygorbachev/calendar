@@ -56,20 +56,20 @@ namespace gregorian
 
 		public:
 
-			friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
+			[[nodiscard]] friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
 			friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 		public:
 
-			auto operator[](const std::chrono::year_month_day& ymd) -> T&;
-			auto operator[](const std::chrono::year_month_day& ymd) const -> const T&;
+			[[nodiscard]] auto operator[](const std::chrono::year_month_day& ymd) -> T&;
+			[[nodiscard]] auto operator[](const std::chrono::year_month_day& ymd) const -> const T&;
 
-			auto operator[](const std::chrono::sys_days& sd) -> T&;
-			auto operator[](const std::chrono::sys_days& sd) const -> const T&;
+			[[nodiscard]] auto operator[](const std::chrono::sys_days& sd) -> T&;
+			[[nodiscard]] auto operator[](const std::chrono::sys_days& sd) const -> const T&;
 
 		public:
 
-			auto get_period() const noexcept -> util::days_period;
+			[[nodiscard]] auto get_period() const noexcept -> util::days_period;
 
 		private:
 
@@ -110,30 +110,30 @@ namespace gregorian
 
 		public:
 
-			friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
+			[[nodiscard]] friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
 			friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 		public:
 
-			auto operator[](const std::chrono::year_month_day& ymd) -> reference;
-			auto operator[](const std::chrono::year_month_day& ymd) const -> bool;
+			[[nodiscard]] auto operator[](const std::chrono::year_month_day& ymd) -> reference;
+			[[nodiscard]] auto operator[](const std::chrono::year_month_day& ymd) const -> bool;
 
-			auto operator[](const std::chrono::sys_days& sd) -> reference;
-			auto operator[](const std::chrono::sys_days& sd) const -> bool;
-
-		public:
-
-			auto get_period() const noexcept -> util::days_period;
+			[[nodiscard]] auto operator[](const std::chrono::sys_days& sd) -> reference;
+			[[nodiscard]] auto operator[](const std::chrono::sys_days& sd) const -> bool;
 
 		public:
 
-			auto count(const util::days_period& p) const -> std::size_t;
-			auto count(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
+			[[nodiscard]] auto get_period() const noexcept -> util::days_period;
+
+		public:
+
+			[[nodiscard]] auto count(const util::days_period& p) const -> std::size_t;
+			[[nodiscard]] auto count(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		public:
 
 			// to help with testing
-			static auto get_chunk_size() noexcept -> std::size_t;
+			[[nodiscard]] static auto get_chunk_size() noexcept -> std::size_t;
 
 		private:
 

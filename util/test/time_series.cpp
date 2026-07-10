@@ -64,7 +64,7 @@ namespace gregorian
 			EXPECT_EQ(expected, ts[2023y / January / 1d]);
 			EXPECT_EQ(expected, ts[2023y / June / 5d]);
 
-			EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
+			EXPECT_THROW(static_cast<void>(ts[2023y / June / 6d]), out_of_range);
 		}
 
 		TEST(time_series, operator_subscript_2)
@@ -83,7 +83,7 @@ namespace gregorian
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / June / 5d }]);
 
-			EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
+			EXPECT_THROW(static_cast<void>(ts[sys_days{ 2023y / June / 6d }]), out_of_range);
 		}
 
 		TEST(time_series, operator_subscript_4)
@@ -156,7 +156,7 @@ namespace gregorian
 			EXPECT_EQ(expected, ts[2023y / January / 1d]);
 			EXPECT_EQ(expected, ts[2023y / June / 5d]);
 
-			EXPECT_THROW(ts[2023y / June / 6d], out_of_range);
+			EXPECT_THROW(static_cast<void>(ts[2023y / June / 6d]), out_of_range);
 		}
 
 		TEST(time_series_bool, operator_subscript_2)
@@ -178,7 +178,7 @@ namespace gregorian
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / January / 1d }]);
 			EXPECT_EQ(expected, ts[sys_days{ 2023y / June / 5d }]);
 
-			EXPECT_THROW(ts[sys_days{ 2023y / June / 6d }], out_of_range);
+			EXPECT_THROW(static_cast<void>(ts[sys_days{ 2023y / June / 6d }]), out_of_range);
 		}
 
 		TEST(time_series_bool, operator_subscript_4)

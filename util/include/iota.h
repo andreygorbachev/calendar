@@ -50,7 +50,7 @@ namespace gregorian
 
 
 		// how can we make this more generic?
-		constexpr auto iota(const days_period& p) // closed period [from, until]
+		[[nodiscard]] constexpr auto iota(const days_period& p) // closed period [from, until]
 		{
 			const auto& f = std::chrono::sys_days{ p.get_from() };
 			const auto u = std::chrono::sys_days{ p.get_until() } + std::chrono::days{ 1 };

@@ -131,9 +131,9 @@ namespace gregorian
 			EXPECT_EQ(2023y / April / 1d, p.get_from());
 			EXPECT_EQ(2023y / May / 31d, p.get_until());
 
-			EXPECT_THROW(p2 + p1, out_of_range);
+			EXPECT_THROW(static_cast<void>(p2 + p1), out_of_range);
 
-			EXPECT_THROW(period(2023y / March / 1d, 2023y / March / 31d) + p2, out_of_range);
+			EXPECT_THROW(static_cast<void>(period(2023y / March / 1d, 2023y / March / 31d) + p2), out_of_range);
 		}
 
 		TEST(period, operator_addition_2)
@@ -146,9 +146,9 @@ namespace gregorian
 			EXPECT_EQ(2023y / February, p.get_from());
 			EXPECT_EQ(2023y / May, p.get_until());
 
-			EXPECT_THROW(p2 + p1, out_of_range);
+			EXPECT_THROW(static_cast<void>(p2 + p1), out_of_range);
 
-			EXPECT_THROW(period(2023y / January, 2023y / February) + p2, out_of_range);
+			EXPECT_THROW(static_cast<void>(period(2023y / January, 2023y / February) + p2), out_of_range);
 		}
 
 		TEST(period, operator_addition_3)
@@ -161,9 +161,9 @@ namespace gregorian
 			EXPECT_EQ(2021y, p.get_from());
 			EXPECT_EQ(2024y, p.get_until());
 
-			EXPECT_THROW(p2 + p1, out_of_range);
+			EXPECT_THROW(static_cast<void>(p2 + p1), out_of_range);
 
-			EXPECT_THROW(period(2020y, 2021y) + p2, out_of_range);
+			EXPECT_THROW(static_cast<void>(period(2020y, 2021y) + p2), out_of_range);
 		}
 
 
@@ -179,7 +179,7 @@ namespace gregorian
 			EXPECT_EQ(2023y / April / 1d, p.get_from());
 			EXPECT_EQ(2023y / April / 30d, p.get_until());
 
-			EXPECT_THROW(period(2023y / January / 1d, 2023y / February / 28d) & p2, out_of_range);
+			EXPECT_THROW(static_cast<void>(period(2023y / January / 1d, 2023y / February / 28d) & p2), out_of_range);
 		}
 
 		TEST(period, operator_bitwise_or)
@@ -194,7 +194,7 @@ namespace gregorian
 			EXPECT_EQ(2023y / March / 1d, p.get_from());
 			EXPECT_EQ(2023y / May / 31d, p.get_until());
 
-			EXPECT_THROW(period(2023y / January / 1d, 2023y / February / 28d) | p2, out_of_range);
+			EXPECT_THROW(static_cast<void>(period(2023y / January / 1d, 2023y / February / 28d) | p2), out_of_range);
 		}
 
 
