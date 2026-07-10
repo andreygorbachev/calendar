@@ -23,6 +23,7 @@
 #pragma once
 
 #include "calendar.h"
+#include "business_day_adjusters.h"
 
 #include <chrono>
 
@@ -36,26 +37,15 @@ namespace gregorian // should the namespace be called civil?
 		const calendar& cal
 	) -> std::chrono::sys_days
 	{
-		const auto _n = n.count();
 		auto result = sd;
+
+		const auto _n = n.count();
 		if (_n > std::chrono::days::rep{ 0 })
-		{
 			for (auto i = std::chrono::days::rep{ 0 }; i < _n; ++i)
-			{
-				result = result + std::chrono::days{ 1 };
-				while (cal.is_non_business_day(result))
-					result = result + std::chrono::days{ 1 }; // or should I use Following convention here (if the result is a non-business day, shift it to the next business day)?
-			}
-		}
+				result = Following.adjust(result + std::chrono::days{ 1 }, cal);
 		else if (_n < std::chrono::days::rep{ 0 })
-		{
 			for (auto i = std::chrono::days::rep{ 0 }; i > _n; --i)
-			{
-				result = result - std::chrono::days{ 1 };
-				while (cal.is_non_business_day(result))
-					result = result - std::chrono::days{ 1 }; // or should I use Preceding convention here (if the result is a non-business day, shift it to the previous business day)?
-			}
-		}
+				result = Preceding.adjust(result - std::chrono::days{ 1 }, cal);
 
 		return result;
 	}
