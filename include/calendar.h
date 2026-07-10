@@ -39,7 +39,7 @@
 namespace gregorian // should the namespace be called civil?
 {
 
-	class calendar // std::chrono::time_zone has a name, should we also have a name in calendar? (if we provide provide the database I would say yes)
+	class calendar // std::chrono::time_zone has a name, should we also have a name in calendar? (if we provide the database I would say yes)
 	{
 
 	public:
@@ -48,31 +48,31 @@ namespace gregorian // should the namespace be called civil?
 
 	public:
 
-		friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
+		[[nodiscard]] friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
 		friend auto operator<=>(const calendar& cal1, const calendar& cal2) noexcept -> std::strong_ordering = delete;
 
 	public:
 
-		auto is_non_business_day(const std::chrono::year_month_day& ymd) const -> bool;
+		[[nodiscard]] auto is_non_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto is_non_business_day(const std::chrono::sys_days& sd) const -> bool;
+		[[nodiscard]] auto is_non_business_day(const std::chrono::sys_days& sd) const -> bool;
 
 	public:
 
-		auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
+		[[nodiscard]] auto is_business_day(const std::chrono::year_month_day& ymd) const -> bool;
 
-		auto is_business_day(const std::chrono::sys_days& sd) const -> bool;
+		[[nodiscard]] auto is_business_day(const std::chrono::sys_days& sd) const -> bool;
 
-		auto count_business_days(const util::days_period& p) const -> std::size_t;
+		[[nodiscard]] auto count_business_days(const util::days_period& p) const -> std::size_t;
 
-		auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
+		[[nodiscard]] auto count_business_days(const util::period<std::chrono::sys_days>& p) const -> std::size_t;
 
 		// should below be standalone functions instead of member functions?
 
 		// is returning schedule the right thing to do?
-		auto make_business_days_schedule(util::days_period p) const -> schedule;
+		[[nodiscard]] auto make_business_days_schedule(util::days_period p) const -> schedule;
 
-		auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
+		[[nodiscard]] auto make_business_days_schedule(const util::period<std::chrono::sys_days>& p) const -> schedule;
 
 		// or should we have a class business_day (which would take a calendar in a constructor)
 		// .ok() would check if that is or not a good business day
@@ -86,8 +86,8 @@ namespace gregorian // should the namespace be called civil?
 
 	public:
 
-		auto get_weekend() const noexcept -> const weekend&;
-		auto get_schedule() const noexcept -> const schedule&;
+		[[nodiscard]] auto get_weekend() const noexcept -> const weekend&;
+		[[nodiscard]] auto get_schedule() const noexcept -> const schedule&;
 
 	private:
 
@@ -115,19 +115,19 @@ namespace gregorian // should the namespace be called civil?
 			// so maybe this could be done better (only cache a single cycle)
 		};
 
-		_cache _cch;
+		_cache _cch; // if we decide to cache on demand, then [[nodiscard]] might not be the right thing to do in this class
 
 	};
 
 
 
-	inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
+	[[nodiscard]] inline auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool
 	{
 		return cal1._cch.non_business_days == cal2._cch.non_business_days;
 	}
 
 
-	inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
+	[[nodiscard]] inline auto operator|(const calendar& cal1, const calendar& cal2) -> calendar
 	{
 		const auto p = cal1.get_schedule().get_period() & cal2.get_schedule().get_period();
 		const auto s = cal1.get_schedule() | cal2.get_schedule();
@@ -138,7 +138,7 @@ namespace gregorian // should the namespace be called civil?
 		};
 	}
 
-	inline auto operator&(const calendar& cal1, const calendar& cal2) -> calendar
+	[[nodiscard]] inline auto operator&(const calendar& cal1, const calendar& cal2) -> calendar
 	{
 		return calendar{
 			cal1.get_weekend() & cal2.get_weekend(),

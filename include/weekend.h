@@ -49,18 +49,18 @@ namespace gregorian
 
 	public:
 
-		constexpr friend auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
+		[[nodiscard]] constexpr friend auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
 		constexpr friend auto operator<=>(const weekend& w1, const weekend& w2) noexcept -> std::strong_ordering = delete;
 
 	public:
 
-		constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+		[[nodiscard]] constexpr auto is_weekend(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-		constexpr auto is_weekend(const std::chrono::sys_days& sd) const noexcept -> bool;
+		[[nodiscard]] constexpr auto is_weekend(const std::chrono::sys_days& sd) const noexcept -> bool;
 
 	public:
 
-		constexpr auto get_we() const noexcept -> const storage&;
+		[[nodiscard]] constexpr auto get_we() const noexcept -> const storage&;
 
 	private:
 
@@ -77,14 +77,14 @@ namespace gregorian
 
 
 
-	constexpr auto operator|(const weekend& w1, const weekend& w2) noexcept -> weekend
+	[[nodiscard]] constexpr auto operator|(const weekend& w1, const weekend& w2) noexcept -> weekend
 	{
 		auto we = w1.get_we() | w2.get_we();
 
 		return weekend{ std::move(we) };
 	}
 
-	constexpr auto operator&(const weekend& w1, const weekend& w2) noexcept -> weekend
+	[[nodiscard]] constexpr auto operator&(const weekend& w1, const weekend& w2) noexcept -> weekend
 	{
 		auto we = w1.get_we() & w2.get_we();
 

@@ -62,30 +62,30 @@ namespace gregorian
 
 	public:
 
-		friend auto operator+(schedule s1, schedule s2) -> schedule;
+		[[nodiscard]] friend auto operator+(schedule s1, schedule s2) -> schedule;
 			
 		auto operator+=(schedule s) -> schedule&;
 
 		auto operator+=(const std::chrono::year_month_day& ymd) -> schedule&;
 		auto operator-=(const std::chrono::year_month_day& ymd) noexcept -> schedule&;
 
-		friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
+		[[nodiscard]] friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
 		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept -> std::strong_ordering = delete;
 
-		friend auto operator|(schedule s1, schedule s2) -> schedule;
-		friend auto operator&(schedule s1, schedule s2) -> schedule;
+		[[nodiscard]] friend auto operator|(schedule s1, schedule s2) -> schedule;
+		[[nodiscard]] friend auto operator&(schedule s1, schedule s2) -> schedule;
 
 	public:
 
-		auto contains(const std::chrono::year_month_day& ymd) const noexcept -> bool;
+		[[nodiscard]] auto contains(const std::chrono::year_month_day& ymd) const noexcept -> bool;
 
-		auto contains(const std::chrono::sys_days& sd) const noexcept -> bool;
+		[[nodiscard]] auto contains(const std::chrono::sys_days& sd) const noexcept -> bool;
 
 	public:
 
-		auto get_period() const noexcept -> const util::days_period&;
+		[[nodiscard]] auto get_period() const noexcept -> const util::days_period&;
 
-		auto get_dates() const noexcept -> const dates&;
+		[[nodiscard]] auto get_dates() const noexcept -> const dates&;
 
 	private:
 
@@ -101,7 +101,7 @@ namespace gregorian
 
 
 
-	inline auto operator|(schedule s1, schedule s2) -> schedule
+	[[nodiscard]] inline auto operator|(schedule s1, schedule s2) -> schedule
 	{
 		auto& ds = s1._dates;
 		ds.merge(s2._dates);
@@ -112,7 +112,7 @@ namespace gregorian
 		};
 	}
 
-	inline auto operator&(schedule s1, schedule s2) -> schedule
+	[[nodiscard]] inline auto operator&(schedule s1, schedule s2) -> schedule
 	{
 		auto ds = schedule::dates{};
 		for (const auto& d : s1._dates)
@@ -125,7 +125,7 @@ namespace gregorian
 		};
 	}
 
-	inline auto operator~(const schedule& s) -> schedule
+	[[nodiscard]] inline auto operator~(const schedule& s) -> schedule
 	{
 		auto p = s.get_period();
 		auto ds = schedule::dates{};
@@ -145,7 +145,7 @@ namespace gregorian
 	}
 
 
-	inline auto operator+(schedule s1, schedule s2) -> schedule
+	[[nodiscard]] inline auto operator+(schedule s1, schedule s2) -> schedule
 	{
 		auto& ds = s1._dates;
 		ds.merge(std::move(s2._dates));

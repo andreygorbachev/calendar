@@ -165,7 +165,7 @@ namespace gregorian
 		EXPECT_EQ(s1.get_period().get_from(), s.get_period().get_from());
 		EXPECT_EQ(year{ 2024 } / December / day{ 31u }, s.get_period().get_until());
 
-		EXPECT_THROW(s2 + s1, out_of_range);
+		EXPECT_THROW(static_cast<void>(s2 + s1), out_of_range);
 	}
 
 	TEST(schedule, operator_addition_assignment_schedule)
