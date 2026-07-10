@@ -49,8 +49,8 @@ namespace gregorian
 
 	public:
 
-		/*[[nodiscard]]*/ friend constexpr auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
-		friend constexpr auto operator<=>(const weekend& w1, const weekend& w2) noexcept -> std::strong_ordering = delete;
+		[[nodiscard]] friend constexpr auto operator==(const weekend& w1, const weekend& w2) noexcept -> bool = default;
+		[[nodiscard]] friend constexpr auto operator<=>(const weekend& w1, const weekend& w2) noexcept -> std::strong_ordering = delete;
 
 	public:
 

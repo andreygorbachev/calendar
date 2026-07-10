@@ -56,8 +56,8 @@ namespace gregorian
 
 		public:
 
-			/*[[nodiscard]]*/ friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
-			friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
+			[[nodiscard]] friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
+			[[nodiscard]] friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 		public:
 
@@ -110,8 +110,8 @@ namespace gregorian
 
 		public:
 
-			/*[[nodiscard]]*/ friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
-			friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
+			[[nodiscard]] friend auto operator==(const time_series& ts1, const time_series& ts2) noexcept -> bool = default;
+			[[nodiscard]] friend auto operator<=>(const time_series& ts1, const time_series& ts2) noexcept -> std::strong_ordering = delete;
 
 		public:
 

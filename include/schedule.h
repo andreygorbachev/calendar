@@ -69,8 +69,8 @@ namespace gregorian
 		auto operator+=(const std::chrono::year_month_day& ymd) -> schedule&;
 		auto operator-=(const std::chrono::year_month_day& ymd) noexcept -> schedule&;
 
-		/*[[nodiscard]]*/ friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
-		friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept -> std::strong_ordering = delete;
+		[[nodiscard]] friend auto operator==(const schedule& s1, const schedule& s2) noexcept -> bool = default;
+		[[nodiscard]] friend auto operator<=>(const schedule& s1, const schedule& s2) noexcept -> std::strong_ordering = delete;
 
 		friend auto operator|(schedule s1, schedule s2) -> schedule;
 		friend auto operator&(schedule s1, schedule s2) -> schedule;
