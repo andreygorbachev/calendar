@@ -18,6 +18,7 @@ if(${CALENDAR_BUILD_TESTS_AND_EXAMPLES})
     googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG        v1.17.0
+    SYSTEM # stop a warning inside googletest under macos-build
   )
 
   FetchContent_MakeAvailable(googletest)
