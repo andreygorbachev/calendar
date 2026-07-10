@@ -28,7 +28,7 @@
 #include <chrono>
 
 
-namespace gregorian // should the namespace be called civil?
+namespace gregorian
 {
 
 	inline auto shift_business_days(
