@@ -40,7 +40,7 @@ namespace gregorian
 		inline auto _make_third_Friday_schedule( // should it be in a source file?
 			const util::years_period& period,
 			const calendar& cal
-		) -> schedule
+		) -> schedule // if we decide to make it not "_" we should also probably make it [[nodiscard]]
 		{
 			auto release_dates = schedule::dates{};
 

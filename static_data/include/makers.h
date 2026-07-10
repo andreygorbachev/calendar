@@ -48,34 +48,34 @@ namespace gregorian
 
 		// from https://www.gov.uk/bank-holidays
 
-		auto make_England_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_England_calendar_versions() -> _calendar_versions;
 
-		auto make_Wales_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Wales_calendar_versions() -> _calendar_versions;
 
-		auto make_Scotland_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Scotland_calendar_versions() -> _calendar_versions;
 
-		auto make_Northern_Ireland_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Northern_Ireland_calendar_versions() -> _calendar_versions;
 
 		// from: https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates
 
-		auto make_MPC_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
+		[[nodiscard]] auto make_MPC_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 		// does not correspond to Epoch
 
 
 		// from https://www.ecb.europa.eu/paym/target/t2/html/index.en.html
 
-		auto make_T2_calendar_versions() -> _calendar_versions; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
+		[[nodiscard]] auto make_T2_calendar_versions() -> _calendar_versions; // example of a calendar which did not exist in 2000 // should this go to the fin-calendar?
 
 
 		// from https://www.six-group.com/en/market-data/news-tools/trading-currency-holiday-calendar.html#/
 		// (could be incorrect as it lists ChristmasEve and NewYearsEve as holidays, which might be exchange holidays, but not Zurich holidays)
 
-		auto make_Zurich_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Zurich_calendar_versions() -> _calendar_versions;
 
 
 		// from https://its-poland.com/travel-tips/polish-bank-holidays
 
-		auto make_Warsaw_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Warsaw_calendar_versions() -> _calendar_versions;
 
 
 		namespace USA
@@ -83,9 +83,9 @@ namespace gregorian
 
 			// from https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
 
-			auto make_Federal_calendar_versions() -> _calendar_versions;
+			[[nodiscard]] auto make_Federal_calendar_versions() -> _calendar_versions;
 
-			auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions;
+			[[nodiscard]] auto make_Washington_DC_Federal_calendar_versions() -> _calendar_versions;
 
 			// from https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
 
@@ -93,17 +93,17 @@ namespace gregorian
 
 			// from https://www.sifma.org/resources/guides-playbooks/holiday-schedule
 
-			auto make_SIFMA_calendar_versions() -> _calendar_versions;
+			[[nodiscard]] auto make_SIFMA_calendar_versions() -> _calendar_versions;
 			// is it the same as US Government Securities?
 			// also has something for UK and Japan (US securities trading in UK and Japan)
 
 			// from https://www.bls.gov/schedule/news_release/empsit.htm
 
-			auto make_NFP_calendar_versions() -> _calendar_versions;
+			[[nodiscard]] auto make_NFP_calendar_versions() -> _calendar_versions;
 
 			// from
 
-			auto make_SOFR_calendar_versions() -> _calendar_versions;
+			[[nodiscard]] auto make_SOFR_calendar_versions() -> _calendar_versions;
 
 		}
 
@@ -111,36 +111,36 @@ namespace gregorian
 		// from https://www.canada.ca/en/revenue-agency/services/tax/public-holidays.html
 		// (not yet cover the Epoch completely)
 
-		auto make_Canada_Federal_calendar_versions() -> _calendar_versions; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
+		[[nodiscard]] auto make_Canada_Federal_calendar_versions() -> _calendar_versions; // should it be called National? (like in https://www.bankofcanada.ca/press/upcoming-events/bank-of-canada-holiday-schedule/)
 
-		auto make_Ontario_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Ontario_calendar_versions() -> _calendar_versions;
 
-		auto make_Quebec_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Quebec_calendar_versions() -> _calendar_versions;
 
 
 		// from https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls
 
-		auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
+		[[nodiscard]] auto make_ANBIMA_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 
 
 		// from https://www.gob.mx/cnbv/acciones-y-programas/calendario-cnbv
 
-		auto make_CNBV_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
+		[[nodiscard]] auto make_CNBV_calendar_versions() -> _calendar_versions; // should this go to the fin-calendar?
 
 
 		// from https://www.boj.or.jp/en/about/outline/holi.htm
 
-		auto make_Tokyo_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Tokyo_calendar_versions() -> _calendar_versions;
 
 
 		// from https://www.boi.org.il/media/egfjmggc/dates-when-shir-will-not-be-published.pdf
 
-		auto make_SHIR_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_SHIR_calendar_versions() -> _calendar_versions;
 
 
 		// from
 
-		auto make_Johannesburg_calendar_versions() -> _calendar_versions;
+		[[nodiscard]] auto make_Johannesburg_calendar_versions() -> _calendar_versions;
 
 	}
 
