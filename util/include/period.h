@@ -50,7 +50,7 @@ namespace gregorian
 
 		public:
 
-			friend constexpr auto [[nodiscard]] operator==(const period& p1, const period& p2) noexcept -> bool = default;
+			/*[[nodiscard]]*/ friend constexpr auto operator==(const period& p1, const period& p2) noexcept -> bool = default;
 			friend constexpr auto operator<=>(const period& p1, const period& p2) noexcept -> std::strong_ordering = delete;
 
 		public:

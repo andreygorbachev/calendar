@@ -48,7 +48,7 @@ namespace gregorian // should the namespace be called civil?
 
 	public:
 
-		friend auto [[nodiscard]] operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
+		/*[[nodiscard]]*/ friend auto operator==(const calendar& cal1, const calendar& cal2) noexcept -> bool;
 		friend auto operator<=>(const calendar& cal1, const calendar& cal2) noexcept -> std::strong_ordering = delete;
 
 	public:
