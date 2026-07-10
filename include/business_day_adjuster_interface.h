@@ -47,8 +47,8 @@ namespace gregorian
 
 	public:
 
-		auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day;
-		auto adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days;
+		[[nodiscard]] auto adjust(const std::chrono::year_month_day& ymd, const calendar& cal) const -> std::chrono::year_month_day;
+		[[nodiscard]] auto adjust(const std::chrono::sys_days& sd, const calendar& cal) const -> std::chrono::sys_days;
 
 	private:
 

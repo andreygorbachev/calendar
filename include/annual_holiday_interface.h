@@ -53,7 +53,7 @@ namespace gregorian
 
 	public:
 
-		auto make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day;
+		[[nodiscard]] auto make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day;
 
 	private:
 
