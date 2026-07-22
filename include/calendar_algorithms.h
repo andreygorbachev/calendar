@@ -32,8 +32,8 @@ namespace gregorian
 {
 
 	[[nodiscard]] inline auto shift_business_days(
-		const std::chrono::sys_days& sd,
-		const std::chrono::days& n, // is this a desirable type here?
+		const std::chrono::sys_days& sd, // I guess we can shift any day (does not have to be a business day to start with)
+		const std::chrono::days& n, // is this a desirable type here? should there be a separate type business_days?
 		const calendar& cal
 	) -> std::chrono::sys_days
 	{
