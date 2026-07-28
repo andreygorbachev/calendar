@@ -53,6 +53,10 @@ int main()
 
     const auto generated = schedule{ from_file.get_period(), std::move(s) };
 
+    cout << boolalpha;
+
+    cout << "Are Easters from the file are the same as generated Easters? " << (from_file == generated) << endl;
+
     return 0;
 
 }
