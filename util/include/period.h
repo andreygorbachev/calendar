@@ -45,8 +45,8 @@ namespace gregorian
 
 			constexpr period() noexcept = default;
 
-			constexpr explicit period(T from, T until);
-			constexpr explicit period(std::pair<T, T> from_until);
+			explicit constexpr period(T from, T until);
+			explicit constexpr period(std::pair<T, T> from_until);
 
 		public:
 
