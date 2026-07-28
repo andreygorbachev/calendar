@@ -49,13 +49,6 @@ namespace gregorian
 
 	};
 
-	inline const auto NewYearsDay = named_holiday{ FirstDayOfJanuary };
-	inline const auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
-
-	inline const auto NewYearsEve = named_holiday{ LastDayOfDecember };
-	// NewYearsEve is created as a named_holiday (instead of an offset_holiday like ChrismasEve)
-	// because we do not want to cross a year's boundary, which we would have to do otherwise
-
 
 
 	class _easter_holiday final : public annual_holiday
@@ -67,7 +60,7 @@ namespace gregorian
 
 	};
 
-	const auto _Easter = _easter_holiday{};
+	inline constexpr auto _Easter = _easter_holiday{};
 
 
 
@@ -89,13 +82,6 @@ namespace gregorian
 		std::chrono::days _offset;
 
 	};
-
-	inline const auto GoodFriday = offset_holiday{ &_Easter, std::chrono::days{ -2 } };
-	inline const auto EasterMonday = offset_holiday{ &_Easter, std::chrono::days{ 1 } };
-	inline const auto AscensionDay = offset_holiday{ &_Easter, std::chrono::days{ 39 } };
-	inline const auto WhitMonday = offset_holiday{ &_Easter, std::chrono::days{ 50 } };
-	inline const auto ChristmasEve = offset_holiday{ &ChristmasDay, std::chrono::days{ -1 } };
-	inline const auto BoxingDay = offset_holiday{ &ChristmasDay, std::chrono::days{ 1 } };
 
 
 
@@ -224,5 +210,21 @@ namespace gregorian
 	{
 		return { _mwd.weekday_last() / _mwd.month() / y };
 	}
+
+
+
+	inline constexpr auto NewYearsDay = named_holiday{ FirstDayOfJanuary };
+	inline constexpr auto ChristmasDay = named_holiday{ std::chrono::December / std::chrono::day{ 25u } };
+
+	inline constexpr auto NewYearsEve = named_holiday{ LastDayOfDecember };
+	// NewYearsEve is created as a named_holiday (instead of an offset_holiday like ChrismasEve)
+	// because we do not want to cross a year's boundary, which we would have to do otherwise
+
+	inline constexpr auto GoodFriday = offset_holiday{ &_Easter, std::chrono::days{ -2 } };
+	inline constexpr auto EasterMonday = offset_holiday{ &_Easter, std::chrono::days{ 1 } };
+	inline constexpr auto AscensionDay = offset_holiday{ &_Easter, std::chrono::days{ 39 } };
+	inline constexpr auto WhitMonday = offset_holiday{ &_Easter, std::chrono::days{ 50 } };
+	inline constexpr auto ChristmasEve = offset_holiday{ &ChristmasDay, std::chrono::days{ -1 } };
+	inline constexpr auto BoxingDay = offset_holiday{ &ChristmasDay, std::chrono::days{ 1 } };
 
 }
