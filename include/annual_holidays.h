@@ -26,7 +26,6 @@
 #include "schedule.h"
 
 #include <chrono>
-#include <cmath>
 #include <utility>
 
 
@@ -150,36 +149,35 @@ namespace gregorian
 
 
 
-	// https://en.wikipedia.org/wiki/Date_of_Easter
+	// from https://en.wikipedia.org/wiki/Date_of_Easter
 
-	// would be nice to make this function constexpr, but we'll have to wait until C++23 for std::floor to become constexpr
 	inline auto _easter_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		const auto Y = static_cast<int>(y);
 
 		const auto a = Y % 19;
 
-		const auto b = static_cast<int>(std::floor(static_cast<double>(Y) / 100.0));
+		const auto b = Y / 100;
 
 		const auto c = Y % 100;
 
-		const auto d = static_cast<int>(std::floor(static_cast<double>(b) / 4.0));
+		const auto d = b / 4;
 
 		const auto e = b % 4;
 
-		const auto g = static_cast<int>(std::floor((8.0 * static_cast<double>(b) + 13.0) / 25.0));
+		const auto g = (8 * b + 13) / 25;
 
 		const auto h = (19 * a + b - d - g + 15) % 30;
 
-		const auto i = static_cast<int>(std::floor(static_cast<double>(c) / 4.0));
+		const auto i = c / 4;
 
 		const auto k = c % 4;
 
 		const auto l = (32 + 2 * e + 2 * i - h - k) % 7;
 
-		const auto m = static_cast<int>(std::floor((static_cast<double>(a) + 11.0 * static_cast<double>(h) + 19.0 * static_cast<double>(l)) / 433.0));
+		const auto m = (a + 11 * h + 19 * l) / 433;
 
-		const auto n = static_cast<int>(std::floor((static_cast<double>(h) + static_cast<double>(l) - 7.0 * static_cast<double>(m) + 90.0) / 25.0));
+		const auto n = (h + l - 7 * m + 90) / 25;
 
 		const auto p = (h + l - 7 * m + 33 * n + 19) % 32;
 
