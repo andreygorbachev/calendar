@@ -22,7 +22,8 @@
 
 #include "parser.h"
 
-#include <calendar.h>
+#include <schedule.h>
+#include <annual_holidays.h>
 
 #include <chrono>
 #include <iostream>
@@ -38,9 +39,20 @@ using namespace std::chrono;
 int main()
 {
 
-	// from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
+    const auto from = 1600y;
+    const auto until = 2099y;
 
-	const auto s = parse_txt_schedule("easter500.txt", 1600y, 2099y);
+    // from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
 
-	return 0;
+    const auto from_file = parse_txt_schedule("easter500.txt", from, until);
+
+    // generate Easter dates for the same year range so we can compare schedules
+    auto s = schedule::dates{};
+    for (auto y = from; y <= until; ++y)
+        s.insert(_Easter.make_holiday(y));
+
+    const auto generated = schedule{ from_file.get_period(), std::move(s) };
+
+    return 0;
+
 }
