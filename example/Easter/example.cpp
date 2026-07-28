@@ -24,10 +24,12 @@
 
 #include <schedule.h>
 #include <annual_holidays.h>
+#include <period.h>
 
 #include <chrono>
 #include <iostream>
 #include <ios>
+#include <utility>
 
 using namespace gregorian;
 
@@ -39,19 +41,22 @@ using namespace std::chrono;
 int main()
 {
 
-    const auto from = 1600y;
-    const auto until = 2099y;
+    const auto y_from = 1600y;
+    const auto y_until = 2099y;
 
     // from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
 
-    const auto from_file = parse_txt_schedule("easter500.txt", from, until);
+    const auto from_file = parse_txt_schedule("easter500.txt", y_from, y_until);
 
     // generate Easter dates for the same year range so we can compare schedules
     auto s = schedule::dates{};
-    for (auto y = from; y <= until; ++y)
+    for (auto y = y_from; y <= y_until; ++y)
         s.insert(_Easter.make_holiday(y));
 
-    const auto generated = schedule{ from_file.get_period(), std::move(s) };
+    const auto from = y_from / FirstDayOfJanuary;
+    const auto until = y_until / LastDayOfDecember;
+
+    const auto generated = schedule{ util::days_period{ from, until }, move(s) };
 
     cout << boolalpha;
 
