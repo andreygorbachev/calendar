@@ -32,6 +32,7 @@
 #include <utility>
 
 using namespace gregorian;
+using namespace gregorian::util;
 
 using namespace std;
 using namespace std::chrono;
@@ -56,7 +57,7 @@ int main()
     const auto from = y_from / FirstDayOfJanuary;
     const auto until = y_until / LastDayOfDecember;
 
-    const auto generated = schedule{ util::days_period{ from, until }, move(s) };
+    const auto generated = schedule{ days_period{ from, until }, move(s) };
 
     cout << boolalpha;
 
