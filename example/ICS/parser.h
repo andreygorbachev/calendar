@@ -25,6 +25,7 @@
 #include <schedule.h>
 
 #include <string>
+#include <filesystem>
 #include <chrono>
 #include <istream>
 #include <fstream>
@@ -114,7 +115,7 @@ inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::dates
 }
 
 
-inline auto parse_ics(const std::string& fileName) -> gregorian::schedule
+inline auto parse_ics(const std::filesystem::path& fileName) -> gregorian::schedule
 {
 	/*const*/ auto fs = std::ifstream{ fileName }; // should we handle a default .ics file extension?
 

@@ -26,7 +26,7 @@
 
 #include <schedule.h>
 
-#include <string>
+#include <filesystem>
 #include <chrono>
 #include <istream>
 #include <fstream>
@@ -68,7 +68,7 @@ inline auto _parse_txt_schedule_storage(std::istream& fs) -> gregorian::schedule
 
 // there is no dedicated info on [from, until] in this TXT file, so we'll have to specify them
 inline auto parse_txt_schedule(
-	const std::string& fileName,
+	const std::filesystem::path& fileName,
 	std::chrono::year y_from,
 	std::chrono::year y_until
 ) -> gregorian::schedule

@@ -27,6 +27,7 @@
 #include <schedule.h>
 
 #include <string>
+#include <filesystem>
 #include <chrono>
 #include <istream>
 #include <fstream>
@@ -73,7 +74,7 @@ inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule
 
 // there is no info on [from, until] in this XLS file, so we'll have to specify them
 inline auto parse_csv_schedule(
-	const std::string& fileName,
+	const std::filesystem::path& fileName,
 	std::chrono::year y_from,
 	std::chrono::year y_until
 ) -> gregorian::schedule
