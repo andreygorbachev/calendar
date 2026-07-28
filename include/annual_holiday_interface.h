@@ -39,25 +39,25 @@ namespace gregorian
 
 	public:
 
-		annual_holiday() noexcept = default;
-		virtual ~annual_holiday() noexcept = default;
+		constexpr annual_holiday() noexcept = default;
+		constexpr virtual ~annual_holiday() noexcept = default;
 
-		annual_holiday(const annual_holiday&) = delete;
-		annual_holiday(annual_holiday&&) noexcept = default;
+		constexpr annual_holiday(const annual_holiday&) = delete;
+		constexpr annual_holiday(annual_holiday&&) noexcept = default;
 
-		annual_holiday& operator=(const annual_holiday&) = delete;
-		annual_holiday& operator=(annual_holiday&&) noexcept = default;
+		constexpr annual_holiday& operator=(const annual_holiday&) = delete;
+		constexpr annual_holiday& operator=(annual_holiday&&) noexcept = default;
 
 		// something like cyclical_holiday needs to move the underlying annual_holiday, so we allow moved
 		// (which might or might not be good in general as these are meant to be used via pointer and hence not move)
 
 	public:
 
-		[[nodiscard]] auto make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day;
+		[[nodiscard]] constexpr auto make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day;
 
 	private:
 
-		virtual auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
+		virtual constexpr auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day = 0;
 
 	};
 
@@ -101,7 +101,7 @@ namespace gregorian
 
 
 
-	inline auto annual_holiday::make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+	inline constexpr auto annual_holiday::make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 	{
 		return _make_holiday(y);
 	}
