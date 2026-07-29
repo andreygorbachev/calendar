@@ -26,7 +26,7 @@
 
 #include <chrono>
 #include <utility>
-#include <set> // we should probably consider <flat_set> instead, but it is not yet widely supported
+#include <flat_set>
 #include <algorithm>
 #include <compare>
 
@@ -44,9 +44,9 @@ namespace gregorian
 	public:
 
 #ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
-		using dates = std::set<std::chrono::year_month_day>;
+		using dates = std::flat_set<std::chrono::year_month_day>;
 #else
-		using dates = std::set<std::chrono::sys_days>;
+		using dates = std::flat_set<std::chrono::sys_days>;
 #endif
 
 	public:
@@ -101,10 +101,10 @@ namespace gregorian
 
 
 
-	[[nodiscard]] inline auto operator|(schedule s1, schedule s2) -> schedule
+	[[nodiscard]] inline auto operator|(schedule s1, schedule s2) -> schedule // after we moved from set to flat_set, does passing parameters by value still the right thing to do?
 	{
 		auto& ds = s1._dates;
-		ds.merge(std::move(s2._dates));
+		ds.insert_range(s2._dates);
 
 		return schedule{
 			s1.get_period() | s2.get_period(),
@@ -145,10 +145,10 @@ namespace gregorian
 	}
 
 
-	[[nodiscard]] inline auto operator+(schedule s1, schedule s2) -> schedule
+	[[nodiscard]] inline auto operator+(schedule s1, schedule s2) -> schedule // after we moved from set to flat_set, does passing parameters by value still the right thing to do?
 	{
 		auto& ds = s1._dates;
-		ds.merge(std::move(s2._dates));
+		ds.insert_range(s2._dates);
 
 		return schedule{
 			s1.get_period() + s2.get_period(),
