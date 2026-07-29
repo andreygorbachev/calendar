@@ -35,111 +35,111 @@ namespace gregorian
 	TEST(weekend, is_weekend1)
 	{
 		// Friday
-		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 24d));
-		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 24d));
-		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 24d));
-		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 24d));
+		static_assert(!SaturdaySundayWeekend.is_weekend(2023y / March / 24d));
+		static_assert(FridaySaturdayWeekend.is_weekend(2023y / March / 24d));
+		static_assert(!SundayWeekend.is_weekend(2023y / March / 24d));
+		static_assert(!NoWeekend.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 25d));
-		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(2023y / March / 25d));
-		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 25d));
-		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 25d));
+		static_assert(SaturdaySundayWeekend.is_weekend(2023y / March / 25d));
+		static_assert(FridaySaturdayWeekend.is_weekend(2023y / March / 25d));
+		static_assert(!SundayWeekend.is_weekend(2023y / March / 25d));
+		static_assert(!NoWeekend.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(2023y / March / 26d));
-		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 26d));
-		EXPECT_TRUE(SundayWeekend.is_weekend(2023y / March / 26d));
-		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 26d));
+		static_assert(SaturdaySundayWeekend.is_weekend(2023y / March / 26d));
+		static_assert(!FridaySaturdayWeekend.is_weekend(2023y / March / 26d));
+		static_assert(SundayWeekend.is_weekend(2023y / March / 26d));
+		static_assert(!NoWeekend.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(2023y / March / 27d));
-		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(2023y / March / 27d));
-		EXPECT_FALSE(SundayWeekend.is_weekend(2023y / March / 27d));
-		EXPECT_FALSE(NoWeekend.is_weekend(2023y / March / 27d));
+		static_assert(!SaturdaySundayWeekend.is_weekend(2023y / March / 27d));
+		static_assert(!FridaySaturdayWeekend.is_weekend(2023y / March / 27d));
+		static_assert(!SundayWeekend.is_weekend(2023y / March / 27d));
+		static_assert(!NoWeekend.is_weekend(2023y / March / 27d));
 	}
 
 	TEST(weekend, is_weekend2)
 	{
 		// Friday
-		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
-		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
-		EXPECT_FALSE(SundayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
-		EXPECT_FALSE(NoWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
+		static_assert(!SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
+		static_assert(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
+		static_assert(!SundayWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
+		static_assert(!NoWeekend.is_weekend(sys_days{ 2023y / March / 24d }));
 
 		// Saturday
-		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
-		EXPECT_TRUE(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
-		EXPECT_FALSE(SundayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
-		EXPECT_FALSE(NoWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
+		static_assert(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
+		static_assert(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
+		static_assert(!SundayWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
+		static_assert(!NoWeekend.is_weekend(sys_days{ 2023y / March / 25d }));
 
 		// Sunday
-		EXPECT_TRUE(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
-		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
-		EXPECT_TRUE(SundayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
-		EXPECT_FALSE(NoWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
+		static_assert(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
+		static_assert(!FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
+		static_assert(SundayWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
+		static_assert(!NoWeekend.is_weekend(sys_days{ 2023y / March / 26d }));
 
 		// Monday
-		EXPECT_FALSE(SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
-		EXPECT_FALSE(FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
-		EXPECT_FALSE(SundayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
-		EXPECT_FALSE(NoWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
+		static_assert(!SaturdaySundayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
+		static_assert(!FridaySaturdayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
+		static_assert(!SundayWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
+		static_assert(!NoWeekend.is_weekend(sys_days{ 2023y / March / 27d }));
 	}
 
 
 	TEST(weekend, operator_bitwise_or)
 	{
-		const auto w = FridaySaturdayWeekend | SaturdaySundayWeekend;
+		constexpr auto w = FridaySaturdayWeekend | SaturdaySundayWeekend;
 
 		// Friday
-		EXPECT_TRUE(w.is_weekend(2023y / March / 24d));
+		static_assert(w.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_TRUE(w.is_weekend(2023y / March / 25d));
+		static_assert(w.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_TRUE(w.is_weekend(2023y / March / 26d));
+		static_assert(w.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_FALSE(w.is_weekend(2023y / March / 27d));
+		static_assert(!w.is_weekend(2023y / March / 27d));
 	}
 
 
 	TEST(weekend, operator_bitwise_and)
 	{
-		const auto w = FridaySaturdayWeekend & SaturdaySundayWeekend;
+		constexpr auto w = FridaySaturdayWeekend & SaturdaySundayWeekend;
 
 		// Friday
-		EXPECT_FALSE(w.is_weekend(2023y / March / 24d));
+		static_assert(!w.is_weekend(2023y / March / 24d));
 
 		// Saturday
-		EXPECT_TRUE(w.is_weekend(2023y / March / 25d));
+		static_assert(w.is_weekend(2023y / March / 25d));
 
 		// Sunday
-		EXPECT_FALSE(w.is_weekend(2023y / March / 26d));
+		static_assert(!w.is_weekend(2023y / March / 26d));
 
 		// Monday
-		EXPECT_FALSE(w.is_weekend(2023y / March / 27d));
+		static_assert(!w.is_weekend(2023y / March / 27d));
 	}
 
 
 	TEST(weekend, operator_equal_to)
 	{
-		EXPECT_TRUE(SaturdaySundayWeekend == SaturdaySundayWeekend);
+		static_assert(SaturdaySundayWeekend == SaturdaySundayWeekend);
 	}
 
 
 	TEST(weekend, operator_not_equal_to)
 	{
-		EXPECT_TRUE(SaturdaySundayWeekend != SundayWeekend);
+		static_assert(SaturdaySundayWeekend != SundayWeekend);
 	}
 
 
 	TEST(weekend, get_we)
 	{
-		const auto we = SaturdaySundayWeekend.get_we();
+		constexpr auto we = SaturdaySundayWeekend.get_we();
 
-		EXPECT_EQ(SaturdaySundayWeekend, weekend{ we });
+		static_assert(SaturdaySundayWeekend == weekend{ we });
 	}
 
 }

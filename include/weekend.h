@@ -69,13 +69,6 @@ namespace gregorian
 	};
 
 
-	const auto SaturdaySundayWeekend = weekend{ weekend::storage{ 0b1000001 } };
-	const auto FridaySaturdayWeekend = weekend{ weekend::storage{ 0b1100000 } };
-	const auto SundayWeekend = weekend{ weekend::storage{ 0b0000001 } };
-	const auto NoWeekend = weekend{ weekend::storage{ 0b0000000 } };
-	// can these be linked to std::chrono::Sunday, etc?
-
-
 
 	[[nodiscard]] constexpr auto operator|(const weekend& w1, const weekend& w2) noexcept -> weekend
 	{
@@ -114,5 +107,13 @@ namespace gregorian
 	{
 		return _we;
 	}
+
+
+
+	constexpr auto SaturdaySundayWeekend = weekend{ weekend::storage{ 0b1000001 } };
+	constexpr auto FridaySaturdayWeekend = weekend{ weekend::storage{ 0b1100000 } };
+	constexpr auto SundayWeekend = weekend{ weekend::storage{ 0b0000001 } };
+	constexpr auto NoWeekend = weekend{ weekend::storage{ 0b0000000 } };
+	// can these be linked to std::chrono::Sunday, etc?
 
 }
