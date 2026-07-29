@@ -32,6 +32,7 @@
 #include <fstream>
 #include <utility>
 #include <stdexcept> // only for !_MSC_BUILD
+#include <vector>
 
 
 inline auto _parse_date(std::istream& fs) -> std::chrono::year_month_day
@@ -56,7 +57,8 @@ inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule
 	{
 		auto ymd = _parse_date(fs);
 		if (!fs.fail()) // sometimes we just have an empty line at the end of the file - this should handle it
-			result.insert(std::move(ymd));
+//			result.insert(std::move(ymd));
+			result.push_back(std::move(ymd));
 
 		if (fs.eof())
 			break;

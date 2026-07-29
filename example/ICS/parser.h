@@ -31,6 +31,7 @@
 #include <fstream>
 #include <utility>
 #include <stdexcept> // only for !_MSC_BUILD
+#include <vector>
 
 
 inline auto _parse_event(std::istream& fs) -> std::chrono::year_month_day
@@ -98,7 +99,8 @@ inline auto _parse_ics(std::istream& fs) -> gregorian::schedule::dates
 		if (s == "BEGIN")
 		{
 			auto ymd = _parse_event(fs);
-			result.insert(std::move(ymd));
+//			result.insert(std::move(ymd));
+			result.push_back(std::move(ymd));
 		}
 		else if (s == "END")
 			break;
