@@ -60,8 +60,6 @@ namespace gregorian
 
 	};
 
-	inline constexpr auto _Easter = _easter_holiday{};
-
 
 
 	class offset_holiday final : public annual_holiday
@@ -219,6 +217,8 @@ namespace gregorian
 	inline constexpr auto NewYearsEve = named_holiday{ LastDayOfDecember };
 	// NewYearsEve is created as a named_holiday (instead of an offset_holiday like ChrismasEve)
 	// because we do not want to cross a year's boundary, which we would have to do otherwise
+
+	inline constexpr auto _Easter = _easter_holiday{};
 
 	inline constexpr auto GoodFriday = offset_holiday{ &_Easter, std::chrono::days{ -2 } };
 	inline constexpr auto EasterMonday = offset_holiday{ &_Easter, std::chrono::days{ 1 } };
