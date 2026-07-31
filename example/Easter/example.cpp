@@ -53,8 +53,7 @@ int main()
     // generate Easter dates for the same year range so we can compare schedules
     auto s = schedule::dates{};
     for (auto y = y_from; y <= y_until; ++y)
-//        s.insert(_Easter.make_holiday(y));
-       s.push_back(_Easter.make_holiday(y));
+        s.insert(_Easter.make_holiday(y));
 
     const auto from = y_from / FirstDayOfJanuary;
     const auto until = y_until / LastDayOfDecember;

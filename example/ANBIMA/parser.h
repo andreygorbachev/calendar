@@ -65,8 +65,7 @@ inline auto _parse_csv_schedule_storage(std::istream& fs) -> gregorian::schedule
 			break;
 		// we assume that at the end of the file there are some comments
 
-//		result.insert(std::move(ymd));
-		result.push_back(std::move(ymd));
+		result.insert(std::move(ymd));
 		std::getline(fs, b); // skip the rest of the line
 	}
 

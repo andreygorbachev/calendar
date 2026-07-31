@@ -57,8 +57,7 @@ inline auto _parse_txt_schedule_storage(std::istream& fs) -> gregorian::schedule
 	{
 		auto ymd = _parse_date(fs);
 		if (!fs.fail()) // sometimes we just have an empty line at the end of the file - this should handle it
-//			result.insert(std::move(ymd));
-			result.push_back(std::move(ymd));
+			result.insert(std::move(ymd));
 
 		if (fs.eof())
 			break;

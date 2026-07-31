@@ -85,8 +85,7 @@ namespace gregorian
 
 				release_date = Preceding.adjust(release_date, cal);
 
-//				release_dates.insert(release_date);
-				release_dates.push_back(release_date);
+				release_dates.insert(release_dates.end(), release_date);
 			}
 
 			return schedule{

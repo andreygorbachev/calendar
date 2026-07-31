@@ -79,8 +79,7 @@ namespace gregorian
 			{
 				const auto d = rule->make_holiday(y);
 				if (d.ok()) // skip rules that don't produce a holiday for this year
-//					hols.insert(d);
-					hols.push_back(d);
+					hols.insert(hols.end(), d);
 			}
 
 		return schedule{

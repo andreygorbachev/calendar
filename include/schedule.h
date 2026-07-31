@@ -26,11 +26,11 @@
 
 #include <chrono>
 #include <utility>
-//#include <flat_set>
-#include <vector>
+#include <flat_set>
 #include <iterator>
 #include <algorithm>
 #include <compare>
+#include <vector>
 
 #define SCHEDULE_YEAR_MONTH_DAY_BASED
 //#undef SCHEDULE_YEAR_MONTH_DAY_BASED
@@ -51,11 +51,9 @@ namespace gregorian
 	public:
 
 #ifdef SCHEDULE_YEAR_MONTH_DAY_BASED
-//		using dates = std::flat_set<std::chrono::year_month_day>;
-		using dates = std::vector<std::chrono::year_month_day>; // kept sorted and unique by hand until flat_set is widely available
+		using dates = std::flat_set<std::chrono::year_month_day>;
 #else
-//		using dates = std::flat_set<std::chrono::sys_days>;
-		using dates = std::vector<std::chrono::sys_days>; // kept sorted and unique by hand until flat_set is widely available
+		using dates = std::flat_set<std::chrono::sys_days>;
 #endif
 
 	public:
@@ -110,52 +108,34 @@ namespace gregorian
 
 
 
-	// dates is a sorted, duplicate-free vector; std::flat_set kept this invariant for us,
-	// so with std::vector we maintain it explicitly with these three helpers.
-
-	inline void _insert(schedule::dates& ds, const schedule::dates::value_type& d)
-	{
-		const auto it = std::lower_bound(ds.begin(), ds.end(), d);
-		if (it == ds.end() || *it != d)
-			ds.insert(it, d);
-	}
-
-	inline void _erase(schedule::dates& ds, const schedule::dates::value_type& d) noexcept
-	{
-		const auto it = std::lower_bound(ds.begin(), ds.end(), d);
-		if (it != ds.end() && *it == d)
-			ds.erase(it);
-	}
-
-	[[nodiscard]] inline auto _merge(schedule::dates ds1, schedule::dates ds2) -> schedule::dates
-	{
-		auto merged = schedule::dates{};
-		merged.reserve(ds1.size() + ds2.size());
-
-		std::set_union(
-			ds1.cbegin(), ds1.cend(),
-			ds2.cbegin(), ds2.cend(),
-			std::back_inserter(merged)
-		);
-
-		return merged;
-	}
-
-
 	[[nodiscard]] inline auto operator|(schedule s1, schedule s2) -> schedule
 	{
+		auto& ds = s1._dates;
+		ds.insert_range(s2._dates); // there might be a faster way to do this
+
 		return schedule{
 			s1.get_period() | s2.get_period(),
-			_merge(std::move(s1._dates), std::move(s2._dates))
+			std::move(ds)
 		};
+	}
+
+	template <typename Key>
+	auto _intersect_flat_sets(const std::flat_set<Key>& a, const std::flat_set<Key>& b) -> std::flat_set<Key>
+	{
+		std::vector<Key> result;
+		// The intersection size will never exceed the size of the smaller set
+		result.reserve(std::min(a.size(), b.size()));
+
+		// Find overlapping elements in O(N + M) time
+		std::ranges::set_intersection(a, b, std::back_inserter(result));
+
+		// Construct flat_set without re-sorting or re-checking duplicates
+		return std::flat_set<Key>(std::sorted_unique, std::move(result));
 	}
 
 	[[nodiscard]] inline auto operator&(schedule s1, schedule s2) -> schedule
 	{
-		auto ds = schedule::dates{};
-		for (const auto& d : s1._dates) // s1._dates is sorted, so ds is appended in order
-			if (s2.contains(d))
-				ds.push_back(d);
+		auto ds = _intersect_flat_sets(s1._dates, s2._dates);
 
 		return schedule{
 			s1.get_period() & s2.get_period(),
@@ -173,8 +153,8 @@ namespace gregorian
 			d <= p.get_until();
 			d = std::chrono::sys_days{ d } + std::chrono::days{ 1 }
 		)
-			if (!s.contains(d)) // d increases monotonically, so ds is appended in order
-				ds.push_back(d);
+			if (!s.contains(d))
+				ds.insert(ds.end(), d);
 
 		return schedule{
 			std::move(p),
@@ -185,9 +165,12 @@ namespace gregorian
 
 	[[nodiscard]] inline auto operator+(schedule s1, schedule s2) -> schedule
 	{
+		auto& ds = s1._dates;
+		ds.insert_range(s2._dates); // there might be a faster way to do this
+
 		return schedule{
 			s1.get_period() + s2.get_period(),
-			_merge(std::move(s1._dates), std::move(s2._dates))
+			std::move(ds)
 		};
 	}
 
@@ -229,31 +212,20 @@ namespace gregorian
 	}
 
 
-	inline void _sort_unique(schedule::dates& ds) noexcept
-	{
-		// std::flat_set enforced this on every insertion; a plain vector does not,
-		// so we restore the invariant once here on construction
-		std::sort(ds.begin(), ds.end());
-		ds.erase(std::unique(ds.begin(), ds.end()), ds.end());
-	}
-
 	inline schedule::schedule(
 		util::days_period p,
 		dates ds
 	) : _period{ std::move(p) },
 		_dates{ std::move(ds) }
 	{
-		_sort_unique(_dates);
 		_trim();
 	}
 
 	inline schedule::schedule(
 		dates ds
-	) : _period{},
+	) : _period{ _make_period(ds) },
 		_dates{ std::move(ds) }
 	{
-		_sort_unique(_dates);
-		_period = _make_period(_dates); // while we use vector ds so we can initialise _period earlier
 		_trim();
 	}
 
@@ -276,14 +248,14 @@ namespace gregorian
 	inline auto schedule::operator+=(const std::chrono::year_month_day& ymd) -> schedule&
 	{
 		if(_period.contains(ymd))
-			_insert(_dates, ymd);
+			_dates.insert(ymd);
 
 		return *this;
 	}
 
 	inline auto schedule::operator-=(const std::chrono::year_month_day& ymd) noexcept -> schedule&
 	{
-		_erase(_dates, ymd);
+		_dates.erase(ymd);
 
 		return *this;
 	}
@@ -291,7 +263,7 @@ namespace gregorian
 
 	inline auto schedule::contains(const std::chrono::year_month_day& ymd) const noexcept -> bool
 	{
-		return std::binary_search(_dates.cbegin(), _dates.cend(), ymd);
+		return _dates.contains(ymd);
 	}
 
 	inline auto schedule::contains(const std::chrono::sys_days& sd) const noexcept -> bool

@@ -373,16 +373,16 @@ namespace gregorian
 				static auto _make_known_schedule_part0() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2011.cbegin(), _2011.cend());
-					holidays.insert(holidays.end(), _2012.cbegin(), _2012.cend());
-					holidays.insert(holidays.end(), _2013.cbegin(), _2013.cend());
-					holidays.insert(holidays.end(), _2014.cbegin(), _2014.cend());
-					holidays.insert(holidays.end(), _2015.cbegin(), _2015.cend());
-					holidays.insert(holidays.end(), _2016.cbegin(), _2016.cend());
-					holidays.insert(holidays.end(), _2017.cbegin(), _2017.cend());
-					holidays.insert(holidays.end(), _2018.cbegin(), _2018.cend());
-					holidays.insert(holidays.end(), _2019.cbegin(), _2019.cend());
-					holidays.insert(holidays.end(), _2020.cbegin(), _2020.cend());
+					holidays.insert(_2011.cbegin(), _2011.cend()); // is there a faster way to do this?
+					holidays.insert(_2012.cbegin(), _2012.cend());
+					holidays.insert(_2013.cbegin(), _2013.cend());
+					holidays.insert(_2014.cbegin(), _2014.cend());
+					holidays.insert(_2015.cbegin(), _2015.cend());
+					holidays.insert(_2016.cbegin(), _2016.cend());
+					holidays.insert(_2017.cbegin(), _2017.cend());
+					holidays.insert(_2018.cbegin(), _2018.cend());
+					holidays.insert(_2019.cbegin(), _2019.cend());
+					holidays.insert(_2020.cbegin(), _2020.cend());
 
 					return schedule{
 						days_period{ 2010y / December / 31d, 2020y / LastDayOfDecember }, // we pay attention to 2011y / January / 1d adjusting to 2010y / December / 31d
@@ -393,16 +393,16 @@ namespace gregorian
 				static auto _make_known_schedule_part1() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2021.cbegin(), _2021.cend());
-					holidays.insert(holidays.end(), _2022.cbegin(), _2022.cend());
-					holidays.insert(holidays.end(), _2023.cbegin(), _2023.cend());
-					holidays.insert(holidays.end(), _2024.cbegin(), _2024.cend());
-					holidays.insert(holidays.end(), _2025.cbegin(), _2025.cend());
-					holidays.insert(holidays.end(), _2026.cbegin(), _2026.cend());
-					holidays.insert(holidays.end(), _2027.cbegin(), _2027.cend());
-					holidays.insert(holidays.end(), _2028.cbegin(), _2028.cend());
-					holidays.insert(holidays.end(), _2029.cbegin(), _2029.cend());
-					holidays.insert(holidays.end(), _2030.cbegin(), _2030.cend());
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022.cbegin(), _2022.cend());
+					holidays.insert(_2023.cbegin(), _2023.cend());
+					holidays.insert(_2024.cbegin(), _2024.cend());
+					holidays.insert(_2025.cbegin(), _2025.cend());
+					holidays.insert(_2026.cbegin(), _2026.cend());
+					holidays.insert(_2027.cbegin(), _2027.cend());
+					holidays.insert(_2028.cbegin(), _2028.cend());
+					holidays.insert(_2029.cbegin(), _2029.cend());
+					holidays.insert(_2030.cbegin(), _2030.cend());
 
 					return schedule{
 						days_period{ 2021y / January / 1d, 2030y / LastDayOfDecember },
@@ -1022,7 +1022,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2012a.cbegin(), _2012a.cend());
+					holidays.insert(_2012a.cbegin(), _2012a.cend());
 
 					return schedule{
 						days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
@@ -1033,7 +1033,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2012b.cbegin(), _2012b.cend());
+					holidays.insert(_2012b.cbegin(), _2012b.cend());
 
 					return schedule{
 						days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
@@ -1044,12 +1044,12 @@ namespace gregorian
 				static auto _make_known_schedule_part1a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2013.cbegin(), _2013.cend());
-					holidays.insert(holidays.end(), _2014.cbegin(), _2014.cend());
-					holidays.insert(holidays.end(), _2015.cbegin(), _2015.cend());
-					holidays.insert(holidays.end(), _2016.cbegin(), _2016.cend());
-					holidays.insert(holidays.end(), _2017.cbegin(), _2017.cend());
-					holidays.insert(holidays.end(), _2018a.cbegin(), _2018a.cend());
+					holidays.insert(_2013.cbegin(), _2013.cend());
+					holidays.insert(_2014.cbegin(), _2014.cend());
+					holidays.insert(_2015.cbegin(), _2015.cend());
+					holidays.insert(_2016.cbegin(), _2016.cend());
+					holidays.insert(_2017.cbegin(), _2017.cend());
+					holidays.insert(_2018a.cbegin(), _2018a.cend());
 
 					return schedule{
 						days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
@@ -1060,12 +1060,12 @@ namespace gregorian
 				static auto _make_known_schedule_part1b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2013.cbegin(), _2013.cend());
-					holidays.insert(holidays.end(), _2014.cbegin(), _2014.cend());
-					holidays.insert(holidays.end(), _2015.cbegin(), _2015.cend());
-					holidays.insert(holidays.end(), _2016.cbegin(), _2016.cend());
-					holidays.insert(holidays.end(), _2017.cbegin(), _2017.cend());
-					holidays.insert(holidays.end(), _2018b.cbegin(), _2018b.cend());
+					holidays.insert(_2013.cbegin(), _2013.cend());
+					holidays.insert(_2014.cbegin(), _2014.cend());
+					holidays.insert(_2015.cbegin(), _2015.cend());
+					holidays.insert(_2016.cbegin(), _2016.cend());
+					holidays.insert(_2017.cbegin(), _2017.cend());
+					holidays.insert(_2018b.cbegin(), _2018b.cend());
 
 					return schedule{
 						days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
@@ -1076,10 +1076,10 @@ namespace gregorian
 				static auto _make_known_schedule_part2a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2019.cbegin(), _2019.cend());
-					holidays.insert(holidays.end(), _2020.cbegin(), _2020.cend());
-					holidays.insert(holidays.end(), _2021.cbegin(), _2021.cend());
-					holidays.insert(holidays.end(), _2022a.cbegin(), _2022a.cend());
+					holidays.insert(_2019.cbegin(), _2019.cend());
+					holidays.insert(_2020.cbegin(), _2020.cend());
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022a.cbegin(), _2022a.cend());
 
 					return schedule{
 						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
@@ -1091,10 +1091,10 @@ namespace gregorian
 				{
 
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2019.cbegin(), _2019.cend());
-					holidays.insert(holidays.end(), _2020.cbegin(), _2020.cend());
-					holidays.insert(holidays.end(), _2021.cbegin(), _2021.cend());
-					holidays.insert(holidays.end(), _2022b.cbegin(), _2022b.cend());
+					holidays.insert(_2019.cbegin(), _2019.cend());
+					holidays.insert(_2020.cbegin(), _2020.cend());
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022b.cbegin(), _2022b.cend());
 
 					return schedule{
 						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
@@ -1105,12 +1105,12 @@ namespace gregorian
 				static auto _make_known_schedule_part3() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2023.cbegin(), _2023.cend());
-					holidays.insert(holidays.end(), _2024.cbegin(), _2024.cend());
-					holidays.insert(holidays.end(), _2025.cbegin(), _2025.cend());
-					holidays.insert(holidays.end(), _2026.cbegin(), _2026.cend());
-					holidays.insert(holidays.end(), _2027.cbegin(), _2027.cend());
-					holidays.insert(holidays.end(), _2028.cbegin(), _2028.cend());
+					holidays.insert(_2023.cbegin(), _2023.cend());
+					holidays.insert(_2024.cbegin(), _2024.cend());
+					holidays.insert(_2025.cbegin(), _2025.cend());
+					holidays.insert(_2026.cbegin(), _2026.cend());
+					holidays.insert(_2027.cbegin(), _2027.cend());
+					holidays.insert(_2028.cbegin(), _2028.cend());
 
 					return schedule{
 						days_period{ 2023y / January / 1d, 2028y / LastDayOfDecember },
@@ -1315,7 +1315,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2026a.cbegin(), _2026a.cend());
+					holidays.insert(_2026a.cbegin(), _2026a.cend());
 
 					return schedule{
 						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
@@ -1326,7 +1326,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2026b.cbegin(), _2026b.cend());
+					holidays.insert(_2026b.cbegin(), _2026b.cend());
 
 					return schedule{
 						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
@@ -1337,7 +1337,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0c() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2026c.cbegin(), _2026c.cend());
+					holidays.insert(_2026c.cbegin(), _2026c.cend());
 
 					return schedule{
 						days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
@@ -1775,7 +1775,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2012a.cbegin(), _2012a.cend());
+					holidays.insert(_2012a.cbegin(), _2012a.cend());
 
 					return schedule{
 						days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
@@ -1786,7 +1786,7 @@ namespace gregorian
 				static auto _make_known_schedule_part0b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2012b.cbegin(), _2012b.cend());
+					holidays.insert(_2012b.cbegin(), _2012b.cend());
 
 					return schedule{
 						days_period{ 2012y / FirstDayOfJanuary, 2012y / LastDayOfDecember },
@@ -1797,12 +1797,12 @@ namespace gregorian
 				static auto _make_known_schedule_part1a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2013.cbegin(), _2013.cend());
-					holidays.insert(holidays.end(), _2014.cbegin(), _2014.cend());
-					holidays.insert(holidays.end(), _2015.cbegin(), _2015.cend());
-					holidays.insert(holidays.end(), _2016.cbegin(), _2016.cend());
-					holidays.insert(holidays.end(), _2017.cbegin(), _2017.cend());
-					holidays.insert(holidays.end(), _2018a.cbegin(), _2018a.cend());
+					holidays.insert(_2013.cbegin(), _2013.cend());
+					holidays.insert(_2014.cbegin(), _2014.cend());
+					holidays.insert(_2015.cbegin(), _2015.cend());
+					holidays.insert(_2016.cbegin(), _2016.cend());
+					holidays.insert(_2017.cbegin(), _2017.cend());
+					holidays.insert(_2018a.cbegin(), _2018a.cend());
 
 					return schedule{
 						days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
@@ -1813,12 +1813,12 @@ namespace gregorian
 				static auto _make_known_schedule_part1b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2013.cbegin(), _2013.cend());
-					holidays.insert(holidays.end(), _2014.cbegin(), _2014.cend());
-					holidays.insert(holidays.end(), _2015.cbegin(), _2015.cend());
-					holidays.insert(holidays.end(), _2016.cbegin(), _2016.cend());
-					holidays.insert(holidays.end(), _2017.cbegin(), _2017.cend());
-					holidays.insert(holidays.end(), _2018b.cbegin(), _2018b.cend());
+					holidays.insert(_2013.cbegin(), _2013.cend());
+					holidays.insert(_2014.cbegin(), _2014.cend());
+					holidays.insert(_2015.cbegin(), _2015.cend());
+					holidays.insert(_2016.cbegin(), _2016.cend());
+					holidays.insert(_2017.cbegin(), _2017.cend());
+					holidays.insert(_2018b.cbegin(), _2018b.cend());
 
 					return schedule{
 						days_period{ 2013y / FirstDayOfJanuary, 2018y / LastDayOfDecember },
@@ -1829,10 +1829,10 @@ namespace gregorian
 				static auto _make_known_schedule_part2a() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2019.cbegin(), _2019.cend());
-					holidays.insert(holidays.end(), _2020.cbegin(), _2020.cend());
-					holidays.insert(holidays.end(), _2021.cbegin(), _2021.cend());
-					holidays.insert(holidays.end(), _2022a.cbegin(), _2022a.cend());
+					holidays.insert(_2019.cbegin(), _2019.cend());
+					holidays.insert(_2020.cbegin(), _2020.cend());
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022a.cbegin(), _2022a.cend());
 
 					return schedule{
 						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
@@ -1843,10 +1843,10 @@ namespace gregorian
 				static auto _make_known_schedule_part2b() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2019.cbegin(), _2019.cend());
-					holidays.insert(holidays.end(), _2020.cbegin(), _2020.cend());
-					holidays.insert(holidays.end(), _2021.cbegin(), _2021.cend());
-					holidays.insert(holidays.end(), _2022b.cbegin(), _2022b.cend());
+					holidays.insert(_2019.cbegin(), _2019.cend());
+					holidays.insert(_2020.cbegin(), _2020.cend());
+					holidays.insert(_2021.cbegin(), _2021.cend());
+					holidays.insert(_2022b.cbegin(), _2022b.cend());
 
 					return schedule{
 						days_period{ 2019y / FirstDayOfJanuary, 2022y / LastDayOfDecember },
@@ -1857,12 +1857,12 @@ namespace gregorian
 				static auto _make_known_schedule_part3() -> schedule
 				{
 					auto holidays = schedule::dates{};
-					holidays.insert(holidays.end(), _2023.cbegin(), _2023.cend());
-					holidays.insert(holidays.end(), _2024.cbegin(), _2024.cend());
-					holidays.insert(holidays.end(), _2025.cbegin(), _2025.cend());
-					holidays.insert(holidays.end(), _2026.cbegin(), _2026.cend());
-					holidays.insert(holidays.end(), _2027.cbegin(), _2027.cend());
-					holidays.insert(holidays.end(), _2028.cbegin(), _2028.cend());
+					holidays.insert(_2023.cbegin(), _2023.cend());
+					holidays.insert(_2024.cbegin(), _2024.cend());
+					holidays.insert(_2025.cbegin(), _2025.cend());
+					holidays.insert(_2026.cbegin(), _2026.cend());
+					holidays.insert(_2027.cbegin(), _2027.cend());
+					holidays.insert(_2028.cbegin(), _2028.cend());
 
 					return schedule{
 						days_period{ 2023y / January / 1d, 2028y / LastDayOfDecember },
