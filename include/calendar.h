@@ -258,8 +258,7 @@ namespace gregorian // should the namespace be called civil?
 
 		auto s = schedule::dates{};
 		for (const auto& bd : _s)
-//			s.insert(bd);
-			s.push_back(bd);
+			s.insert(s.end(), bd);
 #endif
 
 		return schedule{ std::move(p), std::move(s)	};
