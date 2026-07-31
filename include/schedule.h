@@ -120,7 +120,7 @@ namespace gregorian
 	}
 
 	template <typename Key>
-	auto _intersect_flat_sets(const std::flat_set<Key>& a, const std::flat_set<Key>& b) -> std::flat_set<Key>
+	auto _intersect_flat_sets(const std::flat_set<Key>& a, const std::flat_set<Key>& b) -> std::flat_set<Key> // should it be in util?
 	{
 		std::vector<Key> result;
 		// The intersection size will never exceed the size of the smaller set
