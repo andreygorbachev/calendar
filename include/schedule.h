@@ -69,7 +69,7 @@ namespace gregorian
 
 	public:
 
-		friend auto operator+(schedule s1, schedule s2) -> schedule;
+		friend auto operator+(schedule s1, schedule s2) -> schedule; // is it still the right interface? (also for | and &)
 			
 		auto operator+=(schedule s) -> schedule&;
 
