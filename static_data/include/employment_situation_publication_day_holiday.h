@@ -105,20 +105,20 @@ namespace gregorian
 
 
 
-		constexpr auto _EmploymentSituationJanuaryRelease = _employment_situation_publication_day_holiday{ std::chrono::December };
-		constexpr auto _EmploymentSituationFebruaryRelease = _employment_situation_publication_day_holiday{ std::chrono::January };
-		constexpr auto _EmploymentSituationMarchRelease = _employment_situation_publication_day_holiday{ std::chrono::February };
-		constexpr auto _EmploymentSituationAprilRelease = _employment_situation_publication_day_holiday{ std::chrono::March };
-		constexpr auto _EmploymentSituationMayRelease = _employment_situation_publication_day_holiday{ std::chrono::April };
-		constexpr auto _EmploymentSituationJuneRelease = _employment_situation_publication_day_holiday{ std::chrono::May };
-		constexpr auto _EmploymentSituationJulyRelease = _employment_situation_publication_day_holiday{ std::chrono::June };
-		constexpr auto _EmploymentSituationAugustRelease = _employment_situation_publication_day_holiday{ std::chrono::July };
-		constexpr auto _EmploymentSituationSeptemberRelease = _employment_situation_publication_day_holiday{ std::chrono::August };
-		constexpr auto _EmploymentSituationOctoberRelease = _employment_situation_publication_day_holiday{ std::chrono::September };
-		constexpr auto _EmploymentSituationNovemberRelease = _employment_situation_publication_day_holiday{ std::chrono::October };
-		constexpr auto _EmploymentSituationDecemberRelease = _employment_situation_publication_day_holiday{ std::chrono::November };
+		inline constexpr auto _EmploymentSituationJanuaryRelease = _employment_situation_publication_day_holiday{ std::chrono::December };
+		inline constexpr auto _EmploymentSituationFebruaryRelease = _employment_situation_publication_day_holiday{ std::chrono::January };
+		inline constexpr auto _EmploymentSituationMarchRelease = _employment_situation_publication_day_holiday{ std::chrono::February };
+		inline constexpr auto _EmploymentSituationAprilRelease = _employment_situation_publication_day_holiday{ std::chrono::March };
+		inline constexpr auto _EmploymentSituationMayRelease = _employment_situation_publication_day_holiday{ std::chrono::April };
+		inline constexpr auto _EmploymentSituationJuneRelease = _employment_situation_publication_day_holiday{ std::chrono::May };
+		inline constexpr auto _EmploymentSituationJulyRelease = _employment_situation_publication_day_holiday{ std::chrono::June };
+		inline constexpr auto _EmploymentSituationAugustRelease = _employment_situation_publication_day_holiday{ std::chrono::July };
+		inline constexpr auto _EmploymentSituationSeptemberRelease = _employment_situation_publication_day_holiday{ std::chrono::August };
+		inline constexpr auto _EmploymentSituationOctoberRelease = _employment_situation_publication_day_holiday{ std::chrono::September };
+		inline constexpr auto _EmploymentSituationNovemberRelease = _employment_situation_publication_day_holiday{ std::chrono::October };
+		inline constexpr auto _EmploymentSituationDecemberRelease = _employment_situation_publication_day_holiday{ std::chrono::November };
 
-		const auto _EmploymentSituationRules = annual_holiday_storage{
+		inline const auto _EmploymentSituationRules = annual_holiday_storage{ // should be constexpr?
 			&_EmploymentSituationJanuaryRelease,
 			&_EmploymentSituationFebruaryRelease,
 			&_EmploymentSituationMarchRelease,

@@ -57,7 +57,7 @@ namespace gregorian
 
 
 
-		constexpr auto _VictoriaDay = _victoria_day_holiday{};
+		inline constexpr auto _VictoriaDay = _victoria_day_holiday{};
 
 	}
 

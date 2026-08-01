@@ -56,7 +56,7 @@ namespace gregorian
 	};
 
 
-	const auto MarchEquinox = vernal_equinox{};
+	inline const auto MarchEquinox = vernal_equinox{};
 
 
 
@@ -78,7 +78,7 @@ namespace gregorian
 	};
 
 
-	const auto JuneSolstice = summer_solstice{};
+	inline const auto JuneSolstice = summer_solstice{};
 
 
 
@@ -100,7 +100,7 @@ namespace gregorian
 	};
 
 
-	const auto SeptemberEquinox = autumnal_equinox{};
+	inline const auto SeptemberEquinox = autumnal_equinox{};
 
 
 
@@ -122,7 +122,7 @@ namespace gregorian
 	};
 
 
-	const auto DecemberSolstice = winter_solstice{};
+	inline const auto DecemberSolstice = winter_solstice{};
 
 
 

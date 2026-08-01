@@ -42,7 +42,7 @@ namespace gregorian
 	};
 
 
-	const auto NoAdjustment = no_adjustment{};
+	inline const auto NoAdjustment = no_adjustment{};
 
 
 
@@ -57,7 +57,7 @@ namespace gregorian
 	};
 
 
-	const auto Following = following{};
+	inline const auto Following = following{};
 
 
 
@@ -72,7 +72,7 @@ namespace gregorian
 	};
 
 
-	const auto Preceding = preceding{};
+	inline const auto Preceding = preceding{};
 
 
 
@@ -87,7 +87,7 @@ namespace gregorian
 	};
 
 
-	const auto Nearest = nearest{};
+	inline const auto Nearest = nearest{};
 
 
 
