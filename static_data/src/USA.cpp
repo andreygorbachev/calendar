@@ -1345,6 +1345,16 @@ namespace gregorian
 					};
 				}
 
+				// should it be in algorithms?
+				static auto _adjust_dates(const schedule::dates& dates, const calendar& cal) -> schedule::dates // correct API?
+				{
+					auto result = schedule::dates{};
+					for (const auto& d : dates)
+						result.insert(result.end(), Preceding.adjust(d, cal)); // use ranges?
+
+					return result;
+				}
+
 				static auto _make_generated_schedule_part0() -> schedule
 				{
 					const auto period = years_period{ 2027y, Epoch.get_until().year() };
@@ -1353,19 +1363,13 @@ namespace gregorian
 						period,
 						_EmploymentSituationRules
 					);
-					const auto& dates = s.get_dates();
 
 					const auto Federal_calendar = make_Federal_calendar_versions().at(2021y / June / 17d);
 					// not a good idea as we keep rebulding this calendar
 
-					auto result = schedule::dates{};	
-					for (const auto& d : dates)
-						result.insert(result.end(), Preceding.adjust(d, Federal_calendar)); // use ranges?
-					// do we need to factor out a function to adjust shedule::dates with some external calendar?
-
 					return schedule{
 						days_period{ period.get_from() / FirstDayOfJanuary, period.get_until() / LastDayOfDecember },
-						std::move(result)
+						_adjust_dates(s.get_dates(), Federal_calendar)
 					};
 				}
 
