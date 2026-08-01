@@ -57,7 +57,8 @@ namespace gregorian
 
 		inline constexpr _employment_situation_publication_day_holiday::_employment_situation_publication_day_holiday(std::chrono::month reference_month) noexcept :
 			_reference_month{ std::move(reference_month) }
-		{}
+		{
+		}
 
 
 		inline /*constexpr*/ auto _employment_situation_publication_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
@@ -96,7 +97,7 @@ namespace gregorian
 			const auto release_day = release_year_month_day.day();
 			if ((_12th_of_reference_month_weekday == std::chrono::Sunday && days_in_reference_month <= 30u) ||
 				(release_month == std::chrono::January && (release_day == std::chrono::day{ 1u } || release_day == std::chrono::day{ 2u } || release_day == std::chrono::day{ 1u }))
-				)
+			)
 				release_date = release_year / release_month / std::chrono::Friday[2];
 
 			return release_date;
