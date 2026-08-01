@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <make_third_Friday_schedule.h>
+#include <employment_situation_publication_day_holiday.h>
 
 #include <period.h>
 #include <schedule.h>

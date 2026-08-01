@@ -26,7 +26,7 @@ target_sources(${PROJECT_NAME} PRIVATE
   ../include/makers.h
   ../include/cyclical_holiday.h
   ../include/victoria_day_holiday.h
-  ../include/make_third_Friday_schedule.h
+  ../include/employment_situation_publication_day_holiday.h
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
