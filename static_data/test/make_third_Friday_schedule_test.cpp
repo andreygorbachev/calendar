@@ -24,6 +24,8 @@
 
 #include <period.h>
 #include <schedule.h>
+#include <annual_holiday_interface.h>
+#include <business_day_adjusters.h>
 #include <static_data.h>
 
 #include <gtest/gtest.h>
@@ -43,28 +45,34 @@ namespace gregorian
 		{
 			// from  https://www.bls.gov/schedule/news_release/empsit.htm
 
-			const auto expected = schedule{
-				util::days_period{ 2026y / FirstDayOfJanuary, 2026y / LastDayOfDecember },
-				schedule::dates{
-					2026y / January / 9d, // case when the January's release falls on 1st, 2nd or 3rd
-					2026y / February / 6d,
-					2026y / March / 6d,
-					2026y / April / 3d,
-					2026y / May / 8d,
-					2026y / June / 5d,
-					2026y / July / 2d,
-					2026y / August / 7d,
-					2026y / September / 4d,
-					2026y / October / 2d,
-					2026y / November / 6d,
-					2026y / December / 4d
-				}
+			const auto expected = schedule::dates{
+				2026y / January / 9d, // case when the January's release falls on 1st, 2nd or 3rd
+				2026y / February / 6d,
+				2026y / March / 6d,
+				2026y / April / 3d,
+				2026y / May / 8d,
+				2026y / June / 5d,
+				2026y / July / 2d,
+				2026y / August / 7d,
+				2026y / September / 4d,
+				2026y / October / 2d,
+				2026y / November / 6d,
+				2026y / December / 4d
 			};
 
-			const auto jobs_report_schedule = _make_third_Friday_schedule(
-				util::years_period{ 2026y, 2026y },
-				locate_calendar("America/USA", 2026y / FirstDayOfJanuary)
+			const auto period = util::years_period{ 2026y, 2026y };
+
+			const auto s = make_holiday_schedule(
+				period,
+				_EmploymentSituationRules
 			);
+			const auto& dates = s.get_dates();
+
+			const auto& USA_calendar = locate_calendar("America/USA", 2026y / FirstDayOfJanuary);
+
+			auto jobs_report_schedule = schedule::dates{};
+			for (const auto& d : dates)
+				jobs_report_schedule.insert(Preceding.adjust(d, USA_calendar));
 
 			EXPECT_EQ(expected, jobs_report_schedule);
 		}

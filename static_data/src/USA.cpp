@@ -1345,6 +1345,30 @@ namespace gregorian
 					};
 				}
 
+				static auto _make_generated_schedule_part0() -> schedule
+				{
+					const auto period = years_period{ 2027y, Epoch.get_until().year() };
+						
+					const auto s = make_holiday_schedule(
+						period,
+						_EmploymentSituationRules
+					);
+					const auto& dates = s.get_dates();
+
+					const auto Federal_calendar = make_Federal_calendar_versions().at(2021y / June / 17d);
+					// not a good idea as we keep rebulding this calendar
+
+					auto result = schedule::dates{};	
+					for (const auto& d : dates)
+						result.insert(result.end(), Preceding.adjust(d, Federal_calendar)); // use ranges?
+					// do we need to factor out a function to adjust shedule::dates with some external calendar?
+
+					return schedule{
+						days_period{ period.get_from() / FirstDayOfJanuary, period.get_until() / LastDayOfDecember },
+						std::move(result)
+					};
+				}
+
 			}
 
 
@@ -2129,28 +2153,21 @@ namespace gregorian
 
 			auto make_NFP_calendar_versions() -> _calendar_versions // add history prior to 2026 // use it for SIFMA forecasting?
 			{
-				const auto& Federal_calendar = make_Federal_calendar_versions().at(2021y / June / 17d);
-
 				const auto NFP_dates0 =
 					NFP::_make_known_schedule_part0a() +
-					_make_third_Friday_schedule(
-						years_period{ 2027y, Epoch.get_until().year() },
-						Federal_calendar
-					);
+					NFP::_make_generated_schedule_part0();
 
 				auto cal0 = calendar{ NoWeekend, ~NFP_dates0 };
 
 				const auto NFP_dates1 =
-					NFP::_make_known_schedule_part0b();
+					NFP::_make_known_schedule_part0b() +
+					NFP::_make_generated_schedule_part0();
 
 				auto cal1 = calendar{ NoWeekend, ~NFP_dates1 };
 
 				const auto NFP_dates2 =
 					NFP::_make_known_schedule_part0c() +
-					_make_third_Friday_schedule(
-						years_period{ 2027y, Epoch.get_until().year() },
-						Federal_calendar
-					);
+					NFP::_make_generated_schedule_part0();
 
 				auto cal2 = calendar{ NoWeekend, ~NFP_dates2 };
 
