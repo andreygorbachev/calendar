@@ -4,6 +4,7 @@ add_executable(${PROJECT_NAME}
   period.cpp
   iota.cpp
   time_series.cpp
+  intersect_flat_sets.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

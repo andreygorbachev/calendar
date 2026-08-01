@@ -23,14 +23,13 @@
 #pragma once
 
 #include <period.h>
+#include <intersect_flat_sets.h>
 
 #include <chrono>
 #include <utility>
 #include <flat_set>
-#include <iterator>
 #include <algorithm>
 #include <compare>
-#include <vector>
 
 #define SCHEDULE_YEAR_MONTH_DAY_BASED
 //#undef SCHEDULE_YEAR_MONTH_DAY_BASED
@@ -119,23 +118,9 @@ namespace gregorian
 		};
 	}
 
-	template <typename Key>
-	auto _intersect_flat_sets(const std::flat_set<Key>& a, const std::flat_set<Key>& b) -> std::flat_set<Key> // should it be in util?
-	{
-		std::vector<Key> result;
-		// The intersection size will never exceed the size of the smaller set
-		result.reserve(std::min(a.size(), b.size()));
-
-		// Find overlapping elements in O(N + M) time
-		std::ranges::set_intersection(a, b, std::back_inserter(result));
-
-		// Construct flat_set without re-sorting or re-checking duplicates
-		return std::flat_set<Key>(std::sorted_unique, std::move(result));
-	}
-
 	[[nodiscard]] inline auto operator&(schedule s1, schedule s2) -> schedule
 	{
-		auto ds = _intersect_flat_sets(s1._dates, s2._dates);
+		auto ds = util::intersect_flat_sets(s1._dates, s2._dates);
 
 		return schedule{
 			s1.get_period() & s2.get_period(),
