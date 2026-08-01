@@ -28,7 +28,6 @@
 #include <business_day_adjusters.h>
 
 #include <chrono>
-#include <vector>
 
 
 namespace gregorian
