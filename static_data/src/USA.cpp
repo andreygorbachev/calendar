@@ -2160,8 +2160,7 @@ namespace gregorian
 				auto cal0 = calendar{ NoWeekend, ~NFP_dates0 };
 
 				const auto NFP_dates1 =
-					NFP::_make_known_schedule_part0b() +
-					NFP::_make_generated_schedule_part0();
+					NFP::_make_known_schedule_part0b(); // we are saying that publication of NFP was stopped indefinitely
 
 				auto cal1 = calendar{ NoWeekend, ~NFP_dates1 };
 
