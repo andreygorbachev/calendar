@@ -32,7 +32,6 @@
 #include <istream>
 #include <fstream>
 #include <utility>
-#include <stdexcept> // only for !_MSC_BUILD
 #include <vector>
 
 
@@ -40,7 +39,8 @@ inline auto _parse_date(std::istream& fs) -> std::chrono::year_month_day
 {
 	auto ymd = std::chrono::year_month_day{};
 
-	std::chrono::from_stream(fs, "%d/%m/%Y", ymd);
+//	std::chrono::from_stream(fs, "%d/%m/%Y", ymd);
+	fs >> std::chrono::parse("%d/%m/%Y", ymd);
 
 	return ymd;
 }
