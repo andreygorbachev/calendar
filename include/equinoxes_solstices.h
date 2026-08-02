@@ -56,7 +56,7 @@ namespace gregorian
 	};
 
 
-	inline const auto MarchEquinox = vernal_equinox{};
+	inline const auto MarchEquinox = vernal_equinox{}; // should be constexpr
 
 
 
