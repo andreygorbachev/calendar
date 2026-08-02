@@ -40,7 +40,11 @@ inline auto _parse_date(std::istream& fs) -> std::chrono::year_month_day
 {
 	auto ymd = std::chrono::year_month_day{};
 
+#ifdef _MSC_BUILD
 	std::chrono::from_stream(fs, "%d/%m/%Y", ymd);
+#else
+	throw std::domain_error{ "Not implemented" };
+#endif
 
 	return ymd;
 }
