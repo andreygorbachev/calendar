@@ -121,4 +121,36 @@ namespace gregorian
 		EXPECT_EQ(no_holidays, s);
 	}
 
+	TEST(annual_holiday, make_holiday_schedule2)
+	{
+		const auto p = years_period{ 2023y, 2023y };
+
+		const auto r = annual_holiday_storage{ &NewYearsDay };
+
+		const auto s = make_holiday_schedule(p, r);
+
+		const auto expected = schedule{
+			days_period{ p.get_from() / FirstDayOfJanuary, p.get_until() / LastDayOfDecember },
+			{ 2023y / January / 1d }
+		};
+
+		EXPECT_EQ(expected, s);
+	}
+
+	TEST(annual_holiday, make_holiday_schedule3)
+	{
+		const auto p = years_period{ 2023y, 2023y };
+
+		const auto r = annual_holiday_storage{ &NewYearsDay, &NewYearsDay }; // duplicated holiday will be ignored
+
+		const auto s = make_holiday_schedule(p, r);
+
+		const auto expected = schedule{
+			days_period{ p.get_from() / FirstDayOfJanuary, p.get_until() / LastDayOfDecember },
+			{ 2023y / January / 1d }
+		};
+
+		EXPECT_EQ(expected, s);
+	}
+
 }
