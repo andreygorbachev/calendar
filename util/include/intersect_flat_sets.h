@@ -38,7 +38,7 @@ namespace gregorian
 		template <typename Key>
 		[[nodiscard]] auto intersect_flat_sets(const std::flat_set<Key>& a, const std::flat_set<Key>& b) -> std::flat_set<Key> // make it more generic?
 		{
-			std::vector<Key> result;
+			auto result = std::vector<Key>{};
 			// The intersection size will never exceed the size of the smaller set
 			result.reserve(std::min(a.size(), b.size()));
 
