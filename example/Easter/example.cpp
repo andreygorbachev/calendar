@@ -62,7 +62,7 @@ int main()
 
     cout << boolalpha;
 
-    cout << "Are Easters from the file are the same as generated Easters? " << (from_file == generated) << endl;
+    cout << "Are Easters from the file the same as generated Easters? " << (from_file == generated) << endl;
 
     return 0;
 
