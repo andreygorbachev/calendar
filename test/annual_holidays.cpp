@@ -114,7 +114,7 @@ namespace gregorian
 		const auto s = make_holiday_schedule(p, no_rules);
 
 		const auto no_holidays = schedule{
-			days_period{ 2023y / January / 1d, 2023y / December / 31d },
+			days_period{ p.get_from() / FirstDayOfJanuary, p.get_until() / LastDayOfDecember },
 			{}
 		};
 
