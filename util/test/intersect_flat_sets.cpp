@@ -24,6 +24,10 @@
 
 #include <gtest/gtest.h>
 
+#include <flat_set>
+
+using namespace std;
+
 
 namespace gregorian
 {
@@ -33,7 +37,18 @@ namespace gregorian
 
 		TEST(intersect_flat_sets, intersect_flat_sets1)
 		{
-			// ToDo
+			const auto set1 = flat_set{ 1, 2 };
+			const auto set2 = flat_set{ 2, 3 };
+			const auto set3 = flat_set{ 3, 4 };
+
+			const auto expected1 = flat_set<int>{};
+			EXPECT_EQ(expected1, intersect_flat_sets(set1, set3));
+
+			const auto expected2 = flat_set{ 2 };
+			EXPECT_EQ(expected2, intersect_flat_sets(set1, set2));
+
+			const auto& expected3 = set1;
+			EXPECT_EQ(expected3, intersect_flat_sets(set1, set1));
 		}
 
 	}
