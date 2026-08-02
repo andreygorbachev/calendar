@@ -20,7 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <annual_holiday_interface.h>
 #include <annual_holidays.h>
+#include <schedule.h>
+#include <period.h>
 #include <schedule.h>
 
 #include <gtest/gtest.h>
@@ -28,6 +31,8 @@
 #include <chrono>
 
 using namespace std::chrono;
+
+using namespace gregorian::util;
 
 
 namespace gregorian
@@ -100,8 +105,20 @@ namespace gregorian
 	}
 
 
-//	TEST(annual_holiday, make_holiday_schedule)
-//	{
-//	}
+	TEST(annual_holiday, make_holiday_schedule1)
+	{
+		const auto p = years_period{ 2023y, 2023y };
+
+		const auto no_rules = annual_holiday_storage{};
+
+		const auto s = make_holiday_schedule(p, no_rules);
+
+		const auto no_holidays = schedule{
+			days_period{ 2023y / January / 1d, 2023y / December / 31d },
+			{}
+		};
+
+		EXPECT_EQ(no_holidays, s);
+	}
 
 }
