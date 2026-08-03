@@ -45,7 +45,7 @@ namespace gregorian
 
 		private:
 
-			constexpr auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
+			/*constexpr*/ auto _make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day final;
 
 		private:
 
@@ -61,7 +61,7 @@ namespace gregorian
 		}
 
 
-		inline constexpr auto _employment_situation_publication_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
+		inline /*constexpr*/ auto _employment_situation_publication_day_holiday::_make_holiday(const std::chrono::year& y) const noexcept -> std::chrono::year_month_day
 		{
 			const auto reference_year_month = _reference_month != std::chrono::December ?
 				y / _reference_month :
