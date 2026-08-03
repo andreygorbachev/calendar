@@ -31,7 +31,7 @@
 #include <ranges>
 
 
-namespace gregorian
+namespace gregorian // we can replace these with just a lookup table for the Epoch at least (if we want things to be constexpr and as std::cos is not yet constexpr)
 {
 
 	// from "Astronomical Algorithms" second edition 1998
