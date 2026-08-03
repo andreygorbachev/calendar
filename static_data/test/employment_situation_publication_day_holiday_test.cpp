@@ -41,9 +41,22 @@ namespace gregorian
 	namespace static_data
 	{
 
-		TEST(_make_third_Friday_schedule, make_third_Friday_schedule)
+		TEST(_employment_situation_publication_day_holiday, make_holiday)
 		{
 			// from  https://www.bls.gov/schedule/news_release/empsit.htm
+
+			const auto period = util::years_period{ 2026y, 2026y };
+
+			const auto schedule = make_holiday_schedule(
+				period,
+				_EmploymentSituationRules
+			);
+
+			const auto jobs_report_schedule = adjust(
+				schedule.get_dates(),
+				Preceding,
+				locate_calendar("America/USA", 2026y / FirstDayOfJanuary)
+			);
 
 			const auto expected = schedule::dates{
 				2026y / January / 9d, // case when the January's release falls on 1st, 2nd or 3rd
@@ -58,21 +71,7 @@ namespace gregorian
 				2026y / October / 2d,
 				2026y / November / 6d,
 				2026y / December / 4d
-			};
-
-			const auto period = util::years_period{ 2026y, 2026y };
-
-			const auto s = make_holiday_schedule(
-				period,
-				_EmploymentSituationRules
-			);
-			const auto& dates = s.get_dates();
-
-			const auto& USA_calendar = locate_calendar("America/USA", 2026y / FirstDayOfJanuary);
-
-			auto jobs_report_schedule = schedule::dates{};
-			for (const auto& d : dates)
-				jobs_report_schedule.insert(Preceding.adjust(d, USA_calendar));
+			}; // or should we test these separately? (at the moment we have to do adjust on all the dates, so maybe that adjustment should be done in the _make_holiday method, but then we have to pass the calendar to this class, which is not good)
 
 			EXPECT_EQ(expected, jobs_report_schedule);
 		}

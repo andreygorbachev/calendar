@@ -23,6 +23,10 @@
 #pragma once
 
 #include <annual_holiday_interface.h>
+// for adjust only:
+#include <business_day_adjuster_interface.h>
+#include <calendar.h>
+#include <schedule.h>
 
 #include <chrono>
 #include <utility>
@@ -101,6 +105,21 @@ namespace gregorian
 				release_date = release_year / release_month / std::chrono::Friday[2];
 
 			return release_date;
+		}
+
+
+
+		// should it be in algorithms?
+		inline /*constexpr*/ auto adjust(
+			const schedule::dates& dates, // or take a copy and adjust in place?
+			const business_day_adjuster& adjuster,
+			const calendar& calendar
+		) -> schedule::dates
+		{
+			auto result = schedule::dates{};
+			for (const auto& d : dates)
+				result.insert(result.end(), adjuster.adjust(d, calendar)); // ranges?
+			return result;
 		}
 
 
