@@ -81,7 +81,7 @@ namespace gregorian
 			auto d = _holiday.make_holiday(y);
 
 			if ((y - _start) % _period != std::chrono::years{ 0 })
-				d = d.year() / d.month() / std::chrono::day{ 32u }; // intentionally invalidate date to indicate that there is no holiday in this year
+				d = d.year() / d.month() / std::chrono::day{ 32u }; // intentionally invalidate date to indicate that there is no holiday in this year // should it be just default constructed year_month_day?
 
 			return d;
 		}
