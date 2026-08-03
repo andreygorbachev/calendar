@@ -39,7 +39,7 @@ namespace gregorian
 	namespace static_data
 	{
 
-		// is file's name consistent with the name of the class?
+		// is file's name consistent with the name of the class? // should the name hint that the Precceding adjustment is applied externally?
 		class _employment_situation_publication_day_holiday final : public annual_holiday // should it be generalized and moved to annual_holidays.h?
 		{
 
