@@ -118,7 +118,10 @@ namespace gregorian
 		{
 			auto result = schedule::dates{};
 			for (const auto& d : dates)
-				result.insert(result.end(), adjuster.adjust(d, calendar)); // ranges?
+				result.insert(
+					result.end(), // this implicitly assumes that adjusted dates are in increasing order, not sure if that is the right design choice
+					adjuster.adjust(d, calendar)
+				); // use ranges?
 			return result;
 		}
 
