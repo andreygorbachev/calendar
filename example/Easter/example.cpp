@@ -62,9 +62,11 @@ int main()
 
     const auto generated = schedule{ std::move(p), std::move(s) };
 
-    cout << boolalpha;
-
-    cout << "Are Easters from the file the same as generated Easters? " << (from_file == generated) << endl;
+    cout
+        << boolalpha
+        << "Are Easters from the file the same as generated Easters? "
+        << (from_file == generated)
+        << endl;
 
     return 0;
 
