@@ -58,7 +58,9 @@ int main()
     const auto from = y_from / FirstDayOfJanuary;
     const auto until = y_until / LastDayOfDecember;
 
-    const auto generated = schedule{ days_period{ from, until }, std::move(s) };
+	auto p = days_period{ from, until };
+
+    const auto generated = schedule{ std::move(p), std::move(s) };
 
     cout << boolalpha;
 
