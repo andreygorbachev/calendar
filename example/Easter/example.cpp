@@ -43,19 +43,19 @@ using namespace std::chrono;
 int main()
 {
 
-    const auto y_from = 1600y;
-    const auto y_until = 2099y;
+    const auto from = 1600y;
+    const auto until = 2099y;
 
     // from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
 
-    const auto from_file = parse_txt_schedule("easter500.txt", y_from, y_until);
+    const auto from_file = parse_txt_schedule("easter500.txt", from, until);
 
     // generate Easter dates for the same year range so we can compare schedules
     auto s = schedule::dates{};
-    for (auto y = y_from; y <= y_until; ++y)
+    for (auto y = from; y <= until; ++y)
         s.insert(_Easter.make_holiday(y));
 
-	auto p = days_period{ y_from / FirstDayOfJanuary, y_until / LastDayOfDecember };
+	auto p = days_period{ from / FirstDayOfJanuary, until / LastDayOfDecember };
 
     const auto generated = schedule{ std::move(p), std::move(s) };
 
