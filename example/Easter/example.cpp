@@ -55,10 +55,7 @@ int main()
     for (auto y = y_from; y <= y_until; ++y)
         s.insert(_Easter.make_holiday(y));
 
-    const auto from = y_from / FirstDayOfJanuary;
-    const auto until = y_until / LastDayOfDecember;
-
-	auto p = days_period{ from, until };
+	auto p = days_period{ y_from / FirstDayOfJanuary, y_until / LastDayOfDecember };
 
     const auto generated = schedule{ std::move(p), std::move(s) };
 
